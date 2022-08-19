@@ -1,0 +1,348 @@
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Variables */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+:root {
+    --main-color: 0, 109, 255;
+    --logo-orange-color: 254, 106, 40;
+    --logo-green-color: 102, 213, 23;
+    --project-color: 49, 167, 116;
+    --event-color: 128, 97, 222;
+    --program-color: 126, 201, 255;
+    --offer-color: 250, 106, 88;
+    --challenge-color: 237, 159, 0;
+    --white-color: 255, 255, 255;
+    --black-color: 35, 35, 35;
+    --success-color: 56, 191, 132;
+    --warning-color: 255, 176, 13;
+    --error-color: 255, 40, 56;
+    --paleblue-color: 178, 209, 255;
+    --lightblue-color: 240, 246, 255;
+    --skyblue-color: 126, 201, 255;
+    --palegreen-color: 209, 242, 228;
+    --palered-color: 255, 207, 209;
+    --text-main-color: 35, 35, 36;
+    --text-sub-color: 89, 89, 89;
+    --text-main-color: 35, 35, 36;
+    --text-negative-color: 255, 255, 255;
+    --text-inactive-color: 89, 89, 89;
+    --separator-color: 231, 231, 231;
+    --border-color: 207, 208, 209;
+    --border: 1px solid rgb(var(--border-color));
+    --border-alternative-color: 231, 231, 231;
+    --border-alternative: 1px solid rgb(var(--border-alternative-color));
+    --background-main-color: 248, 247, 246;
+    --background-sub-color: 255, 255, 255;
+    --background-private-color: 36, 37, 38;
+    --background-private-header-color: 64, 65, 70;
+    --background-information-color: 247, 247, 247;
+    --background-privacy-color: 231, 231, 231;
+    --separator-color: 231, 231, 231;
+    --shadow-color: 0, 0, 0;
+    --box-shadow: 0px 4px 10px 0px rgba(var(--shadow-color), 0.07);
+    --darker-box-shadow: 0px 4px 10px 0px rgba(var(--shadow-color), 0.27);
+    --filter-color: rgba(0, 0, 0, 0.5);
+    --gradientMask: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 80%);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Dark Theme */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* [data-theme="dark"] {
+    --main-color: 0, 109, 255;
+    --logo-orange-color: 254, 106, 40;
+    --project-color: 49, 167, 116;
+    --event-color: 128, 97, 222;
+    --program-color: 126, 201, 255;
+    --offer-color: 250, 106, 88;
+    --challenge-color: 237, 159, 0;
+    --white-color: 255, 255, 255;
+    --black-color: 35, 35, 35;
+    --success-color: 56, 191, 132;
+    --warning-color: 255, 176, 13;
+    --error-color: 191, 56, 56;
+    --paleblue-color: 56, 56, 56;
+    --lightblue-color: 36, 36, 36;
+    --skyblue-color: 126, 201, 255;
+    --palegreen-color: 209, 242, 228;
+    --palered-color: 255, 207, 209;
+    --text-main-color: 255, 255, 255;
+    --text-sub-color: 176, 179, 184;
+    --text-placeholder-color: 157, 157, 157;
+    --text-inactive-color: 89, 89, 89;
+    --border-color: 120, 120, 120;
+    --border: 1px solid rgb(var(--border-color));
+    --border-alternative-color: 120, 120, 120;
+    --border-alternative: 1px solid rgb(var(--border-alternative-color));
+    --background-main-color: 41, 41, 41;
+    --background-sub-color: 56, 56, 56;
+    --background-private-color: 18, 18, 18;
+    --background-private-header-color: 29, 29, 29;
+    --background-information-color: 36, 36, 36;
+    --background-privacy-color: 56, 56, 56;
+    --separator-color: 231, 231, 231;
+    --shadow-color: 0, 0, 0;
+    --box-shadow: 0px 4px 10px 0px rgba(var(--shadow-color), 0.07);
+    --darker-box-shadow: 0px 4px 10px 0px rgba(var(--shadow-color), 0.27);
+    --filter-color: rgba(0, 0, 0, 0.5);
+    --gradientMask: linear-gradient(180deg, rgba(56, 56, 56, 0) 0%, rgba(56, 56, 56, 1) 80%);
+} */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Defaults */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+    font-family: "Open Sans";
+    color: rgb(var(--text-main-color));
+    list-style: none;
+    border: none;
+    background: none;
+    scroll-behavior: smooth;
+    outline: none;
+    font-size: 14px;
+    -webkit-tap-highlight-color: transparent;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Scroll Bar */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: rgb(var(--background-main-color));
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background-color: rgb(var(--main-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Defaults */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+i {
+    transition: color 0.3s ease;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Body */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+body {
+    padding: 0px;
+    background-color: rgb(var(--background-main-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Main Container */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+#__next {
+    display: flex;
+}
+#__next > .container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+#__next > .container > div > * + * {
+    margin: 16px 0px 0px 0px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Call To Action Rounded Icon ( Base ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionRoundedIcon,
+.callToActionAlternativeRoundedIcon,
+.callToActionNegativeRoundedIcon,
+.callToActionNegativeAlternativeRoundedIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: var(--border);
+    border-color: rgb(var(--main-color));
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+.callToActionRoundedIcon > i,
+.callToActionAlternativeRoundedIcon > i,
+.callToActionNegativeRoundedIcon > i,
+.callToActionNegativeAlternativeRoundedIcon > i {
+    font-size: 16px;
+}
+.callToActionRoundedIcon > i.fa-ellipsis,
+.callToActionAlternativeRoundedIcon > i.fa-ellipsis,
+.callToActionNegativeRoundedIcon > i.fa-ellipsis,
+.callToActionNegativeAlternativeRoundedIcon > i.fa-ellipsis {
+    font-size: 26px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Call To Action Rounded Icon */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionRoundedIcon {
+    background-color: rgb(var(--main-color));
+}
+.callToActionRoundedIcon:hover {
+    background-color: rgb(var(--background-sub-color));
+}
+.callToActionRoundedIcon > i {
+    color: rgb(var(--text-negative-color));
+}
+.callToActionRoundedIcon:hover > i {
+    color: rgb(var(--main-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Call To Action Alternative Rounded Icon */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionAlternativeRoundedIcon {
+    background-color: rgb(var(--background-sub-color));
+}
+.callToActionAlternativeRoundedIcon:hover {
+    background-color: rgb(var(--main-color));
+}
+.callToActionAlternativeRoundedIcon > i {
+    color: rgb(var(--main-color));
+}
+.callToActionAlternativeRoundedIcon:hover > i {
+    color: rgb(var(--text-negative-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Call To Action ( Base ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToAction,
+.callToActionAlternative,
+.callToActionNegative,
+.callToActionNegativeAlternative {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding: 11px 21px;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+    border-radius: 20px;
+    border: var(--border);
+    border-color: rgb(var(--main-color));
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Call To Action */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToAction {
+    color: rgb(var(--text-negative-color));
+    background-color: rgb(var(--main-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Call To Action Alternative */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionAlternative {
+    color: rgb(var(--main-color));
+    background-color: rgb(var(--background-sub-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Call To Action Negative */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionNegative {
+    color: rgb(var(--main-color));
+    border-color: rgb(var(--background-sub-color));
+    background-color: rgb(var(--background-sub-color));
+}
+.callToActionNegative:hover {
+    color: rgb(var(--text-negative-color));
+    background-color: rgb(var(--main-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Call To Action Wide ( Base ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionWide {
+    width: 100%;
+    padding: 16px;
+    position: relative;
+    border: var(--border);
+    border-style: dashed;
+    border-radius: 10px;
+    background-color: rgb(var(--background-sub-color));
+    transition: background-color 0.3s ease;
+}
+.callToActionWide:hover {
+    background-color: rgb(var(--paleblue-color));
+}
+.callToActionWide > .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    border-radius: 32px;
+    background-color: rgb(var(--paleblue-color));
+    transition: background-color 0.3s ease;
+}
+.callToActionWide:hover > .icon {
+    background-color: rgb(var(--main-color));
+}
+.callToActionWide > p {
+    margin: 8px auto auto auto;
+    font-family: "Nunito Sans";
+    font-size: 21px;
+    color: rgb(var(--main-color));
+}
+.callToActionWide > .icon > i {
+    font-size: 30px;
+    color: rgb(var(--main-color));
+}
+.callToActionWide:hover > .icon > i {
+    color: rgb(var(--white-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* See More */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.seeMore {
+    color: rgb(var(--text-inactive-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* See More Alternative */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.seeMoreAlternative {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 112px;
+    height: 32px;
+    margin: 16px auto auto auto;
+    color: rgb(var(--text-inactive-color));
+    font-weight: 600;
+    border: var(--border);
+    border-radius: calc(32px / 2);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Separator */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.separator {
+    width: 100%;
+    height: 1px;
+    margin: 16px 0px;
+    background-color: rgb(var(--separator-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Locked */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.locked {
+    position: relative;
+    overflow: hidden;
+}
+.locked::after {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    content: "";
+    backdrop-filter: blur(10px);
+}
+.locked.gradient::after {
+    background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(var(--background-sub-color), 0.5) 20%, rgb(var(--background-sub-color)) 60%);
+    backdrop-filter: inherit;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Formatted Content */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.formattedContent {
+    display: flex;
+    flex-direction: column;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Modal ( Base ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */

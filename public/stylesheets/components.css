@@ -1,0 +1,723 @@
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Tags */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 0px 8px 0px;
+    position: relative;
+}
+.tags > * + * {
+    margin: 8px 8px 0px 0px;
+}
+.tags > *:first-child {
+    margin: 8px 8px 0px 0px;
+}
+.tags > .tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 24px;
+    height: 24px;
+    max-height: 24px;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: rgb(var(--lightblue-color));
+}
+.tags > .tag > p {
+    margin: 0px;
+    color: rgb(var(--main-color));
+}
+.tags > .tag.main {
+    min-height: 32px;
+    height: 32px;
+    max-height: 32px;
+    background-color: rgb(var(--paleblue-color));
+}
+.tags > .tag.main > p {
+    font-size: 16px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Banners */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.identificationBanner,
+.recoverBanner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-radius: 15px;
+}
+.identificationBanner {
+    background-color: rgb(var(--main-color));
+}
+.recoverBanner {
+    background-color: rgb(var(--warning-color));
+}
+.identificationBanner > p,
+.recoverBanner > p {
+    margin: 0px 16px 0px 0px;
+    font-size: 16px;
+}
+.identificationBanner > p {
+    color: rgb(var(--text-negative-color));
+}
+.identificationBanner > .actions,
+.recoverBanner > .actions {
+    display: flex;
+    align-items: center;
+}
+.identificationBanner > .actions > * + *,
+.recoverBanner > .actions > * + * {
+    margin: 0px 0px 0px 16px;
+}
+.identificationBanner > .actions > a {
+    color: rgb(var(--text-negative-color));
+    text-decoration: underline;
+}
+.recoverBanner > .actions > button {
+    color: rgb(var(--text-main-color));
+}
+.recoverBanner > .actions > button:hover {
+    background-color: rgb(var(--warning-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile Card */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.profileCard {
+    border-radius: 15px;
+    background-color: rgb(var(--background-sub-color));
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+.profileCard > .banner {
+    min-height: 192px;
+    height: 192px;
+    max-height: 192px;
+    position: relative;
+}
+.profileCard > .banner > img {
+    width: 100% !important;
+    height: 100% !important;
+    top: inherit !important;
+    right: inherit !important;
+    bottom: inherit !important;
+    left: inherit !important;
+    object-fit: cover !important;
+}
+.profileCard > .banner > .actions {
+    display: flex;
+    justify-content: space-between;
+    width: 184px;
+    height: 72px;
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    background-color: rgba(var(--background-sub-color), 0.9);
+}
+@media screen and (max-width: 990px) {
+    .profileCard > .banner > .actions {
+        top: 16px;
+        bottom: inherit;
+    }
+}
+.profileCard > .banner > .actions > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+.profileCard > .banner > .actions > div > p {
+    margin: 0px;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgb(var(--main-color));
+}
+.profileCard > .body {
+    display: flex;
+    flex: 1;
+}
+@media screen and (max-width: 990px) {
+    .profileCard > .body {
+        flex-direction: column;
+    }
+}
+.profileCard > .body > .picture {
+    display: flex;
+    justify-content: center;
+    min-width: calc(120px + (2 * 16px));
+    width: calc(120px + (2 * 16px));
+    max-width: calc(120px + (2 * 16px));
+    position: relative;
+}
+@media screen and (max-width: 990px) {
+    .profileCard > .body > .picture {
+        margin: 0px auto;
+    }
+}
+.profileCard > .body > .picture > img {
+    width: 120px !important;
+    height: 120px !important;
+    position: absolute !important;
+    top: calc(-120px / 2) !important;
+    right: inherit !important;
+    bottom: inherit !important;
+    left: inherit !important;
+    object-fit: cover !important;
+    border: var(--border) !important;
+    border-width: 3px !important;
+    border-color: rgb(var(--background-sub-color)) !important;
+    border-radius: 60px !important;
+}
+.profileCard > .body > .content {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - (120px + (2 * 16px)));
+    padding: 16px 16px 16px 0px;
+}
+@media screen and (max-width: 990px) {
+    .profileCard > .body > .content {
+        width: 100%;
+        margin-top: calc(120px / 2);
+        padding: 16px;
+    }
+}
+.profileCard > .body > .content > h3 {
+    margin: 0px auto 8px 0px;
+    font-family: "Nunito Sans";
+    font-size: 24px;
+    font-weight: 800;
+}
+.profileCard > .body > .content > .informations {
+    display: flex;
+    align-items: center;
+    margin: 0px auto 8px 0px;
+}
+.profileCard > .body > .content > .informations > * + * {
+    margin: 0px 0px 0px 24px;
+}
+.profileCard > .body > .content > .informations > div {
+    display: flex;
+    align-items: center;
+}
+.profileCard > .body > .content > .informations > div > i {
+    padding: 0px 8px 0px 0px;
+}
+.profileCard > .body > .content > .informations > div > p {
+    margin: 0px;
+    font-size: 14px;
+    color: rgb(var(--text-inactive-color));
+}
+.profileCard > .body > .content > .informations > div > a {
+    font-weight: bold;
+    color: rgb(var(--main-color));
+    text-decoration: underline;
+}
+.profileCard > .body > .content > .description {
+    margin: 0px 0px 8px 0px;
+}
+.profileCard > .body > .content > .description > p {
+    margin: 0px;
+}
+.profileCard > .body > .content > .stats {
+    display: flex;
+}
+.profileCard > .body > .content > .stats > * + * {
+    margin: 0px 0px 0px 16px;
+}
+.profileCard > .body > .content > .stats > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profileCard > .body > .content > .stats > div > p {
+    margin: 0px;
+    color: rgb(var(--text-inactive-color));
+}
+.profileCard > .body > .content > .stats > div > p:not(.label) {
+    font-family: "Nunito Sans";
+    font-size: 32px;
+    font-weight: 800;
+}
+.profileCard > .note {
+    padding: 16px;
+}
+.profileCard > .note > p {
+    margin: 0px;
+    font-size: 16px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile Menu */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.profileMenu {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 16px;
+}
+@media screen and (max-width: 990px) {
+    .profileMenu {
+        display: none;
+    }
+}
+.profileMenu > .label {
+    margin: 0px 0px 8px 0px;
+    font-size: 12px;
+    font-style: italic;
+    color: rgb(var(--text-inactive-color));
+}
+.profileMenu > ul {
+    display: flex;
+    flex-direction: column;
+}
+.profileMenu > ul > * + * {
+    margin: 8px 0px 0px 0px;
+}
+.profileMenu > ul > li > a {
+    font-size: 16px;
+    color: rgb(var(--text-main-color));
+}
+.profileMenu > ul > li > a:hover {
+    font-weight: bold;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile Offer */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.profileOffer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+@media screen and (max-width: 990px) {
+    .profileOffer {
+        margin: 16px 0px 0px 0px;
+    }
+}
+.profileOffer > h3 {
+    margin: 0px 0px 16px 16px;
+    font-size: 24px;
+    font-weight: 800;
+}
+.profileOffer > .content {
+    display: flex;
+    flex-direction: column;
+    min-height: 250px;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: rgb(var(--background-sub-color));
+    box-shadow: var(--box-shadow);
+}
+.profileOffer > .content > .label {
+    margin: 0px 0px 8px 0px;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(var(--text-inactive-color));
+}
+.profileOffer > .content > p:not(.label) {
+    margin: 0px;
+}
+.profileOffer > .content > .lockedContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+.profileOffer > .content > .lockedContent > i {
+    font-size: 24px;
+    color: rgb(var(--main-color));
+    margin: 0px 0px 8px 0px;
+}
+.profileOffer > .content > .lockedContent > p {
+    text-align: center;
+    color: rgb(var(--main-color));
+    text-decoration: underline;
+    font-size: 19px;
+    font-weight: bold;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile Details */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.profileDetails {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-radius: 15px;
+    background-color: rgb(var(--background-sub-color));
+    box-shadow: var(--box-shadow);
+}
+.profileDetails > .details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.profileDetails > .details > div {
+    display: flex;
+    flex: 1;
+}
+.profileDetails > .details > div > .label {
+    margin: 0px;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(var(--text-inactive-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile Products */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.profileProducts {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.profileProducts > .label {
+    margin: 0px 0px 16px 16px;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(var(--text-inactive-color));
+}
+.profileProducts > .products {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.profileProducts > .products > .product {
+    display: flex;
+    flex-direction: column;
+    width: calc((100% / 2) - 8px);
+    max-height: 218px;
+    margin: 0px 8px 0px 0px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgb(var(--background-sub-color));
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.profileProducts > .products > .product:hover {
+    transform: scale(1.02);
+    box-shadow: var(--darker-box-shadow);
+    z-index: 1;
+}
+.profileProducts > .products > .product:nth-of-type(2n) {
+    margin: 0px 0px 0px 8px;
+}
+.profileProducts > .products > .product:nth-of-type(1n + 2) + * {
+    margin-top: 16px;
+}
+.profileProducts > .products > .product > .banner {
+    width: 100%;
+    height: 128px;
+    position: relative;
+}
+.profileProducts > .products > .product > .banner > img {
+    width: 100% !important;
+    height: 100% !important;
+    top: inherit !important;
+    right: inherit !important;
+    bottom: inherit !important;
+    left: inherit !important;
+    object-fit: cover !important;
+}
+.profileProducts > .products > .product > .banner > p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 32px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-weight: 600;
+    color: rgb(var(--white-color));
+    text-transform: uppercase;
+    border-radius: 100px;
+    background-color: rgb(var(--main-color));
+}
+.profileProducts > .products > .product > .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 16px;
+}
+.profileProducts > .products > .product > .content > .productType {
+    margin: 0px 0px 8px 0px;
+    font-size: 12px;
+    font-style: italic;
+    color: rgb(var(--text-inactive-color));
+}
+.profileProducts > .products > .product > .content > .productName {
+    margin: 0px;
+    font-weight: bold;
+    font-size: 21px;
+    font-family: "Nunito Sans";
+}
+.profileProducts > .seeMore {
+    margin: 8px 16px 0px auto;
+}
+.profileProducts > .seeMore > span {
+    margin: 0px 8px 0px 0px;
+    color: rgb(var(--text-inactive-color));
+}
+.profileProducts > .seeMore > i {
+    font-size: 11px;
+    color: rgb(var(--text-inactive-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile Ecosystem */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.profileEcosystem {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.profileEcosystem > h3 {
+    margin: 0px 0px 16px 16px;
+    font-size: 24px;
+    font-weight: 800;
+}
+.profileEcosystem > .content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: rgb(var(--background-sub-color));
+    box-shadow: var(--box-shadow);
+}
+.profileEcosystem > .content > .label {
+    margin: 0px 0px 8px 0px;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(var(--text-inactive-color));
+}
+.profileEcosystem > .content > .label > i {
+    margin: 0px 8px 0px 0px;
+    color: rgb(var(--error-color));
+}
+.profileEcosystem > .content > p:not(.label) {
+    margin: 0px;
+}
+.profileEcosystem > .content > .clients {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    position: relative;
+}
+.profileEcosystem > .content > .clients > .client {
+    display: flex;
+    width: calc((100% / 2) - 8px);
+    max-height: 218px;
+    margin: 0px 8px 0px 0px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgb(var(--background-sub-color));
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.profileEcosystem > .content > .clients > .client:nth-of-type(2n) {
+    margin: 0px 0px 0px 8px;
+}
+.profileEcosystem > .content > .clients > .client:nth-of-type(1n + 2) + * {
+    margin-top: 16px;
+}
+.profileEcosystem > .content > .clients > .client > .marker {
+    width: 8px;
+    height: 100%;
+    background-color: rgb(var(--main-color));
+}
+.profileEcosystem > .content > .clients > .client > .content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 8px 16px;
+}
+.profileEcosystem > .content > .clients > .client > .content > .identity {
+    display: flex;
+    align-items: center;
+}
+.profileEcosystem > .content > .clients > .client > .content > .identity > img {
+    width: 48px !important;
+    height: 48px !important;
+    top: inherit !important;
+    right: inherit !important;
+    bottom: inherit !important;
+    left: inherit !important;
+    object-fit: cover !important;
+    border-radius: 24px !important;
+}
+.profileEcosystem > .content > .clients > .client > .content > .identity > .clientName {
+    margin: 0px 0px 0px 8px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.profileEcosystem > .content > .seeMore {
+    margin: 8px 16px 0px auto;
+}
+.profileEcosystem > .content > .seeMore > span {
+    margin: 0px 8px 0px 0px;
+    color: rgb(var(--text-inactive-color));
+}
+.profileEcosystem > .content > .seeMore > i {
+    font-size: 11px;
+    color: rgb(var(--text-inactive-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile Partners */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.profilePartners {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: rgb(var(--background-sub-color));
+    box-shadow: var(--box-shadow);
+}
+.profilePartners > .label {
+    margin: 0px 0px 8px 0px;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(var(--text-inactive-color));
+}
+.profilePartners > .label > i {
+    margin: 0px 8px 0px 0px;
+    color: rgb(var(--error-color));
+}
+.profilePartners > p:not(.label) {
+    margin: 0px;
+}
+.profilePartners > .partners {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    position: relative;
+}
+.profilePartners > .partners > .partner {
+    display: flex;
+    width: calc((100% / 2) - 8px);
+    max-height: 218px;
+    margin: 0px 8px 0px 0px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgb(var(--background-sub-color));
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.profilePartners > .partners > .partner:nth-of-type(2n) {
+    margin: 0px 0px 0px 8px;
+}
+.profilePartners > .partners > .partner:nth-of-type(1n + 2) + * {
+    margin-top: 16px;
+}
+.profilePartners > .partners > .partner > .marker {
+    width: 8px;
+    height: 100%;
+    background-color: rgb(var(--logo-green-color));
+}
+.profilePartners > .partners > .partner > .content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 8px 16px;
+}
+.profilePartners > .partners > .partner > .content > .identity {
+    display: flex;
+    align-items: center;
+}
+.profilePartners > .partners > .partner > .content > .identity > img {
+    width: 48px !important;
+    height: 48px !important;
+    top: inherit !important;
+    right: inherit !important;
+    bottom: inherit !important;
+    left: inherit !important;
+    object-fit: cover !important;
+    border-radius: 24px !important;
+}
+.profilePartners > .partners > .partner > .content > .identity > .partnerName {
+    margin: 0px 0px 0px 8px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.profilePartners > .seeMore {
+    margin: 8px 16px 0px auto;
+}
+.profilePartners > .seeMore > span {
+    margin: 0px 8px 0px 0px;
+    color: rgb(var(--text-inactive-color));
+}
+.profilePartners > .seeMore > i {
+    font-size: 11px;
+    color: rgb(var(--text-inactive-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile Activity */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.profileActivity {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.profileActivity > h3 {
+    margin: 0px 0px 16px 16px;
+    font-size: 24px;
+    font-weight: 800;
+}
+.profileActivity > .activities {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 0px 0px 32px;
+}
+.profileActivity > .activities > * + * {
+    margin: 16px 0px 0px 0px;
+}
+.profileActivity > .activities > .activity {
+    display: flex;
+    border-radius: 5px;
+    background-color: rgb(var(--background-sub-color));
+    box-shadow: var(--box-shadow);
+}
+.profileActivity > .activities > .activity > .marker {
+    width: 8px;
+    height: 100%;
+    border-radius: 5px 0px 0px 5px;
+    background-color: rgb(var(--logo-orange-color));
+}
+.profileActivity > .activities > .activity > .content {
+    flex: 1;
+    padding: 16px 16px 16px calc((55px / 2) + 16px);
+    position: relative;
+}
+.profileActivity > .activities > .activity > .content > img {
+    width: 55px !important;
+    height: 55px !important;
+    position: absolute !important;
+    top: 16px !important;
+    right: inherit !important;
+    bottom: inherit !important;
+    left: calc((-55px / 2)) !important;
+    border: var(--border) !important;
+    border-color: rgb(var(--white-color)) !important;
+    border-width: 2px !important;
+    border-radius: calc(55px / 2) !important;
+}
+.profileActivity > .activities > .activity > .content > .user {
+    margin: 0px 0px 16px 0px;
+    font-weight: 900;
+    font-family: "Nunito Sans";
+    font-size: 21px;
+}
+.profileActivity > .activities > .activity > .content > .time {
+    margin: 0px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: rgb(var(--text-inactive-color));
+}
