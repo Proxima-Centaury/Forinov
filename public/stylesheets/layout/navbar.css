@@ -1,0 +1,71 @@
+.layout__navbar > a, .layout__navbar > svg {
+    cursor: pointer;
+}
+
+.layout__navbar {
+    width: 100%;
+    height: 80px;
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 9%);
+    background-color: white;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.layout__navbar .navbar-links {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.layout__navbar .navbar-links .navbar-link{
+    padding: 0.625rem 0.5rem;
+    color: #232324;
+    font-weight: normal;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.layout__navbar .navbar-links .navbar-link:hover {
+    font-weight: bold;
+}
+
+.layout__navbar .navbar-cta {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.layout__navbar .navbar-language {
+    background: #232324;
+    color: white;
+}
+
+.layout__navbar .navbar-login {
+    font-size: 2em;
+    margin: 0 .5em;
+    color: rgb(0, 109, 255);
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
