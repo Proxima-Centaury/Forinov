@@ -721,3 +721,17 @@
     right: 16px;
     color: rgb(var(--text-inactive-color));
 }
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Blue CTA Button (used on layout/Navbar.js) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.cta-blue {
+    padding: 8px 20px;
+    border-radius: 28px;
+    font-weight: 600;
+    letter-spacing: 1.79px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    background-color: #006dff;
+    color: white;
+}
