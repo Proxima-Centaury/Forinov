@@ -11,8 +11,10 @@ import "../public/stylesheets/components.css";
 import "../public/stylesheets/widgets.css";
 
 import "../public/stylesheets/layout/navbar.css";
+import "../public/stylesheets/layout/footer.css";
 
 import Navbar from '../layout/header/Navbar';
+import Footer from '../layout/footer/Footer';
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* App */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -23,9 +25,10 @@ function App({ Component, pageProps }) {
     pageProps.session = session;
     pageProps.lock = (session) ? false : true;
     return (<>
-        <Navbar />
         <div className="container col-md-10 col-sm-11 col-12 col-xl-9 py-6">
+        <Navbar />
             <Component {...pageProps} />
+        <Footer />
         </div>
     </>
     );
