@@ -1,0 +1,94 @@
+.annuaire__searchbar {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 7%);
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.annuaire__searchbar-title {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #c8c8c894;
+}
+
+.annuaire__searchbar-title, .annuaire__searchbar-title > i {
+    font-size: 21px;
+    color: #232324;
+    display: flex;
+    align-items: center;
+}
+
+.annuaire__searchbar-title > h1 {
+    margin: 0;
+    margin: 0 1rem;
+    font-family: 'Nunito Sans';
+    font-weight: bold;
+}
+
+.annuaire__searchbar-breadcrumb {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.annuaire__searchbar-breadcrumb-item {
+    margin: 0;
+    padding: 0;
+    margin-right: 2rem;
+    font-size: 14px;
+}
+
+.breadcrumb-item-active {
+    font-weight: bold;
+}
+
+.breadcrumb-item-disabled > span, .breadcrumb-item-disabled > i {
+    color: #c8c8c8;
+}
+
+.annuaire__searchbar-breadcrumb-item > i {
+    margin: 0;
+    padding: 0;
+    margin-right: .5rem;
+}
+
+.annuaire__searchbar-wrapper {
+    margin-top: 1rem;
+    width: 100%;
+    position: relative;
+}
+
+.annuaire__searchbar-input {
+    border: 1px solid #c8c8c894;
+    width: 100%;
+    border-radius: 100px;
+    height: calc(1.5em + 1.5rem + 2px);
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.annuaire__searchbar-input::placeholder {
+    color: #c8c8c8;
+}
+
+.annuaire__searchbar-trigger {
+    position: absolute;
+    aspect-ratio: 1;
+    height: 100%;
+    border-radius: 9999px;
+    top: 0;
+    right: 0;
+    background-color: rgb(var(--main-color));
+}
+
+.annuaire__searchbar-trigger > i {
+    color: white;
+}
+
+.annuaire__searchbar-multiselect-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}

@@ -50,6 +50,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .layout__navbar .navbar-lang-select {
@@ -119,10 +120,10 @@
     display: flex;
 }
 
+
 .layout__navbar .navbar-tooltip {
     position: absolute;
     top: 80%;
-    margin-left: -1em;
     color: rgb(var(--main-color));
     background-color: rgb(var(--background-sub-color));
     border-radius: 5px;
@@ -140,7 +141,7 @@
         display: none;
     }
 
-    .layout__navbar .navbar-cta > a {
+    .layout__navbar .navbar-cta {
         display: none;
     }
 
@@ -148,7 +149,7 @@
         display: block;
     }
 
-    .layout__navbar .navbar-hamburger .navbar-hamburger-toggle > i {
+    .layout__navbar .navbar-hamburger .navbar-hamburger-toggle>i {
         font-size: 1.5em;
         color: rgb(var(--main-color));
     }
@@ -174,7 +175,7 @@
     }
 
     .layout__navbar .navbar-hamburger .navbar-hamburger-links .navbar-hamburger-link {
-        padding:0;
+        padding: 0;
         width: 100%;
         text-align: center;
         margin: 1em 0;
@@ -184,7 +185,7 @@
     }
 
     .layout__navbar .navbar-hamburger .navbar-hamburger-links .navbar-hamburger-link-cta {
-        padding:0;
+        padding: 0;
         text-align: center;
         margin: 1em 0;
         user-select: none;
@@ -199,7 +200,49 @@
         font-weight: 900;
         color: #232324;
     }
-}
 
-@media only screen and (max-width: 576px) {
+
+    .layout__navbar .navbar-hamburger-lang-select {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1em;
+        width: fit-content;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%,0);
+
+    }
+
+    .layout__navbar .navbar-hamburger .navbar-lang-select-current{
+        position: relative;
+        z-index: 9999;
+    }
+
+    .layout__navbar .navbar-hamburger .navbar-lang-dropdown {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        padding-top: 2.5rem;
+        background-color: rgb(var(--background-sub-color));
+        border-radius: 15px;
+        box-shadow: var(--box-shadow);
+        display: none;
+        user-select: none;
+        cursor: pointer;
+        z-index: 0;
+    }
+
+    .layout__navbar .navbar-hamburger-lang-select .navbar-lang-dropdown:hover {
+        background-color: #ccc;
+    }
+
+    .layout__navbar .navbar-hamburger-lang-select .navbar-lang-dropdown>li {
+        margin-left: 1em;
+        margin-bottom: .2em;
+        font-weight: 600;
+    }
 }
