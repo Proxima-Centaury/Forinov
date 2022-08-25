@@ -91,4 +91,68 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    margin-top: 1rem;
+}
+
+.annuaire__searchbar-multiselect-wrapper > div {
+    position: relative;
+    width: max-content;
+    width: 280px;
+}
+
+.annuaire__searchbar-select {
+    border-bottom: #c8c8c8;
+    font-weight: bold;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.annuaire__searchbar-select-list {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: max-content;
+    padding: 20px;
+    padding-top: 40px;
+    margin-top: -30px;
+    border-top: 0;
+    width: 100%;
+    display: none;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 11%);
+    z-index: 1;
+}
+
+.annuaire__searchbar-select-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: .2em 1em;
+    border-radius: 999px;
+}
+
+.annuaire__searchbar-select-list-item:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+.annuaire__searchbar-select-list-pastille {
+    width: 15px;
+    aspect-ratio: 1;
+    border: 1px black solid;
+    border-radius: 999px;
+    margin-right: 1rem;
+    background-color: #fff;
 }
