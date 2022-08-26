@@ -111,7 +111,7 @@ const Searchbar = (props, results) => {
             <div className='annuaire__searchbar-multiselect-wrapper'>
                 <div>
                     <button onClick={categorieDropdown} className='annuaire__searchbar-select'>
-                        Catégories
+                        Catégories 
                         <i className="fa-solid fa-caret-down"></i>
                     </button>
                     <ul className='annuaire__searchbar-select-list' style={{ display: 'none' }}>
