@@ -97,20 +97,21 @@
 .annuaire__searchbar-multiselect-wrapper > div {
     position: relative;
     width: max-content;
-    width: 280px;
+    width: 400px;
 }
 
 .annuaire__searchbar-select {
-    border-bottom: #c8c8c8;
     font-weight: bold;
     position: relative;
-    z-index: 10;
-    width: 100%;
+    z-index: 5;
+    width: calc(100% - .75rem);
     text-align: left;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
+    padding: .5rem 1rem;
+    background-color: white;
+    border-radius: 9999px;
 }
 
 .annuaire__searchbar-select-list {
@@ -119,7 +120,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background-color: white;
     width: max-content;
@@ -133,6 +134,8 @@
     border-radius: 15px;
     box-shadow: 0 4px 10px 0 rgb(0 0 0 / 11%);
     z-index: 1;
+    overflow-y: scroll;
+    max-height: 500px;
 }
 
 .annuaire__searchbar-select-list-item {
@@ -142,6 +145,8 @@
     width: 100%;
     padding: .2em 1em;
     border-radius: 999px;
+    margin-bottom: .5rem;
+    font-weight: bold;
 }
 
 .annuaire__searchbar-select-list-item:hover {

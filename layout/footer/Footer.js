@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 
 const Footer = () => {
-    const [lang, setLang] = useState('en')
+    const [lang, setLang] = useState('fr')
 
     return (
         <footer className="layout__footer">

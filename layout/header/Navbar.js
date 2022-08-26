@@ -14,7 +14,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
 
-    const [lang, setLang] = useState('en')
+    const [lang, setLang] = useState('fr')
 
     const langDropdown = () => {
         let element = document.querySelector('.navbar-lang-dropdown')

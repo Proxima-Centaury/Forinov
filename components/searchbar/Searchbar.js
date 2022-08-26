@@ -1,8 +1,26 @@
 import React from 'react'
+import { useState, useLayoutEffect } from 'react'
 
 const Searchbar = (props, results) => {
 
-    console.log(results)
+    const [categories, setCategories] = useState(null)
+    const [selectedElements, setSelectedElements] = useState([])
+
+    const fetchCategories = async () => {
+        const res = await fetch('https://www.forinov.fr/remote/back/api.php?q=V5_GET_PUBLIC_COMMONS&authkey=Landing&ssid=5cpbs0k7574bv0jlrh0322boe7')
+        const data = await res.json()
+        setCategories(data[0]['CATEGORY'])
+    }
+
+    useLayoutEffect(() => {
+        fetchCategories()
+    }, [])
+
+    let catArray = []
+
+    for (let catIndex in categories) {
+        catArray.push(categories[catIndex])
+    }
 
     const categorieDropdown = (e) => {
         let listElement = e.target.parentElement.children[1]
@@ -23,11 +41,28 @@ const Searchbar = (props, results) => {
 
     }
 
-    const dropdownListClickHandler = (e) => {
+    const dropdownListClickHandler = (e) => {            
         if (e.target.children[0]) {
-
+            if (e.target.hasAttribute("data-select")){
+                e.target.children[0].style.backgroundColor = '#FFF'
+                e.target.removeAttribute("data-select")
+                selectedElements.pop(e.target)
+            } else {
+                e.target.children[0].style.backgroundColor = '#006DFF'
+                e.target.setAttribute("data-select","true")
+                selectedElements.push(e.target)
+            }
         } else {
-            console.log(e.target.parentElement.children[0])
+            if (e.target.parentElement.hasAttribute("data-select")){
+                e.target.parentElement.children[0].style.backgroundColor = '#FFF'
+                e.target.parentElement.removeAttribute("data-select")
+                selectedElements.pop(e.target.parentElement)
+            } else {
+                e.target.parentElement.children[0].style.backgroundColor = '#006DFF'
+                e.target.parentElement.setAttribute("data-select","true")
+                selectedElements.push(e.target.parentElement)
+            }
+            console.log(selectedElements.length);
         }
     }
 
@@ -66,7 +101,7 @@ const Searchbar = (props, results) => {
 
             {/* Searchbar Input */}
             <div className='annuaire__searchbar-wrapper'>
-                <input type="text" class="annuaire__searchbar-input" placeholder="Rechercher dans l'annuaire des startups" />
+                <input type="text" className="annuaire__searchbar-input" placeholder="Rechercher dans l'annuaire des startups" />
                 <button className="annuaire__searchbar-trigger">
                     <i className="fa-solid fa-search"></i>
                 </button>
@@ -80,24 +115,21 @@ const Searchbar = (props, results) => {
                         <i className="fa-solid fa-caret-down"></i>
                     </button>
                     <ul className='annuaire__searchbar-select-list' style={{ display: 'none' }}>
-                        <button className='annuaire__searchbar-select-list-item' onClick={dropdownListClickHandler}>
-                            <div className='annuaire__searchbar-select-list-pastille'>
-
-                            </div>
-                            <span class="annuaire__searchbar-select-list-name">CATEGORIE 1</span>
-                        </button>
+                        {
+                            catArray.map((categorie, i) => {
+                                return(
+                                    <button className='annuaire__searchbar-select-list-item' onClick={dropdownListClickHandler} id={categorie.ID}>
+                                        <div className='annuaire__searchbar-select-list-pastille'></div>
+                                        <span className="annuaire__searchbar-select-list-name">{categorie.NAME}</span>
+                                    </button>
+                                )
+                            })
+                        }
                     </ul>
                 </div>
             </div>
         </div>
     )
-}
-
-export async function getServerSideProps(context) {
-    const res = await fetch('https://www.forinov.fr/remote/back/api.php?q=V5_GET_PUBLIC_COMMONS&authkey=Landing&ssid=5cpbs0k7574bv0jlrh0322boe7')
-    const data = await res.json()
-
-    return { results: { data } }
 }
 
 export default Searchbar
