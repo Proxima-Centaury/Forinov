@@ -20,15 +20,15 @@ const Footer = () => {
                 {translation[lang]["Forinov connecte startups, entreprises et partenaires pour matcher l’offre et le besoin d’innovation."]}
                 </p>
 
-                <ul class="footer__social-icons">
+                <ul className="footer__social-icons">
                     <li>
-                        <a target="_blank" href="https://twitter.com/Forinov1" class="text-decoration-none">
-                            <i class="fa-brands fa-twitter"></i>
+                        <a target="_blank" href="https://twitter.com/Forinov1" className="text-decoration-none">
+                            <i className="fa-brands fa-twitter"></i>
                         </a>
                     </li>
                     <li>
-                        <a target="_blank" href="https://www.linkedin.com/company/forinov/" class="text-decoration-none">
-                            <i class="fa-brands fa-linkedin"></i>
+                        <a target="_blank" href="https://www.linkedin.com/company/forinov/" className="text-decoration-none">
+                            <i className="fa-brands fa-linkedin"></i>
                         </a>
                     </li>
                 </ul>
@@ -151,7 +151,7 @@ const Footer = () => {
                 </ul>
             </div>
 
-            <div class="footer__credits">
+            <div className="footer__credits">
                 <p>© Forinov 2021</p>
             </div>
         </footer>

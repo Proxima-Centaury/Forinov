@@ -17,6 +17,7 @@ import "../public/stylesheets/layout/navbar.css";
 import "../public/stylesheets/layout/footer.css";
 
 import '../public/stylesheets/pages/login.css'
+import '../public/stylesheets/pages/annuaire_su.css'
 
 import {useRouter} from 'next/router'
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */

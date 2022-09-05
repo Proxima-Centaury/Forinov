@@ -53,7 +53,7 @@ const Navbar = () => {
                         setIsOpen(!isOpen);
                     }
                 }>
-                    <i class={isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
+                    <i className={isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
                 </button>
 
                 {isOpen ? (
@@ -90,7 +90,7 @@ const Navbar = () => {
                         <div className='navbar-hamburger-lang-select' onClick={langDropdown}>
                             <div className='navbar-lang-select-current'>
                                 <span>FR</span>
-                                <i class="fa-solid fa-chevron-down"></i>
+                                <i className="fa-solid fa-chevron-down"></i>
                             </div>
                                 <ul className='navbar-lang-dropdown'>
                                     <li>EN</li>
@@ -104,7 +104,7 @@ const Navbar = () => {
                 <div className='navbar-lang-select' onClick={langDropdown}>
                     <div className='navbar-lang-select-current'>
                         <span>FR</span>
-                        <i class="fa-solid fa-chevron-down"></i>
+                        <i className="fa-solid fa-chevron-down"></i>
                     </div>
 
                     <ul className='navbar-lang-dropdown'>

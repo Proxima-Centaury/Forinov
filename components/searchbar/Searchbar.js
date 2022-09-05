@@ -1,20 +1,10 @@
 import React from 'react'
 import { useState, useLayoutEffect } from 'react'
 
-const Searchbar = (props, results) => {
+const Searchbar = (props) => {
 
-    const [categories, setCategories] = useState(null)
-    const [selectedElements, setSelectedElements] = useState([])
+    const categories = props.categories
 
-    const fetchCategories = async () => {
-        const res = await fetch('https://www.forinov.fr/remote/back/api.php?q=V5_GET_PUBLIC_COMMONS&authkey=Landing&ssid=5cpbs0k7574bv0jlrh0322boe7')
-        const data = await res.json()
-        setCategories(data[0]['CATEGORY'])
-    }
-
-    useLayoutEffect(() => {
-        fetchCategories()
-    }, [])
 
     let catArray = []
 
@@ -62,7 +52,6 @@ const Searchbar = (props, results) => {
                 e.target.parentElement.setAttribute("data-select","true")
                 selectedElements.push(e.target.parentElement)
             }
-            console.log(selectedElements.length);
         }
     }
 

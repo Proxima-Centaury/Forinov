@@ -57,6 +57,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    z-index: 9999;
     justify-content: space-between;
 }
 
@@ -233,7 +234,6 @@
         display: none;
         user-select: none;
         cursor: pointer;
-        z-index: 0;
     }
 
     .layout__navbar .navbar-hamburger-lang-select .navbar-lang-dropdown:hover {
