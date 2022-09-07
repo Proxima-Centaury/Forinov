@@ -147,6 +147,7 @@
     border-radius: 999px;
     margin-bottom: .5rem;
     font-weight: bold;
+    transition: background-color .2s ease;
 }
 
 .annuaire__searchbar-select-list-item:hover {
