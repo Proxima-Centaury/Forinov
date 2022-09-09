@@ -19,7 +19,7 @@
 }
 
 .annuaire__searchbar-title > h1 {
-    margin: 0;
+    font-family: "Nunito Sans", sans-serif;
     margin: 0 1rem;
     font-family: 'Nunito Sans';
     font-weight: bold;
@@ -114,6 +114,41 @@
     border-radius: 9999px;
 }
 
+.annuaire__searchbar-select-disabled {
+    font-weight: light;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    color: #808080;
+    margin-right: 1rem;
+}
+
+.annuaire__searchbar-select-disabled > p {
+    color: #808080;
+}
+
+.annuaire__searchbar-select-disabled > i {
+    color: #808080;
+    margin-left: 1rem;
+}
+
+.annuaire__searchbar-select-count{
+    border-radius: 50%;
+    background-color: #006dff;
+    width: 18px;
+    height: 18px;
+    color: white;
+    font-size: 0.6rem;
+    position: absolute;
+    margin-left: 5px;
+    top: 0;
+    text-align: center;
+    line-height: 18px;
+}
+
+
 .annuaire__searchbar-select-list {
     margin: 0;
     padding: 0;
@@ -150,6 +185,14 @@
     transition: background-color .2s ease;
 }
 
+.annuaire__searchbar-select-list-count {
+    margin-left: .5rem;
+    position: relative;
+    bottom: 5px;
+    color: grey;
+    font-size: 0.75rem;
+}
+
 .annuaire__searchbar-select-list-item:hover {
     background-color: rgb(233, 233, 233);
 }
@@ -161,4 +204,14 @@
     border-radius: 999px;
     margin-right: 1rem;
     background-color: #fff;
+    transition: background-color .2s ease;
+}
+
+.annuaire__searchbar-more {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    text-align: right;
+    color: #006dff;
+    text-decoration: underline;
 }

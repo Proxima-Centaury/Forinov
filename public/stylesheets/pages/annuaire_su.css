@@ -9,11 +9,11 @@
 
 
 .lift {
-    transition: box-shadow .25s ease,transform .25s ease,-webkit-transform .25s ease;
+    transition: box-shadow .25s ease, transform .25s ease, -webkit-transform .25s ease;
 }
 
 .lift:hover {
-    box-shadow: 0 1rem 2.5rem rgba(22,28,45,.1),0 .5rem 1rem -.75rem rgba(22,28,45,.1);
+    box-shadow: 0 1rem 2.5rem rgba(22, 28, 45, .1), 0 .5rem 1rem -.75rem rgba(22, 28, 45, .1);
     transform: translateY(-3px);
 }
 
@@ -29,6 +29,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-width: 100%;
 }
 
 .annuaire__category-logo {
@@ -65,11 +66,12 @@
     margin: 0;
 }
 
-.annuaire__category-tags{
+.annuaire__category-tags {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     margin-top: 1rem;
 }
 
@@ -90,6 +92,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 1fr;
     grid-column-gap: 20px;
+    flex-wrap: wrap;
     width: 100%;
     padding: 0.75rem 0;
 }
@@ -105,6 +108,8 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    min-width: 100%;
+    overflow: hidden;
 }
 
 .annuaire__card-avatar-wrapper {
@@ -122,12 +127,12 @@
     border: 2px solid #fe6a28;
 }
 
-.annuaire__card-avatar > img {
+.annuaire__card-avatar>img {
     height: 100%;
 }
 
 .annuaire__card-content-wrapper {
-    width: 100%;
+    width: calc(100% - 100px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -156,6 +161,7 @@
     border-radius: 5px;
     padding: 0.5rem;
     font-size: 1.15rem;
+    text-align: center;
 }
 
 .annuaire__card-tags {
@@ -163,6 +169,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .annuaire__card-tag {
@@ -194,11 +201,13 @@
     align-items: center;
     flex-direction: column;
 }
-.annuaire__card-suivre > i {
+
+.annuaire__card-suivre>i {
     color: #c8c8c8;
     font-size: 1.5rem;
 }
-.annuaire__card-suivre > p {
+
+.annuaire__card-suivre>p {
     font-family: "Open Sans", sans-serif;
     font-size: 0.7rem;
     font-weight: 100;
@@ -209,4 +218,29 @@
     text-align: center;
     color: #c8c8c8;
     margin-top: .5rem;
+}
+
+.annuaire__no-results>h1 {
+    color: #006dff;
+    text-align: center;
+    width: 100%;
+    text-decoration: underline;
+    margin-top: 1rem;
+    user-select: none;
+}
+
+@media only screen and (max-width: 1200px) {
+    .annuaire__categories {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .annuaire__cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .annuaire__categories {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

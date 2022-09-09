@@ -1,150 +1,14 @@
-import { useState, useEffect } from 'react'
-
-
-// const Searchbar = (props) => {
-
-//   const categories = props.categories
-
-//   let catArray = []
-
-//   for (let catIndex in categories) {
-//     catArray.push(categories[catIndex])
-//   }
-
-//   const categorieDropdown = (e) => {
-//     let listElement = e.target.parentElement.children[1]
-//     let iconElement = e.target.children[0]
-
-//     const hide = () => {
-//       listElement.style.display = 'none'
-//       iconElement.classList.remove("fa-caret-up")
-//       iconElement.classList.add("fa-caret-down")
-//     }
-
-//     const show = () => {
-//       listElement.style.display = 'flex'
-//       iconElement.classList.remove("fa-caret-down")
-//       iconElement.classList.add("fa-caret-up")
-//     }
-//     listElement.style.display === 'none' ? show() : hide()
-//   }
-
-//   const dropdownListClickHandler = (e) => {
-//     if (e.target.children[0]) {
-//       if (e.target.hasAttribute("data-select")) {
-//         setSelectedCategories(e.target.getAttribute("data-name"))
-//       } else {
-//         setSelectedCategories(e.target.getAttribute("data-name"))
-//       }
-//     } else {
-//       if (e.target.parentElement.hasAttribute("data-select")) {
-//         setSelectedCategories(e.target.parentElement.getAttribute("data-name"))
-
-//       } else {
-//         setSelectedCategories(e.target.parentElement.getAttribute("data-name"))
-//       }
-//     }
-//   }
-
-//   return (
-//     <div className='annuaire__searchbar'>
-
-//       {/* Title */}
-//       <div className='annuaire__searchbar-title'>
-//         <i className='fa-solid fa-rocket'></i>
-//         <h1>Startups ({props.count})</h1>
-//         <i className='fa-solid fa-caret-down'></i>
-//       </div>
-
-//       {/* Breadcrumbs */}
-//       <ul className='annuaire__searchbar-breadcrumb'>
-//         <li className='annuaire__searchbar-breadcrumb-item breadcrumb-item-active'>
-//           <i className='fa-solid fa-book'></i>
-//           <span>Toutes les startups</span>
-//         </li>
-
-//         <li className='annuaire__searchbar-breadcrumb-item breadcrumb-item-disabled'>
-//           <i className="fa-solid fa-heart"></i>
-//           <span>Portefeuille</span>
-//         </li>
-
-//         <li className='annuaire__searchbar-breadcrumb-item breadcrumb-item-disabled'>
-//           <i className="fa-solid fa-globe"></i>
-//           <span>Écosystème</span>
-//         </li>
-
-//         <li className='annuaire__searchbar-breadcrumb-item breadcrumb-item-disabled'>
-//           <i className="fa-solid fa-share-from-square"></i>
-//           <span>Recommandations</span>
-//         </li>
-//       </ul>
-
-//       {/* Searchbar Input */}
-//       <div className='annuaire__searchbar-wrapper'>
-//         <input type="text" className="annuaire__searchbar-input" placeholder="Rechercher dans l'annuaire des startups" />
-//         <button className="annuaire__searchbar-trigger">
-//           <i className="fa-solid fa-search"></i>
-//         </button>
-//       </div>
-
-//       {/* Multiselect */}
-//       <div className='annuaire__searchbar-multiselect-wrapper'>
-//         <div>
-//           <button onClick={categorieDropdown} className='annuaire__searchbar-select'>
-//             Catégories
-//             <i className="fa-solid fa-caret-down"></i>
-//           </button>
-//           <ul className='annuaire__searchbar-select-list' style={{ display: 'none' }}>
-//             {
-//               catArray.map((categorie, i) => {
-//                 return (
-//                   <button className='annuaire__searchbar-select-list-item' onClick={dropdownListClickHandler} id={categorie.ID} data-name={categorie.NAME}>
-//                     <div className='annuaire__searchbar-select-list-pastille'></div>
-//                     <span className="annuaire__searchbar-select-list-name">{categorie.NAME}</span>
-//                   </button>
-//                 )
-//               })
-//             }
-//           </ul>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-
+import { useState, useRef } from 'react';
 
 const AnnuaireSu = ({ data, categories }) => {
-  
-  
+
+  const nbPerCategory = {};
+
+  const icon = useRef(null);
+
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [isSelected, setIsSelected] = useState(false)
   const [startupCards, setStartupCards] = useState([])
-
-  var categorieClickHandler = (e) => {
-    var value = e.target.getAttribute("data-name")
-    const selectElement = (element) => {
-      element.children[0].style.backgroundColor = '#006DFF'
-      element.setAttribute("data-select", "true")
-      selectedCategories.push(value)
-      setIsSelected(true)
-    }
-
-    const deselectElement = (element) => {
-      element.children[0].style.backgroundColor = '#FFF'
-      element.setAttribute("data-select", "false")
-      selectedCategories.pop(value)
-      selectedCategories.length === 0 ? setIsSelected(false) : null
-    }
-    if (e.target.getAttribute("data-name")) {
-      selectedCategories.includes(value) ? deselectElement(e.target) : selectElement(e.target)
-    } else {
-      value = e.target.parentElement.getAttribute("data-name")
-      selectedCategories.includes(value) ? deselectElement(e.target.parentElement) : selectElement(e.target.parentElement)
-    }
-    
-    console.log(selectedCategories);
-  }
 
   categories = categories[0]['CATEGORY']
 
@@ -154,32 +18,8 @@ const AnnuaireSu = ({ data, categories }) => {
     catArray.push(categories[catIndex])
   }
 
-  const categorieDropdown = (e) => {
-    let listElement = e.target.parentElement.children[1]
-    let iconElement = e.target.children[0]
-
-    const hide = () => {
-      listElement.style.display = 'none'
-      iconElement.classList.remove("fa-caret-up")
-      iconElement.classList.add("fa-caret-down")
-    }
-
-    const show = () => {
-      listElement.style.display = 'flex'
-      iconElement.classList.remove("fa-caret-down")
-      iconElement.classList.add("fa-caret-up")
-    }
-    listElement.style.display === 'none' ? show() : hide()
-  }
-
-
-  const categoriesObject = []
-  for (let catIndex in categories) {
-    categoriesObject.push(categories[catIndex])
-  }
-
+  var suCards = []
   const setCardsByCategories = (cat) => {
-    const suCards = []
     data.forEach(item => {
       if (item.categorie === cat) {
         suCards.push(
@@ -211,12 +51,12 @@ const AnnuaireSu = ({ data, categories }) => {
 
   const catCards = []
 
-  categoriesObject.forEach(category => {
+  catArray.forEach(category => {
+    nbPerCategory[category.NAME] = category.NB
     catCards.push(
       <div className='annuaire__category lift' key={category.ID} onClick={
         () => {
-          setSelectedCategories(category.NAME)
-          setCardsByCategories(category.NAME)
+          categorieClickHandler(category.NAME)
         }}>
         <img src={category.LOGO} alt={category.ID} className="annuaire__category-logo" />
         <div className='annuaire__category-count'>{category.NB}</div>
@@ -229,6 +69,34 @@ const AnnuaireSu = ({ data, categories }) => {
       </div>
     )
   })
+
+
+  var categorieClickHandler = (categorie) => {
+    let element = document.querySelector('[data-name="' + categorie + '"]')
+
+    if (selectedCategories.includes(categorie)) {
+      if (element) {
+        element.children[0].style.backgroundColor = '#fff'
+      }
+      for (let i = 0; i < selectedCategories.length; i++) {
+        if (selectedCategories[i] === categorie) {
+          selectedCategories.splice(i, 1)
+        }
+      }
+    } else {
+      if (element) {
+        element.children[0].style.backgroundColor = '#006DFF'
+      }
+      selectedCategories.push(categorie)
+    }
+
+    selectedCategories.length > 0 ? setIsSelected(true) : setIsSelected(false)
+
+    selectedCategories.forEach(element => {
+      setCardsByCategories(element)
+    });
+  }
+
 
   return (
     <section>
@@ -274,34 +142,71 @@ const AnnuaireSu = ({ data, categories }) => {
 
         {/* Multiselect */}
         <div className='annuaire__searchbar-multiselect-wrapper'>
-          <div>
-            <button onClick={categorieDropdown} className='annuaire__searchbar-select'>
-              Catégories
-              <i className="fa-solid fa-caret-down"></i>
+          <div style={{ marginRight: '1rem' }}>
+            <button onClick={
+              (e) => {
+                let element;
+                let list = document.querySelector('.annuaire__searchbar-select-list')
+                e.preventDefault()
+                e.target.tagName.toLowerCase() === 'button' ? element = e.target : element = e.target.parentElement;
+                list.style.display === 'none' ? list.style.display = 'block' : list.style.display = 'none'
+                element.children[1].classList.toggle('fa-caret-up')
+              }
+            } className='annuaire__searchbar-select'>
+              <p style={{ margin: 0 }}>Catégories {selectedCategories.length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedCategories.length}</span> : null}</p>
+              <i className="fa-solid fa-caret-down" ref={icon}></i>
             </button>
             <ul className='annuaire__searchbar-select-list' style={{ display: 'none' }}>
               {
-                catArray.map((categorie, i) => {
+                catArray.map((categorie) => {
                   return (
-                    <button className='annuaire__searchbar-select-list-item' onClick={categorieClickHandler} id={categorie.ID} data-name={categorie.NAME}>
+                    <button className='annuaire__searchbar-select-list-item' onClick={
+                      () => {
+                        categorieClickHandler(categorie.NAME)
+                      }
+                    } id={categorie.ID} data-name={categorie.NAME}>
                       <div className='annuaire__searchbar-select-list-pastille'></div>
                       <span className="annuaire__searchbar-select-list-name">{categorie.NAME}</span>
+                      <span className="annuaire__searchbar-select-list-count">{nbPerCategory[categorie.NAME]}</span>
                     </button>
                   )
                 })
               }
             </ul>
           </div>
+
+
+          <button className='annuaire__searchbar-select-disabled'>
+            <p style={{ margin: 0 }}>Sous-catégories</p>
+            <i className="fa-solid fa-caret-down"></i>
+          </button>
+
+          <button className='annuaire__searchbar-select-disabled'>
+            <p style={{ margin: 0 }}>Secteurs</p>
+            <i className="fa-solid fa-caret-down"></i>
+          </button>
+
+          <button className='annuaire__searchbar-select-disabled'>
+            <p style={{ margin: 0 }}>Technologies</p>
+            <i className="fa-solid fa-caret-down"></i>
+          </button>
+
+          <button className='annuaire__searchbar-select-disabled'>
+            <p style={{ margin: 0 }}>Métiers cibles</p>
+            <i className="fa-solid fa-caret-down"></i>
+          </button>
         </div>
+
+        {/* Plus de filtres */}
+        <p className='annuaire__searchbar-more'>Plus de filtres</p>
       </div>
-
-      {isSelected === true ? <h1>true</h1> : <h1>false</h1>}
-
       {isSelected === false ?
         <div className="annuaire__categories">
           {catCards}
         </div> : <div className="annuaire__cards">
-          {startupCards}
+          {startupCards.length > 0 ? startupCards : <div className='annuaire__no-results'>
+            <h1>Aucun résultat !</h1>
+          </div>}
         </div>}
     </section>
   )
