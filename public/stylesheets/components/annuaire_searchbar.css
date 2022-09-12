@@ -30,6 +30,7 @@
     margin: 0;
     padding: 0;
     margin-top: 1rem;
+    flex-wrap: wrap;
 }
 
 .annuaire__searchbar-breadcrumb-item {
@@ -37,6 +38,7 @@
     padding: 0;
     margin-right: 2rem;
     font-size: 14px;
+    margin-bottom: 1rem;
 }
 
 .breadcrumb-item-active {
@@ -97,7 +99,7 @@
 .annuaire__searchbar-multiselect-wrapper > div {
     position: relative;
     width: max-content;
-    width: 400px;
+    width: 350px;
 }
 
 .annuaire__searchbar-select {
@@ -178,11 +180,23 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    padding: .2em 1em;
+    padding: .5em 1em;
     border-radius: 999px;
     margin-bottom: .5rem;
     font-weight: bold;
-    transition: background-color .2s ease;
+    transition: all .3s ease;
+}
+
+.annuaire__searchbar-select-list-item:hover {
+    background-color: #006dff;
+}
+
+.annuaire__searchbar-select-list-item:hover > span {
+    color: white !important;
+}
+
+.annuaire__searchbar-select-list-item:hover > .annuaire__searchbar-select-list-pastille  {
+    background-color: white;
 }
 
 .annuaire__searchbar-select-list-count {
@@ -193,17 +207,14 @@
     font-size: 0.75rem;
 }
 
-.annuaire__searchbar-select-list-item:hover {
-    background-color: rgb(233, 233, 233);
-}
-
 .annuaire__searchbar-select-list-pastille {
-    width: 15px;
+    display: none;
+    width: 8px;
     aspect-ratio: 1;
-    border: 1px black solid;
     border-radius: 999px;
-    margin-right: 1rem;
-    background-color: #fff;
+    position: absolute;
+    right: 2.2em;
+    background-color: #006dff;
     transition: background-color .2s ease;
 }
 
