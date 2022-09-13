@@ -1,62 +1,8 @@
-import { useState, useRef } from 'react';
-
-const AnnuaireSu = ({ data, filters }) => {
-
-  const nbPerCategory = {};
-
-  const icon = useRef(null);
-
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [isSelected, setIsSelected] = useState(false)
-
-  const categories = filters[0]['CATEGORY']
-
-  let catArray = []
-
-  for (let catIndex in categories) {
-    catArray.push(categories[catIndex])
-  }
-
-  const cardArray = []
-  const tempData = data
-
-  const filterDataByCategory = (category) => {
-    const filteredData = tempData.filter(item => item.categorie_id.toString() === category.toString())
-    return filteredData
-  }
+import { useState, useRef, useEffect } from 'react';
 
 
-
-  const setCards = (data) => {
-    console.log(data)
-    if (typeof data === 'Array') {
-      data.forEach(category => {
-        category.map(item => {
-          cardArray.push(<a className='annuaire__card lift' id={item.id} key={item.id} href={item.url}>
-            <div className='annuaire__card-avatar-wrapper'>
-              <div className='annuaire__card-avatar'><img src={item.logo} /></div>
-            </div>
-            <div className='annuaire__card-content-wrapper'>
-              <h3 className='annuaire__card-name'>{item.name}</h3>
-              <p className='annuaire__card-category'>{item.categorie}</p>
-              {Object.keys(item.tags).length > 0 ? <div className='annuaire__card-tags'>
-                {item.tags[0] ? <p className='annuaire__card-tag'>{item.tags[0]}</p> : null}
-                {item.tags[1] ? <p className='annuaire__card-tag'>{item.tags[1]}</p> : null}
-                {item.tags[2] ? <p className='annuaire__card-tag'>{item.tags[2]}</p> : null}
-                {Object.keys(item.tags).length > 3 ? <p className='annuaire__card-tag'>+{Object.keys(item.tags).length - 3}</p> : null}
-              </div> : null}
-              <p className='annuaire__card-description'>{item.comment}</p>
-              <div className='annuaire__card-suivre'>
-                <i className='fa-solid fa-folder-open'></i>
-                <p>suivre</p>
-              </div>
-            </div>
-          </a>)
-        })
-      })
-    } if (typeof data === 'Object') {
-      data.map(item => {
-        cardArray.push(<a className='annuaire__card lift' id={item.id} key={item.id} href={item.url}>
+// JSX SU CARD
+{/* <a className='annuaire__card lift' id={item.id} key={item.id} href={item.url}>
           <div className='annuaire__card-avatar-wrapper'>
             <div className='annuaire__card-avatar'><img src={item.logo} /></div>
           </div>
@@ -75,25 +21,29 @@ const AnnuaireSu = ({ data, filters }) => {
               <p>suivre</p>
             </div>
           </div>
-        </a>)
-      })
-    }
-  }
+        </a> */}
 
-  setCards(data)
 
-  const filteredData = {}
+const AnnuaireSu = ({ data, filters }) => {
 
-  if (selectedCategories.length > 0) {
-    cardArray = []
-    selectedCategories.forEach(category => {
-      filteredData[category] = filterDataByCategory(category)
-      console.log(filteredData);
-      setCards(filteredData)
-    })
-  }
+  const nbPerCategory = {};
 
+  const icon = useRef(null);
+
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedCategoriesLength, setSelectedCategoriesLength] = useState(0);
+  const [isSelected, setIsSelected] = useState(false)
+  const [currentInput, setCurrentInput] = useState('');
+  var tempCards = [];
+
+  const categories = filters[0]['CATEGORY']
+
+  let catArray = []
   const catCards = []
+
+  for (let catIndex in categories) {
+    catArray.push(categories[catIndex])
+  }
 
   catArray.forEach(category => {
     nbPerCategory[category.NAME] = category.NB
@@ -114,18 +64,47 @@ const AnnuaireSu = ({ data, filters }) => {
     )
   })
 
+  const [startupCards, setStartupCards] = useState([])
 
-  var categorieClickHandler = (categorie) => {
+  const setCards = (categorie = [], input = '') => {
+    tempCards.length = 0
+    if (categorie.length > 0) {
+      if (input.length > 0) {
+        data.filter(item => {
+          if (item.categorie_id.toString() === categorie.toString() && item.name.toLowerCase().includes(input.toLowerCase())) {
+            tempCards.push(item)
+          }
+        })
+      } else {
+        data.filter(item => {
+          if (item.categorie_id.toString() === categorie.toString()) {
+            tempCards.push(item)
+          }
+        })
+      }
+    } else {
+      data.map(item => {
+        if (item.name.toLowerCase().includes(input.toLowerCase())) {
+          tempCards.push(item)
+        }
+      })
+    }
+    setStartupCards(tempCards)
+  }
+
+
+  const categorieClickHandler = (categorie) => {
+    startupCards.length = 0
     let element = document.getElementById(categorie)
 
     if (selectedCategories.includes(categorie)) {
       if (element) {
         element.children[0].style.color = '#232324'
         element.children[2].style.display = 'none'
-      }
-      for (let i = 0; i < selectedCategories.length; i++) {
-        if (selectedCategories[i] === categorie) {
-          selectedCategories.splice(i, 1)
+        for (let i = 0; i < selectedCategories.length; i++) {
+          if (selectedCategories[i] === categorie) {
+            selectedCategories.splice(i, 1)
+          }
         }
       }
     } else {
@@ -135,8 +114,51 @@ const AnnuaireSu = ({ data, filters }) => {
       }
       selectedCategories.push(categorie)
     }
-    selectedCategories.length > 0 ? setIsSelected(true) : setIsSelected(false)
 
+    if (selectedCategories.length > 0) {
+      setIsSelected(true)
+      setSelectedCategoriesLength(selectedCategories.length)
+      selectedCategories.forEach(categorie => {
+        setCards(categorie)
+      })
+      if (currentInput.length > 0) {
+        setIsSelected(true)
+        setSelectedCategoriesLength(selectedCategories.length)
+        selectedCategories.forEach(categorie => {
+          setCards(categorie, currentInput)
+        })
+      }
+    } else {
+      if (currentInput.length > 0) {
+        setIsSelected(true)
+        setCards([], currentInput)
+      } else {
+        setIsSelected(false)
+        startupCards.length = 0
+      }
+    }
+
+
+  }
+
+  const handleSearch = (input) => {
+    setCurrentInput(input)
+    if (selectedCategories.length > 0) {
+      startupCards.length = 0
+      selectedCategories.forEach(categorie => {
+        setCards(categorie, input)
+      })
+    } else {
+      if (input.length > 0) {
+        startupCards.length = 0
+        setIsSelected(true)
+        setCards([], input)
+      } else {
+        startupCards.length = 0
+        setIsSelected(false)
+      }
+    }
+    console.log(startupCards);
   }
 
 
@@ -178,14 +200,7 @@ const AnnuaireSu = ({ data, filters }) => {
         <div className='annuaire__searchbar-wrapper'>
           <input type="text" className="annuaire__searchbar-input" placeholder="Rechercher dans l'annuaire des startups" onChange={
             (e) => {
-              startupCards.filter(item => {
-                if (item.props.children.props.children[1].props.children[0].props.children.toLowerCase().includes(e.target.value.toLowerCase())) {
-                  document.getElementById(item.props.children.key).style.display = 'flex';
-                  console.log(item.props.children.key);
-                } else {
-                  document.getElementById(item.props.children.key).style.display = 'none';
-                }
-              })
+              handleSearch(e.target.value)
             }} />
           <button className="annuaire__searchbar-trigger">
             <i className="fa-solid fa-search"></i>
@@ -200,12 +215,12 @@ const AnnuaireSu = ({ data, filters }) => {
                 let element;
                 let list = document.querySelector('.annuaire__searchbar-select-list')
                 e.preventDefault()
-                e.target.tagName.toLowerCase() === 'button' ? element = e.target : element = e.target.parentElement;
+                e.target.tagName.toLowerCase() === 'button' ? element = e.target : e.target.parentElement.tagName.toLowerCase() === 'p' ? element = e.target.parentElement.parentElement : element = e.target.parentElement;
                 list.style.display === 'none' ? list.style.display = 'block' : list.style.display = 'none'
                 element.children[1].classList.toggle('fa-caret-up')
               }
             } className='annuaire__searchbar-select'>
-              <p style={{ margin: 0 }}>Catégories {selectedCategories.length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedCategories.length}</span> : null}</p>
+              <p style={{ margin: 0 }}>Catégories {selectedCategories.length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedCategoriesLength}</span> : null}</p>
               <i className="fa-solid fa-caret-down" ref={icon}></i>
             </button>
             <ul className='annuaire__searchbar-select-list' style={{ display: 'none' }}>
@@ -255,9 +270,36 @@ const AnnuaireSu = ({ data, filters }) => {
       {isSelected === false ?
         <div className="annuaire__categories">
           {catCards}
-        </div> : <div className="annuaire__cards">
-          {cardArray}
-        </div>}
+        </div> : 
+          startupCards.length > 0 ? <div className="annuaire__cards">
+          {startupCards.map(item => {
+            return (
+              <a className='annuaire__card lift' id={item.id} key={item.id} href={item.url}>
+                <div className='annuaire__card-avatar-wrapper'>
+                  <div className='annuaire__card-avatar'><img src={item.logo} /></div>
+                </div>
+                <div className='annuaire__card-content-wrapper'>
+                  <h3 className='annuaire__card-name'>{item.name}</h3>
+                  <p className='annuaire__card-category'>{item.categorie}</p>
+                  {Object.keys(item.tags).length > 0 ? <div className='annuaire__card-tags'>
+                    {item.tags[0] ? <p className='annuaire__card-tag'>{item.tags[0]}</p> : null}
+                    {item.tags[1] ? <p className='annuaire__card-tag'>{item.tags[1]}</p> : null}
+                    {item.tags[2] ? <p className='annuaire__card-tag'>{item.tags[2]}</p> : null}
+                    {Object.keys(item.tags).length > 3 ? <p className='annuaire__card-tag'>+{Object.keys(item.tags).length - 3}</p> : null}
+                  </div> : null}
+                  <p className='annuaire__card-description'>{item.comment}</p>
+                  <div className='annuaire__card-suivre'>
+                    <i className='fa-solid fa-folder-open'></i>
+                    <p>suivre</p>
+                  </div>
+                </div>
+              </a>
+            )
+          })}
+        </div> : <div className='annuaire__no-results'>
+          <h1>Aucun résultat</h1>
+        </div>
+        }
     </section>
   )
 }
