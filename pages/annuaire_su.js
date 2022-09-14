@@ -34,6 +34,7 @@ const AnnuaireSu = ({ data, filters }) => {
   const [selectedCategoriesLength, setSelectedCategoriesLength] = useState(0);
   const [isSelected, setIsSelected] = useState(false)
   const [currentInput, setCurrentInput] = useState('');
+  const [moreFiltersClicked, setMoreFiltersClicked] = useState(false);
   var tempCards = [];
 
   const categories = filters[0]['CATEGORY']
@@ -84,7 +85,7 @@ const AnnuaireSu = ({ data, filters }) => {
       }
     } else {
       data.map(item => {
-        if (item.name.toLowerCase().includes(input.toLowerCase())) {
+        if (item.name.toLowerCase().includes(input.toLowerCase()) || item.categorie.toLowerCase().includes(input.toLowerCase())) {
           tempCards.push(item)
         }
       })
@@ -158,7 +159,6 @@ const AnnuaireSu = ({ data, filters }) => {
         setIsSelected(false)
       }
     }
-    console.log(startupCards);
   }
 
 
@@ -209,7 +209,7 @@ const AnnuaireSu = ({ data, filters }) => {
 
         {/* Multiselect */}
         <div className='annuaire__searchbar-multiselect-wrapper'>
-          <div style={{ marginRight: '1rem' }}>
+          <div className='annuaire__searchbar-principal-filters'>
             <button onClick={
               (e) => {
                 let element;
@@ -253,25 +253,35 @@ const AnnuaireSu = ({ data, filters }) => {
             <i className="fa-solid fa-caret-down"></i>
           </button>
 
-          <button className='annuaire__searchbar-select-disabled'>
-            <p style={{ margin: 0 }}>Technologies</p>
-            <i className="fa-solid fa-caret-down"></i>
-          </button>
+          <div className='annuaire__searchbar-additional-select'>
+            <button className='annuaire__searchbar-select-disabled'>
+              <p style={{ margin: 0 }}>Technologies</p>
+              <i className="fa-solid fa-caret-down"></i>
+            </button>
 
-          <button className='annuaire__searchbar-select-disabled'>
-            <p style={{ margin: 0 }}>Métiers cibles</p>
-            <i className="fa-solid fa-caret-down"></i>
-          </button>
+            <button className='annuaire__searchbar-select-disabled'>
+              <p style={{ margin: 0 }}>Métiers cibles</p>
+              <i className="fa-solid fa-caret-down"></i>
+            </button>
+          </div>
         </div>
 
         {/* Plus de filtres */}
-        <p className='annuaire__searchbar-more'>Plus de filtres</p>
+        <p className='annuaire__searchbar-more' id='moreFilters' onClick={() => {
+          if (moreFiltersClicked) {
+            document.querySelector('.annuaire__searchbar-additional-select').style.display = 'none'
+            setMoreFiltersClicked(false)
+          } else {
+            document.querySelector('.annuaire__searchbar-additional-select').style.display = 'flex'
+            setMoreFiltersClicked(true)
+          }
+        }}>{moreFiltersClicked ? 'Moins de filtres' : 'Plus de filtres'}</p>
       </div>
       {isSelected === false ?
         <div className="annuaire__categories">
           {catCards}
-        </div> : 
-          startupCards.length > 0 ? <div className="annuaire__cards">
+        </div> :
+        startupCards.length > 0 ? <div className="annuaire__cards">
           {startupCards.map(item => {
             return (
               <a className='annuaire__card lift' id={item.id} key={item.id} href={item.url}>
@@ -299,7 +309,7 @@ const AnnuaireSu = ({ data, filters }) => {
         </div> : <div className='annuaire__no-results'>
           <h1>Aucun résultat</h1>
         </div>
-        }
+      }
     </section>
   )
 }

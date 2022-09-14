@@ -96,10 +96,21 @@
     margin-top: 1rem;
 }
 
-.annuaire__searchbar-multiselect-wrapper > div {
+.annuaire__searchbar-principal-filters {
     position: relative;
     width: max-content;
-    width: 350px;
+    width: 30%;
+    margin-right: 1rem;
+}
+
+.annuaire__searchbar-additional-select {
+    width: 100%;
+    margin-top: 1rem;
+    display: none;
+}
+
+.annuaire__searchbar-additional-select-active {
+    display: flex;
 }
 
 .annuaire__searchbar-select {
@@ -124,6 +135,7 @@
     justify-content: space-between;
     padding: .5rem 1rem;
     color: #808080;
+    width: 30%;
     margin-right: 1rem;
 }
 
@@ -133,7 +145,6 @@
 
 .annuaire__searchbar-select-disabled > i {
     color: #808080;
-    margin-left: 1rem;
 }
 
 .annuaire__searchbar-select-count{
@@ -225,4 +236,5 @@
     text-align: right;
     color: #006dff;
     text-decoration: underline;
+    cursor: pointer;
 }
