@@ -1,29 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 
-
-// JSX SU CARD
-{/* <a className='annuaire__card lift' id={item.id} key={item.id} href={item.url}>
-          <div className='annuaire__card-avatar-wrapper'>
-            <div className='annuaire__card-avatar'><img src={item.logo} /></div>
-          </div>
-          <div className='annuaire__card-content-wrapper'>
-            <h3 className='annuaire__card-name'>{item.name}</h3>
-            <p className='annuaire__card-category'>{item.categorie}</p>
-            {Object.keys(item.tags).length > 0 ? <div className='annuaire__card-tags'>
-              {item.tags[0] ? <p className='annuaire__card-tag'>{item.tags[0]}</p> : null}
-              {item.tags[1] ? <p className='annuaire__card-tag'>{item.tags[1]}</p> : null}
-              {item.tags[2] ? <p className='annuaire__card-tag'>{item.tags[2]}</p> : null}
-              {Object.keys(item.tags).length > 3 ? <p className='annuaire__card-tag'>+{Object.keys(item.tags).length - 3}</p> : null}
-            </div> : null}
-            <p className='annuaire__card-description'>{item.comment}</p>
-            <div className='annuaire__card-suivre'>
-              <i className='fa-solid fa-folder-open'></i>
-              <p>suivre</p>
-            </div>
-          </div>
-        </a> */}
-
-
 const AnnuaireSu = ({ data, filters }) => {
 
   const nbPerCategory = {};
@@ -68,7 +44,6 @@ const AnnuaireSu = ({ data, filters }) => {
   const [startupCards, setStartupCards] = useState([])
 
   const setCards = (categorie = [], input = '') => {
-    tempCards.length = 0
     if (categorie.length > 0) {
       if (input.length > 0) {
         data.filter(item => {
@@ -89,13 +64,12 @@ const AnnuaireSu = ({ data, filters }) => {
           tempCards.push(item)
         }
       })
-    }
+    } 
     setStartupCards(tempCards)
   }
 
-
+ 
   const categorieClickHandler = (categorie) => {
-    startupCards.length = 0
     let element = document.getElementById(categorie)
 
     if (selectedCategories.includes(categorie)) {
@@ -121,6 +95,7 @@ const AnnuaireSu = ({ data, filters }) => {
       setSelectedCategoriesLength(selectedCategories.length)
       selectedCategories.forEach(categorie => {
         setCards(categorie)
+        console.log(startupCards);
       })
       if (currentInput.length > 0) {
         setIsSelected(true)
@@ -138,24 +113,19 @@ const AnnuaireSu = ({ data, filters }) => {
         startupCards.length = 0
       }
     }
-
-
   }
 
   const handleSearch = (input) => {
     setCurrentInput(input)
     if (selectedCategories.length > 0) {
-      startupCards.length = 0
       selectedCategories.forEach(categorie => {
         setCards(categorie, input)
       })
     } else {
       if (input.length > 0) {
-        startupCards.length = 0
         setIsSelected(true)
         setCards([], input)
       } else {
-        startupCards.length = 0
         setIsSelected(false)
       }
     }
