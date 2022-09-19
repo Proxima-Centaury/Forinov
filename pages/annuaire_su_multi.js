@@ -25,6 +25,8 @@ const AnnuaireSu = ({ data, filtersJson }) => {
         'metier': filtersJson[6]['METIER'],
     }
 
+    console.log(filters);
+
 
     const [selectedFilters, setSelectedFilters] = useState({
         'categories': [],
@@ -42,7 +44,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
             tempFilterCards.push(
                 <div className='annuaire__category lift' key={filter[i].ID} onClick={
                     () => {
-                        filterClickHandler(filter[i].ID)
+                        filterClickHandler(filter[i].ID, 'categories', '')
                     }}>
                     <img src={filter[i].LOGO} alt={filter[i].ID} className="annuaire__category-logo" />
                     <div className='annuaire__category-count'>{filter[i].NB}</div>
@@ -67,7 +69,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
             tempFilterList.push(
                 <button className='annuaire__searchbar-select-list-item' key={filter[i].ID} onClick={
                     () => {
-                        filterClickHandler(filter[i].ID, type)
+                        filterClickHandler(filter[i].ID, type, currentInput)
                     }
                 } id={type + '-' + filter[i].ID}>
                     <span className="annuaire__searchbar-select-list-name">{filter[i].NAME}</span>
@@ -91,15 +93,15 @@ const AnnuaireSu = ({ data, filtersJson }) => {
         // Si au moins un filtre est sélectionné
         if (filter.length > 0) {
             // si l'input à plus de 3 caractères
-            if (input.length > 3) {
+            if (input.length > 2) {
                 data.map(item => {
-                    if ((
+                    if (tempCards.includes(item) === false && (
                         // Vérification des filtres : pour chaque filtre sélectionnés, on vérifie si l'item correspond à un de ces filtre
-                        filter === 'categories' && item.categorie_id.toString() === id.toString())
+                        (filter === 'categories' && item.categorie_id.toString() === id.toString())
                         || (filter === 'sous_cat' && Object.values(item.sous_categorie_id).indexOf(id) > -1)
                         || (filter === 'secteurs' && Object.values(item.secteur).indexOf(id) > -1)
                         || (filter === 'technologies' && Object.values(item.technologie).indexOf(id) > -1)
-                        || (filter === 'metier' && Object.values(item.metier).indexOf(id) > -1)
+                        || (filter === 'metier' && Object.values(item.metier).indexOf(id) > -1))
                         // Vérification de l'input : si l'input est contenu dans le nom de la startup ou dans les catégories
                         && (
                             item.name.toLowerCase().includes(input.toLowerCase())
@@ -109,21 +111,23 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                         tempCards.push(item)
                     }
                 })
+                // Si il n'y a pas d'input mais au moins un filtre
             } else {
                 data.map(item => {
-                    if ((filter === 'categories' && item.categorie_id.toString() === id.toString())
-                        || (filter === 'sous_cat' && Object.values(item.sous_categorie_id).indexOf(id) > -1)
-                        || (filter === 'secteurs' && Object.values(item.secteur).indexOf(id) > -1)
-                        || (filter === 'technologies' && Object.values(item.technologie).indexOf(id) > -1)
-                        || (filter === 'metier' && Object.values(item.metier).indexOf(id) > -1)) {
+                    if (
+                        tempCards.includes(item) === false && ((filter === 'categories' && item.categorie_id.toString() === id.toString())
+                            || (filter === 'sous_cat' && Object.values(item.sous_categorie_id).indexOf(id) > -1)
+                            || (filter === 'secteurs' && Object.values(item.secteur).indexOf(id) > -1)
+                            || (filter === 'technologies' && Object.values(item.technologie).indexOf(id) > -1)
+                            || (filter === 'metier' && Object.values(item.metier).indexOf(id) > -1))) {
                         tempCards.push(item)
                     }
                 })
             }
         } else {
             data.map(item => {
-                if (item.name.toLowerCase().includes(input.toLowerCase())
-                    || item.categorie.toLowerCase().includes(input.toLowerCase())) {
+                if (tempCards.includes(item) === false && (item.name.toLowerCase().includes(input.toLowerCase())
+                    || item.categorie.toLowerCase().includes(input.toLowerCase()))) {
                     tempCards.push(item)
                 }
             })
@@ -132,8 +136,8 @@ const AnnuaireSu = ({ data, filtersJson }) => {
     }
 
 
-    const filterClickHandler = (id, filter) => {
-        startupCards.length = 0
+    const filterClickHandler = (id, filter, input) => {
+        startupCards.length = 0;
         let element = document.getElementById(filter + '-' + id)
         if (selectedFilters[filter].includes(filter + '-' + id)) {
             if (element) {
@@ -154,43 +158,32 @@ const AnnuaireSu = ({ data, filtersJson }) => {
         }
 
 
-
         for (const [key, value] of Object.entries(selectedFilters)) {
             totalSelected += value.length
             if (totalSelected > 0) {
-                for (let i = 0; i < value.length; i++) {
-                    let id = value[i].split('-')[1]
-                    setCards(id, '', key)
+                if (input.length > 2) {
+                    startupCards.length = 0
+                    for (let i = 0; i < value.length; i++) {
+                        let id = value[i].split('-')[1]
+                        setCards(id, input, key)
+                    }
+                } if (input.length < 3) {
+                    startupCards.length = 0
+                    for (let i = 0; i < value.length; i++) {
+                        let id = value[i].split('-')[1]
+                        setCards(id, '', key)
+                    }
                 }
                 setIsSelected(true)
-            } else {
+            } if (totalSelected === 0 && input.length > 2) {
+                startupCards.length = 0
+                setCards('', input, '')
+                setIsSelected(true)
+            } if (totalSelected === 0 && input.length === 0) {
                 setIsSelected(false)
                 setTotalSelected(0)
             }
         }
-
-        // if (selectedFilters.[length] > 0) {
-        //     setIsSelected(true)
-        //     setSelectedFiltersLength(selectedFilters.length)
-        //     selectedFilters[filter].forEach(categorie => {
-        //         setCards(categorie)
-        //     })
-        //     if (currentInput.length > 0) {
-        //         setIsSelected(true)
-        //         setSelectedFiltersLength(selectedFilters.length)
-        //         selectedFilters[filter].forEach(categorie => {
-        //             setCards(categorie, currentInput)
-        //         })
-        //     }
-        // } else {
-        //     if (currentInput.length > 0) {
-        //         setIsSelected(true)
-        //         setCards([], currentInput)
-        //     } else {
-        //         setIsSelected(false)
-        //         startupCards.length = 0
-        //     }
-        // }
     }
 
     const handleSearch = (input) => {
@@ -199,23 +192,27 @@ const AnnuaireSu = ({ data, filtersJson }) => {
         for (const [key, value] of Object.entries(selectedFilters)) {
             totalSelected += value.length
         }
-
-        console.log(totalSelected);
         //Si un filtre est séléctionné ET que l'input fait plus de 3 caractères
         if (totalSelected > 0 && input.length > 2) {
             //On réinitialise le tableau des cartes
             startupCards.length = 0
             //On parcourt les filtres sélectionnés
-            selectedFilters.forEach(categorie => {
-                //On créé les cartes par rapport aux catégories et à l'input
-                setCards(categorie, input)
-            })
+
+            for (const [key, value] of Object.entries(selectedFilters)) {
+                totalSelected += value.length
+                if (totalSelected > 0) {
+                    for (let i = 0; i < value.length; i++) {
+                        let id = value[i].split('-')[1]
+                        setCards(id, input, key)
+                    }
+                }
+            }
         } else {
-            if (input.length > 2) {
+            if (input.length > 2 || totalSelected > 0) {
                 startupCards.length = 0
                 setIsSelected(true)
                 setCards([], input)
-            } else {
+            } if (input.length === 0 && totalSelected === 0) {
                 startupCards.length = 0
                 setIsSelected(false)
             }
