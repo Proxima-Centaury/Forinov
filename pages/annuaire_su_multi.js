@@ -25,9 +25,6 @@ const AnnuaireSu = ({ data, filtersJson }) => {
         'metier': filtersJson[6]['METIER'],
     }
 
-    console.log(filters);
-
-
     const [selectedFilters, setSelectedFilters] = useState({
         'categories': [],
         'secteurs': [],
@@ -93,7 +90,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
         // Si au moins un filtre est sélectionné
         if (filter.length > 0) {
             // si l'input à plus de 3 caractères
-            if (input.length > 2) {
+            if (input) {
                 data.map(item => {
                     if (tempCards.includes(item) === false && (
                         // Vérification des filtres : pour chaque filtre sélectionnés, on vérifie si l'item correspond à un de ces filtre
@@ -102,12 +99,16 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                         || (filter === 'secteurs' && Object.values(item.secteur).indexOf(id) > -1)
                         || (filter === 'technologies' && Object.values(item.technologie).indexOf(id) > -1)
                         || (filter === 'metier' && Object.values(item.metier).indexOf(id) > -1))
-                        // Vérification de l'input : si l'input est contenu dans le nom de la startup ou dans les catégories
+                        // Vérification de l'input : si l'input est contenu dans le nom de la startup ou dans les filtres
                         && (
                             item.name.toLowerCase().includes(input.toLowerCase())
                             || item.categorie.includes(input.toLowerCase())
-
+                            || Object.values(item.sous_categorie_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                            || Object.values(item.secteur_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                            || Object.values(item.technologie_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                            || Object.values(item.metier_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
                         )) {
+                        console.log(Object.values(item.technologie_names));
                         tempCards.push(item)
                     }
                 })
@@ -124,10 +125,17 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                     }
                 })
             }
-        } else {
+        } if (filter.length === 0 && input) {
             data.map(item => {
                 if (tempCards.includes(item) === false && (item.name.toLowerCase().includes(input.toLowerCase())
-                    || item.categorie.toLowerCase().includes(input.toLowerCase()))) {
+                    || item.categorie.toLowerCase().includes(input.toLowerCase())
+                    || Object.values(item.sous_categorie_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                    || Object.values(item.secteur_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                    || Object.values(item.technologie_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                    || Object.values(item.metier_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                )
+                ) {
+                    console.log(item);
                     tempCards.push(item)
                 }
             })
@@ -277,11 +285,11 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                                 list.style.display === 'none' ? list.style.display = 'block' : list.style.display = 'none'
                                 element.children[1].classList.toggle('fa-caret-up')
                             }
-                        } className='annuaire__searchbar-select'>
+                        } className='annuaire__searchbar-select' style={{ zIndex: '14' }}>
                             <p style={{ margin: 0 }}>Catégories {selectedFilters.length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFiltersLength}</span> : null}</p>
                             <i className="fa-solid fa-caret-down" ref={icon}></i>
                         </button>
-                        <ul className='annuaire__searchbar-select-list' style={{ display: 'none' }} id='catCollapse'>
+                        <ul className='annuaire__searchbar-select-list' style={{ display: 'none', zIndex: '13' }} id='catCollapse'>
                             {
                                 catList
                             }
@@ -298,11 +306,11 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                                 list.style.display === 'none' ? list.style.display = 'block' : list.style.display = 'none'
                                 element.children[1].classList.toggle('fa-caret-up')
                             }
-                        } className='annuaire__searchbar-select'>
+                        } className='annuaire__searchbar-select' style={{ zIndex: '12' }}>
                             <p style={{ margin: 0 }}>Sous-catégories {selectedFilters.length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFiltersLength}</span> : null}</p>
                             <i className="fa-solid fa-caret-down" ref={icon}></i>
                         </button>
-                        <ul className='annuaire__searchbar-select-list' style={{ display: 'none' }} id='sscatCollapse'>
+                        <ul className='annuaire__searchbar-select-list' style={{ display: 'none', zIndex: '11' }} id='sscatCollapse'>
                             {
                                 sscatList
                             }
@@ -319,11 +327,11 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                                 list.style.display === 'none' ? list.style.display = 'block' : list.style.display = 'none'
                                 element.children[1].classList.toggle('fa-caret-up')
                             }
-                        } className='annuaire__searchbar-select'>
+                        } className='annuaire__searchbar-select' style={{ zIndex: '10' }}>
                             <p style={{ margin: 0 }}>Secteurs {selectedFilters.length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFiltersLength}</span> : null}</p>
                             <i className="fa-solid fa-caret-down" ref={icon}></i>
                         </button>
-                        <ul className='annuaire__searchbar-select-list' style={{ display: 'none' }} id='sectCollapse'>
+                        <ul className='annuaire__searchbar-select-list' style={{ display: 'none', zIndex: '9' }} id='sectCollapse'>
                             {
                                 sectList
                             }
@@ -342,11 +350,11 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                                     list.style.display === 'none' ? list.style.display = 'block' : list.style.display = 'none'
                                     element.children[1].classList.toggle('fa-caret-up')
                                 }
-                            } className='annuaire__searchbar-select'>
+                            } className='annuaire__searchbar-select' style={{ zIndex: '8' }}>
                                 <p style={{ margin: 0 }}>Technologies {selectedFilters.length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFiltersLength}</span> : null}</p>
                                 <i className="fa-solid fa-caret-down" ref={icon}></i>
                             </button>
-                            <ul className='annuaire__searchbar-select-list' style={{ display: 'none' }} id='techCollapse'>
+                            <ul className='annuaire__searchbar-select-list' style={{ display: 'none', zIndex: '7' }} id='techCollapse'>
                                 {
                                     techList
                                 }

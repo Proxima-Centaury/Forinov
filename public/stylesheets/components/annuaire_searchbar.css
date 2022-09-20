@@ -11,14 +11,15 @@
     border-bottom: 1px solid #c8c8c894;
 }
 
-.annuaire__searchbar-title, .annuaire__searchbar-title > i {
+.annuaire__searchbar-title,
+.annuaire__searchbar-title>i {
     font-size: 21px;
     color: #232324;
     display: flex;
     align-items: center;
 }
 
-.annuaire__searchbar-title > h1 {
+.annuaire__searchbar-title>h1 {
     font-family: "Nunito Sans", sans-serif;
     margin: 0 1rem;
     font-family: 'Nunito Sans';
@@ -45,11 +46,12 @@
     font-weight: bold;
 }
 
-.breadcrumb-item-disabled > span, .breadcrumb-item-disabled > i {
+.breadcrumb-item-disabled>span,
+.breadcrumb-item-disabled>i {
     color: #c8c8c8;
 }
 
-.annuaire__searchbar-breadcrumb-item > i {
+.annuaire__searchbar-breadcrumb-item>i {
     margin: 0;
     padding: 0;
     margin-right: .5rem;
@@ -84,7 +86,7 @@
     background-color: rgb(var(--main-color));
 }
 
-.annuaire__searchbar-trigger > i {
+.annuaire__searchbar-trigger>i {
     color: white;
 }
 
@@ -98,17 +100,9 @@
 
 .annuaire__searchbar-principal-filters {
     position: relative;
-    width: max-content;
-    width: 30%;
+    max-width: 500px;
+    min-width: 300px;
     margin-right: 1rem;
-}
-
-#catCollapse, #sscatCollapse, #sectCollapse {
-    z-index: 10;
-}
-
-.annuaire__searchbar-principal-filters:has(#catCollapse) > button, .annuaire__searchbar-principal-filters:has(#sscatCollapse) > button, .annuaire__searchbar-principal-filters:has(#sectCollapse) > button {
-    z-index: 11;
 }
 
 
@@ -116,6 +110,7 @@
     width: 100%;
     margin-top: 1rem;
     display: none;
+    flex-wrap: wrap;
 }
 
 .annuaire__searchbar-additional-select-active {
@@ -144,19 +139,20 @@
     justify-content: space-between;
     padding: .5rem 1rem;
     color: #808080;
-    width: 30%;
+    max-width: 500px;
+    min-width: 300px;
     margin-right: 1rem;
 }
 
-.annuaire__searchbar-select-disabled > p {
+.annuaire__searchbar-select-disabled>p {
     color: #808080;
 }
 
-.annuaire__searchbar-select-disabled > i {
+.annuaire__searchbar-select-disabled>i {
     color: #808080;
 }
 
-.annuaire__searchbar-select-count{
+.annuaire__searchbar-select-count {
     border-radius: 50%;
     background-color: #006dff;
     width: 18px;
@@ -211,11 +207,11 @@
     background-color: #006dff;
 }
 
-.annuaire__searchbar-select-list-item:hover > span {
+.annuaire__searchbar-select-list-item:hover>span {
     color: white !important;
 }
 
-.annuaire__searchbar-select-list-item:hover > .annuaire__searchbar-select-list-pastille  {
+.annuaire__searchbar-select-list-item:hover>.annuaire__searchbar-select-list-pastille {
     background-color: white;
 }
 
