@@ -100,15 +100,13 @@
 
 .annuaire__searchbar-principal-filters {
     position: relative;
-    max-width: 500px;
-    min-width: 300px;
+    min-width: 265px;
     margin-right: 1rem;
 }
 
 
 .annuaire__searchbar-additional-select {
     width: 100%;
-    margin-top: 1rem;
     display: none;
     flex-wrap: wrap;
 }
@@ -139,8 +137,7 @@
     justify-content: space-between;
     padding: .5rem 1rem;
     color: #808080;
-    max-width: 500px;
-    min-width: 300px;
+    min-width: 270px;
     margin-right: 1rem;
 }
 
@@ -200,7 +197,12 @@
     border-radius: 999px;
     margin-bottom: .5rem;
     font-weight: bold;
+    text-align: start;
     transition: all .3s ease;
+}
+
+.annuaire__searchbar-select-list-name {
+    width: 80%;
 }
 
 .annuaire__searchbar-select-list-item:hover {
@@ -216,11 +218,10 @@
 }
 
 .annuaire__searchbar-select-list-count {
-    margin-left: .5rem;
-    position: relative;
-    bottom: 5px;
     color: grey;
     font-size: 0.75rem;
+    text-align: center;
+    width: 10%;
 }
 
 .annuaire__searchbar-select-list-pastille {

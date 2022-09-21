@@ -17,6 +17,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
 
     const [categorieCards, setCategorieCards] = useState([]);
 
+    //le tableau des filtres en entier
     const filters = {
         'categories': filtersJson[0]['CATEGORY'],
         'secteurs': filtersJson[1]['SECTEURS'],
@@ -25,6 +26,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
         'metier': filtersJson[6]['METIER'],
     }
 
+    //le tableau dynamique des filtres sélectionnés
     const [selectedFilters, setSelectedFilters] = useState({
         'categories': [],
         'secteurs': [],
@@ -34,6 +36,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
     });
 
     let tempFilterCards = []
+    //Fonction qui permet de construire les cartes de catégories par rapport aux données de l'api
     const setFilterCards = (filter) => {
         let filterLength = Object.keys(filter).length
         tempFilterCards.length = 0;
@@ -41,6 +44,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
             tempFilterCards.push(
                 <div className='annuaire__category lift' key={filter[i].ID} onClick={
                     () => {
+                        // Au click on lui fait exécuter la fonction filterClickHandler avec les paramètres suivants
                         filterClickHandler(filter[i].ID, 'categories', '')
                     }}>
                     <img src={filter[i].LOGO} alt={filter[i].ID} className="annuaire__category-logo" />
@@ -58,6 +62,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
     }
     const catCards = setFilterCards(filters.categories);
 
+    //Fonction qui permet de construire les filtres dans la searchbar par rapport aux données de l'api
     const setFilterList = (filter, type) => {
         let tempFilterList = []
         let filterLength = Object.keys(filter).length - 1
@@ -66,6 +71,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
             tempFilterList.push(
                 <button className='annuaire__searchbar-select-list-item' key={filter[i].ID} onClick={
                     () => {
+                        // Au click on lui fait exécuter la fonction filterClickHandler avec les paramètres suivants
                         filterClickHandler(filter[i].ID, type, currentInput)
                     }
                 } id={type + '-' + filter[i].ID}>
@@ -115,6 +121,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                 // Si il n'y a pas d'input mais au moins un filtre
             } else {
                 data.map(item => {
+                    // Vérification des filtres : pour chaque filtre sélectionnés, on vérifie si l'item correspond à un de ces filtre
                     if (
                         tempCards.includes(item) === false && ((filter === 'categories' && item.categorie_id.toString() === id.toString())
                             || (filter === 'sous_cat' && Object.values(item.sous_categorie_id).indexOf(id) > -1)
@@ -125,8 +132,11 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                     }
                 })
             }
-        } if (filter.length === 0 && input) {
+        }
+        // Si aucun filtre n'est sélectionné mais qu'il y a un input
+        if (filter.length === 0 && input) {
             data.map(item => {
+                // Vérification de l'input : si l'input est contenu dans le nom de la startup ou dans les filtres
                 if (tempCards.includes(item) === false && (item.name.toLowerCase().includes(input.toLowerCase())
                     || item.categorie.toLowerCase().includes(input.toLowerCase())
                     || Object.values(item.sous_categorie_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
@@ -140,13 +150,16 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                 }
             })
         }
+        //On rempli le tableau de carte avec les cartes correspondantes aux différents paramètres
         setStartupCards(tempCards)
     }
 
-
+    //Fonction utilisé pour les click sur les filtres (dropdown ou cartes de catégories)
     const filterClickHandler = (id, filter, input) => {
+        //on réinitialise les cartes
         startupCards.length = 0;
         let element = document.getElementById(filter + '-' + id)
+        // Si le filtre est déjà sélectionné, on le désélectionne
         if (selectedFilters[filter].includes(filter + '-' + id)) {
             if (element) {
                 element.children[0].style.color = '#232324'
@@ -157,7 +170,9 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                     }
                 }
             }
-        } else {
+        }
+        // Si le filtre n'est pas sélectionné, on le sélectionne
+        else {
             if (element) {
                 element.children[0].style.color = '#006dff'
                 element.children[2].style.display = 'block'
@@ -165,29 +180,37 @@ const AnnuaireSu = ({ data, filtersJson }) => {
             selectedFilters[filter].push(filter + '-' + id)
         }
 
-
+        //On parcours les filtres sélectionnés
         for (const [key, value] of Object.entries(selectedFilters)) {
             totalSelected += value.length
+            // Si il y a plus d'un filtre sélectionné
             if (totalSelected > 0) {
+                // Si l'input à plus de 2 caractères
                 if (input.length > 2) {
-                    startupCards.length = 0
                     for (let i = 0; i < value.length; i++) {
                         let id = value[i].split('-')[1]
+                        //On set les cards en fonction des filtres sélectionnés et de l'input
                         setCards(id, input, key)
                     }
-                } if (input.length < 3) {
-                    startupCards.length = 0
+                }
+                //Si l'input à moins de 3 caractères
+                if (input.length < 3) {
                     for (let i = 0; i < value.length; i++) {
                         let id = value[i].split('-')[1]
+                        //On set les cards en fonction des filtres sélectionnés et d'un input vide
                         setCards(id, '', key)
                     }
                 }
                 setIsSelected(true)
-            } if (totalSelected === 0 && input.length > 2) {
-                startupCards.length = 0
+            }
+            //Si aucun filtre est séléctionné mais que l'input à plus de 2 caractères
+            if (totalSelected === 0 && input.length > 2) {
+                //On set les cards en fonction de l'input
                 setCards('', input, '')
                 setIsSelected(true)
-            } if (totalSelected === 0 && input.length === 0) {
+            }
+            //Si aucun filtre est séléctionné et que l'input est vide, on réinitialise les cards et on affiche les cartes de catégories
+            if (totalSelected === 0 && input.length === 0) {
                 setIsSelected(false)
                 setTotalSelected(0)
             }
@@ -204,8 +227,8 @@ const AnnuaireSu = ({ data, filtersJson }) => {
         if (totalSelected > 0 && input.length > 2) {
             //On réinitialise le tableau des cartes
             startupCards.length = 0
-            //On parcourt les filtres sélectionnés
 
+            //On parcourt les filtres sélectionnés
             for (const [key, value] of Object.entries(selectedFilters)) {
                 totalSelected += value.length
                 if (totalSelected > 0) {
@@ -216,11 +239,14 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                 }
             }
         } else {
+            // Si aucun filtre n'est sélectionné ET que l'input fait plus de 2 caractères
             if (input.length > 2 || totalSelected > 0) {
                 startupCards.length = 0
                 setIsSelected(true)
                 setCards([], input)
-            } if (input.length === 0 && totalSelected === 0) {
+            }
+            // Si aucun filtre n'est sélectionné ET que l'input est vide
+            if (input.length === 0 && totalSelected === 0) {
                 startupCards.length = 0
                 setIsSelected(false)
             }
@@ -286,7 +312,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                                 element.children[1].classList.toggle('fa-caret-up')
                             }
                         } className='annuaire__searchbar-select' style={{ zIndex: '14' }}>
-                            <p style={{ margin: 0 }}>Catégories {selectedFilters.length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFiltersLength}</span> : null}</p>
+                            <p style={{ margin: 0 }}>Catégories {selectedFilters['categories'].length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFilters['categories'].length}</span> : null}</p>
                             <i className="fa-solid fa-caret-down" ref={icon}></i>
                         </button>
                         <ul className='annuaire__searchbar-select-list' style={{ display: 'none', zIndex: '13' }} id='catCollapse'>
@@ -307,7 +333,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                                 element.children[1].classList.toggle('fa-caret-up')
                             }
                         } className='annuaire__searchbar-select' style={{ zIndex: '12' }}>
-                            <p style={{ margin: 0 }}>Sous-catégories {selectedFilters.length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFiltersLength}</span> : null}</p>
+                            <p style={{ margin: 0 }}>Sous-catégories {selectedFilters['sous_cat'].length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFilters['sous_cat'].length}</span> : null}</p>
                             <i className="fa-solid fa-caret-down" ref={icon}></i>
                         </button>
                         <ul className='annuaire__searchbar-select-list' style={{ display: 'none', zIndex: '11' }} id='sscatCollapse'>
@@ -328,7 +354,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                                 element.children[1].classList.toggle('fa-caret-up')
                             }
                         } className='annuaire__searchbar-select' style={{ zIndex: '10' }}>
-                            <p style={{ margin: 0 }}>Secteurs {selectedFilters.length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFiltersLength}</span> : null}</p>
+                            <p style={{ margin: 0 }}>Secteurs {selectedFilters['secteurs'].length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFilters['secteurs'].length}</span> : null}</p>
                             <i className="fa-solid fa-caret-down" ref={icon}></i>
                         </button>
                         <ul className='annuaire__searchbar-select-list' style={{ display: 'none', zIndex: '9' }} id='sectCollapse'>
@@ -351,7 +377,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                                     element.children[1].classList.toggle('fa-caret-up')
                                 }
                             } className='annuaire__searchbar-select' style={{ zIndex: '8' }}>
-                                <p style={{ margin: 0 }}>Technologies {selectedFilters.length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFiltersLength}</span> : null}</p>
+                                <p style={{ margin: 0 }}>Technologies {selectedFilters['technologies'].length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFilters['technologies'].length}</span> : null}</p>
                                 <i className="fa-solid fa-caret-down" ref={icon}></i>
                             </button>
                             <ul className='annuaire__searchbar-select-list' style={{ display: 'none', zIndex: '7' }} id='techCollapse'>
@@ -372,7 +398,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                                     element.children[1].classList.toggle('fa-caret-up')
                                 }
                             } className='annuaire__searchbar-select'>
-                                <p style={{ margin: 0 }}>Metiers cibles {selectedFilters.length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFiltersLength}</span> : null}</p>
+                                <p style={{ margin: 0 }}>Metiers cibles {selectedFilters['metier'].length > 0 ? <span className='annuaire__searchbar-select-count'>{selectedFilters['metier'].length}</span> : null}</p>
                                 <i className="fa-solid fa-caret-down" ref={icon}></i>
                             </button>
                             <ul className='annuaire__searchbar-select-list' style={{ display: 'none' }} id='metierCollapse'>
@@ -396,10 +422,12 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                 }}>{moreFiltersClicked ? 'Moins de filtres' : 'Plus de filtres'}</p>
             </div>
             {
+                // Si aucune caterogie n'est selectionnée, on affiche les cartes de catégories
                 isSelected === false ?
                     <div className="annuaire__categories">
                         {catCards}
                     </div> :
+                    // Si une catégorie est selectionnée ou un input est présent, on affiche les cartes de startup par rapport aux paramètres
                     startupCards.length > 0 ? <div className="annuaire__cards">
                         {startupCards.map(item => {
                             return (
@@ -425,25 +453,28 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                                 </a>
                             )
                         })}
-                    </div> : <div className='annuaire__no-results'>
-                        <h1>Aucun résultat</h1>
-                    </div>
+                    </div> :
+                        // S'il n'y a aucun résultat
+                        <div className='annuaire__no-results'>
+                            <h1>Aucun résultat</h1>
+                        </div>
             }
         </section >
     )
 }
 
 export async function getServerSideProps() {
-    // Fetch data from external API
+    // Appel API des données de startups
     const res = await fetch('https://dev.forinov.fr/remote/back/api.php?q=SEARCH_FULLSU&authkey=Landing')
     const data = await res.json()
 
+    // Appel API des données de filtres
     const fetchFilters = await fetch('https://www.forinov.fr/remote/back/api.php?q=V5_GET_PUBLIC_COMMONS&authkey=Landing&ssid=5cpbs0k7574bv0jlrh0322boe7')
     const filtersJson = await fetchFilters.json()
 
 
 
-    // Pass data to the page via props
+    // On passe les deux variables au composant via les props
     return { props: { data, filtersJson } }
 }
 

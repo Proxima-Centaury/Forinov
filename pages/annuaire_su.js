@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 const AnnuaireSu = ({ data, filters }) => {
 
@@ -11,8 +11,11 @@ const AnnuaireSu = ({ data, filters }) => {
   const [isSelected, setIsSelected] = useState(false)
   const [currentInput, setCurrentInput] = useState('');
   const [moreFiltersClicked, setMoreFiltersClicked] = useState(false);
+
+  //Nécessaire sinon bug connu avec le useState
   var tempCards = [];
 
+  //On garde uniquement les catégories du call API
   const categories = filters[0]['CATEGORY']
 
   let catArray = []
@@ -22,6 +25,7 @@ const AnnuaireSu = ({ data, filters }) => {
     catArray.push(categories[catIndex])
   }
 
+  //On boucle sur les catégories pour construire les cards de catégories (affichée lorsqu'aucune catégorie n'est sélectionnée)
   catArray.forEach(category => {
     nbPerCategory[category.NAME] = category.NB
     catCards.push(
@@ -43,32 +47,43 @@ const AnnuaireSu = ({ data, filters }) => {
 
   const [startupCards, setStartupCards] = useState([])
 
+  //Fonction qui permet de remplir le tableau de cards de startups
   const setCards = (categorie = [], input = '') => {
+    //Si au moins une catégorie est sélectionnée
     if (categorie.length > 0) {
-      if (input.length > 0) {
+      //Si l'input n'est pas vide
+      if (input.length > 2) {
+        //On boucle sur les startups en regardant si les catégories correspondent ou si l'input correspond avec le nom OU la catégorie
         data.filter(item => {
           if (item.categorie_id.toString() === categorie.toString() && item.name.toLowerCase().includes(input.toLowerCase())) {
             tempCards.push(item)
           }
         })
-      } else {
+      }
+      //Sinon si l'input est vide
+      else {
+        //On boucle sur les startups en regardant si les catégories correspondent
         data.filter(item => {
           if (item.categorie_id.toString() === categorie.toString()) {
             tempCards.push(item)
           }
         })
       }
-    } else {
+    }
+    //Si aucune catégorie n'est sélectionnée mais que l'input n'est pas vide
+    else {
+      //On boucle sur les startups en regardant si l'input correspond avec le nom OU la catégorie
       data.map(item => {
         if (item.name.toLowerCase().includes(input.toLowerCase()) || item.categorie.toLowerCase().includes(input.toLowerCase())) {
           tempCards.push(item)
         }
       })
-    } 
+    }
+    //On set la variable avec le tableau temporaires de cards
     setStartupCards(tempCards)
   }
 
- 
+  //Fonction utilisé pour les click sur les catégories (dropdown ou cartes de catégories)
   const categorieClickHandler = (categorie) => {
     let element = document.getElementById(categorie)
 
@@ -90,6 +105,7 @@ const AnnuaireSu = ({ data, filters }) => {
       selectedCategories.push(categorie)
     }
 
+    //Si plus au moins une catégorie est sélectionnée : on set les cards avec les catégories sélectionnées
     if (selectedCategories.length > 0) {
       setIsSelected(true)
       setSelectedCategoriesLength(selectedCategories.length)
@@ -97,6 +113,7 @@ const AnnuaireSu = ({ data, filters }) => {
         setCards(categorie)
         console.log(startupCards);
       })
+      //Si plus au moins une catégorie est sélectionnée et que l'input n'est pas vide : on set les cards avec les catégories sélectionnées et l'input
       if (currentInput.length > 0) {
         setIsSelected(true)
         setSelectedCategoriesLength(selectedCategories.length)
@@ -105,24 +122,27 @@ const AnnuaireSu = ({ data, filters }) => {
         })
       }
     } else {
+      //Sinon si aucune catégorie n'est sélectionnée mais que l'input n'est pas vide : on set les cards avec l'input
       if (currentInput.length > 0) {
         setIsSelected(true)
         setCards([], currentInput)
       } else {
+        //Sinon si aucune catégorie n'est sélectionnée et que l'input est vide : on réinitialise les cards
         setIsSelected(false)
         startupCards.length = 0
       }
     }
   }
 
+  //Fonction qui permet à chaque changement de l'input de set les cards avec l'input
   const handleSearch = (input) => {
     setCurrentInput(input)
-    if (selectedCategories.length > 0) {
+    if (selectedCategories.length > 0 && input.length > 2) {
       selectedCategories.forEach(categorie => {
         setCards(categorie, input)
       })
     } else {
-      if (input.length > 0) {
+      if (input.length > 2) {
         setIsSelected(true)
         setCards([], input)
       } else {
@@ -285,16 +305,17 @@ const AnnuaireSu = ({ data, filters }) => {
 }
 
 export async function getServerSideProps() {
-  // Fetch data from external API
+  // Appel API des données de startups
   const res = await fetch('https://dev.forinov.fr/remote/back/api.php?q=SEARCH_FULLSU&authkey=Landing')
   const data = await res.json()
 
+  // Appel API des données de filtres
   const fetchFilters = await fetch('https://www.forinov.fr/remote/back/api.php?q=V5_GET_PUBLIC_COMMONS&authkey=Landing&ssid=5cpbs0k7574bv0jlrh0322boe7')
   const filters = await fetchFilters.json()
 
 
 
-  // Pass data to the page via props
+  // On passe les deux variables au composant via les props
   return { props: { data, filters } }
 }
 
