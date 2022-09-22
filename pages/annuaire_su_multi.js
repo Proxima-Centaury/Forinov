@@ -15,6 +15,9 @@ const AnnuaireSu = ({ data, filtersJson }) => {
     const [totalSelected, setTotalSelected] = useState(0);
     var tempCards = [];
 
+    //Variable permettant de changer la taille de l'input requise pour lancer la recherche
+    const inputLengthRequired = 2;
+
     const [categorieCards, setCategorieCards] = useState([]);
 
     //le tableau des filtres en entier
@@ -113,8 +116,11 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                             || Object.values(item.secteur_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
                             || Object.values(item.technologie_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
                             || Object.values(item.metier_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                            || Object.values(item.tags).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                            || Object.values(item.comment).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                            || item.country.toLowerCase().includes(input.toLowerCase())
+                            || item.town.toLowerCase().includes(input.toLowerCase())
                         )) {
-                        console.log(Object.values(item.technologie_names));
                         tempCards.push(item)
                     }
                 })
@@ -143,9 +149,12 @@ const AnnuaireSu = ({ data, filtersJson }) => {
                     || Object.values(item.secteur_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
                     || Object.values(item.technologie_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
                     || Object.values(item.metier_names).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                    || Object.values(item.tags).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                    || Object.values(item.comment).toString().toLowerCase().indexOf(input.toLowerCase()) > -1
+                    || item.country.toLowerCase().includes(input.toLowerCase())
+                    || item.town.toLowerCase().includes(input.toLowerCase())
                 )
                 ) {
-                    console.log(item);
                     tempCards.push(item)
                 }
             })
@@ -224,7 +233,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
             totalSelected += value.length
         }
         //Si un filtre est séléctionné ET que l'input fait plus de 3 caractères
-        if (totalSelected > 0 && input.length > 2) {
+        if (totalSelected > 0 && input.length > inputLengthRequired) {
             //On réinitialise le tableau des cartes
             startupCards.length = 0
 
@@ -240,7 +249,7 @@ const AnnuaireSu = ({ data, filtersJson }) => {
             }
         } else {
             // Si aucun filtre n'est sélectionné ET que l'input fait plus de 2 caractères
-            if (input.length > 2 || totalSelected > 0) {
+            if (input.length > inputLengthRequired || totalSelected > 0) {
                 startupCards.length = 0
                 setIsSelected(true)
                 setCards([], input)

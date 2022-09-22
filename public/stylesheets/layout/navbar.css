@@ -9,7 +9,7 @@
     box-shadow: var(--box-shadow);
     background-color: rgb(var(--background-sub-color));
     position: fixed;
-    z-index: 10;
+    z-index: 5;
     top: 0;
     left: 0;
     display: flex;
@@ -57,7 +57,6 @@
     position: relative;
     display: flex;
     align-items: center;
-    z-index: 9999;
     justify-content: space-between;
 }
 
@@ -74,7 +73,7 @@
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 1.25px;
-    z-index: 1;
+    z-index: 10;
     padding: 0.4rem 1.1rem;
     border-radius: 100px;
 }
@@ -112,6 +111,7 @@
     margin-left: 1em;
     margin-bottom: .2em;
     font-weight: 600;
+    z-index: 10;
 }
 
 .layout__navbar .navbar-login {
@@ -211,11 +211,11 @@
         width: fit-content;
         position: relative;
         left: 50%;
-        transform: translate(-50%,0);
+        transform: translate(-50%, 0);
 
     }
 
-    .layout__navbar .navbar-hamburger .navbar-lang-select-current{
+    .layout__navbar .navbar-hamburger .navbar-lang-select-current {
         position: relative;
         z-index: 9999;
     }

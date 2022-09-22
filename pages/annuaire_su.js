@@ -12,6 +12,7 @@ const AnnuaireSu = ({ data, filters }) => {
   const [currentInput, setCurrentInput] = useState('');
   const [moreFiltersClicked, setMoreFiltersClicked] = useState(false);
 
+
   //Nécessaire sinon bug connu avec le useState
   var tempCards = [];
 

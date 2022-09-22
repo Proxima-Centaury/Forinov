@@ -19,7 +19,7 @@ import "../public/stylesheets/layout/footer.css";
 import '../public/stylesheets/pages/login.css'
 import '../public/stylesheets/pages/annuaire_su.css'
 
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* App */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -31,11 +31,10 @@ function App({ Component, pageProps }) {
     pageProps.session = session;
     pageProps.lock = (session) ? false : true;
     return <>
-        <Navbar/>
         <div className="container col-md-10 col-sm-11 col-12 col-xl-9 py-6">
-        {router.pathname !== '/login' && router.pathname !== '/register' ? <Navbar /> : null}
+            {router.pathname !== '/login' && router.pathname !== '/register' ? <Navbar /> : null}
             <Component {...pageProps} />
-        {router.pathname !== '/login' && router.pathname !== '/register' ? <Footer /> : null}
+            {router.pathname !== '/login' && router.pathname !== '/register' ? <Footer /> : null}
         </div>
     </>;
 };
