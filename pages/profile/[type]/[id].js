@@ -5,7 +5,7 @@ import IdenfiticationBanner from "../../../components/banners/identification";
 import RecoverBanner from "../../../components/banners/recover";
 import ProfileCard from "../../../components/cards/profile";
 import ProfileMenu from "../../../components/menus/profile";
-import ProfileOverview from "../../../components/widgets/profile/overview";
+import ProfileOverview from "../../../components/content/profile/overview";
 import ProfileOffer from "../../../components/content/profile/offer";
 import ProfileDetails from "../../../components/content/profile/details";
 import ProfileProducts from "../../../components/content/profile/products";

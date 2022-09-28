@@ -1,4 +1,13 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Breakpoints */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* xs => < 576px */
+/* sm => > 576px */
+/* md => > 768px */
+/* lg => > 992px */
+/* xl => > 1200px */
+/* xx => > 1400px */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Variables */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 :root {
@@ -89,6 +98,8 @@
 /* Defaults */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 * {
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
     font-family: "Open Sans";
     color: rgb(var(--text-main-color));
@@ -136,10 +147,43 @@ a {
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 #__next {
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width: 768px) {
+    #__next {
+        padding: 16px;
+    }
 }
 #__next > .container {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    max-width: 100%;
+    margin-top: calc(80px + 16px);
+    margin-bottom: calc(80px + 16px);
+}
+@media screen and (min-width: 576px) {
+    #__next > .container {
+        max-width: 576px;
+    }
+}
+@media screen and (min-width: 768px) {
+    #__next > .container {
+        max-width: 568px;
+    }
+}
+@media screen and (min-width: 992px) {
+    #__next > .container {
+        max-width: 792px;
+    }
+}
+@media screen and (min-width: 1200px) {
+    #__next > .container {
+        max-width: 1000px;
+    }
+}
+@media screen and (min-width: 1400px) {
+    #__next > .container {
+        max-width: 1200px;
+    }
 }
 #__next > .container > div > * + * {
     margin: 16px 0px 0px 0px;

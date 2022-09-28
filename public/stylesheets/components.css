@@ -283,6 +283,55 @@
     font-weight: bold;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Overview */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.overview {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: calc(18px + 8px + 120px + (16px * 2));
+    padding: 16px;
+    border-radius: 15px;
+    background-color: rgb(var(--background-sub-color));
+    box-shadow: var(--box-shadow);
+}
+.overview > h4 {
+    margin: 0px;
+    font-family: "Nunito Sans";
+    font-size: 24px;
+    font-weight: 800;
+}
+.overview > .details {
+    display: flex;
+    flex-direction: column;
+}
+.overview > .details:nth-of-type(3) {
+    margin: 8px 0px;
+}
+.overview > .details > .label {
+    margin: 0px;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(var(--text-inactive-color));
+}
+.overview > .details > p {
+    margin: 0px;
+}
+.overview > .details > .location,
+.overview > .details > .website {
+    margin: 0px 0px 8px 0px;
+}
+.overview > .details > .location > * + *,
+.overview > .details > .website > * + *,
+.overview > .details > .networks > * + * {
+    margin: 0px 0px 0px 8px;
+}
+.overview > .details > .website > a {
+    font-weight: bold;
+    color: rgb(var(--main-color));
+    text-decoration: underline;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Offer */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 .profileOffer {
