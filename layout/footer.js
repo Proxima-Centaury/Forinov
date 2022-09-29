@@ -1,4 +1,4 @@
-import translation from '../../translations.json';
+import translation from '../translations.json';
 import { useState } from 'react';
 
 

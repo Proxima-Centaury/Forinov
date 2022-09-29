@@ -1,4 +1,7 @@
-.layout__footer {
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Footer */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.footer {
     width: 100%;
     background-color: rgb(var(--main-background-color));
     display: flex;
@@ -8,12 +11,14 @@
     padding-top: 13.5rem;
 }
 
-.layout__footer .footer__about-forinov {
+
+.footer .footer__about-forinov {
     max-width: 200px;
     margin-bottom: 3em;
 }
 
-.layout__footer .footer__about-forinov .footer__social-icons {
+
+.footer .footer__about-forinov .footer__social-icons {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -21,17 +26,20 @@
     padding: 0;
 }
 
-.layout__footer .footer__about-forinov .footer__social-icons > li > a >i {
+
+.footer .footer__about-forinov .footer__social-icons > li > a >i {
     color: #101218;
     font-size: 14px;
     margin-bottom: 7em;
 }
 
-.layout__footer .footer__about-forinov .footer__social-icons > li:nth-child(1) {
+
+.footer .footer__about-forinov .footer__social-icons > li:nth-child(1) {
     margin: 0 1em 0 0;
 }
 
-.layout__footer .footer__about-forinov .footer__about-text {
+
+.footer .footer__about-forinov .footer__about-text {
     margin: 2em 0;
     padding: 0;
     font-size: 0.75rem;
@@ -40,39 +48,46 @@
     white-space: pre-wrap;
 }
 
-.layout__footer .footer__about-forinov .footer__to-contact {
+
+.footer .footer__about-forinov .footer__to-contact {
     text-decoration: underline;
 }
 
-.layout__footer .footer__link-list {
+
+.footer .footer__link-list {
     max-width: 280px;
     margin-bottom: 3em;
     margin-right: 2em;
 }
 
-.layout__footer .footer__link-list .footer__link-list-title {
+
+.footer .footer__link-list .footer__link-list-title {
     font-weight: bold;
     margin-bottom: 1.75rem;
     font-size: 20px;
 }
 
-.layout__footer .footer__link-list ul{
+
+.footer .footer__link-list ul{
     margin: 0;
     padding: 0;
 }
 
-.layout__footer .footer__link-list ul > .footer__link-list-item {
+
+.footer .footer__link-list ul > .footer__link-list-item {
     margin-bottom: 1em;
     white-space: nowrap; 
 }
 
-.layout__footer .footer__link-list ul > .footer__link-list-item > a {
+
+.footer .footer__link-list ul > .footer__link-list-item > a {
     color: rgb(var(--text-sub-color));
     word-wrap: break-word;
 }
 
 
-.layout__footer .footer__credits {
+
+.footer .footer__credits {
     position: absolute;
     bottom: -5em;
 }
