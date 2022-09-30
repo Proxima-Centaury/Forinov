@@ -24,7 +24,7 @@ import "../public/stylesheets/pages/annuaire_su.css"
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 function App({ Component, pageProps }) {
     const [ language, setLanguage ] = useState("fr");
-    const [ session, setSession ] = useState(null);
+    const [ session, setSession ] = useState(true);
     pageProps.language = language;
     pageProps.setLanguage = setLanguage;
     pageProps.translations = translations[language];

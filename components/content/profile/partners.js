@@ -6,25 +6,27 @@ import Tags from "../../tags/tags";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Partners */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfilePartners = ({ partners, translations }) => {
-    const handleView = (event) => seeMoreOrLess(event, translations, ".partner", partners, 4);
+const ProfilePartners = ({ profile, lock, translations }) => {
+    const { INCUBATORS } = profile;
+    const partners = INCUBATORS || [];
+    const handleView = (event) => seeMoreOrLess(event, translations, ".partner", partners, 2);
     if(partners) {
         return <div className="profilePartners">
             <p className="label">{ translations["Nos partenaires"] + " (" + partners.length + ")" }</p>
-            <div className="partners locked">
-                { (partners) ? partners.map((partner, key) => <div key={ key } className={ "partner" + ((key > 3) ? " d-none" : "")}>
+            <div className={ "partners" + ((lock) ? " locked" : "") }>
+                { (partners) ? partners.map((partner, key) => <div key={ key } className={ "partner" + ((key > 3) ? " hidden" : "") }>
                     <div className="marker"></div>
                     <div className="content">
                         <div className="identity">
-                            <Image src={ partner.picture } alt="" sizes="100vw" fill/>
-                            <p className="partnerName">{ partner.name }</p>
+                            <Image src={ partner.LOGO } alt="" sizes="100vw" fill/>
+                            <p className="partnerName">{ partner.NAME }</p>
                         </div>
-                        <Tags tags={ Object.values(partner.tags) } main={ true }/>
+                        { (partner.TAG) ? <Tags tags={ (Array.isArray(partner.TAG)) ? partner.TAG : [ partner.TAG ] } main={ true }/> : null }
                     </div>
                 </div>) : null }
             </div>
-            { (partners.length > 2) ? <button className="seeMore" onClick={ handleView }>
-                <span>{ translations["Voir plus"] + " (" + (partners.length - 4) + ")" }</span>
+            { (partners.length > 4) ? <button className="seeMore" onClick={ handleView }>
+                <span>{ translations["Voir plus"] + " (" + (partners.length - 3) + ")" }</span>
                 <i className="fa-solid fa-caret-right"/>
             </button> : null }
         </div>;

@@ -6,12 +6,18 @@ import Image from "next/future/image";
 import { useEffect } from "react";
 import Select from "../components/fields/select";
 import config from "../config.json";
+import Button from "../components/buttons/button";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 const Navbar = ({ translations, setLanguage }) => {
     const { top } = config.navigations.unsigned;
     const { languages } = config;
+    const showNavigation = (event) => {
+        const target = event.target.closest("button");
+        target.classList.toggle("active");
+        return target;
+    };
     const hideNestedLinks = () => {
         const visibleNests = document.querySelectorAll("ul.show");
         visibleNests.forEach((nest) => nest.classList.remove("show"));
@@ -73,11 +79,7 @@ const Navbar = ({ translations, setLanguage }) => {
                 <a className="callToAction">{ translations["M'inscrire"] }</a>
             </Link>
         </div>
-        <button>
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <Button type="navigationButton" action={ showNavigation }/>
     </nav>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */

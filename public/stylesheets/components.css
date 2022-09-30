@@ -705,6 +705,12 @@
     width: 100%;
     position: relative;
 }
+@media screen and (max-width: 768px) {
+    .profilePartners > .partners {
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+}
 .profilePartners > .partners > .partner {
     display: flex;
     width: calc((100% / 2) - 8px);
@@ -717,11 +723,28 @@
     overflow: hidden;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
+@media screen and (max-width: 768px) {
+    .profilePartners > .partners > .partner {
+        width: 100%;
+        margin: 0px;
+    }
+}
 .profilePartners > .partners > .partner:nth-of-type(2n) {
     margin: 0px 0px 0px 8px;
 }
 .profilePartners > .partners > .partner:nth-of-type(1n + 2) + * {
     margin-top: 16px;
+}
+@media screen and (max-width: 768px) {
+    .profilePartners > .partners > .partner:nth-of-type(2n) {
+        margin: initial;
+    }
+    .profilePartners > .partners > .partner:nth-of-type(1n + 2) + * {
+        margin-top: initial;
+    }
+    .profilePartners > .partners > .partner + .partner {
+        margin: 8px 0px 0px 0px;
+    }
 }
 .profilePartners > .partners > .partner > .marker {
     width: 8px;
@@ -731,7 +754,8 @@
 .profilePartners > .partners > .partner > .content {
     display: flex;
     flex-direction: column;
-    padding: 16px 16px 8px 16px;
+    flex: 1;
+    padding: 16px 16px 16px 8px;
 }
 .profilePartners > .partners > .partner > .content > .identity {
     display: flex;
@@ -740,6 +764,7 @@
 .profilePartners > .partners > .partner > .content > .identity > img {
     width: 48px !important;
     height: 48px !important;
+    position: initial !important;
     top: inherit !important;
     right: inherit !important;
     bottom: inherit !important;

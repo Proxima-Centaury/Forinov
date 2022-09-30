@@ -102,9 +102,9 @@
     color: rgb(var(--main-color));
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Navbar ( Menu Button ) */
+/* Navbar ( Navigation Button ) */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-.navbar > button {
+.navbar > .navigationButton {
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -114,15 +114,41 @@
     margin: auto 0px auto auto;
 }
 @media screen and (max-width: 992px) {
-    .navbar > button {
+    .navbar > .navigationButton {
         display: flex;
     }
 }
-.navbar > button > span {
+.navbar > .navigationButton > span {
     width: 25px;
     height: 2px;
     background-color: rgb(var(--main-color));
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.navbar > button > span + span {
+.navbar > .navigationButton > span + span {
     margin: 8px 0px 0px 0px;
+}
+.navbar > .navigationButton.active > span:first-of-type {
+    transform: translateY(0px);
+    animation: firstBarAnimation 0.3s ease 0.3s forwards;
+}
+@keyframes firstBarAnimation {
+    50% {
+        transform: translateY(10px);
+    } 100% {
+        transform: translateY(10px) rotate(45deg);
+    }
+}
+.navbar > .navigationButton.active > span:nth-of-type(2) {
+    opacity: 0;
+}
+.navbar > .navigationButton.active > span:last-of-type {
+    transform: translateY(0px);
+    animation: thirdBarAnimation 0.3s ease 0.3s forwards;
+}
+@keyframes thirdBarAnimation {
+    50% {
+        transform: translateY(-10px);
+    } 100% {
+        transform: translateY(-10px) rotate(-45deg);
+    }
 }

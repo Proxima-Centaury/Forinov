@@ -25,7 +25,6 @@ const Profile = ({ session, profile, products, activity, lock, translations }) =
         faIconClass: "fa-solid fa-person-chalkboard",
         text: translations["Voir le pitch deck"]
     };
-    console.log(props);
     if(profile) {
         return <div id="profile">
             <IdenfiticationBanner { ...props }/>
