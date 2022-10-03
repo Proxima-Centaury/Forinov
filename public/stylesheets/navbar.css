@@ -36,7 +36,7 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 .navbar > .links {
     display: flex;
-    margin: 0px auto 0px 32px;
+    margin: 0px auto 0px 40px;
 }
 @media screen and (max-width: 992px) {
     .navbar > .links {
@@ -47,7 +47,7 @@
     position: relative;
 }
 .navbar > .links > li + li {
-    margin: 0px 0px 0px 16px;
+    margin: 0px 0px 0px 32px;
 }
 .navbar > .links > li.active > a > span,
 .navbar > .links > li > a:hover > span {

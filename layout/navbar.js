@@ -45,7 +45,7 @@ const Navbar = ({ translations, setLanguage }) => {
     return <nav className="navbar">
         <div className="logo">
             <Link href="/">
-                <a><Image src="/assets/logo.png" width="160" height="50"/></a>
+                <a><Image src="/assets/logo_full.png" width="170" height="50" priority/></a>
             </Link>
         </div>
         <ul className="links">

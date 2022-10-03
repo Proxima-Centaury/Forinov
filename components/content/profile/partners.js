@@ -18,7 +18,7 @@ const ProfilePartners = ({ profile, lock, translations }) => {
                     <div className="marker"></div>
                     <div className="content">
                         <div className="identity">
-                            <Image src={ partner.LOGO } alt="" sizes="100vw" fill/>
+                            <Image src={ partner.LOGO } width="48" height="48" alt={ partner.NAME + " logo." }/>
                             <p className="partnerName">{ partner.NAME }</p>
                         </div>
                         { (partner.TAG) ? <Tags tags={ (Array.isArray(partner.TAG)) ? partner.TAG : [ partner.TAG ] } main={ true }/> : null }

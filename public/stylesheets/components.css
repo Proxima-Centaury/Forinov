@@ -128,7 +128,7 @@
 .recoverBanner > .actions > * + * {
     margin: 0px 0px 0px 16px;
 }
-.identificationBanner > .actions > a {
+.identificationBanner > .actions > a:not(.callToActionNegative) {
     color: rgb(var(--white-color));
     text-decoration: underline;
 }
@@ -642,7 +642,7 @@
 .profileEcosystem > .content > .clients > .client > .content {
     display: flex;
     flex-direction: column;
-    padding: 16px 16px 8px 16px;
+    padding: 16px 16px 16px 8px;
 }
 .profileEcosystem > .content > .clients > .client > .content > .identity {
     display: flex;

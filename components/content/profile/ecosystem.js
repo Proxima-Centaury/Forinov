@@ -22,8 +22,8 @@ const ProfileEcosystem = ({ profile, lock, translations }) => {
                         <div className="marker"></div>
                         <div className="content">
                             <div className="identity">
-                                <Image src={ client.LOGO } alt="" sizes="100vw" fill/>
-                                <p className="clientName">{ client.name }</p>
+                                <Image src={ client.LOGO } width="48" height="48" alt={ client.NAME + " logo." }/>
+                                <p className="clientName">{ client.NAME }</p>
                             </div>
                             { (client.TAG) ? <Tags tags={ (Array.isArray(client.TAG)) ? client.TAG : [ client.TAG ]  } main={ true }/> : null }
                         </div>

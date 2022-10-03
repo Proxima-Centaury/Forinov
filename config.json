@@ -40,12 +40,7 @@
                     { "url": "/", "text": "Startups" },
                     { "url": "/", "text": "Startups" }
                 ] },
-                { "url": "/", "text": "À propos", "nesting": true, "nest": [
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" }
-                ] },
-                { "url": "/", "text": "Nos membres", "nesting": true, "nest": [
+                { "url": "/", "text": "Opportunités", "nesting": true, "nest": [
                     { "url": "/", "text": "Startups" },
                     { "url": "/", "text": "Startups" },
                     { "url": "/", "text": "Startups" }

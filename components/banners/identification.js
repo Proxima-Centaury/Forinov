@@ -1,12 +1,20 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Imports */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Idenfitication Banner */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 const IdenfiticationBanner = ({ translations }) => {
     return <div className="identificationBanner">
         <p>{ translations["Profitez de Forinov sans limite :"] }</p>
         <div className="actions">
-            <a href="https://google.com">{ translations["S'identifier"] }</a>
-            <button className="callToActionNegative">{ translations["Je m'inscris"] }</button>
+            <Link href="/login">
+                <a>{ translations["S'identifier"] }</a>
+            </Link>
+            <Link href="/register">
+                <a className="callToActionNegative">{ translations["Je m'inscris"] }</a>
+            </Link>
         </div>
     </div>;
 };
