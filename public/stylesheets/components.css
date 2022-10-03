@@ -63,8 +63,11 @@
     flex-wrap: wrap;
     position: relative;
 }
+.tags > .tag:first-of-type {
+    margin: 8px 8px 0px 0px;
+}
 .tags > * + * {
-    margin: 0px 0px 0px 8px;
+    margin: 8px 8px 0px 0px;
 }
 .tags > .tag {
     display: flex;
@@ -89,6 +92,12 @@
 }
 .tags > .tag.main > p {
     font-size: 16px;
+}
+.tags.alternative > .tag {
+    background-color: rgb(var(--main-color));
+}
+.tags.alternative > .tag > p {
+    color: rgb(var(--white-color));
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Banners */
@@ -308,7 +317,7 @@
     display: flex;
     flex-direction: column;
     position: sticky;
-    top: calc(64px + 16px);
+    top: 16px;
 }
 @media screen and (max-width: 990px) {
     .profileMenu {
@@ -342,7 +351,7 @@
     display: flex;
     flex-direction: column;
     position: sticky;
-    top: calc(64px + 16px + (18px + 8px + 136px + (16px * 2)));
+    top: calc(18px + 136px + 16px);
     padding: 16px;
     border-radius: 15px;
     background-color: rgb(var(--background-sub-color));
@@ -359,10 +368,10 @@
     flex-direction: column;
 }
 .overview > .details:nth-of-type(3) {
-    margin: 8px 0px;
+    margin: 16px 0px 16px 0px;
 }
 .overview > .details > .label {
-    margin: 0px 0px 8px 0px;
+    margin: 0px 0px 0px 0px;
     font-weight: bold;
     font-size: 16px;
     color: rgb(var(--text-inactive-color));
@@ -487,8 +496,14 @@
 }
 .profileProducts > .products {
     display: flex;
-    width: 100%;
     flex-wrap: wrap;
+    width: 100%;
+}
+@media screen and (max-width: 992px) {
+    .profileProducts > .products {
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
 }
 .profileProducts > .products > .product {
     display: flex;
@@ -513,6 +528,14 @@
 }
 .profileProducts > .products > .product:nth-of-type(1n + 2) + * {
     margin-top: 16px;
+}
+@media screen and (max-width: 992px) {
+    .profileProducts > .products > .product {
+        width: 100%;
+    }
+    .profileProducts > .products > .product + .product {
+        margin: 16px 0px 0px 0px;
+    }
 }
 .profileProducts > .products > .product > .banner {
     width: 100%;
@@ -610,7 +633,14 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    margin: 8px 0px 0px 0px;
     position: relative;
+}
+@media screen and (max-width: 992px) {
+    .profileEcosystem > .content > .clients {
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
 }
 .profileEcosystem > .content > .clients > .client {
     display: flex;
@@ -630,8 +660,18 @@
 .profileEcosystem > .content > .clients > .client:nth-of-type(1n + 2) + * {
     margin-top: 16px;
 }
+@media screen and (max-width: 992px) {
+    .profileEcosystem > .content > .clients > .client {
+        width: 100%;
+    }
+    .profileEcosystem > .content > .clients > .client + .client {
+        margin: 16px 0px 0px 0px;
+    }
+}
 .profileEcosystem > .content > .clients > .client > .marker {
+    min-width: 8px;
     width: 8px;
+    max-width: 8px;
     height: 100%;
     background-color: rgb(var(--main-color));
 }
@@ -639,6 +679,9 @@
     display: flex;
     flex-direction: column;
     padding: 16px 16px 16px 8px;
+}
+.profileEcosystem > .content > .clients > .client > .content > * + * {
+    margin: 8px 0px 0px 0px;
 }
 .profileEcosystem > .content > .clients > .client > .content > .identity {
     display: flex;
@@ -699,7 +742,14 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    margin: 8px 0px 0px 0px;
     position: relative;
+}
+@media screen and (max-width: 992px) {
+    .profilePartners > .partners {
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
 }
 @media screen and (max-width: 768px) {
     .profilePartners > .partners {
@@ -731,19 +781,18 @@
 .profilePartners > .partners > .partner:nth-of-type(1n + 2) + * {
     margin-top: 16px;
 }
-@media screen and (max-width: 768px) {
-    .profilePartners > .partners > .partner:nth-of-type(2n) {
-        margin: initial;
-    }
-    .profilePartners > .partners > .partner:nth-of-type(1n + 2) + * {
-        margin-top: initial;
+@media screen and (max-width: 992px) {
+    .profilePartners > .partners > .partner {
+        width: 100%;
     }
     .profilePartners > .partners > .partner + .partner {
-        margin: 8px 0px 0px 0px;
+        margin: 16px 0px 0px 0px;
     }
 }
 .profilePartners > .partners > .partner > .marker {
+    min-width: 8px;
     width: 8px;
+    max-width: 8px;
     height: 100%;
     background-color: rgb(var(--logo-green-color));
 }

@@ -11,7 +11,7 @@ const ProfileCard = ({ profile, lock, translations }) => {
     if(profile) {
         return <div className="profileCard cardBackground" data-type="full">
             <div className="banner">
-                <Image src={ profile.BACKGROUND } alt="" sizes="100vw" fill/>
+                <Image src={ profile.BACKGROUND } alt="" sizes="100vw" fill priority/>
                 <div className="actions">
                     <div>
                         <button className="callToActionRoundedIcon">
