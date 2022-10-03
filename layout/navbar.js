@@ -45,9 +45,8 @@ const Navbar = ({ translations, setLanguage }) => {
     return <nav className="navbar">
         <div className="logo">
             <Link href="/">
-                <a><Image src="/assets/logo.png" width="50" height="50"/></a>
+                <a><Image src="/assets/logo.png" width="160" height="50"/></a>
             </Link>
-            <p>Forinov</p>
         </div>
         <ul className="links">
             { top.map(({ url, text, nesting, nest }, key) => <li key={ key }>
