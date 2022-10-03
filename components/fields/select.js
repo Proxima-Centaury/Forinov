@@ -24,7 +24,7 @@ const Select = ({ options, setter }) => {
         parent.querySelector(".options").classList.toggle("show");
         return target;
     };
-    useEffect(() => (selectedIndex) ? setSelectedOption(options[selectedIndex]) : undefined, [ selectedIndex ]);
+    useEffect(() => (selectedIndex) ? setSelectedOption(options[selectedIndex]) : undefined, [ selectedIndex, options ]);
     return <div className="select">
         <div className="custom">
             <p className="selected">{ selectedOption.text }</p>
