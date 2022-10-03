@@ -61,14 +61,10 @@
 .tags {
     display: flex;
     flex-wrap: wrap;
-    padding: 0px 0px 8px 0px;
     position: relative;
 }
 .tags > * + * {
-    margin: 8px 8px 0px 0px;
-}
-.tags > *:first-child {
-    margin: 8px 8px 0px 0px;
+    margin: 0px 0px 0px 8px;
 }
 .tags > .tag {
     display: flex;
@@ -366,7 +362,7 @@
     margin: 8px 0px;
 }
 .overview > .details > .label {
-    margin: 0px;
+    margin: 0px 0px 8px 0px;
     font-weight: bold;
     font-size: 16px;
     color: rgb(var(--text-inactive-color));

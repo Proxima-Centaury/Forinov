@@ -7,7 +7,7 @@ import Format from "../texts/format";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileCard = ({ profile, translations }) => {
+const ProfileCard = ({ profile, lock, translations }) => {
     if(profile) {
         return <div className="profileCard cardBackground" data-type="full">
             <div className="banner">
@@ -15,13 +15,13 @@ const ProfileCard = ({ profile, translations }) => {
                 <div className="actions">
                     <div>
                         <button className="callToActionRoundedIcon">
-                            <i className="fa-solid fa-thumbtack"/>
+                            <i className="fa-light fa-folder-open"/>
                         </button>
                         <p>{ translations["Suivre"] }</p>
                     </div>
                     <div>
                         <button className="callToActionRoundedIcon">
-                            <i className="fa-regular fa-message"/>
+                            <i className="fa-light fa-message"/>
                         </button>
                         <p>{ translations["Contacter"] }</p>
                     </div>
@@ -63,11 +63,11 @@ const ProfileCard = ({ profile, translations }) => {
                         </div>
                         <div className="funding">
                             <p className="label">{ translations["Stade levé"] }</p>
-                            <p>{ profile.FUNDING }</p>
+                            <p className={ (lock) ? "locked" : "" }>{ profile.FUNDING }</p>
                         </div>
                         <div className="budget">
                             <p className="label">{ translations["Montant levé"] }</p>
-                            <p>{ profile.FUNDS + "€" }</p>
+                            <p className={ (lock) ? "locked" : "" }>{ profile.FUNDS + "€" }</p>
                         </div>
                     </div>
                 </div>
