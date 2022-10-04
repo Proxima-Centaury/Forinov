@@ -2,44 +2,44 @@
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 import { useState } from "react";
-import EntityCard from "../../cards/entity";
+import MemberCard from "../../cards/member";
 import Button from "../../../components/buttons/button";
 import { utilities } from "../../../utilities/utilities";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Partners */
+/* Profile Team */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfilePartners = ({ profile, lock, translations }) => {
-    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
-    const { INCUBATORS } = profile;
-    const partners = INCUBATORS || [];
-    const handleView = (event) => utilities.seeMoreOrLess(event, translations, ".partner", partners, maxVisibleCardsByDefault);
+const ProfileTeam = ({ profile, translations }) => {
+    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(3);
+    const { COLLABORATORS } = profile;
+    const team = COLLABORATORS || [];
+    const handleView = (event) => utilities.seeMoreOrLess(event, translations, ".member", team, 3);
     const buttonsProps = [
-        { type: "moreOrLess", action: handleView, text: translations["Voir plus"], count: partners.length - maxVisibleCardsByDefault }
+        { type: "moreOrLessAlternative", action: handleView, text: translations["Voir plus"], count: team.length - maxVisibleCardsByDefault }
     ];
-    if(partners) {
-        return <div className="profilePartners">
-            <p className="label">{ translations["Nos partenaires"] + " (" + partners.length + ")" }</p>
-            <div className={ "partners" + ((lock) ? " locked" : "") }>
-                { (partners) ? partners.map((partner, key) => {
+    if(profile) {
+        return <div id="team" className="profileTeam">
+            <h3>{ translations["L'équipe"] }</h3>
+            <div className="team">
+                { (team) ? team.map((member, key) => {
                     const props = {
-                        entity: partner,
-                        type: "partner",
+                        member: member,
                         index: key + 1,
-                        maxVisibleByDefault: maxVisibleCardsByDefault
+                        maxVisibleByDefault: maxVisibleCardsByDefault,
+                        translations: translations
                     };
-                    return <EntityCard key={ key } { ...props }/>;
+                    return <MemberCard key={ key } { ...props }/>;
                 }) : null }
             </div>
-            { (partners.length > maxVisibleCardsByDefault) ? <Button { ...buttonsProps[0] }/> : null }
+            { (team.length > 2) ? <Button { ...buttonsProps[0] }/> : null }
         </div>;
     } else {
-        return <ProfilePartnersPlaceholder/>;
+        return <ProfileTeamPlaceholder/>;
     };
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Partners Placeholder */
+/* Profile Team Placeholder */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfilePartnersPlaceholder = () => {
+const ProfileTeamPlaceholder = () => {
     return <div>
         
     </div>;
@@ -47,4 +47,4 @@ const ProfilePartnersPlaceholder = () => {
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-export default ProfilePartners;
+export default ProfileTeam;

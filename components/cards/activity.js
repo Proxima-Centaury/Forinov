@@ -1,31 +1,30 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-import Format from "../../texts/format";
+import Image from "next/future/image";
+import Format from "../texts/format";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Offer */
+/* Activity Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileOffer = ({ profile, lock, translations }) => {
-    if(profile) {
-        return <div id="offer" className="profileOffer">
-            <h3>{ translations["Notre offre"] }</h3>
-            <div className={ "content" + ((lock) ? " locked gradient" : "") }>
-                <p className="label">{ translations["Ce que nous apportons aux entreprises"] }</p>
-                <Format content={ profile.OURVALUE }/>
-                { (lock) ? <div className="lockedContent">
-                    <i className="fa-solid fa-lock"/>
-                    <p>{ translations["Rejoignez Forinov, accédez à l’intégralité des profils, rentrez en contact et lancez des partenariats"] }</p>
-                </div> : null }
+const ActivityCard = ({ event, index, maxVisibleByDefault = 3 }) => {
+    if(event) {
+        return <div className={ "activity" + ((index > maxVisibleByDefault) ? " hidden" : "") }>
+            <div className="marker"></div>
+            <div className="content">
+                <Image src={ event.LOGO } alt="" sizes="100vw" fill/>
+                <p className="user">{ event.NAME }</p>
+                <Format content={ event.CONTENT }/>
+                <p className="time">{ event.DATE }</p>
             </div>
         </div>;
     } else {
-        return <ProfileOfferPlaceholder/>;
+        return <ActivityCardPlaceholder/>;
     };
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Offer Placeholder */
+/* Activity Card Placeholder */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileOfferPlaceholder = () => {
+const ActivityCardPlaceholder = () => {
     return <div>
         
     </div>;
@@ -33,4 +32,4 @@ const ProfileOfferPlaceholder = () => {
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-export default ProfileOffer;
+export default ActivityCard;

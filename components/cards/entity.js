@@ -6,11 +6,11 @@ import Tags from "../tags/tags";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Entity Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const EntityCard = ({ entity, type, index }) => {
+const EntityCard = ({ entity, type, index, maxVisibleByDefault = 3 }) => {
     if(entity) {
         switch(type) {
             case "client":
-                return <div className={ "client" + ((index > 3) ? " hidden" : "")}>
+                return <div className={ "client" + ((index > maxVisibleByDefault) ? " hidden" : "")}>
                     <div className="marker"></div>
                     <div className="content">
                         <div className="identity">
@@ -21,7 +21,7 @@ const EntityCard = ({ entity, type, index }) => {
                     </div>
                 </div>;
             case "partner":
-                return <div className={ "partner" + ((index > 3) ? " hidden" : "") }>
+                return <div className={ "partner" + ((index > maxVisibleByDefault) ? " hidden" : "") }>
                     <div className="marker"></div>
                     <div className="content">
                         <div className="identity">

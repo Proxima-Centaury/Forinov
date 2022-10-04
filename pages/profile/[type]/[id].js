@@ -11,9 +11,10 @@ import ProfileDetails from "../../../components/content/profile/details";
 import ProfileProducts from "../../../components/content/profile/products";
 import ProfileEcosystem from "../../../components/content/profile/ecosystem";
 import ProfilePartners from "../../../components/content/profile/partners";
+import ProfileTeam from "../../../components/content/profile/team";
 import ProfileActivity from "../../../components/content/profile/activity";
-import config from "../../../config.json";
 import Button from "../../../components/buttons/button";
+import config from "../../../config.json";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -42,6 +43,7 @@ const Profile = ({ session, profile, products, activity, lock, translations }) =
                     <Button { ...pitchDeckButtonProps }/>
                     <ProfileEcosystem { ...props }/>
                     <ProfilePartners { ...props }/>
+                    <ProfileTeam { ...props }/>
                     <ProfileActivity { ...props }/>
                 </div>
             </div>

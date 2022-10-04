@@ -390,7 +390,7 @@ body {
 .locked {
     position: relative;
     overflow: hidden;
-    border-radius: 1000px;
+    border-radius: 10px;
 }
 .locked::after {
     width: 100%;

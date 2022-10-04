@@ -5,13 +5,13 @@ class Utilities {
     constructor() {};
     seeMoreOrLess = (event, translations, selector, array = [], defaultVisibleItemsCount = 1) => {
         const target = event.target.closest("button");
-        const visibleElements = document.querySelectorAll(selector);
+        const visibleElements = document.querySelectorAll(selector + ":not(.hidden)");
         const hiddenElements = document.querySelectorAll(selector + ".hidden");
         if(hiddenElements.length > 0) {
             hiddenElements.forEach((hiddenElement) => hiddenElement.classList.remove("hidden"));
             target.querySelector("span").innerText = translations["Voir moins"];
         } else {
-            visibleElements.forEach((visibleElement, key) => (key > 1) ? visibleElement.classList.add("hidden") : null);
+            visibleElements.forEach((visibleElement, key) => (key >= defaultVisibleItemsCount) ? visibleElement.classList.add("hidden") : null);
             target.querySelector("span").innerText = translations["Voir plus"] + " (" + (array.length - defaultVisibleItemsCount) + ")";
         };
         return [ target, hiddenElements ];

@@ -1,31 +1,30 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-import Format from "../../texts/format";
+import Image from "next/future/image";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Offer */
+/* Product Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileOffer = ({ profile, lock, translations }) => {
-    if(profile) {
-        return <div id="offer" className="profileOffer">
-            <h3>{ translations["Notre offre"] }</h3>
-            <div className={ "content" + ((lock) ? " locked gradient" : "") }>
-                <p className="label">{ translations["Ce que nous apportons aux entreprises"] }</p>
-                <Format content={ profile.OURVALUE }/>
-                { (lock) ? <div className="lockedContent">
-                    <i className="fa-solid fa-lock"/>
-                    <p>{ translations["Rejoignez Forinov, accédez à l’intégralité des profils, rentrez en contact et lancez des partenariats"] }</p>
-                </div> : null }
+const ProductCard = ({ product, index, maxVisibleByDefault = 4, translations }) => {
+    if(product) {
+        return <div className={ "product" + ((index > maxVisibleByDefault) ? " hidden" : "")}>
+            <div className="banner">
+                <p>{ translations["Voir"] }</p>
+                <Image src={ product.PICTURE } alt="" sizes="100vw" fill/>
+            </div>
+            <div className="content">
+                <p className="productType">{ Object.values(product.BUSINESSMODEL).join(" | ") }</p>
+                <p className="productName">{ product.NAME }</p>
             </div>
         </div>;
     } else {
-        return <ProfileOfferPlaceholder/>;
+        return <ProductCardPlaceholder/>;
     };
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Offer Placeholder */
+/* Product Card Placeholder */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileOfferPlaceholder = () => {
+const ProductCardPlaceholder = () => {
     return <div>
         
     </div>;
@@ -33,4 +32,4 @@ const ProfileOfferPlaceholder = () => {
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-export default ProfileOffer;
+export default ProductCard;
