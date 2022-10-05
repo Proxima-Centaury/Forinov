@@ -3,6 +3,12 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 class Utilities {
     constructor() {};
+    scrollTo = (x, y) => {
+        const container = document.querySelector("#__next");
+        // console.log("Coordinates : x = " + x + " / y = " + y);
+        // console.log("Container : ", container);
+        return container.scrollTo(x, y - 16);
+    };
     seeMoreOrLess = (event, translations, selector, array = [], defaultVisibleItemsCount = 1) => {
         const target = event.target.closest("button");
         const visibleElements = document.querySelectorAll(selector + ":not(.hidden)");

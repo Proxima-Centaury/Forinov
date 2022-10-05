@@ -16,8 +16,13 @@ const Navbar = ({ translations, setLanguage }) => {
     const showNavigation = (event) => {
         const target = event.target.closest("button");
         const links = target.closest(".navbar").querySelector(".links");
-        target.classList.toggle("active");
-        links.classList.toggle("show");
+        if(!target.closest(".navbar") || (target && target.classList.contains("active"))) {
+            target.classList.remove("active");
+            links.classList.remove("show");
+        } else {
+            target.classList.add("active");
+            links.classList.add("show");
+        };
         return target;
     };
     const hideNestedLinks = () => {
@@ -50,7 +55,6 @@ const Navbar = ({ translations, setLanguage }) => {
                 const link = target.closest("li") || null;
                 const navbar = target.closest(".navbar");
                 const closestVisibleNest = target.closest("ul.show");
-                console.log(target, link, navbar);
                 if(link && navbar) {
                     (!closestVisibleNest) ? hideNestedLinks() : null;
                     const nest = link.querySelector("ul");
