@@ -35,8 +35,8 @@ function App({ Component, pageProps }) {
         <Navbar { ...pageProps }/>
         <div className="container">
             <Component { ...pageProps }/>
+            <Footer { ...pageProps }/>
         </div>
-        <Footer { ...pageProps }/>
     </>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */

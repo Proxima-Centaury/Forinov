@@ -1,47 +1,35 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Global Container ) */
+/* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details {
-    display: flex;
-    margin: 54px 0px 0px 0px !important;
-}
-@media screen and (max-width: 990px) {
-    #profile > .details {
-        flex-direction: column;
-    }
-}
+import Image from "next/future/image";
+import Format from "../texts/format";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Left Container ) */
+/* Activity Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details > .leftSide {
-    display: flex;
-    flex-direction: column;
-    min-width: 296px;
-    width: 296px;
-    max-width: 296px;
-    margin: 0px 24px 0px 0px;
-}
-@media screen and (max-width: 990px) {
-    #profile > .details > .leftSide {
-        min-width: 100%;
-        width: 100%;
-        max-width: 100%;
-    }
-}
+const ActivityCard = ({ event, index, maxVisibleByDefault = 3 }) => {
+    if(event) {
+        return <div className={ "activity" + ((index > maxVisibleByDefault) ? " hidden" : "") }>
+            <div className="marker"></div>
+            <div className="content">
+                <Image src={ event.LOGO } alt="" sizes="100vw" fill/>
+                <p className="user">{ event.NAME }</p>
+                <Format content={ event.CONTENT }/>
+                <p className="time">{ event.DATE }</p>
+            </div>
+        </div>;
+    } else {
+        return <ActivityCardPlaceholder/>;
+    };
+};
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Left's Containers ) */
+/* Activity Card Placeholder */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details > .leftSide > * + * {
-    margin: 16px 0px 0px 0px;
-}
+const ActivityCardPlaceholder = () => {
+    return <div>
+        
+    </div>;
+};
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Content Container ) */
+/* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details > .content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-#profile > .details > .content > * + * {
-    margin: 16px 0px 0px 0px;
-}
+export default ActivityCard;

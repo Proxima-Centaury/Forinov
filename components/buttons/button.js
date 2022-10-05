@@ -9,6 +9,10 @@ const Button = ({ type = "default", faIcon = false, faIconClass = "", url = null
             <span>{ text + " (" + count + ")" }</span>
             <i className="fa-solid fa-caret-right"/>
         </button>;
+    } else if(type === "moreOrLessAlternative") {
+        return <button className="seeMoreAlternative" onClick={ action }>
+            <span>{ text + " (" + count + ")" }</span>
+        </button>;
     } else if(type === "callToActionWide") {
         return <button className={ type } onClick={ action }>
             { (faIcon) ? <span className="icon">

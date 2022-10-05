@@ -1,47 +1,38 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Global Container ) */
+/* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details {
-    display: flex;
-    margin: 54px 0px 0px 0px !important;
-}
-@media screen and (max-width: 990px) {
-    #profile > .details {
-        flex-direction: column;
-    }
-}
+import Image from "next/future/image";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Left Container ) */
+/* Member Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details > .leftSide {
-    display: flex;
-    flex-direction: column;
-    min-width: 296px;
-    width: 296px;
-    max-width: 296px;
-    margin: 0px 24px 0px 0px;
-}
-@media screen and (max-width: 990px) {
-    #profile > .details > .leftSide {
-        min-width: 100%;
-        width: 100%;
-        max-width: 100%;
-    }
-}
+const MemberCard = ({ member, index, maxVisibleByDefault = 4, translations }) => {
+    if(member) {
+        return <div className={ "member" + ((index > maxVisibleByDefault) ? " hidden" : "")}>
+            <div className="main">
+                { (member.PICTURE) ? <Image src={ member.PICTURE } alt="" sizes="100vw" fill/> : null }
+                { (!member.PICTURE) ? <i className="fa-light fa-user"/> : null }
+                <div className="identity">
+                    <p className="fullname">{ member.FIRSTNAME + " " + member.LASTNAME }</p>
+                    <p className="job">{ member.ENTITY }</p>
+                </div>
+            </div>
+            <div className="details">
+
+            </div>
+        </div>;
+    } else {
+        return <MemberCardPlaceholder/>;
+    };
+};
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Left's Containers ) */
+/* Member Card Placeholder */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details > .leftSide > * + * {
-    margin: 16px 0px 0px 0px;
-}
+const MemberCardPlaceholder = () => {
+    return <div>
+        
+    </div>;
+};
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Content Container ) */
+/* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details > .content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-#profile > .details > .content > * + * {
-    margin: 16px 0px 0px 0px;
-}
+export default MemberCard;

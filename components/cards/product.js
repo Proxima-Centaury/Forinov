@@ -1,47 +1,35 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Global Container ) */
+/* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details {
-    display: flex;
-    margin: 54px 0px 0px 0px !important;
-}
-@media screen and (max-width: 990px) {
-    #profile > .details {
-        flex-direction: column;
-    }
-}
+import Image from "next/future/image";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Left Container ) */
+/* Product Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details > .leftSide {
-    display: flex;
-    flex-direction: column;
-    min-width: 296px;
-    width: 296px;
-    max-width: 296px;
-    margin: 0px 24px 0px 0px;
-}
-@media screen and (max-width: 990px) {
-    #profile > .details > .leftSide {
-        min-width: 100%;
-        width: 100%;
-        max-width: 100%;
-    }
-}
+const ProductCard = ({ product, index, maxVisibleByDefault = 4, translations }) => {
+    if(product) {
+        return <div className={ "product" + ((index > maxVisibleByDefault) ? " hidden" : "")}>
+            <div className="banner">
+                <p>{ translations["Voir"] }</p>
+                <Image src={ product.PICTURE } alt="" width="400" height="128"/>
+            </div>
+            <div className="content">
+                <p className="productType">{ Object.values(product.BUSINESSMODEL).join(" | ") }</p>
+                <p className="productName">{ product.NAME }</p>
+            </div>
+        </div>;
+    } else {
+        return <ProductCardPlaceholder/>;
+    };
+};
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Left's Containers ) */
+/* Product Card Placeholder */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details > .leftSide > * + * {
-    margin: 16px 0px 0px 0px;
-}
+const ProductCardPlaceholder = () => {
+    return <div>
+        
+    </div>;
+};
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Content Container ) */
+/* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details > .content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-#profile > .details > .content > * + * {
-    margin: 16px 0px 0px 0px;
-}
+export default ProductCard;

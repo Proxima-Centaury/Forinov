@@ -32,7 +32,15 @@ const Select = ({ options, setter }) => {
                 <i className="fa-light fa-chevron-down"/>
             </button>
             <div className="options">
-                { options.map(({ value, text }, key) => <Option key={ key } index={ key } value={ value } text={ text } onClick={ setValue }/>) }
+                { options.map(({ value, text }, key) => {
+                    const props = {
+                        index: key,
+                        value: value,
+                        text: text,
+                        onClick: setValue
+                    };
+                    return <Option key={ key } { ...props }/>;
+                }) }
             </div>
         </div>
     </div>;

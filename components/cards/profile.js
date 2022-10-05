@@ -7,21 +7,21 @@ import Format from "../texts/format";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileCard = ({ profile, translations }) => {
+const ProfileCard = ({ profile, lock, translations }) => {
     if(profile) {
         return <div className="profileCard cardBackground" data-type="full">
             <div className="banner">
-                <Image src={ profile.BACKGROUND } alt="" sizes="100vw" fill/>
+                <Image src={ profile.BACKGROUND } alt="" width="1000" height="192"/>
                 <div className="actions">
                     <div>
                         <button className="callToActionRoundedIcon">
-                            <i className="fa-solid fa-thumbtack"/>
+                            <i className="fa-light fa-folder-open"/>
                         </button>
                         <p>{ translations["Suivre"] }</p>
                     </div>
                     <div>
                         <button className="callToActionRoundedIcon">
-                            <i className="fa-regular fa-message"/>
+                            <i className="fa-light fa-message"/>
                         </button>
                         <p>{ translations["Contacter"] }</p>
                     </div>
@@ -32,7 +32,7 @@ const ProfileCard = ({ profile, translations }) => {
             </div>
             <div className="body">
                 <div className="picture">
-                    <Image src={ profile.LOGO } alt="" sizes="100vw" fill/>
+                    <Image src={ profile.LOGO } alt="" width="120" height="120"/>
                 </div>
                 <div className="content">
                     <h3>{ profile.NAME }</h3>
@@ -63,11 +63,11 @@ const ProfileCard = ({ profile, translations }) => {
                         </div>
                         <div className="funding">
                             <p className="label">{ translations["Stade levé"] }</p>
-                            <p>{ profile.FUNDING }</p>
+                            <p className={ (lock) ? "locked" : "" }>{ profile.FUNDING }</p>
                         </div>
                         <div className="budget">
                             <p className="label">{ translations["Montant levé"] }</p>
-                            <p>{ profile.FUNDS + "€" }</p>
+                            <p className={ (lock) ? "locked" : "" }>{ profile.FUNDS + "€" }</p>
                         </div>
                     </div>
                 </div>

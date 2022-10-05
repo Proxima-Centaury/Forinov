@@ -25,8 +25,8 @@ const ProfileOffer = ({ profile, lock, translations }) => {
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Offer Placeholder */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileOfferPlaceholder = ({ profile, lock, translations }) => {
-    return <div className="profileOffer">
+const ProfileOfferPlaceholder = () => {
+    return <div>
         
     </div>;
 };

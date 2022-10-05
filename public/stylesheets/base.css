@@ -29,7 +29,6 @@
     --skyblue-color: 126, 201, 255;
     --palegreen-color: 209, 242, 228;
     --palered-color: 255, 207, 209;
-    --text-main-color: 35, 35, 36;
     --text-sub-color: 89, 89, 89;
     --text-main-color: 35, 35, 36;
     --text-inactive-color: 89, 89, 89;
@@ -142,8 +141,10 @@ i {
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 body {
     width: 100vw;
+    height: 100vh;
     padding: 0px;
     background-color: rgb(var(--background-main-color));
+    overflow: hidden;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Main Container */
@@ -153,6 +154,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 64px 0px 0px 0px;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 @media screen and (max-width: 768px) {
     #__next {
@@ -161,7 +168,9 @@ body {
 }
 #__next > .container {
     max-width: 100%;
-    margin: calc(80px + 16px) auto calc(80px + 16px) auto;
+    height: 100%;
+    margin: calc(64px + 16px) auto 0px auto;
+    position: absolute;
 }
 @media screen and (min-width: 576px) {
     #__next > .container {
@@ -380,6 +389,7 @@ body {
 .locked {
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
 }
 .locked::after {
     width: 100%;

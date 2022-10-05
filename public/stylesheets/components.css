@@ -61,13 +61,12 @@
 .tags {
     display: flex;
     flex-wrap: wrap;
-    padding: 0px 0px 8px 0px;
     position: relative;
 }
-.tags > * + * {
+.tags > .tag:first-of-type {
     margin: 8px 8px 0px 0px;
 }
-.tags > *:first-child {
+.tags > * + * {
     margin: 8px 8px 0px 0px;
 }
 .tags > .tag {
@@ -93,6 +92,12 @@
 }
 .tags > .tag.main > p {
     font-size: 16px;
+}
+.tags.alternative > .tag {
+    background-color: rgb(var(--main-color));
+}
+.tags.alternative > .tag > p {
+    color: rgb(var(--white-color));
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Banners */
@@ -128,7 +133,7 @@
 .recoverBanner > .actions > * + * {
     margin: 0px 0px 0px 16px;
 }
-.identificationBanner > .actions > a {
+.identificationBanner > .actions > a:not(.callToActionNegative) {
     color: rgb(var(--white-color));
     text-decoration: underline;
 }
@@ -154,13 +159,17 @@
     position: relative;
 }
 .profileCard > .banner > img {
-    width: 100% !important;
-    height: 100% !important;
-    top: inherit !important;
-    right: inherit !important;
-    bottom: inherit !important;
-    left: inherit !important;
-    object-fit: cover !important;
+    min-width: 100%;
+    width: auto;
+    max-width: 100%;
+    min-height: 100%;
+    height: auto;
+    max-height: 100%;
+    top: inherit;
+    right: inherit;
+    bottom: inherit;
+    left: inherit;
+    object-fit: cover;
 }
 .profileCard > .banner > .actions {
     display: flex;
@@ -215,18 +224,22 @@
     }
 }
 .profileCard > .body > .picture > img {
-    width: 120px !important;
-    height: 120px !important;
-    position: absolute !important;
-    top: calc(-120px / 2) !important;
-    right: inherit !important;
-    bottom: inherit !important;
-    left: inherit !important;
-    object-fit: cover !important;
-    border: var(--border) !important;
-    border-width: 3px !important;
-    border-color: rgb(var(--background-sub-color)) !important;
-    border-radius: 60px !important;
+    min-width: 120px;
+    width: auto;
+    max-width: 120px;
+    min-height: 120px;
+    height: auto;
+    max-height: 120px;
+    position: absolute;
+    top: calc(-120px / 2);
+    right: inherit;
+    bottom: inherit;
+    left: inherit;
+    object-fit: cover;
+    border: var(--border);
+    border-width: 3px;
+    border-color: rgb(var(--background-sub-color));
+    border-radius: 60px;
 }
 .profileCard > .body > .content {
     display: flex;
@@ -312,7 +325,7 @@
     display: flex;
     flex-direction: column;
     position: sticky;
-    top: calc(64px + 16px);
+    top: 16px;
 }
 @media screen and (max-width: 990px) {
     .profileMenu {
@@ -346,7 +359,7 @@
     display: flex;
     flex-direction: column;
     position: sticky;
-    top: calc(64px + 16px + (18px + 8px + 136px + (16px * 2)));
+    top: calc(18px + 136px + 16px);
     padding: 16px;
     border-radius: 15px;
     background-color: rgb(var(--background-sub-color));
@@ -363,10 +376,10 @@
     flex-direction: column;
 }
 .overview > .details:nth-of-type(3) {
-    margin: 8px 0px;
+    margin: 16px 0px 16px 0px;
 }
 .overview > .details > .label {
-    margin: 0px;
+    margin: 0px 0px 0px 0px;
     font-weight: bold;
     font-size: 16px;
     color: rgb(var(--text-inactive-color));
@@ -491,14 +504,19 @@
 }
 .profileProducts > .products {
     display: flex;
-    width: 100%;
     flex-wrap: wrap;
+    width: 100%;
+}
+@media screen and (max-width: 1200px) {
+    .profileProducts > .products {
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
 }
 .profileProducts > .products > .product {
     display: flex;
     flex-direction: column;
     width: calc((100% / 2) - 8px);
-    max-height: 218px;
     margin: 0px 8px 0px 0px;
     cursor: pointer;
     border-radius: 10px;
@@ -518,6 +536,14 @@
 .profileProducts > .products > .product:nth-of-type(1n + 2) + * {
     margin-top: 16px;
 }
+@media screen and (max-width: 1200px) {
+    .profileProducts > .products > .product {
+        width: 100%;
+    }
+    .profileProducts > .products > .product + .product {
+        margin: 16px 0px 0px 0px;
+    }
+}
 .profileProducts > .products > .product > .banner {
     width: 100%;
     height: 128px;
@@ -525,7 +551,10 @@
 }
 .profileProducts > .products > .product > .banner > img {
     width: 100% !important;
-    height: 100% !important;
+    min-height: 128px !important;
+    height: 128px !important;
+    max-height: 128px !important;
+    position: initial !important;
     top: inherit !important;
     right: inherit !important;
     bottom: inherit !important;
@@ -546,6 +575,7 @@
     text-transform: uppercase;
     border-radius: 100px;
     background-color: rgb(var(--main-color));
+    z-index: 1;
 }
 .profileProducts > .products > .product > .content {
     display: flex;
@@ -597,13 +627,17 @@
     background-color: rgb(var(--background-sub-color));
     box-shadow: var(--box-shadow);
 }
-.profileEcosystem > .content > .label {
+.profileEcosystem > .content > .label,
+.profileEcosystem > .content > .wishlist > .label {
     margin: 0px 0px 8px 0px;
     font-weight: bold;
     font-size: 16px;
     color: rgb(var(--text-inactive-color));
 }
-.profileEcosystem > .content > .label > i {
+.profileEcosystem > .content > .wishlist > .label {
+    margin: 16px 0px 8px 0px;
+}
+.profileEcosystem > .content > .wishlist > .label > i {
     margin: 0px 8px 0px 0px;
     color: rgb(var(--error-color));
 }
@@ -614,7 +648,14 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    margin: 8px 0px 0px 0px;
     position: relative;
+}
+@media screen and (max-width: 1200px) {
+    .profileEcosystem > .content > .clients {
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
 }
 .profileEcosystem > .content > .clients > .client {
     display: flex;
@@ -634,15 +675,28 @@
 .profileEcosystem > .content > .clients > .client:nth-of-type(1n + 2) + * {
     margin-top: 16px;
 }
+@media screen and (max-width: 1200px) {
+    .profileEcosystem > .content > .clients > .client {
+        width: 100%;
+    }
+    .profileEcosystem > .content > .clients > .client + .client {
+        margin: 16px 0px 0px 0px;
+    }
+}
 .profileEcosystem > .content > .clients > .client > .marker {
+    min-width: 8px;
     width: 8px;
+    max-width: 8px;
     height: 100%;
     background-color: rgb(var(--main-color));
 }
 .profileEcosystem > .content > .clients > .client > .content {
     display: flex;
     flex-direction: column;
-    padding: 16px 16px 8px 16px;
+    padding: 16px 16px 16px 8px;
+}
+.profileEcosystem > .content > .clients > .client > .content > * + * {
+    margin: 8px 0px 0px 0px;
 }
 .profileEcosystem > .content > .clients > .client > .content > .identity {
     display: flex;
@@ -703,9 +757,10 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    margin: 8px 0px 0px 0px;
     position: relative;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
     .profilePartners > .partners {
         flex-wrap: nowrap;
         flex-direction: column;
@@ -723,31 +778,24 @@
     overflow: hidden;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
-@media screen and (max-width: 768px) {
-    .profilePartners > .partners > .partner {
-        width: 100%;
-        margin: 0px;
-    }
-}
 .profilePartners > .partners > .partner:nth-of-type(2n) {
     margin: 0px 0px 0px 8px;
 }
 .profilePartners > .partners > .partner:nth-of-type(1n + 2) + * {
     margin-top: 16px;
 }
-@media screen and (max-width: 768px) {
-    .profilePartners > .partners > .partner:nth-of-type(2n) {
-        margin: initial;
-    }
-    .profilePartners > .partners > .partner:nth-of-type(1n + 2) + * {
-        margin-top: initial;
+@media screen and (max-width: 1200px) {
+    .profilePartners > .partners > .partner {
+        width: 100%;
     }
     .profilePartners > .partners > .partner + .partner {
-        margin: 8px 0px 0px 0px;
+        margin: 16px 0px 0px 0px;
     }
 }
 .profilePartners > .partners > .partner > .marker {
+    min-width: 8px;
     width: 8px;
+    max-width: 8px;
     height: 100%;
     background-color: rgb(var(--logo-green-color));
 }
@@ -789,6 +837,67 @@
     color: rgb(var(--text-inactive-color));
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile Team */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.profileTeam {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.profileTeam > h3 {
+    margin: 0px 0px 16px 16px;
+    font-size: 24px;
+    font-weight: 800;
+}
+.profileTeam > .team {
+    display: flex;
+    flex-direction: column;
+}
+.profileTeam > .team > * + * {
+    margin: 16px 0px 0px 0px;
+}
+.profileTeam > .team > .member {
+    display: flex;
+     flex-direction: column;
+    padding: 16px 16px 16px 16px;
+    border-radius: 5px;
+    background-color: rgb(var(--background-sub-color));
+    box-shadow: var(--box-shadow);
+}
+.profileTeam > .team > .member > .main {
+    display: flex;
+    width: 100%;
+}
+.profileTeam > .team > .member > .main > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 80px;
+    width: 80px;
+    max-width: 80px;
+    min-height: 80px;
+    height: 80px;
+    max-height: 80px;
+    font-size: 30px;
+    color: rgb(var(--white-color));
+    border-radius: calc(80px / 2);
+    background-color: rgb(var(--main-color));
+}
+.profileTeam > .team > .member > .main > .identity {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 0px 16px;
+}
+.profileTeam > .team > .member > .main > .identity > .fullname {
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(var(--text-main-color));
+}
+.profileTeam > .team > .member > .main > .identity > .job {
+    margin: 8px 0px 0px 0px;
+    color: rgb(var(--text-inactive-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Activity */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 .profileActivity {
@@ -804,7 +913,6 @@
 .profileActivity > .activities {
     display: flex;
     flex-direction: column;
-    padding: 0px 0px 0px 32px;
 }
 .profileActivity > .activities > * + * {
     margin: 16px 0px 0px 0px;
