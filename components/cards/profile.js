@@ -11,7 +11,7 @@ const ProfileCard = ({ profile, lock, translations }) => {
     if(profile) {
         return <div className="profileCard cardBackground" data-type="full">
             <div className="banner">
-                <Image src={ profile.BACKGROUND } alt="" sizes="100vw" fill priority/>
+                <Image src={ profile.BACKGROUND } alt="" width="1000" height="192"/>
                 <div className="actions">
                     <div>
                         <button className="callToActionRoundedIcon">
@@ -32,7 +32,7 @@ const ProfileCard = ({ profile, lock, translations }) => {
             </div>
             <div className="body">
                 <div className="picture">
-                    <Image src={ profile.LOGO } alt="" sizes="100vw" fill/>
+                    <Image src={ profile.LOGO } alt="" width="120" height="120"/>
                 </div>
                 <div className="content">
                     <h3>{ profile.NAME }</h3>

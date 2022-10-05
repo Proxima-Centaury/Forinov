@@ -6,11 +6,15 @@ import Image from "next/future/image";
 /* Member Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 const MemberCard = ({ member, index, maxVisibleByDefault = 4, translations }) => {
-    console.log(member);
     if(member) {
         return <div className={ "member" + ((index > maxVisibleByDefault) ? " hidden" : "")}>
             <div className="main">
-                <Image src={ member.PICTURE } alt="" sizes="100vw" fill/>
+                { (member.PICTURE) ? <Image src={ member.PICTURE } alt="" sizes="100vw" fill/> : null }
+                { (!member.PICTURE) ? <i className="fa-light fa-user"/> : null }
+                <div className="identity">
+                    <p className="fullname">{ member.FIRSTNAME + " " + member.LASTNAME }</p>
+                    <p className="job">{ member.ENTITY }</p>
+                </div>
             </div>
             <div className="details">
 

@@ -10,7 +10,7 @@ const ProductCard = ({ product, index, maxVisibleByDefault = 4, translations }) 
         return <div className={ "product" + ((index > maxVisibleByDefault) ? " hidden" : "")}>
             <div className="banner">
                 <p>{ translations["Voir"] }</p>
-                <Image src={ product.PICTURE } alt="" sizes="100vw" fill/>
+                <Image src={ product.PICTURE } alt="" width="400" height="128"/>
             </div>
             <div className="content">
                 <p className="productType">{ Object.values(product.BUSINESSMODEL).join(" | ") }</p>

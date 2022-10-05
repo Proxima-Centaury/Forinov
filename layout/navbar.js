@@ -15,7 +15,9 @@ const Navbar = ({ translations, setLanguage }) => {
     const { languages } = config;
     const showNavigation = (event) => {
         const target = event.target.closest("button");
+        const links = target.closest(".navbar").querySelector(".links");
         target.classList.toggle("active");
+        links.classList.toggle("show");
         return target;
     };
     const hideNestedLinks = () => {
@@ -24,28 +26,49 @@ const Navbar = ({ translations, setLanguage }) => {
         return visibleNests;
     };
     useEffect(() => {
-        let showNestedLinks = (event) => {
-            const target = event.target;
-            const link = target.closest("li") || null;
-            const navbar = target.closest(".navbar");
-            const closestVisibleNest = target.closest("ul.show");
-            if(link && navbar) {
-                (!closestVisibleNest) ? hideNestedLinks() : null;
-                const nest = link.querySelector("ul");
-                if(nest) {
-                    nest.classList.add("show");
+        if(window.innerWidth > 992) {
+            let showNestedLinks = (event) => {
+                const target = event.target;
+                const link = target.closest("li") || null;
+                const navbar = target.closest(".navbar");
+                const closestVisibleNest = target.closest("ul.show");
+                if(link && navbar) {
+                    (!closestVisibleNest) ? hideNestedLinks() : null;
+                    const nest = link.querySelector("ul");
+                    if(nest) {
+                        nest.classList.add("show");
+                    };
+                } else if(!link && !navbar) {
+                    hideNestedLinks();
                 };
-            } else if(!link && !navbar) {
-                hideNestedLinks();
             };
+            window.addEventListener("mouseover", showNestedLinks);
+            return () => window.removeEventListener("mouseover", showNestedLinks);
+        } else {
+            let showNestedLinks = (event) => {
+                const target = event.target;
+                const link = target.closest("li") || null;
+                const navbar = target.closest(".navbar");
+                const closestVisibleNest = target.closest("ul.show");
+                console.log(target, link, navbar);
+                if(link && navbar) {
+                    (!closestVisibleNest) ? hideNestedLinks() : null;
+                    const nest = link.querySelector("ul");
+                    if(nest) {
+                        nest.classList.toggle("show");
+                    };
+                } else if(!link && !navbar) {
+                    hideNestedLinks();
+                };
+            };
+            window.addEventListener("click", showNestedLinks);
+            return () => window.removeEventListener("click", showNestedLinks);
         };
-        window.addEventListener("mouseover", showNestedLinks);
-        return () => window.removeEventListener("mouseover", showNestedLinks);
     }, []);
     return <nav className="navbar">
         <div className="logo">
             <Link href="/">
-                <a><Image src="/assets/logo_full.png" width="170" height="50" priority/></a>
+                <a><Image src="/assets/logo_full.png" width="170" height="50"/></a>
             </Link>
         </div>
         <ul className="links">

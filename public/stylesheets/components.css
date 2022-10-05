@@ -159,13 +159,17 @@
     position: relative;
 }
 .profileCard > .banner > img {
-    width: 100% !important;
-    height: 100% !important;
-    top: inherit !important;
-    right: inherit !important;
-    bottom: inherit !important;
-    left: inherit !important;
-    object-fit: cover !important;
+    min-width: 100%;
+    width: auto;
+    max-width: 100%;
+    min-height: 100%;
+    height: auto;
+    max-height: 100%;
+    top: inherit;
+    right: inherit;
+    bottom: inherit;
+    left: inherit;
+    object-fit: cover;
 }
 .profileCard > .banner > .actions {
     display: flex;
@@ -220,18 +224,22 @@
     }
 }
 .profileCard > .body > .picture > img {
-    width: 120px !important;
-    height: 120px !important;
-    position: absolute !important;
-    top: calc(-120px / 2) !important;
-    right: inherit !important;
-    bottom: inherit !important;
-    left: inherit !important;
-    object-fit: cover !important;
-    border: var(--border) !important;
-    border-width: 3px !important;
-    border-color: rgb(var(--background-sub-color)) !important;
-    border-radius: 60px !important;
+    min-width: 120px;
+    width: auto;
+    max-width: 120px;
+    min-height: 120px;
+    height: auto;
+    max-height: 120px;
+    position: absolute;
+    top: calc(-120px / 2);
+    right: inherit;
+    bottom: inherit;
+    left: inherit;
+    object-fit: cover;
+    border: var(--border);
+    border-width: 3px;
+    border-color: rgb(var(--background-sub-color));
+    border-radius: 60px;
 }
 .profileCard > .body > .content {
     display: flex;
@@ -850,10 +858,44 @@
 }
 .profileTeam > .team > .member {
     display: flex;
+     flex-direction: column;
     padding: 16px 16px 16px 16px;
     border-radius: 5px;
     background-color: rgb(var(--background-sub-color));
     box-shadow: var(--box-shadow);
+}
+.profileTeam > .team > .member > .main {
+    display: flex;
+    width: 100%;
+}
+.profileTeam > .team > .member > .main > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 80px;
+    width: 80px;
+    max-width: 80px;
+    min-height: 80px;
+    height: 80px;
+    max-height: 80px;
+    font-size: 30px;
+    color: rgb(var(--white-color));
+    border-radius: calc(80px / 2);
+    background-color: rgb(var(--main-color));
+}
+.profileTeam > .team > .member > .main > .identity {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 0px 16px;
+}
+.profileTeam > .team > .member > .main > .identity > .fullname {
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(var(--text-main-color));
+}
+.profileTeam > .team > .member > .main > .identity > .job {
+    margin: 8px 0px 0px 0px;
+    color: rgb(var(--text-inactive-color));
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Activity */

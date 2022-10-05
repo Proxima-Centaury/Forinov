@@ -40,14 +40,64 @@
 }
 @media screen and (max-width: 992px) {
     .navbar > .links {
-        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: fit-content;
+        margin: 0px;
+        padding: 16px;
+        position: absolute;
+        top: -100%;
+        left: 0px;
+        opacity: 0;
+        background-color: rgb(var(--background-sub-color));
+        transition: top 0.3s ease, opacity 0.3s ease;
+        z-index: -1;
+    }
+    .navbar > .links.show {
+        padding: calc(40px + (2 * 16px)) 16px 16px 16px;
+        top: 100%;
+        opacity: 1;
+    }
+    .navbar > .links::before {
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-color: rgb(var(--background-sub-color));
+        transition: opacity 0.3s ease 0.3s;
+        z-index: 1;
+    }
+    .navbar > .links.show::before {
+        opacity: 0;
+        pointer-events: none;
     }
 }
 .navbar > .links > li {
     position: relative;
 }
+@media screen and (max-width: 992px) {
+    .navbar > .links > li {
+        width: 100%;
+    }
+}
 .navbar > .links > li + li {
     margin: 0px 0px 0px 32px;
+}
+@media screen and (max-width: 992px) {
+    .navbar > .links > li + li {
+        margin: 16px 0px 0px 0px;
+    }
+    .navbar > .links > li > a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 30px;
+    }
 }
 .navbar > .links > li.active > a > span,
 .navbar > .links > li > a:hover > span {
@@ -73,9 +123,36 @@
     background-color: rgb(var(--background-sub-color));
     transition: opacity 0.3s ease;
 }
+@media screen and (max-width: 992px) {
+    .navbar > .links > li > ul {
+        flex-direction: column;
+        width: 100%;
+        max-height: 0px;
+        padding: 0px;
+        position: initial;
+        opacity: 1;
+        transition: max-height 0.3s ease;
+        overflow: hidden;
+    }
+}
 .navbar > .links > li > ul.show {
     opacity: 1;
     pointer-events: all;
+}
+@media screen and (max-width: 992px) {
+    .navbar > .links > li > ul.show {
+        max-height: 100px;
+    }
+    .navbar > .links > li > ul > li {
+        width: 100%;
+    }
+    .navbar > .links > li > ul > li > a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 30px;
+    }
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar ( Actions ) */
@@ -86,7 +163,16 @@
 }
 @media screen and (max-width: 992px) {
     .navbar > .actions {
-        display: none;
+        position: absolute;
+        top: calc(64px + 16px);
+        right: 16px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    .navbar > .links.show + .actions {
+        opacity: 1;
+        pointer-events: all;
     }
 }
 .navbar > .actions > * + * {
