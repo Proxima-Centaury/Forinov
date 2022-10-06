@@ -1,35 +1,37 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
 import Image from "next/future/image";
+import { useEffect, useState } from "react";
+import Select from "../components/fields/select";
+import Button from "../components/buttons/button";
+import RegisterModal from "../components/modals/profile/register";
+import config from "../config.json";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Product Card */
+/* Modal */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProductCard = ({ product, index, maxVisibleByDefault = 4, translations }) => {
-    if(product) {
-        return <div className={ "product" + ((index > maxVisibleByDefault) ? " hidden" : "")}>
-            <div className="banner">
-                <p>{ translations["Voir"] }</p>
-                { (product.PICTURE) ? <Image src={ product.PICTURE } alt="" width="400" height="128"/> : null}
-            </div>
-            <div className="content">
-                <p className="productType">{ Object.values(product.BUSINESSMODEL).join(" | ") }</p>
-                <p className="productName">{ product.NAME }</p>
-            </div>
-        </div>;
-    } else {
-        return <ProductCardPlaceholder/>;
+const Modal = ({ modal, setModal, translations }) => {
+    console.log(modal);
+    const [ modalState, setModalState ]  = useState(false);
+    const closeModal = () => {
+        return setModal(null);
     };
+    useEffect(() => (modal) ? setModalState(true) : setModalState(false), [ modal ]);
+    return <div className={ "modalLayout" + ((modalState) ? " open" : "") }>
+        <ModalPicker modal={ modal } closeModal={ closeModal } translations={ translations }/>
+    </div>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Product Card Placeholder */
+/* Modal Picker */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProductCardPlaceholder = () => {
-    return <div>
-        
-    </div>;
+const ModalPicker = ({ modal, closeModal, translations }) => {
+    switch(modal) {
+        case "register":
+            return <RegisterModal closeModal={ closeModal } translations={ translations }/>;
+    };
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-export default ProductCard;
+export default Modal;

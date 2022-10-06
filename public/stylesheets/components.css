@@ -307,6 +307,10 @@
     color: rgb(var(--text-inactive-color));
 }
 .profileCard > .body > .content > .stats > div > p:not(.label) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     font-family: "Nunito Sans";
     font-size: 32px;
     font-weight: 800;
@@ -346,11 +350,33 @@
     margin: 8px 0px 0px 0px;
 }
 .profileMenu > ul > li > a {
+    position: relative;
     font-size: 16px;
     color: rgb(var(--text-main-color));
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.3s ease;
 }
-.profileMenu > ul > li > a:hover {
+.profileMenu > ul > li > a:hover,
+.profileMenu > ul > li > a.active {
     font-weight: bold;
+    text-decoration-color: rgb(var(--text-main-color));
+}
+.profileMenu > ul > li > a::before {
+    width: 8px;
+    height: 8px;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: calc(-8px + -8px);
+    transform: translateY(-50%);
+    opacity: 0;
+    border-radius: calc(8px / 2);
+    background-color: rgb(var(--main-color));
+    transition: opacity 0.3s ease;
+}
+.profileMenu > ul > li > a.active::before {
+    opacity: 1;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Overview */
@@ -385,7 +411,7 @@
     color: rgb(var(--text-inactive-color));
 }
 .overview > .details > p {
-    margin: 0px;
+    margin: 8px 0px 0px 0px;
 }
 .overview > .details > .location,
 .overview > .details > .website {
@@ -436,31 +462,6 @@
 }
 .profileOffer > .content > p:not(.label) {
     margin: 0px;
-}
-.profileOffer > .content > .lockedContent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding: 16px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 1;
-}
-.profileOffer > .content > .lockedContent > i {
-    font-size: 24px;
-    color: rgb(var(--main-color));
-    margin: 0px 0px 8px 0px;
-}
-.profileOffer > .content > .lockedContent > p {
-    text-align: center;
-    color: rgb(var(--main-color));
-    text-decoration: underline;
-    font-size: 19px;
-    font-weight: bold;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Details */
@@ -598,14 +599,6 @@
 .profileProducts > .seeMore {
     margin: 8px 16px 0px auto;
 }
-.profileProducts > .seeMore > span {
-    margin: 0px 8px 0px 0px;
-    color: rgb(var(--text-inactive-color));
-}
-.profileProducts > .seeMore > i {
-    font-size: 11px;
-    color: rgb(var(--text-inactive-color));
-}
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Ecosystem */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -687,7 +680,6 @@
     min-width: 8px;
     width: 8px;
     max-width: 8px;
-    height: 100%;
     background-color: rgb(var(--main-color));
 }
 .profileEcosystem > .content > .clients > .client > .content {
@@ -719,14 +711,6 @@
 }
 .profileEcosystem > .content > .seeMore {
     margin: 8px 16px 0px auto;
-}
-.profileEcosystem > .content > .seeMore > span {
-    margin: 0px 8px 0px 0px;
-    color: rgb(var(--text-inactive-color));
-}
-.profileEcosystem > .content > .seeMore > i {
-    font-size: 11px;
-    color: rgb(var(--text-inactive-color));
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Partners */
@@ -796,7 +780,6 @@
     min-width: 8px;
     width: 8px;
     max-width: 8px;
-    height: 100%;
     background-color: rgb(var(--logo-green-color));
 }
 .profilePartners > .partners > .partner > .content {
@@ -828,14 +811,6 @@
 .profilePartners > .seeMore {
     margin: 8px 16px 0px auto;
 }
-.profilePartners > .seeMore > span {
-    margin: 0px 8px 0px 0px;
-    color: rgb(var(--text-inactive-color));
-}
-.profilePartners > .seeMore > i {
-    font-size: 11px;
-    color: rgb(var(--text-inactive-color));
-}
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Team */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -858,15 +833,16 @@
 }
 .profileTeam > .team > .member {
     display: flex;
-     flex-direction: column;
+    flex-direction: column;
     padding: 16px 16px 16px 16px;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgb(var(--background-sub-color));
     box-shadow: var(--box-shadow);
 }
 .profileTeam > .team > .member > .main {
     display: flex;
     width: 100%;
+    position: relative;
 }
 .profileTeam > .team > .member > .main > i {
     display: flex;
@@ -897,6 +873,20 @@
     margin: 8px 0px 0px 0px;
     color: rgb(var(--text-inactive-color));
 }
+.profileTeam > .team > .member > .main > .message {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.profileTeam > .team > .member > .main > .message > i {
+    font-size: 24px;
+    color: rgb(var(--main-color));
+}
+.profileTeam > .team > .member > .main > .seeMore {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Activity */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -924,8 +914,9 @@
     box-shadow: var(--box-shadow);
 }
 .profileActivity > .activities > .activity > .marker {
+    min-width: 8px;
     width: 8px;
-    height: 100%;
+    max-width: 8px;
     border-radius: 5px 0px 0px 5px;
     background-color: rgb(var(--logo-orange-color));
 }

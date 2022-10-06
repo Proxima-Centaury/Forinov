@@ -6,12 +6,12 @@ const Button = ({ type = "default", faIcon = false, faIconClass = "", url = null
 
     } else if(type === "moreOrLess") {
         return <button className="seeMore" onClick={ action }>
-            <span>{ text + " (" + count + ")" }</span>
+            <span>{ text + ((count)  ? " (" + count + ")" : " ") }</span>
             <i className="fa-solid fa-caret-right"/>
         </button>;
     } else if(type === "moreOrLessAlternative") {
         return <button className="seeMoreAlternative" onClick={ action }>
-            <span>{ text + " (" + count + ")" }</span>
+            <span>{ text + ((count)  ? " (" + count + ")" : " ") }</span>
         </button>;
     } else if(type === "callToActionWide") {
         return <button className={ type } onClick={ action }>
@@ -20,8 +20,10 @@ const Button = ({ type = "default", faIcon = false, faIconClass = "", url = null
             </span> : null }
             <p>{ text }</p>
         </button>
-    } else if(type === "") {
-
+    } else if(type === "closeModal") {
+        return <button className={ type } onClick={ action }>
+            <i className="fa-light fa-xmark"/>
+        </button>
     } else if(type === "navigationButton") {
         return <button className={ type } onClick={ action }>
             <span></span>

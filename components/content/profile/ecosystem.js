@@ -34,6 +34,10 @@ const ProfileEcosystem = ({ profile, lock, translations }) => {
                         };
                         return <EntityCard key={ key } { ...props }/>;
                     }) : null }
+                    { (lock) ? <div className="lockedContent">
+                        <i className="fa-solid fa-lock"/>
+                        <p>{ translations["Consultez les clients de cette startup"] }</p>
+                    </div> : null }
                 </div>
                 { (clients.length > maxVisibleCardsByDefault) ? <Button { ...buttonsProps[0] }/> : null }
                 <div className="wishlist">
@@ -41,7 +45,7 @@ const ProfileEcosystem = ({ profile, lock, translations }) => {
                         <i className="fa-solid fa-heart-circle-plus"/>
                         { translations["Notre wishlist : ceux dont nous rêvons"] }
                     </p>
-                    { (wishlist) ? <Tags tags={ wishlist } alternative={ true } count={ false }/> : null }
+                    { (wishlist) ? <Tags tags={ wishlist } alternative={ true } lock={ lock } count={ false }/> : null }
                 </div>
             </div>
         </div>;
