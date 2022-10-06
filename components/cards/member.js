@@ -2,10 +2,18 @@
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/future/image";
+import { useState } from "react";
+import Button from "../buttons/button";
+import { utilities } from "../../utilities/utilities";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Member Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 const MemberCard = ({ member, index, maxVisibleByDefault = 4, translations }) => {
+    const [ maxVisibleDetailsByDefault, setMaxVisibleDetailsByDefault ] = useState(0);
+    const handleView = (event) => utilities.seeMoreOrLess(event, translations, ".member > .details", [], maxVisibleDetailsByDefault);
+    const buttonsProps = [
+        { type: "moreOrLess", action: handleView, text: translations["Voir plus"], count: false }
+    ];
     if(member) {
         return <div className={ "member" + ((index > maxVisibleByDefault) ? " hidden" : "")}>
             <div className="main">
@@ -18,8 +26,9 @@ const MemberCard = ({ member, index, maxVisibleByDefault = 4, translations }) =>
                 <a href="" className="message">
                     <i className="fa-light fa-message"/>
                 </a>
+                <Button { ...buttonsProps[0] }/>
             </div>
-            <div className="details">
+            <div className={ "details" + ((index > maxVisibleDetailsByDefault) ? " hidden" : "")}>
                 
             </div>
         </div>;

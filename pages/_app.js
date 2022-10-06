@@ -3,6 +3,7 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 import { useState } from "react";
 import Navbar from "../layout/navbar";
+import Modal from "../layout/modal";
 import Footer from "../layout/footer";
 import translations from "../translations.json";
 // import "../public/stylesheets/sources/bootstrap.min.css";
@@ -24,19 +25,23 @@ import "../public/stylesheets/pages/annuaire_su.css"
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 function App({ Component, pageProps }) {
     const [ language, setLanguage ] = useState("fr");
-    const [ session, setSession ] = useState(true);
+    const [ session, setSession ] = useState(false);
+    const [ modal, setModal ] = useState(null);
     pageProps.language = language;
     pageProps.setLanguage = setLanguage;
     pageProps.translations = translations[language];
     pageProps.session = session;
     pageProps.setSession = setSession;
     pageProps.lock = (session) ? false : true;
+    pageProps.modal = modal;
+    pageProps.setModal = setModal;
     return <>
         <Navbar { ...pageProps }/>
         <div className="container">
             <Component { ...pageProps }/>
             <Footer { ...pageProps }/>
         </div>
+        <Modal { ...pageProps }/>
     </>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */

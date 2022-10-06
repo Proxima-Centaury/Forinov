@@ -1,6 +1,7 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
+import { useEffect } from "react";
 import IdenfiticationBanner from "../../../components/banners/identification";
 import RecoverBanner from "../../../components/banners/recover";
 import ProfileCard from "../../../components/cards/profile";
@@ -18,7 +19,7 @@ import config from "../../../config.json";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const Profile = ({ session, profile, products, activity, lock, translations }) => {
+const Profile = ({ session, profile, products, activity, lock, translations, setModal }) => {
     const props = { session, profile, products, activity, lock, translations };
     const pitchDeckButtonProps = {
         type: "callToActionWide",
@@ -26,6 +27,20 @@ const Profile = ({ session, profile, products, activity, lock, translations }) =
         faIconClass: "fa-solid fa-person-chalkboard",
         text: translations["Voir le pitch deck"]
     };
+    useEffect(() => {
+        let showRegisterPopup = (event) => {
+            event.preventDefault();
+            const target = event.target;
+            if(!target.closest(".profileMenu") && !target.closest(".closeModal") && !target.closest(".identificationBanner")) {
+                if(lock) {
+                    return setModal("register");
+                };
+            };
+            return setModal(null);
+        };
+        (lock) ? window.addEventListener("click", showRegisterPopup) : null;
+        return () => window.removeEventListener("click", showRegisterPopup);
+    }, []);
     if(profile) {
         return <div id="profile">
             <IdenfiticationBanner { ...props }/>

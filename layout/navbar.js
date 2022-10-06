@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/future/image";
 import { useEffect } from "react";
 import Select from "../components/fields/select";
-import config from "../config.json";
 import Button from "../components/buttons/button";
+import config from "../config.json";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */

@@ -265,7 +265,8 @@ body {
 .callToAction,
 .callToActionAlternative,
 .callToActionNegative,
-.callToActionNegativeAlternative {
+.callToActionNegativeAlternative,
+.callToActionSquared {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -309,6 +310,20 @@ body {
 .callToActionNegative:hover {
     color: rgb(var(--white-color));
     background-color: rgb(var(--main-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Call To Action Squared */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionSquared {
+    padding: 32px 16px;
+    font-size: 19px;
+    color: rgb(var(--main-color));
+    text-transform: initial;
+    border-radius: 10px;
+    background-color: rgb(var(--background-sub-color));
+}
+.callToActionSquared:hover {
+    background-color: rgb(var(--paleblue-color));
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Call To Action Wide ( Base ) */
@@ -357,6 +372,14 @@ body {
 /* See More */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 .seeMore {
+    color: rgb(var(--text-inactive-color));
+}
+.seeMore > span {
+    margin: 0px 8px 0px 0px;
+    color: rgb(var(--text-inactive-color));
+}
+.seeMore > i {
+    font-size: 11px;
     color: rgb(var(--text-inactive-color));
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -440,5 +463,87 @@ body {
     flex-direction: column;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Modal Layout */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.modalLayout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    pointer-events: none;
+    background-color: var(--filter-color);
+    transition: opacity 0.3s ease;
+    z-index: 9000;
+}
+.modalLayout.open {
+    opacity: 1;
+    pointer-events: all;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Modal ( Base ) */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.modal {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: rgb(var(--background-sub-color));
+    overflow: hidden;
+}
+.modal.firstType {
+    border-radius: 15px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Modal ( Register ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.modal[data-modal="register"] {
+    max-width: 892px;
+}
+.modal[data-modal="register"] > div {
+    display: flex;
+    align-items: center;
+}
+.modal[data-modal="register"] > div > i {
+    margin: 0px 16px 0px 0px;
+    font-size: 40px;
+    color: rgb(var(--warning-color));
+}
+.modal[data-modal="register"] > div > p {
+    font-family: "Nunito Sans";
+    font-size: 32px;
+    font-weight: 800;
+    color: rgb(var(--text-inactive-color));
+}
+.modal[data-modal="register"] > div:first-of-type {
+    padding: 24px calc((24px + 16px) + 38px) 24px 24px;
+}
+.modal[data-modal="register"] > div:last-of-type {
+    padding: 24px 24px 24px calc((24px + 16px) + 35px);
+    background-color: rgb(var(--main-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Modal ( Close Button ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.modal > .closeModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+.modal > .closeModal:hover {
+    background-color: rgb(var(--paleblue-color));
+}
+.modal > .closeModal > i {
+    font-size: 18px;
+    color: rgb(var(--main-color));
+}

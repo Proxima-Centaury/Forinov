@@ -599,14 +599,6 @@
 .profileProducts > .seeMore {
     margin: 8px 16px 0px auto;
 }
-.profileProducts > .seeMore > span {
-    margin: 0px 8px 0px 0px;
-    color: rgb(var(--text-inactive-color));
-}
-.profileProducts > .seeMore > i {
-    font-size: 11px;
-    color: rgb(var(--text-inactive-color));
-}
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Ecosystem */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -720,14 +712,6 @@
 .profileEcosystem > .content > .seeMore {
     margin: 8px 16px 0px auto;
 }
-.profileEcosystem > .content > .seeMore > span {
-    margin: 0px 8px 0px 0px;
-    color: rgb(var(--text-inactive-color));
-}
-.profileEcosystem > .content > .seeMore > i {
-    font-size: 11px;
-    color: rgb(var(--text-inactive-color));
-}
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Partners */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -827,14 +811,6 @@
 .profilePartners > .seeMore {
     margin: 8px 16px 0px auto;
 }
-.profilePartners > .seeMore > span {
-    margin: 0px 8px 0px 0px;
-    color: rgb(var(--text-inactive-color));
-}
-.profilePartners > .seeMore > i {
-    font-size: 11px;
-    color: rgb(var(--text-inactive-color));
-}
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Team */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -905,6 +881,11 @@
 .profileTeam > .team > .member > .main > .message > i {
     font-size: 24px;
     color: rgb(var(--main-color));
+}
+.profileTeam > .team > .member > .main > .seeMore {
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Activity */
