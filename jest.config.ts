@@ -1,27 +1,17 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Next Config */
+/* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-/** @type {import('next').NextConfig} */
+import type { Config } from "jest";
+import { defaults } from "jest-config";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Config */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-const nextConfig = {
-    reactStrictMode: true,
-    swcMinify: true,
-    images: {
-        domains: [ "dev.forinov.fr" ],
-    },
-    i18n: {
-        defaultLocale: "fr-FR",
-        locales: [ "fr-FR", "en-US", "ja-JP" ],
-        domains: [
-            { domain: "dev.forinov.fr", defaultLocale: "fr-FR", locales: [ "fr-BE", "fr-CA" ] },
-            { domain: "dev.forinov.com", defaultLocale: "en-US", locales: [ "en-AU", "en-GB" ] },
-            { domain: "dev.forinov.jp", defaultLocale: "ja-JP" },
-        ]
-    }
+const config: Config = {
+    preset: "ts-jest",
+    verbose: true,
+    moduleFileExtensions: [ ...defaults.moduleFileExtensions, "ts" ],
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-module.exports = nextConfig;
+export default config;
