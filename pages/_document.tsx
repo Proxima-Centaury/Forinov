@@ -20,11 +20,9 @@ function Document() {
             <link { ...fontawesomeProps }/>
         </Head>
         <body>
-            <div id="app">
-                <Main/>
-                <NextScript/>
-                <script src="https://kit.fontawesome.com/d095430534.js" crossOrigin="anonymous" async></script>
-            </div>
+            <Main/>
+            <NextScript/>
+            <script src="https://kit.fontawesome.com/d095430534.js" crossOrigin="anonymous" async></script>
         </body>
     </Html>;
 };

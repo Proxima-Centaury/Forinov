@@ -1,0 +1,248 @@
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Rounded Icon ( Base ) ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionRoundedIcon,
+.callToActionAlternativeRoundedIcon,
+.callToActionNegativeRoundedIcon,
+.callToActionNegativeAlternativeRoundedIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: var(--border);
+    border-color: rgb(var(--main-color));
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+.callToActionRoundedIcon > i,
+.callToActionAlternativeRoundedIcon > i,
+.callToActionNegativeRoundedIcon > i,
+.callToActionNegativeAlternativeRoundedIcon > i {
+    font-size: 16px;
+}
+.callToActionRoundedIcon > i.fa-ellipsis,
+.callToActionAlternativeRoundedIcon > i.fa-ellipsis,
+.callToActionNegativeRoundedIcon > i.fa-ellipsis,
+.callToActionNegativeAlternativeRoundedIcon > i.fa-ellipsis {
+    font-size: 26px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Rounded Icon ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionRoundedIcon {
+    background-color: rgb(var(--main-color));
+}
+.callToActionRoundedIcon:hover {
+    background-color: rgb(var(--background-sub-color));
+}
+.callToActionRoundedIcon > i {
+    color: rgb(var(--white-color));
+}
+.callToActionRoundedIcon:hover > i {
+    color: rgb(var(--main-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Alternative Rounded Icon ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionAlternativeRoundedIcon {
+    background-color: rgb(var(--background-sub-color));
+}
+.callToActionAlternativeRoundedIcon:hover {
+    background-color: rgb(var(--main-color));
+}
+.callToActionAlternativeRoundedIcon > i {
+    color: rgb(var(--main-color));
+}
+.callToActionAlternativeRoundedIcon:hover > i {
+    color: rgb(var(--white-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action ( Base ) ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToAction,
+.callToActionAlternative,
+.callToActionNegative,
+.callToActionNegativeAlternative,
+.callToActionSquared {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding: 11px 21px;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+    border-radius: 20px;
+    border: var(--border);
+    border-color: rgb(var(--main-color));
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    letter-spacing: 1.79px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToAction {
+    color: rgb(var(--white-color));
+    background-color: rgb(var(--main-color));
+}
+.callToAction:hover {
+    color: rgb(var(--main-color));
+    background-color: rgb(var(--nackground-sub-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Alternative ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionAlternative {
+    color: rgb(var(--main-color));
+    background-color: rgb(var(--background-sub-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Negative ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionNegative {
+    color: rgb(var(--main-color));
+    border-color: rgb(var(--background-sub-color));
+    background-color: rgb(var(--background-sub-color));
+}
+.callToActionNegative:hover {
+    color: rgb(var(--white-color));
+    background-color: rgb(var(--main-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Squared ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionSquared {
+    padding: 32px 16px;
+    font-size: 19px;
+    color: rgb(var(--main-color));
+    text-transform: initial;
+    border-radius: 10px;
+    background-color: rgb(var(--background-sub-color));
+}
+.callToActionSquared:hover {
+    background-color: rgb(var(--paleblue-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Wide ( Base ) ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionWide {
+    width: 100%;
+    padding: 16px;
+    position: relative;
+    border: var(--border);
+    border-style: dashed;
+    border-radius: 10px;
+    background-color: rgb(var(--background-sub-color));
+    transition: background-color 0.3s ease;
+}
+.callToActionWide:hover {
+    background-color: rgb(var(--paleblue-color));
+}
+.callToActionWide > .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    border-radius: 32px;
+    background-color: rgb(var(--paleblue-color));
+    transition: background-color 0.3s ease;
+}
+.callToActionWide:hover > .icon {
+    background-color: rgb(var(--main-color));
+}
+.callToActionWide > p {
+    margin: 8px auto auto auto;
+    font-family: "Nunito Sans";
+    font-size: 21px;
+    color: rgb(var(--main-color));
+}
+.callToActionWide > .icon > i {
+    font-size: 30px;
+    color: rgb(var(--main-color));
+}
+.callToActionWide:hover > .icon > i {
+    color: rgb(var(--white-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( See More ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.seeMore {
+    color: rgb(var(--text-inactive-color));
+}
+.seeMore > span {
+    margin: 0px 8px 0px 0px;
+    color: rgb(var(--text-inactive-color));
+}
+.seeMore > i {
+    font-size: 11px;
+    color: rgb(var(--text-inactive-color));
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( See More Alternative ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.seeMoreAlternative {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 112px;
+    height: 32px;
+    margin: 16px auto auto auto;
+    color: rgb(var(--text-inactive-color));
+    font-weight: 600;
+    border: var(--border);
+    border-radius: calc(32px / 2);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Navigation Button ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.navigationButton {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin: auto 0px auto auto;
+}
+@media screen and (max-width: 992px) {
+    .navigationButton {
+        display: flex;
+    }
+}
+.navigationButton > span {
+    width: 25px;
+    height: 2px;
+    background-color: rgb(var(--main-color));
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.navigationButton > span + span {
+    margin: 8px 0px 0px 0px;
+}
+.navigationButton.active > span:first-of-type {
+    transform: translateY(0px);
+    animation: firstBarAnimation 0.3s ease 0.3s forwards;
+}
+@keyframes firstBarAnimation {
+    50% {
+        transform: translateY(10px);
+    } 100% {
+        transform: translateY(10px) rotate(45deg);
+    }
+}
+.navigationButton.active > span:nth-of-type(2) {
+    opacity: 0;
+}
+.navigationButton.active > span:last-of-type {
+    transform: translateY(0px);
+    animation: thirdBarAnimation 0.3s ease 0.3s forwards;
+}
+@keyframes thirdBarAnimation {
+    50% {
+        transform: translateY(-10px);
+    } 100% {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+}

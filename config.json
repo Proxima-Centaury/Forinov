@@ -7,7 +7,7 @@
             "getActivity": "V5_GET_ACTIVITY_FEED_ITEMS"
         }
     },
-    "locales": { "fr-FR": "Français", "en-US": "English", "ja-JP": "日本語" },
+    "locales": { "fr-FR": "FR", "en-US": "EN" },
     "fontawesome": {
         "rel": "stylesheet",
         "href": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css",
@@ -17,33 +17,42 @@
     },
     "navigations": {
         "signed": {
-            "top": {
-
+            "layout": {
+                "navbar": [
+    
+                ]
             }
         },
         "unsigned": {
-            "top": [
-                { "url": "/", "text": "Startups", "nesting": true, "nest": [
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" }
-                ] },
-                { "url": "/", "text": "Entreprises", "nesting": true, "nest": [
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" }
-                ] },
-                { "url": "/", "text": "Partenaires", "nesting": true, "nest": [
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" }
-                ] },
-                { "url": "/", "text": "Opportunités", "nesting": true, "nest": [
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" }
-                ] }
-            ]
+            "layout": {
+                "navbar": [
+                    { "url": "/startups", "text": "Startups", "nesting": true, "nest": [
+                        { "url": "/", "text": "Comment ça marche ?" },
+                        { "url": "/", "text": "Solutions de startups" },
+                        { "url": "/", "text": "Annuaire de startups" }
+                    ] },
+                    { "url": "/entreprises", "text": "Entreprises", "nesting": true, "nest": [
+                        { "url": "/", "text": "Comment ça marche ?" },
+                        { "url": "/", "text": "Solutions d'entreprises" },
+                        { "url": "/", "text": "Annuaire d'entreprises" }
+                    ] },
+                    { "url": "/partenaires", "text": "Partenaires", "nesting": true, "nest": [
+                        { "url": "/", "text": "Comment ça marche ?" },
+                        { "url": "/", "text": "Solutions de partenaires" },
+                        { "url": "/", "text": "Annuaire de partenaires" }
+                    ] },
+                    { "url": "/opportunites", "text": "Opportunités", "nesting": true, "nest": [
+                        { "url": "/", "text": "Comment ça marche ?" },
+                        { "url": "/", "text": "Toutes les opportunités" },
+                        { "url": "/", "text": "Appels à candidatures" },
+                        { "url": "/", "text": "Programmes d'accompagnement" },
+                        { "url": "/", "text": "Challenges et concours" },
+                        { "url": "/", "text": "Évènements" },
+                        { "url": "/", "text": "Offres exclusives" }
+                    ] },
+                    { "url": "/about", "text": "À propos", "nesting": false, "nest": [] }
+                ]
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ import config from "../config.json";
 * @method selectifyTheOptions : {@link Utilities.selectifyTheOptions}
 * @method setCookie : {@link Utilities.setCookie}
 * @method getCookie : {@link Utilities.getCookie}
+* @method getTranslations : {@link Utilities.getTranslations}
 * @method preventSubmit : {@link Utilities.preventSubmit}
 * @returns
 * - Instance returns ```void``` ( nothing ).
@@ -167,6 +168,21 @@ class Utilities {
     };
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function getTranslations
+    * @param { String|RegExp } [ locale ] Should be a ```string```.
+    * @returns { Object }
+    * - An ```object```.
+    * ---
+    * @note This method is used to get the proper texts according to locale's value.
+    * @note The {@link locale} parameter should be the user's selected language.
+    */
+    getTranslations = (locale: String): Object => {
+        const language = locale.substring(0, 2);
+        const translations = require("../public/static/locales/" + language + ".json");
+        return translations;
+    };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
     * @function preventSubmit
     * @param { Event } [ event ] Should be an ```event```.
     * @param { Function } [ callback ] Should be a ```function```.
@@ -183,7 +199,7 @@ class Utilities {
     *     <button onClick={ (event) => preventSubmit(event, setState(!state)) }>Switch the state</button>
     * </form>
     */
-    preventSubmit = (event?: Event, callback?: Function): any | Boolean => {
+    preventSubmit = (event?: MouseEvent, callback?: Function): any | Boolean => {
         if(!event || !callback) {
             return false;
         };
@@ -219,7 +235,7 @@ const beautifyTheLogs = utilities.beautifyTheLogs;
 const selectifyTheOptions = utilities.selectifyTheOptions;
 const setCookie = utilities.setCookie;
 const getCookie = utilities.getCookie;
-// const getTranslations = utilities.getTranslations;
+const getTranslations = utilities.getTranslations;
 // const handleOutOfArea = utilities.handleOutOfArea;
 const preventSubmit = utilities.preventSubmit;
 // const scrollTo = utilities.scrollTo;
@@ -228,4 +244,11 @@ const preventSubmit = utilities.preventSubmit;
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 export default utilities;
-export { beautifyTheLogs, selectifyTheOptions, setCookie, getCookie, preventSubmit };
+export {
+    beautifyTheLogs,
+    selectifyTheOptions,
+    setCookie,
+    getCookie,
+    getTranslations,
+    preventSubmit
+};

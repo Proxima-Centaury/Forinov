@@ -3,7 +3,8 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import type { AppProps } from "next/app";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getTranslations } from "../scripts/utilities";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -16,9 +17,7 @@ import config from "../config.json";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
-// import "../public/stylesheets/sources/bootstrap.min.css";
-// import "../public/stylesheets/sources/theme.css";
-// import "../public/stylesheets/base.css";
+import "../public/stylesheets/base.css";
 // import "../public/stylesheets/navbar.css";
 // import "../public/stylesheets/footer.css";
 // import "../public/stylesheets/pages.css";
@@ -33,18 +32,22 @@ import config from "../config.json";
 const App = ({ Component, pageProps }: AppProps) => {
     const [ locale, setLocale ] = useState(pageProps.locale);
     const [ locales, setLocales ] = useState(pageProps.locales);
+    const [ translations, setTranslations ] = useState(getTranslations(locale));
     const [ session, setSession ] = useState(false);
     const [ lock, setLock ] = useState(true);
     const [ modal, setModal ] = useState(null);
+    useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
     pageProps.states = {};
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;
+    pageProps.states["translations"] = translations;
     pageProps.states["session"] = session;
     pageProps.states["lock"] = lock;
     pageProps.states["modal"] = modal;
     pageProps.stateSetters = {};
     pageProps.stateSetters["setLocale"] = setLocale;
     pageProps.stateSetters["setLocales"] = setLocales;
+    pageProps.stateSetters["setTranslations"] = setTranslations;
     pageProps.stateSetters["setSession"] = setSession;
     pageProps.stateSetters["setLock"] = setLock;
     pageProps.stateSetters["setModal"] = setModal;
@@ -59,10 +62,10 @@ const App = ({ Component, pageProps }: AppProps) => {
         </Head>
         <Navbar { ...pageProps }/>
         <div className="container">
-            <Component { ...pageProps }/>
-            <Footer { ...pageProps }/>
+            {/* <Component { ...pageProps }/> */}
+            {/* <Footer { ...pageProps }/> */}
         </div>
-        <Modal { ...pageProps }/>
+        {/* <Modal { ...pageProps }/> */}
     </>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
