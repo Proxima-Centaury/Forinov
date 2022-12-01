@@ -1,0 +1,89 @@
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Select ( Select ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.selectField {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 40px;
+    position: relative;
+    background-color: var(--background-sub-color);
+    z-index: 1;
+}
+.selectField > p {
+    padding: 0px 32px 0px 16px;
+    pointer-events: none;
+    z-index: 2;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Toggle Button */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.toggleButton {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--background-sub-color);
+    z-index: 1;
+}
+.toggleButton > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 16px auto auto;
+    pointer-events: none;
+    color: var(--text-inactive-color);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.selectField.show > .toggleButton > i {
+    color: var(--logo-blue-color);
+    transform: rotate(90deg);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Options */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 8px;
+    position: absolute;
+    top: 100%;
+    opacity: 0;
+    pointer-events: none;
+    border-top: 1px solid var(--separator-color);
+    border-radius: 0px 0px 10px 10px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+    transition: opacity 0.3s ease;
+}
+.selectField.show > .options {
+    opacity: 1;
+    pointer-events: all;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Option */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.option {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+.option + .option {
+    margin: 8px 0px 0px 0px;
+}
+.option:hover {
+    background-color: var(--separator-color);
+}
+.option.selected {
+    background-color: var(--logo-blue-color);
+}
+.option.selected > p {
+    color: var(--perfect-white-color);
+}

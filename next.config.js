@@ -13,11 +13,10 @@ const nextConfig = {
     },
     i18n: {
         defaultLocale: "fr-FR",
-        locales: [ "fr-FR", "en-US", "ja-JP" ],
+        locales: [ "fr-FR", "en-US" ],
         domains: [
             { domain: "dev.forinov.fr", defaultLocale: "fr-FR", locales: [ "fr-BE", "fr-CA" ] },
             { domain: "dev.forinov.com", defaultLocale: "en-US", locales: [ "en-AU", "en-GB" ] },
-            { domain: "dev.forinov.jp", defaultLocale: "ja-JP" },
         ]
     }
 };

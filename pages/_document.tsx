@@ -11,12 +11,13 @@ import config from "../config.json";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 function Document() {
     const fontawesomeProps: any = config.fontawesome;
+    const fontsProps: any = config.fonts;
     return <Html>
         <Head>
             <meta charSet="utf-8"/>
             <link rel="preconnect" href="https://fonts.googleapis.com"/>
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
-            <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Open+Sans&display=swap" rel="stylesheet"/>
+            <link { ...fontsProps }/>
             <link { ...fontawesomeProps }/>
         </Head>
         <body>

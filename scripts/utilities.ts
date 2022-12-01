@@ -177,9 +177,12 @@ class Utilities {
     * @note The {@link locale} parameter should be the user's selected language.
     */
     getTranslations = (locale: String): Object => {
-        const language = locale.substring(0, 2);
-        const translations = require("../public/static/locales/" + language + ".json");
-        return translations;
+        if(locale) {
+            const language = locale.substring(0, 2);
+            const translations = require("../public/static/locales/" + language + ".json");
+            return translations;
+        };
+        return require("../public/static/locales/fr.json");
     };
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).

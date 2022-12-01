@@ -3,8 +3,9 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { getTranslations } from "../scripts/utilities";
+import { setCookie, getTranslations } from "../scripts/utilities";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -30,6 +31,7 @@ import "../public/stylesheets/base.css";
 /* App */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 const App = ({ Component, pageProps }: AppProps) => {
+    const router = useRouter();
     const [ locale, setLocale ] = useState(pageProps.locale);
     const [ locales, setLocales ] = useState(pageProps.locales);
     const [ translations, setTranslations ] = useState(getTranslations(locale));
@@ -37,6 +39,10 @@ const App = ({ Component, pageProps }: AppProps) => {
     const [ lock, setLock ] = useState(true);
     const [ modal, setModal ] = useState(null);
     useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
+    useEffect(() => {
+        setCookie("NEXT_LOCALE", locale, 31536000, "/");
+        router.push("/", "/", { locale: locale.toString() });
+    }, [ locale ]);
     pageProps.states = {};
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;
@@ -62,7 +68,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         </Head>
         <Navbar { ...pageProps }/>
         <div className="container">
-            {/* <Component { ...pageProps }/> */}
+            <Component { ...pageProps }/>
             {/* <Footer { ...pageProps }/> */}
         </div>
         {/* <Modal { ...pageProps }/> */}

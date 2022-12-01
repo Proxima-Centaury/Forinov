@@ -11,7 +11,7 @@
     top: 0;
     left: 0;
     box-shadow: var(--box-shadow);
-    background-color: rgb(var(--background-sub-color));
+    background-color: var(--background-sub-color);
     z-index: 1000;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -52,7 +52,7 @@
         top: -100%;
         left: 0px;
         opacity: 0;
-        background-color: rgb(var(--background-sub-color));
+        background-color: var(--background-sub-color);
         transition: top 0.3s ease, opacity 0.3s ease;
         z-index: -1;
     }
@@ -68,7 +68,7 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        background-color: rgb(var(--background-sub-color));
+        background-color: var(--background-sub-color);
         transition: opacity 0.3s ease 0.3s;
         z-index: 1;
     }
@@ -102,7 +102,7 @@
     transition: border-color 0.3s ease;
 }
 .navbar > .links > li > a:only-child:hover {
-    border-color: rgb(var(--main-color));
+    border-color: var(--logo-blue-color);
 }
 .navbar > .links > li > a:hover + ul,
 .navbar > .links > li > a + ul:hover {
@@ -139,8 +139,8 @@
     border-radius: 5px;
     border-top: var(--border);
     border-width: 5px;
-    border-color: rgb(var(--main-color));
-    background-color: rgb(var(--background-sub-color));
+    border-color: var(--logo-blue-color);
+    background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
     transition: opacity 0.3s ease, border-color 0.3s ease;
 }
@@ -158,7 +158,7 @@
     transition: color 0.3s ease;
 }
 .navbar > .links > li > ul > li > a:hover {
-    color: rgb(var(--main-color));
+    color: var(--logo-blue-color);
 }
 @media screen and (max-width: 992px) {
     .navbar > .links > li > ul {
@@ -213,5 +213,5 @@
 }
 .navbar > .actions > a:not(.callToAction) > i {
     font-size: 24px;
-    color: rgb(var(--main-color));
+    color: var(--logo-blue-color);
 }

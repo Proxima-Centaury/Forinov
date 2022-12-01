@@ -1,24 +1,36 @@
-.login__logo {
-    position: fixed;
-    top: 1em;
-    left: 1em;
-}
-
-.login__card {
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Login ( Card ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.card {
     width: 100%;
-    margin: 0;
-    max-width: 721px;
+    max-width: 720px;
+    margin: auto;
+    padding: 16px;
     border-radius: 40px;
-    padding-right: 26px;
-    padding-left: 26px;
-    background-color: white;
-    box-shadow: 0px 0px 0px rgb(234 234 234);
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
+    background-color: var(--background-sub-color);
 }
-
-.login__card-body {
+.card > div + div {
+    margin: 16px 0px 0px 0px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Login ( Card Head ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.head {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 0px 16px;
+}
+.head > h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+.head > p {
+    color: var(--separator-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Login ( Card Body ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+.body {
     padding: 1rem;
     flex: 1 1 auto;
 }
@@ -53,8 +65,8 @@
 
 .login__google-provider {
     padding: 0.5rem 0.75rem;
-    border: 1px solid rgb(var(--main-color));
-    color: rgb(var(--main-color)) !important;
+    border: 1px solid var(--main-color);
+    color: var(--main-color) !important;
     text-transform: uppercase;
     border-radius: 9999px;
     letter-spacing: 1.25px;
@@ -64,7 +76,7 @@
 }
 
 .login__google-provider:hover {
-    background-color: rgb(var(--main-color));
+    background-color: var(--main-color);
     color: white !important;
 }
 
@@ -73,7 +85,7 @@
 }
 
 .login__google-provider>i {
-    color: rgb(var(--main-color)) !important;
+    color: var(--main-color) !important;
     margin-right: .5rem;
 }
 
@@ -113,7 +125,7 @@
 
 .login__input:focus::placeholder {
     z-index: 10;
-    color: rgb(var(--main-color));
+    color: var(--main-color);
     transform: translate(0, -20px);
     font-size: 12px;
 }
@@ -129,7 +141,7 @@
 }
 
 .login__signup:hover {
-    background-color: rgb(var(--main-color));
+    background-color: var(--main-color);
     color: white;
 }
 

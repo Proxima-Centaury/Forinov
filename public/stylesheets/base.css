@@ -11,44 +11,53 @@
 /* Variables */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 :root {
-    --main-color: 0, 109, 255;
-    --logo-orange-color: 254, 106, 40;
-    --logo-green-color: 102, 213, 23;
-    --project-color: 49, 167, 116;
-    --event-color: 128, 97, 222;
-    --program-color: 126, 201, 255;
-    --offer-color: 250, 106, 88;
-    --challenge-color: 237, 159, 0;
-    --white-color: 255, 255, 255;
-    --black-color: 35, 35, 35;
-    --success-color: 56, 191, 132;
-    --warning-color: 255, 176, 13;
-    --error-color: 255, 40, 56;
+    /* Logo Colors */
+    --logo-blue-color: #005AEB;
+    --logo-orange-color: #FE6A28;
+    --logo-green-color: #65D318;
+    /* Opportunity Colors */
+    --project-color: #31A774;
+    --event-color: #8061DE;
+    --program-color: #7EC9FF;
+    --offer-color: #FA6A58;
+    --challenge-color: #ED9F00;
+    /* Light & Dark Colors */
+    --perfect-white-color: #FFFFFF;
+    --darker-white-color: #F8F7F6;
+    --light-grey-color: #CFD0D1;
+    --lighter-black-color: #242526;
+    --perfect-black-color: #000000;
+    /* Feedback Colors */
+    --success-color: #00A04A;
+    --warning-color: #FCDC0C;
+    --error-color: #E01E3E;
+    --information-color: #1F4497;
+    /* Blue Tones */
     --paleblue-color: 178, 209, 255;
     --lightblue-color: 240, 246, 255;
     --skyblue-color: 126, 201, 255;
+    /* Green Tones */
     --palegreen-color: 209, 242, 228;
+    /* Red Tones */
     --palered-color: 255, 207, 209;
-    --text-sub-color: 89, 89, 89;
-    --text-main-color: 35, 35, 36;
-    --text-inactive-color: 89, 89, 89;
-    --separator-color: 231, 231, 231;
-    --border-color: 207, 208, 209;
-    --border: 1px solid rgb(var(--border-color));
-    --border-alternative-color: 231, 231, 231;
-    --border-alternative: 1px solid rgb(var(--border-alternative-color));
-    --background-main-color: 248, 247, 246;
-    --background-sub-color: 255, 255, 255;
-    --background-private-color: 36, 37, 38;
-    --background-private-header-color: 64, 65, 70;
-    --background-information-color: 247, 247, 247;
-    --background-privacy-color: 231, 231, 231;
-    --separator-color: 231, 231, 231;
-    --shadow-color: 0, 0, 0;
-    --box-shadow: 0px 4px 10px 0px rgba(var(--shadow-color), 0.07);
-    --darker-box-shadow: 0px 4px 10px 0px rgba(var(--shadow-color), 0.27);
-    --filter-color: rgba(0, 0, 0, 0.5);
-    --gradientMask: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 80%);
+    /* Text Colors */
+    --text-main-color: var(--black-color);
+    --text-inactive-color: var(--light-grey-color);
+    --separator-color: var(--light-grey-color);
+    --border-color: var(--light-grey-color);
+    --border: 1px solid var(--border-color);
+    /* Background Colors */
+    --background-main-color: var(--darker-white-color);
+    --background-sub-color: var(--perfect-white-color);
+    --background-private-color: var(--lighter-black-color);
+    --background-information-color: var(--light-grey-color);
+    --background-privacy-color: var(--light-grey-color);
+    /* Other Variables */
+    --shadow-color: var(--light-grey-color);
+    --box-shadow: 0px 4px 10px 0px var(--shadow-color);
+    --darker-box-shadow: 0px 4px 10px 0px var(--shadow-color);
+    --filter-color: #00000080;
+    --gradientMask: linear-gradient(180deg, #FFFFFF00 0%, #FFFFFFFF 80%);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Dark Theme */
@@ -100,7 +109,7 @@
     padding: 0px;
     box-sizing: border-box;
     font-family: "Open Sans";
-    color: rgb(var(--text-main-color));
+    color: var(--text-main-color);
     list-style: none;
     border: none;
     background: none;
@@ -130,11 +139,11 @@ i {
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
-    background-color: rgb(var(--background-main-color));
+    background-color: var(--background-main-color);
 }
 ::-webkit-scrollbar-thumb {
     border-radius: 50px;
-    background-color: rgb(var(--main-color));
+    background-color: var(--logo-blue-color);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Body */
@@ -145,7 +154,7 @@ body {
     width: 100vw;
     height: 100vh;
     padding: 0px;
-    background-color: rgb(var(--background-main-color));
+    background-color: var(--background-main-color);
     overflow: hidden;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -167,6 +176,9 @@ body {
     }
 }
 #__next > .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     max-width: 100%;
     height: 100%;
     margin: 0px auto;
@@ -207,7 +219,7 @@ body {
     width: 100%;
     height: 1px;
     margin: 16px 0px;
-    background-color: rgb(var(--separator-color));
+    background-color: var(--separator-color);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Locked */
@@ -248,12 +260,12 @@ body {
 }
 .lockedContent > i {
     font-size: 24px;
-    color: rgb(var(--main-color));
+    color: var(--logo-blue-color);
     margin: 0px 0px 8px 0px;
 }
 .lockedContent > p {
     text-align: center;
-    color: rgb(var(--main-color));
+    color: var(--logo-blue-color);
     text-decoration: underline;
     font-size: 19px;
     font-weight: bold;
@@ -294,7 +306,7 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    background-color: rgb(var(--background-sub-color));
+    background-color: var(--background-sub-color);
     overflow: hidden;
 }
 .modal.firstType {
@@ -313,20 +325,20 @@ body {
 .modal[data-modal="register"] > div > i {
     margin: 0px 16px 0px 0px;
     font-size: 40px;
-    color: rgb(var(--warning-color));
+    color: var(--warning-color);
 }
 .modal[data-modal="register"] > div > p {
     font-family: "Nunito Sans";
     font-size: 32px;
     font-weight: 800;
-    color: rgb(var(--text-inactive-color));
+    color: var(--text-inactive-color);
 }
 .modal[data-modal="register"] > div:first-of-type {
     padding: 24px calc((24px + 16px) + 38px) 24px 24px;
 }
 .modal[data-modal="register"] > div:last-of-type {
     padding: 24px 24px 24px calc((24px + 16px) + 35px);
-    background-color: rgb(var(--main-color));
+    background-color: var(--logo-blue-color);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Modal ( Close Button ) */
@@ -344,9 +356,9 @@ body {
     transition: background-color 0.3s ease;
 }
 .modal > .closeModal:hover {
-    background-color: rgb(var(--paleblue-color));
+    background-color: var(--paleblue-color);
 }
 .modal > .closeModal > i {
     font-size: 18px;
-    color: rgb(var(--main-color));
+    color: var(--logo-blue-color);
 }
