@@ -5,11 +5,15 @@ import ButtonStyles from "../../public/stylesheets/components/Button.module.css"
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { ButtonInterfaceDefaults } from "../../typescript/interfaces";
+import { ButtonInterface } from "../../typescript/interfaces";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Button = ({ type, faIcon, faIconClass, url, action, text, count }: typeof ButtonInterfaceDefaults) => {
+const Button = ({ type, faIcon, faIconClass, url, action, text, count }: ButtonInterface) => {
+    const buttonTypes = [
+        ButtonStyles.callToAction,
+        ButtonStyles.callToActionAlternative
+    ];
     if(type === "default") {
         return <button></button>;
     } else if(type === "moreOrLess") {
@@ -21,7 +25,7 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count }: typeof 
         return <button className="seeMoreAlternative" onClick={ action }>
             <span>{ text + ((count)  ? " (" + count + ")" : " ") }</span>
         </button>;
-    } else if(type === "callToActionWide") {
+    } else if(buttonTypes.includes(type)) {
         return <button className={ type } onClick={ action }>
             { (faIcon) ? <span className="icon">
                 <i className={ faIconClass }/>

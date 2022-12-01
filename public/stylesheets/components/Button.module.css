@@ -97,6 +97,10 @@
     color: var(--logo-blue-color);
     background-color: var(--background-sub-color);
 }
+.callToActionAlternative:hover {
+    color: var(--perfect-white-color);
+    background-color: var(--logo-blue-color);
+}
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Call To Action Negative ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

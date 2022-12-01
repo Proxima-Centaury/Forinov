@@ -12,6 +12,7 @@ import InputStyles from "../../public/stylesheets/components/fields/Input.module
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Input = ({ label, type, name, placeholder, version, action, defaultValue }: InputInterface) => {
     const inputProps = {
+        id: name + "FieldId",
         type: type,
         name: name,
         placehodler: placeholder,
@@ -20,7 +21,7 @@ const Input = ({ label, type, name, placeholder, version, action, defaultValue }
     };
     return <div className={ InputStyles.inputField }>
         <input { ...inputProps }/>
-        <label>{ label }</label>
+        <label htmlFor={ name + "FieldId" }>{ label }</label>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

@@ -1,26 +1,64 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
+import { LoginInterface } from "../../typescript/interfaces";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Input from "../fields/input";
+import Button from "../buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import ButtonStyles from "../../public/stylesheets/components/Button.module.css";
 import FormStyles from "../../public/stylesheets/components/Form.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Login Form */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const LoginForm = () => {
+const LoginForm = ({ states }: LoginInterface) => {
+    const { translations }: any = states;
+    const emailInputProps = {
+        label: translations["Adresse email"] + " *",
+        type: "text",
+        name: "email",
+        placeholder: "",
+        version: 1,
+        action: undefined,
+        defaultValue: undefined
+    };
+    const passwordInputProps = {
+        label: translations["Mot de passe"] + " *",
+        type: "text",
+        name: "password",
+        placeholder: "",
+        version: 1,
+        action: undefined,
+        defaultValue: undefined
+    };
+    const loginButtonProps = {
+        type: ButtonStyles.callToAction,
+        faIcon: false,
+        faIconClass: "",
+        url: "",
+        action: () => false,
+        text: translations["Me connecter"],
+        count: 0
+    };
     return <form className={ FormStyles.form }>
         <div className={ FormStyles.row }>
             <div className={ FormStyles.column }>
-                <Input/>
+                <Input { ...emailInputProps }/>
             </div>
             <div className={ FormStyles.column }>
-                <Input/>
+                <Input { ...passwordInputProps }/>
             </div>
+        </div>
+        <div className={ FormStyles.row }>
+            <Button { ...loginButtonProps }/>
+        </div>
+        <div className={ FormStyles.row }>
+            <Link href="/register" className={ ButtonStyles.callToActionAlternative }>{ translations["Créer mon compte"] }</Link>
         </div>
         {/* <div className="login__inputs">
             <input
