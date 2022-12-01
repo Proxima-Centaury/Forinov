@@ -208,7 +208,6 @@ class Utilities {
         };
         let flag = false;
         const eventTarget = event.target as Element;
-        console.log(targets, eventTarget);
         if(eventTarget) {
             targets.map((target) => (!eventTarget.closest(target as string)) ? flag = true : null);
             if(flag) {
