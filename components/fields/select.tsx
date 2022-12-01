@@ -1,17 +1,17 @@
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { useEffect, useState } from "react";
 import { SelectInterface, OptionInterface } from "../../typescript/interfaces";
 import { SelectOption } from "../../typescript/types";
-import { selectifyTheOptions } from "../../scripts/utilities";
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+import { selectifyTheOptions, handleOutOfArea } from "../../scripts/utilities";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import SelectStyles from "../../public/stylesheets/components/fields/Select.module.css";
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Select */
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Select = ({ type, version, options, action, defaultValue, source }: SelectInterface) => {
     const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
     options = selectifiedOptions;
@@ -21,6 +21,13 @@ const Select = ({ type, version, options, action, defaultValue, source }: Select
     const condition = !defaultSelectedAsObject || (defaultSelectedAsObject && defaultSelectedAsObject.value !== defaultValue);
     useEffect(() => setDefaultSelected(() => options.filter((option: any) => option.value === defaultValue)[0]), [ defaultValue ]);
     useEffect(() => (condition) ? setDefaultSelectedAsObject(defaultSelected) : undefined, [ defaultSelected ]);
+    useEffect(() => {
+        const closeOptions = () => setSelectState(false);
+        const selectSelector = "." + SelectStyles.selectField;
+        const selectToggleSelector = "." + SelectStyles.toggleButton;
+        window.addEventListener("click", (event) => handleOutOfArea(event, [ selectSelector, selectToggleSelector ], closeOptions))
+        return () => window.removeEventListener("click", handleOutOfArea);
+    }, []);
     if(options) {
         return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") }>
             <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
@@ -47,9 +54,9 @@ const Select = ({ type, version, options, action, defaultValue, source }: Select
     };
     return <></>;
 };
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Select ( Option ) */
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Option = ({ value, text, action, selected }: OptionInterface) => {
     const props = {
         className: SelectStyles.option + " " + ((selected) ? SelectStyles.selected : ""),
@@ -60,7 +67,7 @@ const Option = ({ value, text, action, selected }: OptionInterface) => {
         <p>{ text }</p>
     </button>;
 };
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 export default Select;

@@ -1,47 +1,29 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Global Container ) */
+/* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details {
-    display: flex;
-    margin: 54px 0px 0px 0px !important;
-}
-@media screen and (max-width: 990px) {
-    #profile > .details {
-        flex-direction: column;
-    }
-}
+import { useEffect, useState } from "react";
+import { InputInterface } from "../../typescript/interfaces";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Left Container ) */
+/* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details > .leftSide {
-    display: flex;
-    flex-direction: column;
-    min-width: 296px;
-    width: 296px;
-    max-width: 296px;
-    margin: 0px 24px 0px 0px;
-}
-@media screen and (max-width: 990px) {
-    #profile > .details > .leftSide {
-        min-width: 100%;
-        width: 100%;
-        max-width: 100%;
-    }
-}
+import InputStyles from "../../public/stylesheets/components/fields/Input.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Left's Containers ) */
+/* Input */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details > .leftSide > * + * {
-    margin: 16px 0px 0px 0px;
-}
+const Input = ({ label, type, name, placeholder, version, action, defaultValue }: InputInterface) => {
+    const inputProps = {
+        type: type,
+        name: name,
+        placehodler: placeholder,
+        onInput: action,
+        defaultValue: defaultValue
+    };
+    return <div className={ InputStyles.inputField }>
+        <input { ...inputProps }/>
+        <label>{ label }</label>
+    </div>;
+};
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile ( Content Container ) */
+/* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-#profile > .details > .content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-#profile > .details > .content > * + * {
-    margin: 16px 0px 0px 0px;
-}
+export default Input;

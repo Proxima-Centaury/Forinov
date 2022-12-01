@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Select ( Select ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.selectField {
+.inputField {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,7 +10,7 @@
     background-color: var(--background-sub-color);
     z-index: 1;
 }
-.selectField > p {
+.inputField > p {
     padding: 0px 32px 0px 16px;
     pointer-events: none;
     z-index: 2;
