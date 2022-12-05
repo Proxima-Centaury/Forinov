@@ -27,7 +27,7 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count }: ButtonI
         </button>;
     } else if(buttonTypes.includes(type)) {
         return <button className={ type } onClick={ action }>
-            { (faIcon) ? <span className="icon">
+            { (faIcon) ? <span className={ ButtonStyles.icon }>
                 <i className={ faIconClass }/>
             </span> : null }
             <p>{ text }</p>

@@ -15,8 +15,19 @@
 .row + .row {
     margin: 16px 0px 0px 0px;
 }
-.row * {
+.row > * {
     width: 100%;
+}
+.row > a:not([class*="callToAction"]) {
+    margin: auto;
+    width: fit-content;
+    color: var(--logo-blue-color);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.3s ease;
+}
+.row > a:not([class*="callToAction"]):hover {
+    text-decoration-color: var(--logo-blue-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Form ( Column ) */

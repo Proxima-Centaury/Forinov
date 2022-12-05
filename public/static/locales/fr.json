@@ -56,7 +56,7 @@
     "Adresse mail *": "Adresse mail *",
     "Mot de passe *": "Mot de passe *",
     "Se connecter": "Se connecter",
-    "Créer son compte": "Créer son compte",
+    "Créer mon compte": "Créer mon compte",
     "Mot de passe oublié ?": "Mot de passe oublié ?",
     "Une question, un problème ? ": "Une question, un problème ? ",
     "Nous contacter": "Nous contacter",
@@ -92,5 +92,8 @@
     "Logo de l'entreprise Forinov": "Logo de l'entreprise Forinov",
     "Opportunités": "Opportunités",
     "Consultez les clients de cette startup": "Consultez les clients de cette startup",
-    "Envie d'en savoir plus sur ce membre Forinov ? Inscrivez-vous dès à présent !": "Envie d'en savoir plus sur ce membre Forinov ? Inscrivez-vous dès à présent !"
+    "Envie d'en savoir plus sur ce membre Forinov ? Inscrivez-vous dès à présent !": "Envie d'en savoir plus sur ce membre Forinov ? Inscrivez-vous dès à présent !",
+    "J'ai oublié mon mot de passe": "J'ai oublié mon mot de passe",
+    "Ou": "Ou",
+    "Me connecter avec": "Me connecter avec"
 }

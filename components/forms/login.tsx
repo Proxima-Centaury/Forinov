@@ -20,7 +20,7 @@ const LoginForm = ({ states }: LoginInterface) => {
     const { translations }: any = states;
     const emailInputProps = {
         label: translations["Adresse email"] + " *",
-        type: "text",
+        type: "email",
         name: "email",
         placeholder: "",
         version: 1,
@@ -29,7 +29,7 @@ const LoginForm = ({ states }: LoginInterface) => {
     };
     const passwordInputProps = {
         label: translations["Mot de passe"] + " *",
-        type: "text",
+        type: "password",
         name: "password",
         placeholder: "",
         version: 1,
@@ -43,6 +43,15 @@ const LoginForm = ({ states }: LoginInterface) => {
         url: "",
         action: () => false,
         text: translations["Me connecter"],
+        count: 0
+    };
+    const googleButtonProps = {
+        type: ButtonStyles.callToActionAlternative,
+        faIcon: true,
+        faIconClass: "fa-brands fa-google",
+        url: "",
+        action: () => false,
+        text: translations["Me connecter avec"] + " Google",
         count: 0
     };
     return <form className={ FormStyles.form }>
@@ -59,6 +68,15 @@ const LoginForm = ({ states }: LoginInterface) => {
         </div>
         <div className={ FormStyles.row }>
             <Link href="/register" className={ ButtonStyles.callToActionAlternative }>{ translations["Créer mon compte"] }</Link>
+        </div>
+        <div className={ FormStyles.row }>
+            <Link href="/password/recover">{ translations["J'ai oublié mon mot de passe"] }</Link>
+        </div>
+        <div className="separatorOr">
+            <span>{ translations["Ou"] }</span>
+        </div>
+        <div className={ FormStyles.row }>
+            <Button { ...googleButtonProps }/>
         </div>
         {/* <div className="login__inputs">
             <input
