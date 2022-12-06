@@ -1,0 +1,373 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Breakpoints */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* xs => < 576px */
+/* sm => > 576px */
+/* md => > 768px */
+/* lg => > 992px */
+/* xl => > 1200px */
+/* xx => > 1400px */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Variables */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+:root {
+    /* Logo Colors */
+    --logo-blue-color: #005AEB;
+    --logo-orange-color: #FE6A28;
+    --logo-green-color: #65D318;
+    /* Opportunity Colors */
+    --project-color: #31A774;
+    --event-color: #8061DE;
+    --program-color: #7EC9FF;
+    --offer-color: #FA6A58;
+    --challenge-color: #ED9F00;
+    /* Light & Dark Colors */
+    --perfect-white-color: #FFFFFF;
+    --darker-white-color: #F8F7F6;
+    --light-grey-color: #CFD0D1;
+    --perfect-grey-color: #808080;
+    --lighter-black-color: #242526;
+    --perfect-black-color: #000000;
+    /* Feedback Colors */
+    --success-color: #00A04A;
+    --warning-color: #FCDC0C;
+    --error-color: #E01E3E;
+    --information-color: #1F4497;
+    /* Blue Tones */
+    --paleblue-color: 178, 209, 255;
+    --lightblue-color: 240, 246, 255;
+    --skyblue-color: 126, 201, 255;
+    /* Green Tones */
+    --palegreen-color: 209, 242, 228;
+    /* Red Tones */
+    --palered-color: 255, 207, 209;
+    /* Text Colors */
+    --text-main-color: var(--black-color);
+    --text-inactive-color: var(--perfect-grey-color);
+    --separator-color: var(--light-grey-color);
+    --border-color: var(--light-grey-color);
+    --border: 1px solid var(--border-color);
+    /* Background Colors */
+    --background-main-color: var(--darker-white-color);
+    --background-sub-color: var(--perfect-white-color);
+    --background-private-color: var(--lighter-black-color);
+    --background-information-color: var(--light-grey-color);
+    --background-privacy-color: var(--light-grey-color);
+    /* Other Variables */
+    --shadow-color: var(--light-grey-color);
+    --box-shadow: 0px 4px 10px 0px var(--shadow-color);
+    --darker-box-shadow: 0px 4px 10px 0px var(--shadow-color);
+    --filter-color: #00000080;
+    --gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, #FFFFFFFF 80%);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Dark Theme */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* [data-theme="dark"] {
+    --main-color: 0, 109, 255;
+    --logo-orange-color: 254, 106, 40;
+    --project-color: 49, 167, 116;
+    --event-color: 128, 97, 222;
+    --program-color: 126, 201, 255;
+    --offer-color: 250, 106, 88;
+    --challenge-color: 237, 159, 0;
+    --white-color: 255, 255, 255;
+    --black-color: 35, 35, 35;
+    --success-color: 56, 191, 132;
+    --warning-color: 255, 176, 13;
+    --error-color: 191, 56, 56;
+    --paleblue-color: 56, 56, 56;
+    --lightblue-color: 36, 36, 36;
+    --skyblue-color: 126, 201, 255;
+    --palegreen-color: 209, 242, 228;
+    --palered-color: 255, 207, 209;
+    --text-main-color: 255, 255, 255;
+    --text-sub-color: 176, 179, 184;
+    --text-placeholder-color: 157, 157, 157;
+    --text-inactive-color: 89, 89, 89;
+    --border-color: 120, 120, 120;
+    --border: 1px solid rgb(var(--border-color));
+    --border-alternative-color: 120, 120, 120;
+    --border-alternative: 1px solid rgb(var(--border-alternative-color));
+    --background-main-color: 41, 41, 41;
+    --background-sub-color: 56, 56, 56;
+    --background-private-color: 18, 18, 18;
+    --background-private-header-color: 29, 29, 29;
+    --background-information-color: 36, 36, 36;
+    --background-privacy-color: 56, 56, 56;
+    --separator-color: 231, 231, 231;
+    --shadow-color: 0, 0, 0;
+    --box-shadow: 0px 4px 10px 0px rgba(var(--shadow-color), 0.07);
+    --darker-box-shadow: 0px 4px 10px 0px rgba(var(--shadow-color), 0.27);
+    --filter-color: rgba(0, 0, 0, 0.5);
+    --gradientMask: linear-gradient(180deg, rgba(56, 56, 56, 0) 0%, rgba(56, 56, 56, 1) 80%);
+} */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Defaults */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Open Sans";
+    color: var(--text-main-color);
+    list-style: none;
+    border: none;
+    background: none;
+    scroll-behavior: smooth;
+    outline: none;
+    font-size: 14px;
+    -webkit-tap-highlight-color: transparent;
+}
+a {
+    text-decoration: none;
+}
+a, button {
+    cursor: pointer;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Custom */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.hidden {
+    display: none !important;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Scroll Bar */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: var(--background-main-color);
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background-color: var(--logo-blue-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Body */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    padding: 0px;
+    background-color: var(--background-main-color);
+    overflow: hidden;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Main Container */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+#__next {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: 64px 0px 0px 0px;
+    padding: 16px;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#__next > .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    margin: 0px auto;
+}
+@media screen and (min-width: 576px) {
+    #__next > .container {
+        max-width: 576px;
+    }
+}
+@media screen and (min-width: 768px) {
+    #__next > .container {
+        max-width: 568px;
+    }
+}
+@media screen and (min-width: 992px) {
+    #__next > .container {
+        max-width: 792px;
+    }
+}
+@media screen and (min-width: 1200px) {
+    #__next > .container {
+        max-width: 1000px;
+    }
+}
+@media screen and (min-width: 1400px) {
+    #__next > .container {
+        max-width: 1200px;
+    }
+}
+#__next > .container > div > * + * {
+    margin: 16px 0px 0px 0px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Separator */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.separator,
+.separatorOr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 1px;
+    margin: 16px 0px;
+    position: relative;
+    background-color: var(--separator-color);
+}
+.separatorOr {
+    margin: calc(16px + 8px) 0px;
+}
+.separatorOr > span {
+    padding: 8px;
+    position: absolute;
+    color: var(--text-inactive-color);
+    text-transform: uppercase;
+    border-radius: 100px;
+    background-color: var(--background-sub-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Locked */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.locked {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.locked::after {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    content: "";
+    backdrop-filter: blur(10px);
+}
+.locked.gradient::after {
+    background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(var(--background-sub-color), 0.5) 20%, rgb(var(--background-sub-color)) 60%);
+    backdrop-filter: inherit;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Locked Content */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.lockedContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+.lockedContent > i {
+    font-size: 24px;
+    color: var(--logo-blue-color);
+    margin: 0px 0px 8px 0px;
+}
+.lockedContent > p {
+    text-align: center;
+    color: var(--logo-blue-color);
+    text-decoration: underline;
+    font-size: 19px;
+    font-weight: bold;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Formatted Content */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.formattedContent {
+    display: flex;
+    flex-direction: column;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Modal Layout */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.modalLayout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    pointer-events: none;
+    background-color: var(--filter-color);
+    transition: opacity 0.3s ease;
+    z-index: 9000;
+}
+.modalLayout.open {
+    opacity: 1;
+    pointer-events: all;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Modal ( Base ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.modal {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--background-sub-color);
+    overflow: hidden;
+}
+.modal.firstType {
+    border-radius: 15px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Modal ( Register ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.modal[data-modal="register"] {
+    max-width: 892px;
+}
+.modal[data-modal="register"] > div {
+    display: flex;
+    align-items: center;
+}
+.modal[data-modal="register"] > div > i {
+    margin: 0px 16px 0px 0px;
+    font-size: 40px;
+    color: var(--warning-color);
+}
+.modal[data-modal="register"] > div > p {
+    font-family: "Nunito Sans";
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-inactive-color);
+}
+.modal[data-modal="register"] > div:first-of-type {
+    padding: 24px calc((24px + 16px) + 38px) 24px 24px;
+}
+.modal[data-modal="register"] > div:last-of-type {
+    padding: 24px 24px 24px calc((24px + 16px) + 35px);
+    background-color: var(--logo-blue-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Modal ( Close Button ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.modal > .closeModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+.modal > .closeModal:hover {
+    background-color: var(--paleblue-color);
+}
+.modal > .closeModal > i {
+    font-size: 18px;
+    color: var(--logo-blue-color);
+}

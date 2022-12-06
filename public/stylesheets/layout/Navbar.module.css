@@ -1,0 +1,218 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Navbar */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    padding: 0px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: var(--box-shadow);
+    background-color: var(--background-sub-color);
+    z-index: 1000;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Navbar ( Logo ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.navbar > .logo {
+    display: flex;
+    align-items: center;
+}
+.navbar > .logo > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar > .logo > a > img {
+    min-width: 150px;
+    width: 150px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Navbar ( Links ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.navbar > .links {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0px auto 0px 40px;
+}
+@media screen and (max-width: 992px) {
+    .navbar > .links {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: fit-content;
+        margin: 0px;
+        padding: 16px;
+        position: absolute;
+        top: -100%;
+        left: 0px;
+        opacity: 0;
+        background-color: var(--background-sub-color);
+        box-shadow: var(--box-shadow);
+        transition: top 0.3s ease, opacity 0.3s ease;
+        z-index: -1;
+    }
+    .navbar > .links.show {
+        padding: calc(40px + (2 * 16px)) 16px 16px 16px;
+        top: 100%;
+        opacity: 1;
+    }
+    .navbar > .links::before {
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-color: var(--background-sub-color);
+        transition: opacity 0.3s ease 0.3s;
+        z-index: 1;
+    }
+    .navbar > .links.show::before {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+.navbar > .links > li {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+}
+@media screen and (max-width: 992px) {
+    .navbar > .links > li {
+        width: 100%;
+    }
+}
+.navbar > .links > li + li {
+    margin: 0px 0px 0px 32px;
+}
+.navbar > .links > li > a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    border-bottom: var(--border);
+    border-width: 3px;
+    border-color: transparent;
+    transition: border-color 0.3s ease;
+}
+.navbar > .links > li > a:only-child:hover {
+    border-color: var(--logo-blue-color);
+}
+.navbar > .links > li > a:hover + ul,
+.navbar > .links > li > a + ul:hover {
+    opacity: 1;
+    pointer-events: all;
+}
+@media screen and (max-width: 992px) {
+    .navbar > .links > li {
+        display: flex;
+        flex-direction: column;
+    }
+    .navbar > .links > li + li {
+        margin: 16px 0px 0px 0px;
+    }
+    .navbar > .links > li > a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 30px;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Navbar ( Nested Links ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.navbar > .links > li > ul {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    position: absolute;
+    top: calc(64px - 5px);
+    opacity: 0;
+    pointer-events: none;
+    border-radius: 5px;
+    border-top: var(--border);
+    border-width: 5px;
+    border-color: var(--logo-blue-color);
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+    transition: opacity 0.3s ease, border-color 0.3s ease;
+}
+.navbar > .links > li > ul > li + li {
+    border-top: var(--border);
+}
+.navbar > .links > li > ul > li > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    white-space: nowrap;
+}
+.navbar > .links > li > ul > li > a {
+    transition: color 0.3s ease;
+}
+.navbar > .links > li > ul > li > a:hover {
+    color: var(--logo-blue-color);
+}
+@media screen and (max-width: 992px) {
+    .navbar > .links > li > ul {
+        flex-direction: column;
+        width: 100%;
+        max-height: 0px;
+        padding: 0px;
+        position: initial;
+        opacity: 0;
+        border-top: var(--border);
+        border-radius: inherit;
+        box-shadow: inherit;
+        transition: opacity 0.3s ease, max-height 0.3s ease;
+        overflow: hidden;
+    }
+    .navbar > .links > li:hover > ul {
+        opacity: 1;
+        max-height: max-content;
+    }
+    .navbar > .links > li > ul > li + li {
+        border-top: none;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Navbar ( Actions ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.navbar > .actions {
+    display: flex;
+    align-items: center;
+}
+@media screen and (max-width: 992px) {
+    .navbar > .actions {
+        position: absolute;
+        top: calc(64px + 16px);
+        right: 16px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    .navbar > .links.show + .actions {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+.navbar > .actions > * + * {
+    margin: 0px 0px 0px 24px;
+}
+.navbar > .actions > a:not(.callToAction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar > .actions > a:not(.callToAction) > i {
+    font-size: 24px;
+    color: var(--logo-blue-color);
+}

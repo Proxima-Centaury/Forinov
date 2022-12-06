@@ -1,0 +1,270 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Rounded Icon ( Base ) ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionRoundedIcon,
+.callToActionAlternativeRoundedIcon,
+.callToActionNegativeRoundedIcon,
+.callToActionNegativeAlternativeRoundedIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: var(--border);
+    border-color: var(--logo-blue-color);
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+.callToActionRoundedIcon > i,
+.callToActionAlternativeRoundedIcon > i,
+.callToActionNegativeRoundedIcon > i,
+.callToActionNegativeAlternativeRoundedIcon > i {
+    font-size: 16px;
+}
+.callToActionRoundedIcon > i.fa-ellipsis,
+.callToActionAlternativeRoundedIcon > i.fa-ellipsis,
+.callToActionNegativeRoundedIcon > i.fa-ellipsis,
+.callToActionNegativeAlternativeRoundedIcon > i.fa-ellipsis {
+    font-size: 26px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Rounded Icon ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionRoundedIcon {
+    background-color: var(--logo-blue-color);
+}
+.callToActionRoundedIcon:hover {
+    background-color: var(--background-sub-color);
+}
+.callToActionRoundedIcon > i {
+    color: var(--perfect-white-color);
+}
+.callToActionRoundedIcon:hover > i {
+    color: var(--logo-blue-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Alternative Rounded Icon ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionAlternativeRoundedIcon {
+    background-color: var(--background-sub-color);
+}
+.callToActionAlternativeRoundedIcon:hover {
+    background-color: var(--logo-blue-color);
+}
+.callToActionAlternativeRoundedIcon > i {
+    color: var(--logo-blue-color);
+}
+.callToActionAlternativeRoundedIcon:hover > i {
+    color: var(--perfect-white-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action ( Base ) ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToAction,
+.callToActionAlternative,
+.callToActionNegative,
+.callToActionNegativeAlternative,
+.callToActionSquared {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding: 11px 21px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+    border-radius: 20px;
+    border: var(--border);
+    border-color: var(--logo-blue-color);
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+@media screen and (max-width: 576px) {
+    .callToAction,
+    .callToActionAlternative,
+    .callToActionNegative,
+    .callToActionNegativeAlternative,
+    .callToActionSquared {
+        flex-wrap: wrap;
+        height: fit-content;
+        white-space: initial;
+    } 
+}
+.callToAction > .icon,
+.callToActionAlternative > .icon,
+.callToActionNegative > .icon,
+.callToActionNegativeAlternative > .icon,
+.callToActionSquared > .icon {
+    margin: 0px 8px 0px 0px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToAction {
+    color: var(--perfect-white-color);
+    background-color: var(--logo-blue-color);
+}
+.callToAction:hover {
+    color: var(--logo-blue-color);
+    background-color: var(--nackground-sub-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Alternative ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionAlternative {
+    color: var(--logo-blue-color);
+    background-color: var(--background-sub-color);
+}
+.callToActionAlternative:hover {
+    color: var(--perfect-white-color);
+    background-color: var(--logo-blue-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Negative ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionNegative {
+    color: var(--logo-blue-color);
+    border-color: var(--background-sub-color);
+    background-color: var(--background-sub-color);
+}
+.callToActionNegative:hover {
+    color: var(--perfect-white-color);
+    background-color: var(--logo-blue-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Squared ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionSquared {
+    padding: 32px 16px;
+    font-size: 19px;
+    color: var(--logo-blue-color);
+    text-transform: initial;
+    border-radius: 10px;
+    background-color: var(--background-sub-color);
+}
+.callToActionSquared:hover {
+    background-color: var(--paleblue-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Wide ( Base ) ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionWide {
+    width: 100%;
+    padding: 16px;
+    position: relative;
+    border: var(--border);
+    border-style: dashed;
+    border-radius: 10px;
+    background-color: var(--background-sub-color);
+    transition: background-color 0.3s ease;
+}
+.callToActionWide:hover {
+    background-color: var(--paleblue-color);
+}
+.callToActionWide > .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    border-radius: 32px;
+    background-color: var(--paleblue-color);
+    transition: background-color 0.3s ease;
+}
+.callToActionWide:hover > .icon {
+    background-color: var(--logo-blue-color);
+}
+.callToActionWide > p {
+    margin: 8px auto auto auto;
+    font-family: "Nunito Sans";
+    font-size: 21px;
+    color: var(--logo-blue-color);
+}
+.callToActionWide > .icon > i {
+    font-size: 30px;
+    color: var(--logo-blue-color);
+}
+.callToActionWide:hover > .icon > i {
+    color: var(--perfect-white-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( See More ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.seeMore {
+    color: var(--text-inactive-color);
+}
+.seeMore > span {
+    margin: 0px 8px 0px 0px;
+    color: var(--text-inactive-color);
+}
+.seeMore > i {
+    font-size: 11px;
+    color: var(--text-inactive-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( See More Alternative ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.seeMoreAlternative {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 112px;
+    height: 32px;
+    margin: 16px auto auto auto;
+    color: var(--text-inactive-color);
+    font-weight: 600;
+    border: var(--border);
+    border-radius: calc(32px / 2);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Navigation Button ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.navigationButton {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin: auto 0px auto auto;
+}
+@media screen and (max-width: 992px) {
+    .navigationButton {
+        display: flex;
+    }
+}
+.navigationButton > span {
+    width: 25px;
+    height: 2px;
+    background-color: var(--logo-blue-color);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.navigationButton > span + span {
+    margin: 8px 0px 0px 0px;
+}
+.navigationButton.active > span:first-of-type {
+    transform: translateY(0px);
+    animation: firstBarAnimation 0.3s ease 0.3s forwards;
+}
+@keyframes firstBarAnimation {
+    50% {
+        transform: translateY(10px);
+    } 100% {
+        transform: translateY(10px) rotate(45deg);
+    }
+}
+.navigationButton.active > span:nth-of-type(2) {
+    opacity: 0;
+}
+.navigationButton.active > span:last-of-type {
+    transform: translateY(0px);
+    animation: thirdBarAnimation 0.3s ease 0.3s forwards;
+}
+@keyframes thirdBarAnimation {
+    50% {
+        transform: translateY(-10px);
+    } 100% {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+}
