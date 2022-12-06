@@ -76,7 +76,7 @@
                         { "url": "/", "text": "Blog" }
                     ] },
                     { "url": "", "text": "Communauté", "nesting": true, "nest": [
-                        { "url": "/", "text": "Annuaire des entreprises" },
+                        { "url": "/", "text": "Annuaire d'entreprises" },
                         { "url": "/", "text": "Annuaire de startups" },
                         { "url": "/", "text": "Annuaire de partenaires" },
                         { "url": "/", "text": "Appels à candidatures" },

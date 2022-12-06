@@ -58,7 +58,7 @@
     --box-shadow: 0px 4px 10px 0px var(--shadow-color);
     --darker-box-shadow: 0px 4px 10px 0px var(--shadow-color);
     --filter-color: #00000080;
-    --gradientMask: linear-gradient(180deg, #FFFFFF00 0%, #FFFFFFFF 80%);
+    --gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, #FFFFFFFF 80%);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Dark Theme */
@@ -164,14 +164,10 @@ body {
     width: 100%;
     height: 100%;
     margin: 64px 0px 0px 0px;
+    padding: 16px;
     position: relative;
     overflow-x: hidden;
     overflow-y: auto;
-}
-@media screen and (max-width: 768px) {
-    #__next {
-        padding: 16px;
-    }
 }
 #__next > .container {
     display: flex;
@@ -180,7 +176,6 @@ body {
     max-width: 100%;
     height: 100%;
     margin: 0px auto;
-    padding: 16px 0px 0px 0px;
 }
 @media screen and (min-width: 576px) {
     #__next > .container {

@@ -1,0 +1,44 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Iframe ( Register ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.registerFrame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+.registerFrame::after {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    content: "";
+    background: var(--gradient-mask);
+    z-index: 1;
+}
+.registerFrame > iframe {
+    width: 100%;
+    height: 100%;
+}
+.registerFrame > p {
+    margin: auto;
+    position: absolute;
+    font-size: 30px;
+    text-align: center;
+    z-index: 2;
+}
+.registerFrame > p > a {
+    font-size: 30px;
+    color: var(--logo-blue-color);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.3s ease;
+}
+.registerFrame > p > a:hover {
+    text-decoration-color: var(--logo-blue-color);
+}
