@@ -55,16 +55,35 @@
                         { "url": "/", "text": "Offres exclusives" }
                     ] },
                     { "url": "/about", "text": "À propos", "nesting": false, "nest": [] }
-                ],
+                ]
+            }
+        },
+        "common": {
+            "layout": {
                 "footer": [
-                    { "url": "", "text": "", "nesting": true, "nest": [
-                        { "url": "/", "text": "Comment ça marche ?" },
+                    { "url": "", "text": "Nos offres", "nesting": true, "nest": [
+                        { "url": "/", "text": "Solutions entreprises" },
                         { "url": "/", "text": "Solutions de startups" },
-                        { "url": "/", "text": "Annuaire de startups" }
+                        { "url": "/", "text": "Solutions partenaires" }
+                    ] },
+                    { "url": "", "text": "Forinov", "nesting": true, "nest": [
+                        { "url": "/", "text": "Qui sommes-nous ?" },
+                        { "url": "/", "text": "Contacts et recrutement" },
+                        { "url": "/", "text": "CGU" },
+                        { "url": "/", "text": "CGV" },
+                        { "url": "/", "text": "Mentions légales" },
+                        { "url": "/", "text": "Protection des données" },
+                        { "url": "/", "text": "Blog" }
+                    ] },
+                    { "url": "", "text": "Communauté", "nesting": true, "nest": [
+                        { "url": "/", "text": "Annuaire des entreprises" },
+                        { "url": "/", "text": "Annuaire de startups" },
+                        { "url": "/", "text": "Annuaire de partenaires" },
+                        { "url": "/", "text": "Appels à candidatures" },
+                        { "url": "/", "text": "Challenges et concours" }
                     ] }
                 ]
             }
         }
-    },
-    "footer": [ "", "Nos offres", "Forinov", "Communauté" ]
+    }
 }

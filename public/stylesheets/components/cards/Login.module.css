@@ -26,7 +26,7 @@
     font-weight: bold;
 }
 .head > p {
-    color: var(--separator-color);
+    color: var(--text-inactive-color);
 }
 .head > p > a {
     color: var(--logo-blue-color);

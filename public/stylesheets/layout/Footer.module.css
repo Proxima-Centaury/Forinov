@@ -5,6 +5,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    margin: 32px 0px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Footer ( Sections ) */
@@ -13,19 +14,70 @@
     display: flex;
     flex-direction: column;
     width: calc(100% / 4);
+    padding: 0px 16px;
 }
 @media screen and (max-width: 992px) {
     .section {
         width: calc(100% / 2);
+    }
+    .section:nth-of-type(3n),
+    .section:nth-of-type(4n) {
+        margin: 16px 0px 0px 0px;
     }
 }
 @media screen and (max-width: 576px) {
     .section {
         width: 100%;
     }
+    .section + .section {
+        margin: 16px 0px 0px 0px;
+    }
+}
+.section > img {
+    width: 50px;
+    height: 50px;
+    margin: 0px 0px 16px 0px;
+}
+.section > p:first-of-type {
+    color: var(--text-inactive-color);
 }
 .section > h6 {
+    margin: 0px 0px 16px 0px;
     font-size: 24px;
     font-weight: bold;
     font-family: "Nunito Sans";
+}
+.section > ul {
+    display: flex;
+    flex-direction: column;
+}
+.section > ul > li + li {
+    margin: 8px 0px 0px 0px;
+}
+.section > ul > li > a {
+    transition: color 0.3s ease;
+}
+.section > ul > li > a:hover {
+    color: var(--logo-blue-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Footer ( Socials ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.socials {
+    display: flex;
+    margin: 16px 0px;
+}
+.socials > a + a {
+    margin: 0px 0px 0px 8px;
+}
+.socials > a > i {
+    font-size: 20px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Footer ( Contact ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.contact {
+    margin: 0px 0px 16px 0px;
+    color: var(--logo-blue-color);
+    text-decoration: underline;
 }
