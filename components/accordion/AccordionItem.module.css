@@ -1,0 +1,70 @@
+.collapseItem {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.5rem 1rem;
+	border-bottom: 1px solid #E7E7E7;
+	position: relative;
+}
+
+.collapseItem:hover {
+	text-decoration: underline;
+}
+
+.collapseItemIcon {
+	font-size: 1.5rem;
+	position: absolute;
+	right: 1rem;
+	transition: all 0.3s ease-in-out;
+}
+
+.collapseItemTitle {
+	margin: 0;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 400;
+	position: relative;
+	width: 90%;
+	text-align: start;
+	display: flex;
+	align-items: center;
+	pointer-events: none;
+}
+
+.collapseItemContent {
+    font-weight: 400;
+    line-height: 1.6;
+    color: #161c2d;
+    text-align: left;
+    font-family: "Open Sans", sans-serif;
+    -webkit-box-direction: normal;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    display: flex;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    position: relative;
+    background-color: #e7e7e7;
+	transform-origin: top;
+	display: flex;
+	align-items: center;
+	pointer-events: none;
+	width: calc(fit-content + 1px);
+	position: relative;
+	top: -1px;
+}
+
+.collapseItemContent > p {
+	padding: 2rem;
+}
+
+@media only screen and (max-width: 767px) {
+	.collapseItem>h1 {
+		font-size: 1.2em;
+		}
+		
+		.collapseItemContent>p {
+			padding: 1rem;
+	}
+}
