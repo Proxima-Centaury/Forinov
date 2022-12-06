@@ -71,13 +71,24 @@
     height: 40px;
     padding: 11px 21px;
     text-transform: uppercase;
+    text-align: center;
     font-weight: 600;
     white-space: nowrap;
     border-radius: 20px;
     border: var(--border);
     border-color: var(--logo-blue-color);
     transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-    letter-spacing: 1.79px;
+}
+@media screen and (max-width: 576px) {
+    .callToAction,
+    .callToActionAlternative,
+    .callToActionNegative,
+    .callToActionNegativeAlternative,
+    .callToActionSquared {
+        flex-wrap: wrap;
+        height: fit-content;
+        white-space: initial;
+    } 
 }
 .callToAction > .icon,
 .callToActionAlternative > .icon,
