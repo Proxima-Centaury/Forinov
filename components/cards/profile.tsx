@@ -1,17 +1,16 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Image from "next/future/image";
 import Tags from "../tags/tags";
 import Format from "../texts/format";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileCard = ({ profile, lock, translations }) => {
+const ProfileCard = ({ profile, lock, translations }: any) => {
     if(profile) {
         return <div className="profileCard cardBackground" data-type="full">
             <div className="banner">
-                <Image src={ profile.BACKGROUND } alt="" width="1000" height="192"/>
+                <img src={ profile.BACKGROUND } alt=""/>
                 <div className="actions">
                     <div>
                         <button className="callToActionRoundedIcon">

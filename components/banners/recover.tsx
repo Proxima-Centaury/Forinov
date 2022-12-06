@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Recover Banner */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const RecoverBanner = ({ translations }) => {
+const RecoverBanner = ({ translations }: any) => {
     return <div className="recoverBanner">
         <p>{ translations["Ce compte a été créé par nos équipes, s'il s'agit de votre startup, n'hésitez pas à :"] }</p>
         <div className="actions">
