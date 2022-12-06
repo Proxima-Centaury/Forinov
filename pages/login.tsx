@@ -2,36 +2,22 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
-import Link from "next/link";
 import { GetStaticProps } from "next";
 import { LoginInterface } from "../typescript/interfaces";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import LoginForm from "../components/forms/login";
+import LoginCard from "../components/cards/login";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Styles */
+/* Login */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import LoginStyles from "../public/stylesheets/components/cards/Login.module.css";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Login Card */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const LoginCard = ({ locales, states, stateSetters }: LoginInterface) => {
-    const { translations }: any = states;
+const Login = ({ locales, states, stateSetters }: LoginInterface) => {
     const parentProps = { locales, states, stateSetters };
     return <>
         <Head>
             <title>Forinov - Connexion</title>
         </Head>
-        <div className={ LoginStyles.card }>
-            <div className={ LoginStyles.head }>
-                <h2>{ translations["Accéder à tout Forinov"] }</h2>
-                <p>{ translations["Pas encore membre Forinov ?"] }&nbsp;<Link href="/register">{ translations["Inscrivez-vous"] }</Link></p>
-            </div>
-            <div className={ LoginStyles.body }>
-                <LoginForm { ...parentProps }/>
-            </div>
-        </div>
+        <LoginCard { ...parentProps }/>
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -41,5 +27,5 @@ const getStaticProps: GetStaticProps = async (context) => ({ props: { ...context
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default LoginCard;
+export default Login;
 export { getStaticProps };

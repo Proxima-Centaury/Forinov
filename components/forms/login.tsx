@@ -2,7 +2,8 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
-import { LoginInterface } from "../../typescript/interfaces";
+import { ButtonInterface, InputInterface, LoginInterface } from "../../typescript/interfaces";
+import { buildProperties } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -18,117 +19,40 @@ import FormStyles from "../../public/stylesheets/components/Form.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const LoginForm = ({ states }: LoginInterface) => {
     const { translations }: any = states;
-    const emailInputProps = {
-        label: translations["Adresse email"] + " *",
-        type: "email",
-        name: "email",
-        placeholder: "",
-        version: 1,
-        action: undefined,
-        defaultValue: undefined
-    };
-    const passwordInputProps = {
-        label: translations["Mot de passe"] + " *",
-        type: "password",
-        name: "password",
-        placeholder: "",
-        version: 1,
-        action: undefined,
-        defaultValue: undefined
-    };
-    const loginButtonProps = {
-        type: ButtonStyles.callToAction,
-        faIcon: false,
-        faIconClass: "",
-        url: "",
-        action: () => false,
-        text: translations["Me connecter"],
-        count: 0
-    };
-    const googleButtonProps = {
-        type: ButtonStyles.callToActionAlternative,
-        faIcon: true,
-        faIconClass: "fa-brands fa-google",
-        url: "",
-        action: () => false,
-        text: translations["Me connecter avec"] + " Google",
-        count: 0
-    };
+    const inputProps = [ "label", "type", "name", "placeholder", "version", "action", "defaultValue" ];
+    const emailInputValues = [ translations["Adresse email"] + " *", "email", "email", "", 1, undefined, undefined ];
+    const emailInputObject = buildProperties(inputProps, emailInputValues);
+    const passwordInputValues = [ translations["Mot de passe"] + " *", "password", "password", "", 1, undefined, undefined ];
+    const passwordInputObject = buildProperties(inputProps, passwordInputValues);
+    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const loginButtonValues = [ ButtonStyles.callToAction, false, "", "", () => false, translations["Me connecter"], 0 ];
+    const loginButtonObject = buildProperties(buttonProps, loginButtonValues);
+    const googleButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-brands fa-google", "", () => false, translations["Me connecter avec"] + " Google", 0 ];
+    const googleButtonObject = buildProperties(buttonProps, googleButtonValues);
     return <form className={ FormStyles.form }>
         <div className={ FormStyles.row }>
             <div className={ FormStyles.column }>
-                <Input { ...emailInputProps }/>
+                <Input { ...emailInputObject as InputInterface }/>
             </div>
             <div className={ FormStyles.column }>
-                <Input { ...passwordInputProps }/>
+                <Input { ...passwordInputObject as InputInterface }/>
             </div>
         </div>
         <div className={ FormStyles.row }>
-            <Button { ...loginButtonProps }/>
+            <Button { ...loginButtonObject as ButtonInterface }/>
         </div>
         <div className={ FormStyles.row }>
             <Link href="/register" className={ ButtonStyles.callToActionAlternative }>{ translations["Créer mon compte"] }</Link>
         </div>
         <div className={ FormStyles.row }>
-            <Link href="/password/recover">{ translations["J'ai oublié mon mot de passe"] }</Link>
+            <Link href="/password/recover">{ translations["J'ai oublié mon mot de passe"] + " !" }</Link>
         </div>
         <div className="separatorOr">
             <span>{ translations["Ou"] }</span>
         </div>
         <div className={ FormStyles.row }>
-            <Button { ...googleButtonProps }/>
+            <Button { ...googleButtonObject as ButtonInterface }/>
         </div>
-        {/* <div className="login__inputs">
-            <input
-            type="text"
-            className="login__input"
-            id="Email"
-            name="Email"
-            placeholder={translations["Adresse mail *"]}
-            required
-            />
-            <input
-            type="password"
-            className="login__input"
-            id="Password"
-            name="Password"
-            placeholder={translations["Mot de passe *"]}
-            required
-            />
-        </div>
-        <input
-            type="submit"
-            className="callToAction login__submit  login__signin"
-            value={translations["Se connecter"]}
-        />
-        <input
-            type="submit"
-            className="callToActionAlternative login__submit login__signup"
-            value={translations["Créer son compte"]}
-        />
-
-        <Link href="" style={{ marginTop: "2em", marginBottom: "4em" }}>
-            {translations["Mot de passe oublié ?"]}
-        </Link>
-
-        <div className="login__details">
-            <p>
-            {translations["Une question, un problème ? "]}
-            <Link href="">{translations["Nous contacter"]}</Link>
-            </p>
-            <p>
-            {translations["FORINOV s'engage à respecter vos données."]}
-            </p>
-            <p>
-            {
-                translations[
-                "En continuant votre inscription, vous acceptez nos "
-                ]
-            }
-            <Link href="">{translations["Conditions Générales"]}</Link>
-            ..
-            </p>
-        </div> */}
     </form>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

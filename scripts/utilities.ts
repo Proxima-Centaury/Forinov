@@ -1,8 +1,10 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-// import chalk from "chalk";
 import { SelectOption } from "../typescript/types";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* JSON */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import config from "../config.json";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Utilities */
@@ -37,7 +39,7 @@ class Utilities {
     * ---
     * @note This method is used to log multiple elements for debugging.
     */
-    beautifyTheLogs(...logs: any): Array<any> | Boolean {
+    beautifyTheLogs(...logs: any): Array<any>|Boolean {
         if(!logs || logs.length <= 0) {
             return false;
         };
@@ -112,7 +114,7 @@ class Utilities {
     * @note If you pass an array of objects, make sure to follow the instruction bellow.
     * @note Each object in the {@link options} parameter should have the same structure as above without the key property.
     */
-    selectifyTheOptions(options?: any, source?: String): Array<Object> | Boolean {
+    selectifyTheOptions(options?: any, source?: String): Array<Object>|Boolean {
         if(!options || options.length <= 0 || (options && !Array.isArray(options))) {
             return false;
         };
@@ -235,12 +237,38 @@ class Utilities {
     *     <button onClick={ (event) => preventSubmit(event, setState(!state)) }>Switch the state</button>
     * </form>
     */
-    preventSubmit = (event?: MouseEvent, callback?: Function): any | Boolean => {
+    preventSubmit = (event?: MouseEvent, callback?: Function): any|Boolean => {
         if(!event || !callback) {
             return false;
         };
         event.preventDefault();
         return callback();
+    };
+        /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function buildProperties
+    * @param { Array } [ properties ] Should be an ```array``` of ```strings```.
+    * @param { Array } [ values ] Should be an ```array``` of various types.
+    * @returns { Object|false }
+    * - ```object``` that contains properties and values according to data passed.
+    * - ```false``` if not enough data passed.
+    * ---
+    * @note This method is used to build properties whenever needed.
+    * @note The {@link properties} parameter is an array of strings used as object's properties names.
+    * @note The {@link values} parameter is an array of various types used as properties values.
+    * @example
+    * const googleButtonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    * const googleButtonValues = [ ButtonStyles.callToAction, true, "fa-brands fa-google", "", () => false, "Sign in with google", 0 ];
+    * const googleButtonObject = buildProperties(googleButtonProps, googleButtonValues);
+    * <Button { ...googleButtonObject }/>
+    */
+    buildProperties = (properties?: Array<String>, values?: Array<any>): Object|false => {
+        if(!properties || !values) {
+            return false;
+        };
+        const object = {};
+        properties.map((property: String, key: number) => object[property as keyof Object] = values[key]);
+        return object;
     };
     // scrollTo = (x, y) => {
     //     const container = document.querySelector("#__next");
@@ -274,6 +302,7 @@ const getCookie = utilities.getCookie;
 const getTranslations = utilities.getTranslations;
 const handleOutOfArea = utilities.handleOutOfArea;
 const preventSubmit = utilities.preventSubmit;
+const buildProperties = utilities.buildProperties;
 // const scrollTo = utilities.scrollTo;
 // const seeMoreOrLess = utilities.seeMoreOrLess;
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -287,5 +316,6 @@ export {
     getCookie,
     getTranslations,
     handleOutOfArea,
-    preventSubmit
+    preventSubmit,
+    buildProperties
 };
