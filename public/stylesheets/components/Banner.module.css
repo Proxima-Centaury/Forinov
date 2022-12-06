@@ -1,0 +1,44 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Banners ( Identification & Recover ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.identificationBanner,
+.recoverBanner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-radius: 15px;
+}
+.identificationBanner {
+    background-color: var(--logo-blue-color);
+}
+.recoverBanner {
+    background-color: var(--warning-color);
+}
+.identificationBanner > p,
+.recoverBanner > p {
+    margin: 0px 16px 0px 0px;
+    font-size: 16px;
+}
+.identificationBanner > p {
+    color: var(--perfect-white-color);
+}
+.identificationBanner > .actions,
+.recoverBanner > .actions {
+    display: flex;
+    align-items: center;
+}
+.identificationBanner > .actions > * + *,
+.recoverBanner > .actions > * + * {
+    margin: 0px 0px 0px 16px;
+}
+.identificationBanner > .actions > a:not(.callToActionNegative) {
+    color: var(--perfect-white-color);
+    text-decoration: underline;
+}
+.recoverBanner > .actions > button {
+    color: var(--text-main-color);
+}
+.recoverBanner > .actions > button:hover {
+    background-color: var(--warning-color);
+}

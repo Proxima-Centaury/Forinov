@@ -43,50 +43,6 @@
     color: rgb(var(--white-color));
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Banners */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.identificationBanner,
-.recoverBanner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
-    border-radius: 15px;
-}
-.identificationBanner {
-    background-color: rgb(var(--main-color));
-}
-.recoverBanner {
-    background-color: rgb(var(--warning-color));
-}
-.identificationBanner > p,
-.recoverBanner > p {
-    margin: 0px 16px 0px 0px;
-    font-size: 16px;
-}
-.identificationBanner > p {
-    color: rgb(var(--white-color));
-}
-.identificationBanner > .actions,
-.recoverBanner > .actions {
-    display: flex;
-    align-items: center;
-}
-.identificationBanner > .actions > * + *,
-.recoverBanner > .actions > * + * {
-    margin: 0px 0px 0px 16px;
-}
-.identificationBanner > .actions > a:not(.callToActionNegative) {
-    color: rgb(var(--white-color));
-    text-decoration: underline;
-}
-.recoverBanner > .actions > button {
-    color: rgb(var(--text-main-color));
-}
-.recoverBanner > .actions > button:hover {
-    background-color: rgb(var(--warning-color));
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .profileCard {

@@ -3,23 +3,18 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import { GetStaticProps } from "next";
-import { RegisterInterface } from "../typescript/interfaces";
+import { NotFoundInterface } from "../typescript/interfaces";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Styles */
+/* NotFound */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import IframeStyles from "../public/stylesheets/components/Iframe.module.css";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Register */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Register = ({ states }: RegisterInterface) => {
+const NotFound = ({ states }: NotFoundInterface) => {
     const { translations }: any = states;
     return <>
         <Head>
-            <title>Forinov - Inscription</title>
+            <title>Forinov - Connexion</title>
         </Head>
-        <div className={ IframeStyles.registerFrame }>
-            <p dangerouslySetInnerHTML={ { __html: translations["Si vous souhaitez vous inscrire,<br>rendez-vous <a href='https://onboarding.forinov.net' target='_blank'>ici</a>"] + "." } }/>
-            <iframe src="https://onboarding.forinov.net"/>
+        <div id="404">
+            <h1>CETTE PAGE N'EXISTE PAS</h1>
         </div>
     </>;
 };
@@ -30,5 +25,5 @@ const getStaticProps: GetStaticProps = async (context) => ({ props: { ...context
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default Register;
+export default NotFound;
 export { getStaticProps };

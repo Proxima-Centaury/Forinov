@@ -3,18 +3,19 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Styles */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import BannerStyles from "../../public/stylesheets/components/Banner.module.css";
+import ButtonStyles from "../../public/stylesheets/components/Button.module.css";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Idenfitication Banner */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const IdenfiticationBanner = ({ translations }) => {
-    return <div className="identificationBanner">
+const IdenfiticationBanner = ({ translations }: any) => {
+    return <div className={ BannerStyles.identificationBanner }>
         <p>{ translations["Profitez de Forinov sans limite :"] }</p>
-        <div className="actions">
-            <Link href="/login">
-                <a>{ translations["S'identifier"] }</a>
-            </Link>
-            <Link href="/register">
-                <a className="callToActionNegative">{ translations["Je m'inscris"] }</a>
-            </Link>
+        <div className={ BannerStyles.actions }>
+            <Link href="/login">{ translations["S'identifier"] }</Link>
+            <Link className={ ButtonStyles.callToActionAlternative } href="/register">{ translations["Je m'inscris"] }</Link>
         </div>
     </div>;
 };
