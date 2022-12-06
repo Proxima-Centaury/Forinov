@@ -19,14 +19,6 @@ import config from "../config.json";
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import "../public/stylesheets/base.css";
-// import "../public/stylesheets/navbar.css";
-// import "../public/stylesheets/footer.css";
-// import "../public/stylesheets/pages.css";
-// import "../public/stylesheets/components.css";
-// import "../public/stylesheets/widgets.css";
-// import "../public/stylesheets/components/annuaire_searchbar.css"
-// import "../public/stylesheets/pages/login.css"
-// import "../public/stylesheets/pages/annuaire_su.css"
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* App */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -57,8 +49,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.stateSetters["setSession"] = setSession;
     pageProps.stateSetters["setLock"] = setLock;
     pageProps.stateSetters["setModal"] = setModal;
-    pageProps.config = {};
-    pageProps.config["locales"] = config.locales;
+    pageProps.config = config;
     return <>
         <Head>
             <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8"/>
@@ -69,7 +60,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Navbar { ...pageProps }/>
         <div className="container">
             <Component { ...pageProps }/>
-            {/* <Footer { ...pageProps }/> */}
+            <Footer { ...pageProps }/>
         </div>
         {/* <Modal { ...pageProps }/> */}
     </>;

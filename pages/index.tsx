@@ -7,8 +7,8 @@ import { HomeInterface } from "../typescript/interfaces";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Home = ({ locales, states, stateSetters }: HomeInterface) => {
-    const parentProps = { locales, states, stateSetters };
+const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
+    const parentProps = { locales, states, stateSetters, config };
     return <>
         <Head>
             <title>Forinov</title>

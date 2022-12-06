@@ -55,8 +55,16 @@
                         { "url": "/", "text": "Offres exclusives" }
                     ] },
                     { "url": "/about", "text": "À propos", "nesting": false, "nest": [] }
+                ],
+                "footer": [
+                    { "url": "", "text": "", "nesting": true, "nest": [
+                        { "url": "/", "text": "Comment ça marche ?" },
+                        { "url": "/", "text": "Solutions de startups" },
+                        { "url": "/", "text": "Annuaire de startups" }
+                    ] }
                 ]
             }
         }
-    }
+    },
+    "footer": [ "", "Nos offres", "Forinov", "Communauté" ]
 }

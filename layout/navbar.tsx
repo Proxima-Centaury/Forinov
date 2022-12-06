@@ -3,8 +3,8 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
 import { useState } from "react";
-import { NavbarInterface } from "../typescript/interfaces";
-import { preventSubmit } from "../scripts/utilities";
+import { ButtonInterface, NavbarInterface, SelectInterface } from "../typescript/interfaces";
+import { buildProperties, preventSubmit } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -16,29 +16,21 @@ import Button from "../components/buttons/button";
 import NavbarStyles from "../public/stylesheets/layout/Navbar.module.css";
 import ButtonStyles from "../public/stylesheets/components/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* JSON */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../config.json";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Navbar = ({ states, stateSetters }: NavbarInterface) => {
+const Navbar = ({ states, stateSetters, config }: NavbarInterface) => {
     const [ menuState, setMenuState ] = useState(false);
     const { locale, locales, translations }: any = states;
     const { setLocale }: any = stateSetters;
     const { navbar } = config.navigations.unsigned.layout;
-    const languageSelectProps = {
-        type: "Single",
-        version: 1,
-        options: locales,
-        action: setLocale,
-        defaultValue: locale,
-        source: "locales"
-    };
-    const navigationButtonProps = {
-        type: ButtonStyles.navigationButton + ((menuState) ? " " + ButtonStyles.active : ""),
-        action: (event: any) => preventSubmit(event, () => setMenuState(!menuState))
-    };
+    const selectProps = [ "type", "options", "action", "defaultValue", "source" ];
+    const languageSelectValues = [ "Single", locales, setLocale, locale, "locales" ];
+    const languageSelectObject = buildProperties(selectProps, languageSelectValues);
+    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const navigationButtonClass = ButtonStyles.navigationButton + ((menuState) ? " " + ButtonStyles.active : "");
+    const navigationButtonAction = (event: any) => preventSubmit(event, () => setMenuState(!menuState));
+    const navigationButtonValues = [ navigationButtonClass, false, "", "", navigationButtonAction, "", 0 ];
+    const navigationButtonObject = buildProperties(buttonProps, navigationButtonValues)
     const parentProps = { navbar, translations };
     return <nav className={ NavbarStyles.navbar }>
         <div className={ NavbarStyles.logo }>
@@ -48,11 +40,11 @@ const Navbar = ({ states, stateSetters }: NavbarInterface) => {
             <NavbarMenu { ...parentProps }/>
         </ul>
         <div className={ NavbarStyles.actions }>
-            <Select { ...languageSelectProps }/>
+            <Select { ...languageSelectObject as SelectInterface }/>
             <Link href="/login"><i className="fa-light fa-user"/></Link>
             <Link href="/register" className={ ButtonStyles.callToAction }>{ translations["M'inscrire"] }</Link>
         </div>
-        <Button { ...navigationButtonProps }/>
+        <Button { ...navigationButtonObject as ButtonInterface }/>
     </nav>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -61,12 +53,12 @@ const Navbar = ({ states, stateSetters }: NavbarInterface) => {
 const NavbarMenu = ({ navbar, translations }: any) => {
     if(navbar) {
         return navbar.map(({ url, text, nesting, nest }: any, key: KeyType) => <li key={ key }>
-                <Link href={ url }>{ translations[text] }</Link>
-                { (nesting) ? <ul>
-                    { nest.map(({ url, text }: any, key: KeyType) => <li key={ key }>
-                        <Link href={ url }>{ translations[text] }</Link>
-                    </li>) }
-                </ul> : null }
+            <Link href={ url }>{ translations[text] }</Link>
+            { (nesting) ? <ul>
+                { nest.map(({ url, text }: any, key: KeyType) => <li key={ key }>
+                    <Link href={ url }>{ translations[text] }</Link>
+                </li>) }
+            </ul> : null }
         </li>);
     };
     return <></>;

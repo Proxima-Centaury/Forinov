@@ -11,8 +11,8 @@ import LoginCard from "../components/cards/login";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Login */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Login = ({ locales, states, stateSetters }: LoginInterface) => {
-    const parentProps = { locales, states, stateSetters };
+const Login = ({ locales, states, stateSetters, config }: LoginInterface) => {
+    const parentProps = { locales, states, stateSetters, config };
     return <>
         <Head>
             <title>Forinov - Connexion</title>

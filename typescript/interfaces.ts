@@ -13,7 +13,8 @@ interface BaseInterface {
     stateSetters: {
         setLocale: Function,
         setLocales: Function
-    }
+    },
+    config: any
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home Interface */
@@ -28,9 +29,9 @@ interface LoginInterface extends BaseInterface {};
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 interface NavbarInterface extends BaseInterface {};
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Jumbotron Interface */
+/* Footer Interface */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-interface JumbotronInterface extends BaseInterface {};
+interface FooterInterface extends BaseInterface {};
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Input Interface */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -81,7 +82,7 @@ export type {
     HomeInterface,
     LoginInterface,
     NavbarInterface,
-    JumbotronInterface,
+    FooterInterface,
     InputInterface,
     SelectInterface,
     ButtonInterface,
