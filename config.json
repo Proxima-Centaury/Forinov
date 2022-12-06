@@ -7,45 +7,83 @@
             "getActivity": "V5_GET_ACTIVITY_FEED_ITEMS"
         }
     },
-    "languages": [
-        { "value": "fr", "text": "FR" },
-        { "value": "en", "text": "EN" }
-    ],
+    "locales": { "fr-FR": "FR", "en-US": "EN" },
     "fontawesome": {
-        "href": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css",
-        "integrity": "sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==",
+        "rel": "stylesheet",
+        "href": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css",
+        "integrity": "sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=:",
         "crossOrigin": "anonymous",
         "referrerPolicy": "no-referrer"
     },
+    "fonts": {
+        "rel": "stylesheet",
+        "href": "https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+    },
     "navigations": {
         "signed": {
-            "top": {
-
+            "layout": {
+                "navbar": [
+    
+                ]
             }
         },
         "unsigned": {
-            "top": [
-                { "url": "/", "text": "Startups", "nesting": true, "nest": [
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" }
-                ] },
-                { "url": "/", "text": "Entreprises", "nesting": true, "nest": [
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" }
-                ] },
-                { "url": "/", "text": "Partenaires", "nesting": true, "nest": [
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" }
-                ] },
-                { "url": "/", "text": "Opportunités", "nesting": true, "nest": [
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" },
-                    { "url": "/", "text": "Startups" }
-                ] }
-            ]
+            "layout": {
+                "navbar": [
+                    { "url": "/startups", "text": "Startups", "nesting": true, "nest": [
+                        { "url": "/", "text": "Comment ça marche ?" },
+                        { "url": "/", "text": "Solutions de startups" },
+                        { "url": "/", "text": "Annuaire de startups" }
+                    ] },
+                    { "url": "/entreprises", "text": "Entreprises", "nesting": true, "nest": [
+                        { "url": "/", "text": "Comment ça marche ?" },
+                        { "url": "/", "text": "Solutions d'entreprises" },
+                        { "url": "/", "text": "Annuaire d'entreprises" }
+                    ] },
+                    { "url": "/partenaires", "text": "Partenaires", "nesting": true, "nest": [
+                        { "url": "/", "text": "Comment ça marche ?" },
+                        { "url": "/", "text": "Solutions de partenaires" },
+                        { "url": "/", "text": "Annuaire de partenaires" }
+                    ] },
+                    { "url": "/opportunites", "text": "Opportunités", "nesting": true, "nest": [
+                        { "url": "/", "text": "Comment ça marche ?" },
+                        { "url": "/", "text": "Toutes les opportunités" },
+                        { "url": "/", "text": "Appels à candidatures" },
+                        { "url": "/", "text": "Programmes d'accompagnement" },
+                        { "url": "/", "text": "Challenges et concours" },
+                        { "url": "/", "text": "Évènements" },
+                        { "url": "/", "text": "Offres exclusives" }
+                    ] },
+                    { "url": "/about", "text": "À propos", "nesting": false, "nest": [] }
+                ]
+            }
+        },
+        "common": {
+            "layout": {
+                "footer": [
+                    { "url": "", "text": "Nos offres", "nesting": true, "nest": [
+                        { "url": "/", "text": "Solutions entreprises" },
+                        { "url": "/", "text": "Solutions de startups" },
+                        { "url": "/", "text": "Solutions partenaires" }
+                    ] },
+                    { "url": "", "text": "Forinov", "nesting": true, "nest": [
+                        { "url": "/", "text": "Qui sommes-nous ?" },
+                        { "url": "/", "text": "Contacts et recrutement" },
+                        { "url": "/", "text": "CGU" },
+                        { "url": "/", "text": "CGV" },
+                        { "url": "/", "text": "Mentions légales" },
+                        { "url": "/", "text": "Protection des données" },
+                        { "url": "/", "text": "Blog" }
+                    ] },
+                    { "url": "", "text": "Communauté", "nesting": true, "nest": [
+                        { "url": "/", "text": "Annuaire d'entreprises" },
+                        { "url": "/", "text": "Annuaire de startups" },
+                        { "url": "/", "text": "Annuaire de partenaires" },
+                        { "url": "/", "text": "Appels à candidatures" },
+                        { "url": "/", "text": "Challenges et concours" }
+                    ] }
+                ]
+            }
         }
     }
 }
