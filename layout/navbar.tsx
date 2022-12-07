@@ -53,7 +53,7 @@ const Navbar = ({ states, stateSetters, config }: NavbarInterface) => {
 const NavbarMenu = ({ navbar, translations }: any) => {
     if(navbar) {
         return navbar.map(({ url, text, nesting, nest }: any, key: KeyType) => <li key={ key }>
-            <Link href={ url }>{ translations[text] }</Link>
+            { (url) ? <Link href={ url }>{ translations[text] }</Link> : <p>{ translations[text] }</p> }
             { (nesting) ? <ul>
                 { nest.map(({ url, text }: any, key: KeyType) => <li key={ key }>
                     <Link href={ url }>{ translations[text] }</Link>
