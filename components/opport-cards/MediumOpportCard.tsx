@@ -13,8 +13,6 @@ export default function MediumOpportCard({
 	remaining,
 	translations,
 }: any) {
-	console.log(translations);
-
 	return (
 		<Link
 			href={"/"}
@@ -44,19 +42,23 @@ export default function MediumOpportCard({
 					<div
 						className={styles.type}
 						style={
-						type === "1"
-							? { background: "var(--project-color) !important" }
-							: type === "2"
-							? { background: "var(--program-color) !important" }
-							: { background: "var(--event-color) !important" }
-					}
-					>{typename}</div>
+							type === "1"
+								? { background: "var(--project-color) !important" }
+								: type === "2"
+								? { background: "var(--program-color) !important" }
+								: { background: "var(--event-color) !important" }
+						}
+					>
+						{typename}
+					</div>
 					<div className={styles.separator}></div>
 					<p className={styles.remaining}>
-						<i style={
-					{marginRight: "0.5rem"}		
-						} className="fa-solid fa-calendar"></i>
-						{remaining + " " + translations["jour(s) restant(s)"]}</p>
+						<i
+							style={{ marginRight: "0.5rem" }}
+							className="fa-solid fa-calendar"
+						></i>
+						{remaining + " " + translations["jour(s) restant(s)"]}
+					</p>
 				</div>
 			</div>
 		</Link>
