@@ -25,6 +25,7 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 						<Link
 							href={"/"}
 							key={selector}
+							style={{ margin: "0 !important" }}
 						>
 							<button className="selectorButton">{selector}</button>
 						</Link>
@@ -44,6 +45,8 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 								company={opportunities[opportunity]["NAME"]}
 								type={opportunities[opportunity]["TYPE"]}
 								typename={opportunities[opportunity]["TYPE_NAME"]}
+								remaining={opportunities[opportunity]["REMAINING"]}
+								translations={translations}
 							></MediumOpportCard>
 						);
 					}

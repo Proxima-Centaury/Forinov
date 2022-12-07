@@ -1,48 +1,56 @@
 import Image from "next/image";
 import Link from "next/link";
+import { GetStaticProps } from "next";
 import styles from "./MediumOpportCard.module.css";
 
-export default function MediumOpportCard(props) {
-	console.log(props.background);
+export default function MediumOpportCard({background, logo, company, title, type, typename, remaining, translations}: any) {
+	console.log(translations);
+	
 	return (
-		<Link href={"/"}>
-			<div className={styles.card + " lift"}>
+		<Link href={"/"} className={styles.card + " lift"}>
 				<div className={styles.background}>
 					<Image
 						alt="background opport card"
-						src={props.background}
+						src={background}
 						fill
+						style={{ objectFit: "cover" }}
 					></Image>
 				</div>
 				<div className={styles.content}>
 					<div className={styles.avatarWrapper}>
-						<img
+						<Image
 							alt="avatar opport card"
-							src={props.logo}
-							layout="fill"
+							src={logo}
+							width={64}
+							height={64}
 							className={styles.avatar}
-						></img>
+						></Image>
 					</div>
 					<div className={styles.info}>
-						<h5 className={styles.name}>{props.company}</h5>
-						<h2 className={styles.title}>{props.title}</h2>
+						<h5 className={styles.name}>{company}</h5>
+						<h2 className={styles.title}>{title}</h2>
 						<div
 							className={styles.type}
 							style={
-								props.type === "1"
+								type === "1"
 									? { backgroundColor: "rgb(var(--project-color))" }
-									: props.type === "2"
+									: type === "2"
 									? { backgroundColor: "rgb(var(--program-color))" }
 									: { backgroundColor: "rgb(var(--event-color))" }
 							}
 						>
-							{props.typename}
+							{typename}
 						</div>
 						<div className={styles.spacer}></div>
-						<p>{props.remaining}</p>
+					<p>{remaining + ' ' + translations["jour(s) restant(s)"]}</p>
 					</div>
 				</div>
-			</div>
 		</Link>
 	);
 }
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Static Props */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const getStaticProps: GetStaticProps = async (context) => ({ props: { ...context } });
+
+export { getStaticProps };
