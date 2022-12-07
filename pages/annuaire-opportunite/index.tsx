@@ -1,10 +1,7 @@
-import React from "react";
 import styles from "../../public/stylesheets/pages/AnnuaireOpport.module.css";
 import OpportSearchbar from "../../components/searchbar/OpportSearchbar";
 import Link from "next/link";
-import { GetStaticProps } from "next";
 import MediumOpportCard from "../../components/opport-cards/MediumOpportCard";
-import { Http2ServerRequest, Http2ServerResponse } from "http2";
 
 const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const lang = "fr";
@@ -25,6 +22,7 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 						<Link
 							href={"/"}
 							key={selector}
+							style={{ margin: "0 !important" }}
 						>
 							<button className="selectorButton">{selector}</button>
 						</Link>
@@ -44,6 +42,8 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 								company={opportunities[opportunity]["NAME"]}
 								type={opportunities[opportunity]["TYPE"]}
 								typename={opportunities[opportunity]["TYPE_NAME"]}
+								remaining={opportunities[opportunity]["REMAINING"]}
+								translations={translations}
 							></MediumOpportCard>
 						);
 					}

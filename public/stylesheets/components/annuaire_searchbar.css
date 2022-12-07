@@ -22,7 +22,6 @@
 .annuaire__searchbar-title>h1 {
     font-family: "Nunito Sans", sans-serif;
     margin: 0 1rem;
-    font-family: 'Nunito Sans';
     font-weight: bold;
 }
 
@@ -119,14 +118,19 @@
     font-weight: bold;
     position: relative;
     z-index: 5;
-    width: calc(100% - .75rem);
+    width: calc(100% - 5px);
     text-align: left;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: .5rem 1rem;
     background-color: white;
-    border-radius: 9999px;
+    border-radius: 9999px 0 0 9999px;
+}
+
+.annuaire__searchbar-select>p {
+    display: flex;
+    align-items: center;
 }
 
 .annuaire__searchbar-select-disabled {
@@ -137,7 +141,7 @@
     justify-content: space-between;
     padding: .5rem 1rem;
     color: #808080;
-    min-width: 270px;
+    width: 265px;
     margin-right: 1rem;
 }
 
@@ -147,20 +151,21 @@
 
 .annuaire__searchbar-select-disabled>i {
     color: #808080;
+    margin-right: 5px;
 }
 
 .annuaire__searchbar-select-count {
-    border-radius: 50%;
+    border-radius: 1000px;
     background-color: #006dff;
-    width: 18px;
-    height: 18px;
     color: white;
     font-size: 0.6rem;
-    position: absolute;
-    margin-left: 5px;
     top: 0;
-    text-align: center;
-    line-height: 18px;
+    width: 18px;
+    height: 18px;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -234,13 +239,18 @@
     background-color: #006dff;
     transition: background-color .2s ease;
 }
+.annuaire__searchbar-more-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
 
 .annuaire__searchbar-more {
     position: relative;
-    width: 100%;
     margin: 0;
-    text-align: right;
     color: #006dff;
     text-decoration: underline;
     cursor: pointer;
+    width: fit-content;
 }
