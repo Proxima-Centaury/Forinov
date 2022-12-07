@@ -11,8 +11,7 @@ export default function MediumOpportCard(props) {
 					<Image
 						alt="background opport card"
 						src={props.background}
-						layout="fill"
-						objectFit="cover"
+						fill
 					></Image>
 				</div>
 				<div className={styles.content}>

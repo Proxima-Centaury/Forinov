@@ -2,15 +2,16 @@ import React from "react";
 import styles from "../../public/stylesheets/pages/AnnuaireOpport.module.css";
 import OpportSearchbar from "../../components/searchbar/OpportSearchbar";
 import Link from "next/link";
-import translations from "../../translations.json";
+import { GetStaticProps } from "next";
 import MediumOpportCard from "../../components/opport-cards/MediumOpportCard";
+import { Http2ServerRequest, Http2ServerResponse } from "http2";
 
-const AnnuaireOpport = ({ filters, dataOpportunities }) => {
+const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const lang = "fr";
 	const opportunities = dataOpportunities[0]["PROJECT"];
 	const page = 1;
 	const cardPerPage = 20;
-	console.log(opportunities);
+	const {translations}: any = states
 
 	return (
 		<>
@@ -19,7 +20,7 @@ const AnnuaireOpport = ({ filters, dataOpportunities }) => {
 				filters={filters[0]}
 			></OpportSearchbar>
 			<div className={styles.typeSelectors}>
-				{translations[lang]["annuaire_opport_selectors"].map((selector) => {
+				{translations["annuaire_opport_selectors"].map((selector: any) => {
 					return (
 						<Link
 							href={"/"}
@@ -36,7 +37,7 @@ const AnnuaireOpport = ({ filters, dataOpportunities }) => {
 						console.log(opportunities[opportunity]["NAME"]);
 						return (
 							<MediumOpportCard
-								key={opportunity["ID"]}
+								key={opportunities[opportunity]["ID"]}
 								background={opportunities[opportunity]["BACKGROUND"]}
 								title={opportunities[opportunity]["TITLE"]}
 								logo={opportunities[opportunity]["LOGO"]}
@@ -52,7 +53,7 @@ const AnnuaireOpport = ({ filters, dataOpportunities }) => {
 	);
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
 	// Appel API des données de filtres
 	const fetchFilters = await fetch(
 		"https://dev.forinov.fr/remote/back/api.php?q=V5_GET_PUBLIC_COMMONS&authkey=Landing&ssid=5cpbs0k7574bv0jlrh0322boe7",
@@ -64,8 +65,10 @@ export async function getServerSideProps() {
 	);
 	const dataOpportunities = await fetchOpportunities.json();
 
-	// On passe les deux variables au composant via les props
-	return { props: { filters, dataOpportunities } };
-}
+	const {locales, defaultLocale, locale}: any = context
+	
 
+	// On passe les deux variables au composant via les props
+	return { props: { filters, dataOpportunities, locales, defaultLocale, locale } };
+}
 export default AnnuaireOpport;
