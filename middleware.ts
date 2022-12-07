@@ -14,7 +14,7 @@ const middleware = async (request: NextRequest) => {
         return;
     };
     if(request.nextUrl.locale === "default") {
-        const locale = request.cookies.get("NEXT_LOCALE") || "en";
+        const locale = request.cookies.get("NEXT_LOCALE") || "fr-FR";
         return NextResponse.redirect(new URL(`/${ locale }${ request.nextUrl.pathname }${ request.nextUrl.search }`, request.url));
     };
 };
