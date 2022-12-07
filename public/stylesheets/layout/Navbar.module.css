@@ -92,7 +92,8 @@
 .navbar > .links > li + li {
     margin: 0px 0px 0px 32px;
 }
-.navbar > .links > li > a {
+.navbar > .links > li > a,
+.navbar > .links > li > p {
     display: flex;
     align-items: center;
     height: 100%;
@@ -106,7 +107,9 @@
     border-color: var(--logo-blue-color);
 }
 .navbar > .links > li > a:hover + ul,
-.navbar > .links > li > a + ul:hover {
+.navbar > .links > li > p:hover + ul,
+.navbar > .links > li > a + ul:hover,
+.navbar > .links > li > p + ul:hover {
     opacity: 1;
     pointer-events: all;
 }
@@ -118,7 +121,8 @@
     .navbar > .links > li + li {
         margin: 16px 0px 0px 0px;
     }
-    .navbar > .links > li > a {
+    .navbar > .links > li > a,
+    .navbar > .links > li > p {
         display: flex;
         justify-content: center;
         align-items: center;

@@ -19,11 +19,6 @@ import config from "../config.json";
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import "../public/stylesheets/base.css";
-
-import "../public/stylesheets/components/annuaire_searchbar.css";
-
-import "../public/stylesheets/pages/login.css";
-import "../public/stylesheets/pages/annuaire_su.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* App */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -38,7 +33,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
     useEffect(() => {
         setCookie("NEXT_LOCALE", locale, 31536000, "/");
-        router.push("/" + router.route, "/" + router.route, { locale: locale.toString() });
+        router.push(router.asPath, router.asPath, { locale: locale.toString() });
     }, [ locale ]);
     pageProps.states = {};
     pageProps.states["locale"] = locale;
