@@ -1,10 +1,7 @@
-import React from "react";
 import styles from "../../public/stylesheets/pages/AnnuaireOpport.module.css";
 import OpportSearchbar from "../../components/searchbar/OpportSearchbar";
 import Link from "next/link";
-import { GetStaticProps } from "next";
 import MediumOpportCard from "../../components/opport-cards/MediumOpportCard";
-import { Http2ServerRequest, Http2ServerResponse } from "http2";
 
 const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const lang = "fr";
