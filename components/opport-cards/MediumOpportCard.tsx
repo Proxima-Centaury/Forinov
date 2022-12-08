@@ -13,6 +13,29 @@ export default function MediumOpportCard({
 	remaining,
 	translations,
 }: any) {
+
+	let bg: string;
+	switch (type) { 
+		case "1":
+			bg = "var(--project-color)";
+			break;
+		case "2":
+			bg = "var(--program-color)";
+			break;
+		case "3":
+			bg = "var(--challenge-color)";
+			break;
+		case "4":
+			bg = "var(--event-color)";
+			break;
+		case "5":
+			bg = "var(--offer-color)";
+			break;
+		default:
+			bg = "var(--project-color)";
+			break;	
+	}
+
 	return (
 		<Link
 			href={"/"}
@@ -43,11 +66,9 @@ export default function MediumOpportCard({
 					<div
 						className={styles.type}
 						style={
-							type === "1"
-								? { background: "var(--project-color) !important" }
-								: type === "2"
-								? { background: "var(--program-color) !important" }
-								: { background: "var(--event-color) !important" }
+							{
+								backgroundColor: bg,
+							}
 						}
 					>
 						{typename}

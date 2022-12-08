@@ -419,10 +419,10 @@
 		}
 	],
 	"annuaire_opport_selectors": [
-		"Tous",
+		"Tout",
 		"Appels à candidature",
 		"Programme d'accompagnement",
-		"Challenge ou concours",
+		"Challenges ou concours",
 		"Évènements",
 		"Offres exclusives"
 	],

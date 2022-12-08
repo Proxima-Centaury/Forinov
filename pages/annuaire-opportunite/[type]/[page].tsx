@@ -29,15 +29,35 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 			></OpportSearchbar>
 			<div className={styles.typeSelectors}>
 				{translations["annuaire_opport_selectors"].map((selector: any) => {
-					return (
-						<Link
-							href={"/"}
-							key={selector}
-							style={{ margin: "0 !important" }}
-						>
-							<button className="selectorButton">{selector}</button>
-						</Link>
-					);
+					const selectorToURL = selector
+						.toLowerCase()
+						.replace(/ /g, "-")
+						.replace(/'/g, "-")
+						.normalize("NFD")
+						.replace(/[\u0300-\u036f]/g, "");
+					console.log(selectorToURL);
+
+					if (selectorToURL === type) {
+						return (
+							<Link
+								href={"/annuaire-opportunite/" + selectorToURL}
+								key={selector}
+								style={{ margin: "0 !important" }}
+							>
+								<button className="selectorButtonActive">{selector}</button>
+							</Link>
+						);
+					} else {
+						return (
+							<Link
+								href={"/annuaire-opportunite/" + selectorToURL}
+								key={selector}
+								style={{ margin: "0 !important" }}
+							>
+								<button className="selectorButton">{selector}</button>
+							</Link>
+						);
+					}
 				})}
 			</div>
 			<div className={styles.opportCardWrapper}>
