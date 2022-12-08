@@ -12,7 +12,7 @@ import Button from "../buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import ButtonStyles from "../../public/stylesheets/components/Button.module.css";
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 import FormStyles from "../../public/stylesheets/components/Form.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Login Form */

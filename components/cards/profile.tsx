@@ -13,7 +13,7 @@ import Button from "../buttons/button";
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ProfileStyles from "../../public/stylesheets/components/cards/Profile.module.css";
-import ButtonStyles from "../../public/stylesheets/components/Button.module.css";
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

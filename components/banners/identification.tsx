@@ -8,8 +8,8 @@ import { buildProperties } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import BannerStyles from "../../public/stylesheets/components/Banner.module.css";
-import ButtonStyles from "../../public/stylesheets/components/Button.module.css";
+import BannerStyles from "../../public/stylesheets/components/banners/Banner.module.css";
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Idenfitication Banner */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

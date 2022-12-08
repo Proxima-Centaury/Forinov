@@ -11,8 +11,8 @@ import IdenfiticationBanner from "../../../components/banners/identification";
 import RecoverBanner from "../../../components/banners/recover";
 import ProfileCard from "../../../components/cards/profile";
 import ProfileMenu from "../../../components/menus/profile";
-import ProfileOverview from "../../../components/content/profile/overview";
-// import ProfileOffer from "../../../components/content/profile/offer";
+import ProfileOverview from "../../../components/contents/profile/overview";
+import ProfileOffer from "../../../components/contents/profile/offer";
 // import ProfileDetails from "../../../components/content/profile/details";
 // import ProfileProducts from "../../../components/content/profile/products";
 // import ProfileEcosystem from "../../../components/content/profile/ecosystem";
@@ -64,8 +64,8 @@ const Profile = ({ profile, products, activity, states, stateSetters }: ProfileI
                 <ProfileOverview { ...parentProps }/>
             </div>
             <div className={ ProfileStyles.content }>
-                {/* <ProfileOffer { ...parentProps }/>
-                <ProfileDetails { ...parentProps }/>
+                <ProfileOffer { ...parentProps }/>
+                {/* <ProfileDetails { ...parentProps }/>
                 { (products) ? <ProfileProducts { ...parentProps }/> : null }
                 <Button { ...pitchDeckButtonparentProps }/>
                 <ProfileEcosystem { ...parentProps }/>

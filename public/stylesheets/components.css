@@ -43,42 +43,6 @@
     color: rgb(var(--white-color));
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Offer */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.profileOffer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-@media screen and (max-width: 990px) {
-    .profileOffer {
-        margin: 16px 0px 0px 0px;
-    }
-}
-.profileOffer > h3 {
-    margin: 0px 0px 16px 16px;
-    font-size: 24px;
-    font-weight: 800;
-}
-.profileOffer > .content {
-    display: flex;
-    flex-direction: column;
-    min-height: 250px;
-    padding: 16px;
-    border-radius: 10px;
-    background-color: rgb(var(--background-sub-color));
-    box-shadow: var(--box-shadow);
-}
-.profileOffer > .content > .label {
-    margin: 0px 0px 8px 0px;
-    font-weight: bold;
-    font-size: 16px;
-    color: rgb(var(--text-inactive-color));
-}
-.profileOffer > .content > p:not(.label) {
-    margin: 0px;
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Details */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .profileDetails {

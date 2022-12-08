@@ -14,7 +14,7 @@ import Button from "../components/buttons/button";
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import NavbarStyles from "../public/stylesheets/layout/Navbar.module.css";
-import ButtonStyles from "../public/stylesheets/components/Button.module.css";
+import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
