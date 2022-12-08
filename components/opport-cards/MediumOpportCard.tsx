@@ -23,6 +23,7 @@ export default function MediumOpportCard({
 					alt="background opport card"
 					src={background}
 					fill
+					sizes="100%"
 					style={{ objectFit: "cover" }}
 				></Image>
 			</div>
