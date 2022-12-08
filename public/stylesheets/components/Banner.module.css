@@ -32,7 +32,7 @@
 .recoverBanner > .actions > * + * {
     margin: 0px 0px 0px 16px;
 }
-.identificationBanner > .actions > a:not(.callToActionNegative) {
+.identificationBanner > .actions > a:not([class*="callToAction"]) {
     color: var(--perfect-white-color);
     text-decoration: underline;
 }

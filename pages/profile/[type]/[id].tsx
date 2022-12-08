@@ -25,6 +25,10 @@ import ProfileCard from "../../../components/cards/profile";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import config from "../../../config.json";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Styles */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import ProfileStyles from "../../../public/stylesheets/pages/Profile.module.css";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Profile = ({ profile, products, activity, states, stateSetters }: ProfileInterface) => {
@@ -49,27 +53,27 @@ const Profile = ({ profile, products, activity, states, stateSetters }: ProfileI
     //     (lock) ? window.addEventListener("click", showRegisterPopup) : null;
     //     return () => window.removeEventListener("click", showRegisterPopup);
     // }, []);
-    const parentProps = { translations };
-    return <div id="profile">
+    const parentProps = { profile, products, activity, states, stateSetters };
+    return <div id="profile" className="container">
         <IdenfiticationBanner { ...parentProps }/>
         { (profile.STATE === "WO") ? <RecoverBanner { ...parentProps }/> : null }
         <ProfileCard { ...parentProps }/>
-        {/* <div className="details">
-            <div className="leftSide">
-                <ProfileMenu { ...parentProps }/>
-                <ProfileOverview { ...parentProps }/>
+        <div className={ ProfileStyles.details }>
+            <div className={ ProfileStyles.leftSide }>
+                {/* <ProfileMenu { ...parentProps }/>
+                <ProfileOverview { ...parentProps }/> */}
             </div>
-            <div className="content">
-                <ProfileOffer { ...parentProps }/>
+            <div className={ ProfileStyles.content }>
+                {/* <ProfileOffer { ...parentProps }/>
                 <ProfileDetails { ...parentProps }/>
                 { (products) ? <ProfileProducts { ...parentProps }/> : null }
                 <Button { ...pitchDeckButtonparentProps }/>
                 <ProfileEcosystem { ...parentProps }/>
                 <ProfilePartners { ...parentProps }/>
                 <ProfileTeam { ...parentProps }/>
-                <ProfileActivity { ...parentProps }/>
+                <ProfileActivity { ...parentProps }/> */}
             </div>
-        </div> */}
+        </div>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
