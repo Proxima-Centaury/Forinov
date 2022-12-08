@@ -10,6 +10,10 @@ import { ButtonInterface } from "../../typescript/interfaces";
 /* Button */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Button = ({ type, faIcon, faIconClass, url, action, text, count }: ButtonInterface) => {
+    const roundedButtonTypes = [
+        ButtonStyles.callToActionRoundedIcon,
+        ButtonStyles.callToActionAlternativeRoundedIcon
+    ];
     const buttonTypes = [
         ButtonStyles.callToAction,
         ButtonStyles.callToActionAlternative
@@ -31,6 +35,12 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count }: ButtonI
                 <i className={ faIconClass }/>
             </span> : null }
             <p>{ text }</p>
+        </button>
+    } else if(roundedButtonTypes.includes(type)) {
+        return <button className={ type } onClick={ action }>
+            { (faIcon) ? <span className={ ButtonStyles.icon }>
+                <i className={ faIconClass }/>
+            </span> : null }
         </button>
     } else if(type === "closeModal") {
         return <button className={ type } onClick={ action }>

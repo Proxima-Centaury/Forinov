@@ -10,7 +10,8 @@ import ButtonStyles from "../../public/stylesheets/components/Button.module.css"
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Idenfitication Banner */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const IdenfiticationBanner = ({ translations }: any) => {
+const IdenfiticationBanner = ({ states }: any) => {
+    const { translations }: any = states;
     return <div className={ BannerStyles.identificationBanner }>
         <p>{ translations["Profitez de Forinov sans limite :"] }</p>
         <div className={ BannerStyles.actions }>

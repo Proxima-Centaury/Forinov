@@ -1,0 +1,197 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile ( Card ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.card {
+    border-radius: 15px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile ( Banner ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.banner {
+    min-height: 192px;
+    height: 192px;
+    max-height: 192px;
+    position: relative;
+}
+.banner > img {
+    min-width: 100%;
+    width: auto;
+    max-width: 100%;
+    min-height: 100%;
+    height: auto;
+    max-height: 100%;
+    top: inherit;
+    right: inherit;
+    bottom: inherit;
+    left: inherit;
+    object-fit: cover;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile ( actions ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    width: 184px;
+    height: 72px;
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    background-color: var(--background-sub-color);
+}
+@media screen and (max-width: 990px) {
+    .actions {
+        top: 16px;
+        bottom: inherit;
+    }
+}
+.actions > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+.actions > div > p {
+    margin: 0px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--logo-blue-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile ( Body ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.body {
+    display: flex;
+    flex: 1;
+}
+@media screen and (max-width: 990px) {
+    .body {
+        flex-direction: column;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile ( Pictures ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.picture {
+    display: flex;
+    justify-content: center;
+    min-width: calc(120px + (2 * 16px));
+    width: calc(120px + (2 * 16px));
+    max-width: calc(120px + (2 * 16px));
+    position: relative;
+}
+@media screen and (max-width: 990px) {
+    .picture {
+        margin: 0px auto;
+    }
+}
+.picture > img {
+    min-width: 120px;
+    width: auto;
+    max-width: 120px;
+    min-height: 120px;
+    height: auto;
+    max-height: 120px;
+    position: absolute;
+    top: calc(-120px / 2);
+    right: inherit;
+    bottom: inherit;
+    left: inherit;
+    object-fit: cover;
+    border: var(--border);
+    border-width: 3px;
+    border-color: var(--background-sub-color);
+    border-radius: 60px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile ( Content ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.content {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - (120px + (2 * 16px)));
+    padding: 16px 16px 16px 0px;
+}
+@media screen and (max-width: 990px) {
+    .content {
+        width: 100%;
+        margin-top: calc(120px / 2);
+        padding: 16px;
+    }
+}
+.content > h3 {
+    margin: 0px auto 8px 0px;
+    font-family: "Nunito Sans";
+    font-size: 24px;
+    font-weight: 800;
+}
+.content > .informations {
+    display: flex;
+    align-items: center;
+    margin: 0px auto 8px 0px;
+}
+.content > .informations > * + * {
+    margin: 0px 0px 0px 24px;
+}
+.content > .informations > div {
+    display: flex;
+    align-items: center;
+}
+.content > .informations > div > i {
+    padding: 0px 8px 0px 0px;
+}
+.content > .informations > div > p {
+    margin: 0px;
+    font-size: 14px;
+    color: var(--text-inactive-color);
+}
+.content > .informations > div > a {
+    font-weight: bold;
+    color: var(--main-color);
+    text-decoration: underline;
+}
+.content > .description {
+    margin: 0px 0px 8px 0px;
+}
+.content > .description > p {
+    margin: 0px;
+}
+.content > .stats {
+    display: flex;
+}
+.content > .stats > * + * {
+    margin: 0px 0px 0px 16px;
+}
+.content > .stats > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.content > .stats > div > p {
+    margin: 0px;
+    color: var(--text-inactive-color);
+}
+.content > .stats > div > p:not(.label) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: "Nunito Sans";
+    font-size: 32px;
+    font-weight: 800;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile ( Note ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.note {
+    padding: 16px;
+}
+.note > p {
+    margin: 0px;
+    font-size: 16px;
+}
