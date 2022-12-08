@@ -1,14 +1,17 @@
-import styles from "../../public/stylesheets/pages/AnnuaireOpport.module.css";
-import OpportSearchbar from "../../components/searchbar/OpportSearchbar";
+import styles from "../../../public/stylesheets/pages/AnnuaireOpport.module.css";
+import OpportSearchbar from "../../../components/searchbar/OpportSearchbar";
 import Link from "next/link";
-import MediumOpportCard from "../../components/opport-cards/MediumOpportCard";
+import MediumOpportCard from "../../../components/opport-cards/MediumOpportCard";
+import { useRouter } from "next/router";
 
 const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
+	const router = useRouter() as any;
+	const { page } = router.query;
+
 	const lang = "fr";
 	const opportunities = dataOpportunities[0]["PROJECT"];
-	const page = 1;
 	const cardPerPage = 20;
-	const {translations}: any = states
+	const { translations }: any = states;
 
 	return (
 		<>
@@ -65,10 +68,11 @@ export async function getServerSideProps(context: any) {
 	);
 	const dataOpportunities = await fetchOpportunities.json();
 
-	const {locales, defaultLocale, locale}: any = context
-	
+	const { locales, defaultLocale, locale }: any = context;
 
 	// On passe les deux variables au composant via les props
-	return { props: { filters, dataOpportunities, locales, defaultLocale, locale } };
+	return {
+		props: { filters, dataOpportunities, locales, defaultLocale, locale },
+	};
 }
 export default AnnuaireOpport;
