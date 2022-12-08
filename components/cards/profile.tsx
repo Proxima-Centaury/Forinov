@@ -26,7 +26,7 @@ const ProfileCard = ({ profile, states }: any) => {
     const contactButtonObject = buildProperties(buttonProps, contactButtonValues);
     const parametersButtonValues = [ ButtonStyles.callToActionAlternativeRoundedIcon, true, "fa-solid fa-ellipsis", "", () => false, "", 0 ];
     const parametersButtonObject = buildProperties(buttonProps, parametersButtonValues);
-    return <div className={ ProfileStyles.card } data-type="full">
+    return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
             <img src={ profile.BACKGROUND } alt=""/>
             <div className={ ProfileStyles.actions }>

@@ -10,7 +10,7 @@ import { ProfileInterface } from "../../../typescript/interfaces";
 import IdenfiticationBanner from "../../../components/banners/identification";
 import RecoverBanner from "../../../components/banners/recover";
 import ProfileCard from "../../../components/cards/profile";
-// import ProfileMenu from "../../../components/menus/profile";
+import ProfileMenu from "../../../components/menus/profile";
 // import ProfileOverview from "../../../components/content/profile/overview";
 // import ProfileOffer from "../../../components/content/profile/offer";
 // import ProfileDetails from "../../../components/content/profile/details";
@@ -60,8 +60,8 @@ const Profile = ({ profile, products, activity, states, stateSetters }: ProfileI
         <ProfileCard { ...parentProps }/>
         <div className={ ProfileStyles.details }>
             <div className={ ProfileStyles.leftSide }>
-                {/* <ProfileMenu { ...parentProps }/>
-                <ProfileOverview { ...parentProps }/> */}
+                <ProfileMenu { ...parentProps }/>
+                {/* <ProfileOverview { ...parentProps }/> */}
             </div>
             <div className={ ProfileStyles.content }>
                 {/* <ProfileOffer { ...parentProps }/>
