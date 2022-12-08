@@ -43,32 +43,6 @@
     color: rgb(var(--white-color));
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Details */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.profileDetails {
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    border-radius: 15px;
-    background-color: rgb(var(--background-sub-color));
-    box-shadow: var(--box-shadow);
-}
-.profileDetails > .details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.profileDetails > .details > div {
-    display: flex;
-    flex: 1;
-}
-.profileDetails > .details > div > .label {
-    margin: 0px;
-    font-weight: bold;
-    font-size: 16px;
-    color: rgb(var(--text-inactive-color));
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Products */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .profileProducts {
