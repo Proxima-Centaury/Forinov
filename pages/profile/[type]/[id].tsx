@@ -14,7 +14,7 @@ import ProfileMenu from "../../../components/menus/profile";
 import ProfileOverview from "../../../components/contents/profile/overview";
 import ProfileOffer from "../../../components/contents/profile/offer";
 import ProfileTargets from "../../../components/contents/profile/targets";
-// import ProfileProducts from "../../../components/content/profile/products";
+import ProfileProducts from "../../../components/contents/profile/products";
 // import ProfileEcosystem from "../../../components/content/profile/ecosystem";
 // import ProfilePartners from "../../../components/content/profile/partners";
 // import ProfileTeam from "../../../components/content/profile/team";
@@ -66,9 +66,9 @@ const Profile = ({ profile, products, activity, states, stateSetters }: ProfileI
             <div className={ ProfileStyles.content }>
                 <ProfileOffer { ...parentProps }/>
                 <ProfileTargets { ...parentProps }/>
-                {/* { (products) ? <ProfileProducts { ...parentProps }/> : null }
-                <Button { ...pitchDeckButtonparentProps }/>
-                <ProfileEcosystem { ...parentProps }/>
+                { (products) ? <ProfileProducts { ...parentProps }/> : null }
+                {/* <Button { ...pitchDeckButtonparentProps }/> */}
+                {/* <ProfileEcosystem { ...parentProps }/>
                 <ProfilePartners { ...parentProps }/>
                 <ProfileTeam { ...parentProps }/>
                 <ProfileActivity { ...parentProps }/> */}
