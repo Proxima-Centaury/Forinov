@@ -41,9 +41,13 @@
 .overview > .details > .website > * + *,
 .overview > .details > .networks > * + * {
     margin: 0px 0px 0px 8px;
+    transition: color 0.3s ease;
 }
 .overview > .details > .website > a {
     font-weight: bold;
     color: var(--logo-blue-color);
     text-decoration: underline;
+}
+.overview > .details > .networks > a:hover {
+    color: var(--logo-blue-color);
 }
