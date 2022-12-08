@@ -22,12 +22,12 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count }: ButtonI
     ];
     if(type === "default") {
         return <button></button>;
-    } else if(!url && type === "moreOrLess") {
+    } else if(!url && type === ButtonStyles.moreOrLess) {
         return <button className="seeMore" onClick={ action }>
             <span>{ text + ((count)  ? " (" + count + ")" : " ") }</span>
             <i className="fa-solid fa-caret-right"/>
         </button>;
-    } else if(!url && type === "moreOrLessAlternative") {
+    } else if(!url && type === ButtonStyles.moreOrLessAlternative) {
         return <button className="seeMoreAlternative" onClick={ action }>
             <span>{ text + ((count)  ? " (" + count + ")" : " ") }</span>
         </button>;

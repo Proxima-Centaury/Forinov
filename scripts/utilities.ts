@@ -285,19 +285,33 @@ class Utilities {
         const container = document.querySelector("#__next");
         return (container) ? container.scrollTo(x as number, y as number - 16) : null;
     };
-    // seeMoreOrLess = (event, translations, selector, array = [], defaultVisibleItemsCount = 1, counter = true) => {
-    //     const target = event.target.closest("button");
-    //     const visibleElements = document.querySelectorAll(selector + ":not(.hidden)");
-    //     const hiddenElements = document.querySelectorAll(selector + ".hidden");
-    //     if(hiddenElements.length > 0) {
-    //         hiddenElements.forEach((hiddenElement) => hiddenElement.classList.remove("hidden"));
-    //         target.querySelector("span").innerText = translations["Voir moins"];
-    //     } else {
-    //         visibleElements.forEach((visibleElement, key) => (key >= defaultVisibleItemsCount) ? visibleElement.classList.add("hidden") : null);
-    //         target.querySelector("span").innerText = translations["Voir plus"] + ((array.length > 0) ? " (" + (array.length - defaultVisibleItemsCount) + ")" : "");
-    //     };
-    //     return [ target, hiddenElements ];
-    // };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function seeMoreOrLess
+    * @param { any } [ event ] Should be an ```event```.
+    * @param { any } [ translations ] Should be an ```object```.
+    * @param { String } [ selector ] Should be a ```string```.
+    * @param { Array<any> } [ array ] Should be an ```array```.
+    * @param { Number } [ defaultVisibleItemsCount ] Should be a ```number```.
+    * @param { Number } [ counter ] Should be a ```number```.
+    * @returns { array }
+    * - ```array```.
+    * ---
+    * @note This method is used to display more items.
+    */
+    seeMoreOrLess = (event: any, translations: any, selector: String, array = [], defaultVisibleItemsCount = 1, counter = true): Array<any> => {
+        const target = event.target.closest("button");
+        const visibleElements = document.querySelectorAll(selector + ":not(.hidden)");
+        const hiddenElements = document.querySelectorAll(selector + ".hidden");
+        if(hiddenElements.length > 0) {
+            hiddenElements.forEach((hiddenElement) => hiddenElement.classList.remove("hidden"));
+            target.querySelector("span").innerText = translations["Voir moins"];
+        } else {
+            visibleElements.forEach((visibleElement, key) => (key >= defaultVisibleItemsCount) ? visibleElement.classList.add("hidden") : null);
+            target.querySelector("span").innerText = translations["Voir plus"] + ((array.length > 0) ? " (" + (array.length - defaultVisibleItemsCount) + ")" : "");
+        };
+        return [ target, hiddenElements ];
+    };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Instance */
@@ -315,7 +329,7 @@ const handleOutOfArea = utilities.handleOutOfArea;
 const preventSubmit = utilities.preventSubmit;
 const buildProperties = utilities.buildProperties;
 const scrollTo = utilities.scrollTo;
-// const seeMoreOrLess = utilities.seeMoreOrLess;
+const seeMoreOrLess = utilities.seeMoreOrLess;
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -329,5 +343,6 @@ export {
     handleOutOfArea,
     preventSubmit,
     buildProperties,
-    scrollTo
+    scrollTo,
+    seeMoreOrLess
 };
