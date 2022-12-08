@@ -13,7 +13,7 @@ import ProfileCard from "../../../components/cards/profile";
 import ProfileMenu from "../../../components/menus/profile";
 import ProfileOverview from "../../../components/contents/profile/overview";
 import ProfileOffer from "../../../components/contents/profile/offer";
-// import ProfileDetails from "../../../components/content/profile/details";
+import ProfileTargets from "../../../components/contents/profile/targets";
 // import ProfileProducts from "../../../components/content/profile/products";
 // import ProfileEcosystem from "../../../components/content/profile/ecosystem";
 // import ProfilePartners from "../../../components/content/profile/partners";
@@ -65,8 +65,8 @@ const Profile = ({ profile, products, activity, states, stateSetters }: ProfileI
             </div>
             <div className={ ProfileStyles.content }>
                 <ProfileOffer { ...parentProps }/>
-                {/* <ProfileDetails { ...parentProps }/>
-                { (products) ? <ProfileProducts { ...parentProps }/> : null }
+                <ProfileTargets { ...parentProps }/>
+                {/* { (products) ? <ProfileProducts { ...parentProps }/> : null }
                 <Button { ...pitchDeckButtonparentProps }/>
                 <ProfileEcosystem { ...parentProps }/>
                 <ProfilePartners { ...parentProps }/>

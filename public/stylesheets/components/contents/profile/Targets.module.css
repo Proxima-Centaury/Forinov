@@ -1,36 +1,26 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Offer ( Profile ) */
+/* Targets ( Profile ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.offer {
+.targets {
     display: flex;
     flex-direction: column;
-    width: 100%;
-}
-@media screen and (max-width: 990px) {
-    .offer {
-        margin: 16px 0px 0px 0px;
-    }
-}
-.offer > h3 {
-    margin: 0px 0px 16px 16px;
-    font-size: 24px;
-    font-weight: 800;
-}
-.offer > .content {
-    display: flex;
-    flex-direction: column;
-    min-height: 250px;
     padding: 16px;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
 }
-.offer > .content > .label {
-    margin: 0px 0px 8px 0px;
+.targets > .details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.targets > .details > div {
+    display: flex;
+    flex: 1;
+}
+.targets > .details > div > .label {
+    margin: 0px;
     font-weight: bold;
     font-size: 16px;
     color: var(--text-inactive-color);
-}
-.offer > .content > p:not(.label) {
-    margin: 0px;
 }
