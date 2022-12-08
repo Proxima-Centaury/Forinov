@@ -1,0 +1,49 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Overview ( Profile ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.overview {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: calc(18px + 136px + 16px);
+    padding: 16px;
+    border-radius: 15px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+}
+.overview > h4 {
+    margin: 0px;
+    font-family: "Nunito Sans";
+    font-size: 24px;
+    font-weight: 800;
+}
+.overview > .details {
+    display: flex;
+    flex-direction: column;
+}
+.overview > .details:nth-of-type(3) {
+    margin: 16px 0px 16px 0px;
+}
+.overview > .details > .label {
+    margin: 0px 0px 0px 0px;
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--text-inactive-color);
+}
+.overview > .details > p {
+    margin: 8px 0px 0px 0px;
+}
+.overview > .details > .location,
+.overview > .details > .website {
+    margin: 0px 0px 8px 0px;
+}
+.overview > .details > .location > * + *,
+.overview > .details > .website > * + *,
+.overview > .details > .networks > * + * {
+    margin: 0px 0px 0px 8px;
+}
+.overview > .details > .website > a {
+    font-weight: bold;
+    color: var(--logo-blue-color);
+    text-decoration: underline;
+}
