@@ -3,18 +3,26 @@ import OpportSearchbar from "../../../components/searchbar/OpportSearchbar";
 import Link from "next/link";
 import MediumOpportCard from "../../../components/opport-cards/MediumOpportCard";
 import { useRouter } from "next/router";
+import PageIndex from "../../../components/pagination/PageIndex";
 
 const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const router = useRouter() as any;
-	const { page } = router.query;
+	let { type, page } = router.query;
+	console.log(type, page);
 
-	const lang = "fr";
+	
+
+
 	const opportunities = dataOpportunities[0]["PROJECT"];
 	const cardPerPage = 20;
 	const { translations }: any = states;
 
+	const nbPages = Math.ceil(Object.keys(opportunities).length / cardPerPage);
+
+	
+
 	return (
-		<>
+		<div className="container">
 			<OpportSearchbar
 				active="1"
 				filters={filters[0]}
@@ -35,7 +43,6 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 			<div className={styles.opportCardWrapper}>
 				{Object.keys(opportunities).map((opportunity, index) => {
 					if (index < cardPerPage * page && index >= cardPerPage * (page - 1)) {
-						console.log(opportunities[opportunity]["NAME"]);
 						return (
 							<MediumOpportCard
 								key={opportunities[opportunity]["ID"]}
@@ -52,23 +59,58 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 					}
 				})}
 			</div>
-		</>
+			<PageIndex
+				nbPages={nbPages}
+				currentPage={page}
+				url={`/annuaire-opportunite/${type}`}
+			></PageIndex>
+		</div>
 	);
 };
 
 export async function getServerSideProps(context: any) {
+	const { req, res, query, locales, defaultLocale, locale }: any = context;
+
+	const lang: any = locale.split("-")[0];
+	const url = require("../../../public/static/url_trad.json");
+
+	const { type }: any = query;
+	let typeID: string | null;
+	let dataOpportunities: any;
+
+	if (type === url[lang]["tout"]) {
+		typeID = null;
+	} else if (type === url[lang]["appels-a-candidature"]) {
+		typeID = "1";
+	} else if (type === url[lang]["programme-accompagnement"]) {
+		typeID = "2";
+	} else if (type === url[lang]["challenges-ou-concours"]) {
+		typeID = "3";
+	} else if (type === url[lang]["evenements"]) {
+		typeID = "4";
+	} else if (type === url[lang]["offres-exclusives"]) {
+		typeID = "5";
+	} else {
+		typeID = null;
+	}
+
+	if (typeID === null) {
+		const fetchOpportunities = await fetch(
+			"https://dev.forinov.fr/remote/back/api.php?q=LANDING_FULLOPPORTUNITES&authkey=Landing&3",
+		);
+		dataOpportunities = await fetchOpportunities.json();
+	} else {
+		const fetchOpportunitiesWithType = await fetch(
+			`https://dev.forinov.fr/remote/back/api.php?q=LANDING_FULLOPPORTUNITES&authkey=Landing&type_id=${typeID}&3`,
+		);
+		dataOpportunities = await fetchOpportunitiesWithType.json();
+	}
+
 	// Appel API des données de filtres
 	const fetchFilters = await fetch(
 		"https://dev.forinov.fr/remote/back/api.php?q=V5_GET_PUBLIC_COMMONS&authkey=Landing&ssid=5cpbs0k7574bv0jlrh0322boe7",
 	);
 	const filters = await fetchFilters.json();
-
-	const fetchOpportunities = await fetch(
-		"https://dev.forinov.fr/remote/back/api.php?q=LANDING_FULLOPPORTUNITES&authkey=Landing&3",
-	);
-	const dataOpportunities = await fetchOpportunities.json();
-
-	const { locales, defaultLocale, locale }: any = context;
 
 	// On passe les deux variables au composant via les props
 	return {

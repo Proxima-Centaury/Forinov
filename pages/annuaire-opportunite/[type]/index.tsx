@@ -2,6 +2,9 @@ import styles from "../../../public/stylesheets/pages/AnnuaireOpport.module.css"
 import OpportSearchbar from "../../../components/searchbar/OpportSearchbar";
 import Link from "next/link";
 import MediumOpportCard from "../../../components/opport-cards/MediumOpportCard";
+import PageIndex from "../../../components/pagination/PageIndex";
+import { useRouter } from "next/router";
+import urlTranslations from "../../../public/static/url_trad.json"
 
 const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const lang = "fr";
@@ -9,18 +12,26 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const page = 1;
 	const cardPerPage = 20;
 	const { translations }: any = states;
+	const nbPages = Math.ceil(Object.keys(opportunities).length / cardPerPage);
+
+	const router = useRouter() as any;
+
+	const { type } = router.query;
 
 	return (
-		<>
+		<div className="container">
 			<OpportSearchbar
 				active="1"
 				filters={filters[0]}
 			></OpportSearchbar>
 			<div className={styles.typeSelectors}>
 				{translations["annuaire_opport_selectors"].map((selector: any) => {
+					const selectorToURL = selector.toLowerCase().replace(/ /g, "-");
+					console.log(selectorToURL);
+					
 					return (
 						<Link
-							href={"/"}
+							href={'/'}
 							key={selector}
 							style={{ margin: "0 !important" }}
 						>
@@ -48,7 +59,12 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 					}
 				})}
 			</div>
-		</>
+			<PageIndex
+				nbPages={nbPages}
+				currentPage={page}
+				url={`/annuaire-opportunite/${type}`}
+			></PageIndex>
+		</div>
 	);
 };
 
@@ -83,14 +99,11 @@ export async function getServerSideProps(context: any) {
 			"https://dev.forinov.fr/remote/back/api.php?q=LANDING_FULLOPPORTUNITES&authkey=Landing&3",
 		);
 		dataOpportunities = await fetchOpportunities.json();
-		console.log("TYPEID : " + typeID + ", " + typeof typeID);
 	} else {
 		const fetchOpportunitiesWithType = await fetch(
 			`https://dev.forinov.fr/remote/back/api.php?q=LANDING_FULLOPPORTUNITES&authkey=Landing&type_id=${typeID}&3`,
 		);
 		dataOpportunities = await fetchOpportunitiesWithType.json();
-		console.log("TYPEID : " + typeID);
-		console.log(dataOpportunities[0]["PROJECT"]);
 	}
 
 	// Appel API des données de filtres

@@ -133,25 +133,7 @@
 }
 
 @media only screen and (max-width: 991px) {
-    .title {
-        font-size: 14px;
-    }
-
-    .type {
-        font-size: 12px;
-    }
-}
-
-@media only screen and (max-width: 768px) {
     .card {
         width: 100%;
-    }
-
-    .title {
-        font-size: 19px;
-    }
-
-    .type {
-        font-size: 14px;
     }
 }
