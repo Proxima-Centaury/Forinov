@@ -2,38 +2,13 @@ import styles from "../../../public/stylesheets/pages/AnnuaireOpport.module.css"
 import OpportSearchbar from "../../../components/searchbar/OpportSearchbar";
 import Link from "next/link";
 import MediumOpportCard from "../../../components/opport-cards/MediumOpportCard";
-import { useRouter } from "next/router";
 
 const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const lang = "fr";
 	const opportunities = dataOpportunities[0]["PROJECT"];
 	const page = 1;
 	const cardPerPage = 20;
-	const { translations }: any = states
-
-	const router = useRouter() as any;
-	const {type} = router.query
-
-	console.log(type);
-
-	switch (type) { 
-		case "1":
-			console.log("1");
-			break;
-		case "2":
-			console.log("2");
-			break;
-		case "3":
-			console.log("3");
-			break;
-		case "4":
-			console.log("4");
-			break;
-		case "5":
-			console.log("5");
-			break;
-	}
-	
+	const { translations }: any = states;
 
 	return (
 		<>
@@ -78,18 +53,45 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 };
 
 export async function getServerSideProps(context: any) {
-	
-	const { req, res, query, locales, defaultLocale, locale }: any = context
+	const { req, res, query, locales, defaultLocale, locale }: any = context;
 
-	console.log(locale.split("-")[0]);
-	
+	const lang: any = locale.split("-")[0];
+	const url = require("../../../public/static/url_trad.json");
 
+	const { type }: any = query;
+	let typeID: string | null;
+	let dataOpportunities: any;
 
-	switch (query.type) { 
-		case query.type === translations["url_appel-a-projets"]:
-		
+	if (type === url[lang]["tout"]) {
+		typeID = null;
+	} else if (type === url[lang]["appels-a-candidature"]) {
+		typeID = "1";
+	} else if (type === url[lang]["programme-accompagnement"]) {
+		typeID = "2";
+	} else if (type === url[lang]["challenges-ou-concours"]) {
+		typeID = "3";
+	} else if (type === url[lang]["evenements"]) {
+		typeID = "4";
+	} else if (type === url[lang]["offres-exclusives"]) {
+		typeID = "5";
+	} else {
+		typeID = null;
 	}
-	
+
+	if (typeID === null) {
+		const fetchOpportunities = await fetch(
+			"https://dev.forinov.fr/remote/back/api.php?q=LANDING_FULLOPPORTUNITES&authkey=Landing&3",
+		);
+		dataOpportunities = await fetchOpportunities.json();
+		console.log("TYPEID : " + typeID + ", " + typeof typeID);
+	} else {
+		const fetchOpportunitiesWithType = await fetch(
+			`https://dev.forinov.fr/remote/back/api.php?q=LANDING_FULLOPPORTUNITES&authkey=Landing&type_id=${typeID}&3`,
+		);
+		dataOpportunities = await fetchOpportunitiesWithType.json();
+		console.log("TYPEID : " + typeID);
+		console.log(dataOpportunities[0]["PROJECT"]);
+	}
 
 	// Appel API des données de filtres
 	const fetchFilters = await fetch(
@@ -97,14 +99,9 @@ export async function getServerSideProps(context: any) {
 	);
 	const filters = await fetchFilters.json();
 
-	const fetchOpportunities = await fetch(
-		"https://dev.forinov.fr/remote/back/api.php?q=LANDING_FULLOPPORTUNITES&authkey=Landing&3",
-	);
-	const dataOpportunities = await fetchOpportunities.json();
-
-	
-
 	// On passe les deux variables au composant via les props
-	return { props: { filters, dataOpportunities, locales, defaultLocale, locale } };
+	return {
+		props: { filters, dataOpportunities, locales, defaultLocale, locale },
+	};
 }
 export default AnnuaireOpport;

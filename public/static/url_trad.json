@@ -1,0 +1,18 @@
+{
+    "fr": {
+        "tout": "tout",
+        "appels-a-candidature": "appels-a-candidature",
+        "programme-accompagnement": "programme-accompagnement",
+        "challenges-ou-concours": "challenges-ou-concours",
+        "evenements": "evenements",
+        "offres-exclusives": "offres-exclusives"
+    },
+    "en": {
+        "tout": "all",
+        "appels-a-candidature": "calls-for-application",
+        "programme-accompagnement": "support-program",
+        "challenges-ou-concours": "challenges-or-contests",
+        "evenements": "events",
+        "offres-exclusives": "exclusive-offers"
+    } 
+}
