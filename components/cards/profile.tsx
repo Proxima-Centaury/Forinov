@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { ButtonInterface, InputInterface, LoginInterface } from "../../typescript/interfaces";
+import { ButtonInterface } from "../../typescript/interfaces";
 import { buildProperties } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -83,7 +83,7 @@ const ProfileCard = ({ profile, states }: any) => {
                 </div>
             </div>
         </div>
-        { (profile.STATE === "WO") ? <div className="note">
+        { (profile.STATE === "WO") ? <div className={ ProfileStyles.note }>
             <p>{ translations["Ce compte n’est pas officiel. S’il s’agit de votre startup, n’hésitez pas à récupérer les accès."] }</p>
         </div> : null }
     </div>;
