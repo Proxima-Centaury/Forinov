@@ -10,6 +10,7 @@ import { setCookie, getTranslations } from "../scripts/utilities";
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Navbar from "../layout/navbar";
+import Transition from "../layout/transition";
 import Footer from "../layout/footer";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
@@ -19,7 +20,6 @@ import config from "../config.json";
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import "../public/stylesheets/base.css";
-
 import "../public/stylesheets/components/annuaire_searchbar.css";
 import "../public/stylesheets/pages/annuaire_su.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -61,10 +61,10 @@ const App = ({ Component, pageProps }: AppProps) => {
             <link rel="icon" href="/assets/logo.png"/>
         </Head>
         <Navbar { ...pageProps }/>
-        <div className="container">
+        <Transition>
             <Component { ...pageProps }/>
             <Footer { ...pageProps }/>
-        </div>
+        </Transition>
         {/* <Modal { ...pageProps }/> */}
     </>;
 };

@@ -1,88 +1,22 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import styles from "../public/stylesheets/pages/Index.module.css";
 import Head from "next/head";
+import { GetStaticProps } from "next";
+import styles from "../public/stylesheets/pages/Home.module.css";
 import trustedBy from "../public/static/trustedBy.json";
 import AccordionItem from "../components/accordion/AccordionItem";
-import { GetStaticProps } from "next";
 import { HomeInterface } from "../typescript/interfaces";
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home */
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 	const { translations }: any = states;
-
-	console.log(translations["Forinov"]);
-
-	return (
-		<>
-			<Head>
-				<title>Index Forinov</title>
-				<style>
-					{`
-		#__next, body {
-			overflow: auto !important;
-			width: auto !important;
-			height: auto !important;
-			margin: 0 !important;
-			padding: 0 !important;
-		}
-			
-          .container {
-            margin: 0 !important;
-            padding: 0 !important;
-            max-width: 100% !important;
-            overflow: hidden !important;
-          }
-
-          #activeButton {
-            background-color: #57595d;
-            color: #fff;
-		  }
-
-		#collapseCtaActive {
-			box-sizing: border-box;
-			margin: 0;
-			overflow: visible;
-			display: inline-block;
-			color: #161c2d;
-			vertical-align: middle;
-			user-select: none;
-			border: 1px solid transparent;
-			padding: .8125rem 1.25rem;
-			transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-			text-transform: uppercase!important;
-			border-radius: 50rem;
-			background-color: #e7e7e7;
-			font-family: "Open Sans", sans-serif;
-			font-size: 0.875rem;
-			font-weight: 600;
-			font-stretch: normal;
-			font-style: normal;
-			line-height: normal;
-			letter-spacing: 1.25px;
-			text-align: center;
-			cursor: pointer;
-		}
-
-          .layout__footer {
-            top: 80px;
-            padding-right: 12px;
-            padding-left: 12px;
-            padding-top: 4.5rem !important;
-            padding-bottom: 4.5rem !important;
-            margin-top: 50px;
-            margin-bottom: 50px;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 75%;
-          }
-
-        `}
-				</style>
-			</Head>
-			<div className={styles.container}>
+	return <>
+		<Head>
+			<title>Forinov - { translations["Accueil"] }</title>
+		</Head>
+			<div>
 				<section className={styles.hero}>
 					<div className={styles.text}>
 						<h1 className={styles.title}>
@@ -373,8 +307,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 					</div>
 				</section>
 			</div>
-		</>
-	);
+	</>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Static Props */
