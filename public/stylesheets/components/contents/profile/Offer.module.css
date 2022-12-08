@@ -22,14 +22,14 @@
     min-height: 250px;
     padding: 16px;
     border-radius: 10px;
-    background-color: rgb(var(--background-sub-color));
+    background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
 }
 .offer > .content > .label {
     margin: 0px 0px 8px 0px;
     font-weight: bold;
     font-size: 16px;
-    color: rgb(var(--text-inactive-color));
+    color: var(--text-inactive-color);
 }
 .offer > .content > p:not(.label) {
     margin: 0px;

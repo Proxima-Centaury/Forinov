@@ -13,8 +13,8 @@ const ProfileOffer = ({ profile, states }: any) => {
     const { lock, translations }: any = states;
     return <div id="offer" className={ ProfileStyles.offer }>
         <h3>{ translations["Notre offre"] }</h3>
-        <div className={ "content" + ((lock) ? " locked gradient" : "") }>
-            <p className="label">{ translations["Ce que nous apportons aux entreprises"] }</p>
+        <div className={ ProfileStyles.content + ((lock) ? " locked gradient" : "") }>
+            <p className={ ProfileStyles.label }>{ translations["Ce que nous apportons aux entreprises"] }</p>
             <Format content={ profile.OURVALUE }/>
             { (lock) ? <div className="lockedContent">
                 <i className="fa-solid fa-lock"/>
