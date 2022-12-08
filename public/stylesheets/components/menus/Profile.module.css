@@ -16,7 +16,7 @@
     margin: 0px 0px 8px 0px;
     font-size: 12px;
     font-style: italic;
-    color: rgb(var(--text-inactive-color));
+    color: var(--text-inactive-color);
 }
 .menu > ul {
     display: flex;
@@ -28,7 +28,7 @@
 .menu > ul > li > a {
     position: relative;
     font-size: 16px;
-    color: rgb(var(--text-main-color));
+    color: var(--text-main-color);
     text-decoration: underline;
     text-decoration-color: transparent;
     transition: text-decoration-color 0.3s ease;
@@ -36,7 +36,7 @@
 .menu > ul > li > a:hover,
 .menu > ul > li > a.active {
     font-weight: bold;
-    text-decoration-color: rgb(var(--text-main-color));
+    text-decoration-color: var(--text-main-color);
 }
 .menu > ul > li > a::before {
     width: 8px;
@@ -48,9 +48,10 @@
     transform: translateY(-50%);
     opacity: 0;
     border-radius: calc(8px / 2);
-    background-color: rgb(var(--main-color));
+    background-color: var(--logo-blue-color);
     transition: opacity 0.3s ease;
 }
+.menu > ul > li > a:hover::before,
 .menu > ul > li > a.active::before {
     opacity: 1;
 }
