@@ -4,7 +4,7 @@ import Link from "next/link";
 import MediumOpportCard from "../../../components/opport-cards/MediumOpportCard";
 import PageIndex from "../../../components/pagination/PageIndex";
 import { useRouter } from "next/router";
-import urlTranslations from "../../../public/static/url_trad.json"
+import urlTranslations from "../../../public/static/url_trad.json";
 
 const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const lang = "fr";
@@ -26,18 +26,35 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 			></OpportSearchbar>
 			<div className={styles.typeSelectors}>
 				{translations["annuaire_opport_selectors"].map((selector: any) => {
-					const selectorToURL = selector.toLowerCase().replace(/ /g, "-");
+					const selectorToURL = selector
+						.toLowerCase()
+						.replace(/ /g, "-")
+						.replace(/'/g, "-")
+						.normalize("NFD")
+						.replace(/[\u0300-\u036f]/g, "");
 					console.log(selectorToURL);
-					
-					return (
-						<Link
-							href={'/'}
-							key={selector}
-							style={{ margin: "0 !important" }}
-						>
-							<button className="selectorButton">{selector}</button>
-						</Link>
-					);
+
+					if (selectorToURL === type) {
+						return (
+							<Link
+								href={"/annuaire-opportunite/" + selectorToURL}
+								key={selector}
+								style={{ margin: "0 !important" }}
+							>
+								<button className="selectorButtonActive">{selector}</button>
+							</Link>
+						);
+					} else {
+						return (
+							<Link
+								href={"/annuaire-opportunite/" + selectorToURL}
+								key={selector}
+								style={{ margin: "0 !important" }}
+							>
+								<button className="selectorButton">{selector}</button>
+							</Link>
+						);
+					}
 				})}
 			</div>
 			<div className={styles.opportCardWrapper}>
@@ -82,7 +99,7 @@ export async function getServerSideProps(context: any) {
 		typeID = null;
 	} else if (type === url[lang]["appels-a-candidature"]) {
 		typeID = "1";
-	} else if (type === url[lang]["programme-accompagnement"]) {
+	} else if (type === url[lang]["programme-d-accompagnement"]) {
 		typeID = "2";
 	} else if (type === url[lang]["challenges-ou-concours"]) {
 		typeID = "3";
