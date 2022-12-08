@@ -18,7 +18,7 @@ const Transition = ({ children }: any) => {
         (transitionStage === "fadeIn") ? setTransitionStage("fadeOut") : null;
         setTimeout(() => setTransitionStage("fadeIn"), 300);
     }, [ children ]);
-    return <div className={  container + " " + TransitionStyles[transitionStage] }>
+    return <div className={  container }>
         { children }
     </div>;
 };
