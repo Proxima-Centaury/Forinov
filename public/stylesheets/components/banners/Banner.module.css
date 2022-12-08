@@ -9,6 +9,13 @@
     padding: 16px;
     border-radius: 15px;
 }
+@media screen and (max-width: 576px) {
+    .identificationBanner,
+    .recoverBanner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
 .identificationBanner {
     background-color: var(--logo-blue-color);
 }
@@ -19,6 +26,12 @@
 .recoverBanner > p {
     margin: 0px 16px 0px 0px;
     font-size: 16px;
+}
+@media screen and (max-width: 576px) {
+    .identificationBanner > p,
+    .recoverBanner > p {
+        margin: 0px 0px 16px 0px;
+    }
 }
 .identificationBanner > p {
     color: var(--perfect-white-color);

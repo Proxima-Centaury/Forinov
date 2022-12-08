@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { ButtonInterface, InputInterface, LoginInterface } from "../../typescript/interfaces";
+import { ButtonInterface } from "../../typescript/interfaces";
 import { buildProperties } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -13,7 +13,7 @@ import Button from "../buttons/button";
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ProfileStyles from "../../public/stylesheets/components/cards/Profile.module.css";
-import ButtonStyles from "../../public/stylesheets/components/Button.module.css";
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -26,7 +26,7 @@ const ProfileCard = ({ profile, states }: any) => {
     const contactButtonObject = buildProperties(buttonProps, contactButtonValues);
     const parametersButtonValues = [ ButtonStyles.callToActionAlternativeRoundedIcon, true, "fa-solid fa-ellipsis", "", () => false, "", 0 ];
     const parametersButtonObject = buildProperties(buttonProps, parametersButtonValues);
-    return <div className={ ProfileStyles.card } data-type="full">
+    return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
             <img src={ profile.BACKGROUND } alt=""/>
             <div className={ ProfileStyles.actions }>
@@ -83,7 +83,7 @@ const ProfileCard = ({ profile, states }: any) => {
                 </div>
             </div>
         </div>
-        { (profile.STATE === "WO") ? <div className="note">
+        { (profile.STATE === "WO") ? <div className={ ProfileStyles.note }>
             <p>{ translations["Ce compte n’est pas officiel. S’il s’agit de votre startup, n’hésitez pas à récupérer les accès."] }</p>
         </div> : null }
     </div>;

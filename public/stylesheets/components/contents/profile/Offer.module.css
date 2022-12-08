@@ -1,0 +1,36 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Offer ( Profile ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.offer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+@media screen and (max-width: 990px) {
+    .offer {
+        margin: 16px 0px 0px 0px;
+    }
+}
+.offer > h3 {
+    margin: 0px 0px 16px 16px;
+    font-size: 24px;
+    font-weight: 800;
+}
+.offer > .content {
+    display: flex;
+    flex-direction: column;
+    min-height: 250px;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: rgb(var(--background-sub-color));
+    box-shadow: var(--box-shadow);
+}
+.offer > .content > .label {
+    margin: 0px 0px 8px 0px;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(var(--text-inactive-color));
+}
+.offer > .content > p:not(.label) {
+    margin: 0px;
+}

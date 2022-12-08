@@ -244,7 +244,7 @@ class Utilities {
         event.preventDefault();
         return callback();
     };
-        /**
+    /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
     * @function buildProperties
     * @param { Array } [ properties ] Should be an ```array``` of ```strings```.
@@ -270,10 +270,21 @@ class Utilities {
         properties.map((property: String, key: number) => object[property as keyof Object] = values[key]);
         return object;
     };
-    // scrollTo = (x, y) => {
-    //     const container = document.querySelector("#__next");
-    //     return container.scrollTo(x, y - 16);
-    // };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function scrollTo
+    * @param { Number } [ x ] Should be a ```number```.
+    * @param { Number } [ y ] Should be a ```number```.
+    * @returns { any|null }
+    * - ```any``` which is the execution of the scrollTo method.
+    * - ```null``` is the main next js container is not found.
+    * ---
+    * @note This method is used to scroll to the desired position.
+    */
+    scrollTo = (x: Number, y: Number) => {
+        const container = document.querySelector("#__next");
+        return (container) ? container.scrollTo(x as number, y as number - 16) : null;
+    };
     // seeMoreOrLess = (event, translations, selector, array = [], defaultVisibleItemsCount = 1, counter = true) => {
     //     const target = event.target.closest("button");
     //     const visibleElements = document.querySelectorAll(selector + ":not(.hidden)");
@@ -303,7 +314,7 @@ const getTranslations = utilities.getTranslations;
 const handleOutOfArea = utilities.handleOutOfArea;
 const preventSubmit = utilities.preventSubmit;
 const buildProperties = utilities.buildProperties;
-// const scrollTo = utilities.scrollTo;
+const scrollTo = utilities.scrollTo;
 // const seeMoreOrLess = utilities.seeMoreOrLess;
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
@@ -317,5 +328,6 @@ export {
     getTranslations,
     handleOutOfArea,
     preventSubmit,
-    buildProperties
+    buildProperties,
+    scrollTo
 };
