@@ -52,7 +52,6 @@
     --background-sub-color: var(--perfect-white-color);
     --background-private-color: var(--lighter-black-color);
     --background-information-color: var(--light-grey-color);
-    --background-privacy-color: var(--light-grey-color);
     /* Other Variables */
     --shadow-color: var(--light-grey-color);
     --box-shadow: 0px 4px 10px 0px var(--shadow-color);
@@ -164,18 +163,19 @@ body {
     width: 100%;
     height: 100%;
     margin: 64px 0px 0px 0px;
-    padding: 16px;
     position: relative;
     overflow-x: hidden;
     overflow-y: auto;
 }
-#__next > .container {
+#__next > .container,
+#__next > .containerFull {
     display: flex;
     flex-direction: column;
+    flex: 1;
     width: 100%;
     max-width: 100%;
-    height: 100%;
     margin: 0px auto;
+    transform: translateY(100vh);
 }
 @media screen and (min-width: 576px) {
     #__next > .container {

@@ -1,65 +1,28 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Login ( Card ) */
+/* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.card {
-    width: 100%;
-    max-width: 720px;
-    margin: auto;
-    padding: 16px;
-    border-radius: 40px;
-    background-color: var(--background-sub-color);
-    box-shadow: var(--box-shadow);
-}
-.card > div + div {
-    margin: 16px 0px 0px 0px;
-}
+import { useRouter } from "next/router";
+import { useState, memo, useEffect } from "react";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Login ( Card Head ) */
+/* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.head {
-    display: flex;
-    flex-direction: column;
-    padding: 16px 16px 0px 16px;
-}
-.head > h2 {
-    font-size: 20px;
-    font-weight: bold;
-}
-.head > p {
-    color: var(--text-inactive-color);
-}
-.head > p > a {
-    color: var(--logo-blue-color);
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    transition: text-decoration-color 0.3s ease;
-}
-.head > p > a:hover {
-    text-decoration-color: var(--logo-blue-color);
-}
+import TransitionStyles from "../public/stylesheets/layout/Transition.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Login ( Card Body ) */
+/* Transition */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.body {
-    padding: 1rem;
-    flex: 1 1 auto;
-}
+const Transition = ({ children }: any) => {
+    const router = useRouter();
+    const [ container, setContainer ] = useState("containerFull");
+    const [ transitionStage, setTransitionStage ] = useState("fadeOut");
+    useEffect(() => {
+        (transitionStage === "fadeIn") ? setTransitionStage("fadeOut") : null;
+        setTimeout(() => setTransitionStage("fadeIn"), 300);
+    }, [ children ]);
+    return <div className={  container + " " + TransitionStyles[transitionStage] }>
+        { children }
+    </div>;
+};
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Login ( Card Footer ) */
+/* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.footer {
-    padding: 1rem;
-    flex: 1 1 auto;
-}
-.footer > div {
-    display: flex;
-}
-.footer > div > a {
-    color: var(--logo-blue-color);
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    transition: text-decoration-color 0.3s ease;
-}
-.footer > div > a:hover {
-    text-decoration-color: var(--logo-blue-color);
-}
+export default Transition;

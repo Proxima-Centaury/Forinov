@@ -30,23 +30,23 @@
         "unsigned": {
             "layout": {
                 "navbar": [
-                    { "url": "/startups", "text": "Startups", "nesting": true, "nest": [
-                        { "url": "/", "text": "Comment ça marche ?" },
-                        { "url": "/", "text": "Solutions de startups" },
-                        { "url": "/", "text": "Annuaire de startups" }
+                    { "url": "", "text": "Startups", "nesting": true, "nest": [
+                        { "url": "/startups", "text": "Comment ça marche ?" },
+                        { "url": "/startups/solutions", "text": "Solutions de startups" },
+                        { "url": "/startups/directory", "text": "Annuaire de startups" }
                     ] },
-                    { "url": "/entreprises", "text": "Entreprises", "nesting": true, "nest": [
-                        { "url": "/", "text": "Comment ça marche ?" },
-                        { "url": "/", "text": "Solutions d'entreprises" },
-                        { "url": "/", "text": "Annuaire d'entreprises" }
+                    { "url": "", "text": "Entreprises", "nesting": true, "nest": [
+                        { "url": "/corporations", "text": "Comment ça marche ?" },
+                        { "url": "/corporations/solutions", "text": "Solutions d'entreprises" },
+                        { "url": "/corporations/directory", "text": "Annuaire d'entreprises" }
                     ] },
-                    { "url": "/partenaires", "text": "Partenaires", "nesting": true, "nest": [
-                        { "url": "/", "text": "Comment ça marche ?" },
-                        { "url": "/", "text": "Solutions de partenaires" },
-                        { "url": "/", "text": "Annuaire de partenaires" }
+                    { "url": "", "text": "Partenaires", "nesting": true, "nest": [
+                        { "url": "/partners", "text": "Comment ça marche ?" },
+                        { "url": "/partners/solutions", "text": "Solutions de partenaires" },
+                        { "url": "/partners/directory", "text": "Annuaire de partenaires" }
                     ] },
-                    { "url": "/opportunites", "text": "Opportunités", "nesting": true, "nest": [
-                        { "url": "/", "text": "Comment ça marche ?" },
+                    { "url": "", "text": "Opportunités", "nesting": true, "nest": [
+                        { "url": "/how", "text": "Comment ça marche ?" },
                         { "url": "/", "text": "Toutes les opportunités" },
                         { "url": "/", "text": "Appels à candidatures" },
                         { "url": "/", "text": "Programmes d'accompagnement" },

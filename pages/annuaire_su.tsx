@@ -382,8 +382,11 @@ const AnnuaireSu = ({ data, filters }) => {
     </section>
   );
 };
-
-export async function getServerSideProps() {
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Server Side Props */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+export async function getServerSideProps(context) {
+  const { locale, locales, defaultLocale }: any = context;
   // Appel API des données de startups
   const res = await fetch(
     "https://dev.forinov.fr/remote/back/api.php?q=SEARCH_FULLSU&authkey=Landing"
@@ -397,7 +400,9 @@ export async function getServerSideProps() {
   const filters = await fetchFilters.json();
 
   // On passe les deux variables au composant via les props
-  return { props: { data, filters } };
+  return { props: { locale, locales, defaultLocale, data, filters } };
 }
-
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Exports */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 export default AnnuaireSu;

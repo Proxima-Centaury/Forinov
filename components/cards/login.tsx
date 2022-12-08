@@ -14,9 +14,9 @@ import LoginStyles from "../../public/stylesheets/components/cards/Login.module.
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Login Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const LoginCard = ({ locales, states, stateSetters }: LoginInterface) => {
+const LoginCard = ({ locales, states, stateSetters, config }: LoginInterface) => {
     const { translations }: any = states;
-    const parentProps = { locales, states, stateSetters };
+    const parentProps = { locales, states, stateSetters, config };
     return <>
         <div className={ LoginStyles.card }>
             <div className={ LoginStyles.head }>
@@ -27,9 +27,19 @@ const LoginCard = ({ locales, states, stateSetters }: LoginInterface) => {
                 <LoginForm { ...parentProps }/>
             </div>
             <div className={ LoginStyles.footer }>
-                <p dangerouslySetInnerHTML={ { __html: translations["Une question, une problème ? <a href='/contact'>Contactez-nous</a>"] + "." } }/>
+                <div>
+                    <p dangerouslySetInnerHTML={ { __html: translations["Une question, un problème"] + " ?" } }/>
+                    &nbsp;
+                    <Link href="/contact">{ translations["Contactez-nous"] }</Link>
+                    .
+                </div>
                 <p dangerouslySetInnerHTML={ { __html: translations["Forinov s'engage à respecter vos données"] + "." } }/>
-                <p dangerouslySetInnerHTML={ { __html: translations["En continuant votre inscription, vous acceptez nos <a href='/terms'>conditions générales</a>"] + "." } }/>
+                <div>
+                    <p dangerouslySetInnerHTML={ { __html: translations["En continuant votre inscription, vous acceptez nos"] } }/>
+                    &nbsp;
+                    <Link href='/terms'>{ translations["Conditions générales"] }</Link>
+                    .
+                </div>
             </div>
         </div>
     </>;

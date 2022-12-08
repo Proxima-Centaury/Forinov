@@ -2,7 +2,6 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { ProfileInterface } from "../../../typescript/interfaces";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -28,8 +27,7 @@ import config from "../../../config.json";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Profile = ({ profile, products, activity, states, stateSetters, status }: ProfileInterface) => {
-    const router = useRouter();
+const Profile = ({ profile, products, activity, states, stateSetters }: ProfileInterface) => {
     const { locale, translations }: any = states;
     const pitchDeckButtonProps = {
         type: "callToActionWide",
@@ -52,40 +50,36 @@ const Profile = ({ profile, products, activity, states, stateSetters, status }: 
     //     return () => window.removeEventListener("click", showRegisterPopup);
     // }, []);
     const parentProps = { translations };
-    if(profile) {
-        return <div id="profile">
-            <IdenfiticationBanner { ...parentProps }/>
-            { (profile.STATE === "WO") ? <RecoverBanner { ...parentProps }/> : null }
-            <ProfileCard { ...parentProps }/>
-            {/* <div className="details">
-                <div className="leftSide">
-                    <ProfileMenu { ...parentProps }/>
-                    <ProfileOverview { ...parentProps }/>
-                </div>
-                <div className="content">
-                    <ProfileOffer { ...parentProps }/>
-                    <ProfileDetails { ...parentProps }/>
-                    { (products) ? <ProfileProducts { ...parentProps }/> : null }
-                    <Button { ...pitchDeckButtonparentProps }/>
-                    <ProfileEcosystem { ...parentProps }/>
-                    <ProfilePartners { ...parentProps }/>
-                    <ProfileTeam { ...parentProps }/>
-                    <ProfileActivity { ...parentProps }/>
-                </div>
-            </div> */}
-        </div>;
-    } else {
-        router.push("/404", "/404", { locale: locale.toString() });
-    };
+    return <div id="profile">
+        <IdenfiticationBanner { ...parentProps }/>
+        { (profile.STATE === "WO") ? <RecoverBanner { ...parentProps }/> : null }
+        <ProfileCard { ...parentProps }/>
+        {/* <div className="details">
+            <div className="leftSide">
+                <ProfileMenu { ...parentProps }/>
+                <ProfileOverview { ...parentProps }/>
+            </div>
+            <div className="content">
+                <ProfileOffer { ...parentProps }/>
+                <ProfileDetails { ...parentProps }/>
+                { (products) ? <ProfileProducts { ...parentProps }/> : null }
+                <Button { ...pitchDeckButtonparentProps }/>
+                <ProfileEcosystem { ...parentProps }/>
+                <ProfilePartners { ...parentProps }/>
+                <ProfileTeam { ...parentProps }/>
+                <ProfileActivity { ...parentProps }/>
+            </div>
+        </div> */}
+    </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Rendering */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, query, locale, locales, defaultLocale } = context;
-    res.setHeader("Cache-Control", "public, s-maxage=10, stale-while-revalidate=59");
     const { id, type } = query;
     const { endpoint, queries } = config.api;
+    res.setHeader("Cache-Control", "public, s-maxage=10, stale-while-revalidate=59");
     const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
     const profileResponse = await profilePromise.json();
     const formattedProfileResponse = profileResponse[0];
@@ -95,6 +89,14 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const activityPromise = await fetch(endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
     const activityResponse = await activityPromise.json();
     const formattedActivityResponse = Object.values(activityResponse[0].EVENTS);
+    if(!formattedProfileResponse) {
+        return {
+            redirect: {
+                destination: "/" + locale + "/404",
+                permanent: false
+            }
+        };
+    };
     return {
         props: {
             locale, locales, defaultLocale,

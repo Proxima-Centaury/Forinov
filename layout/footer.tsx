@@ -25,7 +25,7 @@ const Footer = ({ states, config }: FooterInterface) => {
                     <i className="fa-brands fa-linkedin"/>
                 </a>
             </div>
-            <a className={ FooterStyles.contact } href="/contact">{ translations["Aide et support"] }</a>
+            <Link className={ FooterStyles.contact } href="/contact">{ translations["Aide et support"] }</Link>
             <p>© Forinov { new Date().getFullYear() }</p>
         </div>
         { footer.map(({ text, nesting, nest }: any, key: KeyType) => {
