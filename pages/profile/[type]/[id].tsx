@@ -3,7 +3,8 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
 import { useEffect } from "react";
-import { ProfileInterface } from "../../../typescript/interfaces";
+import { ProfileInterface, ButtonInterface } from "../../../typescript/interfaces";
+import { buildProperties } from "../../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -15,11 +16,11 @@ import ProfileOverview from "../../../components/contents/profile/overview";
 import ProfileOffer from "../../../components/contents/profile/offer";
 import ProfileTargets from "../../../components/contents/profile/targets";
 import ProfileProducts from "../../../components/contents/profile/products";
-// import ProfileEcosystem from "../../../components/content/profile/ecosystem";
-// import ProfilePartners from "../../../components/content/profile/partners";
-// import ProfileTeam from "../../../components/content/profile/team";
+import ProfileEcosystem from "../../../components/contents/profile/ecosystem";
+import ProfilePartners from "../../../components/contents/profile/partners";
+import ProfileTeam from "../../../components/contents/profile/team";
 // import ProfileActivity from "../../../components/content/profile/activity";
-// import Button from "../../../components/buttons/button";
+import Button from "../../../components/buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -28,17 +29,15 @@ import config from "../../../config.json";
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ProfileStyles from "../../../public/stylesheets/pages/Profile.module.css";
+import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Profile = ({ profile, products, activity, states, stateSetters }: ProfileInterface) => {
-    const { locale, translations }: any = states;
-    const pitchDeckButtonProps = {
-        type: "callToActionWide",
-        faIcon: true,
-        faIconClass: "fa-solid fa-person-chalkboard",
-        text: translations["Voir le pitch deck"]
-    };
+    const { translations }: any = states;
+    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
+    const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
     // useEffect(() => {
     //     let showRegisterPopup = (event) => {
     //         event.preventDefault();
@@ -67,11 +66,11 @@ const Profile = ({ profile, products, activity, states, stateSetters }: ProfileI
                 <ProfileOffer { ...parentProps }/>
                 <ProfileTargets { ...parentProps }/>
                 { (products) ? <ProfileProducts { ...parentProps }/> : null }
-                {/* <Button { ...pitchDeckButtonparentProps }/> */}
-                {/* <ProfileEcosystem { ...parentProps }/>
+                <Button { ...pitchDeckButtonObject as ButtonInterface }/>
+                <ProfileEcosystem { ...parentProps }/>
                 <ProfilePartners { ...parentProps }/>
                 <ProfileTeam { ...parentProps }/>
-                <ProfileActivity { ...parentProps }/> */}
+                {/* <ProfileActivity { ...parentProps }/> */}
             </div>
         </div>
     </div>;

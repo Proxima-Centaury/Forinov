@@ -67,8 +67,14 @@
     display: flex;
     margin: 16px 0px;
 }
+.socials > a {
+    transition: color 0.3s ease;
+}
 .socials > a + a {
     margin: 0px 0px 0px 8px;
+}
+.socials > a:hover {
+    color: var(--logo-blue-color);
 }
 .socials > a > i {
     font-size: 20px;

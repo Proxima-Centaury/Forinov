@@ -11,22 +11,14 @@
 /* Profile ( Banner ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .banner {
+    display: flex;
     min-height: 192px;
     height: 192px;
     max-height: 192px;
     position: relative;
 }
 .banner > img {
-    min-width: 100%;
-    width: auto;
-    max-width: 100%;
-    min-height: 100%;
-    height: auto;
-    max-height: 100%;
-    top: inherit;
-    right: inherit;
-    bottom: inherit;
-    left: inherit;
+    width: 100%;
     object-fit: cover;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -99,9 +91,6 @@
     max-height: 120px;
     position: absolute;
     top: calc(-120px / 2);
-    right: inherit;
-    bottom: inherit;
-    left: inherit;
     object-fit: cover;
     border: var(--border);
     border-width: 3px;
@@ -148,16 +137,12 @@
 .content > .informations > div > p {
     margin: 0px;
     font-size: 14px;
-    color: var(--text-inactive-color);
 }
 .content > .informations > div > a {
     font-weight: bold;
-    color: var(--main-color);
+    color: var(--logo-blue-color);
     text-decoration: underline;
     transition: color 0.3s ease;
-}
-.content > .informations > div > a:hover {
-    color: var(--logo-blue-color);
 }
 .content > .description {
     margin: 0px 0px 8px 0px;
@@ -178,7 +163,6 @@
 }
 .content > .stats > div > p {
     margin: 0px;
-    color: var(--text-inactive-color);
 }
 .content > .stats > div > p:not(.label) {
     display: flex;

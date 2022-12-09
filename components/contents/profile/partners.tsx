@@ -7,41 +7,37 @@ import { seeMoreOrLess, buildProperties } from "../../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import ProductCard from "../../cards/product";
+import EntityCard from "../../cards/entity";
 import Button from "../../buttons/button";
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
-import ProductsStyles from "../../../public/stylesheets/components/contents/profile/Products.module.css";
-import ProductStyles from "../../../public/stylesheets/components/cards/Product.module.css";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import PartnersStyles from "../../../public/stylesheets/components/contents/profile/Partners.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Products */
+/* Profile Partners */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileProducts = ({ products, states }: any) => {
-    const { translations }: any = states;
-    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(2);
-    const handleView = (event: any) => seeMoreOrLess(event, translations, "." + ProductStyles.product, products, maxVisibleCardsByDefault);
+const ProfilePartners = ({ profile, states }: any) => {
+    const { lock, translations }: any = states;
+    const { INCUBATORS } = profile;
+    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
+    const partners = INCUBATORS || [];
+    const handleView = (event: any) => seeMoreOrLess(event, translations, ".partner", partners, maxVisibleCardsByDefault);
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], products.length - maxVisibleCardsByDefault ];
+    const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], partners.length - maxVisibleCardsByDefault ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
-    return <div className={ ProductsStyles.products }>
-        <p className={ ProductsStyles.label }>{ translations["Nos produits et services"] }</p>
-        <div className={ ProductsStyles.list }>
-            { (products) ? products.map((product: any, key: KeyType) => {
-                const props = {
-                    product: product,
-                    index: key + 1,
-                    maxVisibleByDefault: maxVisibleCardsByDefault,
-                    translations: translations
-                };
-                return <ProductCard key={ key } { ...props }/>;
+    return <div className={ PartnersStyles.partners }>
+        <p className={ PartnersStyles.label }>{ translations["Nos partenaires"] + " (" + partners.length + ")" }</p>
+        <div className={ PartnersStyles.list + ((lock) ? " locked" : "") }>
+            { (partners) ? partners.map((partner: any, key: KeyType) => {
+                const props = { entity: partner, type: "partner", index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault };
+                return <EntityCard key={ key } { ...props }/>;
             }) : null }
         </div>
-        { (products.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
+        { (partners.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default ProfileProducts;
+export default ProfilePartners;
