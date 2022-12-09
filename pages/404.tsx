@@ -5,6 +5,10 @@ import Head from "next/head";
 import { GetStaticProps } from "next";
 import { NotFoundInterface } from "../typescript/interfaces";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Styles */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import NotFoundStyles from "../public/stylesheets/pages/NotFound.module.css";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* NotFound */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const NotFound = ({ states }: NotFoundInterface) => {
@@ -13,8 +17,12 @@ const NotFound = ({ states }: NotFoundInterface) => {
         <Head>
             <title>Forinov - Connexion</title>
         </Head>
-        <div id="404">
-            <h1>CETTE PAGE N'EXISTE PAS</h1>
+        <div id="404" className="container">
+            <div className={ NotFoundStyles.notFound }>
+                <h1>404</h1>
+                <p>{ translations["La page que vous recherchez, n'existe pas"] + " !" }</p>
+                <button onClick={ () => window.history.back() }>{ translations["Retournez à la page précédente"] }</button>
+            </div>
         </div>
     </>;
 };

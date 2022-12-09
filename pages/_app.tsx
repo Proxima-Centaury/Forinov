@@ -5,7 +5,7 @@ import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { setCookie, getTranslations } from "../scripts/utilities";
+import { setCookie, getCookie, getTranslations } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -36,7 +36,11 @@ const App = ({ Component, pageProps }: AppProps) => {
     useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
     useEffect(() => {
         setCookie("NEXT_LOCALE", locale, 31536000, "/");
-        router.push(router.asPath, router.asPath, { locale: locale.toString() });
+        if(router.asPath === router.route) {
+            router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
+        } else {
+            router.push("/" + locale + router.route, "/" + locale + router.route, { locale: locale.toString() });
+        };
     }, [ locale ]);
     pageProps.states = {};
     pageProps.states["locale"] = locale;

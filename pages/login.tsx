@@ -17,7 +17,9 @@ const Login = ({ locales, states, stateSetters, config }: LoginInterface) => {
         <Head>
             <title>Forinov - Connexion</title>
         </Head>
-        <LoginCard { ...parentProps }/>
+        <div className="container">
+            <LoginCard { ...parentProps }/>
+        </div>
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
