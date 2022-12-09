@@ -53,6 +53,7 @@
 }
 .footer > div {
     display: flex;
+    flex-wrap: wrap;
 }
 .footer > div > a {
     color: var(--logo-blue-color);
