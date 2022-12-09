@@ -1,28 +1,36 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Products ( Container ) */
+/* Partners ( Container ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.products {
+.partners {
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
 }
-.products > .label {
-    margin: 0px 0px 16px 16px;
+.partners > .label {
+    margin: 0px 0px 8px 0px;
     font-weight: bold;
     font-size: 16px;
-    color: rgb(var(--text-inactive-color));
 }
-.products > button {
-    width: fit-content;
-    margin: 16px 0px 0px auto;
+.partners > .label > i {
+    margin: 0px 8px 0px 0px;
+    color: var(--error-color);
+}
+.partners > p:not(.label) {
+    margin: 0px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Products ( List ) */
+/* Partners ( List ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .list {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    margin: 8px 0px 0px 0px;
+    position: relative;
 }
 @media screen and (max-width: 1200px) {
     .list {

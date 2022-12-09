@@ -7,41 +7,38 @@ import { seeMoreOrLess, buildProperties } from "../../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import ProductCard from "../../cards/product";
+import MemberCard from "../../cards/member";
 import Button from "../../buttons/button";
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
-import ProductsStyles from "../../../public/stylesheets/components/contents/profile/Products.module.css";
-import ProductStyles from "../../../public/stylesheets/components/cards/Product.module.css";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import TeamStyles from "../../../public/stylesheets/components/contents/profile/Team.module.css";
+import MemberStyles from "../../../public/stylesheets/components/cards/Member.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Products */
+/* Profile Team */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileProducts = ({ products, states }: any) => {
-    const { translations }: any = states;
-    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(2);
-    const handleView = (event: any) => seeMoreOrLess(event, translations, "." + ProductStyles.product, products, maxVisibleCardsByDefault);
+const ProfileTeam = ({ profile, states }: any) => {
+    const { lock, translations }: any = states;
+    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(3);
+    const { COLLABORATORS } = profile;
+    const team = COLLABORATORS || [];
+    const handleView = (event: any) => seeMoreOrLess(event, translations, "." + MemberStyles.member, team, maxVisibleCardsByDefault);
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], products.length - maxVisibleCardsByDefault ];
+    const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], team.length - maxVisibleCardsByDefault ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
-    return <div className={ ProductsStyles.products }>
-        <p className={ ProductsStyles.label }>{ translations["Nos produits et services"] }</p>
-        <div className={ ProductsStyles.list }>
-            { (products) ? products.map((product: any, key: KeyType) => {
-                const props = {
-                    product: product,
-                    index: key + 1,
-                    maxVisibleByDefault: maxVisibleCardsByDefault,
-                    translations: translations
-                };
-                return <ProductCard key={ key } { ...props }/>;
+    return <div id="team" className={ TeamStyles.team }>
+        <h3>{ translations["L'équipe"] }</h3>
+        <div className={ TeamStyles.team }>
+            { (team) ? team.map((member: any, key: KeyType) => {
+                const props = { member: member, index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault, translations: translations };
+                return <MemberCard key={ key } { ...props }/>;
             }) : null }
         </div>
-        { (products.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
+        { (team.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default ProfileProducts;
+export default ProfileTeam;

@@ -1,0 +1,70 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Member ( Card ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.member {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 16px 16px;
+    border-radius: 10px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+}
+.member + .member {
+    margin: 16px 0px 0px 0px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Member ( Main Container ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.main {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+.main > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 80px;
+    width: 80px;
+    max-width: 80px;
+    min-height: 80px;
+    height: 80px;
+    max-height: 80px;
+    font-size: 30px;
+    color: var(--perfect-white-color);
+    border-radius: calc(80px / 2);
+    background-color: var(--logo-blue-color);
+}
+.main > .identity {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 0px 16px;
+}
+.main > .identity > .fullname {
+    font-weight: bold;
+    font-size: 18px;
+}
+.main > .identity > .job {
+    margin: 8px 0px 0px 0px;
+    color: var(--text-inactive-color);
+}
+.main > .message {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.main > .message > i {
+    font-size: 24px;
+    color: var(--logo-blue-color);
+}
+.main > button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Member ( Details ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.details {
+
+}

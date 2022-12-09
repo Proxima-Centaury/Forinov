@@ -34,13 +34,13 @@
     --error-color: #E01E3E;
     --information-color: #1F4497;
     /* Blue Tones */
-    --paleblue-color: 178, 209, 255;
-    --lightblue-color: 240, 246, 255;
-    --skyblue-color: 126, 201, 255;
+    --lightblue-color: #F0F6FF;
+    --paleblue-color: #B2D1FF;
+    --skyblue-color: #7EC9FF;
     /* Green Tones */
-    --palegreen-color: 209, 242, 228;
+    --palegreen-color: #D1F2E4;
     /* Red Tones */
-    --palered-color: 255, 207, 209;
+    --palered-color: #FFCFD1;
     /* Text Colors */
     --text-main-color: var(--black-color);
     --text-inactive-color: var(--perfect-grey-color);
@@ -57,7 +57,7 @@
     --darker-shadow-color: #00000050;
     --box-shadow: 0px 4px 10px 0px var(--shadow-color);
     --darker-box-shadow: 0px 4px 10px 0px var(--darker-shadow-color);
-    --filter-color: #00000080;
+    --filter-color: #FFFFFF80;
     --gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, #FFFFFFFF 80%);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -239,8 +239,8 @@ body {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .locked {
     position: relative;
-    overflow: hidden;
     border-radius: 10px;
+    overflow: hidden;
 }
 .locked::after {
     width: 100%;
@@ -249,6 +249,8 @@ body {
     top: 0px;
     left: 0px;
     content: "";
+    filter: blur(100px);
+    background-color: var(--background-main-color);
     backdrop-filter: blur(10px);
 }
 .locked.gradient::after {
