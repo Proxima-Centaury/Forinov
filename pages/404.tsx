@@ -21,7 +21,7 @@ const NotFound = ({ states }: NotFoundInterface) => {
             <div className={ NotFoundStyles.notFound }>
                 <h1>404</h1>
                 <p>{ translations["La page que vous recherchez, n'existe pas"] + " !" }</p>
-                <button onClick={ () => window.history.back() }>{ translations["Retournez à la page précédente"] }</button>
+                <button onClick={ () => window.history.go(-2) }>{ translations["Retournez à la page précédente"] }</button>
             </div>
         </div>
     </>;
