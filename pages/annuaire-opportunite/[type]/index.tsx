@@ -4,10 +4,8 @@ import Link from "next/link";
 import MediumOpportCard from "../../../components/opport-cards/MediumOpportCard";
 import PageIndex from "../../../components/pagination/PageIndex";
 import { useRouter } from "next/router";
-import urlTranslations from "../../../public/static/url_trad.json";
 
 const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
-	const lang = "fr";
 	const opportunities = dataOpportunities[0]["PROJECT"];
 	const page = 1;
 	const cardPerPage = 20;

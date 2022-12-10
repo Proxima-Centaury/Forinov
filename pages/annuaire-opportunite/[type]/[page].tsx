@@ -4,28 +4,94 @@ import Link from "next/link";
 import MediumOpportCard from "../../../components/opport-cards/MediumOpportCard";
 import { useRouter } from "next/router";
 import PageIndex from "../../../components/pagination/PageIndex";
+import { useGlobalContext } from '../../../components/context/globalContext';
+
+import {useEffect, useState} from 'react';
 
 const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const router = useRouter() as any;
 	let { type, page } = router.query;
-	console.log(type, page);
-
-	
-
-
 	const opportunities = dataOpportunities[0]["PROJECT"];
+
+	const [opportCards, setOpportCards] = useState<Array<JSX.Element>>([]);
+
+	const [isPage, setIsPage] = useState<boolean>(true);
+
+
+
 	const cardPerPage = 20;
 	const { translations }: any = states;
 
 	const nbPages = Math.ceil(Object.keys(opportunities).length / cardPerPage);
 
-	
+	//get global context
+	const { searchState } = useGlobalContext();
+
+	const [defaultData, setDefaultData] = useState<Array<any>>([
+		Object.keys(opportunities).map((opportunity, index) => {
+			if (index < cardPerPage * page && index >= cardPerPage * (page - 1)) {
+				return (
+					<MediumOpportCard
+						key={opportunities[opportunity]["ID"]}
+						background={opportunities[opportunity]["BACKGROUND"]}
+						title={opportunities[opportunity]["TITLE"]}
+						logo={opportunities[opportunity]["LOGO"]}
+						company={opportunities[opportunity]["NAME"]}
+						type={opportunities[opportunity]["TYPE"]}
+						typename={opportunities[opportunity]["TYPE_NAME"]}
+						remaining={opportunities[opportunity]["REMAINING"]}
+						translations={translations}
+					></MediumOpportCard>
+				);
+			}
+		})
+	]);
+
+	const setCards = (input: string | null = "", category: Array<string | null> = []) => {
+		let tempCards: Array<JSX.Element> = [];
+		console.log(category);
+		
+		Object.keys(opportunities).map((opportunity, index) => { 
+			if (input && opportunities[opportunity]["TITLE"].toLowerCase().includes(input.toLowerCase()) ) {				
+				tempCards.push(
+					<MediumOpportCard
+						key={opportunities[opportunity]["ID"]}
+						background={opportunities[opportunity]["BACKGROUND"]}
+						title={opportunities[opportunity]["TITLE"]}
+						logo={opportunities[opportunity]["LOGO"]}
+						company={opportunities[opportunity]["NAME"]}
+						type={opportunities[opportunity]["TYPE"]}
+						typename={opportunities[opportunity]["TYPE_NAME"]}
+						remaining={opportunities[opportunity]["REMAINING"]}
+						translations={translations}
+					></MediumOpportCard>
+				);
+			}
+		});
+		setOpportCards(tempCards);
+	}
+
+	const handleSearchbar = (input: string, categories: Array<string | null>) => { 
+		setCards(input, categories);
+		setIsPage(false);
+	}
+
+	const resetSearchbar = () => { 
+		setOpportCards(defaultData);
+		setIsPage(true);
+	}
+
+	useEffect(() => {
+		setOpportCards(defaultData);
+	 }, [defaultData])	
 
 	return (
 		<div className="container">
 			<OpportSearchbar
 				active="1"
 				filters={filters[0]}
+				handleSearchbar={handleSearchbar}
+				resetSearchbar={resetSearchbar}
 			></OpportSearchbar>
 			<div className={styles.typeSelectors}>
 				{translations["annuaire_opport_selectors"].map((selector: any) => {
@@ -35,7 +101,6 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 						.replace(/'/g, "-")
 						.normalize("NFD")
 						.replace(/[\u0300-\u036f]/g, "");
-					console.log(selectorToURL);
 
 					if (selectorToURL === type) {
 						return (
@@ -61,35 +126,33 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 				})}
 			</div>
 			<div className={styles.opportCardWrapper}>
-				{Object.keys(opportunities).map((opportunity, index) => {
-					if (index < cardPerPage * page && index >= cardPerPage * (page - 1)) {
-						return (
-							<MediumOpportCard
-								key={opportunities[opportunity]["ID"]}
-								background={opportunities[opportunity]["BACKGROUND"]}
-								title={opportunities[opportunity]["TITLE"]}
-								logo={opportunities[opportunity]["LOGO"]}
-								company={opportunities[opportunity]["NAME"]}
-								type={opportunities[opportunity]["TYPE"]}
-								typename={opportunities[opportunity]["TYPE_NAME"]}
-								remaining={opportunities[opportunity]["REMAINING"]}
-								translations={translations}
-							></MediumOpportCard>
-						);
-					}
-				})}
+				{opportCards}
 			</div>
-			<PageIndex
+			{
+				isPage ? <PageIndex
 				nbPages={nbPages}
 				currentPage={page}
 				url={`/annuaire-opportunite/${type}`}
-			></PageIndex>
+			></PageIndex> : null
+			}
 		</div>
 	);
 };
 
 export async function getServerSideProps(context: any) {
 	const { req, res, query, locales, defaultLocale, locale }: any = context;
+
+	//if page is null or not found redirect to page 1
+	if (query.page === undefined || query.page === null || query.page === "0") {
+		//router push to page 1
+		res.writeHead(302, {
+			Location: "/annuaire-opportunite/" + query.type + "/1",
+		});
+		res.end();
+	}
+
+	console.log("query", query.page);
+	
 
 	const lang: any = locale.split("-")[0];
 	const url = require("../../../public/static/url_trad.json");
@@ -102,7 +165,7 @@ export async function getServerSideProps(context: any) {
 		typeID = null;
 	} else if (type === url[lang]["appels-a-candidature"]) {
 		typeID = "1";
-	} else if (type === url[lang]["programme-accompagnement"]) {
+	} else if (type === url[lang]["programme-d-accompagnement"]) {
 		typeID = "2";
 	} else if (type === url[lang]["challenges-ou-concours"]) {
 		typeID = "3";
@@ -116,12 +179,12 @@ export async function getServerSideProps(context: any) {
 
 	if (typeID === null) {
 		const fetchOpportunities = await fetch(
-			"https://dev.forinov.fr/remote/back/api.php?q=LANDING_FULLOPPORTUNITES&authkey=Landing&3",
+			"https://dev.forinov.fr/remote/back/api.php?q=LANDING_FULLOPPORTUNITES&authkey=Landing&4",
 		);
 		dataOpportunities = await fetchOpportunities.json();
 	} else {
 		const fetchOpportunitiesWithType = await fetch(
-			`https://dev.forinov.fr/remote/back/api.php?q=LANDING_FULLOPPORTUNITES&authkey=Landing&type_id=${typeID}&3`,
+			`https://dev.forinov.fr/remote/back/api.php?q=LANDING_FULLOPPORTUNITES&authkey=Landing&type_id=${typeID}&4`,
 		);
 		dataOpportunities = await fetchOpportunitiesWithType.json();
 	}

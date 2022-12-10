@@ -2,19 +2,31 @@ import {useState, useRef} from 'react'
 import styles from './OpportSearchbar.module.css'
 import Link from 'next/link'
 
+import { useGlobalContext } from '../context/globalContext';
+
 const OpportSearchbar = (props: any) => {
     const filters = props.filters['CATEGORY']
   const nbPerCategory = {
-    } as any;
-
+  } as any;
+  const { searchState } = useGlobalContext();
+  
   const icon = useRef(null);
 
+  const [selectedCategories, setSelectedCategories] = useState<Array<string>>([]);
 
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const handleInput = (e: any) => { 
+    searchState.search = e.target.value;
+    if (e.target.value.length > 2 || selectedCategories.length > 0) {
+      if (e.target.value.length > 2) {
+        props.handleSearchbar(e.target.value, selectedCategories)
+      }
+    } else  if (e.target.value.length === 0 && selectedCategories.length === 0){
+      props.resetSearchbar()
+    }
+  }
+
+
   const [selectedCategoriesLength, setSelectedCategoriesLength] = useState(0);
-  const [isSelected, setIsSelected] = useState(false);
-  const [currentInput, setCurrentInput] = useState("");
-  const [moreFiltersClicked, setMoreFiltersClicked] = useState(false);
 
   //Nécessaire sinon bug connu avec le useState
   var tempCards = [];
@@ -27,8 +39,18 @@ const OpportSearchbar = (props: any) => {
     
      //Fonction utilisé pour les click sur les catégories (dropdown ou cartes de catégories)
   const categorieClickHandler = (categorie: string) => {
-    console.log(categorie);
-    
+    if (selectedCategories.includes(categorie)) {
+      setSelectedCategories(selectedCategories.filter((cat) => cat !== categorie));
+    } else {
+      setSelectedCategories([...selectedCategories, categorie]);
+    }
+    if (searchState.search.length > 2 || selectedCategories.length > 0) {
+      props.handleSearchbar(searchState.search, selectedCategories)
+    } else if (searchState.search.length <= 2 && selectedCategories.length > 0) {
+      props.handleSearchbar(null, selectedCategories)
+    } else if (searchState.search.length === 0 && selectedCategories.length === 0) {
+      props.resetSearchbar()
+    }
   };
     
     return (
@@ -64,7 +86,7 @@ const OpportSearchbar = (props: any) => {
                     className="annuaire__searchbar-input"
                     placeholder="Rechercher dans les opportunités"
                     onChange={(e) => {
-                        console.log(e.target.value);
+                        handleInput(e);
                     }}
                 />
                 <button className="annuaire__searchbar-trigger">
@@ -94,14 +116,14 @@ const OpportSearchbar = (props: any) => {
               }}
               className="annuaire__searchbar-select"
             >
-              <p style={{ margin: 0 }}>
+              <div style={{ margin: 0 }}>
                 Catégories{" "}
                 {selectedCategories.length > 0 ? (
-                  <div className="annuaire__searchbar-select-count">
+                  <p className="annuaire__searchbar-select-count">
                     {selectedCategoriesLength}
-                  </div>
+                  </p>
                 ) : null}
-              </p>
+              </div>
               <i className="fa-solid fa-caret-down" ref={icon}></i>
             </button>
             <ul
