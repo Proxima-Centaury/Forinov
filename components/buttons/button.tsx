@@ -44,7 +44,7 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count }: ButtonI
                 <i className={ faIconClass }/>
             </span> : null }
         </button>
-    } else if(!url && type === "closeModal") {
+    } else if(!url && type === ButtonStyles.closeModal) {
         return <button className={ type } onClick={ action }>
             <i className="fa-light fa-xmark"/>
         </button>

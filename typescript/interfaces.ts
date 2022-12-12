@@ -38,7 +38,7 @@ interface RegisterInterface extends BaseInterface {};
 interface ProfileInterface extends BaseInterface {
     profile: any,
     products: any,
-    activity: any
+    activities: any
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar Interface */

@@ -4,15 +4,15 @@
 import { useState } from "react";
 import { ButtonInterface } from "../../../typescript/interfaces";
 import { seeMoreOrLess, buildProperties } from "../../../scripts/utilities";
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import EntityCard from "../../cards/entity";
 import Tags from "../../tags/tags";
 import Button from "../../buttons/button";
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import EcosystemStyles from "../../../public/stylesheets/components/contents/profile/Ecosystem.module.css";
 import EntityStyles from "../../../public/stylesheets/components/cards/Entity.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
@@ -34,10 +34,10 @@ const ProfileEcosystem = ({ profile, states }: any) => {
         <h3>{ translations["Marché et écosystème"] }</h3>
         <div className={ EcosystemStyles.content }>
             <p className={ EcosystemStyles.label }>{ translations["Nos références clients"] + " (" + clients.length + ")" }</p>
-            <div className={ EcosystemStyles.list + ((lock) ? " locked" : "") }>
+            <div className={ EcosystemStyles.list + ((lock) ? " locked" : "") } data-type="list">
                 { (clients) ? clients.map((client: any, key: KeyType) => {
-                    const props = { entity: client, type: "client", index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault };
-                    return <EntityCard key={ key } { ...props }/>;
+                    const cardProps = { entity: client, type: "client", index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault };
+                    return <EntityCard key={ key } { ...cardProps }/>;
                 }) : null }
                 { (lock) ? <div className="lockedContent">
                     <i className="fa-solid fa-lock"/>

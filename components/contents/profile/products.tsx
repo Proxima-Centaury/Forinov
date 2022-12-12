@@ -9,9 +9,9 @@ import { seeMoreOrLess, buildProperties } from "../../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ProductCard from "../../cards/product";
 import Button from "../../buttons/button";
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
-/* ------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ProductsStyles from "../../../public/stylesheets/components/contents/profile/Products.module.css";
 import ProductStyles from "../../../public/stylesheets/components/cards/Product.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
@@ -27,15 +27,10 @@ const ProfileProducts = ({ products, states }: any) => {
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
     return <div className={ ProductsStyles.products }>
         <p className={ ProductsStyles.label }>{ translations["Nos produits et services"] }</p>
-        <div className={ ProductsStyles.list }>
+        <div className={ ProductsStyles.list } data-type="list">
             { (products) ? products.map((product: any, key: KeyType) => {
-                const props = {
-                    product: product,
-                    index: key + 1,
-                    maxVisibleByDefault: maxVisibleCardsByDefault,
-                    translations: translations
-                };
-                return <ProductCard key={ key } { ...props }/>;
+                const cardProps = { product: product, index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault, translations: translations };
+                return <ProductCard key={ key } { ...cardProps }/>;
             }) : null }
         </div>
         { (products.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
