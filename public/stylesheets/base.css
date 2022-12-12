@@ -303,6 +303,7 @@ body {
     position: fixed;
     top: 0px;
     left: 0px;
+    padding: 0px 16px;
     opacity: 0;
     pointer-events: none;
     background-color: var(--filter-color);

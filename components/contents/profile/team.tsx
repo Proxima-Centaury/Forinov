@@ -19,7 +19,7 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* Profile Team */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileTeam = ({ profile, states }: any) => {
-    const { lock, translations }: any = states;
+    const { translations }: any = states;
     const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(3);
     const { COLLABORATORS } = profile;
     const team = COLLABORATORS || [];

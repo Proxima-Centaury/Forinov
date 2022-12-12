@@ -40,6 +40,7 @@
     border-color: var(--perfect-white-color);
     border-width: 2px;
     border-radius: calc(55px / 2);
+    box-shadow: var(--box-shadow);
 }
 .content > .user {
     margin: 0px 0px 16px 0px;
@@ -53,4 +54,9 @@
     top: 16px;
     right: 16px;
     color: var(--text-inactive-color);
+}
+.content iframe {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
 }
