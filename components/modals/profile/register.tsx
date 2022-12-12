@@ -2,26 +2,23 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
-import Button from "../../buttons/button";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Styles */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Register Modal */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const RegisterModal = ({ closeModal, translations }) => {
-    const buttonsProps = [
-        { type: "closeModal", action: closeModal, text: null, count: null }
-    ];
-    return <div className="modal firstType" data-modal="register">
+const RegisterModal = ({ translations }: any) => {
+    return <>
         <div>
             <i className="fa-solid fa-bolt"/>
             <p>{ translations["Envie d'en savoir plus sur ce membre Forinov ? Inscrivez-vous dès à présent !"] }</p>
         </div>
         <div>
-            <Link href="/register">
-                <a className="callToActionSquared">{ translations["S'inscrire"] }</a>
-            </Link>
+            <Link href="/register" className={ ButtonStyles.callToActionSquared }>{ translations["S'inscrire"] }</Link>
         </div>
-        <Button { ...buttonsProps[0] }/>
-    </div>;
+    </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */

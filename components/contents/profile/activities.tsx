@@ -7,37 +7,36 @@ import { seeMoreOrLess, buildProperties } from "../../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import EntityCard from "../../cards/entity";
+import ActivityCard from "../../cards/activity";
 import Button from "../../buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import PartnersStyles from "../../../public/stylesheets/components/contents/profile/Partners.module.css";
+import ActivitiesStyles from "../../../public/stylesheets/components/contents/profile/Activities.module.css";
+import ActivityStyles from "../../../public/stylesheets/components/cards/Activity.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Partners */
+/* Profile Activity */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfilePartners = ({ profile, states }: any) => {
+const ProfileActivities = ({ activities, states }: any) => {
     const { translations }: any = states;
-    const { INCUBATORS } = profile;
-    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
-    const partners = INCUBATORS || [];
-    const handleView = (event: any) => seeMoreOrLess(event, translations, ".partner", partners, maxVisibleCardsByDefault);
+    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(3);
+    const handleView = (event: any) => seeMoreOrLess(event, translations, "." + ActivityStyles.activity, activities, maxVisibleCardsByDefault);
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], partners.length - maxVisibleCardsByDefault ];
+    const moreOrLessButtonValues = [ ButtonStyles.moreOrLessAlternative, false, "", "", handleView, translations["Voir plus"], activities.length - maxVisibleCardsByDefault ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
-    return <div className={ PartnersStyles.partners }>
-        <p className={ PartnersStyles.label }>{ translations["Nos partenaires"] + " (" + partners.length + ")" }</p>
-        <div className={ PartnersStyles.list } data-type="list">
-            { (partners) ? partners.map((partner: any, key: KeyType) => {
-                const cardProps = { entity: partner, type: "partner", index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault };
-                return <EntityCard key={ key } { ...cardProps }/>;
-            }) : null }
+    return <div id="newsfeed" className={ ActivitiesStyles.activity }>
+        <h3>{ translations["Fil d'actualité"] }</h3>
+        <div className={ ActivitiesStyles.list } data-type="list">
+            { activities.map((event: any, key: KeyType) => {
+                const cardProps = { event: event, index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault };
+                return <ActivityCard key={ key } { ...cardProps }/>;
+            }) }
         </div>
-        { (partners.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
+        { (activities.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default ProfilePartners;
+export default ProfileActivities;

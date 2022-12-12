@@ -29,10 +29,10 @@ const ProfileTeam = ({ profile, states }: any) => {
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
     return <div id="team" className={ TeamStyles.team }>
         <h3>{ translations["L'équipe"] }</h3>
-        <div className={ TeamStyles.team }>
+        <div className={ TeamStyles.team } data-type="list">
             { (team) ? team.map((member: any, key: KeyType) => {
-                const props = { member: member, index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault, translations: translations };
-                return <MemberCard key={ key } { ...props }/>;
+                const cardProps = { member: member, index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault, translations: translations };
+                return <MemberCard key={ key } { ...cardProps }/>;
             }) : null }
         </div>
         { (team.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }

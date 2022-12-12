@@ -268,3 +268,25 @@
         transform: translateY(-10px) rotate(-45deg);
     }
 }
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Close Modal ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.closeModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+.closeModal:hover {
+    background-color: var(--paleblue-color);
+}
+.closeModal > i {
+    font-size: 18px;
+    color: var(--logo-blue-color);
+}

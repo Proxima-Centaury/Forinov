@@ -73,7 +73,7 @@ const ProfileCard = ({ profile, states }: any) => {
                         <p>{ profile.PEOPLE }</p>
                     </div>
                     <div>
-                        <p className={ ProfileStyles.label }>{ translations["Stade levé"] }</p>
+                        <p className={ ProfileStyles.label }>{ translations["Stade levée"] }</p>
                         <p className={ (lock) ? "locked" : "" }>{ profile.FUNDING }</p>
                     </div>
                     <div>
