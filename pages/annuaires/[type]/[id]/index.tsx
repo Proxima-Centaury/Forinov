@@ -42,20 +42,20 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
     const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
-    // useEffect(() => {
-    //     let showRegisterPopup = (event: MouseEvent) => {
-    //         event.preventDefault();
-    //         const target = event.target as Element;
-    //         if(!target.closest("." + MenuStyles.menu + ",." + ButtonStyles.closeModal + ",." + BannerStyles.identificationBanner)) {
-    //             if(lock) {
-    //                 return setModal("register");
-    //             };
-    //         };
-    //         return setModal(null);
-    //     };
-    //     (lock) ? window.addEventListener("click", showRegisterPopup) : null;
-    //     return () => window.removeEventListener("click", showRegisterPopup);
-    // });
+    useEffect(() => {
+        let showRegisterPopup = (event: MouseEvent) => {
+            event.preventDefault();
+            const target = event.target as Element;
+            if(!target.closest("." + MenuStyles.menu + ",." + ButtonStyles.closeModal + ",." + BannerStyles.identificationBanner + ",." + BannerStyles.recoverBanner)) {
+                if(lock) {
+                    return setModal("register");
+                };
+            };
+            return setModal(null);
+        };
+        (lock) ? window.addEventListener("click", showRegisterPopup) : null;
+        return () => window.removeEventListener("click", showRegisterPopup);
+    });
     const parentProps = { profile, products, activities, states, stateSetters };
     return <div id="profile" className="container">
         <IdenfiticationBanner { ...parentProps }/>

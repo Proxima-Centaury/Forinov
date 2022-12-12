@@ -66,19 +66,28 @@ const ProfileCard = ({ profile, states }: any) => {
                 <div className={ ProfileStyles.stats }>
                     <div>
                         <p className={ ProfileStyles.label }>{ translations["Date de création"] }</p>
-                        <p>{ profile.CREATIONDATE.split("-")[2] + "/" + profile.CREATIONDATE.split("-")[1] }</p>
+                        <div>
+                            <p>{ profile.CREATIONDATE.split("-")[2] + "/" + profile.CREATIONDATE.split("-")[1] }</p>
+                        </div>
                     </div>
                     <div>
                         <p className={ ProfileStyles.label }>{ translations["Effectif"] }</p>
-                        <p>{ profile.PEOPLE }</p>
+                        <div>
+                            <i className="fa-light fa-user-helmet-safety"/>
+                            <p>{ profile.PEOPLE }</p>
+                        </div>
                     </div>
                     <div>
                         <p className={ ProfileStyles.label }>{ translations["Stade levée"] }</p>
-                        <p className={ (lock) ? "locked" : "" }>{ profile.FUNDING }</p>
+                        <div className={ (lock) ? "locked" : "" }>
+                            <p>{ profile.FUNDING }</p>
+                        </div>
                     </div>
                     <div>
                         <p className={ ProfileStyles.label }>{ translations["Montant levé"] }</p>
-                        <p className={ (lock) ? "locked" : "" }>{ profile.FUNDS + "€" }</p>
+                        <div className={ (lock) ? "locked" : "" }>
+                            <p>{ profile.FUNDS + "€" }</p>
+                        </div>
                     </div>
                 </div>
             </div>

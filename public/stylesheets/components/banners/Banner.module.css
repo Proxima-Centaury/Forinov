@@ -8,6 +8,7 @@
     align-items: center;
     padding: 16px;
     border-radius: 15px;
+    box-shadow: var(--box-shadow);
 }
 @media screen and (max-width: 576px) {
     .identificationBanner,

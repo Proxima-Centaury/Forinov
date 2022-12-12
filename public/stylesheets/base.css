@@ -250,6 +250,7 @@ body {
     left: 0px;
     content: "";
     backdrop-filter: blur(10px);
+    border-radius: 10px;
 }
 .locked.gradient::after {
     background: linear-gradient(rgba(0, 0, 0, 0) 0%, var(--background-sub-color), 50%, var(--background-sub-color) 100%);
@@ -320,6 +321,7 @@ body {
     flex-direction: column;
     position: relative;
     background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
     overflow: hidden;
 }
 .modal.firstType {
@@ -344,10 +346,9 @@ body {
     font-family: "Nunito Sans";
     font-size: 32px;
     font-weight: 800;
-    color: var(--text-inactive-color);
 }
 .modal[data-modal="register"] > div:first-of-type {
-    padding: 24px calc((24px + 16px) + 38px) 24px 24px;
+    padding: 24px calc((24px + 16px) + 30px) 24px 24px;
 }
 .modal[data-modal="register"] > div:last-of-type {
     padding: 24px 24px 24px calc((24px + 16px) + 35px);
