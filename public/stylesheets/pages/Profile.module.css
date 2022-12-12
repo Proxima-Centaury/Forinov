@@ -3,7 +3,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .details {
     display: flex;
-    margin: 54px 0px 0px 0px !important;
+    margin: 32px 0px 0px 0px !important;
 }
 @media screen and (max-width: 990px) {
     .details {

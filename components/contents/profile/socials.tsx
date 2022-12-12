@@ -60,7 +60,7 @@ const FacebookFeed = ({ profile }: any) => {
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content } style={ { minHeight: "400px" } }>
             <img src={ profile.LOGO } alt={ profile.NAME + " logo." }/>
-            <iframe { ...iframeProps } height="100%"></iframe>
+            <iframe { ...iframeProps } width="100%" height="100%"></iframe>
         </div>
     </div>;
 };

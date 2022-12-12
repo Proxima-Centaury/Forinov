@@ -30,6 +30,7 @@ import config from "../../../../config.json";
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ProfileStyles from "../../../../public/stylesheets/pages/Profile.module.css";
+import NavbarStyles from "../../../../public/stylesheets/layout/Navbar.module.css";
 import MenuStyles from "../../../../public/stylesheets/components/menus/Profile.module.css";
 import BannerStyles from "../../../../public/stylesheets/components/banners/Banner.module.css";
 import ButtonStyles from "../../../../public/stylesheets/components/buttons/Button.module.css";
@@ -46,7 +47,8 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
         let showRegisterPopup = (event: MouseEvent) => {
             event.preventDefault();
             const target = event.target as Element;
-            if(!target.closest("." + MenuStyles.menu + ",." + ButtonStyles.closeModal + ",." + BannerStyles.identificationBanner + ",." + BannerStyles.recoverBanner)) {
+            const selectors = "." + MenuStyles.menu + ",." + ButtonStyles.closeModal + ",." + BannerStyles.identificationBanner + ",." + BannerStyles.recoverBanner + ",." + NavbarStyles.navbar;
+            if(!target.closest(selectors)) {
                 if(lock) {
                     return setModal("register");
                 };
