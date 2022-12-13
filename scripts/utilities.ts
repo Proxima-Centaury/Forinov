@@ -303,6 +303,8 @@ class Utilities {
         const target = event.target.closest("button");
         const visibleElements = document.querySelectorAll(selector + ":not(.hidden)");
         const hiddenElements = document.querySelectorAll(selector + ".hidden");
+        const container = document.querySelector(selector as string)?.closest("[data-type='list']");
+        // TODO => ANIMATE WITH A COLLAPSE
         if(hiddenElements.length > 0) {
             hiddenElements.forEach((hiddenElement) => hiddenElement.classList.remove("hidden"));
             target.querySelector("span").innerText = translations["Voir moins"];
