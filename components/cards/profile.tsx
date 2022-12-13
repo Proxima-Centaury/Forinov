@@ -17,7 +17,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileCard = ({ profile, states }: any) => {
+const ProfileCard = ({ type, profile, states }: any) => {
     const { lock, translations }: any = states;
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const followButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-folder-open", "", () => false, "", 0 ];

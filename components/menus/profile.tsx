@@ -1,7 +1,6 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { scrollTo } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -19,25 +18,25 @@ const menus = {
         { url: "#newsfeed", classList: "", text: "Fil d'actualité" },
         { url: "#socialsfeed", classList: "", text: "Réseaux sociaux" }
     ],
-    corporation: [
+    entreprise: [
         { url: "#team", classList: ProfileStyles.active, text: "Équipe" },
         { url: "#opportunities", classList: "", text: "Opportunités" },
         { url: "#goals", classList: "", text: "Objectifs et offres" },
         { url: "#ecosystem", classList: "", text: "Écosystème et partenaires" },
         { url: "#newsfeed", classList: "", text: "Fil d'actualité" }
     ],
-    partner: []
+    partenaire: [
+        { url: "#team", classList: ProfileStyles.active, text: "Équipe" },
+        { url: "#opportunities", classList: "", text: "Opportunités" },
+        { url: "#goals", classList: "", text: "Objectifs et offres" },
+        { url: "#ecosystem", classList: "", text: "Écosystème" },
+        { url: "#newsfeed", classList: "", text: "Fil d'actualité" }
+    ]
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Menu */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileMenu = ({ states }: any) => {
-    const router = useRouter();
-    let { type } = router.query;
-    if(type) {
-        type = String(type);
-        type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-    };
+const ProfileMenu = ({ type, states }: any) => {
     const { translations }: any = states;
     const [ menu, setMenu ] = useState(menus[type as keyof Object]);
     const scrollToHandler = (event: any) => {
