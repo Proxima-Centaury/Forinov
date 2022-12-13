@@ -53,14 +53,16 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
     useEffect(() => {
         let showRegisterPopup = (event: MouseEvent) => {
             event.preventDefault();
-            const target = event.target as Element;
-            const selectors = "." + MenuStyles.menu + ",." + ButtonStyles.closeModal + ",." + BannerStyles.identificationBanner + ",." + BannerStyles.recoverBanner + ",." + NavbarStyles.navbar;
-            if(!target.closest(selectors)) {
-                if(lock) {
-                    return setModal("register");
+            if(lock) {
+                const target = event.target as Element;
+                const selectors = "." + MenuStyles.menu + ",." + ButtonStyles.closeModal + ",." + BannerStyles.identificationBanner + ",." + BannerStyles.recoverBanner + ",." + NavbarStyles.navbar;
+                if(!target.closest(selectors)) {
+                    if(lock) {
+                        return setModal("register");
+                    };
                 };
+                return setModal(null);
             };
-            return setModal(null);
         };
         (lock) ? window.addEventListener("click", showRegisterPopup) : null;
         return () => window.removeEventListener("click", showRegisterPopup);
