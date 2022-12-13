@@ -1,7 +1,6 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useRouter } from "next/router";
 import { useState, memo, useEffect } from "react";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -11,8 +10,6 @@ import TransitionStyles from "../public/stylesheets/layout/Transition.module.css
 /* Transition */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Transition = ({ children }: any) => {
-    const router = useRouter();
-    const [ container, setContainer ] = useState("containerFull");
     const [ transitionStage, setTransitionStage ] = useState("fadeOut");
     useEffect(() => {
         (transitionStage === "fadeIn") ? setTransitionStage("fadeOut") : null;

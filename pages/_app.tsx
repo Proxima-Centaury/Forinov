@@ -13,10 +13,7 @@ import Navbar from "../layout/navbar";
 import Transition from "../layout/transition";
 import Modal from "../layout/modal";
 import Footer from "../layout/footer";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Components */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import {GlobalContext} from '../components/context/globalContext';
+import { GlobalContext } from "../components/context/globalContext";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -68,7 +65,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Navbar { ...pageProps }/>
         <Transition>
             <GlobalContext>
-                <Component {...pageProps} />
+                <Component { ...pageProps }/>
             </GlobalContext>
             <Footer { ...pageProps }/>
         </Transition>
