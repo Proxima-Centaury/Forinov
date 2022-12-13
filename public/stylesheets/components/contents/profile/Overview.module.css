@@ -4,8 +4,6 @@
 .overview {
     display: flex;
     flex-direction: column;
-    position: sticky;
-    top: calc(18px + 136px + 16px);
     padding: 16px;
     border-radius: 15px;
     background-color: var(--background-sub-color);

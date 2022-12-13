@@ -24,7 +24,7 @@ const ProfileActivities = ({ profile, states }: any) => {
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLessAlternative, false, "", "", handleView, translations["Voir plus"], [].length - maxVisibleCardsByDefault ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
-    return <div id="newsfeed" className={ ActivitiesStyles.activity }>
+    return <div id="socialsfeed" className={ ActivitiesStyles.activity }>
         <h3>{ translations["Réseaux sociaux"] }</h3>
         <div className={ ActivitiesStyles.list } data-type="list">
             { (profile.TWITTER) ? <TwitterFeed profile={ profile }/> : null }

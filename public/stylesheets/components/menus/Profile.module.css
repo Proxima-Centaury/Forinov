@@ -4,8 +4,6 @@
 .menu {
     display: flex;
     flex-direction: column;
-    position: sticky;
-    top: 16px;
 }
 @media screen and (max-width: 990px) {
     .menu {

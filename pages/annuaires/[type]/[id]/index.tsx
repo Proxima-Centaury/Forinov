@@ -65,8 +65,10 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
         <ProfileCard { ...parentProps }/>
         <div className={ ProfileStyles.details }>
             <div className={ ProfileStyles.leftSide }>
-                <ProfileMenu { ...parentProps }/>
-                <ProfileOverview { ...parentProps }/>
+                <div className="sticky">
+                    <ProfileMenu { ...parentProps }/>
+                    <ProfileOverview { ...parentProps }/>
+                </div>
             </div>
             <div className={ ProfileStyles.content }>
                 <ProfileOffer { ...parentProps }/>
