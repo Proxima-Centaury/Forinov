@@ -3,6 +3,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { ProfileInterface, ButtonInterface } from "../../../../typescript/interfaces";
 import { buildProperties } from "../../../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -38,8 +39,14 @@ import ButtonStyles from "../../../../public/stylesheets/components/buttons/Butt
 /* Profile */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Profile = ({ profile, products, activities, states, stateSetters }: ProfileInterface) => {
+    const router = useRouter();
     const { lock, translations }: any = states;
     const { setModal }: any = stateSetters;
+    let { type } = router.query;
+    if(type) {
+        type = String(type);
+        type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
+    };
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
     const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
@@ -58,15 +65,17 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
         (lock) ? window.addEventListener("click", showRegisterPopup) : null;
         return () => window.removeEventListener("click", showRegisterPopup);
     });
-    const parentProps = { profile, products, activities, states, stateSetters };
+    const parentProps = { type, profile, products, activities, states, stateSetters };
     return <div id="profile" className="container">
         <IdenfiticationBanner { ...parentProps }/>
         { (profile.STATE === "WO") ? <RecoverBanner { ...parentProps }/> : null }
         <ProfileCard { ...parentProps }/>
         <div className={ ProfileStyles.details }>
             <div className={ ProfileStyles.leftSide }>
-                <ProfileMenu { ...parentProps }/>
-                <ProfileOverview { ...parentProps }/>
+                <div className="sticky">
+                    <ProfileMenu { ...parentProps }/>
+                    <ProfileOverview { ...parentProps }/>
+                </div>
             </div>
             <div className={ ProfileStyles.content }>
                 <ProfileOffer { ...parentProps }/>
@@ -86,14 +95,13 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
 /* Server Side Rendering */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-    const { res, query, locale, locales, defaultLocale } = context;
+    const { query, locale, locales, defaultLocale } = context;
     let { id, type } = query;
     const { endpoint, queries } = config.api;
     if(type) {
         type = String(type);
         type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
     };
-    res.setHeader("Cache-Control", "public, s-maxage=10, stale-while-revalidate=59");
     const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
     const profileResponse = await profilePromise.json();
     const formattedProfileResponse = profileResponse[0];

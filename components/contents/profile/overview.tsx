@@ -9,11 +9,23 @@ import OverviewStyles from "../../../public/stylesheets/components/contents/prof
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Overview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileOverview = ({ profile, states }: any) => {
-    const { lock, translations }: any = states;
+const ProfileOverview = ({ type, profile, states }: any) => {
+    const { translations }: any = states;
+    const parentProps = { type, profile, states };
     return <div className={ OverviewStyles.overview }>
         <h4>{ translations["En bref"] }</h4>
         <div className="separator"></div>
+        { (type.match(/(startup)/)) ? <Startup { ...parentProps }/> : null }
+        { (type.match(/(entreprise|corporation)/)) ? <Corporation { ...parentProps }/> : null }
+        { (type.match(/(partenaire|partner)/)) ? <Partner { ...parentProps }/> : null }
+    </div>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Startup Overview */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Startup = ({ profile, states }: any) => {
+    const { lock, translations }: any = states;
+    return <>
         <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Technologie(s)"] }</p>
             <Tags tags={ Object.entries(profile.TECHNO) } lock={ lock }/>
@@ -54,7 +66,21 @@ const ProfileOverview = ({ profile, states }: any) => {
                 <a href={ profile.CRUNCHBASE } target="_blank">cb</a>
             </div>
         </div>
-    </div>;
+    </>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Corporation Overview */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Corporation = ({ profile, states }: any) => {
+    const { lock, translations }: any = states;
+    return <></>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Partner Overview */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Partner = ({ profile, states }: any) => {
+    const { lock, translations }: any = states;
+    return <></>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */

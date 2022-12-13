@@ -5,7 +5,9 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    margin: 32px 0px;
+    margin: calc(16px * 4) 0px 0px 0px;
+    padding: calc(16px * 2);
+    background-color: var(--background-sub-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Footer ( Sections ) */

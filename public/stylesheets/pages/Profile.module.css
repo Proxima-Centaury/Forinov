@@ -20,6 +20,7 @@
     width: 296px;
     max-width: 296px;
     margin: 0px 24px 0px 0px;
+    position: relative;
 }
 @media screen and (max-width: 990px) {
     .details > .leftSide {
@@ -31,8 +32,17 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile ( Left's Containers ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.details > .leftSide > * + * {
+.details > .leftSide > div {
+    position: sticky;
+    top: 16px;
+}
+.details > .leftSide > div > * + * {
     margin: 16px 0px 0px 0px;
+}
+@media screen and (max-width: 990px) {
+    .details > .leftSide > div > * + * {
+        margin: 0px;
+    }
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile ( Content Container ) */
