@@ -74,14 +74,14 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
         <IdenfiticationBanner { ...parentProps }/>
         { (profile.STATE === "WO") ? <RecoverBanner { ...parentProps }/> : null }
         <ProfileCard { ...parentProps }/>
-        {/* <div className={ ProfileStyles.details }>
+        <div className={ ProfileStyles.details }>
             <div className={ ProfileStyles.leftSide }>
                 <div className="sticky">
                     <ProfileMenu { ...parentProps }/>
-                    <ProfileOverview { ...parentProps }/>
+                    {/* <ProfileOverview { ...parentProps }/> */}
                 </div>
             </div>
-            <div className={ ProfileStyles.content }>
+            {/* <div className={ ProfileStyles.content }>
                 <ProfileOffer { ...parentProps }/>
                 <ProfileTargets { ...parentProps }/>
                 { (products) ? <ProfileProducts { ...parentProps }/> : null }
@@ -91,8 +91,8 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
                 <ProfileTeam { ...parentProps }/>
                 <ProfileActivities { ...parentProps }/>
                 <ProfileSocials { ...parentProps }/>
-            </div>
-        </div> */}
+            </div> */}
+        </div>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

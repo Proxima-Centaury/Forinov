@@ -14,18 +14,18 @@ const menus = {
     startup: [
         { url: "#offer", classList: ProfileStyles.active, text: "Notre offre" },
         { url: "#ecosystem", classList: "", text: "Marché et écosystème" },
-        { url: "#team", classList: "", text: "L'équipe" },
+        { url: "#team", classList: "", text: "Équipe" },
         { url: "#newsfeed", classList: "", text: "Fil d'actualité" },
         { url: "#socialsfeed", classList: "", text: "Réseaux sociaux" }
     ],
-    entreprise: [
+    corporation: [
         { url: "#team", classList: ProfileStyles.active, text: "Équipe" },
         { url: "#opportunities", classList: "", text: "Opportunités" },
         { url: "#goals", classList: "", text: "Objectifs et offres" },
         { url: "#ecosystem", classList: "", text: "Écosystème et partenaires" },
         { url: "#newsfeed", classList: "", text: "Fil d'actualité" }
     ],
-    partenaire: [
+    partner: [
         { url: "#team", classList: ProfileStyles.active, text: "Équipe" },
         { url: "#opportunities", classList: "", text: "Opportunités" },
         { url: "#goals", classList: "", text: "Objectifs et offres" },

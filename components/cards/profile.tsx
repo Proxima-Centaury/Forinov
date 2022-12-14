@@ -37,10 +37,10 @@ const ProfileCard = ({ type, profile, states }: any) => {
             <div className={ ProfileStyles.content }>
                 <h3>{ profile.NAME }</h3>
                 <div className={ ProfileStyles.informations }>
-                    <div>
+                    { (profile.ADDRESS) ? <div>
                         <i className="fa-solid fa-location-dot"/>
                         <p>{ profile.ADDRESS.TOWN + ", " + profile.ADDRESS.ISO }</p>
-                    </div>
+                    </div> : null }
                     <div>
                         <i className="fa-solid fa-link"/>
                         <a href={ "https://" + profile.WEBSITE } target="blank">{ translations["Site internet"] }</a>
@@ -49,8 +49,8 @@ const ProfileCard = ({ type, profile, states }: any) => {
                 <div className={ ProfileStyles.description }>
                     <Format content={ profile.COMMENT }/>
                 </div>
-                <Tags tags={ Object.entries(profile.CATEGORY) } main={ true }/>
-                <Tags tags={ Object.entries(profile.TAGS) }/>
+                { (profile.CATEGORY) ? <Tags tags={ Object.entries(profile.CATEGORY) } main={ true }/> : null }
+                { (profile.TAGS) ? <Tags tags={ Object.entries(profile.TAGS) }/> : null }
                 { (type === "startup") ? <div className="separator"></div> : null }
                 { (type === "startup") ? <div className={ ProfileStyles.stats }>
                     <div>
