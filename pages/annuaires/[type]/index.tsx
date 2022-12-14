@@ -396,7 +396,6 @@ export async function getServerSideProps(context) {
     "https://dev.forinov.fr/remote/back/api.php?q=SEARCH_FULLSU&authkey=Landing"
   );
   const data = await res.json();
-console.log(data);
   // Appel API des données de filtres
   const fetchFilters = await fetch(
     "https://www.forinov.fr/remote/back/api.php?q=V5_GET_PUBLIC_COMMONS&authkey=Landing&ssid=5cpbs0k7574bv0jlrh0322boe7"
