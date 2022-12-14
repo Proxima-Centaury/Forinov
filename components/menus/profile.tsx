@@ -19,18 +19,22 @@ const menus = {
         { url: "#socialsfeed", classList: "", text: "Réseaux sociaux" }
     ],
     corporation: [
-        { url: "#team", classList: ProfileStyles.active, text: "Équipe" },
-        { url: "#opportunities", classList: "", text: "Opportunités" },
-        { url: "#goals", classList: "", text: "Objectifs et offres" },
-        { url: "#ecosystem", classList: "", text: "Écosystème et partenaires" },
-        { url: "#newsfeed", classList: "", text: "Fil d'actualité" }
+        { url: "#members", classList: ProfileStyles.active, text: "Membres" },
+        { url: "#projects", classList: "", text: "Appels à projets" },
+        { url: "#collaborators", classList: "", text: "Collaborateurs.trices" },
+        { url: "#goals", classList: "", text: "Objectifs" },
+        { url: "#profile", classList: "", text: "Profil" },
+        { url: "#boosters", classList: "", text: "Incubateurs / Accélérateurs" },
+        { url: "#newsfeed", classList: "", text: "Fil d'actualité" },
+        { url: "#socialsfeed", classList: "", text: "Réseaux sociaux" }
     ],
     partner: [
         { url: "#team", classList: ProfileStyles.active, text: "Équipe" },
         { url: "#opportunities", classList: "", text: "Opportunités" },
         { url: "#goals", classList: "", text: "Objectifs et offres" },
-        { url: "#ecosystem", classList: "", text: "Écosystème" },
-        { url: "#newsfeed", classList: "", text: "Fil d'actualité" }
+        { url: "#ecosystem", classList: "", text: "Écosystème et partenaires" },
+        { url: "#newsfeed", classList: "", text: "Fil d'actualité" },
+        { url: "#socialsfeed", classList: "", text: "Réseaux sociaux" }
     ]
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
