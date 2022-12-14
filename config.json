@@ -32,8 +32,8 @@
                 "navbar": [
                     { "url": "", "text": "Startups", "nesting": true, "nest": [
                         { "url": "/startups", "text": "Comment ça marche ?" },
-                        { "url": "/startups/solutions", "text": "Solutions de startups" },
-                        { "url": "/startups/directory", "text": "Annuaire de startups" }
+                        { "url": "/solutions/startups", "text": "Solutions de startups" },
+                        { "url": "/annuaires/startups", "text": "Annuaire de startups" }
                     ] },
                     { "url": "", "text": "Entreprises", "nesting": true, "nest": [
                         { "url": "/corporations", "text": "Comment ça marche ?" },
@@ -77,7 +77,7 @@
                     ] },
                     { "url": "", "text": "Communauté", "nesting": true, "nest": [
                         { "url": "/", "text": "Annuaire d'entreprises" },
-                        { "url": "/", "text": "Annuaire de startups" },
+                        { "url": "/annuaires/startups", "text": "Annuaire de startups" },
                         { "url": "/", "text": "Annuaire de partenaires" },
                         { "url": "/", "text": "Appels à candidatures" },
                         { "url": "/", "text": "Challenges et concours" }

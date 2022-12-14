@@ -36,7 +36,11 @@ const ProfileEcosystem = ({ profile, states }: any) => {
             <p className={ EcosystemStyles.label }>{ translations["Nos références clients"] + " (" + clients.length + ")" }</p>
             <div className={ EcosystemStyles.list + ((lock) ? " locked" : "") } data-type="list">
                 { (clients) ? clients.map((client: any, key: KeyType) => {
-                    const cardProps = { entity: client, type: "client", index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault };
+                    const entity = client;
+                    const type = "client";
+                    const index = key + 1;
+                    const maxVisibleByDefault = maxVisibleCardsByDefault;
+                    const cardProps = { entity, type, index, maxVisibleByDefault };
                     return <EntityCard key={ key } { ...cardProps }/>;
                 }) : null }
                 { (lock) ? <div className="lockedContent">

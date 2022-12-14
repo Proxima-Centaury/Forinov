@@ -30,7 +30,11 @@ const ProfilePartners = ({ profile, states }: any) => {
         <p className={ PartnersStyles.label }>{ translations["Nos partenaires"] + " (" + partners.length + ")" }</p>
         <div className={ PartnersStyles.list } data-type="list">
             { (partners) ? partners.map((partner: any, key: KeyType) => {
-                const cardProps = { entity: partner, type: "partner", index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault };
+                const entity = partner;
+                const type = "partner";
+                const index = key + 1;
+                const maxVisibleByDefault = maxVisibleCardsByDefault;
+                const cardProps = { entity, type, index, maxVisibleByDefault };
                 return <EntityCard key={ key } { ...cardProps }/>;
             }) : null }
         </div>

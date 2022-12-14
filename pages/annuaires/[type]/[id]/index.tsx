@@ -46,6 +46,8 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
     if(type) {
         type = String(type);
         type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
+        type = (type.match(/(entreprise)/)) ? "corporation" : type;
+        type = (type.match(/(partenaire)/)) ? "partner" : type;
     };
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
@@ -79,7 +81,7 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
                     <ProfileOverview { ...parentProps }/>
                 </div>
             </div>
-            <div className={ ProfileStyles.content }>
+            {/* <div className={ ProfileStyles.content }>
                 <ProfileOffer { ...parentProps }/>
                 <ProfileTargets { ...parentProps }/>
                 { (products) ? <ProfileProducts { ...parentProps }/> : null }
@@ -89,7 +91,7 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
                 <ProfileTeam { ...parentProps }/>
                 <ProfileActivities { ...parentProps }/>
                 <ProfileSocials { ...parentProps }/>
-            </div>
+            </div> */}
         </div>
     </div>;
 };
@@ -103,6 +105,8 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     if(type) {
         type = String(type);
         type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
+        type = (type.match(/(corporation)/)) ? "entreprise" : type;
+        type = (type.match(/(partner)/)) ? "partenaire" : type;
     };
     const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
     const profileResponse = await profilePromise.json();

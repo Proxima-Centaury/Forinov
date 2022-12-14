@@ -1,36 +1,19 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Imports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useState } from "react";
-import { ButtonInterface } from "../../../typescript/interfaces";
-import { seeMoreOrLess, buildProperties } from "../../../scripts/utilities";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Components */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Button from "../../buttons/button";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ActivitiesStyles from "../../../public/stylesheets/components/contents/profile/Activities.module.css";
 import ActivityStyles from "../../../public/stylesheets/components/cards/Activity.module.css";
-import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Activity */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileActivities = ({ profile, states }: any) => {
     const { translations }: any = states;
-    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(3);
-    const handleView = (event: any) => seeMoreOrLess(event, translations, ".TOCHANGE", [], maxVisibleCardsByDefault);
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const moreOrLessButtonValues = [ ButtonStyles.moreOrLessAlternative, false, "", "", handleView, translations["Voir plus"], [].length - maxVisibleCardsByDefault ];
-    const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
     return <div id="socialsfeed" className={ ActivitiesStyles.activity }>
         <h3>{ translations["Réseaux sociaux"] }</h3>
         <div className={ ActivitiesStyles.list } data-type="list">
             { (profile.TWITTER) ? <TwitterFeed profile={ profile }/> : null }
             { (profile.FACEBOOK) ? <FacebookFeed profile={ profile }/> : null }
         </div>
-        { ([].length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

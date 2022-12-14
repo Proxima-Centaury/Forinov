@@ -20,6 +20,8 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     if(type) {
         type = String(type);
         type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
+        type = (type.match(/(corporation)/)) ? "entreprise" : type;
+        type = (type.match(/(partner)/)) ? "partenaire" : type;
     };
     res.setHeader("Cache-Control", "public, s-maxage=10, stale-while-revalidate=59");
     const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");

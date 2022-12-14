@@ -1,6 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import chalk from "chalk";
 import { SelectOption } from "../typescript/types";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
@@ -43,10 +44,10 @@ class Utilities {
         if(!logs || logs.length <= 0) {
             return false;
         };
-        const logType = "[" + "Log" + "]";
-        const logText = " Logging an element of "
-        const logElementType = (log: any) => typeof log + " type.";
-        logs.map((log: any) => console.log(logType + logText + logElementType(log), log, "\n"));
+        const logType = chalk.blueBright("[Log]");
+        const logText = " Logging an element of ";
+        const logElementType = (log: any) => chalk.blueBright(typeof log) + " type.\n=>";
+        logs.map((log: any) => console.log(logType + logText + logElementType(log), (typeof log === "string") ? chalk.greenBright(log) : log, "\n"));
         return (logs.length === 1) ? logs[0] : logs;
     };
     /**
@@ -301,16 +302,18 @@ class Utilities {
     */
     seeMoreOrLess = (event: any, translations: any, selector: String, array = [], defaultVisibleItemsCount = 1, counter = true): Array<any> => {
         const target = event.target.closest("button");
-        const visibleElements = document.querySelectorAll(selector + ":not(.hidden)");
-        const hiddenElements = document.querySelectorAll(selector + ".hidden");
-        const container = document.querySelector(selector as string)?.closest("[data-type='list']");
+        const container = document.querySelector(selector as string)?.closest("[data-type='list']") as HTMLElement;
+        const visibleElements = container?.querySelectorAll(selector + ":not(.hidden)");
+        const hiddenElements = container?.querySelectorAll(selector + ".hidden");
         // TODO => ANIMATE WITH A COLLAPSE
-        if(hiddenElements.length > 0) {
+        if(hiddenElements && hiddenElements.length > 0) {
             hiddenElements.forEach((hiddenElement) => hiddenElement.classList.remove("hidden"));
             target.querySelector("span").innerText = translations["Voir moins"];
         } else {
-            visibleElements.forEach((visibleElement, key) => (key >= defaultVisibleItemsCount) ? visibleElement.classList.add("hidden") : null);
-            target.querySelector("span").innerText = translations["Voir plus"] + ((array.length > 0) ? " (" + (array.length - defaultVisibleItemsCount) + ")" : "");
+            if(visibleElements && visibleElements.length > defaultVisibleItemsCount) {
+                visibleElements.forEach((visibleElement, key) => (key >= defaultVisibleItemsCount) ? visibleElement.classList.add("hidden") : null);
+                target.querySelector("span").innerText = translations["Voir plus"] + ((array.length > 0) ? " (" + (array.length - defaultVisibleItemsCount) + ")" : "");
+            };
         };
         return [ target, hiddenElements ];
     };

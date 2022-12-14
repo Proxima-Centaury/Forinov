@@ -29,7 +29,9 @@ const ProfileProducts = ({ products, states }: any) => {
         <p className={ ProductsStyles.label }>{ translations["Nos produits et services"] }</p>
         <div className={ ProductsStyles.list } data-type="list">
             { (products) ? products.map((product: any, key: KeyType) => {
-                const cardProps = { product: product, index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault, translations: translations };
+                const index = key + 1;
+                const maxVisibleByDefault = maxVisibleCardsByDefault;
+                const cardProps = { product, index, maxVisibleByDefault, translations };
                 return <ProductCard key={ key } { ...cardProps }/>;
             }) : null }
         </div>

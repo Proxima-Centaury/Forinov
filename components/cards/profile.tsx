@@ -20,38 +20,27 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 const ProfileCard = ({ type, profile, states }: any) => {
     const { lock, translations }: any = states;
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const followButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-folder-open", "", () => false, "", 0 ];
-    const followButtonObject = buildProperties(buttonProps, followButtonValues);
-    const contactButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-message", "", () => false, "", 0 ];
-    const contactButtonObject = buildProperties(buttonProps, contactButtonValues);
-    const parametersButtonValues = [ ButtonStyles.callToActionAlternativeRoundedIcon, true, "fa-solid fa-ellipsis", "", () => false, "", 0 ];
-    const parametersButtonObject = buildProperties(buttonProps, parametersButtonValues);
+    const pdfButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-light fa-cloud-arrow-down", "", () => false, "PDF", 0 ];
+    const pdfButtonObject = buildProperties(buttonProps, pdfButtonValues);
     return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
             <img src={ profile.BACKGROUND } alt=""/>
-            <div className={ ProfileStyles.actions }>
-                <div>
-                    <Button { ...followButtonObject as ButtonInterface }/>
-                    <p>{ translations["Suivre"] }</p>
-                </div>
-                <div>
-                    <Button { ...contactButtonObject as ButtonInterface }/>
-                    <p>{ translations["Contacter"] }</p>
-                </div>
-                <Button { ...parametersButtonObject as ButtonInterface }/>
-            </div>
+            { (type === "startup") ? <StartupActions translations={ translations }/> : null }
+            { (type === "corporation") ? <CorporationActions translations={ translations }/> : null }
+            { (type === "partner") ? <PartnerActions translations={ translations }/> : null }
         </div>
         <div className={ ProfileStyles.body }>
             <div className={ ProfileStyles.picture }>
                 <img src={ profile.LOGO } alt="Company background."/>
+                { (type !== "startup") ? <Button { ...pdfButtonObject as ButtonInterface }/> : null }
             </div>
             <div className={ ProfileStyles.content }>
                 <h3>{ profile.NAME }</h3>
                 <div className={ ProfileStyles.informations }>
-                    <div>
+                    { (profile.ADDRESS) ? <div>
                         <i className="fa-solid fa-location-dot"/>
                         <p>{ profile.ADDRESS.TOWN + ", " + profile.ADDRESS.ISO }</p>
-                    </div>
+                    </div> : null }
                     <div>
                         <i className="fa-solid fa-link"/>
                         <a href={ "https://" + profile.WEBSITE } target="blank">{ translations["Site internet"] }</a>
@@ -60,10 +49,10 @@ const ProfileCard = ({ type, profile, states }: any) => {
                 <div className={ ProfileStyles.description }>
                     <Format content={ profile.COMMENT }/>
                 </div>
-                <Tags tags={ Object.entries(profile.CATEGORY) } main={ true }/>
-                <Tags tags={ Object.entries(profile.TAGS) }/>
-                <div className="separator"></div>
-                <div className={ ProfileStyles.stats }>
+                { (profile.CATEGORY) ? <Tags tags={ Object.entries(profile.CATEGORY) } main={ true }/> : null }
+                { (profile.TAGS) ? <Tags tags={ Object.entries(profile.TAGS) }/> : null }
+                { (type === "startup") ? <div className="separator"></div> : null }
+                { (type === "startup") ? <div className={ ProfileStyles.stats }>
                     <div>
                         <p className={ ProfileStyles.label }>{ translations["Date de création"] }</p>
                         <div>
@@ -89,12 +78,64 @@ const ProfileCard = ({ type, profile, states }: any) => {
                             <p>{ profile.FUNDS + "€" }</p>
                         </div>
                     </div>
-                </div>
+                </div> : null }
             </div>
         </div>
         { (profile.STATE === "WO") ? <div className={ ProfileStyles.note }>
             <p>{ translations["Ce compte n’est pas officiel. S’il s’agit de votre startup, n’hésitez pas à récupérer les accès."] }</p>
         </div> : null }
+    </div>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile Card ( Startup Actions ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const StartupActions = ({ translations }: any) => {
+    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const followButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-folder-open", "", () => false, "", 0 ];
+    const followButtonObject = buildProperties(buttonProps, followButtonValues);
+    const contactButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-message", "", () => false, "", 0 ];
+    const contactButtonObject = buildProperties(buttonProps, contactButtonValues);
+    const parametersButtonValues = [ ButtonStyles.callToActionAlternativeRoundedIcon, true, "fa-solid fa-ellipsis", "", () => false, "", 0 ];
+    const parametersButtonObject = buildProperties(buttonProps, parametersButtonValues);
+    return <div className={ ProfileStyles.actions }>
+        <div>
+            <Button { ...followButtonObject as ButtonInterface }/>
+            <p>{ translations["Suivre"] }</p>
+        </div>
+        <div>
+            <Button { ...contactButtonObject as ButtonInterface }/>
+            <p>{ translations["Contacter"] }</p>
+        </div>
+        <Button { ...parametersButtonObject as ButtonInterface }/>
+    </div>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile Card ( Corporation Actions ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const CorporationActions = ({ translations }: any) => {
+    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    return <div className={ ProfileStyles.actions }>
+
+    </div>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile Card ( Partner Actions ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const PartnerActions = ({ translations }: any) => {
+    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const wishlistButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-heart-circle-plus", "", () => false, "", 0 ];
+    const wishlistButtonObject = buildProperties(buttonProps, wishlistButtonValues);
+    const followButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-folder-open", "", () => false, "", 0 ];
+    const followButtonObject = buildProperties(buttonProps, followButtonValues);
+    return <div className={ ProfileStyles.actions }>
+        <div data-type="tooltip" data-tooltip={ translations["Ajouter à ma liste de souhaits"] }>
+            <Button { ...wishlistButtonObject as ButtonInterface }/>
+            <p>Wishlist</p>
+        </div>
+        <div>
+            <Button { ...followButtonObject as ButtonInterface }/>
+            <p>{ translations["Suivre"] }</p>
+        </div>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

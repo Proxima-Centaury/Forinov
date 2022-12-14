@@ -31,7 +31,9 @@ const ProfileTeam = ({ profile, states }: any) => {
         <h3>{ translations["L'équipe"] }</h3>
         <div className={ TeamStyles.team } data-type="list">
             { (team) ? team.map((member: any, key: KeyType) => {
-                const cardProps = { member: member, index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault, translations: translations };
+                const index = key + 1;
+                const maxVisibleByDefault = maxVisibleCardsByDefault;
+                const cardProps = { member, index, maxVisibleByDefault, translations };
                 return <MemberCard key={ key } { ...cardProps }/>;
             }) : null }
         </div>
