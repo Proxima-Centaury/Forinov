@@ -1,6 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import chalk from "chalk";
 import { SelectOption } from "../typescript/types";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
@@ -43,10 +44,10 @@ class Utilities {
         if(!logs || logs.length <= 0) {
             return false;
         };
-        const logType = "[" + "Log" + "]";
-        const logText = " Logging an element of "
-        const logElementType = (log: any) => typeof log + " type.";
-        logs.map((log: any) => console.log(logType + logText + logElementType(log), log, "\n"));
+        const logType = chalk.blueBright("[Log]");
+        const logText = " Logging an element of ";
+        const logElementType = (log: any) => chalk.blueBright(typeof log) + " type.\n=>";
+        logs.map((log: any) => console.log(logType + logText + logElementType(log), (typeof log === "string") ? chalk.greenBright(log) : log, "\n"));
         return (logs.length === 1) ? logs[0] : logs;
     };
     /**
