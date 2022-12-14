@@ -301,16 +301,19 @@ class Utilities {
     */
     seeMoreOrLess = (event: any, translations: any, selector: String, array = [], defaultVisibleItemsCount = 1, counter = true): Array<any> => {
         const target = event.target.closest("button");
-        const visibleElements = document.querySelectorAll(selector + ":not(.hidden)");
-        const hiddenElements = document.querySelectorAll(selector + ".hidden");
         const container = document.querySelector(selector as string)?.closest("[data-type='list']");
+        const visibleElements = container?.querySelectorAll(selector + ":not(.hidden)");
+        const hiddenElements = container?.querySelectorAll(selector + ".hidden");
         // TODO => ANIMATE WITH A COLLAPSE
-        if(hiddenElements.length > 0) {
+        console.log(visibleElements, hiddenElements)
+        if(hiddenElements && hiddenElements.length > 0) {
             hiddenElements.forEach((hiddenElement) => hiddenElement.classList.remove("hidden"));
             target.querySelector("span").innerText = translations["Voir moins"];
         } else {
-            visibleElements.forEach((visibleElement, key) => (key >= defaultVisibleItemsCount) ? visibleElement.classList.add("hidden") : null);
-            target.querySelector("span").innerText = translations["Voir plus"] + ((array.length > 0) ? " (" + (array.length - defaultVisibleItemsCount) + ")" : "");
+            if(visibleElements && visibleElements.length > 0) {
+                visibleElements.forEach((visibleElement, key) => (key >= defaultVisibleItemsCount) ? visibleElement.classList.add("hidden") : null);
+                target.querySelector("span").innerText = translations["Voir plus"] + ((array.length > 0) ? " (" + (array.length - defaultVisibleItemsCount) + ")" : "");
+            };
         };
         return [ target, hiddenElements ];
     };
