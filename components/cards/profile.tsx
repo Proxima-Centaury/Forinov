@@ -19,6 +19,9 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileCard = ({ type, profile, states }: any) => {
     const { lock, translations }: any = states;
+    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const pdfButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-light fa-cloud-arrow-down", "", () => false, "PDF", 0 ];
+    const pdfButtonObject = buildProperties(buttonProps, pdfButtonValues);
     return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
             <img src={ profile.BACKGROUND } alt=""/>
@@ -29,6 +32,7 @@ const ProfileCard = ({ type, profile, states }: any) => {
         <div className={ ProfileStyles.body }>
             <div className={ ProfileStyles.picture }>
                 <img src={ profile.LOGO } alt="Company background."/>
+                { (type !== "startup") ? <Button { ...pdfButtonObject as ButtonInterface }/> : null }
             </div>
             <div className={ ProfileStyles.content }>
                 <h3>{ profile.NAME }</h3>
@@ -47,8 +51,8 @@ const ProfileCard = ({ type, profile, states }: any) => {
                 </div>
                 <Tags tags={ Object.entries(profile.CATEGORY) } main={ true }/>
                 <Tags tags={ Object.entries(profile.TAGS) }/>
-                <div className="separator"></div>
-                <div className={ ProfileStyles.stats }>
+                { (type === "startup") ? <div className="separator"></div> : null }
+                { (type === "startup") ? <div className={ ProfileStyles.stats }>
                     <div>
                         <p className={ ProfileStyles.label }>{ translations["Date de création"] }</p>
                         <div>
@@ -74,7 +78,7 @@ const ProfileCard = ({ type, profile, states }: any) => {
                             <p>{ profile.FUNDS + "€" }</p>
                         </div>
                     </div>
-                </div>
+                </div> : null }
             </div>
         </div>
         { (profile.STATE === "WO") ? <div className={ ProfileStyles.note }>

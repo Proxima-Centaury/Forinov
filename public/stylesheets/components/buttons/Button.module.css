@@ -15,16 +15,16 @@
     border-color: var(--logo-blue-color);
     transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
-.callToActionRoundedIcon > span > i,
-.callToActionAlternativeRoundedIcon > span > i,
-.callToActionNegativeRoundedIcon > span > i,
-.callToActionNegativeAlternativeRoundedIcon > span > i {
+.callToActionRoundedIcon > .icon > i,
+.callToActionAlternativeRoundedIcon > .icon > i,
+.callToActionNegativeRoundedIcon > .icon > i,
+.callToActionNegativeAlternativeRoundedIcon > .icon > i {
     font-size: 16px;
 }
-.callToActionRoundedIcon > span > i.fa-ellipsis,
-.callToActionAlternativeRoundedIcon > span > i.fa-ellipsis,
-.callToActionNegativeRoundedIcon > span > i.fa-ellipsis,
-.callToActionNegativeAlternativeRoundedIcon > span > i.fa-ellipsis {
+.callToActionRoundedIcon > .icon > i.fa-ellipsis,
+.callToActionAlternativeRoundedIcon > .icon > i.fa-ellipsis,
+.callToActionNegativeRoundedIcon > .icon > i.fa-ellipsis,
+.callToActionNegativeAlternativeRoundedIcon > .icon > i.fa-ellipsis {
     font-size: 26px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -36,10 +36,10 @@
 .callToActionRoundedIcon:hover {
     background-color: var(--background-sub-color);
 }
-.callToActionRoundedIcon > span > i {
+.callToActionRoundedIcon > .icon > i {
     color: var(--perfect-white-color);
 }
-.callToActionRoundedIcon:hover > span > i {
+.callToActionRoundedIcon:hover > .icon > i {
     color: var(--logo-blue-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -51,10 +51,10 @@
 .callToActionAlternativeRoundedIcon:hover {
     background-color: var(--logo-blue-color);
 }
-.callToActionAlternativeRoundedIcon > span > i {
+.callToActionAlternativeRoundedIcon > .icon > i {
     color: var(--logo-blue-color);
 }
-.callToActionAlternativeRoundedIcon:hover > span > i {
+.callToActionAlternativeRoundedIcon:hover > .icon > i {
     color: var(--perfect-white-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -96,6 +96,13 @@
 .callToActionNegativeAlternative > .icon,
 .callToActionSquared > .icon {
     margin: 0px 8px 0px 0px;
+}
+.callToAction > .icon > i,
+.callToActionAlternative > .icon > i,
+.callToActionNegative > .icon > i,
+.callToActionNegativeAlternative > .icon > i,
+.callToActionSquared > .icon > i {
+    font-size: 16px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Call To Action ) */
