@@ -29,7 +29,9 @@ const ProfileActivities = ({ activities, states }: any) => {
         <h3>{ translations["Fil d'actualité"] }</h3>
         <div className={ ActivitiesStyles.list } data-type="list">
             { activities.map((event: any, key: KeyType) => {
-                const cardProps = { event: event, index: key + 1, maxVisibleByDefault: maxVisibleCardsByDefault };
+                const index = key + 1;
+                const maxVisibleByDefault = maxVisibleCardsByDefault;
+                const cardProps = { event, index, maxVisibleByDefault };
                 return <ActivityCard key={ key } { ...cardProps }/>;
             }) }
         </div>
