@@ -1,6 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
 import { useState, useRef } from "react";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Directory */
@@ -336,11 +337,11 @@ const Directory = ({ data, filters }) => {
         <div className="annuaire__cards">
             {startupCards.map((item) => {
             return (
-                <a
+                <Link
                 className="annuaire__card lift"
                 id={item.id}
                 key={item.id}
-                href={item.url}
+                href={ "/annuaires/startups/" + item.id }
                 >
                 <div className="annuaire__card-avatar-wrapper">
                     <div className="annuaire__card-avatar">
@@ -374,7 +375,7 @@ const Directory = ({ data, filters }) => {
                     <p>suivre</p>
                     </div>
                 </div>
-                </a>
+                </Link>
             );
             })}
         </div>
