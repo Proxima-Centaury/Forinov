@@ -5,7 +5,6 @@
     border-radius: 15px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    overflow: hidden;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile ( Banner ) */
@@ -20,6 +19,7 @@
 .banner > img {
     width: 100%;
     object-fit: cover;
+    border-radius: 15px 15px 0px 0px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile ( actions ) */
@@ -27,7 +27,6 @@
 .actions {
     display: flex;
     justify-content: space-between;
-    width: 184px;
     height: 72px;
     position: absolute;
     right: 16px;
@@ -42,6 +41,9 @@
         top: 16px;
         bottom: inherit;
     }
+}
+.actions > * + * {
+    margin: 0px 0px 0px 16px;
 }
 .actions > div {
     display: flex;
