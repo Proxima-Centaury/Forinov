@@ -301,16 +301,15 @@ class Utilities {
     */
     seeMoreOrLess = (event: any, translations: any, selector: String, array = [], defaultVisibleItemsCount = 1, counter = true): Array<any> => {
         const target = event.target.closest("button");
-        const container = document.querySelector(selector as string)?.closest("[data-type='list']");
+        const container = document.querySelector(selector as string)?.closest("[data-type='list']") as HTMLElement;
         const visibleElements = container?.querySelectorAll(selector + ":not(.hidden)");
         const hiddenElements = container?.querySelectorAll(selector + ".hidden");
         // TODO => ANIMATE WITH A COLLAPSE
-        console.log(visibleElements, hiddenElements)
         if(hiddenElements && hiddenElements.length > 0) {
             hiddenElements.forEach((hiddenElement) => hiddenElement.classList.remove("hidden"));
             target.querySelector("span").innerText = translations["Voir moins"];
         } else {
-            if(visibleElements && visibleElements.length > 0) {
+            if(visibleElements && visibleElements.length > defaultVisibleItemsCount) {
                 visibleElements.forEach((visibleElement, key) => (key >= defaultVisibleItemsCount) ? visibleElement.classList.add("hidden") : null);
                 target.querySelector("span").innerText = translations["Voir plus"] + ((array.length > 0) ? " (" + (array.length - defaultVisibleItemsCount) + ")" : "");
             };
