@@ -15,16 +15,16 @@
     border-color: var(--logo-blue-color);
     transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
-.callToActionRoundedIcon > .icon > i,
-.callToActionAlternativeRoundedIcon > .icon > i,
-.callToActionNegativeRoundedIcon > .icon > i,
-.callToActionNegativeAlternativeRoundedIcon > .icon > i {
+.callToActionRoundedIcon > i,
+.callToActionAlternativeRoundedIcon > i,
+.callToActionNegativeRoundedIcon > i,
+.callToActionNegativeAlternativeRoundedIcon > i {
     font-size: 16px;
 }
-.callToActionRoundedIcon > .icon > i.fa-ellipsis,
-.callToActionAlternativeRoundedIcon > .icon > i.fa-ellipsis,
-.callToActionNegativeRoundedIcon > .icon > i.fa-ellipsis,
-.callToActionNegativeAlternativeRoundedIcon > .icon > i.fa-ellipsis {
+.callToActionRoundedIcon > i.fa-ellipsis,
+.callToActionAlternativeRoundedIcon > i.fa-ellipsis,
+.callToActionNegativeRoundedIcon > i.fa-ellipsis,
+.callToActionNegativeAlternativeRoundedIcon > i.fa-ellipsis {
     font-size: 26px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -36,10 +36,10 @@
 .callToActionRoundedIcon:hover {
     background-color: var(--background-sub-color);
 }
-.callToActionRoundedIcon > .icon > i {
+.callToActionRoundedIcon > i {
     color: var(--perfect-white-color);
 }
-.callToActionRoundedIcon:hover > .icon > i {
+.callToActionRoundedIcon:hover > i {
     color: var(--logo-blue-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -51,10 +51,10 @@
 .callToActionAlternativeRoundedIcon:hover {
     background-color: var(--logo-blue-color);
 }
-.callToActionAlternativeRoundedIcon > .icon > i {
+.callToActionAlternativeRoundedIcon > i {
     color: var(--logo-blue-color);
 }
-.callToActionAlternativeRoundedIcon:hover > .icon > i {
+.callToActionAlternativeRoundedIcon:hover > i {
     color: var(--perfect-white-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -90,18 +90,12 @@
         white-space: initial;
     } 
 }
-.callToAction > .icon,
-.callToActionAlternative > .icon,
-.callToActionNegative > .icon,
-.callToActionNegativeAlternative > .icon,
-.callToActionSquared > .icon {
+.callToAction > i,
+.callToActionAlternative > i,
+.callToActionNegative > i,
+.callToActionNegativeAlternative > i,
+.callToActionSquared > i {
     margin: 0px 8px 0px 0px;
-}
-.callToAction > .icon > i,
-.callToActionAlternative > .icon > i,
-.callToActionNegative > .icon > i,
-.callToActionNegativeAlternative > .icon > i,
-.callToActionSquared > .icon > i {
     font-size: 16px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -115,6 +109,12 @@
     color: var(--logo-blue-color);
     background-color: var(--background-sub-color);
 }
+.callToAction > i {
+    color: var(--perfect-white-color);
+}
+.callToAction:hover > i {
+    color: var(--logo-blue-color);
+}
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Call To Action Alternative ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -125,6 +125,12 @@
 .callToActionAlternative:hover {
     color: var(--perfect-white-color);
     background-color: var(--logo-blue-color);
+}
+.callToActionAlternative > i {
+    color: var(--logo-blue-color);
+}
+.callToActionAlternative:hover > i {
+    color: var(--perfect-white-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Call To Action Negative ) */
