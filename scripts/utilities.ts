@@ -250,7 +250,7 @@ class Utilities {
     * @function buildProperties
     * @param { Array } [ properties ] Should be an ```array``` of ```strings```.
     * @param { Array } [ values ] Should be an ```array``` of various types.
-    * @returns { Object|false }
+    * @returns { Object|Boolean }
     * - ```object``` that contains properties and values according to data passed.
     * - ```false``` if not enough data passed.
     * ---
@@ -263,7 +263,7 @@ class Utilities {
     * const googleButtonObject = buildProperties(googleButtonProps, googleButtonValues);
     * <Button { ...googleButtonObject }/>
     */
-    buildProperties = (properties?: Array<String>, values?: Array<any>): Object|false => {
+    buildProperties = (properties?: Array<String>, values?: Array<any>): Object|Boolean => {
         if(!properties || !values) {
             return false;
         };
@@ -317,6 +317,25 @@ class Utilities {
         };
         return [ target, hiddenElements ];
     };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function redirectTo
+    * @param { String } [ route ] Should be a ```string```.
+    * @param { any } [ router ] Should be an ```object```.
+    * @param { String } [ locale ] Should be a ```string```.
+    * @returns { void|Boolean }
+    * - ```void```.
+    * ---
+    * @note This method is used to redirect users to the given {@link route} parameter.
+    * @note The {@link router} parameter should be React's useRouter object.
+    * @note The {@link locale} parameter should be current selected language.
+    */
+    redirectTo = (route: String, router: any, locale: String): void|Boolean => {
+        if(!router) {
+            return false;
+        };
+        router.push(route, route, { locale: localStorage.toString() })
+    };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Instance */
@@ -335,6 +354,7 @@ const preventSubmit = utilities.preventSubmit;
 const buildProperties = utilities.buildProperties;
 const scrollTo = utilities.scrollTo;
 const seeMoreOrLess = utilities.seeMoreOrLess;
+const redirectTo = utilities.redirectTo;
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -349,5 +369,6 @@ export {
     preventSubmit,
     buildProperties,
     scrollTo,
-    seeMoreOrLess
+    seeMoreOrLess,
+    redirectTo
 };
