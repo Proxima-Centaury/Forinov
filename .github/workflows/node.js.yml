@@ -14,9 +14,10 @@ jobs:
         # Deployment system type
         runs-on: ubuntu-latest
         # Provides multiple supported versions to test the deployment
-        matrix:
-            node-version: [14.x, 16.x, 18.x]
-            # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        strategy:
+            matrix:
+                node-version: [14.x, 16.x, 18.x]
+                # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
         # Deployment system steps
         steps:
             - name: Repository check-out
