@@ -3,7 +3,10 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import { GetStaticProps } from "next";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { RegisterInterface } from "../typescript/interfaces";
+import { redirectTo } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -12,7 +15,9 @@ import IframeStyles from "../public/stylesheets/components/Iframe.module.css";
 /* Register */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Register = ({ states }: RegisterInterface) => {
-    const { translations }: any = states;
+    const router = useRouter();
+    const { locale, session, translations }: any = states;
+    useEffect(() => { (session) ? redirectTo("/", router, locale) : null });
     return <>
         <Head>
             <title>Forinov - Inscription</title>
