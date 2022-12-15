@@ -27,6 +27,7 @@
     --light-grey-color: #CFD0D1;
     --perfect-grey-color: #808080;
     --lighter-black-color: #242526;
+    --classic-black-color: #141516;
     --perfect-black-color: #000000;
     /* Feedback Colors */
     --success-color: #00A04A;
@@ -42,7 +43,7 @@
     /* Red Tones */
     --palered-color: #FFCFD1;
     /* Text Colors */
-    --text-main-color: var(--black-color);
+    --text-main-color: var(--perfect-black-color);
     --text-inactive-color: var(--perfect-grey-color);
     --separator-color: var(--light-grey-color);
     --border-color: var(--light-grey-color);
@@ -63,45 +64,57 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Dark Theme */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* [data-theme="dark"] {
-    --main-color: 0, 109, 255;
-    --logo-orange-color: 254, 106, 40;
-    --project-color: 49, 167, 116;
-    --event-color: 128, 97, 222;
-    --program-color: 126, 201, 255;
-    --offer-color: 250, 106, 88;
-    --challenge-color: 237, 159, 0;
-    --white-color: 255, 255, 255;
-    --black-color: 35, 35, 35;
-    --success-color: 56, 191, 132;
-    --warning-color: 255, 176, 13;
-    --error-color: 191, 56, 56;
-    --paleblue-color: 56, 56, 56;
-    --lightblue-color: 36, 36, 36;
-    --skyblue-color: 126, 201, 255;
-    --palegreen-color: 209, 242, 228;
-    --palered-color: 255, 207, 209;
-    --text-main-color: 255, 255, 255;
-    --text-sub-color: 176, 179, 184;
-    --text-placeholder-color: 157, 157, 157;
-    --text-inactive-color: 89, 89, 89;
-    --border-color: 120, 120, 120;
-    --border: 1px solid rgb(var(--border-color));
-    --border-alternative-color: 120, 120, 120;
-    --border-alternative: 1px solid rgb(var(--border-alternative-color));
-    --background-main-color: 41, 41, 41;
-    --background-sub-color: 56, 56, 56;
-    --background-private-color: 18, 18, 18;
-    --background-private-header-color: 29, 29, 29;
-    --background-information-color: 36, 36, 36;
-    --background-privacy-color: 56, 56, 56;
-    --separator-color: 231, 231, 231;
-    --shadow-color: 0, 0, 0;
-    --box-shadow: 0px 4px 10px 0px rgba(var(--shadow-color), 0.07);
-    --darker-box-shadow: 0px 4px 10px 0px rgba(var(--shadow-color), 0.27);
-    --filter-color: rgba(0, 0, 0, 0.5);
-    --gradientMask: linear-gradient(180deg, rgba(56, 56, 56, 0) 0%, rgba(56, 56, 56, 1) 80%);
-} */
+[data-theme="dark"] {
+    /* Logo Colors */
+    --logo-blue-color: #005AEB;
+    --logo-orange-color: #FE6A28;
+    --logo-green-color: #65D318;
+    /* Opportunity Colors */
+    --project-color: #31A774;
+    --event-color: #8061DE;
+    --program-color: #7EC9FF;
+    --offer-color: #FA6A58;
+    --challenge-color: #ED9F00;
+    /* Light & Dark Colors */
+    --perfect-white-color: #FFFFFF;
+    --darker-white-color: #F8F7F6;
+    --light-grey-color: #CFD0D1;
+    --perfect-grey-color: #808080;
+    --lighter-black-color: #242526;
+    --classic-black-color: #141516;
+    --perfect-black-color: #000000;
+    /* Feedback Colors */
+    --success-color: #00A04A;
+    --warning-color: #FCDC0C;
+    --error-color: #E01E3E;
+    --information-color: #1F4497;
+    /* Blue Tones */
+    --lightblue-color: #F0F6FF;
+    --paleblue-color: #B2D1FF;
+    --skyblue-color: #7EC9FF;
+    /* Green Tones */
+    --palegreen-color: #D1F2E4;
+    /* Red Tones */
+    --palered-color: #FFCFD1;
+    /* Text Colors */
+    --text-main-color: var(--perfect-white-color);
+    --text-inactive-color: var(--perfect-grey-color);
+    --separator-color: var(--light-grey-color);
+    --border-color: var(--light-grey-color);
+    --border: 1px solid var(--border-color);
+    /* Background Colors */
+    --background-main-color: var(--lighter-black-color);
+    --background-sub-color: var(--classic-black-color);
+    --background-private-color: var(--lighter-black-color);
+    --background-information-color: var(--light-grey-color);
+    /* Other Variables */
+    --shadow-color: #00000050;
+    --darker-shadow-color: #00000070;
+    --box-shadow: 0px 4px 10px 0px var(--shadow-color);
+    --darker-box-shadow: 0px 4px 10px 0px var(--darker-shadow-color);
+    --filter-color: #00000080;
+    --gradient-mask: linear-gradient(180deg, #00000000 0%, #000000FF 80%);
+}
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Defaults */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -402,6 +415,29 @@ body {
 [data-type="tooltip"]:hover:after {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Custom Devtools */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+[data-type="devtools"] {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+}
+[data-type="devtools"] > p {
+    margin: 0px 16px 0px 0px;
+    color: var(--logo-blue-color);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+[data-type="devtools"] > div + div {
+    margin: 0px 0px 0px 8px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Large call to action */
