@@ -13,6 +13,7 @@ import Navbar from "../layout/navbar";
 import Transition from "../layout/transition";
 import Modal from "../layout/modal";
 import Footer from "../layout/footer";
+import Devtools from "../components/devtools/devtools";
 import { GlobalContext } from "../components/context/globalContext";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
@@ -33,6 +34,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     const [ locales, setLocales ] = useState(pageProps.locales);
     const [ translations, setTranslations ] = useState(getTranslations(locale));
     const [ session, setSession ] = useState(false);
+    const [ theme, setTheme ] = useState("light");
     const [ lock, setLock ] = useState(true);
     const [ modal, setModal ] = useState(null);
     useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
@@ -40,11 +42,17 @@ const App = ({ Component, pageProps }: AppProps) => {
         setCookie("NEXT_LOCALE", locale, 31536000, "/");
         router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
     }, [ locale ]);
+    useEffect(() => setLock(!session), [ session ]);
+    useEffect(() => {
+        const body = document.body;
+        body.setAttribute("data-theme", theme);
+    }, [ theme ]);
     pageProps.states = {};
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;
     pageProps.states["translations"] = translations;
     pageProps.states["session"] = session;
+    pageProps.states["theme"] = theme;
     pageProps.states["lock"] = lock;
     pageProps.states["modal"] = modal;
     pageProps.stateSetters = {};
@@ -52,6 +60,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.stateSetters["setLocales"] = setLocales;
     pageProps.stateSetters["setTranslations"] = setTranslations;
     pageProps.stateSetters["setSession"] = setSession;
+    pageProps.stateSetters["setTheme"] = setTheme;
     pageProps.stateSetters["setLock"] = setLock;
     pageProps.stateSetters["setModal"] = setModal;
     pageProps.config = config;
@@ -62,7 +71,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <title>Forinov</title>
             <link rel="icon" href="/assets/logo.png"/>
         </Head>
-        <Navbar { ...pageProps }/>
+        { (!session) ? <Navbar { ...pageProps }/> : null }
         <Transition>
             <GlobalContext>
                 <Component { ...pageProps }/>
@@ -70,6 +79,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <Footer { ...pageProps }/>
         </Transition>
         <Modal { ...pageProps }/>
+        <Devtools { ...pageProps }/>
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

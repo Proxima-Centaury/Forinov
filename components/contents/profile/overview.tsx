@@ -10,14 +10,43 @@ import OverviewStyles from "../../../public/stylesheets/components/contents/prof
 /* Profile Overview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileOverview = ({ type, profile, states }: any) => {
+    console.log(profile);
     const { translations }: any = states;
     const parentProps = { type, profile, states };
     return <div className={ OverviewStyles.overview }>
         <h4>{ translations["En bref"] }</h4>
         <div className="separator"></div>
-        { (type.match(/(startup)/)) ? <Startup { ...parentProps }/> : null }
-        { (type.match(/(entreprise|corporation)/)) ? <Corporation { ...parentProps }/> : null }
-        { (type.match(/(partenaire|partner)/)) ? <Partner { ...parentProps }/> : null }
+        { (type === "startup") ? <Startup { ...parentProps }/> : null }
+        { (type === "corporation") ? <Corporation { ...parentProps }/> : null }
+        { (type === "partner") ? <Partner { ...parentProps }/> : null }
+        <div className="separator"></div>
+        { (profile.IMMAT) ? <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Numéro d'immatriculation"] }</p>
+            <p>{ profile.IMMAT }</p>
+        </div> : null }
+        <div className="separator"></div>
+        <div className={ OverviewStyles.details }>
+            { (profile.ADDRESS) ? <div className={ OverviewStyles.location }>
+                <i className="fa-solid fa-location-dot"/>
+                <span>{ profile.ADDRESS.STREET + ", " + profile.ADDRESS.ZIP + ", " + profile.ADDRESS.TOWN + ", " + profile.ADDRESS.ISO }</span>
+            </div> : null }
+            { (profile.WEBSITE) ? <div className={ OverviewStyles.website }>
+                <i className="fa-solid fa-thumbtack"/>
+                <a href={ "https://" + profile.WEBSITE } target="blank">{ profile.WEBSITE }</a>
+            </div> : null }
+            <div className={ OverviewStyles.networks }>
+                { (profile.FACEBOOK) ? <a href={ profile.FACEBOOK } target="_blank">
+                    <i className="fa-brands fa-facebook-f"/>
+                </a> : null }
+                { (profile.TWITTER) ? <a href={ profile.TWITTER } target="_blank">
+                    <i className="fa-brands fa-twitter"/>
+                </a> : null }
+                { (profile.LINKEDIN) ? <a href={ profile.LINKEDIN } target="_blank">
+                    <i className="fa-brands fa-linkedin"/>
+                </a> : null }
+                { (profile.CRUNCHBASE) ? <a href={ profile.CRUNCHBASE } target="_blank">cb</a> : null }
+            </div>
+        </div>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -26,61 +55,51 @@ const ProfileOverview = ({ type, profile, states }: any) => {
 const Startup = ({ profile, states }: any) => {
     const { lock, translations }: any = states;
     return <>
-        <div className={ OverviewStyles.details }>
+        { (profile.TECHNO) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Technologie(s)"] }</p>
             <Tags tags={ Object.entries(profile.TECHNO) } lock={ lock }/>
-        </div>
-        <div className={ OverviewStyles.details }>
+        </div> : null }
+        { (profile.BUSINESSMODEL) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Business model"] }</p>
             <Tags tags={ Object.entries(profile.BUSINESSMODEL) } lock={ lock }/>
-        </div>
-        <div className={ OverviewStyles.details }>
+        </div> : null }
+        { (profile.LOCATION) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Présence"] }</p>
             <Tags tags={ Object.entries(profile.LOCATION) } lock={ lock }/>
-        </div>
-        <div className="separator"></div>
-        <div className={ OverviewStyles.details }>
-            <p className={ OverviewStyles.label }>{ translations["Numéro d'immatriculation"] }</p>
-            <p>{ profile.IMMAT }</p>
-        </div>
-        <div className="separator"></div>
-        <div className={ OverviewStyles.details }>
-            <div className={ OverviewStyles.location }>
-                <i className="fa-solid fa-location-dot"/>
-                <span>{ profile.ADDRESS.STREET + ", " + profile.ADDRESS.ZIP + ", " + profile.ADDRESS.TOWN + ", " + profile.ADDRESS.ISO }</span>
-            </div>
-            <div className={ OverviewStyles.website }>
-                <i className="fa-solid fa-thumbtack"/>
-                <a href={ "https://" + profile.WEBSITE } target="blank">{ profile.WEBSITE }</a>
-            </div>
-            <div className={ OverviewStyles.networks }>
-                <a href={ profile.FACEBOOK } target="_blank">
-                    <i className="fa-brands fa-facebook-f"/>
-                </a>
-                <a href={ profile.TWITTER } target="_blank">
-                    <i className="fa-brands fa-twitter"/>
-                </a>
-                <a href={ profile.LINKEDIN } target="_blank">
-                    <i className="fa-brands fa-linkedin"/>
-                </a>
-                <a href={ profile.CRUNCHBASE } target="_blank">cb</a>
-            </div>
-        </div>
+        </div> : null }
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Corporation Overview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Corporation = ({ profile, states }: any) => {
-    const { lock, translations }: any = states;
-    return <></>;
+    const { translations }: any = states;
+    return <>
+        { (profile.HEADQUARTER) ? <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Maison mère"] }</p>
+        </div> : null }
+    </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partner Overview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Partner = ({ profile, states }: any) => {
-    const { lock, translations }: any = states;
-    return <></>;
+    const { translations }: any = states;
+    return <>
+        <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Année de création"] }</p>
+            <span>{ new Date(profile.CREATIONDATE).getFullYear() }</span>
+        </div>
+        <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Effectifs"] }</p>
+            <span>{ profile.PEOPLE }</span>
+        </div>
+        <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Secteur d'activités"] }</p>
+            {/* <Tags tags={ Object.entries(profile.LOCATION) } lock={ lock }/> */}
+            {/* TODO - ASK THOMAS FOR THIS SECTION, SEEMS TO BE MISSING ON PARTNER'S PROFILES */}
+        </div>
+    </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */

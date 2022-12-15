@@ -25,25 +25,21 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count }: ButtonI
         return <button></button>;
     } else if(!url && type === ButtonStyles.moreOrLess) {
         return <button className={ ButtonStyles.moreOrLess } onClick={ action }>
-            <span>{ text + ((count)  ? " (" + count + ")" : " ") }</span>
+            { text + ((count)  ? " (" + count + ")" : " ") }
             <i className="fa-solid fa-caret-right"/>
         </button>;
     } else if(!url && type === ButtonStyles.moreOrLessAlternative) {
         return <button className={ ButtonStyles.moreOrLessAlternative } onClick={ action }>
-            <span>{ text + ((count)  ? " (" + count + ")" : " ") }</span>
+            { text + ((count)  ? " (" + count + ")" : " ") }
         </button>;
     } else if(!url && buttonTypes.includes(type)) {
         return <button className={ type } onClick={ action }>
-            { (faIcon) ? <span className={ ButtonStyles.icon }>
-                <i className={ faIconClass }/>
-            </span> : null }
-            <p>{ text }</p>
+            { (faIcon) ? <i className={ faIconClass }/> : null }
+            { text }
         </button>
     } else if(!url && roundedButtonTypes.includes(type)) {
         return <button className={ type } onClick={ action }>
-            { (faIcon) ? <span className={ ButtonStyles.icon }>
-                <i className={ faIconClass }/>
-            </span> : null }
+            { (faIcon) ? <i className={ faIconClass }/> : null }
         </button>
     } else if(!url && type === ButtonStyles.closeModal) {
         return <button className={ type } onClick={ action }>
