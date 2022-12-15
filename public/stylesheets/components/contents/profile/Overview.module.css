@@ -19,8 +19,8 @@
     display: flex;
     flex-direction: column;
 }
-.overview > .details:nth-of-type(3) {
-    margin: 16px 0px 16px 0px;
+.overview > .details + .details {
+    margin: 16px 0px 0px 0px;
 }
 .overview > .details > .label {
     margin: 0px 0px 0px 0px;
