@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { ProfileInterface, ButtonInterface } from "../../../../typescript/interfaces";
-import { buildProperties } from "../../../../scripts/utilities";
+import { beautifyTheLogs, buildProperties } from "../../../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -40,7 +40,7 @@ import ButtonStyles from "../../../../public/stylesheets/components/buttons/Butt
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Profile = ({ profile, products, activities, states, stateSetters }: ProfileInterface) => {
     const router = useRouter();
-    const { lock, translations }: any = states;
+    const { session, lock, translations }: any = states;
     const { setModal }: any = stateSetters;
     let { type } = router.query;
     if(type) {
@@ -57,8 +57,15 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
             event.preventDefault();
             if(lock) {
                 const target = event.target as Element;
-                const selectors = "." + MenuStyles.menu + ",." + ButtonStyles.closeModal + ",." + BannerStyles.identificationBanner + ",." + BannerStyles.recoverBanner + ",." + NavbarStyles.navbar;
-                if(!target.closest(selectors)) {
+                const selectors = [
+                    "." + MenuStyles.menu,
+                    "." + ButtonStyles.closeModal,
+                    "." + BannerStyles.identificationBanner,
+                    "." + BannerStyles.recoverBanner,
+                    "." + NavbarStyles.navbar,
+                    "[data-type='devtools']"
+                ];
+                if(!target.closest(selectors.join(", "))) {
                     if(lock) {
                         return setModal("register");
                     };
@@ -71,7 +78,7 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
     });
     const parentProps = { type, profile, products, activities, states, stateSetters };
     return <div id="profile" className="container">
-        <IdenfiticationBanner { ...parentProps }/>
+        { (!session) ? <IdenfiticationBanner { ...parentProps }/> : null }
         { (profile.STATE === "WO") ? <RecoverBanner { ...parentProps }/> : null }
         <ProfileCard { ...parentProps }/>
         <div className={ ProfileStyles.details }>
@@ -111,13 +118,16 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
     const profileResponse = await profilePromise.json();
     const formattedProfileResponse = profileResponse[0];
-    const productPromise = await fetch(endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-    const productResponse = await productPromise.json();
-    const formattedProductResponse = Object.values(productResponse[0].PRODUCTS);
+    const productsPromise = await fetch(endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+    const productsResponse = await productsPromise.json();
+    const formattedProductsResponse = Object.values(productsResponse[0].PRODUCTS);
     const activitiesPromise = await fetch(endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
     const activitiesResponse = await activitiesPromise.json();
     const formattedActivitiesResponse = Object.values(activitiesResponse[0].EVENTS);
-    if(!formattedProfileResponse) {
+    beautifyTheLogs("[CALL] PROFILE : " + endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+    beautifyTheLogs("[CALL] PRODUCTS : " + endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+    beautifyTheLogs("[CALL] ACTIVITIES : " + endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+    if(!formattedProfileResponse || (formattedProfileResponse && Object.keys(formattedProfileResponse).length === 0)) {
         return {
             redirect: {
                 destination: "/" + locale + "/404",
@@ -129,7 +139,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         props: {
             locale, locales, defaultLocale,
             profile: formattedProfileResponse || null,
-            products: formattedProductResponse || null,
+            products: formattedProductsResponse || null,
             activities: formattedActivitiesResponse || null
         }
     };

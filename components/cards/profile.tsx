@@ -60,7 +60,7 @@ const ProfileCard = ({ type, profile, states }: any) => {
                         </div>
                     </div>
                     <div>
-                        <p className={ ProfileStyles.label }>{ translations["Effectif"] }</p>
+                        <p className={ ProfileStyles.label }>{ translations["Effectifs"] }</p>
                         <div>
                             <i className="fa-light fa-user-helmet-safety"/>
                             <p>{ profile.PEOPLE }</p>
@@ -114,8 +114,19 @@ const StartupActions = ({ translations }: any) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CorporationActions = ({ translations }: any) => {
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const wishlistButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-heart-circle-plus", "", () => false, "", 0 ];
+    const wishlistButtonObject = buildProperties(buttonProps, wishlistButtonValues);
+    const followButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-folder-open", "", () => false, "", 0 ];
+    const followButtonObject = buildProperties(buttonProps, followButtonValues);
     return <div className={ ProfileStyles.actions }>
-
+        <div data-type="tooltip" data-tooltip={ translations["Ajouter à ma liste de souhaits"] }>
+            <Button { ...wishlistButtonObject as ButtonInterface }/>
+            <p>Wishlist</p>
+        </div>
+        <div>
+            <Button { ...followButtonObject as ButtonInterface }/>
+            <p>{ translations["Suivre"] }</p>
+        </div>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
