@@ -30,7 +30,7 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count }: ButtonI
         </button>;
     } else if(!url && type === ButtonStyles.moreOrLessAlternative) {
         return <button className={ ButtonStyles.moreOrLessAlternative } onClick={ action }>
-            { text + ((count)  ? " (" + count + ")" : " ") }
+            <span>{ text + ((count)  ? " (" + count + ")" : " ") }</span>
         </button>;
     } else if(!url && buttonTypes.includes(type)) {
         return <button className={ type } onClick={ action }>

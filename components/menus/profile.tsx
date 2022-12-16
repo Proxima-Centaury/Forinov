@@ -19,7 +19,7 @@ const menus = {
         { url: "#socialsfeed", classList: "", text: "Réseaux sociaux" }
     ],
     corporation: [
-        { url: "#members", classList: ProfileStyles.active, text: "Équipe" },
+        { url: "#team", classList: ProfileStyles.active, text: "Équipe" },
         { url: "#projects", classList: "", text: "Opportunités" },
         { url: "#goals", classList: "", text: "Objectifs et offres" },
         { url: "#ecosystem", classList: "", text: "Écosystème et partenaires" },
@@ -27,7 +27,7 @@ const menus = {
         { url: "#socialsfeed", classList: "", text: "Réseaux sociaux" }
     ],
     partner: [
-        { url: "#members", classList: ProfileStyles.active, text: "Équipe" },
+        { url: "#team", classList: ProfileStyles.active, text: "Équipe" },
         { url: "#projects", classList: "", text: "Opportunités" },
         { url: "#goals", classList: "", text: "Objectifs et offres" },
         { url: "#ecosystem", classList: "", text: "Écosystème et partenaires" },

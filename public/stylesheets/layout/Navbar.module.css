@@ -37,9 +37,17 @@
     justify-content: center;
     align-items: center;
 }
-.navbar > .logo > a > img {
-    min-width: 150px;
-    width: 150px;
+.navbar > .logo > a > picture {
+    min-width: 50px;
+    width: 50px;
+    min-height: 50px;
+    height: 50px;
+    margin: 0px 16px 0px 0px;
+}
+.navbar > .logo > a > span {
+    font-size: 26px;
+    font-weight: bold;
+    font-family: "Nunito Sans";
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar ( Links ) */

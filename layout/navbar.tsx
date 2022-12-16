@@ -34,7 +34,12 @@ const Navbar = ({ states, stateSetters, config }: NavbarInterface) => {
     const parentProps = { navbar, translations };
     return <nav className={ NavbarStyles.navbar }>
         <div className={ NavbarStyles.logo }>
-            <Link href="/"><img src="/assets/logo_full.png"/></Link>
+            <Link href="/">
+                <picture>
+                    <img src="/assets/logo.png"/>
+                </picture>
+                <span>Forinov</span>
+            </Link>
         </div>
         <ul className={ NavbarStyles.links + ((menuState) ? " " + NavbarStyles.show : "") }>
             <NavbarMenu { ...parentProps }/>

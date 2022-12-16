@@ -303,6 +303,7 @@ body {
 .formattedContent {
     display: flex;
     flex-direction: column;
+    word-break: break-word;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Modal Layout */
@@ -320,6 +321,7 @@ body {
     opacity: 0;
     pointer-events: none;
     background-color: var(--filter-color);
+    backdrop-filter: blur(10px);
     transition: opacity 0.3s ease;
     z-index: 9000;
 }
@@ -417,13 +419,30 @@ body {
     transform: translate3d(0, 0, 0);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Custom Dev Data */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+[data-type="data"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    padding: 16px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    border-radius: 10px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Custom Devtools */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 [data-type="devtools"] {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 8px;
+    padding: 16px;
     position: fixed;
     bottom: 0px;
     left: 0px;

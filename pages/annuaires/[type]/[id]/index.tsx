@@ -22,6 +22,7 @@ import ProfilePartners from "../../../../components/contents/profile/partners";
 import ProfileTeam from "../../../../components/contents/profile/team";
 import ProfileActivities from "../../../../components/contents/profile/activities";
 import ProfileSocials from "../../../../components/contents/profile/socials";
+import ProfileGoals from "../../../../components/contents/profile/goals";
 import Button from "../../../../components/buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
@@ -121,6 +122,9 @@ const Corporation = ({ type, profile, products, activities, states, stateSetters
     const parentProps = { type, profile, products, activities, states, stateSetters };
     return <>
         <ProfileTeam { ...parentProps }/>
+        <ProfileGoals { ...parentProps }/>
+        <ProfileActivities { ...parentProps }/>
+        <ProfileSocials { ...parentProps }/>
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -130,6 +134,9 @@ const Partner = ({ type, profile, products, activities, states, stateSetters }: 
     const parentProps = { type, profile, products, activities, states, stateSetters };
     return <>
         <ProfileTeam { ...parentProps }/>
+        <ProfileGoals { ...parentProps }/>
+        <ProfileActivities { ...parentProps }/>
+        <ProfileSocials { ...parentProps }/>
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
