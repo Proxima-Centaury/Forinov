@@ -8,6 +8,7 @@ import { useState } from "react";
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ProfileProducts from "../../../components/contents/profile/products";
+import Tags from "../../tags/tags";
 import Button from "../../buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -28,10 +29,12 @@ const ProfileGoals = ({ type, profile, products, activities, states, stateSetter
     return <div id="goals" className={ GoalsStyles.goals }>
         <h3>{ translations["Objectifs et offres"] }</h3>
         <div className={ GoalsStyles.content }>
-
+            <p className={ GoalsStyles.label }>{ translations["Types de collaborations recherchées"] }</p>
+            { (profile.PARTNER_SEARCH) ? <Tags tags={ Object.entries(profile.PARTNER_SEARCH) }/> : null }
         </div>
         <div className={ GoalsStyles.content }>
-
+            <p className={ GoalsStyles.label }>{ translations["Intérêts par les startups dans les domaines"] }</p>
+            { (profile.STARTUP_SEARCH) ? <Tags tags={ Object.entries(profile.STARTUP_SEARCH) }/> : null }
         </div>
         { (products) ? <ProfileProducts { ...parentProps }/> : null }
     </div>;

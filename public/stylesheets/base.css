@@ -236,6 +236,9 @@ body {
     position: relative;
     background-color: var(--separator-color);
 }
+.separator + .separator {
+    display: none;
+}
 .separatorOr {
     margin: calc(16px + 8px) 0px;
 }
@@ -301,9 +304,18 @@ body {
 /* Formatted Content */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .formattedContent {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     word-break: break-word;
+}
+.formattedContent a {
+    color: var(--logo-blue-color);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.3s ease;
+}
+.formattedContent a:hover {
+    text-decoration-color: var(--logo-blue-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Modal Layout */

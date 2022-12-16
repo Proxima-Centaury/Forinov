@@ -224,15 +224,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 112px;
     height: 32px;
     margin: 16px auto auto auto;
     color: var(--text-inactive-color);
     font-weight: 600;
     border: var(--border);
     border-radius: calc(32px / 2);
+    transition: background-color 0.3s ease;
+}
+.moreOrLessAlternative:hover {
+    background-color: var(--background-information-color);
 }
 .moreOrLessAlternative > span {
+    padding: 8px;
     color: var(--text-inactive-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

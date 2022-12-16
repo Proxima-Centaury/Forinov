@@ -18,7 +18,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Profile Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileCard = ({ type, profile, states }: any) => {
-    const { lock, translations }: any = states;
+    const { session, lock, translations }: any = states;
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pdfButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-light fa-cloud-arrow-down", "", () => false, "PDF", 0 ];
     const pdfButtonObject = buildProperties(buttonProps, pdfButtonValues);
@@ -32,7 +32,7 @@ const ProfileCard = ({ type, profile, states }: any) => {
         <div className={ ProfileStyles.body }>
             <div className={ ProfileStyles.picture }>
                 <img src={ profile.LOGO } alt="Company background."/>
-                { (type !== "startup") ? <Button { ...pdfButtonObject as ButtonInterface }/> : null }
+                { (type !== "startup" && (!session || (session && profile.PDF))) ? <Button { ...pdfButtonObject as ButtonInterface }/> : null }
             </div>
             <div className={ ProfileStyles.content }>
                 <h3>{ profile.NAME }</h3>
