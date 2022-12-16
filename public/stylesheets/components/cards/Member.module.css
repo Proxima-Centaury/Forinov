@@ -48,17 +48,15 @@
     margin: 8px 0px 0px 0px;
     color: var(--text-inactive-color);
 }
-.main > .message {
+.main > button:first-of-type,
+.main > button:last-of-type {
     position: absolute;
+}
+.main > button:first-of-type {
     top: 0;
     right: 0;
 }
-.main > .message > i {
-    font-size: 24px;
-    color: var(--logo-blue-color);
-}
-.main > button {
-    position: absolute;
+.main > button:last-of-type {
     right: 0;
     bottom: 0;
 }

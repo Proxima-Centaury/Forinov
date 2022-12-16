@@ -40,7 +40,7 @@ import ButtonStyles from "../../../../public/stylesheets/components/buttons/Butt
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Profile = ({ profile, products, activities, states, stateSetters }: ProfileInterface) => {
     const router = useRouter();
-    const { session, lock, translations }: any = states;
+    const { session, lock }: any = states;
     const { setModal }: any = stateSetters;
     let { type } = router.query;
     if(type) {
@@ -49,9 +49,6 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
         type = (type.match(/(entreprise)/)) ? "corporation" : type;
         type = (type.match(/(partenaire)/)) ? "partner" : type;
     };
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
-    const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
     useEffect(() => {
         let showRegisterPopup = (event: MouseEvent) => {
             event.preventDefault();
@@ -88,19 +85,51 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
                     <ProfileOverview { ...parentProps }/>
                 </div>
             </div>
-            {/* <div className={ ProfileStyles.content }>
-                <ProfileOffer { ...parentProps }/>
-                <ProfileTargets { ...parentProps }/>
-                { (products) ? <ProfileProducts { ...parentProps }/> : null }
-                <Button { ...pitchDeckButtonObject as ButtonInterface }/>
-                <ProfileEcosystem { ...parentProps }/>
-                <ProfilePartners { ...parentProps }/>
-                <ProfileTeam { ...parentProps }/>
-                <ProfileActivities { ...parentProps }/>
-                <ProfileSocials { ...parentProps }/>
-            </div> */}
+            <div className={ ProfileStyles.content }>
+                { (type === "startup") ? <Startup { ...parentProps }/> : null }
+                { (type === "corporation") ? <Corporation { ...parentProps }/> : null }
+                { (type === "partner") ? <Partner { ...parentProps }/> : null }
+            </div>
         </div>
     </div>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Startup Profile Content */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Startup = ({ type, profile, products, activities, states, stateSetters }: any) => {
+    const { translations }: any = states;
+    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
+    const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
+    const parentProps = { type, profile, products, activities, states, stateSetters };
+    return <>
+        <ProfileOffer { ...parentProps }/>
+        <ProfileTargets { ...parentProps }/>
+        { (products) ? <ProfileProducts { ...parentProps }/> : null }
+        <Button { ...pitchDeckButtonObject as ButtonInterface }/>
+        <ProfileEcosystem { ...parentProps }/>
+        <ProfilePartners { ...parentProps }/>
+        <ProfileTeam { ...parentProps }/>
+        <ProfileActivities { ...parentProps }/>
+        <ProfileSocials { ...parentProps }/>
+    </>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Corporation Profile Content */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Corporation = ({ type, profile, products, activities, states, stateSetters }: any) => {
+    const parentProps = { type, profile, products, activities, states, stateSetters };
+    return <>
+    
+    </>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Partner Profile Content */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Partner = ({ type, profile, products, activities, states, stateSetters }: any) => {
+    return <>
+    
+    </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Rendering */

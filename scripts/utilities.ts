@@ -309,10 +309,12 @@ class Utilities {
         if(hiddenElements && hiddenElements.length > 0) {
             hiddenElements.forEach((hiddenElement) => hiddenElement.classList.remove("hidden"));
             target.querySelector("span").innerText = translations["Voir moins"];
+            target.querySelector("i").style.transform = "rotate(-90deg)";
         } else {
             if(visibleElements && visibleElements.length > defaultVisibleItemsCount) {
                 visibleElements.forEach((visibleElement, key) => (key >= defaultVisibleItemsCount) ? visibleElement.classList.add("hidden") : null);
                 target.querySelector("span").innerText = translations["Voir plus"] + ((array.length > 0) ? " (" + (array.length - defaultVisibleItemsCount) + ")" : "");
+                target.querySelector("i").style.transform = "rotate(90deg)";
             };
         };
         return [ target, hiddenElements ];

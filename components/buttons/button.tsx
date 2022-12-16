@@ -25,7 +25,7 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count }: ButtonI
         return <button></button>;
     } else if(!url && type === ButtonStyles.moreOrLess) {
         return <button className={ ButtonStyles.moreOrLess } onClick={ action }>
-            { text + ((count)  ? " (" + count + ")" : " ") }
+            <span>{ text + ((count)  ? " (" + count + ")" : " ") }</span>
             <i className="fa-solid fa-caret-right"/>
         </button>;
     } else if(!url && type === ButtonStyles.moreOrLessAlternative) {

@@ -207,10 +207,15 @@
 .moreOrLess {
     color: var(--text-inactive-color);
 }
+.moreOrLess > span {
+    margin: 0px 8px 0px 0px;
+    color: var(--text-inactive-color);
+}
 .moreOrLess > i {
-    margin: 0px 0px 0px 8px;
     font-size: 11px;
     color: var(--text-inactive-color);
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( See More Alternative ) */
