@@ -174,7 +174,7 @@
 .callToActionWide:hover {
     background-color: var(--paleblue-color);
 }
-.callToActionWide > .icon {
+.callToActionWide > i {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -185,20 +185,20 @@
     background-color: var(--paleblue-color);
     transition: background-color 0.3s ease;
 }
-.callToActionWide:hover > .icon {
+.callToActionWide:hover > i {
     background-color: var(--logo-blue-color);
 }
-.callToActionWide > p {
-    margin: 8px auto auto auto;
+.callToActionWide {
     font-family: "Nunito Sans";
     font-size: 21px;
     color: var(--logo-blue-color);
 }
-.callToActionWide > .icon > i {
+.callToActionWide > i {
+    margin: auto auto 8px auto;
     font-size: 30px;
     color: var(--logo-blue-color);
 }
-.callToActionWide:hover > .icon > i {
+.callToActionWide:hover > i {
     color: var(--perfect-white-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -207,11 +207,8 @@
 .moreOrLess {
     color: var(--text-inactive-color);
 }
-.moreOrLess > span {
-    margin: 0px 8px 0px 0px;
-    color: var(--text-inactive-color);
-}
 .moreOrLess > i {
+    margin: 0px 0px 0px 8px;
     font-size: 11px;
     color: var(--text-inactive-color);
 }
