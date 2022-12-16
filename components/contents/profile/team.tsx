@@ -28,7 +28,7 @@ const ProfileTeam = ({ profile, states }: any) => {
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], team.length - maxVisibleCardsByDefault ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
     return <div id="team" className={ TeamStyles.team }>
-        <h3>{ translations["L'équipe"] }</h3>
+        <h3>{ translations["Équipe"] }</h3>
         <div className={ TeamStyles.team } data-type="list">
             { (team) ? team.map((member: any, key: KeyType) => {
                 const index = key + 1;

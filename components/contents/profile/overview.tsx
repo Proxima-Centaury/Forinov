@@ -32,7 +32,7 @@ const ProfileOverview = ({ type, profile, states }: any) => {
             </div> : null }
             { (profile.WEBSITE) ? <div className={ OverviewStyles.website }>
                 <i className="fa-solid fa-thumbtack"/>
-                <a href={ "https://" + profile.WEBSITE } target="blank">{ profile.WEBSITE }</a>
+                <a href={ "https://" + profile.WEBSITE } target="_blank">{ translations["Site internet"] }</a>
             </div> : null }
             <div className={ OverviewStyles.networks }>
                 { (profile.FACEBOOK) ? <a href={ profile.FACEBOOK } target="_blank">

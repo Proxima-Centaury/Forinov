@@ -120,15 +120,16 @@ const Startup = ({ type, profile, products, activities, states, stateSetters }: 
 const Corporation = ({ type, profile, products, activities, states, stateSetters }: any) => {
     const parentProps = { type, profile, products, activities, states, stateSetters };
     return <>
-    
+        <ProfileTeam { ...parentProps }/>
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partner Profile Content */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Partner = ({ type, profile, products, activities, states, stateSetters }: any) => {
+    const parentProps = { type, profile, products, activities, states, stateSetters };
     return <>
-    
+        <ProfileTeam { ...parentProps }/>
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

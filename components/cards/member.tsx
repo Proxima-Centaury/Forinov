@@ -29,7 +29,9 @@ const MemberCard = ({ member, index, maxVisibleByDefault = 4, translations }: an
             { (member.PICTURE) ? <img src={ member.PICTURE } alt={ "Image de profil de " + member.FIRSTNAME + " " + member.LASTNAME }/> : null }
             { (!member.PICTURE) ? <i className="fa-light fa-user"/> : null }
             <div className={ MemberStyles.identity }>
-                <p className={ MemberStyles.fullname }>{ member.FIRSTNAME + " " + member.LASTNAME }</p>
+                <div data-type="tooltip" data-tooltip={ member.FIRSTNAME + " " + member.LASTNAME }>
+                    <p className={ MemberStyles.fullname }>{ member.FIRSTNAME + " " + member.LASTNAME }</p>
+                </div>
                 <p className={ MemberStyles.job }>{ member.ENTITY }</p>
             </div>
             <Button { ...messageButtonObject as ButtonInterface }/>
