@@ -174,7 +174,7 @@
 .callToActionWide:hover {
     background-color: var(--paleblue-color);
 }
-.callToActionWide > .icon {
+.callToActionWide > i {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -185,20 +185,20 @@
     background-color: var(--paleblue-color);
     transition: background-color 0.3s ease;
 }
-.callToActionWide:hover > .icon {
+.callToActionWide:hover > i {
     background-color: var(--logo-blue-color);
 }
-.callToActionWide > p {
-    margin: 8px auto auto auto;
+.callToActionWide {
     font-family: "Nunito Sans";
     font-size: 21px;
     color: var(--logo-blue-color);
 }
-.callToActionWide > .icon > i {
+.callToActionWide > i {
+    margin: auto auto 8px auto;
     font-size: 30px;
     color: var(--logo-blue-color);
 }
-.callToActionWide:hover > .icon > i {
+.callToActionWide:hover > i {
     color: var(--perfect-white-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -214,6 +214,8 @@
 .moreOrLess > i {
     font-size: 11px;
     color: var(--text-inactive-color);
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( See More Alternative ) */
@@ -222,13 +224,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 112px;
     height: 32px;
     margin: 16px auto auto auto;
     color: var(--text-inactive-color);
     font-weight: 600;
     border: var(--border);
     border-radius: calc(32px / 2);
+    transition: background-color 0.3s ease;
+}
+.moreOrLessAlternative:hover {
+    background-color: var(--background-information-color);
+}
+.moreOrLessAlternative > span {
+    padding: 8px;
+    color: var(--text-inactive-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Navigation Button ) */

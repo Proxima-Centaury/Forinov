@@ -20,6 +20,8 @@ const MemberCard = ({ member, index, maxVisibleByDefault = 4, translations }: an
     const [ maxVisibleDetailsByDefault, setMaxVisibleDetailsByDefault ] = useState(0);
     const handleView = (event: any) => seeMoreOrLess(event, translations, "." + MemberStyles.details, [], maxVisibleDetailsByDefault);
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const messageButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-message", "", handleView, translations["Voir plus"], 0 ];
+    const messageButtonObject = buildProperties(buttonProps, messageButtonValues);
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], 0 ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
     return <div className={ MemberStyles.member + ((index > maxVisibleByDefault) ? " hidden" : "")}>
@@ -27,12 +29,12 @@ const MemberCard = ({ member, index, maxVisibleByDefault = 4, translations }: an
             { (member.PICTURE) ? <img src={ member.PICTURE } alt={ "Image de profil de " + member.FIRSTNAME + " " + member.LASTNAME }/> : null }
             { (!member.PICTURE) ? <i className="fa-light fa-user"/> : null }
             <div className={ MemberStyles.identity }>
-                <p className={ MemberStyles.fullname }>{ member.FIRSTNAME + " " + member.LASTNAME }</p>
+                <div data-type="tooltip" data-tooltip={ member.FIRSTNAME + " " + member.LASTNAME }>
+                    <p className={ MemberStyles.fullname }>{ member.FIRSTNAME + " " + member.LASTNAME }</p>
+                </div>
                 <p className={ MemberStyles.job }>{ member.ENTITY }</p>
             </div>
-            <a href="" className={ MemberStyles.message }>
-                <i className="fa-light fa-message"/>
-            </a>
+            <Button { ...messageButtonObject as ButtonInterface }/>
             <Button { ...moreOrLessButtonObject as ButtonInterface }/>
         </div>
         <div className={ MemberStyles.details + ((index > maxVisibleDetailsByDefault) ? " hidden" : "")}>

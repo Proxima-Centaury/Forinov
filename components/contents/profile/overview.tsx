@@ -32,7 +32,7 @@ const ProfileOverview = ({ type, profile, states }: any) => {
             </div> : null }
             { (profile.WEBSITE) ? <div className={ OverviewStyles.website }>
                 <i className="fa-solid fa-thumbtack"/>
-                <a href={ "https://" + profile.WEBSITE } target="blank">{ profile.WEBSITE }</a>
+                <a href={ "https://" + profile.WEBSITE } target="_blank">{ translations["Site internet"] }</a>
             </div> : null }
             <div className={ OverviewStyles.networks }>
                 { (profile.FACEBOOK) ? <a href={ profile.FACEBOOK } target="_blank">
@@ -78,27 +78,38 @@ const Corporation = ({ profile, states }: any) => {
         { (profile.HEADQUARTER) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Maison mère"] }</p>
         </div> : null }
+        { (profile.CREATIONDATE) ? <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Année de création"] }</p>
+            <span>{ new Date(profile.CREATIONDATE).getFullYear() }</span>
+        </div> : null }
+        { (profile.PEOPLE) ? <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Effectifs"] }</p>
+            <span>{ profile.PEOPLE }</span>
+        </div> : null }
+        { (profile.CATEGORY) ? <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Secteur d'activités"] }</p>
+            <span>{ profile.CATEGORY }</span>
+        </div> : null }
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partner Overview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Partner = ({ profile, states }: any) => {
-    const { translations }: any = states;
+    const { lock, translations }: any = states;
     return <>
-        <div className={ OverviewStyles.details }>
+        { (profile.CREATIONDATE) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Année de création"] }</p>
             <span>{ new Date(profile.CREATIONDATE).getFullYear() }</span>
-        </div>
-        <div className={ OverviewStyles.details }>
+        </div> : null }
+        { (profile.SUPPORT) ? <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Type d'accompagnement"] }</p>
+            <span>{ <Tags tags={ Object.entries(profile.SUPPORT) } lock={ lock }/> }</span>
+        </div> : null }
+        { (profile.PEOPLE) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Effectifs"] }</p>
             <span>{ profile.PEOPLE }</span>
-        </div>
-        <div className={ OverviewStyles.details }>
-            <p className={ OverviewStyles.label }>{ translations["Secteur d'activités"] }</p>
-            {/* <Tags tags={ Object.entries(profile.LOCATION) } lock={ lock }/> */}
-            {/* TODO - ASK THOMAS FOR THIS SECTION, SEEMS TO BE MISSING ON PARTNER'S PROFILES */}
-        </div>
+        </div> : null }
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

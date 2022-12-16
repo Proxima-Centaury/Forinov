@@ -2,45 +2,44 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { useState } from "react";
-import { ButtonInterface } from "../../../typescript/interfaces";
-import { seeMoreOrLess, buildProperties } from "../../../scripts/utilities";
+// import { ButtonInterface } from "../../../typescript/interfaces";
+// import { seeMoreOrLess, buildProperties } from "../../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import MemberCard from "../../cards/member";
+import ProfileProducts from "../../../components/contents/profile/products";
+import Tags from "../../tags/tags";
 import Button from "../../buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import TeamStyles from "../../../public/stylesheets/components/contents/profile/Team.module.css";
-import MemberStyles from "../../../public/stylesheets/components/cards/Member.module.css";
+import GoalsStyles from "../../../public/stylesheets/components/contents/profile/Goals.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Team */
+/* Profile Goals */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileTeam = ({ profile, states }: any) => {
+const ProfileGoals = ({ type, profile, products, activities, states, stateSetters }: any) => {
     const { translations }: any = states;
     const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(3);
-    const { COLLABORATORS } = profile;
-    const team = COLLABORATORS || [];
-    const handleView = (event: any) => seeMoreOrLess(event, translations, "." + MemberStyles.member, team, maxVisibleCardsByDefault);
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], team.length - maxVisibleCardsByDefault ];
-    const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
-    return <div id="team" className={ TeamStyles.team }>
-        <h3>{ translations["Équipe"] }</h3>
-        <div className={ TeamStyles.team } data-type="list">
-            { (team) ? team.map((member: any, key: KeyType) => {
-                const index = key + 1;
-                const maxVisibleByDefault = maxVisibleCardsByDefault;
-                const cardProps = { member, index, maxVisibleByDefault, translations };
-                return <MemberCard key={ key } { ...cardProps }/>;
-            }) : null }
+    // const handleView = (event: any) => seeMoreOrLess(event, translations, "." + MemberStyles.member, team, maxVisibleCardsByDefault);
+    // const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    // const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], team.length - maxVisibleCardsByDefault ];
+    // const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
+    const parentProps = { type, profile, products, activities, states, stateSetters };
+    return <div id="goals" className={ GoalsStyles.goals }>
+        <h3>{ translations["Objectifs et offres"] }</h3>
+        <div className={ GoalsStyles.content }>
+            <p className={ GoalsStyles.label }>{ translations["Types de collaborations recherchées"] }</p>
+            { (profile.PARTNER_SEARCH) ? <Tags tags={ Object.entries(profile.PARTNER_SEARCH) }/> : null }
         </div>
-        { (team.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
+        <div className={ GoalsStyles.content }>
+            <p className={ GoalsStyles.label }>{ translations["Intérêts par les startups dans les domaines"] }</p>
+            { (profile.STARTUP_SEARCH) ? <Tags tags={ Object.entries(profile.STARTUP_SEARCH) }/> : null }
+        </div>
+        { (products) ? <ProfileProducts { ...parentProps }/> : null }
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default ProfileTeam;
+export default ProfileGoals;

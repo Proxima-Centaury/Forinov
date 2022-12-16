@@ -20,7 +20,8 @@
     width: 100%;
     position: relative;
 }
-.main > i {
+.main > i,
+.main > img {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,25 +41,30 @@
     flex-direction: column;
     margin: 0px 0px 0px 16px;
 }
-.main > .identity > .fullname {
+.main > .identity > div > .fullname {
+    width: 100%;
+    max-width: 312px;
+    padding: 0px 56px 0px 0px;
     font-weight: bold;
     font-size: 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .main > .identity > .job {
     margin: 8px 0px 0px 0px;
     color: var(--text-inactive-color);
+    text-transform: capitalize;
 }
-.main > .message {
+.main > button:first-of-type,
+.main > button:last-of-type {
     position: absolute;
+}
+.main > button:first-of-type {
     top: 0;
     right: 0;
 }
-.main > .message > i {
-    font-size: 24px;
-    color: var(--logo-blue-color);
-}
-.main > button {
-    position: absolute;
+.main > button:last-of-type {
     right: 0;
     bottom: 0;
 }
