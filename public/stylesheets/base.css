@@ -406,11 +406,12 @@ body {
     transition: all .3s ease;
 }
 [data-type="tooltip"]:before {
+    width: max-content;
     padding: 8px;
     bottom: 100%;
     content: attr(data-tooltip);
     color: var(--logo-blue-color);
-    text-transform: capitalize;
+    white-space: break-spaces;
     background-color: var(--background-sub-color);
     border-radius: 5px;
     box-shadow: var(--box-shadow);
