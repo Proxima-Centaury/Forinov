@@ -28,7 +28,6 @@
 .tags > .tag > p {
     margin: 0px;
     color: var(--logo-blue-color);
-    text-transform: capitalize;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -41,12 +40,10 @@
 }
 .tags > .tag.main > p {
     font-size: 16px;
-    text-transform: capitalize;
 }
 .tags.alternative > .tag {
     background-color: var(--logo-blue-color);
 }
 .tags.alternative > .tag > p {
     color: var(--perfect-white-color);
-    text-transform: capitalize;
 }
