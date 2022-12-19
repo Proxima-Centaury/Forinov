@@ -47,6 +47,7 @@
     padding: 0px 56px 0px 0px;
     font-weight: bold;
     font-size: 18px;
+    text-transform: uppercase;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
