@@ -22,7 +22,10 @@
     "navigations": {
         "signed": {
             "layout": {
-                "navbar": [
+                "leftbar": [
+    
+                ],
+                "rightbar": [
     
                 ]
             }
