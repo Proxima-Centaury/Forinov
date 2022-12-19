@@ -13,6 +13,7 @@ import Button from "../../buttons/button";
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import PartnersStyles from "../../../public/stylesheets/components/contents/profile/Partners.module.css";
+import EntityStyles from "../../../public/stylesheets/components/cards/Entity.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Partners */
@@ -22,7 +23,7 @@ const ProfilePartners = ({ type, profile, states }: any) => {
     const { PARTNERS } = profile;
     const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
     const partners = PARTNERS || [];
-    const handleView = (event: any) => seeMoreOrLess(event, translations, ".partner", partners, maxVisibleCardsByDefault);
+    const handleView = (event: any) => seeMoreOrLess(event, translations, "." + EntityStyles.partner, partners, maxVisibleCardsByDefault);
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], partners.length - maxVisibleCardsByDefault ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
