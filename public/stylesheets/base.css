@@ -460,6 +460,7 @@ body {
     left: 0px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
+    z-index: 10000;
 }
 [data-type="devtools"] > p {
     margin: 0px 16px 0px 0px;
