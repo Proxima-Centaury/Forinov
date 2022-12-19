@@ -8,7 +8,7 @@ import TagsStyles from "../../public/stylesheets/components/tags/Tags.module.css
 const Tags = ({ tags, main = false, alternative = false, lock = false, count = true }: any) => {
     const showOtherTags = (tags: Array<String>, shift: Number) => {
         const otherTags = tags.slice(shift as number, tags.length);
-        return otherTags.join(", ");
+        return otherTags.join("\n");
     };
     const classList = TagsStyles.tag + ((main) ? " " + TagsStyles.main : "");
     return <div className={ TagsStyles.tags + ((lock) ? " locked" : "" ) + ((alternative) ? " " + TagsStyles.alternative : "" )}>
