@@ -12,7 +12,6 @@
     border-radius: 10px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    overflow: hidden;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 .client:nth-of-type(2n),
@@ -40,6 +39,7 @@
     min-width: 8px;
     width: 8px;
     max-width: 8px;
+    border-radius: 10px 0px 0px 10px;
 }
 .client > .marker {
     background-color: var(--logo-blue-color);
@@ -53,6 +53,7 @@
 .content {
     display: flex;
     flex-direction: column;
+    flex: 1;
     padding: 16px 16px 16px 8px;
 }
 .content > * + * {

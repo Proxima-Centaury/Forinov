@@ -19,9 +19,9 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfilePartners = ({ type, profile, states }: any) => {
     const { translations }: any = states;
-    const { INCUBATORS } = profile;
+    const { PARTNERS } = profile;
     const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
-    const partners = INCUBATORS || [];
+    const partners = PARTNERS || [];
     const handleView = (event: any) => seeMoreOrLess(event, translations, ".partner", partners, maxVisibleCardsByDefault);
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], partners.length - maxVisibleCardsByDefault ];
