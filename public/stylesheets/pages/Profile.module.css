@@ -63,3 +63,7 @@
 .details > .content > * + * {
     margin: 16px 0px 0px 0px;
 }
+.details > .content > button:not([class*="callTo"]) {
+    width: fit-content;
+    margin: 16px 0px 0px auto;
+}

@@ -5,8 +5,10 @@
     display: flex;
     flex-wrap: wrap;
     flex: 1;
-    padding: 0px 0px 8px 8px;
     position: relative;
+}
+.tags[class*="locked"] {
+    padding: 0px 0px 8px 8px;
 }
 .tags > .tag:first-of-type {
     margin: 8px 8px 0px 0px;
@@ -18,7 +20,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 120px;
+    max-width: 200px;
     min-height: 24px;
     height: 24px;
     max-height: 24px;

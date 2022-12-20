@@ -305,6 +305,7 @@ class Utilities {
         const container = document.querySelector(selector as string)?.closest("[data-type='list']") as HTMLElement;
         const visibleElements = container?.querySelectorAll(selector + ":not(.hidden)");
         const hiddenElements = container?.querySelectorAll(selector + ".hidden");
+        console.log(target, container, visibleElements, hiddenElements)
         // TODO => ANIMATE WITH A COLLAPSE
         if(hiddenElements && hiddenElements.length > 0) {
             hiddenElements.forEach((hiddenElement) => hiddenElement.classList.remove("hidden"));

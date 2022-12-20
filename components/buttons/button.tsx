@@ -10,7 +10,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Button = ({ type, faIcon, faIconClass, url, action, text, count }: ButtonInterface) => {
+const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled }: ButtonInterface) => {
     const roundedButtonTypes = [
         ButtonStyles.callToActionRoundedIcon,
         ButtonStyles.callToActionAlternativeRoundedIcon

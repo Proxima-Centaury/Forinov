@@ -10,7 +10,6 @@ import OverviewStyles from "../../../public/stylesheets/components/contents/prof
 /* Profile Overview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileOverview = ({ type, profile, states }: any) => {
-    console.log(profile);
     const { translations }: any = states;
     const parentProps = { type, profile, states };
     return <div className={ OverviewStyles.overview }>
@@ -88,7 +87,7 @@ const Corporation = ({ profile, states }: any) => {
         </div> : null }
         { (profile.CATEGORY) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Secteur d'activités"] }</p>
-            <span>{ profile.CATEGORY }</span>
+            <Tags tags={ Object.entries(profile.CATEGORY) }/>
         </div> : null }
     </>;
 };

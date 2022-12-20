@@ -39,7 +39,7 @@ import ButtonStyles from "../../../../public/stylesheets/components/buttons/Butt
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Profile = ({ profile, products, activities, states, stateSetters }: ProfileInterface) => {
+const Profile = ({ profile, products, activities, folders, states, stateSetters }: ProfileInterface) => {
     const router = useRouter();
     const { session, lock }: any = states;
     const { setModal }: any = stateSetters;
@@ -74,7 +74,7 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
         (lock) ? window.addEventListener("click", showRegisterPopup) : null;
         return () => window.removeEventListener("click", showRegisterPopup);
     });
-    const parentProps = { type, profile, products, activities, states, stateSetters };
+    const parentProps = { type, profile, products, activities, folders, states, stateSetters };
     return <div id="profile" className="container">
         { (!session) ? <IdenfiticationBanner { ...parentProps }/> : null }
         { (profile.STATE === "WO") ? <RecoverBanner { ...parentProps }/> : null }
@@ -97,12 +97,12 @@ const Profile = ({ profile, products, activities, states, stateSetters }: Profil
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startup Profile Content */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Startup = ({ type, profile, products, activities, states, stateSetters }: any) => {
+const Startup = ({ type, profile, products, activities, folders, states, stateSetters }: any) => {
     const { translations }: any = states;
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
     const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
-    const parentProps = { type, profile, products, activities, states, stateSetters };
+    const parentProps = { type, profile, products, activities, folders, states, stateSetters };
     return <>
         <ProfileOffer { ...parentProps }/>
         <ProfileTargets { ...parentProps }/>
@@ -118,12 +118,12 @@ const Startup = ({ type, profile, products, activities, states, stateSetters }: 
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Corporation Profile Content */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Corporation = ({ type, profile, products, activities, states, stateSetters }: any) => {
+const Corporation = ({ type, profile, products, activities, folders, states, stateSetters }: any) => {
     const { translations }: any = states;
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
     const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
-    const parentProps = { type, profile, products, activities, states, stateSetters };
+    const parentProps = { type, profile, products, activities, folders, states, stateSetters };
     return <>
         <ProfileTeam { ...parentProps }/>
         <ProfileGoals { ...parentProps }/>
@@ -137,12 +137,12 @@ const Corporation = ({ type, profile, products, activities, states, stateSetters
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partner Profile Content */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Partner = ({ type, profile, products, activities, states, stateSetters }: any) => {
+const Partner = ({ type, profile, products, activities, folders, states, stateSetters }: any) => {
     const { translations }: any = states;
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
     const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
-    const parentProps = { type, profile, products, activities, states, stateSetters };
+    const parentProps = { type, profile, products, activities, folders, states, stateSetters };
     return <>
         <ProfileTeam { ...parentProps }/>
         <ProfileGoals { ...parentProps }/>

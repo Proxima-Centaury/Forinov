@@ -228,6 +228,13 @@ body {
     margin: 16px 0px 0px 0px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Disabled */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.disabled {
+    filter: grayscale(1);
+    pointer-events: none;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Separator */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .separator,
@@ -410,6 +417,7 @@ body {
     pointer-events: none;
     transform: translate3d(0, -10px, 0);
     transition: all .3s ease;
+    z-index: 10;
 }
 [data-type="tooltip"]:before {
     width: max-content;
@@ -421,7 +429,6 @@ body {
     background-color: var(--background-sub-color);
     border-radius: 5px;
     box-shadow: var(--box-shadow);
-    z-index: 2;
 }
 [data-type="tooltip"]:after {
     width: 0px;
@@ -438,23 +445,6 @@ body {
     transform: translate3d(0, 0, 0);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Custom Dev Data */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-[data-type="data"] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 500px;
-    padding: 16px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    border-radius: 10px;
-    background-color: var(--background-sub-color);
-    box-shadow: var(--box-shadow);
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Custom Devtools */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 [data-type="devtools"] {
@@ -465,9 +455,14 @@ body {
     position: fixed;
     bottom: 0px;
     left: 0px;
+    transform: translateY(0%);
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease;
     z-index: 10000;
+}
+[data-type="devtools"].closed {
+    transform: translateY(100%);
 }
 [data-type="devtools"] > p {
     margin: 0px 16px 0px 0px;
@@ -477,6 +472,28 @@ body {
 }
 [data-type="devtools"] > div + div {
     margin: 0px 0px 0px 8px;
+}
+[data-type="devtools"] > button {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 0px;
+    bottom: 100%;
+    border-radius: 10px 10px 0px 0px;
+    background-color: var(--background-sub-color);
+    transition: background-color 0.3s ease;
+}
+[data-type="devtools"] > button:hover {
+    background-color: var(--logo-blue-color);
+}
+[data-type="devtools"]> button > i {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+[data-type="devtools"] > button:hover > i {
+    color: var(--perfect-white-color);
+}
+[data-type="devtools"].closed > button > i {
+    transform: rotate(-180deg);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Large call to action */

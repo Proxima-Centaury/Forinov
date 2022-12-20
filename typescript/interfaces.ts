@@ -38,7 +38,8 @@ interface RegisterInterface extends BaseInterface {};
 interface ProfileInterface extends BaseInterface {
     profile: any,
     products: any,
-    activities: any
+    activities: any,
+    folders: any
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar Interface */
@@ -81,7 +82,8 @@ interface ButtonInterface {
     url: String,
     action: MouseEventHandler<HTMLButtonElement>,
     text: String,
-    count: Number
+    count: Number,
+    disabled: Boolean
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Option Interface */
