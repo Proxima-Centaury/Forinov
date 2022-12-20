@@ -1,8 +1,13 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Imports */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { useRouter } from "next/router";
+import { uppercaseFirst } from "../../scripts/utilities";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
 import Image from "next/image";
-import Format from "../texts/format";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -10,24 +15,28 @@ import FolderStyles from "../../public/stylesheets/components/cards/Folder.modul
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Folder Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const FolderCard = ({ event, index, maxVisibleByDefault = 3 }: any) => {
-    const activityTimestamp = (date: string) => {
-        const activityDate = new Date(date);
-        const currentDate = new Date();
-        const timeDifference = currentDate.getTime() - activityDate.getTime();
-        const daysDifference = Math.round(timeDifference / (1000 * 3600 * 24));
-        return daysDifference;
-    };
-    activityTimestamp(event.DATE);
-    return <div className={ FolderStyles.activity + ((index > maxVisibleByDefault) ? " hidden" : "") }>
-        <div className={ FolderStyles.marker }></div>
+const FolderCard = ({ folder, index, maxVisibleByDefault = 2 }: any) => {
+    const route = useRouter();
+    const { type, id }: any = route.query;
+    return <Link href={ "/annuaires/" + type + "/" + id + "/folders/" + folder.id } className={ FolderStyles.folder + ((index > maxVisibleByDefault) ? " hidden" : "") }>
         <div className={ FolderStyles.content }>
-            <Image src={ event.LOGO } alt={ "Logo de la structure " + event.NAME + "." } width="55" height="55"/>
-            <p className={ FolderStyles.user }>{ event.NAME }</p>
-            <Format content={ event.CONTENT }/>
-            <p className={ FolderStyles.time }>{ activityTimestamp(event.DATE) + "d" }</p>
+            <div className={ FolderStyles.geometry }></div>
+            { (folder.startups.length > 0 && folder.startups.length <= 3) ? <div className={ FolderStyles.startups }>
+                { folder.startups.map((startup: any, key: KeyType) => <div key={ key } data-type="tooltip" data-tooltip={ startup.name }>
+                    <Image src={ startup.logo } alt={ "Logo de la structure" + startup.logo } width="72" height="72"/>
+                </div>) }
+            </div> : null }
+            { (folder.startups.length > 3) ? <div className={ FolderStyles.startups }>
+                { folder.startups.map((startup: any, key: KeyType) => (parseInt(key) < 2) ? <div key={ key } data-type="tooltip" data-tooltip={ startup.name }>
+                    <Image src={ startup.logo } alt={ "Logo de la structure" + startup.logo } width="72" height="72"/>
+                </div> : null) }
+                <div data-type="tooltip" data-tooltip={ folder.startups.map((startup: any, key: KeyType) => (parseInt(key) >= 2) ? startup.name : null).filter((startup: String) => startup !== null).join("\n") }>
+                    <p>{ "+" + (folder.startups.length - 2) }</p>
+                </div>
+            </div> : null }
+            <h5>{ uppercaseFirst(folder.name) as String }</h5>
         </div>
-    </div>;
+    </Link>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */

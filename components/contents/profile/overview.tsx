@@ -10,7 +10,6 @@ import OverviewStyles from "../../../public/stylesheets/components/contents/prof
 /* Profile Overview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileOverview = ({ type, profile, states }: any) => {
-    console.log(profile);
     const { translations }: any = states;
     const parentProps = { type, profile, states };
     return <div className={ OverviewStyles.overview }>
