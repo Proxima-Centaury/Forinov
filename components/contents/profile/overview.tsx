@@ -88,7 +88,7 @@ const Corporation = ({ profile, states }: any) => {
         </div> : null }
         { (profile.CATEGORY) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Secteur d'activités"] }</p>
-            <span>{ profile.CATEGORY }</span>
+            <Tags tags={ Object.entries(profile.CATEGORY) }/>
         </div> : null }
     </>;
 };
