@@ -208,6 +208,7 @@
 
 .annuaire__searchbar-select-list-name {
     width: 80%;
+    pointer-events: none;
 }
 
 .annuaire__searchbar-select-list-item:hover {
@@ -227,6 +228,7 @@
     font-size: 0.75rem;
     text-align: center;
     width: 10%;
+    pointer-events: none;
 }
 
 .annuaire__searchbar-select-list-pastille {
