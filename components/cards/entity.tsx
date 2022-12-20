@@ -1,6 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Image from "next/image";
 import Tags from "../tags/tags";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -14,7 +15,7 @@ const EntityCard = ({ entity, type, index, maxVisibleByDefault = 3 }: any) => {
         <div className={ EntityStyles.marker }></div>
         <div className={ EntityStyles.content }>
             <div className={ EntityStyles.identity }>
-                <img src={ entity.LOGO } alt={ entity.NAME + " logo." }/>
+                <Image src={ entity.LOGO } alt={ "Logo de la structure " + entity.NAME + "." } width="55" height="55"/>
                 <p className={ EntityStyles.name }>{ entity.NAME }</p>
             </div>
             { (entity.TAG) ? <Tags tags={ Object.entries(entity.TAG) } main={ true }/> : null }

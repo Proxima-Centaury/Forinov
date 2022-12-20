@@ -18,7 +18,7 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Partners */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfilePartners = ({ type, profile, states }: any) => {
+const ProfilePartners = ({ type, profile, folders, states }: any) => {
     const { translations }: any = states;
     const { PARTNERS } = profile;
     const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
@@ -42,7 +42,17 @@ const ProfilePartners = ({ type, profile, states }: any) => {
             </div>
             { (partners.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
         </div>
-        { (type !== "startup" ) ? <p className={ PartnersStyles.label } style={ { padding: "0px 0px 0px 16px" } }>{ translations["Dossiers de startups publics"] }</p>: null }
+        { (type !== "startup") ? <p className={ PartnersStyles.label } style={ { padding: "0px 0px 0px 16px" } }>{ translations["Dossiers de startups publics"] }</p>: null }
+        { (type !== "startup" && folders) ? <div className={ PartnersStyles.list }>
+            { folders.map((partner: any, key: KeyType) => {
+                const entity = partner;
+                const type = "partner";
+                const index = key + 1;
+                const maxVisibleByDefault = maxVisibleCardsByDefault;
+                const cardProps = { entity, type, index, maxVisibleByDefault };
+                return <EntityCard key={ key } { ...cardProps }/>;
+            }) }
+        </div> : null }
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

@@ -62,11 +62,11 @@
 .content > .identity {
     display: flex;
     align-items: center;
+    padding: 0px 0px 0px 8px;
 }
 .content > .identity > img {
     width: 48px;
     height: 48px;
-    object-fit: cover;
     border: var(--border);
     border-width: 2px;
     border-radius: 24px;

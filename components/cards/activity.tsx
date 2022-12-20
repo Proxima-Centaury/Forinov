@@ -1,6 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Image from "next/image";
 import Format from "../texts/format";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -21,7 +22,7 @@ const ActivityCard = ({ event, index, maxVisibleByDefault = 3 }: any) => {
     return <div className={ ActivityStyles.activity + ((index > maxVisibleByDefault) ? " hidden" : "") }>
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content }>
-            <img src={ event.LOGO } alt={ event.NAME + " logo." }/>
+            <Image src={ event.LOGO } alt={ "Logo de la structure " + event.NAME + "." } width="55" height="55"/>
             <p className={ ActivityStyles.user }>{ event.NAME }</p>
             <Format content={ event.CONTENT }/>
             <p className={ ActivityStyles.time }>{ activityTimestamp(event.DATE) + "d" }</p>

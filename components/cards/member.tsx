@@ -7,6 +7,7 @@ import { seeMoreOrLess, buildProperties } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Image from "next/image";
 import Button from "../buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -26,7 +27,7 @@ const MemberCard = ({ member, index, maxVisibleByDefault = 4, translations }: an
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
     return <div className={ MemberStyles.member + ((index > maxVisibleByDefault) ? " hidden" : "")}>
         <div className={ MemberStyles.main }>
-            { (member.PICTURE) ? <img src={ member.PICTURE } alt={ "Image de profil de " + member.FIRSTNAME + " " + member.LASTNAME }/> : null }
+            { (member.PICTURE) ? <Image src={ member.PICTURE } alt={ "Image de profil de " + member.FIRSTNAME + " " + member.LASTNAME } width="80" height="80"/> : null }
             { (!member.PICTURE) ? <i className="fa-light fa-user"/> : null }
             <div className={ MemberStyles.identity }>
                 <div data-type="tooltip" data-tooltip={ member.FIRSTNAME + " " + member.LASTNAME }>
