@@ -4,7 +4,8 @@
         "queries": {
             "getProfile": "V5_GET_PROFILE",
             "getProducts": "V5_GET_PRODUCTS",
-            "getActivity": "V5_GET_ACTIVITY_FEED_ITEMS"
+            "getActivity": "V5_GET_ACTIVITY_FEED_ITEMS",
+            "getFolders": "V5_GET_FOLDERS"
         }
     },
     "locales": { "fr-FR": "FR", "en-US": "EN" },
