@@ -18,7 +18,7 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Products */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileProducts = ({ products, states }: any) => {
+const ProfileProducts = ({ type, products, states }: any) => {
     const { translations }: any = states;
     const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(2);
     const handleView = (event: any) => seeMoreOrLess(event, translations, "." + ProductStyles.product, products, maxVisibleCardsByDefault);
@@ -26,7 +26,7 @@ const ProfileProducts = ({ products, states }: any) => {
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], products.length - maxVisibleCardsByDefault ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
     return <div className={ ProductsStyles.products }>
-        <p className={ ProductsStyles.label }>{ translations["Nos produits et services"] }</p>
+        <p className={ ProductsStyles.label }>{ (type === "startup") ? translations["Nos produits et services"] : translations["Nos offres"] }</p>
         <div className={ ProductsStyles.list } data-type="list">
             { (products) ? products.map((product: any, key: KeyType) => {
                 const index = key + 1;

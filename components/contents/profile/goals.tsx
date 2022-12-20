@@ -19,7 +19,7 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* Profile Goals */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileGoals = ({ type, profile, products, activities, states, stateSetters }: any) => {
-    const { translations }: any = states;
+    const { lock, translations }: any = states;
     const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(3);
     // const handleView = (event: any) => seeMoreOrLess(event, translations, "." + MemberStyles.member, team, maxVisibleCardsByDefault);
     // const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
@@ -30,11 +30,11 @@ const ProfileGoals = ({ type, profile, products, activities, states, stateSetter
         <h3>{ translations["Objectifs et offres"] }</h3>
         <div className={ GoalsStyles.content }>
             <p className={ GoalsStyles.label }>{ translations["Types de collaborations recherchées"] }</p>
-            { (profile.PARTNER_SEARCH) ? <Tags tags={ Object.entries(profile.PARTNER_SEARCH) }/> : null }
+            { (profile.PARTNER_SEARCH) ? <Tags tags={ Object.entries(profile.PARTNER_SEARCH) } lock={ lock }/> : null }
         </div>
         <div className={ GoalsStyles.content }>
             <p className={ GoalsStyles.label }>{ translations["Intérêts par les startups dans les domaines"] }</p>
-            { (profile.STARTUP_SEARCH) ? <Tags tags={ Object.entries(profile.STARTUP_SEARCH) }/> : null }
+            { (profile.STARTUP_SEARCH) ? <Tags tags={ Object.entries(profile.STARTUP_SEARCH) } lock={ lock }/> : null }
         </div>
         { (products) ? <ProfileProducts { ...parentProps }/> : null }
     </div>;

@@ -119,10 +119,17 @@ const Startup = ({ type, profile, products, activities, states, stateSetters }: 
 /* Corporation Profile Content */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Corporation = ({ type, profile, products, activities, states, stateSetters }: any) => {
+    const { translations }: any = states;
+    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
+    const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
     const parentProps = { type, profile, products, activities, states, stateSetters };
     return <>
         <ProfileTeam { ...parentProps }/>
         <ProfileGoals { ...parentProps }/>
+        <Button { ...pitchDeckButtonObject as ButtonInterface }/>
+        <ProfileEcosystem { ...parentProps }/>
+        <ProfilePartners { ...parentProps }/>
         <ProfileActivities { ...parentProps }/>
         <ProfileSocials { ...parentProps }/>
     </>;
@@ -131,10 +138,17 @@ const Corporation = ({ type, profile, products, activities, states, stateSetters
 /* Partner Profile Content */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Partner = ({ type, profile, products, activities, states, stateSetters }: any) => {
+    const { translations }: any = states;
+    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
+    const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
     const parentProps = { type, profile, products, activities, states, stateSetters };
     return <>
         <ProfileTeam { ...parentProps }/>
         <ProfileGoals { ...parentProps }/>
+        <Button { ...pitchDeckButtonObject as ButtonInterface }/>
+        <ProfileEcosystem { ...parentProps }/>
+        <ProfilePartners { ...parentProps }/>
         <ProfileActivities { ...parentProps }/>
         <ProfileSocials { ...parentProps }/>
     </>;

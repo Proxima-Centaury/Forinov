@@ -17,7 +17,7 @@ const EntityCard = ({ entity, type, index, maxVisibleByDefault = 3 }: any) => {
                 <img src={ entity.LOGO } alt={ entity.NAME + " logo." }/>
                 <p className={ EntityStyles.name }>{ entity.NAME }</p>
             </div>
-            { (entity.TAG) ? <Tags tags={ (Array.isArray(entity.TAG)) ? entity.TAG : [ entity.TAG ]  } main={ true }/> : null }
+            { (entity.TAG) ? <Tags tags={ Object.entries(entity.TAG) } main={ true }/> : null }
         </div>
     </div>;
 };

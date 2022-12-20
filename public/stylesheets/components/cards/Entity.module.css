@@ -12,15 +12,14 @@
     border-radius: 10px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    overflow: hidden;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 .client:nth-of-type(2n),
 .partner:nth-of-type(2n) {
     margin: 0px 0px 0px 8px;
 }
-.client:nth-of-type(1n + 2) + *,
-.partner:nth-of-type(1n + 2) + * {
+.client:nth-of-type(1n + 2) + *:not([class="lockedContent"]),
+.partner:nth-of-type(1n + 2) + *:not([class="lockedContent"]) {
     margin-top: 16px;
 }
 @media screen and (max-width: 1200px) {
@@ -34,12 +33,13 @@
     }
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Client ( marker ) */
+/* Client ( Marker ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .marker {
     min-width: 8px;
     width: 8px;
     max-width: 8px;
+    border-radius: 10px 0px 0px 10px;
 }
 .client > .marker {
     background-color: var(--logo-blue-color);
@@ -53,6 +53,7 @@
 .content {
     display: flex;
     flex-direction: column;
+    flex: 1;
     padding: 16px 16px 16px 8px;
 }
 .content > * + * {

@@ -10,17 +10,23 @@
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
 }
-.partners > .label {
+.partners > p:not(.label) {
+    margin: 0px;
+}
+.partners > button {
+    margin: 16px 0px auto auto;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Partners ( Label ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.label {
     margin: 0px 0px 8px 0px;
     font-weight: bold;
     font-size: 16px;
 }
-.partners > .label > i {
+.label > i {
     margin: 0px 8px 0px 0px;
     color: var(--error-color);
-}
-.partners > p:not(.label) {
-    margin: 0px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partners ( List ) */

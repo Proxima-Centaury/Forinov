@@ -327,6 +327,7 @@ class Utilities {
     * @param { String } [ locale ] Should be a ```string```.
     * @returns { void|Boolean }
     * - ```void```.
+    * - ```false``` if router parameter missing.
     * ---
     * @note This method is used to redirect users to the given {@link route} parameter.
     * @note The {@link router} parameter should be React's useRouter object.
@@ -337,6 +338,23 @@ class Utilities {
             return false;
         };
         router.push(route, route, { locale: localStorage.toString() })
+    };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function uppercaseFirst
+    * @param { String } [ string ] Should be a ```string```.
+    * @returns { String|Boolean }
+    * - ```string```.
+    * - ```false``` if string parameter missing.
+    * ---
+    * @note This method is used to return the passed string with the first letter uppercased.
+    * @note The {@link string} parameter should be a string.
+    */
+    uppercaseFirst = (string: String): String|Boolean => {
+        if(!string) {
+            return false;
+        };
+        return string[0].toUpperCase() + string.substring(1).toLowerCase();
     };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -357,6 +375,7 @@ const buildProperties = utilities.buildProperties;
 const scrollTo = utilities.scrollTo;
 const seeMoreOrLess = utilities.seeMoreOrLess;
 const redirectTo = utilities.redirectTo;
+const uppercaseFirst = utilities.uppercaseFirst;
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -372,5 +391,6 @@ export {
     buildProperties,
     scrollTo,
     seeMoreOrLess,
-    redirectTo
+    redirectTo,
+    uppercaseFirst
 };

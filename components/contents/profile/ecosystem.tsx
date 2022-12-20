@@ -19,7 +19,7 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Ecosystem */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileEcosystem = ({ profile, states }: any) => {
+const ProfileEcosystem = ({ type, profile, states }: any) => {
     const { lock, translations }: any = states;
     const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
     const { CLIENTS } = profile;
@@ -31,8 +31,8 @@ const ProfileEcosystem = ({ profile, states }: any) => {
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], clients.length - maxVisibleCardsByDefault ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
     return <div id="ecosystem" className={ EcosystemStyles.ecosystem }>
-        <h3>{ translations["Marché et écosystème"] }</h3>
-        <div className={ EcosystemStyles.content }>
+        <h3>{ (type === "startup") ? translations["Marché et écosystème"] : translations["Écosystème et partenaires"] }</h3>
+        { (type === "startup") ? <div className={ EcosystemStyles.content }>
             <p className={ EcosystemStyles.label }>{ translations["Nos références clients"] + " (" + clients.length + ")" }</p>
             <div className={ EcosystemStyles.list + ((lock) ? " locked" : "") } data-type="list">
                 { (clients) ? clients.map((client: any, key: KeyType) => {
@@ -56,7 +56,7 @@ const ProfileEcosystem = ({ profile, states }: any) => {
                 </p>
                 { (wishlist) ? <Tags tags={ wishlist } alternative={ true } lock={ lock } count={ false }/> : null }
             </div>
-        </div>
+        </div> : null }
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

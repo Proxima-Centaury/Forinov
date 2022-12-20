@@ -4,6 +4,7 @@
 .tags {
     display: flex;
     flex-wrap: wrap;
+    flex: 1;
     position: relative;
 }
 .tags > .tag:first-of-type {
@@ -16,6 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 120px;
     min-height: 24px;
     height: 24px;
     max-height: 24px;
@@ -26,6 +28,9 @@
 .tags > .tag > p {
     margin: 0px;
     color: var(--logo-blue-color);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .tags > .tag.main {
     min-height: 32px;
