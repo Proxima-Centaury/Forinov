@@ -19,7 +19,7 @@ export default function PageIndex(props: any) {
 		for (let i = current - around; i <= current + around; i++) {
 			if (i > 0 && i <= props.nbPages) {
 				tempButtons.push(
-					<Link
+					<a
 						href={`${url}/${i}`}
 						className={
 							props.currentPage == i ? styles.pageButtonActive + ' ' + styles.pageButton : styles.pageButton
@@ -27,7 +27,7 @@ export default function PageIndex(props: any) {
 						key={'to-page-' + i}
 					>
 						<button>{i}</button>
-					</Link>
+					</a>
 				);
 			}
 		}

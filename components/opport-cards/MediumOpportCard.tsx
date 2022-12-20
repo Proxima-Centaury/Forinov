@@ -48,6 +48,7 @@ export default function MediumOpportCard({
 					fill
 					sizes="100%"
 					style={{ objectFit: "cover" }}
+					priority
 				></Image>
 			</div>
 			<div className={styles.content}>
