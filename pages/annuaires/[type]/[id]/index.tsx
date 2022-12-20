@@ -175,9 +175,13 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const activitiesPromise = await fetch(endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
     const activitiesResponse = await activitiesPromise.json();
     const formattedActivitiesResponse = Object.values(activitiesResponse[0].EVENTS);
+    const foldersPromise = await fetch(endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+    const foldersResponse = await foldersPromise.json();
+    const formattedFoldersResponse = foldersResponse.folders;
     beautifyTheLogs("[CALL] PROFILE : " + endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
     beautifyTheLogs("[CALL] PRODUCTS : " + endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
     beautifyTheLogs("[CALL] ACTIVITIES : " + endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+    beautifyTheLogs("[CALL] FOLDERS : " + endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
     if(!formattedProfileResponse || (formattedProfileResponse && Object.keys(formattedProfileResponse).length === 0)) {
         return {
             redirect: {
@@ -191,7 +195,8 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             locale, locales, defaultLocale,
             profile: formattedProfileResponse || null,
             products: formattedProductsResponse || null,
-            activities: formattedActivitiesResponse || null
+            activities: formattedActivitiesResponse || null,
+            folders: formattedFoldersResponse || null
         }
     };
 };

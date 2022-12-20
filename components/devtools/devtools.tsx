@@ -23,6 +23,8 @@ const Devtools = ({ states, stateSetters }: any) => {
     const themeButtonIcon = (theme === "light") ? "fa-light fa-moon" : "fa-light fa-sun";
     const themeButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, themeButtonIcon, "", () => (theme === "light") ? setTheme("dark") : setTheme("light"), "", 0 ];
     const themeButtonObject = buildProperties(buttonProps, themeButtonValues);
+    const issuesButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-triangle-exclamation", "", () => false, "", 0 ];
+    const issuesButtonObject = buildProperties(buttonProps, issuesButtonValues);
     return <div data-type="devtools">
         <p>Devtools</p>
         <div data-type="tooltip" data-tooltip={ translations["Simuler la connexion"] }>
@@ -30,6 +32,9 @@ const Devtools = ({ states, stateSetters }: any) => {
         </div>
         <div data-type="tooltip" data-tooltip={ translations["Changer de theme"] }>
             <Button { ...themeButtonObject as ButtonInterface }/>
+        </div>
+        <div data-type="tooltip" data-tooltip={ translations["Voir les erreurs sur la page"] }>
+            <Button { ...issuesButtonObject as ButtonInterface }/>
         </div>
     </div>;
 };

@@ -6,6 +6,11 @@
 /* Config */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const nextConfig = {
+    experimental: {
+        images: {
+            allowFutureImage: true
+        },
+    },
     reactStrictMode: true,
     swcMinify: true,
     images: {
