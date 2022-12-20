@@ -1,8 +1,15 @@
 import { createContext, useContext } from 'react';
 
-const AppContext = createContext();
+const AppContext = createContext(
+  {
+    searchState: {
+      search: '',
+      category: [],
+    },
+  },
+);
 
-export function GlobalContext({ children }) {
+export function GlobalContext({ children }: any) {
 
     let searchState = {
         search: '',

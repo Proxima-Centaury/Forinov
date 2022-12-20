@@ -41,7 +41,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     useEffect(() => {
         setCookie("NEXT_LOCALE", locale, 31536000, "/");
         router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
-    }, [ locale ]);
+    }, [ locale, router ]);
     useEffect(() => setLock(!session), [ session ]);
     useEffect(() => {
         const body = document.body;

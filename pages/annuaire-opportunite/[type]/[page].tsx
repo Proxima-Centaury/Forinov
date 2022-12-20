@@ -4,20 +4,20 @@ import Link from "next/link";
 import MediumOpportCard from "../../../components/opport-cards/MediumOpportCard";
 import { useRouter } from "next/router";
 import PageIndex from "../../../components/pagination/PageIndex";
-import { useGlobalContext } from '../../../components/context/globalContext';
+import { useGlobalContext } from "../../../components/context/globalContext";
 
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from "react";
 
 const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const router = useRouter() as any;
 	let { type, page } = router.query;
+
 	const opportunities = dataOpportunities[0]["PROJECT"];
+	
 
 	const [opportCards, setOpportCards] = useState<Array<JSX.Element>>([]);
 
 	const [isPage, setIsPage] = useState<boolean>(true);
-
-
 
 	const cardPerPage = 20;
 	const { translations }: any = states;
@@ -44,46 +44,118 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 					></MediumOpportCard>
 				);
 			}
-		})
+		}),
 	]);
 
-	const setCards = (input: string | null = "", category: Array<string | null> = []) => {
+	const setCards = (
+		input: string | null = "",
+		categories: Array<string | null> = [],
+	) => {
 		let tempCards: Array<JSX.Element> = [];
-		console.log(category);
-		
-		Object.keys(opportunities).map((opportunity, index) => { 
-			if (input && opportunities[opportunity]["TITLE"].toLowerCase().includes(input.toLowerCase()) ) {				
-				tempCards.push(
-					<MediumOpportCard
-						key={opportunities[opportunity]["ID"]}
-						background={opportunities[opportunity]["BACKGROUND"]}
-						title={opportunities[opportunity]["TITLE"]}
-						logo={opportunities[opportunity]["LOGO"]}
-						company={opportunities[opportunity]["NAME"]}
-						type={opportunities[opportunity]["TYPE"]}
-						typename={opportunities[opportunity]["TYPE_NAME"]}
-						remaining={opportunities[opportunity]["REMAINING"]}
-						translations={translations}
-					></MediumOpportCard>
-				);
-			}
-		});
-		setOpportCards(tempCards);
-	}
+		let tempCardsID: Array<string> = [];
 
-	const handleSearchbar = (input: string, categories: Array<string | null>) => { 
+		if (categories.length > 0) {
+			Object.keys(opportunities).map((opportunity, index) => {
+				const categoriesOpportunity: any = Object.values(
+					opportunities[opportunity]["CATEGORIES"],
+				);
+				categories.forEach((category) => {
+					//if input
+					if (input === "") {
+						if (
+							Object.keys(categoriesOpportunity)
+								.map((category) => categoriesOpportunity[category]["ID"])
+								.includes(category)
+						) {
+							//if not already in tempCards, push it
+							if (!tempCardsID.includes(opportunities[opportunity]["ID"])) {
+								tempCardsID.push(opportunities[opportunity]["ID"]);
+								tempCards.push(
+									<MediumOpportCard
+										key={opportunities[opportunity]["ID"]}
+										background={opportunities[opportunity]["BACKGROUND"]}
+										title={opportunities[opportunity]["TITLE"]}
+										logo={opportunities[opportunity]["LOGO"]}
+										company={opportunities[opportunity]["NAME"]}
+										type={opportunities[opportunity]["TYPE"]}
+										typename={opportunities[opportunity]["TYPE_NAME"]}
+										remaining={opportunities[opportunity]["REMAINING"]}
+										translations={translations}
+									></MediumOpportCard>,
+								);
+							}
+						}
+					} else {
+						if (
+							Object.keys(categoriesOpportunity)
+								.map((category) => categoriesOpportunity[category]["ID"])
+								.includes(category) &&
+							opportunities[opportunity]["TITLE"]
+								.toLowerCase()
+								.includes(input!.toLowerCase()) &&
+							tempCardsID.includes(opportunities[opportunity]["ID"]) === false
+						) {
+							tempCardsID.push(opportunities[opportunity]["ID"]);
+							tempCards.push(
+								<MediumOpportCard
+									key={opportunities[opportunity]["ID"]}
+									background={opportunities[opportunity]["BACKGROUND"]}
+									title={opportunities[opportunity]["TITLE"]}
+									logo={opportunities[opportunity]["LOGO"]}
+									company={opportunities[opportunity]["NAME"]}
+									type={opportunities[opportunity]["TYPE"]}
+									typename={opportunities[opportunity]["TYPE_NAME"]}
+									remaining={opportunities[opportunity]["REMAINING"]}
+									translations={translations}
+								></MediumOpportCard>,
+							);
+						}
+					}
+				});
+			});
+		} else {
+			if (input !== "") {
+				Object.keys(opportunities).map((opportunity, index) => {
+					if (
+						opportunities[opportunity]["TITLE"]
+							.toLowerCase()
+							.includes(input!.toLowerCase()) &&
+						tempCardsID.includes(opportunities[opportunity]["ID"]) === false
+					) {
+						tempCardsID.push(opportunities[opportunity]["ID"]);
+						tempCards.push(
+							<MediumOpportCard
+								key={opportunities[opportunity]["ID"]}
+								background={opportunities[opportunity]["BACKGROUND"]}
+								title={opportunities[opportunity]["TITLE"]}
+								logo={opportunities[opportunity]["LOGO"]}
+								company={opportunities[opportunity]["NAME"]}
+								type={opportunities[opportunity]["TYPE"]}
+								typename={opportunities[opportunity]["TYPE_NAME"]}
+								remaining={opportunities[opportunity]["REMAINING"]}
+								translations={translations}
+							></MediumOpportCard>,
+						);
+					}
+				});
+			}
+		}
+		setOpportCards(tempCards);
+	};
+
+	const handleSearchbar = (input: string, categories: Array<string | null>) => {
 		setCards(input, categories);
 		setIsPage(false);
-	}
+	};
 
-	const resetSearchbar = () => { 
+	const resetSearchbar = () => {
 		setOpportCards(defaultData);
 		setIsPage(true);
-	}
+	};
 
 	useEffect(() => {
 		setOpportCards(defaultData);
-	 }, [defaultData])	
+	}, [defaultData]);
 
 	return (
 		<div className="container">
@@ -125,16 +197,14 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 					}
 				})}
 			</div>
-			<div className={styles.opportCardWrapper}>
-				{opportCards}
-			</div>
-			{
-				isPage ? <PageIndex
-				nbPages={nbPages}
-				currentPage={page}
-				url={`/annuaire-opportunite/${type}`}
-			></PageIndex> : null
-			}
+			<div className={styles.opportCardWrapper}>{opportCards}</div>
+			{isPage ? (
+				<PageIndex
+					nbPages={nbPages}
+					currentPage={page}
+					url={`/annuaire-opportunite/${type}`}
+				></PageIndex>
+			) : null}
 		</div>
 	);
 };
@@ -150,9 +220,6 @@ export async function getServerSideProps(context: any) {
 		});
 		res.end();
 	}
-
-	console.log("query", query.page);
-	
 
 	const lang: any = locale.split("-")[0];
 	const url = require("../../../public/static/url_trad.json");
