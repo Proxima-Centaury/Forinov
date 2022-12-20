@@ -6,13 +6,13 @@
 /* Config */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const nextConfig = {
-    reactStrictMode: true,
-    swcMinify: true,
     experimental: {
         images: {
             allowFutureImage: true
         },
     },
+    reactStrictMode: true,
+    swcMinify: true,
     images: {
         domains: [ "dev.forinov.fr" ],
     },
