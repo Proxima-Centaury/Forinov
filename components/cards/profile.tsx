@@ -6,6 +6,7 @@ import { buildProperties } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Image from "next/image";
 import Tags from "../tags/tags";
 import Format from "../texts/format";
 import Button from "../buttons/button";
@@ -24,14 +25,14 @@ const ProfileCard = ({ type, profile, states }: any) => {
     const pdfButtonObject = buildProperties(buttonProps, pdfButtonValues);
     return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
-            <img src={ profile.BACKGROUND } alt=""/>
+            <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3820" height="1920"/>
             { (type === "startup") ? <StartupActions translations={ translations }/> : null }
             { (type === "corporation") ? <CorporationActions translations={ translations }/> : null }
             { (type === "partner") ? <PartnerActions translations={ translations }/> : null }
         </div>
         <div className={ ProfileStyles.body }>
             <div className={ ProfileStyles.picture }>
-                <img src={ profile.LOGO } alt="Company background."/>
+                <Image src={ profile.LOGO } alt="Company background." width="120" height="120"/>
                 { (type !== "startup" && (!session || (session && profile.PDF))) ? <Button { ...pdfButtonObject as ButtonInterface }/> : null }
             </div>
             <div className={ ProfileStyles.content }>
