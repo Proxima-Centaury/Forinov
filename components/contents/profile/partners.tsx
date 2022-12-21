@@ -23,9 +23,9 @@ import FolderCard from "../../cards/folder";
 const ProfilePartners = ({ type, profile, folders, states }: any) => {
     const { translations }: any = states;
     const { PARTNERS } = profile;
+    const partners = PARTNERS || [];
     const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
     const [ maxVisibleFoldersByDefault, setMaxVisibleFolderByDefault ] = useState(2);
-    const partners = PARTNERS || [];
     const handleView = (event: any) => seeMoreOrLess(event, translations, "." + EntityStyles.partner, partners, maxVisibleCardsByDefault);
     const handleView2 = (event: any) => seeMoreOrLess(event, translations, "." + FolderStyles.folder, folders, maxVisibleFoldersByDefault);
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];

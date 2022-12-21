@@ -1,0 +1,145 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Opportunity ( Card ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.opportunity {
+    display: flex;
+    flex-direction: column;
+    width: calc((100% / 2) - 8px);
+    margin: 0px 8px 0px 0px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.opportunity:hover {
+    transform: scale(1.02);
+    box-shadow: var(--darker-box-shadow);
+}
+.opportunity:nth-of-type(2n) {
+    margin: 0px 0px 0px 8px;
+}
+.opportunity:nth-of-type(1n + 3) {
+    margin-top: 16px;
+}
+@media screen and (max-width: 1200px) {
+    .opportunity {
+        width: 100%;
+        margin: 0px;
+    }
+    .opportunity + .opportunity {
+        margin: 16px 0px 0px 0px;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Opportunity ( Background ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.background {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 152px;
+    height: 152px;
+    border-radius: 10px 10px 0px 0px;
+    overflow: hidden;
+}
+.background[data-type="1"] {
+    background-color: var(--project-color);
+}
+.background[data-type="2"] {
+    background-color: var(--program-color);
+}
+.background[data-type="3"] {
+    background-color: var(--challenge-color);
+}
+.background[data-type="4"] {
+    background-color: var(--event-color);
+}
+.background[data-type="5"] {
+    background-color: var(--offer-color);
+}
+.background > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.background > .informations {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    margin: auto 0px 0px 0px;
+    background-color: var(--background-private-color);
+}
+.background > .informations > p {
+    color: var(--perfect-white-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Opportunity ( Content ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.content {
+    flex: 1;
+    padding: 16px;
+    position: relative;
+    border-radius: 0px 0px 10px 10px;
+    background-color: var(--background-sub-color);
+}
+.content > .privacy {
+    display: flex;
+    align-items: center;
+}
+.content > .privacy > i {
+    margin: 0px 8px 0px 0px;
+    color: var(--text-inactive-color);
+}
+.content > .privacy > p {
+    margin: 0px;
+    font-size: 12px;
+    color: var(--text-inactive-color);
+}
+.content > h3 {
+    flex: 1;
+    margin: 16px 0px;
+    font-size: 18px;
+}
+.content > .type[data-type="1"] > div > div {
+    background-color: var(--project-color);
+}
+.content > .type[data-type="1"] > div > div > p {
+    color: var(--perfect-white-color);
+}
+.content > .type[data-type="2"] > div > div {
+    background-color: var(--program-color);
+}
+.content > .type[data-type="2"] > div > div > p {
+    color: var(--perfect-black-color);
+}
+.content > .type[data-type="3"] > div > div {
+    background-color: var(--challenge-color);
+}
+.content > .type[data-type="3"] > div > div > p {
+    color: var(--perfect-black-color);
+}
+.content > .type[data-type="4"] > div > div {
+    background-color: var(--event-color);
+}
+.content > .type[data-type="4"] > div > div > p {
+    color: var(--perfect-white-color);
+}
+.content > .type[data-type="5"] > div > div {
+    background-color: var(--offer-color);
+}
+.content > .type[data-type="5"] > div > div > p {
+    color: var(--perfect-black-color);
+}
+.content > .remainingTime {
+    display: flex;
+    align-items: center;
+}
+.content > .remainingTime > i {
+    margin: 0px 8px 0px 0px;
+}
+.content > .remainingTime > p {
+    margin: 0px;
+    font-size: 12px;
+}

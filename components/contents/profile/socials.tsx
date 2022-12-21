@@ -8,7 +8,7 @@ import ActivityStyles from "../../../public/stylesheets/components/cards/Activit
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileActivities = ({ profile, states }: any) => {
     const { translations }: any = states;
-    return <div id="socialsfeed" className={ ActivitiesStyles.activity }>
+    return <div id="socialsfeed" className={ ActivitiesStyles.activities }>
         <h3>{ translations["Réseaux sociaux"] }</h3>
         <div className={ ActivitiesStyles.list } data-type="list">
             { (profile.TWITTER) ? <TwitterFeed profile={ profile }/> : null }

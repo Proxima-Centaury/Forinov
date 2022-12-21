@@ -21,11 +21,11 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileEcosystem = ({ type, profile, states }: any) => {
     const { lock, translations }: any = states;
-    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
     const { CLIENTS } = profile;
     const { WISHLIST } = profile;
     const clients = CLIENTS || [];
     const wishlist = WISHLIST || [];
+    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
     const handleView = (event: any) => seeMoreOrLess(event, translations, "." + EntityStyles.client, clients, maxVisibleCardsByDefault);
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], clients.length - maxVisibleCardsByDefault ];

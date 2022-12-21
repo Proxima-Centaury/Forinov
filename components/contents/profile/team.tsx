@@ -20,9 +20,9 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileTeam = ({ profile, states }: any) => {
     const { translations }: any = states;
-    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(3);
     const { COLLABORATORS } = profile;
     const team = COLLABORATORS || [];
+    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(3);
     const handleView = (event: any) => seeMoreOrLess(event, translations, "." + MemberStyles.member, team, maxVisibleCardsByDefault);
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], team.length - maxVisibleCardsByDefault ];

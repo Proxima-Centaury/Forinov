@@ -1,12 +1,19 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Head from "next/head";
 import { GetStaticProps } from "next";
-import styles from "../public/stylesheets/pages/Home.module.css";
 import trustedBy from "../public/static/trustedBy.json";
 import AccordionItem from "../components/accordion/AccordionItem";
 import { HomeInterface } from "../typescript/interfaces";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Head from "next/head";
+import Image from "next/image";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Styles */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import HomeStyles from "../public/stylesheets/pages/Home.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -17,32 +24,28 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 			<title>Forinov - { translations["Accueil"] }</title>
 		</Head>
 		<div>
-			<section className={styles.hero}>
-				<div className={styles.text}>
-					<h1 className={styles.title}>{ translations["Trouver la Startup qu'il vous faut"] }</h1>
-					<p className={styles.paragraph}>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d’innovation, à chaque startup son Forinov"] + " !" }</p>
-					<button className={styles.toVideo}>
+			<section className={ HomeStyles.hero }>
+				<div className={ HomeStyles.text }>
+					<h1 className={ HomeStyles.title }>{ translations["Trouver la Startup qu'il vous faut"] }</h1>
+					<p className={ HomeStyles.paragraph }>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d’innovation, à chaque startup son Forinov"] + " !" }</p>
+					<button className={ HomeStyles.toVideo }>
 						{translations["Voir la vidéo de présentation"]}
 					</button>
 				</div>
-				<img
-					src="/svg/landing.svg"
-					className={styles.artwork}
-					alt="..."
-				></img>
+				{/* <Image src="/svg/landing.svg" className={ HomeStyles.artwork } alt="..."/> */}
 			</section>
 		</div>
-			<div className={styles.container2}>
-				<section className={styles.section2}>
-					<h1 className={styles.getStarted}>
+			<div className={ HomeStyles.container2}>
+				<section className={ HomeStyles.section2}>
+					<h1 className={ HomeStyles.getStarted}>
 						{translations["landing_section2_title"]}
 					</h1>
-					<h1 className={styles.section2_subtitle}>
+					<h1 className={ HomeStyles.section2_subtitle}>
 						{translations["landing_section2_subtitle"]}
 					</h1>
-					<div className={styles.steps}>
+					<div className={ HomeStyles.steps}>
 						<button
-							className={styles.step}
+							className={ HomeStyles.step}
 							id="activeButton"
 							onClick={(e: any) => {
 								const element = document.getElementById(
@@ -58,7 +61,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 							{translations["landing_carousel_step1"]}
 						</button>
 						<button
-							className={styles.step}
+							className={ HomeStyles.step}
 							onClick={(e: any) => {
 								const element = document.getElementById(
 									"#activeButton",
@@ -73,7 +76,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 							{translations["landing_carousel_step2"]}
 						</button>
 						<button
-							className={styles.step}
+							className={ HomeStyles.step}
 							onClick={(e: any) => {
 								const element = document.getElementById(
 									"#activeButton",
@@ -88,7 +91,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 							{translations["landing_carousel_step3"]}
 						</button>
 						<button
-							className={styles.step}
+							className={ HomeStyles.step}
 							onClick={(e: any) => {
 								const element = document.getElementById(
 									"#activeButton",
@@ -103,12 +106,12 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 							{translations["landing_carousel_step4"]}
 						</button>
 					</div>
-					<div className={styles.carousel_wrapper}>
+					<div className={ HomeStyles.carousel_wrapper}>
 						<div
-							className={styles.carousel}
+							className={ HomeStyles.carousel}
 							id="carouselObject"
 						>
-							<div className={styles.carousel_item}>
+							<div className={ HomeStyles.carousel_item}>
 								<ul>
 									<h1>{translations["landing_carousel_title1"]}</h1>
 									{translations["landing_carousel_content1"].map(
@@ -123,7 +126,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 								/>
 							</div>
 
-							<div className={styles.carousel_item}>
+							<div className={ HomeStyles.carousel_item}>
 								<ul>
 									<h1>{translations["landing_carousel_title2"]}</h1>
 									{translations["landing_carousel_content1"].map(
@@ -138,7 +141,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 								/>
 							</div>
 
-							<div className={styles.carousel_item}>
+							<div className={ HomeStyles.carousel_item}>
 								<ul>
 									<h1>{translations["landing_carousel_title3"]}</h1>
 									{translations["landing_carousel_content1"].map(
@@ -153,7 +156,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 								/>
 							</div>
 
-							<div className={styles.carousel_item}>
+							<div className={ HomeStyles.carousel_item}>
 								<ul>
 									<h1>{translations["landing_carousel_title4"]}</h1>
 									{translations["landing_carousel_content1"].map(
@@ -169,7 +172,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 							</div>
 						</div>
 					</div>
-					<div className={styles.ctaWrapper}>
+					<div className={ HomeStyles.ctaWrapper}>
 						<button className="callToAction">
 							{translations["landing_cta1"]}
 						</button>
@@ -177,10 +180,10 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 							{translations["landing_cta2"]}
 						</button>
 					</div>
-					<h1 className={styles.companiesTitle}>
+					<h1 className={ HomeStyles.companiesTitle}>
 						{translations["landing_companies_title"]}
 					</h1>
-					<div className={styles.companies}>
+					<div className={ HomeStyles.companies}>
 						{trustedBy.map((company: any) => {
 							return (
 								<a
@@ -193,7 +196,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 										src={company.image}
 										alt={company.name}
 										key={company.name}
-										className={styles.companyItem}
+										className={ HomeStyles.companyItem}
 										onMouseEnter={(e) => {
 											document.getElementById(company.name)!.style.opacity =
 												"1";
@@ -204,7 +207,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 										}}
 									/>
 									<div
-										className={styles.companyTooltip}
+										className={ HomeStyles.companyTooltip}
 										style={{ opacity: "0" }}
 										id={company.name}
 									>
@@ -214,13 +217,13 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 							);
 						})}
 					</div>
-					<div className={styles.collapseBackground}>
-						<h1 className={styles.collapseTitle}>
+					<div className={ HomeStyles.collapseBackground}>
+						<h1 className={ HomeStyles.collapseTitle}>
 							{translations["landing_collapse_title"]}
 						</h1>
-						<div className={styles.collapseCtas}>
+						<div className={ HomeStyles.collapseCtas}>
 							<button
-								className={styles.collapseCta}
+								className={ HomeStyles.collapseCta}
 								id="collapseCtaActive"
 								onClick={(e: any) => {
 									const object = document.getElementById(
@@ -237,7 +240,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 								{translations["landing_collapse_cta1"]}
 							</button>
 							<button
-								className={styles.collapseCta}
+								className={ HomeStyles.collapseCta}
 								onClick={(e: any) => {
 									const object = document.getElementById(
 										"accordionCarouselObject",
@@ -253,13 +256,13 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 								{translations["landing_collapse_cta2"]}
 							</button>
 						</div>
-						<div className={styles.carousel_wrapper}>
+						<div className={ HomeStyles.carousel_wrapper}>
 							{/* 1st accordion */}
 							<div
-								className={styles.accordionCarousel}
+								className={ HomeStyles.accordionCarousel}
 								id="accordionCarouselObject"
 							>
-								<div className={styles.collapseWrapper}>
+								<div className={ HomeStyles.collapseWrapper}>
 									{translations["landing_accordion1"].map(
 										(item: any, index: any) => {
 											return (
@@ -274,7 +277,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 									)}
 								</div>
 								{/* 2nd accordion */}
-								<div className={styles.collapseWrapper}>
+								<div className={ HomeStyles.collapseWrapper}>
 									{translations["landing_accordion2"].map(
 										(item: any, index: any) => {
 											return (
