@@ -1,7 +1,6 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Head from "next/head";
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -10,6 +9,7 @@ import { redirectTo } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Head from "next/head";
 import IframeStyles from "../public/stylesheets/components/Iframe.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Register */
@@ -20,7 +20,7 @@ const Register = ({ states }: RegisterInterface) => {
     useEffect(() => { (session) ? redirectTo("/", router, locale) : null });
     return <>
         <Head>
-            <title>Forinov - Inscription</title>
+            <title>Forinov - { translations["Inscription"] }</title>
         </Head>
         <div className="container">
             <div className={ IframeStyles.registerFrame }>

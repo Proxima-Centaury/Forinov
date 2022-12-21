@@ -16,24 +16,22 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 		<Head>
 			<title>Forinov - { translations["Accueil"] }</title>
 		</Head>
-			<div>
-				<section className={styles.hero}>
-					<div className={styles.text}>
-						<h1 className={styles.title}>
-							{translations["Trouver la Startup qu'il vous faut"]}
-						</h1>
-						<p className={styles.paragraph}>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d’innovation, à chaque startup son Forinov"] + " !" }</p>
-						<button className={styles.toVideo}>
-							{translations["Voir la vidéo de présentation"]}
-						</button>
-					</div>
-					<img
-						src="/svg/landing.svg"
-						className={styles.artwork}
-						alt="..."
-					></img>
-				</section>
-			</div>
+		<div>
+			<section className={styles.hero}>
+				<div className={styles.text}>
+					<h1 className={styles.title}>{ translations["Trouver la Startup qu'il vous faut"] }</h1>
+					<p className={styles.paragraph}>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d’innovation, à chaque startup son Forinov"] + " !" }</p>
+					<button className={styles.toVideo}>
+						{translations["Voir la vidéo de présentation"]}
+					</button>
+				</div>
+				<img
+					src="/svg/landing.svg"
+					className={styles.artwork}
+					alt="..."
+				></img>
+			</section>
+		</div>
 			<div className={styles.container2}>
 				<section className={styles.section2}>
 					<h1 className={styles.getStarted}>
