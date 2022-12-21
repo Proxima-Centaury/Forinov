@@ -1,4 +1,5 @@
 {
+	"Logo de Forinov": "Forinov's logo",
 	"Simuler la connexion": "Simulate connection",
 	"Changer de theme": "Switch the theme",
 	"Type d'accompagnement": "Followship type",
@@ -7,6 +8,7 @@
 	"Dossiers de startups publics": "Public startups folders",
 	"Voir les erreurs sur la page": "See the page's errors",
 	"Afficher les devtools": "Show the devtools",
+	"Bouton du menu de navigation": "Button of the navigation menu",
 	"Comment ça marche ?": "How does it work ?",
 	"Solutions de startups": "Startups solutions",
 	"Annuaire de startups": "Startups directory",
@@ -44,7 +46,6 @@
 	"Écosystème et partenaires": "Ecosystem and partners",
 	"Écosystème": "Ecosystem",
 	"Fil d'actualité": "Newsfeed",
-	"Incubateurs / Accélérateurs": "Incubators / Accelerators",
 	"Profil": "Profile",
 	"Objectifs": "Goals",
 	"Collaborateurs.trices": "Collaborators",

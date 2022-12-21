@@ -1,13 +1,14 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Link from "next/link";
 import { useState } from "react";
 import { ButtonInterface, NavbarInterface, SelectInterface } from "../typescript/interfaces";
 import { buildProperties, preventSubmit } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
+import Image from "next/image";
 import Select from "../components/fields/select";
 import Button from "../components/buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -26,18 +27,16 @@ const Navbar = ({ states, stateSetters, config }: NavbarInterface) => {
     const selectProps = [ "type", "options", "action", "defaultValue", "source" ];
     const languageSelectValues = [ "Single", locales, setLocale, locale, "locales" ];
     const languageSelectObject = buildProperties(selectProps, languageSelectValues);
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const buttonProps = [ "type", "action", "aria" ];
     const navigationButtonClass = ButtonStyles.navigationButton + ((menuState) ? " " + ButtonStyles.active : "");
     const navigationButtonAction = (event: any) => preventSubmit(event, () => setMenuState(!menuState));
-    const navigationButtonValues = [ navigationButtonClass, false, "", "", navigationButtonAction, "", 0 ];
+    const navigationButtonValues = [ navigationButtonClass, navigationButtonAction, translations["Bouton du menu de navigation"] ];
     const navigationButtonObject = buildProperties(buttonProps, navigationButtonValues)
     const parentProps = { navbar, translations };
     return <nav className={ NavbarStyles.navbar }>
         <div className={ NavbarStyles.logo }>
             <Link href="/">
-                <picture>
-                    <img src="/assets/logo.png"/>
-                </picture>
+                <Image src="/assets/logo.png" alt={ translations["Logo de Forinov"] } width="50" height="50"/>
                 <span>Forinov</span>
             </Link>
         </div>
