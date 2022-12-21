@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { scrollTo } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -50,6 +50,13 @@ const ProfileMenu = ({ type, states }: any) => {
         const container = document.querySelector(target.getAttribute("href"));
         return (container) ? scrollTo(0, container.offsetTop) : null;
     };
+    useEffect(() => {
+        const scrollMenuDisplayHandler = () => {
+            console.log(window.scroll)
+        };
+        window.addEventListener("scroll", scrollMenuDisplayHandler);
+        return () => window.removeEventListener("scroll", scrollMenuDisplayHandler);
+    }, []);
     return <div className={ ProfileStyles.menu }>
         <p className={ ProfileStyles.label }>Menu</p>
         <ul>
