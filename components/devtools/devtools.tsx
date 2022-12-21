@@ -19,13 +19,13 @@ const Devtools = ({ states, stateSetters }: any) => {
     const { session, theme, translations }: any = states;
     const { setSession, setTheme }: any = stateSetters;
     const [ hidden, setHidden ] = useState(false);
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
+    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count", "disabled" ];
     const loginButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-power-off", "", () => setSession(!session), "", 0 ];
     const loginButtonObject = buildProperties(buttonProps, loginButtonValues);
     const themeButtonIcon = (theme === "light") ? "fa-light fa-moon" : "fa-light fa-sun";
     const themeButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, themeButtonIcon, "", () => (theme === "light") ? setTheme("dark") : setTheme("light"), "", 0 ];
     const themeButtonObject = buildProperties(buttonProps, themeButtonValues);
-    const issuesButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-triangle-exclamation", "", () => false, "", 0 ];
+    const issuesButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-triangle-exclamation", "", () => false, "", 0, true ];
     const issuesButtonObject = buildProperties(buttonProps, issuesButtonValues);
     return <div className={ (hidden) ? "closed" : "" } data-type="devtools">
         <p>Devtools</p>

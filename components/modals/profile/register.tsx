@@ -13,7 +13,7 @@ const RegisterModal = ({ translations }: any) => {
     return <>
         <div>
             <i className="fa-solid fa-bolt"/>
-            <p>{ translations["Envie d'en savoir plus sur ce membre Forinov ? Inscrivez-vous dès à présent !"] }</p>
+            <p>{ translations["Envie d'en savoir plus sur ce membre Forinov"] + " ? " + translations["Inscrivez-vous dès à présent"] + " !" }</p>
         </div>
         <div>
             <Link href="/register" className={ ButtonStyles.callToActionSquared }>{ translations["S'inscrire"] }</Link>

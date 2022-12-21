@@ -20,6 +20,7 @@ import ProfileProducts from "../../../../components/contents/profile/products";
 import ProfileEcosystem from "../../../../components/contents/profile/ecosystem";
 import ProfilePartners from "../../../../components/contents/profile/partners";
 import ProfileTeam from "../../../../components/contents/profile/team";
+import ProfileOpportunities from "../../../../components/contents/profile/opportunities";
 import ProfileActivities from "../../../../components/contents/profile/activities";
 import ProfileSocials from "../../../../components/contents/profile/socials";
 import ProfileGoals from "../../../../components/contents/profile/goals";
@@ -126,6 +127,7 @@ const Corporation = ({ type, profile, products, activities, folders, states, sta
     const parentProps = { type, profile, products, activities, folders, states, stateSetters };
     return <>
         <ProfileTeam { ...parentProps }/>
+        <ProfileOpportunities { ...parentProps }/>
         <ProfileGoals { ...parentProps }/>
         <Button { ...pitchDeckButtonObject as ButtonInterface }/>
         <ProfileEcosystem { ...parentProps }/>
@@ -145,6 +147,7 @@ const Partner = ({ type, profile, products, activities, folders, states, stateSe
     const parentProps = { type, profile, products, activities, folders, states, stateSetters };
     return <>
         <ProfileTeam { ...parentProps }/>
+        <ProfileOpportunities { ...parentProps }/>
         <ProfileGoals { ...parentProps }/>
         <Button { ...pitchDeckButtonObject as ButtonInterface }/>
         <ProfileEcosystem { ...parentProps }/>

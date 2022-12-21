@@ -21,7 +21,7 @@ const LoginCard = ({ locales, states, stateSetters, config }: LoginInterface) =>
         <div className={ LoginStyles.card }>
             <div className={ LoginStyles.head }>
                 <h2>{ translations["Accéder à tout Forinov"] }</h2>
-                <p>{ translations["Pas encore membre Forinov ?"] }&nbsp;<Link href="/register">{ translations["Inscrivez-vous"] }</Link>&nbsp;!</p>
+                <p>{ translations["Pas encore membre Forinov"] + " ?" }&nbsp;<Link href="/register">{ translations["Inscrivez-vous"] }</Link>&nbsp;!</p>
             </div>
             <div className={ LoginStyles.body }>
                 <LoginForm { ...parentProps }/>

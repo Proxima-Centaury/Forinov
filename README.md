@@ -34,3 +34,14 @@ This [README.md](/README.md) contains a list of API calls as well as their use c
 > Response :
 > - This brings you informations about a profile's activity list according to the passed parameters.
 > ```
+
+<u>Company folders :</u> ( **V5_GET_FOLDERS** )
+
+> ```markdown
+> Parameters :
+> - TYPE : startup / entreprise / partenaire
+> - PID : profile id
+> - authkey : Sorbonne
+> Response :
+> - This brings you informations about a profile's startup folders list according to the passed parameters.
+> ```

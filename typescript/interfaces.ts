@@ -83,7 +83,8 @@ interface ButtonInterface {
     action: MouseEventHandler<HTMLButtonElement>,
     text: String,
     count: Number,
-    disabled: Boolean
+    disabled: Boolean,
+    aria: String
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Option Interface */

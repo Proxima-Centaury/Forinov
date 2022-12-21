@@ -16,7 +16,7 @@ import ActivitiesStyles from "../../../public/stylesheets/components/contents/pr
 import ActivityStyles from "../../../public/stylesheets/components/cards/Activity.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Activity */
+/* Profile Activities */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileActivities = ({ activities, states }: any) => {
     const { translations }: any = states;
@@ -25,7 +25,7 @@ const ProfileActivities = ({ activities, states }: any) => {
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLessAlternative, false, "", "", handleView, translations["Voir plus"], activities.length - maxVisibleCardsByDefault ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
-    return <div id="newsfeed" className={ ActivitiesStyles.activity }>
+    return <div id="newsfeed" className={ ActivitiesStyles.activities }>
         <h3>{ translations["Fil d'actualité"] }</h3>
         <div className={ ActivitiesStyles.list } data-type="list">
             { activities.map((event: any, key: KeyType) => {

@@ -302,18 +302,17 @@ class Utilities {
     */
     seeMoreOrLess = (event: any, translations: any, selector: String, array = [], defaultVisibleItemsCount = 1, counter = true): Array<any> => {
         const target = event.target.closest("button");
-        const container = document.querySelector(selector as string)?.closest("[data-type='list']") as HTMLElement;
+        const container = (target?.closest("[data-type='list']")) ? target?.closest("[data-type='list']") : document.querySelector(selector as string)?.closest("[data-type='list']") as HTMLElement;
         const visibleElements = container?.querySelectorAll(selector + ":not(.hidden)");
         const hiddenElements = container?.querySelectorAll(selector + ".hidden");
-        console.log(target, container, visibleElements, hiddenElements)
         // TODO => ANIMATE WITH A COLLAPSE
         if(hiddenElements && hiddenElements.length > 0) {
-            hiddenElements.forEach((hiddenElement) => hiddenElement.classList.remove("hidden"));
+            hiddenElements.forEach((hiddenElement: any) => hiddenElement.classList.remove("hidden"));
             target.querySelector("span").innerText = translations["Voir moins"];
             (target.querySelector("i")) ? target.querySelector("i").style.transform = "rotate(-90deg)" : null;
         } else {
             if(visibleElements && visibleElements.length > defaultVisibleItemsCount) {
-                visibleElements.forEach((visibleElement, key) => (key >= defaultVisibleItemsCount) ? visibleElement.classList.add("hidden") : null);
+                visibleElements.forEach((visibleElement: any, key: KeyType) => (parseInt(key) >= defaultVisibleItemsCount) ? visibleElement.classList.add("hidden") : null);
                 target.querySelector("span").innerText = translations["Voir plus"] + ((array.length > 0) ? " (" + (array.length - defaultVisibleItemsCount) + ")" : "");
                 (target.querySelector("i")) ? target.querySelector("i").style.transform = "rotate(90deg)" : null;
             };
@@ -357,6 +356,48 @@ class Utilities {
         };
         return string[0].toUpperCase() + string.substring(1).toLowerCase();
     };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function remainingTime
+    * TODO => COMPLETE DESCRIPTION
+    */
+    remainingTime = (remainingTime: any, start = null, display = null, translations: any) => {
+        if(remainingTime === "permanent") {
+            return uppercaseFirst(remainingTime);
+        } else if(remainingTime === "undefined") {
+            return translations["Dates non-définies"];
+        } else if(remainingTime === "finished") {
+            return translations["Terminée"];
+        } else if(remainingTime === "later") {
+            // const date = new Date(start); NOT WORKING ON SAFARI
+            return translations["Commence le"] + " " + display;
+        } else {
+            const string: Array<any> = [];
+            const values = remainingTime.split(",");
+            values.map((value: any, key: KeyType) => {
+                if(value !== "0" && parseInt(key) === 0) {
+                    if(value === "1") {
+                        string.push(value + " " + translations["Année"].toLowerCase()); 
+                    } else {
+                        string.push(value + " " + translations["Années"].toLowerCase());
+                    };
+                } else if(value !== "0" && parseInt(key) === 1) {
+                    if(value === "1") {
+                        string.push(value + " " + translations["Mois"].toLowerCase()); 
+                    } else {
+                        string.push(value + " " + translations["Mois+s"].toLowerCase());
+                    };
+                } else if(value !== "0" && parseInt(key) === 2) {
+                    if(value === "1") {
+                        string.push(value + " " + translations["Jour"].toLowerCase()); 
+                    } else {
+                        string.push(value + " " + translations["Jours"].toLowerCase());
+                    };
+                }
+            });
+            return (string) ? string.join(", ") : translations["Moins de 24 heures restantes"];
+        };
+    };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Instance */
@@ -377,6 +418,7 @@ const scrollTo = utilities.scrollTo;
 const seeMoreOrLess = utilities.seeMoreOrLess;
 const redirectTo = utilities.redirectTo;
 const uppercaseFirst = utilities.uppercaseFirst;
+const remainingTime = utilities.remainingTime;
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -393,5 +435,6 @@ export {
     scrollTo,
     seeMoreOrLess,
     redirectTo,
-    uppercaseFirst
+    uppercaseFirst,
+    remainingTime
 };
