@@ -4,9 +4,9 @@
 .folder {
     display: flex;
     width: calc((100% / 2) - 8px);
-    min-height: 256px;
-    height: 256px;
-    max-height: 256px;
+    min-height: 300px;
+    height: 300px;
+    max-height: 300px;
     margin: 0px 8px 0px 0px;
     cursor: pointer;
     border-radius: 10px;
@@ -81,6 +81,7 @@
     bottom: calc(100% - 21.5px);
     left: calc(100px - 28.5px);
     transform: rotate(45deg);
+    border-radius: 0px 40px 40px 40px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
     transition: box-shadow 0.3s ease;
@@ -91,9 +92,10 @@
 }
 .content > .geometry::before {
     width: 120%;
-    height: 120%;
+    height: 130%;
     position: absolute;
     content: "";
+    border-radius: 40px;
     background-color: var(--background-sub-color);
     z-index: -1;
 }

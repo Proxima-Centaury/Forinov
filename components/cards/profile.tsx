@@ -25,7 +25,7 @@ const ProfileCard = ({ type, profile, states }: any) => {
     const pdfButtonObject = buildProperties(buttonProps, pdfButtonValues);
     return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
-            <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3820" height="1920"/>
+            <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3820" height="1920" priority/>
             { (type === "startup") ? <StartupActions translations={ translations }/> : null }
             { (type === "corporation") ? <CorporationActions translations={ translations }/> : null }
             { (type === "partner") ? <PartnerActions translations={ translations }/> : null }

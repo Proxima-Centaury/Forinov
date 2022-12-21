@@ -1,4 +1,8 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Image from "next/image";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ProductStyles from "../../public/stylesheets/components/cards/Product.module.css";
@@ -9,7 +13,7 @@ const ProductCard = ({ product, index, maxVisibleByDefault = 4, translations }: 
     return <div className={ ProductStyles.product + ((index > maxVisibleByDefault) ? " hidden" : "")}>
         <div className={ ProductStyles.banner }>
             <p>{ translations["Voir"] }</p>
-            { (product.PICTURE) ? <img src={ product.PICTURE } alt={ "Image du produit " + product.NAME }/> : null}
+            { (product.PICTURE) ? <Image src={ product.PICTURE } alt={ "Image du produit " + product.NAME } width="1440" height="720"/> : null}
         </div>
         <div className={ ProductStyles.content }>
             <p className={ ProductStyles.type }>{ Object.values(product.BUSINESSMODEL).join(" | ") }</p>
