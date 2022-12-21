@@ -364,16 +364,13 @@ export default function indexCorpo({ dataOpports,
 							);
 						})}
 						<div className={styles.joinCard}>
-							<h1>{translations["index_partners_lastops_card_title"]}</h1>
-							<Link
-								href="/"
-								className="callToAction"
-							>
-								<span>
-									{translations["index_partners_lastops_card_cta"]}
-								</span>
-							</Link>
-						</div>
+								<h1>{translations["join_card_title"]}</h1>
+								<Link href={"/"}>
+									<p className="callToAction">
+										{translations["join_card_cta"]}
+									</p>
+								</Link>
+							</div>
 					</div>
 				</div>
 				{/* */}

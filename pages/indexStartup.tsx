@@ -189,10 +189,10 @@ const indexStartup = ({
 								);
 							})}
 							<div className={styles.joinCard}>
-								<h1>{translations["index_corpo_ops_title"]}</h1>
+								<h1>{translations["join_card_title"]}</h1>
 								<Link href={"/"}>
 									<p className="callToAction">
-										{translations["index_corpo_ops_cta"]}
+										{translations["join_card_cta"]}
 									</p>
 								</Link>
 							</div>
