@@ -22,13 +22,7 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 						<h1 className={styles.title}>
 							{translations["Trouver la Startup qu'il vous faut"]}
 						</h1>
-						<p className={styles.paragraph}>
-							{
-								translations[
-									"Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d’innovation, à chaque startup son Forinov !"
-								]
-							}
-						</p>
+						<p className={styles.paragraph}>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d’innovation, à chaque startup son Forinov"] + " !" }</p>
 						<button className={styles.toVideo}>
 							{translations["Voir la vidéo de présentation"]}
 						</button>
