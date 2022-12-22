@@ -1,6 +1,6 @@
 .hero {
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
@@ -11,8 +11,8 @@
 }
 
 .text {
-	width: 75%;
-	margin: 0 auto;
+	width: 50%;
+	padding-left: 10%;
 	margin-top: 6rem;
 }
 
@@ -26,9 +26,8 @@
 	font-style: normal;
 	line-height: 1.2;
 	letter-spacing: normal;
-    font-size: clamp(3rem, 5vw, 64px);
+	font-size: clamp(3rem, 5vw, 64px);
 	font-weight: 700;
-	width: 50%;
 }
 
 .paragraph {
@@ -39,9 +38,10 @@
 	color: #232324;
 	font-family: "Open Sans", sans-serif;
 	letter-spacing: 0.6px;
-    font-size: clamp(1.5rem, 2vw, 24px);
+	font-size: clamp(1.5rem, 2vw, 24px);
 	line-height: 1.4;
-	width: 50%;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
 .toVideo {
@@ -199,9 +199,9 @@
 .carousel {
 	width: 400%;
 	height: 300px;
-    display: flex;
-    transform: translateX(0%);
-    transition: transform .75s cubic-bezier(0.54,-0.56, 0, 1);
+	display: flex;
+	transform: translateX(0%);
+	transition: transform .75s cubic-bezier(0.54, -0.56, 0, 1);
 
 }
 
@@ -217,94 +217,94 @@
 	padding: 1rem 0;
 }
 
-.carousel_item > ul {
+.carousel_item>ul {
 	padding: 0;
 	margin: 0;
 	width: 45%;
 }
 
-.carousel_item > ul > li {
+.carousel_item>ul>li {
 	margin-left: 3.5rem;
 	list-style: disc;
 }
 
-.carousel_item > ul > h1 {
+.carousel_item>ul>h1 {
 	font-size: 32px;
 	font-weight: 600;
 	margin: 0;
 	margin-bottom: 0.5rem;
 }
 
-.carousel_item > img {
+.carousel_item>img {
 	width: 45%;
 	height: 100%;
 	object-fit: cover;
 }
 
 .ctaWrapper {
-    width: 75%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
+	width: 75%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
 }
 
 .companiesTitle {
-    margin-top: 6rem;
-    margin-bottom: .5rem;
-    font-family: "Nunito Sans", sans-serif;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.33;
-    letter-spacing: -1.02px;
-    color: #232324;
-    font-size: 48px;
-    width: 75%;
-    text-align: center;
+	margin-top: 6rem;
+	margin-bottom: .5rem;
+	font-family: "Nunito Sans", sans-serif;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.33;
+	letter-spacing: -1.02px;
+	color: #232324;
+	font-size: 48px;
+	width: 75%;
+	text-align: center;
 }
 
 .companies {
-    width: 75%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 3rem;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-} 
+	width: 75%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 3rem;
+	margin-top: 2rem;
+	margin-bottom: 3rem;
+}
 
 .companyItem {
-    width: 150px;
-    height: 50px;
-    padding: .1875rem .375rem; 
-    object-fit: contain;
-    background-color: #fff;
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    position: relative;
-    cursor: pointer;
+	width: 150px;
+	height: 50px;
+	padding: .1875rem .375rem;
+	object-fit: contain;
+	background-color: #fff;
+	border-radius: 9999px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+	position: relative;
+	cursor: pointer;
 }
 
 .companyTooltip {
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 600;
-    background-color: #fff;
-    border-radius:2rem;
-    margin-top: 0.5rem;
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 600;
+	background-color: #fff;
+	border-radius: 2rem;
+	margin-top: 0.5rem;
 }
 
 .collapseBackground {
 	width: 100%;
 	height: 100%;
-	background-color: #fff;	
+	background-color: #fff;
 	padding-bottom: 3rem;
 }
 
@@ -316,18 +316,18 @@
 }
 
 .collapseTitle {
-    text-align: center!important;
-    box-sizing: border-box;
-    margin-top: 0;
-    margin-bottom: 1.5rem!important;
-    font-family: "Nunito Sans", sans-serif;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #232324;
-    font-size: 42px;
-    font-weight: 700;
+	text-align: center !important;
+	box-sizing: border-box;
+	margin-top: 0;
+	margin-bottom: 1.5rem !important;
+	font-family: "Nunito Sans", sans-serif;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	color: #232324;
+	font-size: 42px;
+	font-weight: 700;
 	margin-top: 3rem;
 }
 
@@ -343,33 +343,33 @@
 
 
 .collapseCta {
-    box-sizing: border-box;
-    margin: 0;
-    overflow: visible;
-    display: inline-block;
-    color: #161c2d;
-    vertical-align: middle;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: .8125rem 1.25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    text-transform: uppercase!important;
-    border-radius: 50rem;
-    font-family: "Open Sans", sans-serif;
-    font-size: 0.875rem;
-    font-weight: 600;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 1.25px;
-    text-align: center;
-    border-color: transparent!important;
-    cursor: pointer;
+	box-sizing: border-box;
+	margin: 0;
+	overflow: visible;
+	display: inline-block;
+	color: #161c2d;
+	vertical-align: middle;
+	user-select: none;
+	border: 1px solid transparent;
+	padding: .8125rem 1.25rem;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	text-transform: uppercase !important;
+	border-radius: 50rem;
+	font-family: "Open Sans", sans-serif;
+	font-size: 0.875rem;
+	font-weight: 600;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: 1.25px;
+	text-align: center;
+	border-color: transparent !important;
+	cursor: pointer;
 	transition: all .3s ease-in-out;
 }
 
 .collapseCtaAlternative:hover {
-    background-color: #e7e7e7 !important;
+	background-color: #e7e7e7 !important;
 }
 
 .accordionCarousel {
@@ -379,12 +379,6 @@
 	justify-content: center;
 	gap: 1rem;
 	transition: all .3s ease-in-out;
-}
-
-@media only screen and (max-width: 1280px) {
-	.text {
-		margin-left: 10%;
-	}
 }
 
 @media only screen and (max-width: 991px) {
@@ -408,12 +402,13 @@
 		padding: 0 20px;
 	}
 
-	.text {
-		margin-top: 5rem;
+	.paragraph {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
 	}
 
-	.paragraph {
-		margin: 2rem 0;
+	.text {
+		margin-top: 5rem;
 	}
 
 	.artwork {
@@ -429,7 +424,7 @@
 		height: fit-content;
 		margin: 2rem 0;
 	}
-	
+
 	.steps::before {
 		content: "";
 		position: absolute;
@@ -445,8 +440,8 @@
 
 @media only screen and (max-width: 767px) {
 	.text {
-        padding: 0;
-    }
+		padding: 0;
+	}
 
 	.toVideo {
 		margin: 0 auto;
@@ -457,7 +452,7 @@
 	.companiesTitle,
 	.collapseTitle {
 		width: 95%;
-		font-size: 45px;
+		font-size: 24px;
 	}
 
 	.carousel_wrapper {

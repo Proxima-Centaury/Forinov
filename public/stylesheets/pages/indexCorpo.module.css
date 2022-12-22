@@ -1,18 +1,14 @@
 .container {
-    position: relative;
-    left: 0;
-    top: 80px;
     width: 100vw;
     height: fit-content;
     height: calc(100vh - 5px);
     background-color: #f8f7f6;
     margin-left: auto;
-    overflow: hidden;
 }
 
 .hero {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -54,6 +50,8 @@
     font-size: clamp(1.5rem, 2vw, 24px);
     line-height: 1.4;
     width: 50%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .toVideo {
@@ -94,13 +92,9 @@
 }
 
 .container2 {
-    position: relative;
-    left: 0;
-    top: 80px;
     width: 100vw;
     background-color: #B2D1FF;
     margin-left: auto;
-    overflow-x: hidden;
     margin: 0 !important;
 }
 
@@ -318,13 +312,9 @@
 }
 
 .container3 {
-    position: relative;
-    left: 0;
-    top: 80px;
     width: 100vw;
     background-color: #f8f7f6;
     margin-left: auto;
-    overflow-x: hidden;
     margin: 0 !important;
 }
 
