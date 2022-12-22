@@ -14,11 +14,11 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 
 	const opportunities = dataOpportunities[0]["PROJECT"];
 	
+	
 
 	const [opportCards, setOpportCards] = useState<Array<JSX.Element>>([]);
 
 	const [isPage, setIsPage] = useState<boolean>(true);
-
 	const cardPerPage = 20;
 	const { translations }: any = states;
 
