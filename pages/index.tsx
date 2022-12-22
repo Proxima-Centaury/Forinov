@@ -2,158 +2,79 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetStaticProps } from "next";
+import { useEffect } from "react";
 import trustedBy from "../public/static/trustedBy.json";
 import AccordionItem from "../components/accordion/AccordionItem";
-import { HomeInterface } from "../typescript/interfaces";
+import { HomeInterface, ButtonInterface } from "../typescript/interfaces";
+import { buildProperties } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import Image from "next/image";
+import Button from "../components/buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import styles from "../public/stylesheets/pages/Home.module.css";
+import HomeStyles from "../public/stylesheets/pages/Home.module.css";
+import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 	const { translations }: any = states;
-	return 	<>
-	<Head>
-			<title>Index Forinov</title>
-			<style>
-					{`
-          #activeButton {
-            background-color: #57595d;
-            color: #fff;
-		  }
-
-		#collapseCtaActive {
-			box-sizing: border-box;
-			margin: 0;
-			overflow: visible;
-			display: inline-block;
-			color: #161c2d;
-			vertical-align: middle;
-			user-select: none;
-			border: 1px solid transparent;
-			padding: .8125rem 1.25rem;
-			transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-			text-transform: uppercase!important;
-			border-radius: 50rem;
-			background-color: #e7e7e7;
-			font-family: "Open Sans", sans-serif;
-			font-size: 0.875rem;
-			font-weight: 600;
-			font-stretch: normal;
-			font-style: normal;
-			line-height: normal;
-			letter-spacing: 1.25px;
-			text-align: center;
-			cursor: pointer;
-		}
-        `}
-				</style>
-	</Head>
-	<div className="containerFull">
-		<div className={styles.container}>
-			<section className={styles.hero}>
-				<div className={styles.text}>
-					<h1 className={styles.title}>
-						{translations["Trouver la Startup qu'il vous faut"]}
-					</h1>
-					<p className={styles.paragraph}>
-						{
-							translations[
-								"Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d’innovation, à chaque startup son Forinov !"
-							]
-						}
-					</p>
-					<button className={styles.toVideo}>
-						{translations["Voir la vidéo de présentation"]}
-					</button>
+	const opportunityCreationStepsButtons = [
+		translations["Démarrez"],
+		translations["Complétez"],
+		translations["Diffusez"],
+		translations["Profitez"]
+	];
+	const buttonProps = [ "type", "action", "text" ];
+	const setStepButtonActive = (event: any) => {
+		const target = event.target.closest("." + ButtonStyles.callToActionStep) as Element;
+		const buttons = document.querySelectorAll("." + ButtonStyles.callToActionStep);
+		(buttons) ? buttons.forEach((button) => button.classList.remove(ButtonStyles.active)) : null;
+		return target.classList.add(ButtonStyles.active);
+	};
+	useEffect(() => {
+		const setFirstStepActive = () => {
+			const buttons = document.querySelectorAll("." + ButtonStyles.callToActionStep);
+			return (buttons) ? buttons[0].classList.add(ButtonStyles.active) : null;
+		};
+		setFirstStepActive();
+	}, []);
+	return <>
+		<Head>
+			<title>Forinov - { translations["Accueil"] }</title>
+		</Head>
+		<div className={ HomeStyles.presentation }>
+			<div>
+				<div>
+					<h1>{ translations["Trouver la startup qu'il vous faut"] }</h1>
+					<p className={ HomeStyles.paragraph }>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d’innovation, à chaque startup son Forinov"] + " !" }</p>
+					<a href="">{ translations["Voir la vidéo de présentation"] }</a>
 				</div>
-				<img
-					src="/assets/landing-img.svg"
-					className={styles.artwork}
-					alt="..."
-				></img>
-			</section>
+				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160"/>
+			</div>
 		</div>
-		<div className={styles.container2}>
-			<section className={styles.section2}>
-				<h1 className={styles.getStarted}>
-					{translations["landing_section2_title"]}
-				</h1>
-				<h1 className={styles.section2_subtitle}>
-					{translations["landing_section2_subtitle"]}
-				</h1>
-				<div className={styles.steps}>
-					<button
-						className={styles.step}
-						id="activeButton"
-						onClick={(e:any) => {
-							if (document.querySelector("#activeButton")) {
-								document.querySelector("#activeButton")!.id = "";
-							}
-							e.target.id = "activeButton";
-							const carouselObject = document.querySelector("#carouselObject") as HTMLElement;
-							carouselObject.style.transform =
-								"translateX(0)";
-						}}
-					>
-						{translations["landing_carousel_step1"]}
-					</button>
-					<button
-						className={styles.step}
-						onClick={(e:any) => {
-							if (document.querySelector("#activeButton")) {
-								document.querySelector("#activeButton")!.id = "";
-							}
-							e.target.id = "activeButton";
-							const carouselObject = document.querySelector("#carouselObject") as HTMLElement;
-							carouselObject.style.transform =
-								"translateX(-25%)";
-						}}
-					>
-						{translations["landing_carousel_step2"]}
-					</button>
-					<button
-						className={styles.step}
-						onClick={(e:any) => {
-							if (document.querySelector("#activeButton")) {
-								document.querySelector("#activeButton")!.id = "";
-							}
-							e.target.id = "activeButton";
-							const carouselObject = document.querySelector("#carouselObject") as HTMLElement;
-							carouselObject.style.transform =
-								"translateX(-50%)";
-						}}
-					>
-						{translations["landing_carousel_step3"]}
-					</button>
-					<button
-						className={styles.step}
-						onClick={(e: any) => {
-							if (document.querySelector("#activeButton")) {
-								document.querySelector("#activeButton")!.id = "";
-							}
-							e.target.id = "activeButton";
-							const carouselObject = document.querySelector("#carouselObject") as HTMLElement;
-							carouselObject.style.transform =
-								"translateX(-75%)";
-						}}
-					>
-						{translations["landing_carousel_step4"]}
-					</button>
+		<div className={ HomeStyles.opportunity }>
+			<div>
+				<h2>{ translations["Lancez-vous"] + " !" }</h2>
+				<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
+				<div className={ HomeStyles.steps }>
+					{ opportunityCreationStepsButtons.map((button: any, key: number) => {
+						const stepButtonValues = [ ButtonStyles.callToActionStep, setStepButtonActive, button ];
+						const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
+						return <>
+							<div className="separator"></div>
+							<Button key={ key } { ...stepButtonObject as ButtonInterface }/>
+						</>;
+					}) }
+					<div className="separator"></div>
 				</div>
-				<div className={styles.carousel_wrapper}>
-					<div
-						className={styles.carousel}
-						id="carouselObject"
-					>
-						<div className={styles.carousel_item}>
+				<div className={ HomeStyles.carousel_wrapper}>
+					<div className={ HomeStyles.carousel} id="carouselObject">
+						<div className={ HomeStyles.carousel_item}>
 							<ul>
 								<h1>{translations["landing_carousel_title1"]}</h1>
 								{translations["landing_carousel_content1"].map(

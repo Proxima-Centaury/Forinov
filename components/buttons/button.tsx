@@ -19,6 +19,7 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled 
         ButtonStyles.callToAction,
         ButtonStyles.callToActionAlternative,
         ButtonStyles.callToActionNegative,
+        ButtonStyles.callToActionStep,
         ButtonStyles.callToActionWide,
     ];
     if(type === "default") {
