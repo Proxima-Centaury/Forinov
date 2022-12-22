@@ -3,43 +3,51 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentation {
 	display: flex;
-	flex-direction: column;
 	position: relative;
-	background-color: var(--background-main-color);
-}
-.presentation > div {
-	display: flex;
 	width: 100%;
 	height: 100%;
 	padding: 80px;
 	border-radius: 0px 0px 100px 0px;
 	background-color: var(--background-information-color);
 }
-.presentation > div > div {
+.presentation::before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: var(--background-main-color);
+	z-index: -1;
+}
+.presentation > div {
 	display: flex;
 	flex-direction: column;
 	margin: 0px 16px 0px 0px;
 }
-.presentation > div > div > h1 {
+.presentation > div > h1 {
 	font-family: "Nunito Sans";
 	font-size: 65px;
 	font-weight: bold;
 }
-.presentation > div > div > p {
+.presentation > div > p {
 	margin: 0px 0px 32px 0px;
 	font-family: "Nunito Sans";
 	font-size: 24px;
 }
-.presentation > div > div > a {
+.presentation > div > a {
 	width: fit-content;
 	padding: 16px;
 	font-size: 19px;
 	font-weight: 600;
 	border-radius: 100px;
+	border: var(--border);
+	border-width: 2px;
+	border-color: var(--background-sub-color);
 	background-color: var(--background-sub-color);
-	transition: background-color 0.3s ease;
+	transition: color 0.3s ease, background-color 0.3s ease;
 }
-.presentation > div > div > a:hover {
+.presentation > div > a:hover {
 	background-color: transparent;
 }
 .presentation > div > img {
@@ -71,12 +79,14 @@
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: bold;
+	text-align: center;
 }
 .opportunity > div > h3 {
 	margin: 0px auto;
 	font-family: "Nunito Sans";
 	font-size: 45px;
 	font-weight: 300;
+	text-align: center;
 }
 .opportunity > div > .steps {
 	display: flex;
@@ -86,128 +96,69 @@
 .opportunity > div > .steps > * + * {
 	margin: 0px 0px 0px 8px;
 }
-
-.carousel_wrapper {
-	width: 75%;
-	height: 100%;
-	position: relative;
-	overflow: hidden;
-	flex-wrap: nowrap;
-	margin: 0 auto;
-}
-
-.carousel {
-	width: 400%;
-	height: 300px;
+.opportunity > div > .actions {
 	display: flex;
-	transform: translateX(0%);
-	transition: transform .75s cubic-bezier(0.54, -0.56, 0, 1);
-
+	justify-content: center;
+	align-items: center;
+	margin: 16px auto 170px auto;
 }
-
-.carousel_item {
+.opportunity > div > .actions > * + * {
+	margin: 0px 0px 0px 16px;
+}
+@media screen and (max-width: 768px) {
+	.opportunity > div > .actions {
+		flex-direction: column;
+	}
+	.opportunity > div > .actions > * + * {
+		margin: 16px 0px 0px 0px;
+	}
+}
+.opportunity > div > .companies {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
-	height: 100%;
+	margin: 32px 0px 140px 0px;
+	padding: 0px 0px 0px 16px;
+}
+.opportunity > div > .companies > .company {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	justify-content: space-evenly;
-	position: relative;
-	overflow-x: hidden;
-	padding: 1rem 0;
+    width: max-content;
+    height: 50px;
+	padding: 8px;
+	background-color: var(--background-sub-color);
+	border-radius: 100px;
+	box-shadow: var(--box-shadow);
 }
-
-.carousel_item>ul {
-	padding: 0;
-	margin: 0;
-	width: 45%;
+.opportunity > div > .companies > .company {
+	margin: 8px 16px 0px 0px;
 }
-
-.carousel_item>ul>li {
-	margin-left: 3.5rem;
-	list-style: disc;
-}
-
-.carousel_item>ul>h1 {
-	font-size: 32px;
-	font-weight: 600;
-	margin: 0;
-	margin-bottom: 0.5rem;
-}
-
-.carousel_item>img {
-	width: 45%;
+.opportunity > div > .companies > .company > img {
+	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
-
-.ctaWrapper {
-	width: 75%;
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Questions ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.questions {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 1rem;
-}
-
-.companiesTitle {
-	margin-top: 6rem;
-	margin-bottom: .5rem;
-	font-family: "Nunito Sans", sans-serif;
-	font-weight: bold;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: 1.33;
-	letter-spacing: -1.02px;
-	color: #232324;
-	font-size: 48px;
-	width: 75%;
-	text-align: center;
-}
-
-.companies {
-	width: 75%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 3rem;
-	margin-top: 2rem;
-	margin-bottom: 3rem;
-}
-
-.companyItem {
-	width: 150px;
-	height: 50px;
-	padding: .1875rem .375rem;
-	object-fit: contain;
-	background-color: #fff;
-	border-radius: 9999px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-	position: relative;
-	cursor: pointer;
-}
-
-.companyTooltip {
-	position: absolute;
-	top: 100%;
-	width: 100%;
-	text-align: center;
-	font-size: 14px;
-	font-weight: 600;
-	background-color: #fff;
-	border-radius: 2rem;
-	margin-top: 0.5rem;
-}
-
-.collapseBackground {
+	flex-direction: column;
 	width: 100%;
 	height: 100%;
-	background-color: #fff;
-	padding-bottom: 3rem;
+	padding: 0px 80px 116px 80px;
+	background-color: var(--background-sub-color);
 }
-
+.questions > h2 {
+	margin: 80px auto 32px auto;
+	font-family: "Nunito Sans";
+	font-size: 48px;
+	font-weight: bold;
+	text-align: center;
+}
 .collapseWrapper {
 	margin: 0 auto;
 	width: 75%;
