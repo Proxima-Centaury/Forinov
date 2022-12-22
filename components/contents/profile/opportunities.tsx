@@ -27,7 +27,6 @@ const ProfileOpportunities = ({ profile, states }: any) => {
     const online = (list) ? list.map((opportunity: any) => (opportunity.opportunity_state === "Online") ? opportunity : null).filter((opportunity: any) => opportunity !== null) : [];
     const finished = (list) ? list.map((opportunity: any) => (opportunity.opportunity_state === "Finished") ? opportunity : null).filter((opportunity: any) => opportunity !== null) : [];
     const counters = { online: profile.opportunities.online, finished: profile.opportunities.finished };
-    console.log(list, online, finished, counters)
     const parentProps = { counters, states }
     return <div id="opportunities" className={ OpportunitiesStyles.opportunities }>
         <h3>{ translations["Opportunités"] }</h3>
