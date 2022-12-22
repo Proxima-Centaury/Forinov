@@ -127,7 +127,6 @@ const indexStartup = ({
 					<div className={styles.lastOps}>
 						<div className={styles.innerSlider}>
 							{Object.keys(lastOpports).map((opport, index) => {
-								console.log(index + "-" + lastOpports[opport]["ID"]);
 								return (
 									<div
 										className={styles.card}
@@ -249,7 +248,7 @@ const indexStartup = ({
 						{translations["landing_companies_title"]}
 					</h1>
 					<div className={styles.companies}>
-						{dataSu.map((company, index) => {
+						{dataSu.map((company: any, index: any) => {
 							return (
 								<div key={company["ID"]}>
 									<Link
@@ -264,11 +263,11 @@ const indexStartup = ({
 											key={index + "-" + company.id}
 											className={styles.companyItem}
 											onMouseEnter={(e) => {
-												document.getElementById(company.name).style.opacity =
+												document.getElementById(company.name)!.style.opacity =
 													"1";
 											}}
 											onMouseLeave={(e) => {
-												document.getElementById(company.name).style.opacity =
+												document.getElementById(company.name)!.style.opacity =
 													"0";
 											}}
 										/>
@@ -307,28 +306,28 @@ const indexStartup = ({
 							<button
 								className={styles.collapseCta}
 								id="collapseCtaActive"
-								onClick={(e) => {
+								onClick={(e: any) => {
 									const object = document.getElementById(
 										"accordionCarouselObject",
 									);
-									document.getElementById("collapseCtaActive").id =
+									document.getElementById("collapseCtaActive")!.id =
 										"collapseCtaInactive";
 									e.target.id = "collapseCtaActive";
-									object.style.transform = "translateX(0%)";
+									object!.style.transform = "translateX(0%)";
 								}}
 							>
 								{translations["landing_collapse_cta1"]}
 							</button>
 							<button
 								className={styles.collapseCta}
-								onClick={(e) => {
+								onClick={(e: any) => {
 									const object = document.getElementById(
 										"accordionCarouselObject",
 									);
-									document.getElementById("collapseCtaActive").id =
+									document.getElementById("collapseCtaActive")!.id =
 										"collapseCtaInactive";
 									e.target.id = "collapseCtaActive";
-									object.style.transform = "translateX(-50%)";
+									object!.style.transform = "translateX(-50%)";
 								}}
 							>
 								{translations["landing_collapse_cta2"]}
@@ -341,7 +340,7 @@ const indexStartup = ({
 								id="accordionCarouselObject"
 							>
 								<div className={styles.collapseWrapper}>
-									{translations["startup_accordion1"].map((item, index) => {
+									{translations["startup_accordion1"].map((item:any, index:any) => {
 										return (
 											<AccordionItem
 												title={item.title}
@@ -356,7 +355,7 @@ const indexStartup = ({
 								</div>
 								{/* 2nd accordion */}
 								<div className={styles.collapseWrapper}>
-									{translations["startup_accordion2"].map((item, index) => {
+									{translations["startup_accordion2"].map((item:any, index:any) => {
 										return (
 											<AccordionItem
 												title={item.title}

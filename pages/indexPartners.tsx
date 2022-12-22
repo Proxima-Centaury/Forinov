@@ -83,12 +83,13 @@ export default function indexCorpo({ dataOpports,
 						<button
 							className={styles.step}
 							id="activeButton"
-							onClick={(e) => {
+							onClick={(e: any) => {
 								if (document.querySelector("#activeButton")) {
-									document.querySelector("#activeButton").id = "";
+									document.querySelector("#activeButton")!.id = "";
 								}
 								e.target.id = "activeButton";
-								document.querySelector("#carouselObject").style.transform =
+								const carouselObject = document.querySelector("#carouselObject") as HTMLElement;
+								carouselObject!.style.transform =
 									"translateX(0)";
 							}}
 						>
@@ -96,12 +97,13 @@ export default function indexCorpo({ dataOpports,
 						</button>
 						<button
 							className={styles.step}
-							onClick={(e) => {
+							onClick={(e: any) => {
 								if (document.querySelector("#activeButton")) {
-									document.querySelector("#activeButton").id = "";
+									document.querySelector("#activeButton")!.id = "";
 								}
 								e.target.id = "activeButton";
-								document.querySelector("#carouselObject").style.transform =
+								const carouselObject = document.querySelector("#carouselObject") as HTMLElement;
+								carouselObject!.style.transform =
 									"translateX(-25%)";
 							}}
 						>
@@ -109,12 +111,13 @@ export default function indexCorpo({ dataOpports,
 						</button>
 						<button
 							className={styles.step}
-							onClick={(e) => {
+							onClick={(e: any) => {
 								if (document.querySelector("#activeButton")) {
-									document.querySelector("#activeButton").id = "";
+									document.querySelector("#activeButton")!.id = "";
 								}
 								e.target.id = "activeButton";
-								document.querySelector("#carouselObject").style.transform =
+								const carouselObject = document.querySelector("#carouselObject") as HTMLElement;
+								carouselObject!.style.transform =
 									"translateX(-50%)";
 							}}
 						>
@@ -122,12 +125,13 @@ export default function indexCorpo({ dataOpports,
 						</button>
 						<button
 							className={styles.step}
-							onClick={(e) => {
+							onClick={(e: any) => {
 								if (document.querySelector("#activeButton")) {
-									document.querySelector("#activeButton").id = "";
+									document.querySelector("#activeButton")!.id = "";
 								}
 								e.target.id = "activeButton";
-								document.querySelector("#carouselObject").style.transform =
+								const carouselObject = document.querySelector("#carouselObject") as HTMLElement;
+								carouselObject!.style.transform =
 									"translateX(-75%)";
 							}}
 						>
@@ -143,7 +147,7 @@ export default function indexCorpo({ dataOpports,
 								<ul>
 									<h1>{translations["landing_carousel_title1"]}</h1>
 									{translations["landing_carousel_content1"].map(
-										(item) => {
+										(item: any) => {
 											return <li key={"1-" + item}>{item}</li>;
 										},
 									)}
@@ -158,7 +162,7 @@ export default function indexCorpo({ dataOpports,
 								<ul>
 									<h1>{translations["landing_carousel_title2"]}</h1>
 									{translations["landing_carousel_content1"].map(
-										(item) => {
+										(item: any) => {
 											return <li key={"2-" + item}>{item}</li>;
 										},
 									)}
@@ -173,7 +177,7 @@ export default function indexCorpo({ dataOpports,
 								<ul>
 									<h1>{translations["landing_carousel_title3"]}</h1>
 									{translations["landing_carousel_content1"].map(
-										(item) => {
+										(item: any) => {
 											return <li key={"3-" + item}>{item}</li>;
 										},
 									)}
@@ -188,7 +192,7 @@ export default function indexCorpo({ dataOpports,
 								<ul>
 									<h1>{translations["landing_carousel_title4"]}</h1>
 									{translations["landing_carousel_content1"].map(
-										(item) => {
+										(item: any) => {
 											return <li key={"4-" + item}>{item}</li>;
 										},
 									)}
@@ -204,13 +208,13 @@ export default function indexCorpo({ dataOpports,
 						{translations["landing_companies_title"]}
 					</h1>
 					<div className={styles.companies}>
-						{trustedBy.map((company) => {
+						{trustedBy.map((company:any,index:any) => {
 							return (
 								<a
 									style={{
 										position: "relative",
 									}}
-									key={company}
+									key={company.name +"-" + index}
 								>
 									<img
 										src={company.image}
@@ -218,10 +222,10 @@ export default function indexCorpo({ dataOpports,
 										key={company.name}
 										className={styles.companyItem}
 										onMouseEnter={(e) => {
-											document.getElementById(company.name).style.opacity = "1";
+											document.getElementById(company.name)!.style.opacity = "1";
 										}}
 										onMouseLeave={(e) => {
-											document.getElementById(company.name).style.opacity = "0";
+											document.getElementById(company.name)!.style.opacity = "0";
 										}}
 									/>
 									<div
@@ -382,28 +386,28 @@ export default function indexCorpo({ dataOpports,
 						<button
 							className={styles.collapseCta}
 							id="collapseCtaActive"
-							onClick={(e) => {
+							onClick={(e:any) => {
 								const object = document.getElementById(
 									"accordionCarouselObject",
 								);
-								document.getElementById("collapseCtaActive").id =
+								document.getElementById("collapseCtaActive")!.id =
 									"collapseCtaInactive";
 								e.target.id = "collapseCtaActive";
-								object.style.transform = "translateX(0%)";
+								object!.style.transform = "translateX(0%)";
 							}}
 						>
 							{translations["landing_collapse_cta1"]}
 						</button>
 						<button
 							className={styles.collapseCta}
-							onClick={(e) => {
+							onClick={(e:any) => {
 								const object = document.getElementById(
 									"accordionCarouselObject",
 								);
-								document.getElementById("collapseCtaActive").id =
+								document.getElementById("collapseCtaActive")!.id =
 									"collapseCtaInactive";
 								e.target.id = "collapseCtaActive";
-								object.style.transform = "translateX(-50%)";
+								object!.style.transform = "translateX(-50%)";
 							}}
 						>
 							{translations["landing_collapse_cta2"]}
@@ -416,7 +420,7 @@ export default function indexCorpo({ dataOpports,
 							id="accordionCarouselObject"
 						>
 							<div className={styles.collapseWrapper}>
-								{translations["partners_accordion1"].map((item, index) => {
+								{translations["partners_accordion1"].map((item: any, index: any) => {
 									return (
 										<AccordionItem
 											title={item.title}
@@ -431,7 +435,7 @@ export default function indexCorpo({ dataOpports,
 							</div>
 							{/* 2nd accordion */}
 							<div className={styles.collapseWrapper}>
-							{translations["partners_accordion2"].map((item, index) => {
+							{translations["partners_accordion2"].map((item: any, index: any) => {
 									return (
 										<AccordionItem
 											title={item.title}
