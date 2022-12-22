@@ -1,19 +1,19 @@
 import React from "react";
 import styles from "./AccordionItem.module.css";
 
-const AccordionItem = (props) => {
+const AccordionItem = (props:any) => {
 	return (
 		<>
 			<button
 				className={styles.collapseItem + " accordionHandler"}
-				onClick={(e) => {
-					let alreadyCollapsed = document.querySelector(
+				onClick={(e: any) => {
+					let alreadyCollapsed: any = document.querySelector(
 						"[data-collapsed='true']",
 					);
-					let collapseElement = document.getElementById(
+					let collapseElement: any = document.getElementById(
 						"collapse" + props.identifier,
 					);
-					let collapseIcon = document.getElementById(
+					let collapseIcon: any = document.getElementById(
 						"collapseIcon" + props.identifier,
 					);
 
@@ -28,22 +28,24 @@ const AccordionItem = (props) => {
 							icon.removeAttribute("style");
 						});
 
-						props.textColor ? (e.target.style.color = props.textColor) : null;
+						
+							props.textColor ? (e.target.style.color = props.textColor) : null;
 
-						props.color
-							? (e.target.style.background = props.color)
-							: (e.target.style.background = "#E7E7E7");
-						e.target.style.textDecoration = "underline";
-						e.target.children[1].style.transform =
-							"rotate(180deg)";
-						e.target.children[1].style.color = props.textColor;
+							props.color
+								? (e.target.style.background = props.color)
+								: (e.target.style.background = "#E7E7E7");
+							e.target.style.textDecoration = "underline";
+							e.target.children[1].style.transform =
+								"rotate(180deg)";
+							e.target.children[1].style.color = props.textColor;
+						
 					}
 
-					if (collapseElement.getAttribute("data-collapsed") === "false") {
+					if (collapseElement!.getAttribute("data-collapsed") === "false") {
 						buttonStyle();
-						collapseElement.style.height = "auto";
-						collapseElement.style.opacity = "100%";
-						collapseIcon.style.transform = "rotate(180deg)";
+						collapseElement!.style.height = "auto";
+						collapseElement!.style.opacity = "100%";
+						collapseIcon!.style.transform = "rotate(180deg)";
 
 						if (alreadyCollapsed) {
 							buttonStyle();
@@ -52,18 +54,18 @@ const AccordionItem = (props) => {
 							alreadyCollapsed.style.opacity = "0";
 						}
 
-						collapseElement.setAttribute("data-collapsed", "true");
+						collapseElement!.setAttribute("data-collapsed", "true");
 					} else {
-						collapseElement.style.height = "0";
-						collapseElement.style.opacity = "0";
-						collapseElement.style.color = "inherit";
+						collapseElement!.style.height = "0";
+						collapseElement!.style.opacity = "0";
+						collapseElement!.style.color = "inherit";
 						e.target.tagName === "BUTTON"
 							? e.target.removeAttribute("style")
 							: e.target.parentElement.removeAttribute("style");
 
-						collapseIcon.removeAttribute("style");
+						collapseIcon!.removeAttribute("style");
 
-						collapseElement.setAttribute("data-collapsed", "false");
+						collapseElement!.setAttribute("data-collapsed", "false");
 					}
 				}}
 			>
