@@ -31,34 +31,36 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 		<Head>
 			<title>Forinov - { translations["Accueil"] }</title>
 		</Head>
-		<div className={ HomeStyles.presentation }>
-			<div>
-				<h1>{ translations["Trouver la startup qu'il vous faut"] }</h1>
-				<p className={ HomeStyles.paragraph }>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d’innovation, à chaque startup son Forinov"] + " !" }</p>
-				<a href="">{ translations["Voir la vidéo de présentation"] }</a>
-			</div>
-			<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160"/>
-		</div>
-		<div className={ HomeStyles.opportunity }>
-			<div>
-				<h2>{ translations["Lancez-vous"] + " !" }</h2>
-				<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
-				<Carousel { ...parentProps } component={ "HowToCreateAnOpportunity" }/>
-				<div className={ HomeStyles.actions }>
-					<Button { ...joinButtonObject as ButtonInterface }/>
-					<Button { ...offersButtonObject as ButtonInterface }/>
+		<div className="containerFull">
+			<div className={ HomeStyles.presentation }>
+				<div>
+					<h1>{ translations["Trouver la startup qu'il vous faut"] }</h1>
+					<p className={ HomeStyles.paragraph }>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d’innovation, à chaque startup son Forinov"] + " !" }</p>
+					<a href="">{ translations["Voir la vidéo de présentation"] }</a>
 				</div>
-				<h2>{ translations["Ils ont utilisé Forinov pour leurs opportunités"] }</h2>
-				<div className={ HomeStyles.companies }>
-					{/* -------------------------------------------------------------------------------------------------------- */}
-					{/* ADD COMPANIES HERE */}
-					{/* -------------------------------------------------------------------------------------------------------- */}
+				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160"/>
+			</div>
+			<div className={ HomeStyles.opportunity }>
+				<div>
+					<h2>{ translations["Lancez-vous"] + " !" }</h2>
+					<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
+					<Carousel { ...parentProps } component={ "HowToCreateAnOpportunity" }/>
+					<div className={ HomeStyles.actions }>
+						<Button { ...joinButtonObject as ButtonInterface }/>
+						<Button { ...offersButtonObject as ButtonInterface }/>
+					</div>
+					<h2>{ translations["Ils ont utilisé Forinov pour leurs opportunités"] }</h2>
+					<div className={ HomeStyles.companies }>
+						{/* -------------------------------------------------------------------------------------------------------- */}
+						{/* ADD COMPANIES HERE */}
+						{/* -------------------------------------------------------------------------------------------------------- */}
+					</div>
 				</div>
 			</div>
-		</div>
-		<div className={ HomeStyles.questions }>
-			<h2>{ translations["Les réponses à vos questions"] }</h2>
-			<Carousel { ...parentProps } component={ "AnswersToYourQuestions" }/>
+			<div className={ HomeStyles.questions }>
+				<h2>{ translations["Les réponses à vos questions"] }</h2>
+				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" }/>
+			</div>
 		</div>
 	</>
 };
