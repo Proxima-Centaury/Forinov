@@ -24,16 +24,21 @@ const AccordionItem = (props:any) => {
 
 						btnsArray.forEach((element) => {
 							let icon = element.children[1];
+							let text = element.children[0];
+							text.removeAttribute("style");
 							element.removeAttribute("style");
 							icon.removeAttribute("style");
 						});
 
 						
-							props.textColor ? (e.target.style.color = props.textColor) : null;
+							if (props.textColor) {
+								e.target.style.color = props.textColor;
+								e.target.children[0].style.color = props.textColor
+							}
 
 							props.color
 								? (e.target.style.background = props.color)
-								: (e.target.style.background = "#E7E7E7");
+								: (e.target.style.background = "var(--background-main-color)");
 							e.target.style.textDecoration = "underline";
 							e.target.children[1].style.transform =
 								"rotate(180deg)";
@@ -62,6 +67,8 @@ const AccordionItem = (props:any) => {
 						e.target.tagName === "BUTTON"
 							? e.target.removeAttribute("style")
 							: e.target.parentElement.removeAttribute("style");
+						
+						e.target.children[0].removeAttribute("style");
 
 						collapseIcon!.removeAttribute("style");
 
@@ -83,11 +90,15 @@ const AccordionItem = (props:any) => {
 				style={{
 					height: "0",
 					opacity: "0",
-					background: props.color ? props.color : "#E7E7E7",
+					background: props.color ? props.color : "var(--background-main-color)",
 				}}
 				data-collapsed="false"
 			>
-				<p>{props.content}</p>
+				<p
+					style={
+						{color: props.textColor ? props.textColor : "var(--text-main-color)"}
+					}
+				>{props.content}</p>
 			</div>
 		</>
 	);

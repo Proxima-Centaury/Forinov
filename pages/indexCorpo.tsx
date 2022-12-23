@@ -413,7 +413,7 @@ export default function indexCorpo({
 									document.getElementById("collapseCtaActive")!.id =
 										"collapseCtaInactive";
 									e.target.id = "collapseCtaActive";
-									object.style.transform = "translateX(0%)";
+									object.style.transform = "translateX(-50%)";
 								}}
 							>
 								{translations["landing_collapse_cta2"]}
@@ -449,8 +449,8 @@ export default function indexCorpo({
 												identifier={
 													index + translations["corpo_accordion1"].length
 												}
-												color="#B2D1FF"
-												textColor="#006DFF"
+												color="var(--paleblue-color)"
+												textColor="var(--logo-blue-color)"
 												key={
 													index +
 													translations["corpo_accordion1"].length +
