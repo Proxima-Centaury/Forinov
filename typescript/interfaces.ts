@@ -84,7 +84,8 @@ interface ButtonInterface {
     text: String,
     count: Number,
     disabled: Boolean,
-    aria: String
+    aria: String,
+    index: Number
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Option Interface */

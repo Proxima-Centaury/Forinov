@@ -16,27 +16,5 @@
 	justify-content: center;
 	min-width: 100%;
 	height: 100%;
-	position: relative;
-	overflow-x: hidden;
-	padding: 1rem 0;
-}
-.item > ul {
-	padding: 0;
-	margin: 0;
-	width: 45%;
-}
-.item > ul > li {
-	margin-left: 3.5rem;
-	list-style: disc;
-}
-.item > ul > h4 {
-	font-size: 32px;
-	font-weight: 600;
-	margin: 0;
-	margin-bottom: 0.5rem;
-}
-.item > img {
-	width: 45%;
-	height: 100%;
-	object-fit: cover;
+	transition: transform 0.3s ease;
 }
