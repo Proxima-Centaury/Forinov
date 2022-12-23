@@ -3,9 +3,8 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentation {
 	display: flex;
-	position: relative;
 	width: 100%;
-	height: 100%;
+	height: max-content;
 	padding: 80px;
 	border-radius: 0px 0px 100px 0px;
 	background-color: var(--background-information-color);
@@ -23,6 +22,7 @@
 .presentation > div {
 	display: flex;
 	flex-direction: column;
+	height: fit-content;
 	margin: 0px 16px 0px 0px;
 }
 .presentation > div > h1 {
@@ -50,12 +50,12 @@
 .presentation > div > a:hover {
 	background-color: transparent;
 }
-.presentation > div > img {
+.presentation > img {
 	width: 500px;
 	height: 500px;
 }
 @media screen and (max-width: 992px) {
-	.presentation > div > img {
+	.presentation > img {
 		display: none;
 	}
 }
@@ -171,71 +171,8 @@
 .questions > .actions {
 	margin: 16px auto;
 }
-.collapseWrapper {
-	margin: 0 auto;
-	width: 75%;
-	display: flex;
-	flex-direction: column;
-}
 
-.collapseTitle {
-	text-align: center !important;
-	box-sizing: border-box;
-	margin-top: 0;
-	margin-bottom: 1.5rem !important;
-	font-family: "Nunito Sans", sans-serif;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	color: #232324;
-	font-size: 42px;
-	font-weight: 700;
-	margin-top: 3rem;
-}
-
-.collapseCtas {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
-	margin: 0 auto;
-	margin-bottom: 2rem;
-	width: 75%;
-}
-
-
-.collapseCta {
-	box-sizing: border-box;
-	margin: 0;
-	overflow: visible;
-	display: inline-block;
-	color: #161c2d;
-	vertical-align: middle;
-	user-select: none;
-	border: 1px solid transparent;
-	padding: .8125rem 1.25rem;
-	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-	text-transform: uppercase !important;
-	border-radius: 50rem;
-	font-family: "Open Sans", sans-serif;
-	font-size: 0.875rem;
-	font-weight: 600;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: normal;
-	letter-spacing: 1.25px;
-	text-align: center;
-	border-color: transparent !important;
-	cursor: pointer;
-	transition: all .3s ease-in-out;
-}
-
-.collapseCtaAlternative:hover {
-	background-color: #e7e7e7 !important;
-}
-
-.accordionCarousel {
+/* .accordionCarousel {
 	width: 200%;
 	height: 100%;
 	display: flex;
@@ -321,4 +258,4 @@
 	.carousel_wrapper {
 		width: 100%;
 	}
-}
+} */
