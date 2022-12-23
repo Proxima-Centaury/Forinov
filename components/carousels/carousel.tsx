@@ -1,65 +1,136 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Imports */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { ButtonInterface } from "../../typescript/interfaces";
+import { buildProperties } from "../../scripts/utilities";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Button from "../../components/buttons/button";
+import AccordionItem from "../../components/accordion/AccordionItem";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import HomeStyles from "../../public/stylesheets/pages/Home.module.css";
 import CarouselStyles from "../../public/stylesheets/components/carousels/Carousel.module.css";
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Carousel = ({ states, component }: any) => {
 	const parentProps = { states };
-    return <div className={ CarouselStyles.container }>
-        { (component === "HowToCreateAnOpportunity") ? <HowToCreateAnOpportunity { ...parentProps }/> : null }
-    </div>;
+    const handleCarousel = (event: any, name: String) => {
+        const target = event.target.closest("button");
+        const container = target.parentElement;
+        const buttons = (container) ? Array.from(container.children).map((button) => button as HTMLElement) : [];
+        if(buttons.length > 0) {
+            buttons.forEach((button) => button.classList.remove(ButtonStyles.active));
+        };
+        target.classList.add(ButtonStyles.active);
+        const carousel = document.querySelector("[data-carousel='" + name + "']");
+        const index = parseInt(target.getAttribute("data-index"));
+        const carouselItems = (carousel) ? Array.from(carousel.children).map((item) => item as HTMLElement) : [];
+        if(carouselItems.length > 0) {
+            carouselItems.forEach((item) => item.style.transform = "translateX(-" + index + "00%)");
+        };
+    };
+    switch(component) {
+        case "HowToCreateAnOpportunity":
+            return <HowToCreateAnOpportunity { ...parentProps } handler={ handleCarousel }/>;
+        case "AnswersToYourQuestions":
+            return <AnswersToYourQuestions { ...parentProps } handler={ handleCarousel }/>;
+        default :
+            return <></>;
+    };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( How To Create An Opportunity ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const HowToCreateAnOpportunity = ({ states }: any) => {
+const HowToCreateAnOpportunity = ({ states, handler }: any) => {
 	const { translations }: any = states;
+    const opportunityCreationStepsButtons = [
+		translations["Démarrez"],
+		translations["Complétez"],
+		translations["Diffusez"],
+		translations["Profitez"]
+	];
+	const buttonProps = [ "type", "action", "text" ];
     return <>
-        <div className={ CarouselStyles.item }>
-            <h4>{translations["landing_carousel_title1"]}</h4>
-            <ul>
-                {translations["landing_carousel_content1"].map(
-                    (item: any) => {
-                        return <li key={"1-" + item}>{item}</li>;
-                    },
-                )}
-            </ul>
-            <img src="" alt="carousel item 1 image"/>
+        <div className={ HomeStyles.steps }>
+            { opportunityCreationStepsButtons.map((button: any, key: number) => {
+                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => handler(event, "HowToCreateAnOpportunity"), button ];
+                const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
+                return <>
+                    <div className="separator"></div>
+                    <Button key={ key } { ...stepButtonObject as ButtonInterface } index={ key }/>
+                </>;
+            }) }
+            <div className="separator"></div>
         </div>
-        <div className={ CarouselStyles.item }>
-            <ul>
-                <h1>{translations["landing_carousel_title2"]}</h1>
-                {translations["landing_carousel_content1"].map(
-                    (item:any) => {
-                        return <li key={"2-" + item}>{item}</li>;
-                    },
-                )}
-            </ul>
-            <img src="" alt="carousel item 1 image"/>
+        <div className={ CarouselStyles.container } data-carousel="HowToCreateAnOpportunity">
+            { opportunityCreationStepsButtons.map((step: any, key: number) => {
+                return <div key={ key } className={ CarouselStyles.item } data-index={ key }>
+                    { step }
+                </div>;
+            }) }
         </div>
-        <div className={ CarouselStyles.item }>
-            <ul>
-                <h1>{translations["landing_carousel_title3"]}</h1>
-                {translations["landing_carousel_content1"].map(
-                    (item:any) => {
-                        return <li key={"3-" + item}>{item}</li>;
-                    },
-                )}
-            </ul>
-            <img src="" alt="carousel item 1 image"/>
+    </>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Landing ( Answers To Your Questions ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const AnswersToYourQuestions = ({ states, handler }: any) => {
+	const { translations }: any = states;
+	const questionsButtons = [
+		translations["Général"],
+		translations["La communauté Forinov"]
+	];
+	const buttonProps = [ "type", "action", "text" ];
+    return <>
+        <div className={ HomeStyles.actions }>
+            { questionsButtons.map((button: any, key: number) => {
+                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => handler(event, "AnswersToYourQuestions"), button ];
+                const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
+                return <>
+                    <div className="separator"></div>
+                    <Button key={ key } { ...stepButtonObject as ButtonInterface } index={ key }/>
+                </>;
+            }) }
+            <div className="separator"></div>
         </div>
-        <div className={ CarouselStyles.item }>
-            <ul>
-                <h1>{translations["landing_carousel_title4"]}</h1>
-                {translations["landing_carousel_content1"].map(
-                    (item:any) => {
-                        return <li key={"4-" + item}>{item}</li>;
-                    },
-                )}
-            </ul>
-            <img src="" alt="carousel item 1 image"/>
+        <div className={ CarouselStyles.container } data-carousel="AnswersToYourQuestions">
+            <div className={ CarouselStyles.item }>
+                <div>
+                    {translations["landing_accordion1"].map(
+                        (item: any, index: any): any => {
+                            return (
+                                <AccordionItem
+                                    title={item.title}
+                                    content={item.content}
+                                    identifier={index}
+                                    key={index}
+                                ></AccordionItem>
+                            );
+                        },
+                    )}
+                </div>
+            </div>
+            <div className={ CarouselStyles.item }>
+                <div>
+                    {translations["landing_accordion2"].map(
+                        (item: any, index: any) => {
+                            return (
+                                <AccordionItem
+                                    title={item.title}
+                                    content={item.content}
+                                    identifier={index + translations["landing_accordion1"].length}
+                                    key={index + translations["landing_accordion1"].length + '-accordion2'}
+                                ></AccordionItem>
+                            );
+                        },
+                    )}
+                </div>
+            </div>
         </div>
     </>;
 };
