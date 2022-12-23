@@ -1,6 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { Fragment } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
 import { buildProperties } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -60,10 +61,10 @@ const HowToCreateAnOpportunity = ({ states, handler }: any) => {
             { opportunityCreationStepsButtons.map((button: any, key: number) => {
                 const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => handler(event, "HowToCreateAnOpportunity"), button ];
                 const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
-                return <>
+                return <Fragment key={ key }>
                     <div className="separator"></div>
-                    <Button key={ key } { ...stepButtonObject as ButtonInterface } index={ key }/>
-                </>;
+                    <Button { ...stepButtonObject as ButtonInterface } index={ key }/>
+                </Fragment>;
             }) }
             <div className="separator"></div>
         </div>
@@ -91,12 +92,8 @@ const AnswersToYourQuestions = ({ states, handler }: any) => {
             { questionsButtons.map((button: any, key: number) => {
                 const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => handler(event, "AnswersToYourQuestions"), button ];
                 const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
-                return <>
-                    <div className="separator"></div>
-                    <Button key={ key } { ...stepButtonObject as ButtonInterface } index={ key }/>
-                </>;
+                return <Button key={ key } { ...stepButtonObject as ButtonInterface } index={ key }/>;
             }) }
-            <div className="separator"></div>
         </div>
         <div className={ CarouselStyles.container } data-carousel="AnswersToYourQuestions">
             <div className={ CarouselStyles.item }>
