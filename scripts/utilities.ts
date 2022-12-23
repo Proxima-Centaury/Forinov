@@ -359,11 +359,19 @@ class Utilities {
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
     * @function remainingTime
-    * TODO => COMPLETE DESCRIPTION
+    * @param { Array } [ remainingTime ] Should be an ```array```.
+    * @param { Date|String } [ start ] Should be a ```date``` or a ```string```.
+    * @param { String } [ display ] Should be a ```string```.
+    * @param { Object } [ translations ] Should be an ```object```.
+    * @returns { String }
+    * @note This method is used to return the remaining time as a ```string``` according to the data passed in the first parameter.
+    * @example
+    * remainingType([ "0", "2", "13"], null, null, translations);
+    * // Returns => 2 Months, 13 Days
     */
-    remainingTime = (remainingTime: any, start = null, display = null, translations: any) => {
+    remainingTime = (remainingTime: any, start = null, display = null, translations: any): String => {
         if(remainingTime === "permanent") {
-            return uppercaseFirst(remainingTime);
+            return uppercaseFirst(remainingTime) as String;
         } else if(remainingTime === "undefined") {
             return translations["Dates non-définies"];
         } else if(remainingTime === "finished") {

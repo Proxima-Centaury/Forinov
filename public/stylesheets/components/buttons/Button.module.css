@@ -110,7 +110,7 @@
 }
 .callToAction:hover {
     color: var(--logo-blue-color);
-    background-color: var(--background-sub-color);
+    background-color: transparent;
 }
 .callToAction > i {
     color: var(--perfect-white-color);
@@ -123,7 +123,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .callToActionAlternative {
     color: var(--logo-blue-color);
-    background-color: var(--background-sub-color);
+    background-color: transparent;
 }
 .callToActionAlternative:hover {
     color: var(--perfect-white-color);

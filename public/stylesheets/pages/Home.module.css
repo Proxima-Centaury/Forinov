@@ -3,51 +3,59 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentation {
 	display: flex;
-	flex-direction: column;
-	position: relative;
-	background-color: var(--background-main-color);
-}
-.presentation > div {
-	display: flex;
 	width: 100%;
-	height: 100%;
+	height: max-content;
 	padding: 80px;
 	border-radius: 0px 0px 100px 0px;
 	background-color: var(--background-information-color);
 }
-.presentation > div > div {
+.presentation::before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: var(--background-main-color);
+	z-index: -1;
+}
+.presentation > div {
 	display: flex;
 	flex-direction: column;
+	height: fit-content;
 	margin: 0px 16px 0px 0px;
 }
-.presentation > div > div > h1 {
+.presentation > div > h1 {
 	font-family: "Nunito Sans";
 	font-size: 65px;
 	font-weight: bold;
 }
-.presentation > div > div > p {
+.presentation > div > p {
 	margin: 0px 0px 32px 0px;
 	font-family: "Nunito Sans";
 	font-size: 24px;
 }
-.presentation > div > div > a {
+.presentation > div > a {
 	width: fit-content;
 	padding: 16px;
 	font-size: 19px;
 	font-weight: 600;
 	border-radius: 100px;
+	border: var(--border);
+	border-width: 2px;
+	border-color: var(--background-sub-color);
 	background-color: var(--background-sub-color);
-	transition: background-color 0.3s ease;
+	transition: color 0.3s ease, background-color 0.3s ease;
 }
-.presentation > div > div > a:hover {
+.presentation > div > a:hover {
 	background-color: transparent;
 }
-.presentation > div > img {
+.presentation > img {
 	width: 500px;
 	height: 500px;
 }
 @media screen and (max-width: 992px) {
-	.presentation > div > img {
+	.presentation > img {
 		display: none;
 	}
 }
@@ -71,290 +79,95 @@
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: bold;
+	text-align: center;
 }
 .opportunity > div > h3 {
-	margin: 0px auto;
+	margin: 32px auto;
 	font-family: "Nunito Sans";
 	font-size: 45px;
 	font-weight: 300;
+	text-align: center;
 }
-.opportunity > div > .steps {
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Steps ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.steps {
 	display: flex;
 	align-items: center;
 	margin: 16px 0px;
 }
-.opportunity > div > .steps > * + * {
+.steps > * + * {
 	margin: 0px 0px 0px 8px;
 }
-
-.carousel_wrapper {
-	width: 75%;
-	height: 100%;
-	position: relative;
-	overflow: hidden;
-	flex-wrap: nowrap;
-	margin: 0 auto;
-}
-
-.carousel {
-	width: 400%;
-	height: 300px;
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Steps ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.actions {
 	display: flex;
-	transform: translateX(0%);
-	transition: transform .75s cubic-bezier(0.54, -0.56, 0, 1);
-
+	justify-content: center;
+	align-items: center;
+	margin: 16px auto 170px auto;
 }
-
-.carousel_item {
+.actions > * + * {
+	margin: 0px 0px 0px 16px;
+}
+@media screen and (max-width: 768px) {
+	.actions {
+		flex-direction: column;
+	}
+	.actions > * + * {
+		margin: 16px 0px 0px 0px;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Companies ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.companies {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
-	height: 100%;
+	margin: 32px 0px 140px 0px;
+	padding: 0px 0px 0px 16px;
+}
+.companies > .company {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	justify-content: space-evenly;
-	position: relative;
-	overflow-x: hidden;
-	padding: 1rem 0;
+    width: max-content;
+    height: 50px;
+	padding: 8px;
+	background-color: var(--background-sub-color);
+	border-radius: 100px;
+	box-shadow: var(--box-shadow);
 }
-
-.carousel_item>ul {
-	padding: 0;
-	margin: 0;
-	width: 45%;
+.companies > .company {
+	margin: 8px 16px 0px 0px;
 }
-
-.carousel_item>ul>li {
-	margin-left: 3.5rem;
-	list-style: disc;
-}
-
-.carousel_item>ul>h1 {
-	font-size: 32px;
-	font-weight: 600;
-	margin: 0;
-	margin-bottom: 0.5rem;
-}
-
-.carousel_item>img {
-	width: 45%;
+.companies > .company > img {
+	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
-
-.ctaWrapper {
-	width: 75%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 1rem;
-}
-
-.companiesTitle {
-	margin-top: 6rem;
-	margin-bottom: .5rem;
-	font-family: "Nunito Sans", sans-serif;
-	font-weight: bold;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: 1.33;
-	letter-spacing: -1.02px;
-	color: #232324;
-	font-size: 48px;
-	width: 75%;
-	text-align: center;
-}
-
-.companies {
-	width: 75%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 3rem;
-	margin-top: 2rem;
-	margin-bottom: 3rem;
-}
-
-.companyItem {
-	width: 150px;
-	height: 50px;
-	padding: .1875rem .375rem;
-	object-fit: contain;
-	background-color: #fff;
-	border-radius: 9999px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-	position: relative;
-	cursor: pointer;
-}
-
-.companyTooltip {
-	position: absolute;
-	top: 100%;
-	width: 100%;
-	text-align: center;
-	font-size: 14px;
-	font-weight: 600;
-	background-color: #fff;
-	border-radius: 2rem;
-	margin-top: 0.5rem;
-}
-
-.collapseBackground {
-	width: 100%;
-	height: 100%;
-	padding-bottom: 3rem;
-}
-
-.collapseWrapper {
-	margin: 0 auto;
-	width: 75%;
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Questions ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.questions {
 	display: flex;
 	flex-direction: column;
-}
-
-.collapseTitle {
-	text-align: center !important;
-	box-sizing: border-box;
-	margin-top: 0;
-	margin-bottom: 1.5rem !important;
-	font-family: "Nunito Sans", sans-serif;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	color: #232324;
-	font-size: 42px;
-	font-weight: 700;
-	margin-top: 3rem;
-}
-
-.collapseCtas {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
-	margin: 0 auto;
-	margin-bottom: 2rem;
-	width: 75%;
-}
-
-
-.collapseCta {
-	box-sizing: border-box;
-	margin: 0;
-	overflow: visible;
-	display: inline-block;
-	color: #161c2d;
-	vertical-align: middle;
-	user-select: none;
-	border: 1px solid transparent;
-	padding: .8125rem 1.25rem;
-	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-	text-transform: uppercase !important;
-	border-radius: 50rem;
-	font-family: "Open Sans", sans-serif;
-	font-size: 0.875rem;
-	font-weight: 600;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: normal;
-	letter-spacing: 1.25px;
-	text-align: center;
-	border-color: transparent !important;
-	cursor: pointer;
-	transition: all .3s ease-in-out;
-}
-
-.collapseCtaAlternative:hover {
-	background-color: #e7e7e7 !important;
-}
-
-.accordionCarousel {
-	width: 200%;
+	width: 100%;
 	height: 100%;
-	display: flex;
-	justify-content: center;
-	gap: 1rem;
-	transition: all .3s ease-in-out;
+	padding: 0px 80px 116px 80px;
+	background-color: var(--background-sub-color);
 }
-
-@media only screen and (max-width: 991px) {
-	.container {
-		height: fit-content;
-	}
-
-	.hero {
-		height: max-content;
-		flex-direction: column;
-		align-items: center;
-		justify-content: start;
-	}
-
-	.text,
-	.title,
-	.paragraph,
-	.artwork {
-		width: 100%;
-		margin: 0;
-		padding: 0 20px;
-	}
-
-	.paragraph {
-		margin-top: 1rem;
-		margin-bottom: 1rem;
-	}
-
-	.text {
-		margin-top: 5rem;
-	}
-
-	.artwork {
-		max-width: 80%;
-		margin-top: 3rem;
-		position: relative;
-		right: 0;
-		top: 0;
-	}
-
-	.steps {
-		flex-direction: column;
-		height: fit-content;
-		margin: 2rem 0;
-	}
-
-	.steps::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 50%;
-		height: 100%;
-		border: none;
-		border-right: 1px solid #57595d;
-		z-index: 0;
-	}
+.questions > h2 {
+	margin: 80px auto 32px auto;
+	font-family: "Nunito Sans";
+	font-size: 48px;
+	font-weight: bold;
+	text-align: center;
 }
-
-@media only screen and (max-width: 767px) {
-	.text {
-		padding: 0;
-	}
-
-	.toVideo {
-		margin: 0 auto;
-	}
-
-	.section2_subtitle,
-	.section2_title,
-	.companiesTitle,
-	.collapseTitle {
-		width: 95%;
-		font-size: 24px;
-	}
-
-	.carousel_wrapper {
-		width: 100%;
-	}
+.questions > .actions {
+	margin: 16px auto;
 }
