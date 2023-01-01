@@ -20,7 +20,7 @@ const menus = {
     ],
     corporation: [
         { url: "#team", classList: ProfileStyles.active, text: "Équipe" },
-        { url: "#projects", classList: "", text: "Opportunités" },
+        { url: "#opportunities", classList: "", text: "Opportunités" },
         { url: "#goals", classList: "", text: "Objectifs et offres" },
         { url: "#ecosystem", classList: "", text: "Écosystème et partenaires" },
         { url: "#newsfeed", classList: "", text: "Fil d'actualité" },
@@ -28,7 +28,7 @@ const menus = {
     ],
     partner: [
         { url: "#team", classList: ProfileStyles.active, text: "Équipe" },
-        { url: "#projects", classList: "", text: "Opportunités" },
+        { url: "#opportunities", classList: "", text: "Opportunités" },
         { url: "#goals", classList: "", text: "Objectifs et offres" },
         { url: "#ecosystem", classList: "", text: "Écosystème et partenaires" },
         { url: "#newsfeed", classList: "", text: "Fil d'actualité" },

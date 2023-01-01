@@ -10,7 +10,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled = false, aria }: ButtonInterface) => {
+const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled = false, aria, index }: ButtonInterface) => {
     const roundedButtonTypes = [
         ButtonStyles.callToActionRoundedIcon,
         ButtonStyles.callToActionAlternativeRoundedIcon
@@ -19,6 +19,7 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled 
         ButtonStyles.callToAction,
         ButtonStyles.callToActionAlternative,
         ButtonStyles.callToActionNegative,
+        ButtonStyles.callToActionStep,
         ButtonStyles.callToActionWide,
     ];
     if(type === "default") {
@@ -33,7 +34,14 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled 
             <span>{ text + ((count)  ? " (" + count + ")" : " ") }</span>
         </button>;
     } else if(!url && buttonTypes.includes(type)) {
-        return <button className={ type + ((disabled) ? " disabled" : "") } onClick={ action } aria-label={ aria as string }>
+        const dataIndex = (type === ButtonStyles.callToActionStep) ? index : undefined;
+        const classList = () => {
+            if(index <= 0 && type === ButtonStyles.callToActionStep) {
+                return type + " " + ButtonStyles.active + ((disabled) ? " disabled" : "")
+            };
+            return type + ((disabled) ? " disabled" : "");
+        };
+        return <button className={ classList() } onClick={ action } aria-label={ aria as string } data-index={ dataIndex }>
             { (faIcon) ? <i className={ faIconClass }/> : null }
             { text }
         </button>

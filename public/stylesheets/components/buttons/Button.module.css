@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Button ( Call To Action Rounded Icon ( Base ) ) */
+/* Button ( Call To Action Rounded Icon ) Core */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .callToActionRoundedIcon,
 .callToActionAlternativeRoundedIcon,
@@ -58,13 +58,14 @@
     color: var(--perfect-white-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Button ( Call To Action ( Base ) ) */
+/* Button ( Call To Action ) Core */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .callToAction,
 .callToActionAlternative,
 .callToActionNegative,
 .callToActionNegativeAlternative,
-.callToActionSquared {
+.callToActionSquared,
+.callToActionStep {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,7 +85,8 @@
     .callToActionAlternative,
     .callToActionNegative,
     .callToActionNegativeAlternative,
-    .callToActionSquared {
+    .callToActionSquared,
+    .callToActionStep {
         flex-wrap: wrap;
         height: fit-content;
         white-space: initial;
@@ -94,7 +96,8 @@
 .callToActionAlternative > i,
 .callToActionNegative > i,
 .callToActionNegativeAlternative > i,
-.callToActionSquared > i {
+.callToActionSquared > i,
+.callToActionStep > i {
     margin: 0px 8px 0px 0px;
     font-size: 16px;
 }
@@ -107,7 +110,7 @@
 }
 .callToAction:hover {
     color: var(--logo-blue-color);
-    background-color: var(--background-sub-color);
+    background-color: transparent;
 }
 .callToAction > i {
     color: var(--perfect-white-color);
@@ -120,7 +123,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .callToActionAlternative {
     color: var(--logo-blue-color);
-    background-color: var(--background-sub-color);
+    background-color: transparent;
 }
 .callToActionAlternative:hover {
     color: var(--perfect-white-color);
@@ -159,7 +162,31 @@
     background-color: var(--paleblue-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Button ( Call To Action Wide ( Base ) ) */
+/* Button ( Call To Action ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionStep {
+    color: var(--text-inactive-color);
+    border-color: var(--text-inactive-color);
+    background-color: var(--background-main-color);
+}
+.callToActionStep:hover {
+    color: var(--perfect-black-color);
+    border-color: var(--light-grey-color);
+    background-color: var(--light-grey-color);
+}
+.callToActionStep.active {
+    color: var(--perfect-white-color);
+    border-color: var(--perfect-grey-color);
+    background-color: var(--perfect-grey-color);
+}
+.callToActionStep > i {
+    color: var(--perfect-white-color);
+}
+.callToActionStep:hover > i {
+    color: var(--logo-blue-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Wide ) Core */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .callToActionWide {
     width: 100%;

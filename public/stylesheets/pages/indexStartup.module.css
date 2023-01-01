@@ -1,18 +1,13 @@
 .container {
-	position: relative;
-	left: 0;
-	top: 80px;
 	width: 100vw;
-    height: fit-content;
 	height: calc(100vh - 5px);
-	background-color: #f8f7f6;
+	background-color: var(--background-main-color);
 	margin-left: auto;
-	overflow: hidden;
 }
 
 .hero {
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
@@ -32,7 +27,7 @@
 	margin-top: 0;
 	margin-bottom: 1rem;
 	text-align: left !important;
-    color: #fe6a28;
+    color: var(--logo-orange-color);
 	font-family: "Nunito Sans", sans-serif;
 	font-stretch: normal;
 	font-style: normal;
@@ -48,12 +43,14 @@
 	pointer-events: auto;
 	text-align: left !important;
 	box-sizing: border-box;
-    color: #fe6a28;
+    color: var(--logo-orange-color);
 	font-family: "Open Sans", sans-serif;
 	letter-spacing: 0.6px;
     font-size: clamp(1.5rem, 2vw, 24px);
 	line-height: 1.4;
 	width: 50%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .toVideo {
@@ -65,7 +62,7 @@
 	padding: 0.8125rem 1.25rem;
 	line-height: 1.6;
 	transition: all .15s ease-in-out;
-	background-color: #006DFF;
+	background-color: var(--logo-blue-color);
 	display: flex;
 	-webkit-box-pack: justify;
 	justify-content: space-between;
@@ -82,8 +79,8 @@
 
 .toVideo:hover {
 	background-color: #FFF;
-    outline: 1px solid #006DFF;
-	color: #006DFF;
+    outline: 1px solid var(--logo-blue-color);
+	color: var(--logo-blue-color);
 }
 
 .artwork {
@@ -94,29 +91,24 @@
 }
 
 .container2 {
-	position: relative;
-	left: 0;
-	top: 80px;
 	width: 100vw;
+    height: fit-content;
 	background-color: #ffefe6;
 	margin-left: auto;
-	overflow-x: hidden;
 	margin: 0 !important;
 }
 
 .section2 {
 	border-radius: 5rem 0 0 5rem;
-	overflow: hidden;
 	width: 100%;
-	height: 100%;
+	height: fit-content;
 	padding-top: 75px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	background-color: #f8f7f6;
+	background-color: var(--background-main-color);
 	position: relative;
-	overflow-x: hidden;
     padding-bottom: 10rem;
 }
 
@@ -130,7 +122,7 @@
     font-style: normal;
     line-height: 1.33;
     letter-spacing: -1.02px;
-    color: #232324;
+    color: var(--text-main-color);
     font-size: 48px;
     font-weight: 400;
 }
@@ -138,7 +130,7 @@
 .timelineText {
     font-weight: 400;
     line-height: 1.6;
-    color: #161c2d;
+    color: var(--text-main-color);
     text-align: center!important;
     box-sizing: border-box;
     font-family: "Nunito Sans", sans-serif;
@@ -164,7 +156,7 @@
     transform: translateX(-50%);
     width: 1px;
     height: 100%;
-    background-color: #fe6a28;
+    background-color: var(--logo-orange-color);
 }
 
 .timelineItem {
@@ -191,7 +183,7 @@
     box-sizing: border-box;
     margin-bottom: .75rem!important;
     font-family: "Nunito Sans", sans-serif;
-    color: #595959;
+    color: var(--text-main-color);
     font-size: 32px;
     font-weight: 700;
     line-height: 1.2;
@@ -204,7 +196,7 @@
     font-family: "Open Sans", sans-serif;
     -webkit-box-direction: normal!important;
     box-sizing: border-box;
-    color: #232324;
+    color: var(--text-inactive-color);
     font-size: 16px;
 }
 
@@ -212,12 +204,12 @@
     font-size: 2rem;
     font-weight: 400;
     line-height: 1.6;
-    color: #161c2d;
+    color: var(--text-main-color);
     text-align: left;
     font-family: "Open Sans", sans-serif;
     -webkit-box-direction: normal!important;
     box-sizing: border-box;
-    background-color: #fff!important;
+    background-color: var(--background-sub-color)!important;
     border-radius: 50%!important;
     box-shadow: 0 .5rem 1.5rem rgba(22,28,45,.1)!important;
     position: absolute;
@@ -238,7 +230,7 @@
     font-size: 2rem;
     font-weight: 400;
     line-height: 1.6;
-    color: #161c2d;
+    color: var(--text-main-color);
     text-align: left;
     font-family: "Open Sans", sans-serif;
     -webkit-box-direction: normal!important;
@@ -271,7 +263,7 @@
     font-style: normal;
     line-height: 1.33;
     letter-spacing: -1.02px;
-    color: #232324;
+    color: var(--text-main-color);
     font-size: 42px;
     margin-top: 12rem;
 }
@@ -338,6 +330,7 @@
     height: calc(100% - 170px);
     display: flex;
     justify-content: space-between;
+    background-color: var(--background-sub-color);
 }
 
 .cardAvatarWrapper {
@@ -350,7 +343,7 @@
     font-size: 1.0625rem;
     font-weight: 400;
     line-height: 1.6;
-    color: #161c2d;
+    color: var(--text-main-color);
     font-family: "Open Sans", sans-serif;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
@@ -385,7 +378,7 @@
     font-family: "Open Sans", sans-serif;
     font-size: .85rem;
     letter-spacing: 0.4px;
-    color: #006dff;
+    color: var(--logo-blue-color);
     margin-bottom: 2rem;
 }
 
@@ -396,7 +389,7 @@
     font-weight: bold;
     line-height: 1.11;
     letter-spacing: 0.6px;
-    color: #232324;
+    color: var(--text-main-color);
     margin-bottom: 3rem;
 }
 
@@ -408,7 +401,7 @@
     font-size: 0.75rem;
     letter-spacing: 0.4px;
     font-weight: normal;
-    color: #595959;
+    color: var(--text-inactive-color);
     text-transform: capitalize;
     display: flex;
     align-items: center;
@@ -445,7 +438,7 @@
     font-size: 1rem;
     letter-spacing: 0.4px;
     font-weight: normal;
-    color: #595959;
+    color: var(--text-inactive-color);
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
@@ -459,21 +452,20 @@
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
     letter-spacing: 0.5px;
-    color: #232324;
+    color: var(--text-main-color);
 }
 
 .wrapper3 {
     width: 100%;
-    height: 100%;
+    height: fit-content;
     background-color: #f5f5f5;
     position: relative;
     margin: 0 !important;
 }
 
 .section3 {
-	overflow: hidden;
 	width: 100%;
-	height: 100%;
+	height: fit-content;
 	padding-top: 75px;
 	display: flex;
 	align-items: center;
@@ -486,7 +478,7 @@
 }
 
 .section3Title {
-    color: #161c2d;
+    color:  var(--perfect-black-color);
     box-sizing: border-box;
     margin-top: 0;
     letter-spacing: -.01em;
@@ -552,7 +544,7 @@
     line-height: 1.6;
     text-align: left;
     -webkit-box-direction: normal!important;
-    color: #161c2d!important;
+    color: var(--perfect-black-color)!important;
     box-sizing: border-box;
     font-family: "Nunito Sans", sans-serif;
     font-size: 24px;
@@ -567,7 +559,7 @@
     font-family: "Open Sans", sans-serif;
     -webkit-box-direction: normal!important;
     box-sizing: border-box;
-    color: #232324;
+    color:  var(--perfect-grey-color);
     font-size: 16px;
 }
 
@@ -584,7 +576,7 @@
     font-style: normal;
     line-height: 1.33;
     letter-spacing: -1.02px;
-    color: #232324;
+    color: var(--text-main-color);
     font-size: 48px;
     width: 75%;
     text-align: center;
@@ -639,7 +631,6 @@
 .collapseBackground {
 	width: 100%;
 	height: 100%;
-    background-color: white;
     padding-bottom: 3rem;
 }
 
@@ -660,7 +651,7 @@
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #232324;
+    color: var(--text-main-color);
     font-size: 42px;
     font-weight: 700;
 	margin-top: 3rem;
@@ -681,7 +672,7 @@
     margin: 0;
     overflow: visible;
     display: inline-block;
-    color: #161c2d;
+    color: var(--text-main-color);
     vertical-align: middle;
     user-select: none;
     border: 1px solid transparent;
@@ -751,6 +742,11 @@
 		margin: 2rem 0;
 	}
 
+
+	.toVideo {
+		margin: 0 auto;
+	}
+
 	.artwork {
 		max-width: 80%;
 		margin-top: 3rem;
@@ -809,10 +805,6 @@
     .text {
         padding: 0;
     }
-
-	.toVideo {
-		margin: 0 auto;
-	}
 
     .timeline {
         width: 100%;

@@ -1,12 +1,18 @@
 import React from "react";
 import Head from "next/head";
-import styles from "../public/stylesheets/pages/indexCorpo.module.css";
+import styles from "../public/stylesheets/pages/indexPartners.module.css";
 import translations from "../translations.json";
-import trustedBy from "../trustedBy.json";
+import trustedBy from "../public/static/trustedBy.json";
 import AccordionItem from "../components/accordion/AccordionItem";
 import Link from "next/link";
 
-export default function indexCorpo({ dataOpports }) {
+export default function indexCorpo({ dataOpports,
+	locales,
+	states,
+	stateSetters,
+	config,  }: any) {
+
+	const {translations}: any = states
 	const lang = "fr";
 	let lastOpports = dataOpports[0]["PROJECT"];
 	return (
@@ -15,15 +21,8 @@ export default function indexCorpo({ dataOpports }) {
 				<title>Index Forinov</title>
 				<style>
 					{`
-          .container {
-            margin: 0 !important;
-            padding: 0 !important;
-            max-width: 100% !important;
-            overflow: hidden !important;
-          }
-
           #activeButton {
-			background-color: #006DFF;
+			background-color: #38BF84;
 			color: #fff;
 			border: 2px solid #F8F7F6;
 		}
@@ -33,7 +32,7 @@ export default function indexCorpo({ dataOpports }) {
 			margin: 0;
 			overflow: visible;
 			display: inline-block;
-			color: #006DFF;
+			color: #38BF84;
 			vertical-align: middle;
 			user-select: none;
 			border: 1px solid transparent;
@@ -41,7 +40,7 @@ export default function indexCorpo({ dataOpports }) {
 			transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 			text-transform: uppercase!important;
 			border-radius: 50rem;
-			background-color: #b2d1ff;
+			background-color: #D1F2E4;
 			font-family: "Open Sans", sans-serif;
 			font-size: 0.875rem;
 			font-weight: 600;
@@ -52,20 +51,6 @@ export default function indexCorpo({ dataOpports }) {
 			text-align: center;
 			cursor: pointer;
 		}
-
-          .layout__footer {
-            top: 80px;
-            padding-right: 12px;
-            padding-left: 12px;
-            padding-top: 4.5rem !important;
-            padding-bottom: 4.5rem !important;
-            margin-top: 50px;
-            margin-bottom: 50px;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 75%;
-          }
-
         `}
 				</style>
 			</Head>
@@ -73,13 +58,13 @@ export default function indexCorpo({ dataOpports }) {
 				<div className={styles.hero}>
 					<div className={styles.text}>
 						<h1 className={styles.title}>
-							{translations[lang]["index_corpo_hero"]}
+							{translations["index_partners_hero"]}
 						</h1>
 						<p className={styles.paragraph}>
-							{translations[lang]["index_corpo_hero_text"]}
+							{translations["index_partners_hero_text"]}
 						</p>
 						<button className={styles.toVideo}>
-							{translations[lang]["index_corpo_hero_cta"]}
+							{translations["index_partners_hero_cta"]}
 						</button>
 					</div>
 					<img
@@ -92,61 +77,65 @@ export default function indexCorpo({ dataOpports }) {
 			<div className={styles.container2}>
 				<section className={styles.section2}>
 					<h1 className={styles.getStarted}>
-						{translations[lang]["landing_section2_title"]}
+						{translations["landing_section2_title"]}
 					</h1>
 					<div className={styles.steps}>
 						<button
 							className={styles.step}
 							id="activeButton"
-							onClick={(e) => {
+							onClick={(e: any) => {
 								if (document.querySelector("#activeButton")) {
-									document.querySelector("#activeButton").id = "";
+									document.querySelector("#activeButton")!.id = "";
 								}
 								e.target.id = "activeButton";
-								document.querySelector("#carouselObject").style.transform =
+								const carouselObject = document.querySelector("#carouselObject") as HTMLElement;
+								carouselObject!.style.transform =
 									"translateX(0)";
 							}}
 						>
-							{translations[lang]["landing_carousel_step1"]}
+							{translations["landing_carousel_step1"]}
 						</button>
 						<button
 							className={styles.step}
-							onClick={(e) => {
+							onClick={(e: any) => {
 								if (document.querySelector("#activeButton")) {
-									document.querySelector("#activeButton").id = "";
+									document.querySelector("#activeButton")!.id = "";
 								}
 								e.target.id = "activeButton";
-								document.querySelector("#carouselObject").style.transform =
+								const carouselObject = document.querySelector("#carouselObject") as HTMLElement;
+								carouselObject!.style.transform =
 									"translateX(-25%)";
 							}}
 						>
-							{translations[lang]["landing_carousel_step2"]}
+							{translations["landing_carousel_step2"]}
 						</button>
 						<button
 							className={styles.step}
-							onClick={(e) => {
+							onClick={(e: any) => {
 								if (document.querySelector("#activeButton")) {
-									document.querySelector("#activeButton").id = "";
+									document.querySelector("#activeButton")!.id = "";
 								}
 								e.target.id = "activeButton";
-								document.querySelector("#carouselObject").style.transform =
+								const carouselObject = document.querySelector("#carouselObject") as HTMLElement;
+								carouselObject!.style.transform =
 									"translateX(-50%)";
 							}}
 						>
-							{translations[lang]["landing_carousel_step3"]}
+							{translations["landing_carousel_step3"]}
 						</button>
 						<button
 							className={styles.step}
-							onClick={(e) => {
+							onClick={(e: any) => {
 								if (document.querySelector("#activeButton")) {
-									document.querySelector("#activeButton").id = "";
+									document.querySelector("#activeButton")!.id = "";
 								}
 								e.target.id = "activeButton";
-								document.querySelector("#carouselObject").style.transform =
+								const carouselObject = document.querySelector("#carouselObject") as HTMLElement;
+								carouselObject!.style.transform =
 									"translateX(-75%)";
 							}}
 						>
-							{translations[lang]["landing_carousel_step4"]}
+							{translations["landing_carousel_step4"]}
 						</button>
 					</div>
 					<div className={styles.carousel_wrapper}>
@@ -156,9 +145,9 @@ export default function indexCorpo({ dataOpports }) {
 						>
 							<div className={styles.carousel_item}>
 								<ul>
-									<h1>{translations[lang]["landing_carousel_title1"]}</h1>
-									{translations[lang]["landing_carousel_content1"].map(
-										(item) => {
+									<h1>{translations["landing_carousel_title1"]}</h1>
+									{translations["landing_carousel_content1"].map(
+										(item: any) => {
 											return <li key={"1-" + item}>{item}</li>;
 										},
 									)}
@@ -171,9 +160,9 @@ export default function indexCorpo({ dataOpports }) {
 
 							<div className={styles.carousel_item}>
 								<ul>
-									<h1>{translations[lang]["landing_carousel_title2"]}</h1>
-									{translations[lang]["landing_carousel_content1"].map(
-										(item) => {
+									<h1>{translations["landing_carousel_title2"]}</h1>
+									{translations["landing_carousel_content1"].map(
+										(item: any) => {
 											return <li key={"2-" + item}>{item}</li>;
 										},
 									)}
@@ -186,9 +175,9 @@ export default function indexCorpo({ dataOpports }) {
 
 							<div className={styles.carousel_item}>
 								<ul>
-									<h1>{translations[lang]["landing_carousel_title3"]}</h1>
-									{translations[lang]["landing_carousel_content1"].map(
-										(item) => {
+									<h1>{translations["landing_carousel_title3"]}</h1>
+									{translations["landing_carousel_content1"].map(
+										(item: any) => {
 											return <li key={"3-" + item}>{item}</li>;
 										},
 									)}
@@ -201,9 +190,9 @@ export default function indexCorpo({ dataOpports }) {
 
 							<div className={styles.carousel_item}>
 								<ul>
-									<h1>{translations[lang]["landing_carousel_title4"]}</h1>
-									{translations[lang]["landing_carousel_content1"].map(
-										(item) => {
+									<h1>{translations["landing_carousel_title4"]}</h1>
+									{translations["landing_carousel_content1"].map(
+										(item: any) => {
 											return <li key={"4-" + item}>{item}</li>;
 										},
 									)}
@@ -216,16 +205,16 @@ export default function indexCorpo({ dataOpports }) {
 						</div>
 					</div>
 					<h1 className={styles.companiesTitle}>
-						{translations[lang]["landing_companies_title"]}
+						{translations["landing_companies_title"]}
 					</h1>
 					<div className={styles.companies}>
-						{trustedBy.map((company) => {
+						{trustedBy.map((company:any,index:any) => {
 							return (
 								<a
 									style={{
 										position: "relative",
 									}}
-									key={company}
+									key={company.name +"-" + index}
 								>
 									<img
 										src={company.image}
@@ -233,10 +222,10 @@ export default function indexCorpo({ dataOpports }) {
 										key={company.name}
 										className={styles.companyItem}
 										onMouseEnter={(e) => {
-											document.getElementById(company.name).style.opacity = "1";
+											document.getElementById(company.name)!.style.opacity = "1";
 										}}
 										onMouseLeave={(e) => {
-											document.getElementById(company.name).style.opacity = "0";
+											document.getElementById(company.name)!.style.opacity = "0";
 										}}
 									/>
 									<div
@@ -251,17 +240,17 @@ export default function indexCorpo({ dataOpports }) {
 						})}
 					</div>
 					<h1 className={styles.companiesTitle}>
-						{translations[lang]["index_corpo_cta_title"]}
+						{translations["index_partners_cta_title"]}
 					</h1>
 					<h4 className={styles.subtitle}>
-						{translations[lang]["index_corpo_cta_title"]}
+						{translations["index_partners_cta_title"]}
 					</h4>
 					<div className={styles.ctaWrapper}>
 						<button className="callToAction">
-							{translations[lang]["landing_cta1"]}
+							{translations["landing_cta1"]}
 						</button>
 						<button className="callToActionAlternative">
-							{translations[lang]["landing_cta2"]}
+							{translations["landing_cta2"]}
 						</button>
 					</div>
 				</section>
@@ -269,49 +258,43 @@ export default function indexCorpo({ dataOpports }) {
 			<div className={styles.container3}>
 				<section className={styles.section3}>
 					<h1 className={styles.timelineTitle}>
-						{translations[lang]["index_corpo_timeline_title"]}
+						{translations["index_partners_timeline_title"]}
 					</h1>
 					<p className={styles.timelineText}>
-						{translations[lang]["index_corpo_timeline_text"]}
+						{translations["index_partners_timeline_text"]}
 					</p>
-					<div className={styles.timeline}>
-						<div className={styles.timelineItem}>
-							<img
-								src=""
-								alt=""
-							/>
-							<div className={styles.tlItemContent}>
-								<h1>{translations[lang]["index_corpo_timeline_title1"]}</h1>
-								<p>{translations[lang]["index_corpo_timeline_text1"]}</p>
-							</div>
-							<div className={styles.tlStep}>
-								<i className="fa-solid fa-chevron-down"></i>
+					<div className={styles.dots}>
+						<div className={styles.dot}>
+							<i className="fa-solid fa-circle-nodes"></i>
+							<div className={styles.dotContent}>
+								<h1 className={styles.dotTitle}>
+									{translations["index_startup_dot_title1"]}
+								</h1>
+								<p className={styles.dotText}>
+									{translations["index_startup_dot_text1"]}
+								</p>
 							</div>
 						</div>
-						<div className={styles.timelineItem}>
-							<div className={styles.tlItemContent}>
-								<h1>{translations[lang]["index_corpo_timeline_title2"]}</h1>
-								<p>{translations[lang]["index_corpo_timeline_text2"]}</p>
-							</div>
-							<img
-								src=""
-								alt=""
-							/>
-							<div className={styles.tlStep}>
-								<i className="fa-solid fa-chevron-down"></i>
+						<div className={styles.dot}>
+							<i className="fa-solid fa-check"></i>
+							<div className={styles.dotContent}>
+								<h1 className={styles.dotTitle}>
+									{translations["index_startup_dot_title2"]}
+								</h1>
+								<p className={styles.dotText}>
+									{translations["index_startup_dot_text2"]}
+								</p>
 							</div>
 						</div>
-						<div className={styles.timelineItem}>
-							<img
-								src=""
-								alt=""
-							/>
-							<div className={styles.tlItemContent}>
-								<h1>{translations[lang]["index_corpo_timeline_title3"]}</h1>
-								<p>{translations[lang]["index_corpo_timeline_text3"]}</p>
-							</div>
-							<div className={styles.tlStepComplete}>
-								<i className="fa-solid fa-check"></i>
+						<div className={styles.dot}>
+							<i className="fa-solid fa-infinity"></i>
+							<div className={styles.dotContent}>
+								<h1 className={styles.dotTitle}>
+									{translations["index_startup_dot_title3"]}
+								</h1>
+								<p className={styles.dotText}>
+									{translations["index_startup_dot_text3"]}
+								</p>
 							</div>
 						</div>
 					</div>
@@ -319,7 +302,7 @@ export default function indexCorpo({ dataOpports }) {
 			</div>
 			<section className={styles.section4}>
 				<h1 className={styles.collapseTitle}>
-					{translations[lang]["lastopportunities"]}
+					{translations["lastopportunities"]}
 				</h1>
 				<div className={styles.lastOps}>
 					<div className={styles.innerSlider}>
@@ -336,7 +319,7 @@ export default function indexCorpo({ dataOpports }) {
 										/>
 										<Link href={lastOpports[opport]["LINK"]}>
 											<span className={styles.opportCTA + " callToAction"}>
-												{translations[lang]["Postuler"]}
+												{translations["Postuler"]}
 											</span>
 										</Link>
 									</div>
@@ -363,10 +346,10 @@ export default function indexCorpo({ dataOpports }) {
 												className={styles.opportType}
 												style={
 													lastOpports[opport]["TYPE"].toString() === "1"
-														? { backgroundColor: "rgb(var(--project-color))" }
+														? { backgroundColor: "var(--project-color))" }
 														: lastOpports[opport]["TYPE"].toString() === "2"
-															? { backgroundColor: "rgb(var(--program-color))" }
-															: { backgroundColor: "rgb(var(--event-color))" }
+														? { backgroundColor: "var(--program-color))" }
+														: { backgroundColor: "var(--event-color))" }
 												}
 											>
 												{lastOpports[opport]["TYPE_NAME"]}
@@ -374,7 +357,7 @@ export default function indexCorpo({ dataOpports }) {
 											<span className={styles.opportRemaining}>
 												<i className="fa-regular fa-calendar"></i>
 												{lastOpports[opport]["REMAINING"]}{" "}
-												{translations[lang]["jours_restant"]}
+												{translations["jours_restant"]}
 											</span>
 											<p className={styles.opportDescription}>
 												{lastOpports[opport]["DESCRIPTION"]}
@@ -385,52 +368,49 @@ export default function indexCorpo({ dataOpports }) {
 							);
 						})}
 						<div className={styles.joinCard}>
-							<h1>{translations[lang]["index_corpo_lastops_card_title"]}</h1>
-							<Link
-								href="/"
-								className="callToAction"
-							>
-								<span>
-									{translations[lang]["index_corpo_lastops_card_cta"]}
-								</span>
-							</Link>
-						</div>
+								<h1>{translations["join_card_title"]}</h1>
+								<Link href={"/"}>
+									<p className="callToAction">
+										{translations["join_card_cta"]}
+									</p>
+								</Link>
+							</div>
 					</div>
 				</div>
 				{/* */}
 				<div className={styles.collapseBackground}>
 					<h1 className={styles.collapseTitle}>
-						{translations[lang]["landing_collapse_title"]}
+						{translations["landing_collapse_title"]}
 					</h1>
 					<div className={styles.collapseCtas}>
 						<button
 							className={styles.collapseCta}
 							id="collapseCtaActive"
-							onClick={(e) => {
+							onClick={(e:any) => {
 								const object = document.getElementById(
 									"accordionCarouselObject",
 								);
-								document.getElementById("collapseCtaActive").id =
+								document.getElementById("collapseCtaActive")!.id =
 									"collapseCtaInactive";
 								e.target.id = "collapseCtaActive";
-								object.style.transform = "translateX(0%)";
+								object!.style.transform = "translateX(0%)";
 							}}
 						>
-							{translations[lang]["landing_collapse_cta1"]}
+							{translations["landing_collapse_cta1"]}
 						</button>
 						<button
 							className={styles.collapseCta}
-							onClick={(e) => {
+							onClick={(e:any) => {
 								const object = document.getElementById(
 									"accordionCarouselObject",
 								);
-								document.getElementById("collapseCtaActive").id =
+								document.getElementById("collapseCtaActive")!.id =
 									"collapseCtaInactive";
 								e.target.id = "collapseCtaActive";
-								object.style.transform = "translateX(-50%)";
+								object!.style.transform = "translateX(-50%)";
 							}}
 						>
-							{translations[lang]["landing_collapse_cta2"]}
+							{translations["landing_collapse_cta2"]}
 						</button>
 					</div>
 					<div className={styles.carousel_wrapper}>
@@ -440,14 +420,14 @@ export default function indexCorpo({ dataOpports }) {
 							id="accordionCarouselObject"
 						>
 							<div className={styles.collapseWrapper}>
-								{translations[lang]["corpo_accordion1"].map((item, index) => {
+								{translations["partners_accordion1"].map((item: any, index: any) => {
 									return (
 										<AccordionItem
 											title={item.title}
 											content={item.content}
 											identifier={index}
-											color="#B2D1FF"
-											textColor="#006DFF"
+											color="#D1F2E4"
+											textColor="#38BF84"
 											key={index + "-accordion1"}
 										></AccordionItem>
 									);
@@ -455,15 +435,15 @@ export default function indexCorpo({ dataOpports }) {
 							</div>
 							{/* 2nd accordion */}
 							<div className={styles.collapseWrapper}>
-								{translations[lang]["corpo_accordion2"].map((item, index) => {
+							{translations["partners_accordion2"].map((item: any, index: any) => {
 									return (
 										<AccordionItem
 											title={item.title}
 											content={item.content}
-											identifier={index + translations[lang]["corpo_accordion1"].length}
-											color="#B2D1FF"
-											textColor="#006DFF"
-											key={index + translations[lang]["corpo_accordion1"].length + '-accordion2'}
+											identifier={index + translations["partners_accordion1"].length}
+											color="#D1F2E4"
+											textColor="#38BF84"
+											key={index + translations["partners_accordion1"].length + "-accordion2"}
 										></AccordionItem>
 									);
 								})}
@@ -476,15 +456,21 @@ export default function indexCorpo({ dataOpports }) {
 	);
 }
 
-export async function getServerSideProps({ }) {
-	const res = await fetch(
+export async function getServerSideProps(context: any) {
+	const { req, res, query, locales, defaultLocale, locale }: any = context;
+	
+	const apiRes = await fetch(
 		`https://www.forinov.fr/remote/back/api.php?q=LANDING_OPPORTUNITES&authkey=Landing&1`,
 	);
-	const opports = await res.json();
+	const dataOpports = await apiRes.json();
 
 	return {
 		props: {
-			dataOpports: opports,
+			dataOpports,
+			locales,
+			defaultLocale,
+			locale,
+
 		},
 	};
 }
