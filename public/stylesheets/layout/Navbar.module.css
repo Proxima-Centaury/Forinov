@@ -121,23 +121,29 @@
     margin: 0px 0px 0px 32px;
 }
 .navbar > .links > li > a,
-.navbar > .links > li > p {
+.navbar > .links > li > button {
     display: flex;
     align-items: center;
     height: 100%;
     position: relative;
+    text-decoration: underline;
+    text-decoration-color: transparent;
     border-bottom: var(--border);
     border-width: 3px;
     border-color: transparent;
-    transition: border-color 0.3s ease;
+    transition: text-decoration 0.3s ease, border-color 0.3s ease;
+}
+.navbar > .links > li > a:hover,
+.navbar > .links > li > button:hover {
+    text-decoration-color: var(--text-main-color);
 }
 .navbar > .links > li > a:only-child:hover {
     border-color: var(--logo-blue-color);
 }
-.navbar > .links > li > a:hover + ul,
-.navbar > .links > li > p:hover + ul,
-.navbar > .links > li > a + ul:hover,
-.navbar > .links > li > p + ul:hover {
+.navbar > .links > li > a + ul.show,
+.navbar > .links > li > button + ul.show,
+.navbar > .links > li > a + ul.show,
+.navbar > .links > li > button + ul.show {
     opacity: 1;
     pointer-events: all;
 }
@@ -150,7 +156,7 @@
         margin: 16px 0px 0px 0px;
     }
     .navbar > .links > li > a,
-    .navbar > .links > li > p {
+    .navbar > .links > li > button {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -207,7 +213,7 @@
         transition: opacity 0.3s ease, max-height 0.3s ease;
         overflow: hidden;
     }
-    .navbar > .links > li:hover > ul {
+    .navbar > .links > li > ul.show {
         opacity: 1;
         max-height: max-content;
     }
