@@ -93,7 +93,7 @@ export default function indexCorpo({ dataOpports,
 									"translateX(0)";
 							}}
 						>
-							{translations["landing_carousel_step1"]}
+							{translations["index_partners_carousel_step1"]}
 						</button>
 						<button
 							className={styles.step}
@@ -107,7 +107,7 @@ export default function indexCorpo({ dataOpports,
 									"translateX(-25%)";
 							}}
 						>
-							{translations["landing_carousel_step2"]}
+							{translations["index_partners_carousel_step2"]}
 						</button>
 						<button
 							className={styles.step}
@@ -121,7 +121,7 @@ export default function indexCorpo({ dataOpports,
 									"translateX(-50%)";
 							}}
 						>
-							{translations["landing_carousel_step3"]}
+							{translations["index_partners_carousel_step3"]}
 						</button>
 						<button
 							className={styles.step}
@@ -135,7 +135,7 @@ export default function indexCorpo({ dataOpports,
 									"translateX(-75%)";
 							}}
 						>
-							{translations["landing_carousel_step4"]}
+							{translations["index_partners_carousel_step4"]}
 						</button>
 					</div>
 					<div className={styles.carousel_wrapper}>
