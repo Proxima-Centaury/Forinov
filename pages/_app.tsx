@@ -35,7 +35,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     const [ locales, setLocales ] = useState(pageProps.locales);
     const [ translations, setTranslations ] = useState(getTranslations(locale));
     const [ session, setSession ] = useState(false);
-    const [ theme, setTheme ] = useState(getCookie("forinov_theme_preference") || "light"); // TO PERSIST
+    const [ theme, setTheme ] = useState(getCookie("forinov_theme_preference") || "light");
     const [ lock, setLock ] = useState(true);
     const [ modal, setModal ] = useState(null);
     useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
