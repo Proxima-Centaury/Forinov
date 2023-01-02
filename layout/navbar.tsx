@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { ButtonInterface, NavbarInterface, SelectInterface } from "../typescript/interfaces";
 import { buildProperties, preventSubmit } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -55,10 +55,31 @@ const Navbar = ({ states, stateSetters, config }: NavbarInterface) => {
 /* Navbar ( Menu ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const NavbarMenu = ({ navbar, translations }: any) => {
+    const showSubMenu = (event: MouseEvent<HTMLButtonElement>): void => {
+        event.preventDefault();
+        const target = event.target as HTMLButtonElement;
+        const parentMenu = target.closest("." + NavbarStyles.links);
+        const subMenu = target.nextElementSibling;
+        if(subMenu) {
+            if(subMenu.classList.contains(NavbarStyles.show)) {
+                subMenu.classList.remove(NavbarStyles.show);
+            } else {
+                const subMenus = parentMenu?.querySelectorAll("ul");
+                subMenus?.forEach((menu) => menu.classList.remove(NavbarStyles.show));
+                subMenu.classList.add(NavbarStyles.show);
+                window.onclick = (event) => {
+                    const targetedElement = event.target as Element;
+                    if(targetedElement !== target && targetedElement !== subMenu && !targetedElement.closest("[data-menu='nest']")) {
+                        subMenu.classList.remove(NavbarStyles.show);
+                    };
+                };
+            };
+        };
+    };
     if(navbar) {
         return navbar.map(({ url, text, nesting, nest }: any, key: KeyType) => <li key={ key }>
-            { (url) ? <Link href={ url }>{ translations[text] }</Link> : <p>{ translations[text] }</p> }
-            { (nesting) ? <ul>
+            { (url) ? <Link href={ url }>{ translations[text] }</Link> : <button onClick={ showSubMenu }>{ translations[text] }</button> }
+            { (nesting) ? <ul data-menu="nest">
                 { nest.map(({ url, text }: any, key: KeyType) => <li key={ key }>
                     <Link href={ url }>{ translations[text] }</Link>
                 </li>) }
