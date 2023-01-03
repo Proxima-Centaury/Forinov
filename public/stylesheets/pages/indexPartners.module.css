@@ -1,7 +1,7 @@
 .container {
     width: 100vw;
     height: calc(100vh - 5px);
-    background-color: #f8f7f6;
+    background-color: var(--background-main-color);
     margin-left: auto;
 }
 
@@ -105,7 +105,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #f8f7f6;
+    background-color: var(--background-main-color);
     position: relative;
     overflow-x: hidden;
 }
@@ -119,7 +119,7 @@
     font-style: normal;
     line-height: 1.33;
     letter-spacing: -1.02px;
-    color: #232324;
+    color: var(--text-main-color);
     font-size: 48px;
     font-weight: 700;
 }
@@ -162,10 +162,10 @@
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
     letter-spacing: 0.6px;
-    background-color: #f8f7f6;
+    background-color: var(--background-main-color);
     position: relative;
     z-index: 1;
-    outline: 2px solid #f8f7f6;
+    outline: 2px solid var(--background-main-color);
 }
 
 .step:hover {
@@ -240,7 +240,7 @@
     font-style: normal;
     line-height: 1.33;
     letter-spacing: -1.02px;
-    color: #232324;
+    color: var(--text-main-color);
     font-size: 48px;
     width: 75%;
     text-align: center;
@@ -293,7 +293,7 @@
 }
 
 .subtitle {
-    color: #161c2d;
+    color: var(--text-inactive-color);
     text-align: center !important;
     box-sizing: border-box;
     margin-top: 0;
@@ -308,7 +308,7 @@
 
 .container3 {
     width: 100vw;
-    background-color: #f8f7f6;
+    background-color: var(--background-main-color);
     margin-left: auto;
     margin: 0 !important;
 }
@@ -367,6 +367,8 @@
     cursor: pointer;
     box-shadow: 0 .5rem 1.5rem rgba(22, 28, 45, .1);
     margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .dot .dotContent {
@@ -382,7 +384,7 @@
     line-height: 1.6;
     text-align: left;
     -webkit-box-direction: normal !important;
-    color: #161c2d !important;
+    color: #161C2D !important;
     box-sizing: border-box;
     font-family: "Nunito Sans", sans-serif;
     font-size: 24px;
@@ -397,7 +399,7 @@
     font-family: "Open Sans", sans-serif;
     -webkit-box-direction: normal !important;
     box-sizing: border-box;
-    color: #232324;
+    color: var(--text-inactive-color);
     font-size: 16px;
 }
 
@@ -410,7 +412,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #f8f7f6;
+    background-color: var(--background-main-color);
     position: relative;
 }
 
@@ -425,7 +427,7 @@
     font-style: normal;
     line-height: 1.33;
     letter-spacing: -1.02px;
-    color: #232324;
+    color: var(--text-main-color);
     font-size: 42px;
     margin-top: 12rem;
 }
@@ -480,7 +482,7 @@
     position: relative;
 }
 
-.cardBanner>img {
+.cardBanner > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -492,6 +494,7 @@
     height: calc(100% - 170px);
     display: flex;
     justify-content: space-between;
+    background-color: var(--background-sub-color);
 }
 
 .cardAvatarWrapper {
@@ -504,20 +507,20 @@
     font-size: 1.0625rem;
     font-weight: 400;
     line-height: 1.6;
-    color: #161c2d;
+    color: var(--text-main-color);
     font-family: "Open Sans", sans-serif;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     cursor: grab;
     pointer-events: auto;
-    -webkit-box-direction: normal !important;
-    text-align: left !important;
+    -webkit-box-direction: normal!important;
+    text-align: left!important;
     box-sizing: border-box;
     vertical-align: middle;
     width: 62px;
     height: 62px;
     border-radius: 50%;
-    border: solid 2px #38BF84;
+    border: solid 2px #006dff;
 }
 
 .opportCTA {
@@ -525,12 +528,6 @@
     bottom: 1rem;
     right: 1rem;
     z-index: 10;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-}
-
-.opportCTA:hover {
-    transform: scale(1.1);
 }
 
 .cardDetails {
@@ -545,7 +542,7 @@
     font-family: "Open Sans", sans-serif;
     font-size: .85rem;
     letter-spacing: 0.4px;
-    color: #38BF84;
+    color: var(--logo-blue-color);
     margin-bottom: 2rem;
 }
 
@@ -556,7 +553,7 @@
     font-weight: bold;
     line-height: 1.11;
     letter-spacing: 0.6px;
-    color: #232324;
+    color: var(--text-main-color);
     margin-bottom: 3rem;
 }
 
@@ -568,14 +565,14 @@
     font-size: 0.75rem;
     letter-spacing: 0.4px;
     font-weight: normal;
-    color: #595959;
+    color: var(--text-inactive-color);
     text-transform: capitalize;
     display: flex;
     align-items: center;
 
 }
 
-.opportVisibility>i {
+.opportVisibility > i {
     margin-right: 0.5rem;
 }
 
@@ -587,13 +584,13 @@
     user-select: none;
     cursor: grab;
     pointer-events: auto;
-    -webkit-box-direction: normal !important;
+    -webkit-box-direction: normal!important;
     box-sizing: border-box;
-    padding-top: .25rem !important;
-    padding-bottom: .25rem !important;
-    padding-right: .5rem !important;
-    padding-left: .5rem !important;
-    margin-right: .5rem !important;
+    padding-top: .25rem!important;
+    padding-bottom: .25rem!important;
+    padding-right: .5rem!important;
+    padding-left: .5rem!important;
+    margin-right: .5rem!important;
     border-radius: 5px;
     background-color: rgb(49, 167, 116);
     font-size: 16px;
@@ -605,13 +602,13 @@
     font-size: 1rem;
     letter-spacing: 0.4px;
     font-weight: normal;
-    color: #595959;
+    color: var(--text-inactive-color);
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
 }
 
-.opportRemaining>i {
+.opportRemaining > i {
     margin-right: 0.5rem;
 }
 
@@ -619,7 +616,7 @@
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
     letter-spacing: 0.5px;
-    color: #232324;
+    color: var(--text-main-color);
 }
 
 .collapseWrapper {
@@ -639,7 +636,7 @@
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #232324;
+    color: var(--text-main-color);
     font-size: 42px;
     font-weight: 700;
     margin-top: 3rem;
@@ -660,7 +657,7 @@
     margin: 0;
     overflow: visible;
     display: inline-block;
-    color: #161c2d;
+    color: var(--text-inactive-color);
     vertical-align: middle;
     user-select: none;
     border: 1px solid transparent;

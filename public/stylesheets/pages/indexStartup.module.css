@@ -478,7 +478,7 @@
 }
 
 .section3Title {
-    color:  var(--perfect-black-color);
+    color: var(--perfect-black-color);
     box-sizing: border-box;
     margin-top: 0;
     letter-spacing: -.01em;
@@ -529,6 +529,8 @@
     cursor: pointer;
     box-shadow: 0 .5rem 1.5rem rgba(22,28,45,.1);
     margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .dot .dotContent {
