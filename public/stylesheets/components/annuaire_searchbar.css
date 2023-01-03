@@ -1,5 +1,5 @@
 .annuaire__searchbar {
-    background-color: #ffffff;
+    background-color: var(--background-sub-color);
     border-radius: 15px;
     box-shadow: 0 4px 10px 0 rgb(0 0 0 / 7%);
     padding: 1rem;
@@ -82,11 +82,11 @@
     border-radius: 9999px;
     top: 0;
     right: 0;
-    background-color: rgb(var(--main-color));
+    background-color: var(--logo-blue-color);
 }
 
 .annuaire__searchbar-trigger>i {
-    color: white;
+    color: var(--perfect-white-color)
 }
 
 .annuaire__searchbar-multiselect-wrapper {
@@ -124,7 +124,7 @@
     align-items: center;
     justify-content: space-between;
     padding: .5rem 1rem;
-    background-color: white;
+    background-color: var(--background-sub-color);
     border-radius: 9999px 0 0 9999px;
 }
 
@@ -177,7 +177,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: white;
+    background-color: var(--background-sub-color);
     width: max-content;
     padding: 20px;
     padding-top: 40px;
@@ -185,7 +185,6 @@
     border-top: 0;
     width: 100%;
     display: none;
-    background: #fff;
     border-radius: 15px;
     box-shadow: 0 4px 10px 0 rgb(0 0 0 / 11%);
     z-index: 1;

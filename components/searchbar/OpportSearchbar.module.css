@@ -3,7 +3,7 @@
     font-weight: 400;
     line-height: 1.5;
     text-align: left;
-    color: #12263f;
+    color: var(--text-main-color);
     font-family: "Open Sans", sans-serif;
     box-sizing: border-box;
     border: none;
@@ -14,7 +14,7 @@
     width: 100%;
     margin-right: auto;
     margin-left: auto;
-    background-color: #fff !important;
+    background-color: var(--background-main-color) !important;
     box-shadow: 0 0.5rem 1rem rgba(18, 38, 63, 0.15) !important;
     padding: 0.75rem !important;
     border-radius: 15px;

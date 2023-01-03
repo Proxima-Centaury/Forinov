@@ -35,7 +35,7 @@ const Select = ({ type, version, options, action, defaultValue, source }: Select
             </button>
             <p>{ (defaultSelectedAsObject) ? defaultSelectedAsObject.text : defaultSelected.text }</p>
             <div className={ SelectStyles.options }>
-                { (options.length > 0) ? options.map((option: any) => {
+                { (options.length > 0) ? options.map((option: any,index: any) => {
                     const optionAsObject: SelectOption = option;
                     const optionProps = {
                         type,
@@ -45,9 +45,9 @@ const Select = ({ type, version, options, action, defaultValue, source }: Select
                         action: action,
                         selected: optionAsObject.value === defaultValue,
                         defaultValue,
-                        source
+                        source,
                     };
-                    return <Option { ...optionProps }/>;
+                    return <Option { ...optionProps } key={index + '-optionSelect'} />;
                 }) : null }
             </div>
         </div>;

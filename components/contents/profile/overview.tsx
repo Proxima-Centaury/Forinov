@@ -31,19 +31,19 @@ const ProfileOverview = ({ type, profile, states }: any) => {
             </div> : null }
             { (profile.WEBSITE) ? <div className={ OverviewStyles.website }>
                 <i className="fa-solid fa-thumbtack"/>
-                <a href={ "https://" + profile.WEBSITE } target="_blank">{ translations["Site internet"] }</a>
+                <a href={ "https://" + profile.WEBSITE } target="_blank" rel="noreferrer">{ translations["Site internet"] }</a>
             </div> : null }
             <div className={ OverviewStyles.networks }>
-                { (profile.FACEBOOK) ? <a href={ profile.FACEBOOK } target="_blank">
+                { (profile.FACEBOOK) ? <a href={ profile.FACEBOOK } target="_blank" rel="noreferrer">
                     <i className="fa-brands fa-facebook-f"/>
                 </a> : null }
-                { (profile.TWITTER) ? <a href={ profile.TWITTER } target="_blank">
+                { (profile.TWITTER) ? <a href={ profile.TWITTER } target="_blank" rel="noreferrer">
                     <i className="fa-brands fa-twitter"/>
                 </a> : null }
-                { (profile.LINKEDIN) ? <a href={ profile.LINKEDIN } target="_blank">
+                { (profile.LINKEDIN) ? <a href={ profile.LINKEDIN } target="_blank" rel="noreferrer">
                     <i className="fa-brands fa-linkedin"/>
                 </a> : null }
-                { (profile.CRUNCHBASE) ? <a href={ profile.CRUNCHBASE } target="_blank">cb</a> : null }
+                { (profile.CRUNCHBASE) ? <a href={ profile.CRUNCHBASE } target="_blank" rel="noreferrer">cb</a> : null }
             </div>
         </div>
     </div>;

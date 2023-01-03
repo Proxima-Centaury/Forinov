@@ -6,32 +6,32 @@ import { useState, useRef } from "react";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Directory */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Directory = ({ data, filters }) => {
-    const nbPerCategory = {};
+const Directory = ({ data, filters } : any) => {
+    const nbPerCategory = {} as any;
 
     const icon = useRef(null);
 
-    const [selectedCategories, setSelectedCategories] = useState([]);
-    const [selectedCategoriesLength, setSelectedCategoriesLength] = useState(0);
-    const [isSelected, setIsSelected] = useState(false);
-    const [currentInput, setCurrentInput] = useState("");
-    const [moreFiltersClicked, setMoreFiltersClicked] = useState(false);
+    const [selectedCategories, setSelectedCategories] = useState<any>([]);
+    const [selectedCategoriesLength, setSelectedCategoriesLength] = useState<any>(0);
+    const [isSelected, setIsSelected] = useState<any>(false);
+    const [currentInput, setCurrentInput] = useState<any>("");
+    const [moreFiltersClicked, setMoreFiltersClicked] = useState<any>(false);
 
     //Nécessaire sinon bug connu avec le useState
-    var tempCards = [];
+    var tempCards = [] as any;
 
     //On garde uniquement les catégories du call API
     const categories = filters[0]["CATEGORY"];
 
-    let catArray = [];
-    const catCards = [];
+    let catArray = [] as any;
+    const catCards = [] as any;
 
     for (let catIndex in categories) {
     catArray.push(categories[catIndex]);
     }
 
     //On boucle sur les catégories pour construire les cards de catégories (affichée lorsqu'aucune catégorie n'est sélectionnée)
-    catArray.forEach((category) => {
+    catArray.forEach((category: any) => {
     nbPerCategory[category.NAME] = category.NB;
     catCards.push(
         <div
@@ -78,7 +78,7 @@ const Directory = ({ data, filters }) => {
         //Si l'input n'est pas vide
         if (input.length > 2) {
         //On boucle sur les startups en regardant si les catégories correspondent ou si l'input correspond avec le nom OU la catégorie
-        data.filter((item) => {
+        data.filter((item: any) => {
             if (
             item.categorie_id.toString() === categorie.toString() &&
             item.name.toLowerCase().includes(input.toLowerCase())
@@ -90,7 +90,7 @@ const Directory = ({ data, filters }) => {
         //Sinon si l'input est vide
         else {
         //On boucle sur les startups en regardant si les catégories correspondent
-        data.filter((item) => {
+        data.filter((item: any) => {
             if (item.categorie_id.toString() === categorie.toString()) {
             tempCards.push(item);
             }
@@ -100,7 +100,7 @@ const Directory = ({ data, filters }) => {
     //Si aucune catégorie n'est sélectionnée mais que l'input n'est pas vide
     else {
         //On boucle sur les startups en regardant si l'input correspond avec le nom OU la catégorie
-        data.map((item) => {
+        data.map((item:any) => {
         if (
             item.name.toLowerCase().includes(input.toLowerCase()) ||
             item.categorie.toLowerCase().includes(input.toLowerCase())
@@ -114,13 +114,15 @@ const Directory = ({ data, filters }) => {
     };
 
     //Fonction utilisé pour les click sur les catégories (dropdown ou cartes de catégories)
-    const categorieClickHandler = (categorie) => {
-    let element = document.getElementById(categorie);
+    const categorieClickHandler = (categorie:any) => {
+        let element = document.getElementById(categorie) as HTMLElement;
+        let elementChildren = element.children[0] as HTMLElement;
+        let elementChildren2 = element.children[1] as HTMLElement;
 
     if (selectedCategories.includes(categorie)) {
         if (element) {
-        element.children[0].style.color = "#232324";
-        element.children[2].style.display = "none";
+        elementChildren.style.color = "#232324";
+        elementChildren2.style.display = "none";
         for (let i = 0; i < selectedCategories.length; i++) {
             if (selectedCategories[i] === categorie) {
             selectedCategories.splice(i, 1);
@@ -129,8 +131,8 @@ const Directory = ({ data, filters }) => {
         }
     } else {
         if (element) {
-        element.children[0].style.color = "#006dff";
-        element.children[2].style.display = "block";
+            elementChildren.style.color = "#006dff";
+            elementChildren2.style.display = "block";
         }
         selectedCategories.push(categorie);
     }
@@ -139,7 +141,7 @@ const Directory = ({ data, filters }) => {
     if (selectedCategories.length > 0) {
         setIsSelected(true);
         setSelectedCategoriesLength(selectedCategories.length);
-        selectedCategories.forEach((categorie) => {
+        selectedCategories.forEach((categorie: any) => {
         setCards(categorie);
         console.log(startupCards);
         });
@@ -147,7 +149,7 @@ const Directory = ({ data, filters }) => {
         if (currentInput.length > 0) {
         setIsSelected(true);
         setSelectedCategoriesLength(selectedCategories.length);
-        selectedCategories.forEach((categorie) => {
+        selectedCategories.forEach((categorie: any) => {
             setCards(categorie, currentInput);
         });
         }
@@ -165,10 +167,10 @@ const Directory = ({ data, filters }) => {
     };
 
     //Fonction qui permet à chaque changement de l'input de set les cards avec l'input
-    const handleSearch = (input) => {
+    const handleSearch = (input: any) => {
     setCurrentInput(input);
     if (selectedCategories.length > 0 && input.length > 2) {
-        selectedCategories.forEach((categorie) => {
+        selectedCategories.forEach((categorie: any) => {
         setCards(categorie, input);
         });
     } else {
@@ -232,21 +234,24 @@ const Directory = ({ data, filters }) => {
         <div className="annuaire__searchbar-multiselect-wrapper">
             <div className="annuaire__searchbar-principal-filters">
             <button
-                onClick={(e) => {
-                let element;
+                onClick={(e: React.MouseEvent) => {
+                            let element: any;
+                            let target = e.target as HTMLElement;
                 let list = document.querySelector(
                     ".annuaire__searchbar-select-list"
-                );
+                ) as HTMLElement;
                 e.preventDefault();
-                e.target.tagName.toLowerCase() === "button"
-                    ? (element = e.target)
-                    : e.target.parentElement.tagName.toLowerCase() === "p"
-                    ? (element = e.target.parentElement.parentElement)
-                    : (element = e.target.parentElement);
-                list.style.display === "none"
-                    ? (list.style.display = "block")
-                    : (list.style.display = "none");
-                element.children[1].classList.toggle("fa-caret-up");
+                            if (target && target.parentElement && list) {
+                                target.tagName.toLowerCase() === "button"
+                                ? (element = e.target)
+                                : target.parentElement.tagName.toLowerCase() === "p"
+                                ? (element = target.parentElement.parentElement)
+                                : (element = target.parentElement);
+                            list.style.display === "none"
+                                ? (list.style.display = "block")
+                                : (list.style.display = "none");
+                            element.children[1].classList.toggle("fa-caret-up");
+                }
                 }}
                 className="annuaire__searchbar-select"
             >
@@ -264,7 +269,7 @@ const Directory = ({ data, filters }) => {
                 className="annuaire__searchbar-select-list"
                 style={{ display: "none" }}
             >
-                {catArray.map((categorie) => {
+                {catArray.map((categorie: any) => {
                 return (
                     <button
                     className="annuaire__searchbar-select-list-item"
@@ -314,16 +319,13 @@ const Directory = ({ data, filters }) => {
         <p
             className="annuaire__searchbar-more"
             id="moreFilters"
-            onClick={() => {
-            if (moreFiltersClicked) {
-                document.querySelector(
-                ".annuaire__searchbar-additional-select"
-                ).style.display = "none";
+                onClick={() => {
+                let element: HTMLElement | null = document.querySelector(".annuaire__searchbar-additional-select")
+            if (moreFiltersClicked && element) {
+                element.style.display = "none";
                 setMoreFiltersClicked(false);
-            } else {
-                document.querySelector(
-                ".annuaire__searchbar-additional-select"
-                ).style.display = "flex";
+            } else if (element) {
+                element.style.display = "flex";
                 setMoreFiltersClicked(true);
             }
             }}
@@ -335,7 +337,7 @@ const Directory = ({ data, filters }) => {
         <div className="annuaire__categories">{catCards}</div>
         ) : startupCards.length > 0 ? (
         <div className="annuaire__cards">
-            {startupCards.map((item) => {
+            {startupCards.map((item: any) => {
             return (
                 <Link
                 className="annuaire__card lift"
@@ -389,7 +391,7 @@ const Directory = ({ data, filters }) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Props */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   const { locale, locales, defaultLocale }: any = context;
   // Appel API des données de startups
   const res = await fetch(
