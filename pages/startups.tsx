@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { HomeInterface, ButtonInterface } from "../typescript/interfaces";
 import { buildProperties } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -24,8 +24,8 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startups Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const StartupsHome = ({ opportunities, companies, locales, states, stateSetters, config}: HomeInterface) => {
-	console.log(companies)
+const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, config}: HomeInterface) => {
+	console.log(logos)
 	const { translations }: any = states;
 	const buttonProps = [ "type", "action", "text" ];
 	const discoverOpportunitiesButtonValues = [ ButtonStyles.callToAction, () => false, translations["Découvrir toutes les opportunités"] ];
@@ -66,11 +66,10 @@ const StartupsHome = ({ opportunities, companies, locales, states, stateSetters,
 			</div>
 			<div className={ HomeStyles.companies }>
 				<h2>{ translations["Ces entreprises et partenaires utilisent Forinov pour leurs relations startups"] }</h2>
-				<div className={ HomeStyles.logos }>
-					{/* -------------------------------------------------------------------------------------------------------- */}
-					{/* ADD COMPANIES HERE */}
-					{/* -------------------------------------------------------------------------------------------------------- */}
-				</div>
+				<Carousel { ...parentProps } component={ "CompaniesLogos" } data={ logos }/>
+				<h2>{ translations["Créer mon compte startup gratuitement"] }</h2>
+				<h3>{ translations["Et rejoindre une communauté grandissante rassemblant tous les acteurs de l'innovation"].toLowerCase() }</h3>
+				<Link href="/register" className={ ButtonStyles.callToAction }>{ translations["Rejoindre la communauté"] }</Link>
 			</div>
 			<div className={ HomeStyles.questions }>
 				<h2>{ translations["Les réponses à vos questions"] }</h2>
@@ -89,14 +88,14 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	const landingOpportunitiesPromise = await fetch(endpoint + "?q=" + queries.getLandingOpportunities + "&app=next&authkey=Landing");
     const landingOpportunitiesResponse = await landingOpportunitiesPromise.json();
     const formattedLandingOpportunitiesResponse = Object.values(landingOpportunitiesResponse[0].PROJECT);
-	const companiesPromise = await fetch(endpoint + "?q=" + queries.getLandingCompanies + "&authkey=Landing");
-    const companiesResponse = await companiesPromise.json();
-    const formattedCompaniesResponse = Object.values(companiesResponse[0].LOGOS);
+	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=startup&authkey=Landing");
+    const logosResponse = await logosPromise.json();
+    const formattedCompaniesResponse = Object.values(logosResponse[0].LOGOS);
 	return {
 		props: {
 			locale, locales, defaultLocale,
 			opportunities: formattedLandingOpportunitiesResponse,
-			companies: formattedCompaniesResponse,
+			logos: formattedCompaniesResponse,
 		},
 	};
 };

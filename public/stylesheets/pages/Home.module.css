@@ -118,6 +118,7 @@
 	margin: 8px auto 40px auto;
 	font-size: 21px;
 	font-weight: normal;
+	text-align: center;
 }
 .opportunity[data-type="startup"] > div > div[data-carousel="startup"] {
 	position: relative;
@@ -167,33 +168,18 @@
 	font-weight: bold;
 	text-align: center;
 }
-.companies > .logos {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	margin: 32px 0px 140px 0px;
-	padding: 0px 0px 0px 16px;
+.companies > div {
+	margin: 30px auto 132px auto;
 }
-.companies > .logos > .company {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-    width: max-content;
-    height: 50px;
-	padding: 8px;
-	background-color: var(--background-sub-color);
-	border-radius: 100px;
-	box-shadow: var(--box-shadow);
+.companies > h3 {
+	margin: 8px auto 40px auto;
+	font-size: 21px;
+	font-weight: normal;
+	text-align: center;
 }
-.companies > .logos > .company {
-	margin: 8px 16px 0px 0px;
-}
-.companies > .logos > .company > img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+.companies > a {
+	width: fit-content;
+	margin: 0px auto;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Questions ) */

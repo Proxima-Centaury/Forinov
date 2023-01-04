@@ -7,6 +7,8 @@ import { buildProperties } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
+import Image from "next/image";
 import Button from "../../components/buttons/button";
 import OpportunityCard from "../cards/opportunity";
 import AccordionItem from "../../components/accordion/AccordionItem";
@@ -41,7 +43,9 @@ const Carousel = ({ states, component, data }: any) => {
         case "HowToApplyToAnOpportunity":
             return <HowToApplyToAnOpportunity { ...parentProps } handler={ handleCarousel }/>;
         case "TheLatestOpportunities":
-            return <TheLatestOpportunities { ...parentProps } handler={ handleCarousel }/>
+            return <TheLatestOpportunities { ...parentProps } handler={ handleCarousel }/>;
+        case "CompaniesLogos":
+            return <CompaniesLogos { ...parentProps } handler={ handleCarousel }/>
         case "AnswersToYourQuestions":
             return <AnswersToYourQuestions { ...parentProps } handler={ handleCarousel }/>;
         default :
@@ -119,6 +123,35 @@ const TheLatestOpportunities = ({ states, data }: any) => {
             }) }
         </div>
     </>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Landing ( Companies Logos ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const CompaniesLogos = ({ data }: any) => {
+    return <div className={ CarouselStyles.infinite }>
+        <div className={ CarouselStyles.firstCopy }>
+            { data.map(({ id, type, name, logo }: any, key: KeyType) => {
+                if(parseInt(key) < 14) {
+                    const formattedName = (name: String) => name.toLowerCase().replaceAll(/\s+/g, "").trim();
+                    const url = "/annuaires/" + type.toLowerCase() + "s/" + formattedName(name) + "_" + id;
+                    return <Link key={ key } href={ url } className={ CarouselStyles.logo }>
+                        <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
+                    </Link>;
+                };
+            }) }
+        </div>
+        <div className={ CarouselStyles.secondCopy }>
+            { data.map(({ id, type, name, logo }: any, key: KeyType) => {
+                if(parseInt(key) < 14) {
+                    const formattedName = (name: String) => name.toLowerCase().replaceAll(/\s+/g, "").trim();
+                    const url = "/annuaires/" + type.toLowerCase() + "s/" + formattedName(name) + "_" + id;
+                    return <Link key={ key } href={ url } className={ CarouselStyles.logo }>
+                        <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
+                    </Link>;
+                };
+            }) }
+        </div>
+    </div>
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( Answers To Your Questions ) */
