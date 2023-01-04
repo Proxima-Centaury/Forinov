@@ -9,6 +9,9 @@
 	border-radius: 0px 0px 100px 0px;
 	background-color: var(--background-information-color);
 }
+.presentation[data-type="startup"] {
+	background-color: var(--lightred-color);
+}
 .presentation::before {
 	content: "";
 	width: 100%;
@@ -30,10 +33,16 @@
 	font-size: 65px;
 	font-weight: bold;
 }
+.presentation[data-type="startup"] > div > h1 {
+	color: var(--logo-orange-color);
+}
 .presentation > div > p {
 	margin: 0px 0px 32px 0px;
 	font-family: "Nunito Sans";
 	font-size: 24px;
+}
+.presentation[data-type="startup"] > div > p {
+	color: var(--logo-orange-color);
 }
 .presentation > div > a {
 	width: fit-content;
@@ -47,8 +56,16 @@
 	background-color: var(--background-sub-color);
 	transition: color 0.3s ease, background-color 0.3s ease;
 }
+.presentation[data-type="startup"] > div > a {
+	color: var(--perfect-white-color);
+	border-color: var(--logo-blue-color);
+	background-color: var(--logo-blue-color);
+}
 .presentation > div > a:hover {
 	background-color: transparent;
+}
+.presentation[data-type="startup"] > div > a:hover {
+	color: var(--perfect-black-color);
 }
 .presentation > img {
 	width: 500px;
@@ -65,6 +82,9 @@
 .opportunity {
 	background-color: var(--background-information-color);
 }
+.opportunity[data-type="startup"] {
+	background-color: var(--lightred-color);
+}
 .opportunity > div {
 	display: flex;
 	flex-direction: column;
@@ -74,12 +94,18 @@
 	border-radius: 100px 0px 0px 0px;
 	background-color: var(--background-main-color);
 }
+.opportunity[data-type="startup"] > div {
+	border-radius: 100px 0px 0px 100px;
+}
 .opportunity > div > h2 {
 	margin: 0px auto;
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
+}
+.opportunity[data-type="startup"] > div > h2 {
+	font-weight: 300;
 }
 .opportunity > div > h3 {
 	margin: 32px auto;
@@ -88,25 +114,32 @@
 	font-weight: 300;
 	text-align: center;
 }
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Steps ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.steps {
-	display: flex;
-	align-items: center;
-	margin: 16px 0px;
+.opportunity[data-type="startup"] > div > h3 {
+	margin: 8px auto 40px auto;
+	font-size: 21px;
+	font-weight: normal;
 }
-.steps > * + * {
-	margin: 0px 0px 0px 8px;
+.opportunity[data-type="startup"] > div > div[data-carousel="startup"] {
+	position: relative;
+}
+.opportunity > div > h4 {
+	margin: 96px auto 40px auto;
+	font-family: "Nunito Sans";
+	font-size: 42px;
+	font-weight: bold;
+	text-align: center;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Steps ) */
+/* Home ( Actions ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .actions {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin: 16px auto 170px auto;
+}
+.actions[data-align="left"] {
+	margin: 40px auto auto 0px;
 }
 .actions > * + * {
 	margin: 0px 0px 0px 16px;
@@ -123,6 +156,18 @@
 /* Home ( Companies ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .companies {
+	width: 100%;
+	height: max-content;
+	padding: 80px;
+}
+.companies > h2 {
+	margin: 0px auto;
+	font-family: "Nunito Sans";
+	font-size: 48px;
+	font-weight: bold;
+	text-align: center;
+}
+.companies > .logos {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -131,7 +176,7 @@
 	margin: 32px 0px 140px 0px;
 	padding: 0px 0px 0px 16px;
 }
-.companies > .company {
+.companies > .logos > .company {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -142,10 +187,10 @@
 	border-radius: 100px;
 	box-shadow: var(--box-shadow);
 }
-.companies > .company {
+.companies > .logos > .company {
 	margin: 8px 16px 0px 0px;
 }
-.companies > .company > img {
+.companies > .logos > .company > img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -170,4 +215,28 @@
 }
 .questions > .actions {
 	margin: 16px auto;
+}
+.questions > p {
+	margin: 0px auto;
+}
+.questions > p > a {
+	text-decoration: underline;
+	transition: color 0.3s ease;
+}
+.questions > p > a:hover {
+	color: var(--logo-blue-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges Container ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges {
+	display: flex;
+	width: 100%;
+	height: max-content;
+	padding: 80px;
+	background-color: var(--background-information-color);
+}
+.badges[data-type="startup"] {
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--lightred-color);
 }

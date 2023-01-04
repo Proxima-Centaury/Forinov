@@ -45,3 +45,23 @@ This [README.md](/README.md) contains a list of API calls as well as their use c
 > Response :
 > - This brings you informations about a profile's startup folders list according to the passed parameters.
 > ```
+
+<u>Landing opportunities :</u> ( **LANDING_OPPORTUNITES** )
+
+> ```markdown
+> Parameters :
+> - app : next ( optional )
+> - authkey : Landing
+> Response :
+> - This brings you the latest opportunities.
+> ```
+
+<u>Landing logos :</u> ( **LANDING_LOGOS** )
+
+> ```markdown
+> Parameters :
+> - type : startup / entreprise / partenaire / opportunité
+> - authkey : Landing
+> Response :
+> - This brings you logos of various companies that are registered in Forinov.
+> ```
