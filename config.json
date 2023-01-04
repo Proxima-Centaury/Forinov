@@ -7,7 +7,7 @@
             "getActivity": "V5_GET_ACTIVITY_FEED_ITEMS",
             "getFolders": "V5_GET_FOLDERS",
             "getLandingOpportunities": "LANDING_OPPORTUNITES",
-            "getLandingCompanies": "LANDING_LOGOS"
+            "getLandingLogos": "LANDING_LOGOS"
         }
     },
     "locales": { "fr-FR": "FR", "en-US": "EN" },

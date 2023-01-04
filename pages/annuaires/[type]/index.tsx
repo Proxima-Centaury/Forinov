@@ -6,139 +6,111 @@ import { useState, useRef } from "react";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Directory */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Directory = ({ data, filters } : any) => {
-    const nbPerCategory = {} as any;
-
+const Directory = ({ data, filters }: any) => {
+    const nbPerCategory: any = {};
     const icon = useRef(null);
-
-    const [selectedCategories, setSelectedCategories] = useState<any>([]);
-    const [selectedCategoriesLength, setSelectedCategoriesLength] = useState<any>(0);
-    const [isSelected, setIsSelected] = useState<any>(false);
-    const [currentInput, setCurrentInput] = useState<any>("");
-    const [moreFiltersClicked, setMoreFiltersClicked] = useState<any>(false);
-
+    const [ selectedCategories, setSelectedCategories ] = useState([]);
+    const [ selectedCategoriesLength, setSelectedCategoriesLength ] = useState(0);
+    const [ isSelected, setIsSelected ] = useState(false);
+    const [ currentInput, setCurrentInput ] = useState("");
+    const [ moreFiltersClicked, setMoreFiltersClicked ] = useState(false);
+    const [ startupCards, setStartupCards ] = useState([]);
     //Nécessaire sinon bug connu avec le useState
-    var tempCards = [] as any;
-
+    var tempCards: Array<any> = [];
     //On garde uniquement les catégories du call API
     const categories = filters[0]["CATEGORY"];
-
-    let catArray = [] as any;
-    const catCards = [] as any;
-
-    for (let catIndex in categories) {
-    catArray.push(categories[catIndex]);
-    }
-
+    let catArray: Array<any> = [];
+    const catCards: Array<any> = [];
+    for(let catIndex in categories) {
+        catArray.push(categories[catIndex]);
+    };
     //On boucle sur les catégories pour construire les cards de catégories (affichée lorsqu'aucune catégorie n'est sélectionnée)
-    catArray.forEach((category: any) => {
-    nbPerCategory[category.NAME] = category.NB;
-    catCards.push(
-        <div
-        className="annuaire__category lift"
-        key={category.ID}
-        onClick={() => {
-            categorieClickHandler(category.ID);
-        }}
-        >
-        <img
-            src={category.LOGO}
-            alt={category.ID}
-            className="annuaire__category-logo"
-        />
-        <div className="annuaire__category-count">{category.NB}</div>
-        <h1 className="annuaire__category-title">{category.NAME}</h1>
-        <div className="annuaire__category-tags">
-            {category.SSCAT[0] ? (
-            <div className="annuaire__category-tag">
-                {category.SSCAT[0].NAME}
+    catArray.forEach((category, key) => {
+        nbPerCategory[category.NAME] = category.NB;
+        catCards.push(<div className="annuaire__category lift" key={ key } onClick={ () => categorieClickHandler(category.ID) }>
+            <img src={ category.LOGO } alt={ category.ID } className="annuaire__category-logo"/>
+            <div className="annuaire__category-count">{ category.NB }</div>
+            <h1 className="annuaire__category-title">{ category.NAME }</h1>
+            <div className="annuaire__category-tags">
+                { (category.SSCAT[0]) ? <div className="annuaire__category-tag">
+                    { category.SSCAT[0].NAME }
+                </div> : null }
+                { (category.SSCAT[1]) ? <div className="annuaire__category-tag">
+                    { category.SSCAT[1].NAME }
+                </div> : null}
+                { (category.SSCAT[2]) ? <div className="annuaire__category-tag">
+                    { category.SSCAT[2].NAME }
+                </div> : null}
             </div>
-            ) : null}
-            {category.SSCAT[1] ? (
-            <div className="annuaire__category-tag">
-                {category.SSCAT[1].NAME}
-            </div>
-            ) : null}
-            {category.SSCAT[2] ? (
-            <div className="annuaire__category-tag">
-                {category.SSCAT[2].NAME}
-            </div>
-            ) : null}
-        </div>
-        </div>
-    );
+        </div>);
     });
-
-    const [startupCards, setStartupCards] = useState([]);
-
     //Fonction qui permet de remplir le tableau de cards de startups
     const setCards = (categorie = [], input = "") => {
-    //Si au moins une catégorie est sélectionnée
-    if (categorie.length > 0) {
-        //Si l'input n'est pas vide
-        if (input.length > 2) {
-        //On boucle sur les startups en regardant si les catégories correspondent ou si l'input correspond avec le nom OU la catégorie
-        data.filter((item: any) => {
+        //Si au moins une catégorie est sélectionnée
+        if(categorie.length > 0) {
+            //Si l'input n'est pas vide
+            if (input.length > 2) {
+            //On boucle sur les startups en regardant si les catégories correspondent ou si l'input correspond avec le nom OU la catégorie
+            data.filter((item: any) => {
+                if (
+                item.categorie_id.toString() === categorie.toString() &&
+                item.name.toLowerCase().includes(input.toLowerCase())
+                ) {
+                tempCards.push(item);
+                }
+            });
+            }
+            //Sinon si l'input est vide
+            else {
+            //On boucle sur les startups en regardant si les catégories correspondent
+            data.filter((item: any) => {
+                if (item.categorie_id.toString() === categorie.toString()) {
+                tempCards.push(item);
+                }
+            });
+            }
+        } else {
+            //Si aucune catégorie n'est sélectionnée mais que l'input n'est pas vide
+            //On boucle sur les startups en regardant si l'input correspond avec le nom OU la catégorie
+            data.map((item: any) => {
             if (
-            item.categorie_id.toString() === categorie.toString() &&
-            item.name.toLowerCase().includes(input.toLowerCase())
+                item.name.toLowerCase().includes(input.toLowerCase()) ||
+                item.categorie.toLowerCase().includes(input.toLowerCase())
             ) {
-            tempCards.push(item);
+                tempCards.push(item);
             }
-        });
-        }
-        //Sinon si l'input est vide
-        else {
-        //On boucle sur les startups en regardant si les catégories correspondent
-        data.filter((item: any) => {
-            if (item.categorie_id.toString() === categorie.toString()) {
-            tempCards.push(item);
-            }
-        });
-        }
-    }
-    //Si aucune catégorie n'est sélectionnée mais que l'input n'est pas vide
-    else {
-        //On boucle sur les startups en regardant si l'input correspond avec le nom OU la catégorie
-        data.map((item:any) => {
-        if (
-            item.name.toLowerCase().includes(input.toLowerCase()) ||
-            item.categorie.toLowerCase().includes(input.toLowerCase())
-        ) {
-            tempCards.push(item);
-        }
-        });
-    }
-    //On set la variable avec le tableau temporaires de cards
-    setStartupCards(tempCards);
+            });
+        };
+        //On set la variable avec le tableau temporaires de cards
+        setStartupCards(tempCards as never);
     };
-
     //Fonction utilisé pour les click sur les catégories (dropdown ou cartes de catégories)
-    const categorieClickHandler = (categorie:any) => {
-        let element = document.getElementById(categorie) as HTMLElement;
-        let elementChildren = element.children[0] as HTMLElement;
-        let elementChildren2 = element.children[1] as HTMLElement;
-
-    if (selectedCategories.includes(categorie)) {
-        if (element) {
-        elementChildren.style.color = "#232324";
-        elementChildren2.style.display = "none";
-        for (let i = 0; i < selectedCategories.length; i++) {
-            if (selectedCategories[i] === categorie) {
-            selectedCategories.splice(i, 1);
+    const categorieClickHandler = (categorie: any) => {
+        let element = document.getElementById(categorie);
+        if(selectedCategories.includes(categorie as never)) {
+            if(element) {
+                const children1 = element.children[0] as HTMLElement;
+                children1.style.color = "#232324";
+                const children2 = element.children[2] as HTMLElement;
+                children2.style.display = "none";
+                for (let i = 0; i < selectedCategories.length; i++) {
+                    if (selectedCategories[i] === categorie) {
+                    selectedCategories.splice(i, 1);
+                    }
+                }
+            };
+        } else {
+            if (element) {
+                const children1 = element.children[0] as HTMLElement;
+                children1.style.color = "#006dff";
+                const children2 = element.children[2] as HTMLElement;
+                children2.style.display = "block";
             }
+            selectedCategories.push(categorie as never);
         }
-        }
-    } else {
-        if (element) {
-            elementChildren.style.color = "#006dff";
-            elementChildren2.style.display = "block";
-        }
-        selectedCategories.push(categorie);
-    }
 
     //Si plus au moins une catégorie est sélectionnée : on set les cards avec les catégories sélectionnées
-    if (selectedCategories.length > 0) {
+    if(selectedCategories.length > 0) {
         setIsSelected(true);
         setSelectedCategoriesLength(selectedCategories.length);
         selectedCategories.forEach((categorie: any) => {
@@ -233,25 +205,17 @@ const Directory = ({ data, filters } : any) => {
         {/* Multiselect */}
         <div className="annuaire__searchbar-multiselect-wrapper">
             <div className="annuaire__searchbar-principal-filters">
-            <button
-                onClick={(e: React.MouseEvent) => {
-                            let element: any;
-                            let target = e.target as HTMLElement;
-                let list = document.querySelector(
-                    ".annuaire__searchbar-select-list"
-                ) as HTMLElement;
+            <button onClick={ (e) => {
+                let element;
+                let list = document.querySelector(".annuaire__searchbar-select-list") as HTMLElement;
                 e.preventDefault();
-                            if (target && target.parentElement && list) {
-                                target.tagName.toLowerCase() === "button"
-                                ? (element = e.target)
-                                : target.parentElement.tagName.toLowerCase() === "p"
-                                ? (element = target.parentElement.parentElement)
-                                : (element = target.parentElement);
-                            list.style.display === "none"
-                                ? (list.style.display = "block")
-                                : (list.style.display = "none");
-                            element.children[1].classList.toggle("fa-caret-up");
-                }
+                const target = e.target as Element;
+                target.tagName.toLowerCase() === "button" ? (element = target)
+                    : target.parentElement?.tagName.toLowerCase() === "p"
+                    ? (element = target.parentElement.parentElement)
+                    : (element = target.parentElement);
+                    (list && list.style.display === "none") ? (list.style.display = "block") : (list.style.display = "none");
+                    element?.children[1].classList.toggle("fa-caret-up");
                 }}
                 className="annuaire__searchbar-select"
             >
@@ -319,12 +283,13 @@ const Directory = ({ data, filters } : any) => {
         <p
             className="annuaire__searchbar-more"
             id="moreFilters"
-                onClick={() => {
-                let element: HTMLElement | null = document.querySelector(".annuaire__searchbar-additional-select")
-            if (moreFiltersClicked && element) {
-                element.style.display = "none";
+            onClick={() => {
+            if (moreFiltersClicked) {
+                const element = document.querySelector(".annuaire__searchbar-additional-select") as HTMLElement;
+                element.style.display = "none"
                 setMoreFiltersClicked(false);
-            } else if (element) {
+            } else {
+                const element = document.querySelector(".annuaire__searchbar-additional-select") as HTMLElement;
                 element.style.display = "flex";
                 setMoreFiltersClicked(true);
             }
