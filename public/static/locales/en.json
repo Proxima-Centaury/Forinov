@@ -467,5 +467,6 @@
 		"Events",
 		"Exclusive offers"
 	],
-	"jour(s) restant(s)": "day(s) left"
+	"jour(s) restant(s)": "day(s) left",
+	"Une erreur serveur est survenue": "A server error has occurred"
 }
