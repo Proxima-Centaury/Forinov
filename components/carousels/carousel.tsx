@@ -11,7 +11,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "../../components/buttons/button";
 import OpportunityCard from "../cards/opportunity";
-import AccordionItem from "../../components/accordion/AccordionItem";
+import AccordionItem from "../accordion/accordion";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
