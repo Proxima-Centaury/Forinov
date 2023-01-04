@@ -11,7 +11,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "../../components/buttons/button";
 import OpportunityCard from "../cards/opportunity";
-import AccordionItem from "../accordion/accordion";
+import Accordion from "../accordions/accordion";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -134,7 +134,7 @@ const CompaniesLogos = ({ data }: any) => {
                 if(parseInt(key) < 14) {
                     const formattedName = (name: String) => name.toLowerCase().replaceAll(/\s+/g, "").trim();
                     const url = "/annuaires/" + type.toLowerCase() + "s/" + formattedName(name) + "_" + id;
-                    return <Link key={ key } href={ url } className={ CarouselStyles.logo }>
+                    return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
                         <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
                     </Link>;
                 };
@@ -145,8 +145,8 @@ const CompaniesLogos = ({ data }: any) => {
                 if(parseInt(key) < 14) {
                     const formattedName = (name: String) => name.toLowerCase().replaceAll(/\s+/g, "").trim();
                     const url = "/annuaires/" + type.toLowerCase() + "s/" + formattedName(name) + "_" + id;
-                    return <Link key={ key } href={ url } className={ CarouselStyles.logo }>
-                        <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
+                    return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
+                        <Image src={ logo } alt={ name + " logo." } fill/>
                     </Link>;
                 };
             }) }
@@ -156,7 +156,7 @@ const CompaniesLogos = ({ data }: any) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( Answers To Your Questions ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const AnswersToYourQuestions = ({ states, handler }: any) => {
+const AnswersToYourQuestions = ({ states, handler, data }: any) => {
 	const { translations }: any = states;
 	const questionsButtons = [
 		translations["Général"],
@@ -172,38 +172,9 @@ const AnswersToYourQuestions = ({ states, handler }: any) => {
             }) }
         </div>
         <div className={ CarouselStyles.container } data-carousel="AnswersToYourQuestions">
-            {/* <div className={ CarouselStyles.item }>
-                <div>
-                    {translations["landing_accordion1"].map(
-                        (item: any, index: any): any => {
-                            return (
-                                <AccordionItem
-                                    title={item.title}
-                                    content={item.content}
-                                    identifier={index}
-                                    key={index}
-                                ></AccordionItem>
-                            );
-                        },
-                    )}
-                </div>
-            </div>
-            <div className={ CarouselStyles.item }>
-                <div>
-                    {translations["landing_accordion2"].map(
-                        (item: any, index: any) => {
-                            return (
-                                <AccordionItem
-                                    title={item.title}
-                                    content={item.content}
-                                    identifier={index + translations["landing_accordion1"].length}
-                                    key={index + translations["landing_accordion1"].length + '-accordion2'}
-                                ></AccordionItem>
-                            );
-                        },
-                    )}
-                </div>
-            </div> */}
+            { (data) ? data.map((accordion: any, key: KeyType) => <div key={ key } className={ CarouselStyles.item }>
+                <Accordion data={ accordion } translations={ translations }/>
+            </div>) : null }
         </div>
     </>;
 };

@@ -83,10 +83,11 @@
 .infinite {
 	display: flex;
 	align-items: center;
-	width: calc(15 * 160px);
-	height: calc(80px + (2 * 16px));
+	width: 100%;
+	max-width: calc(15 * 160px);
+	height: calc(80px + (2 * 48px));
 	margin: 0px auto;
-	padding: 16px 0px;
+	padding: 48px 0px;
 	position: relative;
 	overflow-x: hidden;
 }
@@ -111,7 +112,7 @@
 .secondCopy {
 	display: flex;
 	position: absolute;
-	top: 16px;
+	top: 48px;
 	left: 0px;
 }
 .firstCopy {
@@ -149,10 +150,13 @@
 	height: 80px;
     max-height: 80px;
 	margin: 0px 16px 0px 0px;
-	background-color: var(--background-sub-color);
 	border-radius: 100px;
+	background-color: var(--background-sub-color);
 	box-shadow: var(--box-shadow);
-	overflow: hidden;
+}
+.logo > img {
+	object-fit: contain;
+	border-radius: 100px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Item ) */
@@ -179,6 +183,9 @@
 }
 .item > div:last-of-type {
 	margin: 0px 0px 0px 36px;
+}
+.item > div:only-of-type {
+	margin: 0px;
 }
 .container > a[data-card="opportunity"] {
 	min-width: 300px;

@@ -3,7 +3,7 @@ import Head from "next/head";
 import styles from "../public/stylesheets/pages/indexCorpo.module.css";
 import translations from "../translations.json";
 import trustedBy from "../public/static/trustedBy.json";
-import AccordionItem from "../components/accordion/accordion";
+import AccordionItem from "../components/accordions/accordion";
 import Link from "next/link";
 
 export default function indexCorpo({

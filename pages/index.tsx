@@ -62,7 +62,7 @@ const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) =
 			</div>
 			<div className={ HomeStyles.questions }>
 				<h2>{ translations["Les réponses à vos questions"] }</h2>
-				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" }/>
+				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" } data={ Object.values(config.accordions.landings.opportunity) }/>
 				<p>{ translations["Vous avez des questions"] + " ? " }<Link href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
 			</div>
 		</div>
