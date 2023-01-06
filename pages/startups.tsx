@@ -25,7 +25,6 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Startups Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, config}: HomeInterface) => {
-	console.log(logos)
 	const { translations }: any = states;
 	const buttonProps = [ "type", "action", "text" ];
 	const discoverOpportunitiesButtonValues = [ ButtonStyles.callToAction, () => false, translations["Découvrir toutes les opportunités"] ];
@@ -33,6 +32,7 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 	const understandOpportunitiesButtonValues = [ ButtonStyles.callToActionAlternative, () => false, translations["Qu'est-ce qu'une opportunité"] + " ?" ];
 	const understandOpportunitiesButtonObject = buildProperties(buttonProps, understandOpportunitiesButtonValues);
 	const parentProps = { locales, states, stateSetters, config };
+	console.log(opportunities)
 	return <>
 		<Head>
 			<title>Forinov Startups - { translations["Comment ça marche"] + " ?" }</title>

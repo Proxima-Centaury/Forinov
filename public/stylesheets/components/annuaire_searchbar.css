@@ -14,7 +14,7 @@
 .annuaire__searchbar-title,
 .annuaire__searchbar-title>i {
     font-size: 21px;
-    color: #232324;
+    color: var(--text-main-color);
     display: flex;
     align-items: center;
 }

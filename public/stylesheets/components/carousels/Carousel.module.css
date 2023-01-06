@@ -188,7 +188,7 @@
 	margin: 0px;
 }
 .container > a[data-card="opportunity"] {
-	min-width: 300px;
+	min-width: 450px;
 	margin: 0px;
 }
 .container > a[data-card="opportunity"] + a[data-card="opportunity"] {

@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
 import { buildProperties } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -113,6 +113,20 @@ const HowToApplyToAnOpportunity = ({ states }: any) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const TheLatestOpportunities = ({ states, data }: any) => {
 	const { translations }: any = states;
+    const [ transform, setTransform ] = useState(0);
+    const scrollHandler = (event: any) => {
+        event.preventDefault();
+        const target = event.target;
+        const preciseTarget = target.closest("." + CarouselStyles.container);
+        const opportunities = [ ...preciseTarget.children ];
+        (preciseTarget.scrollWidth >= transform) ? (event.deltaY < 0) ? setTransform(transform - 100) : setTransform(transform + 100) : null;
+        opportunities.forEach((opportunity: HTMLElement) => opportunity.style.transform = "translateX(" + transform + "px)");
+    };
+    useEffect(() => {
+        const carousel = document.querySelector("[data-type='startup'] > div > ." + CarouselStyles.container);
+        carousel?.addEventListener("wheel", scrollHandler);
+        return () => carousel?.removeEventListener("wheel", scrollHandler);
+    });
     return <>
         <div className={ CarouselStyles.container }>
             { data.map((opportunity: any, key: KeyType) => {
@@ -146,7 +160,7 @@ const CompaniesLogos = ({ data }: any) => {
                     const formattedName = (name: String) => name.toLowerCase().replaceAll(/\s+/g, "").trim();
                     const url = "/annuaires/" + type.toLowerCase() + "s/" + formattedName(name) + "_" + id;
                     return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
-                        <Image src={ logo } alt={ name + " logo." } fill/>
+                        <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
                     </Link>;
                 };
             }) }
