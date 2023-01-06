@@ -407,6 +407,18 @@ class Utilities {
             return (string) ? string.join(", ") : translations["Moins de 24 heures restantes"];
         };
     };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function formatNameForUrl
+    * @param { String } [ name ] Should be a ```string```.
+    * @returns { String|Boolean }
+    * - ```string```.
+    * - ```false``` if string parameter missing or wrong.
+    * ---
+    * @note This method is used to return the passed string trimed with all letters lowercased and spaces removed.
+    * @note The {@link string} parameter should be a string.
+    */
+    formatNameForUrl = (name: String): String|Boolean => (name) ? name.toLowerCase().replaceAll(/\s+/g, "").trim() : false;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Instance */
@@ -428,6 +440,7 @@ const seeMoreOrLess = utilities.seeMoreOrLess;
 const redirectTo = utilities.redirectTo;
 const uppercaseFirst = utilities.uppercaseFirst;
 const remainingTime = utilities.remainingTime;
+const formatNameForUrl = utilities.formatNameForUrl;
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -445,5 +458,6 @@ export {
     seeMoreOrLess,
     redirectTo,
     uppercaseFirst,
-    remainingTime
+    remainingTime,
+    formatNameForUrl
 };

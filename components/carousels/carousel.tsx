@@ -3,7 +3,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { Fragment, useEffect, useState } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
-import { buildProperties } from "../../scripts/utilities";
+import { buildProperties, formatNameForUrl } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -124,7 +124,6 @@ const TheLatestOpportunities = ({ states, data }: any) => {
         } else {
             (transform < 0) ? setTransform(transform + 100) : null;
         };
-        console.log(transform, event.deltaY, preciseTarget.scrollWidth, preciseTarget.clientWidth);
         opportunities.forEach((opportunity: HTMLElement) => opportunity.style.transform = "translateX(" + transform + "px)");
     };
     useEffect(() => {
@@ -151,8 +150,7 @@ const CompaniesLogos = ({ data }: any) => {
         <div className={ CarouselStyles.firstCopy }>
             { data.map(({ id, type, name, logo }: any, key: KeyType) => {
                 if(parseInt(key) < 14) {
-                    const formattedName = (name: String) => name.toLowerCase().replaceAll(/\s+/g, "").trim();
-                    const url = "/annuaires/" + type.toLowerCase() + "s/" + formattedName(name) + "_" + id;
+                    const url = "/annuaires/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
                     return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
                         <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
                     </Link>;
@@ -162,8 +160,7 @@ const CompaniesLogos = ({ data }: any) => {
         <div className={ CarouselStyles.secondCopy }>
             { data.map(({ id, type, name, logo }: any, key: KeyType) => {
                 if(parseInt(key) < 14) {
-                    const formattedName = (name: String) => name.toLowerCase().replaceAll(/\s+/g, "").trim();
-                    const url = "/annuaires/" + type.toLowerCase() + "s/" + formattedName(name) + "_" + id;
+                    const url = "/annuaires/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
                     return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
                         <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
                     </Link>;

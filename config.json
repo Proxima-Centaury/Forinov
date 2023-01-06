@@ -39,26 +39,26 @@
                     { "url": "", "text": "Startups", "nesting": true, "nest": [
                         { "url": "/startups", "text": "Comment ça marche" },
                         { "url": "/solutions/startups", "text": "Solutions de startups" },
-                        { "url": "/annuaires/startups", "text": "Annuaire de startups" }
+                        { "url": "/directories/startups", "text": "Annuaire de startups" }
                     ] },
                     { "url": "", "text": "Entreprises", "nesting": true, "nest": [
                         { "url": "/corporations", "text": "Comment ça marche" },
-                        { "url": "/corporations/solutions", "text": "Solutions d'entreprises" },
-                        { "url": "/corporations/directory", "text": "Annuaire d'entreprises" }
+                        { "url": "/solutions/corporations", "text": "Solutions d'entreprises" },
+                        { "url": "/directories/corporations", "text": "Annuaire d'entreprises" }
                     ] },
                     { "url": "", "text": "Partenaires", "nesting": true, "nest": [
                         { "url": "/partners", "text": "Comment ça marche" },
-                        { "url": "/partners/solutions", "text": "Solutions de partenaires" },
-                        { "url": "/partners/directory", "text": "Annuaire de partenaires" }
+                        { "url": "/solutions/partners", "text": "Solutions de partenaires" },
+                        { "url": "/directories/partners", "text": "Annuaire de partenaires" }
                     ] },
                     { "url": "", "text": "Opportunités", "nesting": true, "nest": [
-                        { "url": "/", "text": "Comment ça marche" },
-                        { "url": "/", "text": "Toutes les opportunités" },
-                        { "url": "/", "text": "Appels à candidatures" },
-                        { "url": "/", "text": "Programmes d'accompagnement" },
-                        { "url": "/", "text": "Challenges et concours" },
-                        { "url": "/", "text": "Évènements" },
-                        { "url": "/", "text": "Offres exclusives" }
+                        { "url": "/opportunities", "text": "Comment ça marche" },
+                        { "url": "/directories/opportunities", "text": "Toutes les opportunités" },
+                        { "url": "/directories/opportunities/callsforproposals", "text": "Appels à candidatures" },
+                        { "url": "/directories/opportunities/program", "text": "Programmes d'accompagnement" },
+                        { "url": "/directories/opportunities/challenges", "text": "Challenges et concours" },
+                        { "url": "/directories/opportunities/events", "text": "Évènements" },
+                        { "url": "/directories/opportunities/exclusiveoffers", "text": "Offres exclusives" }
                     ] },
                     { "url": "/about", "text": "À propos", "nesting": false, "nest": [] }
                 ]
@@ -68,13 +68,13 @@
             "layout": {
                 "footer": [
                     { "url": "", "text": "Nos offres", "nesting": true, "nest": [
-                        { "url": "/", "text": "Solutions entreprises" },
-                        { "url": "/", "text": "Solutions de startups" },
-                        { "url": "/", "text": "Solutions partenaires" }
+                        { "url": "/solutions/startups", "text": "Solutions de startups" },
+                        { "url": "/solutions/corporations", "text": "Solutions entreprises" },
+                        { "url": "/solutions/partners", "text": "Solutions partenaires" }
                     ] },
                     { "url": "", "text": "Forinov", "nesting": true, "nest": [
-                        { "url": "/", "text": "Qui sommes-nous ?" },
-                        { "url": "/", "text": "Contacts et recrutement" },
+                        { "url": "/about", "text": "Qui sommes-nous ?" },
+                        { "url": "/contact", "text": "Contacts et recrutement" },
                         { "url": "/", "text": "CGU" },
                         { "url": "/", "text": "CGV" },
                         { "url": "/", "text": "Mentions légales" },
@@ -82,9 +82,9 @@
                         { "url": "/", "text": "Blog" }
                     ] },
                     { "url": "", "text": "Communauté", "nesting": true, "nest": [
-                        { "url": "/", "text": "Annuaire d'entreprises" },
-                        { "url": "/annuaires/startups", "text": "Annuaire de startups" },
-                        { "url": "/", "text": "Annuaire de partenaires" },
+                        { "url": "/directories/startups", "text": "Annuaire de startups" },
+                        { "url": "/directories/corporations", "text": "Annuaire d'entreprises" },
+                        { "url": "/directories/partners", "text": "Annuaire de partenaires" },
                         { "url": "/", "text": "Appels à candidatures" },
                         { "url": "/", "text": "Challenges et concours" }
                     ] }
@@ -120,6 +120,52 @@
                 "community" : [
                     {
                         "button": "Qu'est-ce qu'une opportunité",
+                        "content": ""
+                    },
+                    {
+                        "button": "Forinov, est-ce vraiment gratuit pour les startups",
+                        "content": ""
+                    },
+                    {
+                        "button": "Mon profil est-il celui d'une startup ou d'une entreprise",
+                        "content": ""
+                    },
+                    {
+                        "button": "Qui sont les personnes que je peux contacter sur Forinov",
+                        "content": ""
+                    },
+                    {
+                        "button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
+                        "content": ""
+                    }
+                ]
+            },
+            "startup": {
+                "general" : [
+                    {
+                        "button": "Comment me faire repérer par les entreprises",
+                        "content": ""
+                    },
+                    {
+                        "button": "Forinov, est-ce vraiment gratuit pour les startups",
+                        "content": ""
+                    },
+                    {
+                        "button": "Mon profil est-il celui d'une startup ou d'une entreprise",
+                        "content": ""
+                    },
+                    {
+                        "button": "Qui sont les personnes que je peux contacter sur Forinov",
+                        "content": ""
+                    },
+                    {
+                        "button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
+                        "content": ""
+                    }
+                ],
+                "community" : [
+                    {
+                        "button": "Comment me faire repérer par les entreprises",
                         "content": ""
                     },
                     {
