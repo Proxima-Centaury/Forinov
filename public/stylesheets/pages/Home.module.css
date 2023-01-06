@@ -154,6 +154,28 @@
 	}
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges {
+	display: flex;
+	width: 100%;
+	height: max-content;
+	padding: 80px;
+	background-color: var(--background-information-color);
+}
+.badges[data-type="startup"] {
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--lightred-color);
+}
+.badges > h2 {
+	margin: 32px auto;
+	font-family: "Nunito Sans";
+	font-size: 45px;
+	font-weight: 300;
+	text-align: center;
+	color: var(--perfect-black-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Companies ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .companies {
@@ -218,18 +240,4 @@
 .questions [data-carousel] {
 	margin: 48px 0px 32px 0px;
 	overflow: hidden;
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badges Container ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges {
-	display: flex;
-	width: 100%;
-	height: max-content;
-	padding: 80px;
-	background-color: var(--background-information-color);
-}
-.badges[data-type="startup"] {
-	border-radius: 0px 100px 0px 0px;
-	background-color: var(--lightred-color);
 }
