@@ -10,7 +10,6 @@ import { buildProperties } from "../scripts/utilities";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import Button from "../components/buttons/button";
 import Carousel from "../components/carousels/carousel";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
@@ -26,11 +25,6 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) => {
 	const { translations }: any = states;
-	const buttonProps = [ "type", "action", "text" ];
-	const joinButtonValues = [ ButtonStyles.callToAction, () => false, translations["Rejoindre l'écosystème Forinov"] ];
-	const joinButtonObject = buildProperties(buttonProps, joinButtonValues);
-	const offersButtonValues = [ ButtonStyles.callToActionAlternative, () => false, translations["Découvrir les offres"] ];
-	const offersButtonObject = buildProperties(buttonProps, offersButtonValues);
 	const parentProps = { locales, states, stateSetters, config };
 	return <>
 		<Head>
@@ -51,8 +45,8 @@ const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) =
 					<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
 					<Carousel { ...parentProps } component={ "HowToCreateAnOpportunity" }/>
 					<div className={ HomeStyles.actions }>
-						<Button { ...joinButtonObject as ButtonInterface }/>
-						<Button { ...offersButtonObject as ButtonInterface }/>
+						<Link href="/register" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
+						<Link href="/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir les offres"] }</Link>
 					</div>
 				</div>
 			</div>

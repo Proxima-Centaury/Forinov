@@ -138,7 +138,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 16px auto 170px auto;
+	margin: 16px auto 70px auto;
 }
 .actions[data-align="left"] {
 	margin: 40px auto auto 0px;
