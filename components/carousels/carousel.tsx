@@ -8,18 +8,18 @@ import { buildProperties } from "../../scripts/utilities";
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Button from "../../components/buttons/button";
+import OpportunityCard from "../cards/opportunity";
 import AccordionItem from "../../components/accordion/AccordionItem";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import HomeStyles from "../../public/stylesheets/pages/Home.module.css";
 import CarouselStyles from "../../public/stylesheets/components/carousels/Carousel.module.css";
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Carousel = ({ states, component }: any) => {
-	const parentProps = { states };
+const Carousel = ({ states, component, data }: any) => {
+	const parentProps = { states, data };
     const handleCarousel = (event: any, name: String) => {
         const target = event.target.closest("button");
         const container = target.parentElement;
@@ -38,6 +38,10 @@ const Carousel = ({ states, component }: any) => {
     switch(component) {
         case "HowToCreateAnOpportunity":
             return <HowToCreateAnOpportunity { ...parentProps } handler={ handleCarousel }/>;
+        case "HowToApplyToAnOpportunity":
+            return <HowToApplyToAnOpportunity { ...parentProps } handler={ handleCarousel }/>;
+        case "TheLatestOpportunities":
+            return <TheLatestOpportunities { ...parentProps } handler={ handleCarousel }/>
         case "AnswersToYourQuestions":
             return <AnswersToYourQuestions { ...parentProps } handler={ handleCarousel }/>;
         default :
@@ -57,7 +61,7 @@ const HowToCreateAnOpportunity = ({ states, handler }: any) => {
 	];
 	const buttonProps = [ "type", "action", "text" ];
     return <>
-        <div className={ HomeStyles.steps }>
+        <div className={ CarouselStyles.steps }>
             { opportunityCreationStepsButtons.map((button: any, key: number) => {
                 const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => handler(event, "HowToCreateAnOpportunity"), button ];
                 const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
@@ -78,6 +82,45 @@ const HowToCreateAnOpportunity = ({ states, handler }: any) => {
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Landing ( How To Apply To An Opportunity ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const HowToApplyToAnOpportunity = ({ states }: any) => {
+	// const { translations }: any = states;
+    const opportunityCreationStepsButtons = [ "", "", "" ];
+    return <>
+        <div className={ CarouselStyles.steps } data-direction="vertical">
+            { opportunityCreationStepsButtons.map((button: any, key: number) => <Fragment key={ key }>
+                <div className="separatorVertical"></div>
+                <button>
+                    <i className={ (key === opportunityCreationStepsButtons.length - 1) ? "fa-light fa-check" : "fa-light fa-chevron-down" }/>
+                </button>
+            </Fragment>) }
+        </div>
+        <div className={ CarouselStyles.container } data-direction="vertical" data-carousel="HowToApplyToAnOpportunity">
+            { opportunityCreationStepsButtons.map((step: any, key: number) => <div key={ key } className={ CarouselStyles.item } data-index={ key }>
+                { (key % 2 === 0) ? <div>Text</div> : <div>Picture</div> }
+                { (key % 2 === 0) ? <div>Picture</div> : <div>Text</div> }
+            </div>) }
+        </div>
+    </>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Landing ( The Latest Opportunities ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const TheLatestOpportunities = ({ states, data }: any) => {
+	const { translations }: any = states;
+    return <>
+        <div className={ CarouselStyles.container }>
+            { data.map((opportunity: any, key: KeyType) => {
+                const index = key + 1;
+                const maxVisibleByDefault = undefined;
+                const cardProps = { opportunity, index, maxVisibleByDefault, translations };
+                return <OpportunityCard key={ key } { ...cardProps }/>;
+            }) }
+        </div>
+    </>;
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( Answers To Your Questions ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const AnswersToYourQuestions = ({ states, handler }: any) => {
@@ -88,7 +131,7 @@ const AnswersToYourQuestions = ({ states, handler }: any) => {
 	];
 	const buttonProps = [ "type", "action", "text" ];
     return <>
-        <div className={ HomeStyles.actions }>
+        <div className={ CarouselStyles.actions }>
             { questionsButtons.map((button: any, key: number) => {
                 const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => handler(event, "AnswersToYourQuestions"), button ];
                 const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
@@ -96,7 +139,7 @@ const AnswersToYourQuestions = ({ states, handler }: any) => {
             }) }
         </div>
         <div className={ CarouselStyles.container } data-carousel="AnswersToYourQuestions">
-            <div className={ CarouselStyles.item }>
+            {/* <div className={ CarouselStyles.item }>
                 <div>
                     {translations["landing_accordion1"].map(
                         (item: any, index: any): any => {
@@ -127,7 +170,7 @@ const AnswersToYourQuestions = ({ states, handler }: any) => {
                         },
                     )}
                 </div>
-            </div>
+            </div> */}
         </div>
     </>;
 };
