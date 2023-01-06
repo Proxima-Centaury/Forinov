@@ -5,7 +5,9 @@
             "getProfile": "V5_GET_PROFILE",
             "getProducts": "V5_GET_PRODUCTS",
             "getActivity": "V5_GET_ACTIVITY_FEED_ITEMS",
-            "getFolders": "V5_GET_FOLDERS"
+            "getFolders": "V5_GET_FOLDERS",
+            "getLandingOpportunities": "LANDING_OPPORTUNITES",
+            "getLandingLogos": "LANDING_LOGOS"
         }
     },
     "locales": { "fr-FR": "FR", "en-US": "EN" },
@@ -35,22 +37,22 @@
             "layout": {
                 "navbar": [
                     { "url": "", "text": "Startups", "nesting": true, "nest": [
-                        { "url": "/startups", "text": "Comment ça marche ?" },
+                        { "url": "/startups", "text": "Comment ça marche" },
                         { "url": "/solutions/startups", "text": "Solutions de startups" },
                         { "url": "/annuaires/startups", "text": "Annuaire de startups" }
                     ] },
                     { "url": "", "text": "Entreprises", "nesting": true, "nest": [
-                        { "url": "/corporations", "text": "Comment ça marche ?" },
+                        { "url": "/corporations", "text": "Comment ça marche" },
                         { "url": "/corporations/solutions", "text": "Solutions d'entreprises" },
                         { "url": "/corporations/directory", "text": "Annuaire d'entreprises" }
                     ] },
                     { "url": "", "text": "Partenaires", "nesting": true, "nest": [
-                        { "url": "/partners", "text": "Comment ça marche ?" },
+                        { "url": "/partners", "text": "Comment ça marche" },
                         { "url": "/partners/solutions", "text": "Solutions de partenaires" },
                         { "url": "/partners/directory", "text": "Annuaire de partenaires" }
                     ] },
                     { "url": "", "text": "Opportunités", "nesting": true, "nest": [
-                        { "url": "/how", "text": "Comment ça marche ?" },
+                        { "url": "/", "text": "Comment ça marche" },
                         { "url": "/", "text": "Toutes les opportunités" },
                         { "url": "/", "text": "Appels à candidatures" },
                         { "url": "/", "text": "Programmes d'accompagnement" },

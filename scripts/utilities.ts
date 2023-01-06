@@ -157,16 +157,17 @@ class Utilities {
     * This is a ```method``` ( ```function``` inside ```class``` ).
     * @function getCookie
     * @param { String|RegExp } [ name ] Should be a ```string```.
-    * @returns { String }
+    * @returns { String | null }
     * - A ```string```.
+    * - ```null``` if no cookie value set.
     * ---
     * @note This method is used to retrieve a cookie's value.
     * @note The {@link name} parameter should be the cookie's name.
     */
-    getCookie(name: String|RegExp): String {
-        const cookies = decodeURIComponent(document.cookie).split(";");
-        const match: Function = (name: RegExp) => (cookie.match(name)) ? true : false;
-        const cookie = cookies.map((cookie) => (match(name)) ? cookie.replace(name + "=", "") : "null").filter((cookie) => cookie !== null)[0];
+    getCookie(name: String|RegExp): String | null {
+        const cookies = decodeURIComponent(document.cookie).split("; ");
+        const match: Function = (cookie: String, regexp: RegExp) => (cookie.match(regexp)) ? true : false;
+        const cookie = cookies.map((cookie) => (match(cookie, name)) ? cookie.replace(name + "=", "") : null).filter((cookie) => cookie !== null)[0];
         return cookie;
     };
     /**
@@ -416,8 +417,8 @@ const utilities = new Utilities();
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const beautifyTheLogs = utilities.beautifyTheLogs;
 const selectifyTheOptions = utilities.selectifyTheOptions;
-const setCookie = utilities.setCookie;
-const getCookie = utilities.getCookie;
+// const setCookie = utilities.setCookie;
+// const getCookie = utilities.getCookie;
 const getTranslations = utilities.getTranslations;
 const handleOutOfArea = utilities.handleOutOfArea;
 const preventSubmit = utilities.preventSubmit;
@@ -434,8 +435,8 @@ export default utilities;
 export {
     beautifyTheLogs,
     selectifyTheOptions,
-    setCookie,
-    getCookie,
+    // setCookie,
+    // getCookie,
     getTranslations,
     handleOutOfArea,
     preventSubmit,

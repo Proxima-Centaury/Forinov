@@ -37,7 +37,7 @@ const LoginCard = ({ locales, states, stateSetters, config }: LoginInterface) =>
                 <div>
                     <p dangerouslySetInnerHTML={ { __html: translations["En continuant votre inscription, vous acceptez nos"] } }/>
                     &nbsp;
-                    <Link href='/terms'>{ translations["Conditions générales"] }</Link>
+                    <Link href='/terms'>{ translations["Conditions générales"].toLowerCase() }</Link>
                     .
                 </div>
             </div>

@@ -157,7 +157,7 @@ const Partner = ({ type, profile, products, activities, folders, states, stateSe
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Server Side Rendering */
+/* Server Side Properties */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { query, locale, locales, defaultLocale } = context;

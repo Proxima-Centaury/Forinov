@@ -1,11 +1,81 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Steps ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.steps {
+	display: flex;
+	align-items: center;
+	margin: 16px 0px;
+}
+.steps[data-direction="vertical"] {
+	flex-direction: column;
+	height: 100%;
+	margin: 0px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.steps > * + * {
+	margin: 0px 0px 0px 8px;
+}
+.steps[data-direction="vertical"] > * + * {
+	margin: 0px;
+}
+.steps[data-direction="vertical"] > button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 40px;
+	width: 40px;
+	max-width: 40px;
+	min-height: 40px;
+	height: 40px;
+	max-height: 40px;
+	border-radius: 20px;
+	background-color: var(--background-sub-color);
+}
+.steps[data-direction="vertical"] > button:last-of-type {
+	background-color: var(--logo-orange-color);
+}
+.steps[data-direction="vertical"] > button > i {
+	font-size: 20px;
+	color: var(--logo-orange-color);
+}
+.steps[data-direction="vertical"] > button:last-of-type > i {
+	color: var(--perfect-white-color);
+}
+.steps[data-direction="vertical"] > div {
+	background-color: var(--logo-orange-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Actions ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.actions {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.actions > * + * {
+	margin: 0px 0px 0px 16px;
+}
+@media screen and (max-width: 768px) {
+	.actions {
+		flex-direction: column;
+	}
+	.actions > * + * {
+		margin: 16px 0px 0px 0px;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Container ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .container {
     display: flex;
 	width: 100%;
 	min-height: 400px;
-	overflow: hidden;
+}
+.container[data-direction="vertical"] {
+	flex-direction: column;
+	min-height: inherit;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Item ) */
@@ -17,4 +87,26 @@
 	min-width: 100%;
 	height: 100%;
 	transition: transform 0.3s ease;
+}
+.container[data-direction="vertical"] > .item {
+	min-height: 200px;
+}
+.item > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+}
+.item > div:first-of-type {
+	margin: 0px 36px 0px 0px;
+}
+.item > div:last-of-type {
+	margin: 0px 0px 0px 36px;
+}
+.container > a[data-card="opportunity"] {
+	min-width: 300px;
+	margin: 0px;
+}
+.container > a[data-card="opportunity"] + a[data-card="opportunity"] {
+	margin: 0px 0px 0px 16px;
 }
