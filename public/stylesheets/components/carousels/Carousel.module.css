@@ -78,6 +78,87 @@
 	min-height: inherit;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Infinite ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.infinite {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	max-width: calc(15 * 160px);
+	height: calc(80px + (2 * 48px));
+	margin: 0px auto;
+	padding: 48px 0px;
+	position: relative;
+	overflow-x: hidden;
+}
+.infinite::before,
+.infinite::after {
+	width: 50px;
+	height: 100%;
+	content: "";
+	position: absolute;
+	top: 0px;
+	z-index: 1;
+}
+.infinite::before {
+	left: 0px;
+	background: linear-gradient(-90deg, #00000000 0%, var(--background-main-color) 80%);
+}
+.infinite::after {
+	right: 0px;
+	background: linear-gradient(90deg, #00000000 0%, var(--background-main-color) 80%);
+}
+.firstCopy,
+.secondCopy {
+	display: flex;
+	position: absolute;
+	top: 48px;
+	left: 0px;
+}
+.firstCopy {
+	animation: scroll1 10s linear infinite;
+}
+.secondCopy {
+	animation: scroll2 10s linear infinite;
+}
+@keyframes scroll1 {
+	0% {
+		transform: translateX(0);
+	} 100% {
+		transform: translateX(calc((-160px - 16px) * 14));
+	}
+}
+@keyframes scroll2 {
+	0% {
+		transform: translateX(calc((160px + 16px) * 14));
+	} 100% {
+		transform: translateX(0);
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Logos ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 auto;
+    width: max-content;
+	min-width: 160px;
+	width: 160px;
+	max-width: 160px;
+	height: 80px;
+    max-height: 80px;
+	margin: 0px 16px 0px 0px;
+	border-radius: 100px;
+	background-color: var(--background-sub-color);
+	box-shadow: var(--box-shadow);
+}
+.logo > img {
+	object-fit: contain;
+	border-radius: 100px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Item ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .item  {
@@ -103,8 +184,11 @@
 .item > div:last-of-type {
 	margin: 0px 0px 0px 36px;
 }
+.item > div:only-of-type {
+	margin: 0px;
+}
 .container > a[data-card="opportunity"] {
-	min-width: 300px;
+	min-width: 450px;
 	margin: 0px;
 }
 .container > a[data-card="opportunity"] + a[data-card="opportunity"] {

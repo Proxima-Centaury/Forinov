@@ -1,15 +1,17 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
 import { buildProperties } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
+import Image from "next/image";
 import Button from "../../components/buttons/button";
 import OpportunityCard from "../cards/opportunity";
-import AccordionItem from "../../components/accordion/AccordionItem";
+import Accordion from "../accordions/accordion";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -41,7 +43,9 @@ const Carousel = ({ states, component, data }: any) => {
         case "HowToApplyToAnOpportunity":
             return <HowToApplyToAnOpportunity { ...parentProps } handler={ handleCarousel }/>;
         case "TheLatestOpportunities":
-            return <TheLatestOpportunities { ...parentProps } handler={ handleCarousel }/>
+            return <TheLatestOpportunities { ...parentProps } handler={ handleCarousel }/>;
+        case "CompaniesLogos":
+            return <CompaniesLogos { ...parentProps } handler={ handleCarousel }/>
         case "AnswersToYourQuestions":
             return <AnswersToYourQuestions { ...parentProps } handler={ handleCarousel }/>;
         default :
@@ -109,6 +113,25 @@ const HowToApplyToAnOpportunity = ({ states }: any) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const TheLatestOpportunities = ({ states, data }: any) => {
 	const { translations }: any = states;
+    const [ transform, setTransform ] = useState(0);
+    const scrollHandler = (event: any) => {
+        event.preventDefault();
+        const target = event.target;
+        const preciseTarget = target.closest("." + CarouselStyles.container);
+        const opportunities = [ ...preciseTarget.children ];
+        if(event.deltaY < 0) {
+            (preciseTarget.scrollWidth > (preciseTarget.clientWidth + 100)) ? setTransform(transform - 100) : null;
+        } else {
+            (transform < 0) ? setTransform(transform + 100) : null;
+        };
+        console.log(transform, event.deltaY, preciseTarget.scrollWidth, preciseTarget.clientWidth);
+        opportunities.forEach((opportunity: HTMLElement) => opportunity.style.transform = "translateX(" + transform + "px)");
+    };
+    useEffect(() => {
+        const carousel = document.querySelector("[data-type='startup'] > div > ." + CarouselStyles.container);
+        carousel?.addEventListener("wheel", scrollHandler);
+        return () => carousel?.removeEventListener("wheel", scrollHandler);
+    });
     return <>
         <div className={ CarouselStyles.container }>
             { data.map((opportunity: any, key: KeyType) => {
@@ -121,9 +144,38 @@ const TheLatestOpportunities = ({ states, data }: any) => {
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Landing ( Companies Logos ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const CompaniesLogos = ({ data }: any) => {
+    return <div className={ CarouselStyles.infinite }>
+        <div className={ CarouselStyles.firstCopy }>
+            { data.map(({ id, type, name, logo }: any, key: KeyType) => {
+                if(parseInt(key) < 14) {
+                    const formattedName = (name: String) => name.toLowerCase().replaceAll(/\s+/g, "").trim();
+                    const url = "/annuaires/" + type.toLowerCase() + "s/" + formattedName(name) + "_" + id;
+                    return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
+                        <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
+                    </Link>;
+                };
+            }) }
+        </div>
+        <div className={ CarouselStyles.secondCopy }>
+            { data.map(({ id, type, name, logo }: any, key: KeyType) => {
+                if(parseInt(key) < 14) {
+                    const formattedName = (name: String) => name.toLowerCase().replaceAll(/\s+/g, "").trim();
+                    const url = "/annuaires/" + type.toLowerCase() + "s/" + formattedName(name) + "_" + id;
+                    return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
+                        <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
+                    </Link>;
+                };
+            }) }
+        </div>
+    </div>
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( Answers To Your Questions ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const AnswersToYourQuestions = ({ states, handler }: any) => {
+const AnswersToYourQuestions = ({ states, handler, data }: any) => {
 	const { translations }: any = states;
 	const questionsButtons = [
 		translations["Général"],
@@ -139,38 +191,9 @@ const AnswersToYourQuestions = ({ states, handler }: any) => {
             }) }
         </div>
         <div className={ CarouselStyles.container } data-carousel="AnswersToYourQuestions">
-            {/* <div className={ CarouselStyles.item }>
-                <div>
-                    {translations["landing_accordion1"].map(
-                        (item: any, index: any): any => {
-                            return (
-                                <AccordionItem
-                                    title={item.title}
-                                    content={item.content}
-                                    identifier={index}
-                                    key={index}
-                                ></AccordionItem>
-                            );
-                        },
-                    )}
-                </div>
-            </div>
-            <div className={ CarouselStyles.item }>
-                <div>
-                    {translations["landing_accordion2"].map(
-                        (item: any, index: any) => {
-                            return (
-                                <AccordionItem
-                                    title={item.title}
-                                    content={item.content}
-                                    identifier={index + translations["landing_accordion1"].length}
-                                    key={index + translations["landing_accordion1"].length + '-accordion2'}
-                                ></AccordionItem>
-                            );
-                        },
-                    )}
-                </div>
-            </div> */}
+            { (data) ? data.map((accordion: any, key: KeyType) => <div key={ key } className={ CarouselStyles.item }>
+                <Accordion data={ accordion } translations={ translations }/>
+            </div>) : null }
         </div>
     </>;
 };

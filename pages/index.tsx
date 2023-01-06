@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { HomeInterface, ButtonInterface } from "../typescript/interfaces";
 import { buildProperties } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -13,6 +13,10 @@ import Image from "next/image";
 import Button from "../components/buttons/button";
 import Carousel from "../components/carousels/carousel";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* JSON */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import config from "../config.json";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import HomeStyles from "../public/stylesheets/pages/Home.module.css";
@@ -20,7 +24,7 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
+const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) => {
 	const { translations }: any = states;
 	const buttonProps = [ "type", "action", "text" ];
 	const joinButtonValues = [ ButtonStyles.callToAction, () => false, translations["Rejoindre l'écosystème Forinov"] ];
@@ -54,26 +58,34 @@ const Home = ({ locales, states, stateSetters, config }: HomeInterface) => {
 			</div>
 			<div className={ HomeStyles.companies }>
 				<h2>{ translations["Ils ont utilisé Forinov pour leurs opportunités"] }</h2>
-				<div className={ HomeStyles.logos }>
-					{/* -------------------------------------------------------------------------------------------------------- */}
-					{/* ADD COMPANIES HERE */}
-					{/* -------------------------------------------------------------------------------------------------------- */}
-				</div>
+				<Carousel { ...parentProps } component={ "CompaniesLogos" } data={ logos }/>
 			</div>
 			<div className={ HomeStyles.questions }>
 				<h2>{ translations["Les réponses à vos questions"] }</h2>
-				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" }/>
+				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" } data={ Object.values(config.accordions.landings.opportunity) }/>
 				<p>{ translations["Vous avez des questions"] + " ? " }<Link href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
 			</div>
 		</div>
 	</>
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Static Props */
+/* Server Side Properties */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const getStaticProps: GetStaticProps = async (context) => ({ props: { ...context } });
+const getServerSideProps: GetServerSideProps = async (context) => {
+	const { locale, locales, defaultLocale } = context;
+	const { endpoint, queries } = config.api;
+	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=opportunité&authkey=Landing");
+    const logosResponse = await logosPromise.json();
+    const formattedCompaniesResponse = Object.values(logosResponse[0].LOGOS);
+	return {
+		props: {
+			locale, locales, defaultLocale,
+			logos: formattedCompaniesResponse,
+		},
+	};
+};
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 export default Home;
-export { getStaticProps };
+export { getServerSideProps };
