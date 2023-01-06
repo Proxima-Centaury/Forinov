@@ -81,7 +81,7 @@ const NavbarMenu = ({ navbar, translations }: any) => {
             { (url) ? <Link href={ url }>{ translations[text] }</Link> : <button onClick={ showSubMenu }>{ translations[text] }</button> }
             { (nesting) ? <ul data-menu="nest">
                 { nest.map(({ url, text }: any, key: KeyType) => <li key={ key }>
-                    <Link href={ url }>{ translations[text] + ((text.match(/(Comment|How)/)) ? " ?" : null) }</Link>
+                    <Link href={ url }>{ translations[text] + ((text.match(/(Comment|How)/)) ? " ?" : "") }</Link>
                 </li>) }
             </ul> : null }
         </li>);
