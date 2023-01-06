@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import CategoryCard from "../components/cards/CategoryCard";
 
 const AnnuaireSu = ({ data, filters }: any) => {
 	const nbPerCategory: any = {};
@@ -24,45 +25,6 @@ const AnnuaireSu = ({ data, filters }: any) => {
 	for (let catIndex in categories) {
 		catArray.push(categories[catIndex]);
 	}
-
-	//On boucle sur les catégories pour construire les cards de catégories (affichée lorsqu'aucune catégorie n'est sélectionnée)
-	catArray.forEach((category: any) => {
-		nbPerCategory[category.NAME] = category.NB;
-		catCards.push(
-			<div
-				className="annuaire__category lift"
-				key={category.ID}
-				onClick={() => {
-					categorieClickHandler(category.ID);
-				}}
-			>
-				<img
-					src={category.LOGO}
-					alt={category.ID}
-					className="annuaire__category-logo"
-				/>
-				<div className="annuaire__category-count">{category.NB}</div>
-				<h1 className="annuaire__category-title">{category.NAME}</h1>
-				<div className="annuaire__category-tags">
-					{category.SSCAT[0] ? (
-						<div className="annuaire__category-tag">
-							{category.SSCAT[0].NAME}
-						</div>
-					) : null}
-					{category.SSCAT[1] ? (
-						<div className="annuaire__category-tag">
-							{category.SSCAT[1].NAME}
-						</div>
-					) : null}
-					{category.SSCAT[2] ? (
-						<div className="annuaire__category-tag">
-							{category.SSCAT[2].NAME}
-						</div>
-					) : null}
-				</div>
-			</div>,
-		);
-	});
 
 	const [startupCards, setStartupCards] = useState<Array<any>>([]);
 
@@ -187,6 +149,18 @@ const AnnuaireSu = ({ data, filters }: any) => {
 			}
 		}
 	};
+
+	//On boucle sur les catégories pour construire les cards de catégories (affichée lorsqu'aucune catégorie n'est sélectionnée)
+	catArray.forEach((category: any) => {
+		nbPerCategory[category.NAME] = category.NB;
+		catCards.push(
+			<CategoryCard
+				key={category.ID}
+				category={category}
+				categorieClickHandler={categorieClickHandler}
+			/>
+		);
+	});
 
 	return (
 		<div className="container">
