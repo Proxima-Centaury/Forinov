@@ -6,7 +6,7 @@ import AccordionStyles from "../../public/stylesheets/components/accordions/Acco
 /* Accordion */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Accordion = ({ data, translations }: any) => {
-	const expandContent = (event: MouseEvent) => {
+	const expandContent = (event: any) => {
 		const target = event.target as Element;
 		const preciseTarget = target.closest("button");
 		const parent = preciseTarget?.parentElement;
@@ -19,7 +19,7 @@ const Accordion = ({ data, translations }: any) => {
 	};
 	return <div className={ AccordionStyles.container }>
 		{ data.map(({ button, content }: any, key: KeyType) => <div key={ key }>
-			<button className={ AccordionStyles.button } onClick={ expandContent }>{ translations[button] + " ?" }<i className="fa-light fa-chevron-down"/></button>
+			<button className={ AccordionStyles.button } onClick={ (event) => expandContent(event) }>{ translations[button] + " ?" }<i className="fa-light fa-chevron-down"/></button>
 			<div className={ AccordionStyles.content }>
 				{ (content) ? content : "Lorem ipsum sit amet, dolor adipiscim consectetur...".repeat(100) }
 			</div>
