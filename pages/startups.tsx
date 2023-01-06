@@ -61,7 +61,7 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 				</div>
 			</div>
 			<div className={ HomeStyles.badges } data-type="startup">
-
+				<h2>{ translations["Inscrire ma startup"] }</h2>
 			</div>
 			<div className={ HomeStyles.companies }>
 				<h2>{ translations["Ces entreprises et partenaires utilisent Forinov pour leurs relations startups"] }</h2>
