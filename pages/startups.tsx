@@ -32,7 +32,6 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 	const understandOpportunitiesButtonValues = [ ButtonStyles.callToActionAlternative, () => false, translations["Qu'est-ce qu'une opportunité"] + " ?" ];
 	const understandOpportunitiesButtonObject = buildProperties(buttonProps, understandOpportunitiesButtonValues);
 	const parentProps = { locales, states, stateSetters, config };
-	console.log(opportunities)
 	return <>
 		<Head>
 			<title>Forinov Startups - { translations["Comment ça marche"] + " ?" }</title>

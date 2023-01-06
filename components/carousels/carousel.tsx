@@ -119,7 +119,12 @@ const TheLatestOpportunities = ({ states, data }: any) => {
         const target = event.target;
         const preciseTarget = target.closest("." + CarouselStyles.container);
         const opportunities = [ ...preciseTarget.children ];
-        (preciseTarget.scrollWidth >= transform) ? (event.deltaY < 0) ? setTransform(transform - 100) : setTransform(transform + 100) : null;
+        if(event.deltaY < 0) {
+            (preciseTarget.scrollWidth > (preciseTarget.clientWidth + 100)) ? setTransform(transform - 100) : null;
+        } else {
+            (transform < 0) ? setTransform(transform + 100) : null;
+        };
+        console.log(transform, event.deltaY, preciseTarget.scrollWidth, preciseTarget.clientWidth);
         opportunities.forEach((opportunity: HTMLElement) => opportunity.style.transform = "translateX(" + transform + "px)");
     };
     useEffect(() => {

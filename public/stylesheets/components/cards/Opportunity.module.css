@@ -94,8 +94,10 @@
     border-radius: 32px;
 }
 .content > .left {
-    margin: 0px 0px 0px 16px;
+    display: flex;
+    flex-direction: column;
     flex: 1;
+    margin: 0px 0px 0px 16px;
 }
 .content > .left > .top {
     display: flex;
