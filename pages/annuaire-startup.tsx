@@ -117,7 +117,7 @@ const AnnuaireSu = ({ data, filters }: any) => {
 				const elementChildren = element.children[0] as HTMLElement | null;
 				const elementChildren2 = element.children[2] as HTMLElement | null;
 				if (elementChildren && elementChildren2) {
-					elementChildren.style.color = "#232324";
+					elementChildren.style.color = "var(--text-main-color)";
 					elementChildren2.style.display = "none";
 				}
 				for (let i = 0; i < selectedCategories.length; i++) {
