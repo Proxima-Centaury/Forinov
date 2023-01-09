@@ -35,11 +35,13 @@
     --error-color: #E01E3E;
     --information-color: #1F4497;
     /* Blue Tones */
-    --lightblue-color: #F0F6FF;
-    --paleblue-color: #B2D1FF;
-    --skyblue-color: #7EC9FF;
+    --lightblue-color: #B2D1FF;
+    --paleblue-color: #97C0FD;
+    --pureblue-color: #005AEB;
     /* Green Tones */
-    --palegreen-color: #D1F2E4;
+    --lightgreen-color: #D1F2E4;
+    --palegreen-color: #9FE9CA;
+    --grassgreen-color: #38BF84;
     /* Red Tones */
     --lightred-color: #FFEFE6;
     --palered-color: #FFCFD1;

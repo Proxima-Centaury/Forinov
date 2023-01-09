@@ -2,7 +2,7 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { HomeInterface, ButtonInterface } from "../typescript/interfaces";
+import { HomeInterface } from "../typescript/interfaces";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -22,7 +22,7 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startups Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, config}: HomeInterface) => {
+const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, config }: HomeInterface) => {
 	const { translations }: any = states;
 	const parentProps = { locales, states, stateSetters, config };
 	return <>
@@ -40,8 +40,8 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 			</div>
 			<div className={ HomeStyles.opportunity } data-type="startup">
 				<div>
-					<h2>{ translations["Comment postuler à une opportunité"] }</h2>
-					<h3>{ translations["Trouver des opportunités, faire grandir sa startup"] + ", etc..." }</h3>
+					<h3>{ translations["Comment postuler à une opportunité"] }</h3>
+					<p>{ translations["Trouver des opportunités, faire grandir sa startup"] + ", etc..." }</p>
 					<div data-carousel="startup">
 						<Carousel { ...parentProps } component={ "HowToApplyToAnOpportunity" }/>
 					</div>
@@ -84,11 +84,13 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 				</div>
 			</div>
 			<div className={ HomeStyles.companies }>
-				<h2>{ translations["Ces entreprises et partenaires utilisent Forinov pour leurs relations startups"] }</h2>
-				<Carousel { ...parentProps } component={ "CompaniesLogos" } data={ logos }/>
-				<h2>{ translations["Créer mon compte startup gratuitement"] }</h2>
-				<h3>{ translations["Et rejoindre une communauté grandissante rassemblant tous les acteurs de l'innovation"].toLowerCase() }</h3>
-				<Link href="/register" className={ ButtonStyles.callToAction }>{ translations["Rejoindre la communauté"] }</Link>
+				<div>
+					<h2>{ translations["Ces entreprises et partenaires utilisent Forinov pour leurs relations startups"] }</h2>
+					<Carousel { ...parentProps } component={ "CompaniesLogos" } data={ logos }/>
+					<h2>{ translations["Créer mon compte startup gratuitement"] }</h2>
+					<h3>{ translations["Et rejoindre une communauté grandissante rassemblant tous les acteurs de l'innovation"].toLowerCase() }</h3>
+					<Link href="/register" className={ ButtonStyles.callToAction }>{ translations["Rejoindre la communauté"] }</Link>
+				</div>
 			</div>
 			<div className={ HomeStyles.questions } data-type="startup">
 				<h2>{ translations["Les réponses à vos questions"] }</h2>
@@ -109,12 +111,12 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const formattedLandingOpportunitiesResponse = Object.values(landingOpportunitiesResponse[0].PROJECT);
 	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=startup&authkey=Landing");
     const logosResponse = await logosPromise.json();
-    const formattedCompaniesResponse = Object.values(logosResponse[0].LOGOS);
+    const formattedLogosResponse = Object.values(logosResponse[0].LOGOS);
 	return {
 		props: {
 			locale, locales, defaultLocale,
 			opportunities: formattedLandingOpportunitiesResponse,
-			logos: formattedCompaniesResponse,
+			logos: formattedLogosResponse,
 		},
 	};
 };

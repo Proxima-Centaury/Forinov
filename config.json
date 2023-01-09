@@ -1,13 +1,14 @@
 {
     "api": {
-        "endpoint": "https://dev.forinov.fr/remote/back/api.php",
+        "endpoint": "https://www.forinov.fr/remote/back/api.php",
         "queries": {
             "getProfile": "V5_GET_PROFILE",
             "getProducts": "V5_GET_PRODUCTS",
             "getActivity": "V5_GET_ACTIVITY_FEED_ITEMS",
             "getFolders": "V5_GET_FOLDERS",
             "getLandingOpportunities": "LANDING_OPPORTUNITES",
-            "getLandingLogos": "LANDING_LOGOS"
+            "getLandingLogos": "LANDING_LOGOS",
+            "getLandingStartups": "LANDING_SU"
         }
     },
     "locales": { "fr-FR": "FR", "en-US": "EN" },
@@ -178,6 +179,52 @@
                     },
                     {
                         "button": "Qui sont les personnes que je peux contacter sur Forinov",
+                        "content": ""
+                    },
+                    {
+                        "button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
+                        "content": ""
+                    }
+                ]
+            },
+            "partner": {
+                "general" : [
+                    {
+                        "button": "Pourquoi passer par Forinov pour vos opportunités",
+                        "content": ""
+                    },
+                    {
+                        "button": "Forinov, est-ce vraiment gratuit pour les startups",
+                        "content": ""
+                    },
+                    {
+                        "button": "Quelle valeur ajoutée pour mes startups",
+                        "content": ""
+                    },
+                    {
+                        "button": "Comment mettre en avant mes startups sur Forinov",
+                        "content": ""
+                    },
+                    {
+                        "button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
+                        "content": ""
+                    }
+                ],
+                "community" : [
+                    {
+                        "button": "Pourquoi passer par Forinov pour vos opportunités",
+                        "content": ""
+                    },
+                    {
+                        "button": "Forinov, est-ce vraiment gratuit pour les startups",
+                        "content": ""
+                    },
+                    {
+                        "button": "Quelle valeur ajoutée pour mes startups",
+                        "content": ""
+                    },
+                    {
+                        "button": "Comment mettre en avant mes startups sur Forinov",
                         "content": ""
                     },
                     {

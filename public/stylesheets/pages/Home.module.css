@@ -12,6 +12,14 @@
 .presentation[data-type="startup"] {
 	background-color: var(--lightred-color);
 }
+.presentation[data-type="corporation"] {
+	border-radius: 0px 0px 0px 100px;
+	background-color: var(--lightblue-color);
+}
+.presentation[data-type="partner"] {
+	border-radius: 0px 0px 0px 100px;
+	background-color: var(--lightgreen-color);
+}
 .presentation::before {
 	content: "";
 	width: 100%;
@@ -34,7 +42,13 @@
 	font-weight: bold;
 }
 .presentation[data-type="startup"] > div > h1 {
-	color: var(--logo-orange-color);
+	color: var(--sunred-color);
+}
+.presentation[data-type="corporation"] > div > h1 {
+	color: var(--pureblue-color);
+}
+.presentation[data-type="partner"] > div > h1 {
+	color: var(--grassgreen-color);
 }
 .presentation > div > p {
 	margin: 0px 0px 32px 0px;
@@ -42,7 +56,13 @@
 	font-size: 24px;
 }
 .presentation[data-type="startup"] > div > p {
-	color: var(--logo-orange-color);
+	color: var(--sunred-color);
+}
+.presentation[data-type="corporation"] > div > p {
+	color: var(--pureblue-color);
+}
+.presentation[data-type="partner"] > div > p {
+	color: var(--grassgreen-color);
 }
 .presentation > div > a {
 	width: fit-content;
@@ -56,7 +76,9 @@
 	background-color: var(--background-sub-color);
 	transition: color 0.3s ease, background-color 0.3s ease;
 }
-.presentation[data-type="startup"] > div > a {
+.presentation[data-type="startup"] > div > a,
+.presentation[data-type="corporation"] > div > a,
+.presentation[data-type="partner"] > div > a {
 	color: var(--perfect-white-color);
 	border-color: var(--logo-blue-color);
 	background-color: var(--logo-blue-color);
@@ -64,7 +86,9 @@
 .presentation > div > a:hover {
 	background-color: transparent;
 }
-.presentation[data-type="startup"] > div > a:hover {
+.presentation[data-type="startup"] > div > a:hover,
+.presentation[data-type="corporation"] > div > a:hover,
+.presentation[data-type="partner"] > div > a:hover {
 	color: var(--perfect-black-color);
 }
 .presentation > img {
@@ -76,6 +100,57 @@
 	.presentation > img {
 		display: none;
 	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Sourcing Container ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.sourcing {
+	background-color: var(--background-main-color);
+}
+.sourcing > div {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: 80px;
+	border-radius: 100px 0px 0px 0px;
+	background-color: var(--background-main-color);
+}
+.sourcing > div > h3 {
+	margin: 0px auto;
+	font-family: "Nunito Sans";
+	font-size: 45px;
+	font-weight: 300;
+	text-align: center;
+	color: var(--perfect-black-color);
+}
+.sourcing > div > p {
+	margin: 0px auto 32px auto;
+	font-family: "Nunito Sans";
+	font-size: 21px;
+	text-align: center;
+	color: var(--perfect-black-color);
+}
+.sourcing[data-type="corporation"] > div {
+	background-color: var(--lightblue-color);
+}
+.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] {
+	position: relative;
+}
+.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] [class="separatorVertical"] {
+	background-color: var(--pureblue-color);
+}
+.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] button > i {
+	color: var(--pureblue-color);
+}
+.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] button:last-of-type {
+	background-color: var(--pureblue-color);
+}
+.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] button:last-of-type > i {
+	color: var(--perfect-white-color);
+}
+.sourcing > div > .actions {
+	margin: 32px auto 0px auto;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Opportunity Container ) */
@@ -98,15 +173,15 @@
 .opportunity[data-type="startup"] > div {
 	border-radius: 100px 0px 0px 100px;
 }
+.opportunity[data-type="corporation"] > div {
+	border-radius: 0px;
+}
 .opportunity > div > h2 {
 	margin: 0px auto;
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
-}
-.opportunity[data-type="startup"] > div > h2 {
-	font-weight: 300;
 }
 .opportunity > div > h3 {
 	margin: 32px auto;
@@ -116,13 +191,13 @@
 	text-align: center;
 }
 .opportunity[data-type="startup"] > div > h3 {
-	margin: 8px auto 40px auto;
-	font-size: 21px;
-	font-weight: normal;
-	text-align: center;
+	margin: 0px auto;
 }
-.opportunity[data-type="startup"] > div > div[data-carousel="startup"] {
-	position: relative;
+.opportunity > div > p {
+	margin: 0px auto 32px auto;
+	font-family: "Nunito Sans";
+	font-size: 21px;
+	text-align: center;
 }
 .opportunity > div > h4 {
 	margin: 96px auto 40px auto;
@@ -130,6 +205,64 @@
 	font-size: 42px;
 	font-weight: bold;
 	text-align: center;
+}
+.opportunity[data-type="corporation"] > div > h4 {
+	margin: 0px auto 40px auto;
+}
+.opportunity > div > [data-carousel="startup"] {
+	position: relative;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Register Container ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.register {
+	background-color: var(--background-sub-color);
+}
+.register[data-type="corporation"] {
+	background-color: var(--lightblue-color);
+}
+.register[data-type="partner"] {
+	background-color: var(--lightgreen-color);
+}
+.register > div {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: 80px;
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--background-main-color);
+}
+.register > div > h3 {
+	margin: 32px auto;
+	font-family: "Nunito Sans";
+	font-size: 45px;
+	font-weight: 300;
+	text-align: center;
+}
+.register[data-type="corporation"] > div > h3,
+.register[data-type="partner"] > div > h3 {
+	margin: 0px auto 32px auto;
+}
+.register[data-type="corporation"] > div > [class*="steps"] > button[class*="active"] {
+	color: var(--perfect-white-color);
+	border-color: var(--pureblue-color);
+	background-color: var(--pureblue-color);
+}
+.register[data-type="corporation"] > div > [class*="steps"] > button:hover {
+	color: var(--pureblue-color);
+	border-color: var(--lightblue-color);
+	background-color: var(--lightblue-color);
+}
+.register[data-type="partner"] > div > [class*="steps"] > button[class*="active"] {
+	color: var(--perfect-white-color);
+	border-color: var(--grassgreen-color);
+	background-color: var(--grassgreen-color);
+}
+.register[data-type="partner"] > div > [class*="steps"] > button:hover {
+	color: var(--grassgreen-color);
+	border-color: var(--lightgreen-color);
+	background-color: var(--lightgreen-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Actions ) */
@@ -171,8 +304,12 @@
 	border-radius: 0px 100px 0px 0px;
 	background-color: var(--lightred-color);
 }
+.badges[data-type="partner"] {
+	border-radius: 100px 0px 0px 0px;
+	background-color: var(--lightgreen-color);
+}
 .badges > h2 {
-	margin: 32px auto 50px auto;
+	margin: 0px auto 50px auto;
 	font-family: "Nunito Sans";
 	font-size: 45px;
 	font-weight: 300;
@@ -223,7 +360,10 @@
 	width: 100%;
 	height: 100%;
 	font-size: 70px;
-	color: var(--logo-orange-color);
+	color: var(--sunred-color);
+}
+.badges[data-type="partner"] > div > .badge > i {
+	color: var(--grassgreen-color);
 }
 .badges > div > .badge > div {
 	display: flex;
@@ -242,13 +382,18 @@
 	font-size: 32px;
 	font-weight: bold;
 	text-align: center;
+	color: var(--perfect-black-color);
 }
 .badges > div > .badge > div > p {
 	font-size: 16px;
 	text-align: center;
+	color: var(--perfect-black-color);
 }
 .badges > div > [class="separator"] {
-	background-color: var(--logo-orange-color);
+	background-color: var(--sunred-color);
+}
+.badges[data-type="partner"] > div > [class="separator"] {
+	background-color: var(--grassgreen-color);
 }
 @media screen and (max-width: 1200px) {
 	.badges > div > [class="separator"] {
@@ -266,36 +411,71 @@
 		margin: 0px 0px 150px 0px;
 	}
 }
+.badges > a {
+	margin: 32px 0px 0px 0px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Startups ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.startups {
+	background-color: var(--background-main-color);
+}
+.startups > div {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: 80px;
+}
+.startups > div > h4 {
+	margin: 0px auto 40px auto;
+	font-family: "Nunito Sans";
+	font-size: 42px;
+	font-weight: bold;
+	text-align: center;
+}
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Companies ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .companies {
 	width: 100%;
 	height: max-content;
-	padding: 80px;
 }
-.companies > h2 {
+.companies[data-type="corporation"] {
+	background-color: var(--lightblue-color);
+}
+.companies[data-type="partner"] {
+	background-color: var(--lightgreen-color);
+}
+.companies > div {
+	display: flex;
+	flex-direction: column;
+	padding: 80px;
+	border-radius: 0px 0px 100px 0px;
+	background-color: var(--background-main-color);
+}
+.companies > div > h2 {
 	margin: 0px auto;
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
 }
-.companies > div {
+.companies > div > div {
 	margin: 30px auto 132px auto;
 }
-.companies > h3 {
+.companies > div > div:last-of-type {
+	margin: 30px auto 0px auto;
+}
+.companies > div > h3 {
 	margin: 8px auto 40px auto;
 	font-size: 21px;
 	font-weight: normal;
 	text-align: center;
 }
-.companies > a {
+.companies > div > a {
 	width: fit-content;
 	margin: 0px auto;
-}
-.companies > div {
-	margin: 16px 0px 90px 0px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Questions ) */
@@ -316,9 +496,19 @@
 	text-align: center;
 }
 .questions[data-type="startup"] button[class*="active"] {
-	color: var(--logo-orange-color);
+	color: var(--sunred-color);
 	border-color: var(--lightred-color);
 	background-color: var(--lightred-color);
+}
+.questions[data-type="corporation"] button[class*="active"] {
+	color: var(--pureblue-color);
+	border-color: var(--lightblue-color);
+	background-color: var(--lightblue-color);
+}
+.questions[data-type="partner"] button[class*="active"] {
+	color: var(--grassgreen-color);
+	border-color: var(--lightgreen-color);
+	background-color: var(--lightgreen-color);
 }
 .questions > p {
 	margin: 0px auto;
@@ -342,8 +532,28 @@
 }
 .questions[data-type="startup"] [data-carousel] [class*="active"] > button,
 .questions[data-type="startup"] [data-carousel] [class*="active"] > button > i {
-	color: var(--logo-orange-color);
+	color: var(--sunred-color);
 }
 .questions[data-type="startup"] [data-carousel] [class*="active"] > div {
+	color: var(--perfect-black-color);
+}
+.questions[data-type="corporation"] [data-carousel] [class*="active"] {
+	background-color: var(--lightblue-color);
+}
+.questions[data-type="corporation"] [data-carousel] [class*="active"] > button,
+.questions[data-type="corporation"] [data-carousel] [class*="active"] > button > i {
+	color: var(--pureblue-color);
+}
+.questions[data-type="corporation"] [data-carousel] [class*="active"] > div {
+	color: var(--perfect-black-color);
+}
+.questions[data-type="partner"] [data-carousel] [class*="active"] {
+	background-color: var(--lightgreen-color);
+}
+.questions[data-type="partner"] [data-carousel] [class*="active"] > button,
+.questions[data-type="partner"] [data-carousel] [class*="active"] > button > i {
+	color: var(--grassgreen-color);
+}
+.questions[data-type="partner"] [data-carousel] [class*="active"] > div {
 	color: var(--perfect-black-color);
 }

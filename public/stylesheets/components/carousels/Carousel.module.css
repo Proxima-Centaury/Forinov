@@ -194,3 +194,25 @@
 .container > a[data-card="opportunity"] + a[data-card="opportunity"] {
 	margin: 0px 0px 0px 16px;
 }
+.container > a[data-card="profile"] {
+	height: 100%;
+	transition: transform 0.3s ease;
+}
+.container > a[data-card="profile"] + a[data-card="profile"] {
+	margin: 0px 0px 0px 16px;
+}
+.container > a[data-card="profile"] > div {
+	display: flex;
+	flex-direction: column;
+	min-width: 450px;
+	height: 100%;
+}
+.container > a[data-card="profile"] > div [class*="body"] {
+	height: 100%;
+}
+.container > a[data-card="profile"] > div [class*="body"] [class*="description"] {
+	flex: 1;
+}
+.container > a[data-card="profile"] > div [class*="body"] [class*="tags"] {
+	flex: none;
+}
