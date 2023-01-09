@@ -36,4 +36,4 @@ jobs:
                     server: "ftp.forinov.net"
                     username: "amine.belkheiri@forinov.net"
                     password: "IkCPSeZboASx"
-                    server-dir: "/interface/"
+                    server-dir: "interface/"
