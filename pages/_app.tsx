@@ -44,7 +44,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         if(router.pathname !== "/404") {
             router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
         };
-    }, [ locale ]);
+    }, [ locale, router ]);
     useEffect(() => setLock(!session), [ session ]);
     useEffect(() => {
         setCookie("forinov_theme_preference", theme as String);
