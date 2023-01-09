@@ -1,4 +1,8 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Image from "next/image";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ActivitiesStyles from "../../../public/stylesheets/components/contents/profile/Activities.module.css";
@@ -24,7 +28,7 @@ const TwitterFeed = ({ profile }: any) => {
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content }>
             <a className="twitter-timeline" href={ profile.TWITTER } data-height="400">Tweets by Forinov</a>
-            <img src={ profile.LOGO } alt={ profile.NAME + " logo." }/>
+            <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
             <script async src="https://platform.twitter.com/widgets.js"></script>
         </div>
     </div>;
@@ -42,7 +46,7 @@ const FacebookFeed = ({ profile }: any) => {
     return <div className={ ActivityStyles.activity }>
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content } style={ { minHeight: "400px" } }>
-            <img src={ profile.LOGO } alt={ profile.NAME + " logo." }/>
+            <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
             <iframe { ...iframeProps } width="100%" height="100%"></iframe>
         </div>
     </div>;

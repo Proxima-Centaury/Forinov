@@ -1,4 +1,5 @@
 import styles from "../../../public/stylesheets/components/OpportunityByID.module.css";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import translations from "../../../translations.json";
 
@@ -69,18 +70,22 @@ const OpportunityByID = ({ data, apiParameters, states }: any) => {
 			<div className="container">
 				<div className={styles.card}>
 					<div className={styles.banner}>
-						<img
+						<Image
 							src={data.opportunity_background}
 							alt="Opportunity Background"
+							width="120"
+							height="120"
 						/>
 					</div>
 
 					<div className={styles.content}>
 						<div className={styles.avatar_wrapper}>
 							<div className={styles.avatar}>
-								<img
+								<Image
 									src={data.opportunity_owner_logo}
 									alt="Opportunity Avatar"
+									width="120"
+									height="120"
 								/>
 							</div>
 						</div>
@@ -257,9 +262,11 @@ const OpportunityByID = ({ data, apiParameters, states }: any) => {
 								key={index}
 							>
 								<div className={styles.other_card_banner}>
-									<img
+									<Image
 										src={opportunity.BACKGROUND}
 										alt=""
+										width="120"
+										height="120"
 									/>
 								</div>
 								<div className={styles.other_card_content}>

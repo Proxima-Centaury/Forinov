@@ -2,6 +2,7 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useRef } from "react";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Directory */
@@ -28,7 +29,7 @@ const Directory = ({ data, filters }: any) => {
     catArray.forEach((category, key) => {
         nbPerCategory[category.NAME] = category.NB;
         catCards.push(<div className="annuaire__category lift" key={ key } onClick={ () => categorieClickHandler(category.ID) }>
-            <img src={ category.LOGO } alt={ category.ID } className="annuaire__category-logo"/>
+            <Image src={ category.LOGO } alt={ category.ID } className="annuaire__category-logo" width="100" height="100"/>
             <div className="annuaire__category-count">{ category.NB }</div>
             <h1 className="annuaire__category-title">{ category.NAME }</h1>
             <div className="annuaire__category-tags">
@@ -312,7 +313,7 @@ const Directory = ({ data, filters }: any) => {
                 >
                 <div className="annuaire__card-avatar-wrapper">
                     <div className="annuaire__card-avatar">
-                    <img src={item.logo} />
+                    <Image src={item.logo} alt="Logo" width="100" height="100"/>
                     </div>
                 </div>
                 <div className="annuaire__card-content-wrapper">
