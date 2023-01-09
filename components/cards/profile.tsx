@@ -42,10 +42,10 @@ const ProfileCard = ({ type, profile, states }: any) => {
                         <i className="fa-solid fa-location-dot"/>
                         <p>{ profile.ADDRESS.TOWN + ", " + profile.ADDRESS.ISO }</p>
                     </div> : null }
-                    <div>
+                    { (profile.WEBSITE) ? <div>
                         <i className="fa-solid fa-link"/>
                         <a href={ "https://" + profile.WEBSITE } target="blank">{ translations["Site internet"] }</a>
-                    </div>
+                    </div> : null }
                 </div>
                 <div className={ ProfileStyles.description }>
                     <Format content={ profile.COMMENT }/>
@@ -54,31 +54,31 @@ const ProfileCard = ({ type, profile, states }: any) => {
                 { (profile.TAGS) ? <Tags tags={ Object.entries(profile.TAGS) }/> : null }
                 { (type === "startup") ? <div className="separator"></div> : null }
                 { (type === "startup") ? <div className={ ProfileStyles.stats }>
-                    <div>
+                    { (profile.CREATIONDATE) ? <div>
                         <p className={ ProfileStyles.label }>{ translations["Date de création"] }</p>
                         <div>
                             <p>{ profile.CREATIONDATE.split("-")[2] + "/" + profile.CREATIONDATE.split("-")[1] }</p>
                         </div>
-                    </div>
-                    <div>
+                    </div> : null }
+                    { (profile.PEOPLE) ? <div>
                         <p className={ ProfileStyles.label }>{ translations["Effectifs"] }</p>
                         <div>
                             <i className="fa-light fa-user-helmet-safety"/>
                             <p>{ profile.PEOPLE }</p>
                         </div>
-                    </div>
-                    <div>
+                    </div> : null }
+                    { (profile.FUNDING) ? <div>
                         <p className={ ProfileStyles.label }>{ translations["Stade levée"] }</p>
                         <div className={ (lock) ? "locked" : "" }>
                             <p>{ profile.FUNDING }</p>
                         </div>
-                    </div>
-                    <div>
+                    </div> : null }
+                    { (profile.FUNDS) ? <div>
                         <p className={ ProfileStyles.label }>{ translations["Montant levé"] }</p>
                         <div className={ (lock) ? "locked" : "" }>
                             <p>{ profile.FUNDS + "€" }</p>
                         </div>
-                    </div>
+                    </div> : null }
                 </div> : null }
             </div>
         </div>

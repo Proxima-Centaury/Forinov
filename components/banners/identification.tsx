@@ -16,7 +16,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 const IdenfiticationBanner = ({ states }: any) => {
     const { translations }: any = states;
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const registerButtonValues = [ ButtonStyles.callToActionAlternative, false, "", "/register", () => false, translations["Je m'inscris"], 0 ];
+    const registerButtonValues = [ ButtonStyles.callToActionNegative, false, "", "/register", () => false, translations["Je m'inscris"], 0 ];
     const registerButtonObject = buildProperties(buttonProps, registerButtonValues);
     return <div className={ BannerStyles.identificationBanner }>
         <p>{ translations["Profitez de Forinov sans limite :"] }</p>

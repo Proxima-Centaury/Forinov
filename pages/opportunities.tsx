@@ -51,8 +51,10 @@ const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) =
 				</div>
 			</div>
 			<div className={ HomeStyles.companies }>
-				<h2>{ translations["Ils ont utilisé Forinov pour leurs opportunités"] }</h2>
-				<Carousel { ...parentProps } component={ "CompaniesLogos" } data={ logos }/>
+				<div>
+					<h2>{ translations["Ils ont utilisé Forinov pour leurs opportunités"] }</h2>
+					<Carousel { ...parentProps } component={ "CompaniesLogos" } data={ logos }/>
+				</div>
 			</div>
 			<div className={ HomeStyles.questions }>
 				<h2>{ translations["Les réponses à vos questions"] }</h2>
@@ -70,11 +72,11 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	const { endpoint, queries } = config.api;
 	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=opportunité&authkey=Landing");
     const logosResponse = await logosPromise.json();
-    const formattedCompaniesResponse = Object.values(logosResponse[0].LOGOS);
+    const formattedLogosResponse = Object.values(logosResponse[0].LOGOS);
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			logos: formattedCompaniesResponse,
+			logos: formattedLogosResponse,
 		},
 	};
 };
