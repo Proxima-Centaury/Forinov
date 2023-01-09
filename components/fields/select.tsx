@@ -19,8 +19,8 @@ const Select = ({ type, version, options, action, defaultValue, source }: Select
     const [ defaultSelected, setDefaultSelected ]: any = useState(() => options.filter((option: any) => option.value === defaultValue)[0]);
     const [ defaultSelectedAsObject, setDefaultSelectedAsObject ]: any = useState(null);
     const condition = !defaultSelectedAsObject || (defaultSelectedAsObject && defaultSelectedAsObject.value !== defaultValue);
-    useEffect(() => setDefaultSelected(() => options.filter((option: any) => option.value === defaultValue)[0]), [ defaultValue ]);
-    useEffect(() => (condition) ? setDefaultSelectedAsObject(defaultSelected) : undefined, [ defaultSelected ]);
+    useEffect(() => setDefaultSelected(() => options.filter((option: any) => option.value === defaultValue)[0]), [ options, defaultValue ]);
+    useEffect(() => (condition) ? setDefaultSelectedAsObject(defaultSelected) : undefined, [ defaultSelected, condition ]);
     useEffect(() => {
         const closeOptions = () => setSelectState(false);
         const selectSelector = "." + SelectStyles.selectField;
