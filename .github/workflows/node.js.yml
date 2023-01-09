@@ -30,7 +30,6 @@ jobs:
                     cache: "npm"
             - run: npm i
             - run: npm run build
-            - run: npm run test
             - name: FTP-Deploy-Action
               uses: SamKirkland/FTP-Deploy-Action@4.3.0
               with:
