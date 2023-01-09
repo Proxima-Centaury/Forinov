@@ -31,7 +31,7 @@ jobs:
             - run: npm i
             - run: npm run build
             - name: FTP-Deploy-Action
-              uses: Penguibird/FTP-Deploy-Action@4.2.0
+              uses: SamKirkland/FTP-Deploy-Action@4.3.0
               with:
                     server: "ftp.forinov.net"
                     username: "amine.belkheiri@forinov.net"
