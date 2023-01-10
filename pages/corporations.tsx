@@ -80,7 +80,7 @@ const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters,
 			</div>
 			<div className={ HomeStyles.questions } data-type="corporation">
 				<h2>{ translations["Les réponses à vos questions"] }</h2>
-				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" } data={ Object.values(config.accordions.landings.startup) }/>
+				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" } data={ Object.values(config.accordions.landings.corporation) }/>
 				<p>{ translations["Vous avez des questions"] + " ? " }<Link href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
 			</div>
 		</div>
