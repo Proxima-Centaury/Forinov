@@ -71,7 +71,6 @@
 .container {
     display: flex;
 	width: 100%;
-	min-height: 400px;
 }
 .container[data-direction="vertical"] {
 	flex-direction: column;

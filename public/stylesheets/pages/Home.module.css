@@ -141,6 +141,11 @@
 	border-radius: 100px 0px 0px 0px;
 	background-color: var(--background-main-color);
 }
+@media screen and (max-width: 576px) {
+	.onboarding > div {
+		padding: 40px;
+	}
+}
 .onboarding > div > h3 {
 	margin: 0px auto;
 	font-family: "Nunito Sans";
@@ -168,6 +173,11 @@
 	padding: 80px;
 	border-radius: 100px 0px 0px 0px;
 	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.sourcing > div {
+		padding: 40px;
+	}
 }
 .sourcing > div > h3 {
 	margin: 0px auto;
@@ -222,6 +232,11 @@
 	padding: 80px;
 	border-radius: 100px 0px 0px 0px;
 	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.opportunity > div {
+		padding: 40px;
+	}
 }
 .opportunity[data-type="startup"] > div {
 	border-radius: 100px 0px 0px 100px;
@@ -300,6 +315,11 @@
 	border-radius: 0px 100px 0px 0px;
 	background-color: var(--background-main-color);
 }
+@media screen and (max-width: 576px) {
+	.register > div {
+		padding: 40px;
+	}
+}
 .register > div > h3 {
 	margin: 32px auto;
 	font-family: "Nunito Sans";
@@ -340,6 +360,9 @@
 	align-items: center;
 	margin: 16px auto 70px auto;
 }
+.actions:last-of-type {
+	margin: 16px auto 0px auto;
+}
 .actions[data-align="left"] {
 	margin: 40px auto auto 0px;
 }
@@ -366,6 +389,11 @@
 	height: max-content;
 	padding: 80px;
 	background-color: var(--background-information-color);
+}
+@media screen and (max-width: 576px) {
+	.badges {
+		padding: 40px;
+	}
 }
 .badges[data-type="startup"] {
 	border-radius: 0px 100px 0px 0px;
@@ -494,6 +522,11 @@
 	height: 100%;
 	padding: 80px;
 }
+@media screen and (max-width: 576px) {
+	.startups > div {
+		padding: 40px;
+	}
+}
 .startups > div > h4 {
 	margin: 0px auto 40px auto;
 	font-family: "Nunito Sans";
@@ -520,6 +553,11 @@
 	padding: 80px;
 	border-radius: 0px 0px 100px 0px;
 	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.companies > div {
+		padding: 40px;
+	}
 }
 .companies > div > h2 {
 	margin: 0px auto;
@@ -555,6 +593,11 @@
 	padding: 0px 80px 116px 80px;
 	background-color: var(--background-sub-color);
 }
+@media screen and (max-width: 576px) {
+	.questions {
+		padding: 0px 40px 116px 40px;
+	}
+}
 .questions > h2 {
 	margin: 80px auto 32px auto;
 	font-family: "Nunito Sans";
@@ -579,6 +622,11 @@
 }
 .questions > p {
 	margin: 0px auto;
+}
+@media screen and (max-width: 576px) {
+	.questions > p {
+		text-align: center;
+	}
 }
 .questions > p > a {
 	text-decoration: underline;
