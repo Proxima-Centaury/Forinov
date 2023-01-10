@@ -83,7 +83,7 @@ const ProfileCard = ({ type, profile, states }: any) => {
             </div>
         </div>
         { (profile.STATE === "WO") ? <div className={ ProfileStyles.note }>
-            <p>{ translations["Ce compte n’est pas officiel. S’il s’agit de votre startup, n’hésitez pas à récupérer les accès."] }</p>
+            <p>{ translations["Ce compte n'est pas officiel. S'il s'agit de votre startup, n'hésitez pas à récupérer les accès."] }</p>
         </div> : null }
     </div>;
 };

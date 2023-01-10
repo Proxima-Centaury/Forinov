@@ -33,7 +33,7 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 			<div className={ HomeStyles.presentation } data-type="startup">
 				<div>
 					<h1>{ translations["Bienvenue sur Forinov"] }</h1>
-					<p className={ HomeStyles.paragraph }>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d’innovation, à chaque startup son Forinov"] + " !" }</p>
+					<p className={ HomeStyles.paragraph }>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d'innovation, à chaque startup son Forinov"] + " !" }</p>
 					<Link href="/register">{ translations["Rejoindre la communauté"] }</Link>
 				</div>
 				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
@@ -77,7 +77,7 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 						<i className="fa-light fa-gauge-high"/>
 						<div>
 							<h4>{ translations["Profitez"] }</h4>
-							<p>{ translations["J'accède GRATUITEMENT à toutes les opportunités ainsi qu’aux annuaires de Forinov"] }</p>
+							<p>{ translations["J'accède GRATUITEMENT à toutes les opportunités ainsi qu'aux annuaires de Forinov"] }</p>
 						</div>
 					</div>
 					<div className="separator"></div>

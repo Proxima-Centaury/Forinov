@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation Container ) */
+/* Home ( Presentation ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentation {
 	display: flex;
@@ -7,7 +7,12 @@
 	height: max-content;
 	padding: 80px;
 	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-information-color);
+	background-color: var(--background-sub-color);
+}
+@media screen and (max-width: 576px) {
+	.presentation {
+		padding: 40px;
+	}
 }
 .presentation[data-type="startup"] {
 	background-color: var(--lightred-color);
@@ -19,6 +24,9 @@
 .presentation[data-type="partner"] {
 	border-radius: 0px 0px 0px 100px;
 	background-color: var(--lightgreen-color);
+}
+.presentation[data-type="opportunity"] {
+	background-color: var(--background-information-color);
 }
 .presentation::before {
 	content: "";
@@ -41,6 +49,12 @@
 	font-size: 65px;
 	font-weight: bold;
 }
+@media screen and (max-width: 576px) {
+	.presentation > div > h1 {
+		font-size: 60px;
+		text-align: center;
+	}
+}
 .presentation[data-type="startup"] > div > h1 {
 	color: var(--sunred-color);
 }
@@ -51,9 +65,17 @@
 	color: var(--grassgreen-color);
 }
 .presentation > div > p {
-	margin: 0px 0px 32px 0px;
 	font-family: "Nunito Sans";
 	font-size: 24px;
+}
+@media screen and (max-width: 576px) {
+	.presentation > div > p {
+		font-size: 24px;
+		text-align: center;
+	}
+}
+.presentation > div > p + p {
+	margin: 16px 0px 0px 0px;
 }
 .presentation[data-type="startup"] > div > p {
 	color: var(--sunred-color);
@@ -66,22 +88,26 @@
 }
 .presentation > div > a {
 	width: fit-content;
+	margin: 16px 0px 0px 0px;
 	padding: 16px;
 	font-size: 19px;
 	font-weight: 600;
+	color: var(--perfect-white-color);
+	text-align: center;
 	border-radius: 100px;
 	border: var(--border);
 	border-width: 2px;
-	border-color: var(--background-sub-color);
-	background-color: var(--background-sub-color);
-	transition: color 0.3s ease, background-color 0.3s ease;
-}
-.presentation[data-type="startup"] > div > a,
-.presentation[data-type="corporation"] > div > a,
-.presentation[data-type="partner"] > div > a {
-	color: var(--perfect-white-color);
 	border-color: var(--logo-blue-color);
 	background-color: var(--logo-blue-color);
+	transition: color 0.3s ease, background-color 0.3s ease;
+}
+@media screen and (max-width: 576px) {
+	.presentation > div > a {
+		width: 100%;
+	}
+}
+.presentation > div > a + a {
+	margin: 16px 0px 0px 0px;
 }
 .presentation > div > a:hover {
 	background-color: transparent;
@@ -100,9 +126,36 @@
 	.presentation > img {
 		display: none;
 	}
+
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Sourcing Container ) */
+/* Home ( Onboarding ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.onboarding {
+	background-color: var(--background-sub-color);
+}
+.onboarding > div {
+	width: 100%;
+	height: max-content;
+	padding: 80px;
+	border-radius: 100px 0px 0px 0px;
+	background-color: var(--background-main-color);
+}
+.onboarding > div > h3 {
+	margin: 0px auto;
+	font-family: "Nunito Sans";
+	font-size: 48px;
+	font-weight: bold;
+	text-align: center;
+}
+.onboarding > div > p {
+	margin: 0px auto 32px auto;
+	font-family: "Nunito Sans";
+	font-size: 21px;
+	text-align: center;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Sourcing ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .sourcing {
 	background-color: var(--background-main-color);
@@ -153,7 +206,7 @@
 	margin: 32px auto 0px auto;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Opportunity Container ) */
+/* Home ( Opportunity ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .opportunity {
 	background-color: var(--background-information-color);
@@ -212,8 +265,22 @@
 .opportunity > div > [data-carousel="startup"] {
 	position: relative;
 }
+@media screen and (max-width: 768px) {
+	.opportunity > div > [class*="steps"] {
+		flex-direction: column;
+	}
+	.opportunity > div > [class*="steps"] > [class="separator"] {
+		display: none;
+	}
+	.opportunity > div > [class*="steps"] > button {
+		margin: 16px 0px 0px 0px;
+	}
+	.opportunity > div > [class*="steps"] > button:first-of-type {
+		margin: 0px;
+	}
+}
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Register Container ) */
+/* Home ( Register ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .register {
 	background-color: var(--background-sub-color);

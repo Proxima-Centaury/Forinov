@@ -95,52 +95,6 @@
     },
     "accordions": {
         "landings": {
-            "opportunity": {
-                "general" : [
-                    {
-                        "button": "Qu'est-ce qu'une opportunité",
-                        "content": ""
-                    },
-                    {
-                        "button": "Forinov, est-ce vraiment gratuit pour les startups",
-                        "content": ""
-                    },
-                    {
-                        "button": "Mon profil est-il celui d'une startup ou d'une entreprise",
-                        "content": ""
-                    },
-                    {
-                        "button": "Qui sont les personnes que je peux contacter sur Forinov",
-                        "content": ""
-                    },
-                    {
-                        "button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
-                        "content": ""
-                    }
-                ],
-                "community" : [
-                    {
-                        "button": "Qu'est-ce qu'une opportunité",
-                        "content": ""
-                    },
-                    {
-                        "button": "Forinov, est-ce vraiment gratuit pour les startups",
-                        "content": ""
-                    },
-                    {
-                        "button": "Mon profil est-il celui d'une startup ou d'une entreprise",
-                        "content": ""
-                    },
-                    {
-                        "button": "Qui sont les personnes que je peux contacter sur Forinov",
-                        "content": ""
-                    },
-                    {
-                        "button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
-                        "content": ""
-                    }
-                ]
-            },
             "startup": {
                 "general" : [
                     {
@@ -187,6 +141,52 @@
                     }
                 ]
             },
+            "corporation": {
+                "general" : [
+                    {
+                        "button": "Quels sont les outils mis à disposition sur Forinov pour mon entreprise",
+                        "content": ""
+                    },
+                    {
+                        "button": "Forinov, est-ce vraiment gratuit pour les startups",
+                        "content": ""
+                    },
+                    {
+                        "button": "Toutes les informations sont-elles publiques",
+                        "content": ""
+                    },
+                    {
+                        "button": "Quel est le coût d'inscription sur Forinov pour mon entreprise",
+                        "content": ""
+                    },
+                    {
+                        "button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
+                        "content": ""
+                    }
+                ],
+                "community" : [
+                    {
+                        "button": "Quels sont les outils mis à disposition sur Forinov pour mon entreprise",
+                        "content": ""
+                    },
+                    {
+                        "button": "Forinov, est-ce vraiment gratuit pour les startups",
+                        "content": ""
+                    },
+                    {
+                        "button": "Toutes les informations sont-elles publiques",
+                        "content": ""
+                    },
+                    {
+                        "button": "Quel est le coût d'inscription sur Forinov pour mon entreprise",
+                        "content": ""
+                    },
+                    {
+                        "button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
+                        "content": ""
+                    }
+                ]
+            },
             "partner": {
                 "general" : [
                     {
@@ -225,6 +225,52 @@
                     },
                     {
                         "button": "Comment mettre en avant mes startups sur Forinov",
+                        "content": ""
+                    },
+                    {
+                        "button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
+                        "content": ""
+                    }
+                ]
+            },
+            "opportunity": {
+                "general" : [
+                    {
+                        "button": "Qu'est-ce qu'une opportunité",
+                        "content": ""
+                    },
+                    {
+                        "button": "Forinov, est-ce vraiment gratuit pour les startups",
+                        "content": ""
+                    },
+                    {
+                        "button": "Mon profil est-il celui d'une startup ou d'une entreprise",
+                        "content": ""
+                    },
+                    {
+                        "button": "Qui sont les personnes que je peux contacter sur Forinov",
+                        "content": ""
+                    },
+                    {
+                        "button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
+                        "content": ""
+                    }
+                ],
+                "community" : [
+                    {
+                        "button": "Qu'est-ce qu'une opportunité",
+                        "content": ""
+                    },
+                    {
+                        "button": "Forinov, est-ce vraiment gratuit pour les startups",
+                        "content": ""
+                    },
+                    {
+                        "button": "Mon profil est-il celui d'une startup ou d'une entreprise",
+                        "content": ""
+                    },
+                    {
+                        "button": "Qui sont les personnes que je peux contacter sur Forinov",
                         "content": ""
                     },
                     {
