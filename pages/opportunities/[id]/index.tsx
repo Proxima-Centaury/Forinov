@@ -1,7 +1,6 @@
 import styles from "../../../public/stylesheets/components/OpportunityByID.module.css";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import translations from "../../../translations.json";
 
 const OpportunityByID = ({ data, apiParameters, states }: any) => {
     const { translations }: any = states;
