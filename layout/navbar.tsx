@@ -46,7 +46,7 @@ const Navbar = ({ states, stateSetters, config }: NavbarInterface) => {
         <div className={ NavbarStyles.actions }>
             <Select { ...languageSelectObject as SelectInterface }/>
             <Link href="/login"><i className="fa-light fa-user"/></Link>
-            <Link href="/register" className={ ButtonStyles.callToAction }>{ translations["M'inscrire"] }</Link>
+            <Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["M'inscrire"] }</Link>
         </div>
         <Button { ...navigationButtonObject as ButtonInterface }/>
     </nav>;

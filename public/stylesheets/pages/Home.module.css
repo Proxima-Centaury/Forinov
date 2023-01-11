@@ -110,12 +110,20 @@
 	margin: 16px 0px 0px 0px;
 }
 .presentation > div > a:hover {
+	color: var(--text-main-color);
 	background-color: transparent;
 }
 .presentation[data-type="startup"] > div > a:hover,
 .presentation[data-type="corporation"] > div > a:hover,
 .presentation[data-type="partner"] > div > a:hover {
 	color: var(--perfect-black-color);
+}
+.presentation > div > a > i {
+	margin: 0px 0px 0px 16px;
+	color: var(--perfect-white-color);
+}
+.presentation > div > a:hover > i {
+	color: var(--text-main-color);
 }
 .presentation > img {
 	width: 500px;
@@ -158,6 +166,72 @@
 	font-family: "Nunito Sans";
 	font-size: 21px;
 	text-align: center;
+}
+.onboarding > div > .types {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.onboarding > div > .types > .type {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: 16px;
+	border-radius: 15px;
+	background-color: var(--background-sub-color);
+	box-shadow: var(--box-shadow);
+}
+.onboarding > div > .types > .type + .type {
+	margin: 0px 0px 0px 32px;
+}
+.onboarding > div > .types > .type > .head {
+	display: flex;
+	align-items: center;
+	margin: 0px 0px 16px 0px;
+}
+.onboarding > div > .types > .type > .head > i {
+	margin: 0px 16px 0px 0px;
+	font-size: 56px;
+}
+.onboarding > div > .types > .type[data-type="startup"] > .head > i {
+	color: var(--logo-orange-color);
+}
+.onboarding > div > .types > .type[data-type="corporation"] > .head > i {
+	color: var(--logo-blue-color);
+}
+.onboarding > div > .types > .type[data-type="partner"] > .head > i {
+	color: var(--logo-green-color);
+}
+.onboarding > div > .types > .type[data-type="partner"] > .head > div {
+	display: flex;
+	flex-direction: column;
+}
+.onboarding > div > .types > .type > .head > div > h5 {
+	font-family: "Nunito Sans";
+	font-size: 24px;
+}
+.onboarding > div > .types > .type[data-type="startup"] > .head > div > h5 {
+	color: var(--logo-orange-color);
+}
+.onboarding > div > .types > .type[data-type="corporation"] > .head > div > h5 {
+	color: var(--logo-blue-color);
+}
+.onboarding > div > .types > .type[data-type="partner"] > .head > div > h5 {
+	color: var(--logo-green-color);
+}
+.onboarding > div > .types > .type > .footer {
+	display: flex;
+	flex-direction: column;
+}
+.onboarding > div > .types > .type > .footer > a:last-of-type {
+	margin: 16px auto 0px auto;
+	text-decoration: underline;
+	text-decoration-color: transparent;
+	transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+.onboarding > div > .types > .type > .footer > a:last-of-type:hover {
+	color: var(--logo-blue-color);
+	text-decoration-color: var(--logo-blue-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Sourcing ) */

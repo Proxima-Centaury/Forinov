@@ -36,10 +36,10 @@ const Home = ({ logos, startups, locales, states, stateSetters, config }: HomeIn
 					<h1>{ translations["Rejoignez le plus grand réseau social des acteurs de l'innovation"] }</h1>
 					<p className={ HomeStyles.paragraph }>{ translations["Forinov est la plateforme qui connecte startups, entreprises et partenaires pour matcher le besoin avec l'offre d'innovation"] + "." }</p>
 					<p className={ HomeStyles.paragraph }>{ translations["Découvrez et contactez les meilleures startups sur Forinov pour transformer vos bonnes idées en projets concrets"] + " !" }</p>
-					<Link href="/directories/startups">{ translations["Trouvez des startups"] }</Link>
-					<Link href="/directories/corporations">{ translations["Découvrez les entreprises membres"] }</Link>
-					<Link href="/directories/partners">{ translations["Découvrez les partenaires"] }</Link>
-					<Link href="/directories/opportunities">{ translations["Postulez aux opportunités en cours"] }</Link>
+					<Link href="/directories/startups">{ translations["Trouvez des startups"] }<i className="fa-light fa-arrow-right"/></Link>
+					<Link href="/directories/corporations">{ translations["Découvrez les entreprises membres"] }<i className="fa-light fa-arrow-right"/></Link>
+					<Link href="/directories/partners">{ translations["Découvrez les partenaires"] }<i className="fa-light fa-arrow-right"/></Link>
+					<Link href="/directories/opportunities">{ translations["Postulez aux opportunités en cours"] }<i className="fa-light fa-arrow-right"/></Link>
 				</div>
 				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
 			</div>
@@ -47,6 +47,56 @@ const Home = ({ logos, startups, locales, states, stateSetters, config }: HomeIn
                 <div>
                     <h3>{ translations["Pourquoi rejoindre Forinov"] + " ?" }</h3>
                     <p>{ translations["Des profils adaptés à vos besoins"] }</p>
+					<div className={ HomeStyles.types }>
+						<div className={ HomeStyles.type } data-type="startup">
+							<div className={ HomeStyles.head }>
+								<i className="fa-light fa-rocket-launch"/>
+								<div>
+									<h5>{ translations["Startup"] }</h5>
+									<p>{ translations["Entreprises innovantes, etc."] }</p>
+								</div>
+							</div>
+							<div className={ HomeStyles.body }>
+
+							</div>
+							<div className={ HomeStyles.footer }>
+								<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Créer mon compte"] }</Link>
+								<Link href="/startups">{ translations["En savoir plus"] }</Link>
+							</div>
+						</div>
+						<div className={ HomeStyles.type } data-type="corporation">
+							<div className={ HomeStyles.head }>
+								<i className="fa-light fa-buildings"/>
+								<div>
+									<h5>{ translations["Entreprise"] }</h5>
+									<p>{ translations["PME, ETI, Grand Groupe, etc."] }</p>
+								</div>
+							</div>
+							<div className={ HomeStyles.body }>
+
+							</div>
+							<div className={ HomeStyles.footer }>
+								<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Créer mon compte"] }</Link>
+								<Link href="/corporations">{ translations["En savoir plus"] }</Link>
+							</div>
+						</div>
+						<div className={ HomeStyles.type } data-type="partner">
+							<div className={ HomeStyles.head }>
+								<i className="fa-light fa-handshake-simple"/>
+								<div>
+									<h5>{ translations["Partenaire"] }</h5>
+									<p>{ translations["Incubateurs, Investisseurs, etc."] }</p>
+								</div>
+							</div>
+							<div className={ HomeStyles.body }>
+
+							</div>
+							<div className={ HomeStyles.footer }>
+								<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Créer mon compte"] }</Link>
+								<Link href="/partners">{ translations["En savoir plus"] }</Link>
+							</div>
+						</div>
+					</div>
                 </div>
             </div>
         </div>
