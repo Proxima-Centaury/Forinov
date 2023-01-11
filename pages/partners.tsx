@@ -27,7 +27,7 @@ const PartnersHome = ({ logos, startups, locales, states, stateSetters, config }
 	const parentProps = { locales, states, stateSetters, config };
 	return <>
 		<Head>
-			<title>Forinov { translations["Entreprises"] } - { translations["Comment ça marche"] + " ?" }</title>
+			<title>Forinov { translations["Partenaires"] } - { translations["Comment ça marche"] + " ?" }</title>
 		</Head>
 		<div className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="partner">

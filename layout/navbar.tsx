@@ -37,7 +37,7 @@ const Navbar = ({ states, stateSetters, config }: NavbarInterface) => {
         <div className={ NavbarStyles.logo }>
             <Link href="/">
                 <Image src="/assets/logo.png" alt={ translations["Logo de Forinov"] } width="50" height="50"/>
-                <span>Forinov</span>
+                <span>forinov</span>
             </Link>
         </div>
         <ul className={ NavbarStyles.links + ((menuState) ? " " + NavbarStyles.show : "") }>

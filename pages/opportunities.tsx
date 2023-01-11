@@ -27,7 +27,7 @@ const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) =
 	const parentProps = { locales, states, stateSetters, config };
 	return <>
 		<Head>
-			<title>Forinov - { translations["Accueil"] }</title>
+			<title>Forinov { translations["Opportunités"] } - { translations["Comment ça marche"] + " ?" }</title>
 		</Head>
 		<div className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="opportunity">

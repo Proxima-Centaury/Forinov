@@ -3,7 +3,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { Fragment, useEffect, useState } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
-import { buildProperties, formatNameForUrl } from "../../scripts/utilities";
+import { buildProperties, formatNameForUrl, bindEventListeners, removeEventListeners } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -191,13 +191,13 @@ const TheLatestOpportunities = ({ states, data }: any) => {
     };
     useEffect(() => {
         let carousel = document.querySelector("[class*='opportunity'][data-type='startup'] > div > ." + CarouselStyles.container);
-        carousel?.addEventListener("wheel", scrollHandler);
-        return () => carousel?.removeEventListener("wheel", scrollHandler);
+        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) : null;
+        return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) as any;
     });
     useEffect(() => {
         let carousel = document.querySelector("[class*='opportunity'][data-type='corporation'] > div > ." + CarouselStyles.container);
-        carousel?.addEventListener("wheel", scrollHandler);
-        return () => carousel?.removeEventListener("wheel", scrollHandler);
+        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) : null;
+        return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) as any;
     });
     return <>
         <div className={ CarouselStyles.container }>
@@ -262,8 +262,8 @@ const PartnersStartups = ({ states, data }: any) => {
     };
     useEffect(() => {
         let carousel = document.querySelector("[class*='startups'][data-type='partner'] > div > ." + CarouselStyles.container);
-        carousel?.addEventListener("wheel", scrollHandler);
-        return () => carousel?.removeEventListener("wheel", scrollHandler);
+        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) : null;
+        return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) as any;
     });
     return <>
         <div className={ CarouselStyles.container }>
