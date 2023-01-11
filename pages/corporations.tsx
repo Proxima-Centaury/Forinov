@@ -34,7 +34,7 @@ const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters,
 				<div>
 					<h1>{ translations["Bienvenue sur Forinov"] }</h1>
 					<p className={ HomeStyles.paragraph }>{ translations["Sur Forinov, nous regroupons plus de 5000 startups, de quoi trouver votre partenaire de demain"] + " !" }</p>
-					<Link href="/register">{ translations["Rejoindre la communauté"] }</Link>
+					<Link href="/onboarding">{ translations["Rejoindre la communauté"] }</Link>
 				</div>
 				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
 			</div>
@@ -51,8 +51,8 @@ const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters,
 					<h2>{ translations["Rejoignez l'écosystème Forinov plus de 1200 startups vous attendent"] + " !" }</h2>
 					<h3>{ translations["Adaptez votre forfait à vos besoins"] + " !" }</h3>
 					<div className={ HomeStyles.actions }>
-						<Link href="/register" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
-						<Link href="/register" className={ ButtonStyles.callToActionAlternative }>{ translations["Découvrir les offres"] }</Link>
+						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
+						<Link href="/onboarding" className={ ButtonStyles.callToActionAlternative }>{ translations["Découvrir les offres"] }</Link>
 					</div>
 				</div>
 			</div>
@@ -64,7 +64,7 @@ const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters,
 						<Carousel { ...parentProps } component={ "HowToGetStarted" }/>
 					</div>
 					<div className={ HomeStyles.actions }>
-						<Link href="/register" className={ ButtonStyles.callToAction }>{ translations["Découvrir les avantages de la solution Forinov"] }</Link>
+						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Découvrir les avantages de la solution Forinov"] }</Link>
 					</div>
 				</div>
 			</div>

@@ -27,14 +27,14 @@ const PartnersHome = ({ logos, startups, locales, states, stateSetters, config }
 	const parentProps = { locales, states, stateSetters, config };
 	return <>
 		<Head>
-			<title>Forinov { translations["Entreprises"] } - { translations["Comment ça marche"] + " ?" }</title>
+			<title>Forinov { translations["Partenaires"] } - { translations["Comment ça marche"] + " ?" }</title>
 		</Head>
 		<div className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="partner">
 				<div>
 					<h1>{ translations["Bienvenue sur Forinov"] }</h1>
 					<p className={ HomeStyles.paragraph }>{ translations["Rejoignez le nouveau réseau social de l'Open Innovation pour trouver les startups phares de demain"] + "." }</p>
-					<Link href="/register">{ translations["Rejoindre la communauté"] }</Link>
+					<Link href="/onboarding">{ translations["Rejoindre la communauté"] }</Link>
 				</div>
 				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
 			</div>
@@ -51,8 +51,8 @@ const PartnersHome = ({ logos, startups, locales, states, stateSetters, config }
 					<h2>{ translations["Rejoignez l'écosystème Forinov plus de 1200 startups vous attendent"] + " !" }</h2>
 					<h3>{ translations["Adaptez votre forfait à vos besoins"] + " !" }</h3>
 					<div className={ HomeStyles.actions }>
-						<Link href="/register" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
-						<Link href="/register" className={ ButtonStyles.callToActionAlternative }>{ translations["Découvrir les offres"] }</Link>
+						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
+						<Link href="/onboarding" className={ ButtonStyles.callToActionAlternative }>{ translations["Découvrir les offres"] }</Link>
 					</div>
 				</div>
 			</div>

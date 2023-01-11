@@ -53,7 +53,7 @@
 .navbar > .logo > a > span {
     font-size: 26px;
     font-weight: bold;
-    font-family: "Nunito Sans";
+    font-family: "Montserrat Alternates";
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar ( Links ) */
@@ -190,7 +190,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30px;
+    height: 45px;
     white-space: nowrap;
 }
 .navbar > .links > li > ul > li > a {

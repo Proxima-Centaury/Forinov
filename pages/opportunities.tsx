@@ -27,7 +27,7 @@ const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) =
 	const parentProps = { locales, states, stateSetters, config };
 	return <>
 		<Head>
-			<title>Forinov - { translations["Accueil"] }</title>
+			<title>Forinov { translations["Opportunités"] } - { translations["Comment ça marche"] + " ?" }</title>
 		</Head>
 		<div className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="opportunity">
@@ -44,7 +44,7 @@ const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) =
 					<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
 					<Carousel { ...parentProps } component={ "HowToCreateAnOpportunity" }/>
 					<div className={ HomeStyles.actions }>
-						<Link href="/register" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
+						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
 						<Link href="/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir les offres"] }</Link>
 					</div>
 				</div>

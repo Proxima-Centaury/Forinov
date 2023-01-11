@@ -34,7 +34,7 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 				<div>
 					<h1>{ translations["Bienvenue sur Forinov"] }</h1>
 					<p className={ HomeStyles.paragraph }>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d'innovation, à chaque startup son Forinov"] + " !" }</p>
-					<Link href="/register">{ translations["Rejoindre la communauté"] }</Link>
+					<Link href="/onboarding">{ translations["Rejoindre la communauté"] }</Link>
 				</div>
 				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
 			</div>
@@ -89,7 +89,7 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 					<Carousel { ...parentProps } component={ "CompaniesLogos" } data={ logos }/>
 					<h2>{ translations["Créer mon compte startup gratuitement"] }</h2>
 					<h3>{ translations["Et rejoindre une communauté grandissante rassemblant tous les acteurs de l'innovation"].toLowerCase() }</h3>
-					<Link href="/register" className={ ButtonStyles.callToAction }>{ translations["Rejoindre la communauté"] }</Link>
+					<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Rejoindre la communauté"] }</Link>
 				</div>
 			</div>
 			<div className={ HomeStyles.questions } data-type="startup">
