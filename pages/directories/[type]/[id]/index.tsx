@@ -24,6 +24,7 @@ import ProfileOpportunities from "../../../../components/contents/profile/opport
 import ProfileActivities from "../../../../components/contents/profile/activities";
 import ProfileSocials from "../../../../components/contents/profile/socials";
 import ProfileGoals from "../../../../components/contents/profile/goals";
+import OpportunityPreview from "../../../../components/contents/opportunity/preview";
 import Button from "../../../../components/buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
@@ -38,9 +39,9 @@ import MenuStyles from "../../../../public/stylesheets/components/menus/Profile.
 import BannerStyles from "../../../../public/stylesheets/components/banners/Banner.module.css";
 import ButtonStyles from "../../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile */
+/* Page */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Profile = ({ profile, products, activities, folders, states, stateSetters }: ProfileInterface) => {
+const Page = ({ profile, products, activities, folders, opportunity, states, stateSetters }: ProfileInterface) => {
     const router = useRouter();
     const { session, lock }: any = states;
     const { setModal }: any = stateSetters;
@@ -51,48 +52,53 @@ const Profile = ({ profile, products, activities, folders, states, stateSetters 
         type = (type.match(/(entreprise)/)) ? "corporation" : type;
         type = (type.match(/(partenaire)/)) ? "partner" : type;
     };
-    useEffect(() => {
-        let showRegisterPopup = (event: MouseEvent) => {
-            event.preventDefault();
-            if(lock) {
-                const target = event.target as Element;
-                const selectors = [
-                    "." + MenuStyles.menu,
-                    "." + ButtonStyles.closeModal,
-                    "." + BannerStyles.identificationBanner,
-                    "." + BannerStyles.recoverBanner,
-                    "." + NavbarStyles.navbar,
-                    "[data-type='devtools']"
-                ];
-                if(!target.closest(selectors.join(", "))) {
-                    if(lock) {
-                        return setModal("register");
+    const parentProps = { type, profile, products, activities, folders, opportunity, states, stateSetters };
+    if(profile && !opportunity) {
+        useEffect(() => {
+            let showRegisterPopup = (event: MouseEvent) => {
+                event.preventDefault();
+                if(lock) {
+                    const target = event.target as Element;
+                    const selectors = [
+                        "." + MenuStyles.menu,
+                        "." + ButtonStyles.closeModal,
+                        "." + BannerStyles.identificationBanner,
+                        "." + BannerStyles.recoverBanner,
+                        "." + NavbarStyles.navbar,
+                        "[data-type='devtools']"
+                    ];
+                    if(!target.closest(selectors.join(", "))) {
+                        if(lock) {
+                            return setModal("register");
+                        };
                     };
+                    return setModal(null);
                 };
-                return setModal(null);
             };
-        };
-        (lock) ? window.addEventListener("click", showRegisterPopup) : null;
-        return () => window.removeEventListener("click", showRegisterPopup);
-    });
-    const parentProps = { type, profile, products, activities, folders, states, stateSetters };
-    return <div id="profile" className="container">
-        { (!session) ? <IdenfiticationBanner { ...parentProps }/> : null }
-        { (profile.STATE === "WO") ? <RecoverBanner { ...parentProps }/> : null }
-        <ProfileCard { ...parentProps }/>
-        <div className={ ProfileStyles.details }>
-            <div className={ ProfileStyles.leftSide }>
-                <div className="sticky">
-                    <ProfileMenu { ...parentProps }/>
-                    <ProfileOverview { ...parentProps }/>
+            (lock) ? window.addEventListener("click", showRegisterPopup) : null;
+            return () => window.removeEventListener("click", showRegisterPopup);
+        });
+        return <div id="profile" className="container">
+            { (!session) ? <IdenfiticationBanner { ...parentProps }/> : null }
+            { (profile.STATE === "WO") ? <RecoverBanner { ...parentProps }/> : null }
+            <ProfileCard { ...parentProps }/>
+            <div className={ ProfileStyles.details }>
+                <div className={ ProfileStyles.leftSide }>
+                    <div className="sticky">
+                        <ProfileMenu { ...parentProps }/>
+                        <ProfileOverview { ...parentProps }/>
+                    </div>
+                </div>
+                <div className={ ProfileStyles.content }>
+                    { (type === "startup") ? <Startup { ...parentProps }/> : null }
+                    { (type === "corporation") ? <Corporation { ...parentProps }/> : null }
+                    { (type === "partner") ? <Partner { ...parentProps }/> : null }
                 </div>
             </div>
-            <div className={ ProfileStyles.content }>
-                { (type === "startup") ? <Startup { ...parentProps }/> : null }
-                { (type === "corporation") ? <Corporation { ...parentProps }/> : null }
-                { (type === "partner") ? <Partner { ...parentProps }/> : null }
-            </div>
-        </div>
+        </div>;
+    };
+    return <div id="opportunity" className="container">
+        <OpportunityPreview { ...parentProps }/>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -163,30 +169,52 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const { query, locale, locales, defaultLocale } = context;
     let { id, type }: any = query;
     const { endpoint, queries } = config.api;
-    if(type) {
-        type = String(type);
-        type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-        type = (type.match(/(corporation)/)) ? "entreprise" : type;
-        type = (type.match(/(partner)/)) ? "partenaire" : type;
-    };
     id = id?.substring(id.indexOf("_") + 1, id.length);
-    const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-    const profileResponse = await profilePromise.json();
-    const formattedProfileResponse = profileResponse[0];
-    const productsPromise = await fetch(endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-    const productsResponse = await productsPromise.json();
-    const formattedProductsResponse = Object.values(productsResponse[0].PRODUCTS);
-    const activitiesPromise = await fetch(endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-    const activitiesResponse = await activitiesPromise.json();
-    const formattedActivitiesResponse = Object.values(activitiesResponse[0].EVENTS);
-    const foldersPromise = await fetch(endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-    const foldersResponse = await foldersPromise.json();
-    const formattedFoldersResponse = foldersResponse.folders;
-    beautifyTheLogs("[CALL] PROFILE : " + endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-    beautifyTheLogs("[CALL] PRODUCTS : " + endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-    beautifyTheLogs("[CALL] ACTIVITIES : " + endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-    beautifyTheLogs("[CALL] FOLDERS : " + endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-    if(!formattedProfileResponse || (formattedProfileResponse && Object.keys(formattedProfileResponse).length === 0)) {
+    if(!type.match(/(opport)/)) {
+        if(type) {
+            type = String(type);
+            type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
+            type = (type.match(/(corporation)/)) ? "entreprise" : type;
+            type = (type.match(/(partner)/)) ? "partenaire" : type;
+        };
+        const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        const profileResponse = await profilePromise.json();
+        const formattedProfileResponse = profileResponse[0];
+        const productsPromise = await fetch(endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        const productsResponse = await productsPromise.json();
+        const formattedProductsResponse = Object.values(productsResponse[0].PRODUCTS);
+        const activitiesPromise = await fetch(endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        const activitiesResponse = await activitiesPromise.json();
+        const formattedActivitiesResponse = Object.values(activitiesResponse[0].EVENTS);
+        const foldersPromise = await fetch(endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        const foldersResponse = await foldersPromise.json();
+        const formattedFoldersResponse = foldersResponse.folders;
+        beautifyTheLogs("[CALL] PROFILE : " + endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne");
+        beautifyTheLogs("[CALL] PRODUCTS : " + endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        beautifyTheLogs("[CALL] ACTIVITIES : " + endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        beautifyTheLogs("[CALL] FOLDERS : " + endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        if(!formattedProfileResponse || (formattedProfileResponse && Object.keys(formattedProfileResponse).length === 0)) {
+            return {
+                redirect: {
+                    destination: "/" + locale + "/404",
+                    permanent: false
+                }
+            };
+        };
+        return {
+            props: {
+                locale, locales, defaultLocale,
+                profile: formattedProfileResponse || null,
+                products: formattedProductsResponse || null,
+                activities: formattedActivitiesResponse || null,
+                folders: formattedFoldersResponse || null
+            }
+        };
+    };
+    const opportunityPromise = await fetch(endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&lang=" + locale?.substring(0, 2) + "&authkey=Sorbonne");
+    const opportunityResponse = await opportunityPromise.json();
+    const formattedOpportunityResponse = opportunityResponse;
+    if(!formattedOpportunityResponse) {
         return {
             redirect: {
                 destination: "/" + locale + "/404",
@@ -197,15 +225,12 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             locale, locales, defaultLocale,
-            profile: formattedProfileResponse || null,
-            products: formattedProductsResponse || null,
-            activities: formattedActivitiesResponse || null,
-            folders: formattedFoldersResponse || null
+            opportunity: formattedOpportunityResponse || null,
         }
     };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default Profile;
+export default Page;
 export { getServerSideProps };

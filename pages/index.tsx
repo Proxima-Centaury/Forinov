@@ -25,10 +25,11 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 const Home = ({ logos, startups, locales, states, stateSetters, config }: HomeInterface) => {
 	const { translations }: any = states;
 	const parentProps = { locales, states, stateSetters, config };
+	const title = translations["Forinov, le réseau social de l'Open Innovation"] as String;
 	return <>
 		<Head>
             <meta name="description" content={ translations["Forinov est le réseau social de l'Open innovation qui connecte startups, entreprises et partenaires pour faciliter leur collaboration. Forinov optimise veille, sourcing, gestion du portefeuille de start ups et de partenaires. (accélérateurs, incubateurs, …)"] + "." }/>
-			<title>{ translations["Forinov, le réseau social de l'Open Innovation"] }</title>
+			<title>{ title }</title>
 		</Head>
 		<div className="containerFull">
 			<div className={ HomeStyles.presentation }>

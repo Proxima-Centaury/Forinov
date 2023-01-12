@@ -25,9 +25,10 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters, config }: HomeInterface) => {
 	const { translations }: any = states;
 	const parentProps = { locales, states, stateSetters, config };
+	const title = "Forinov " + translations["Entreprises"] + " - " + translations["Comment ça marche"] + " ?";
 	return <>
 		<Head>
-			<title>Forinov { translations["Entreprises"] } - { translations["Comment ça marche"] + " ?" }</title>
+			<title>{ title }</title>
 		</Head>
 		<div className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="corporation">

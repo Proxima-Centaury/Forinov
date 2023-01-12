@@ -35,9 +35,9 @@ const ProfilePartners = ({ type, profile, folders, states }: any) => {
     const moreOrLess2ButtonObject = buildProperties(buttonProps, moreOrLess2ButtonValues);
     return <>
         <div className={ PartnersStyles.partners } style={ { margin: (type !== "startup") ? "0px" : undefined } }>
-            <p className={ PartnersStyles.label }>{ translations["Nos partenaires"] + " (" + partners.length + ")" }</p>
+            <p className={ PartnersStyles.label }>{ translations["Nos partenaires"] + " (" + (partners.length || 0) + ")" }</p>
             <div className={ PartnersStyles.list } data-type="list">
-                { (partners) ? partners.map((partner: any, key: KeyType) => {
+                { (partners && partners.length > 0) ? partners.map((partner: any, key: KeyType) => {
                     const entity = partner;
                     const type = "partner";
                     const index = key + 1;

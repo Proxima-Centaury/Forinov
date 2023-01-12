@@ -8,7 +8,8 @@
             "getFolders": "V5_GET_FOLDERS",
             "getLandingOpportunities": "LANDING_OPPORTUNITES",
             "getLandingLogos": "LANDING_LOGOS",
-            "getLandingStartups": "LANDING_SU"
+            "getLandingStartups": "LANDING_SU",
+            "getOpportunity": "V5_GET_OPPORTUNITY"
         }
     },
     "locales": { "fr-FR": "FR", "en-US": "EN" },
