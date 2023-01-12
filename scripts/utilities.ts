@@ -411,9 +411,9 @@ class Utilities {
                     } else {
                         string.push(value + " " + translations["Jours"].toLowerCase());
                     };
-                }
+                };
             });
-            return (string) ? string.join(", ") : translations["Moins de 24 heures restantes"];
+            return (string.length > 0) ? string.join(", ") : translations["Moins de 24 heures restantes"];
         };
     };
     /**
