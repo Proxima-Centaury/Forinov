@@ -30,7 +30,7 @@
     color: var(--text-main-color);
     text-decoration: underline;
     text-decoration-color: transparent;
-    transition: text-decoration-color 0.3s ease;
+    
 }
 .menu > ul > li > a:hover,
 .menu > ul > li > a.active {
@@ -48,7 +48,7 @@
     opacity: 0;
     border-radius: calc(8px / 2);
     background-color: var(--logo-blue-color);
-    transition: opacity 0.3s ease;
+    
 }
 .menu > ul > li > a:hover::before,
 .menu > ul > li > a.active::before {

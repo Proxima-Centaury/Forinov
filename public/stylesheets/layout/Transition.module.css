@@ -3,9 +3,9 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .fadeOut {
     transform: translateY(100vh) !important;
-    transition: all 0.3s ease;
+    
 }
 .fadeIn {
     transform: translateY(0px) !important;
-    transition: all 0.3s ease;
+    
 }

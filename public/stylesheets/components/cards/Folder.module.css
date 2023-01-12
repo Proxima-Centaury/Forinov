@@ -10,7 +10,7 @@
     margin: 0px 8px 0px 0px;
     cursor: pointer;
     border-radius: 10px;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    
 }
 .folder:hover {
     transform: scale(1.02);
@@ -46,7 +46,7 @@
     border-radius: 0px 10px 10px 10px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    transition: box-shadow 0.3s ease;
+    
 }
 .folder:hover > .content {
     box-shadow: var(--darker-box-shadow);
@@ -64,7 +64,7 @@
 }
 .content::after {
     box-shadow: var(--box-shadow);
-    transition: box-shadow 0.3s ease;
+    
 }
 .folder:hover > .content::after {
     box-shadow: var(--darker-box-shadow);
@@ -84,7 +84,7 @@
     border-radius: 0px 40px 40px 40px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    transition: box-shadow 0.3s ease;
+    
     z-index: 1;
 }
 .folder:hover > .content > .geometry  {

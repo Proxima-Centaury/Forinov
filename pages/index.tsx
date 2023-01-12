@@ -10,6 +10,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Carousel from "../components/carousels/carousel";
+import Format from "../components/texts/format";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -58,7 +59,9 @@ const Home = ({ logos, startups, locales, states, stateSetters, config }: HomeIn
 								</div>
 							</div>
 							<div className={ HomeStyles.body }>
-
+								<Format content={ translations["Accédez à plus <b>d'opportunités</b> (appels à projets, concours, etc.)"] + "." }/>
+								<Format content={ translations["Gagnez en <b>visibilité</b> et faites <b>matcher</b> vos solutions avec le besoin des entreprises"] + "." }/>
+								<Format content={ translations["Entrez en <b>contact direct</b> avec les décideurs et remportez des <b>contrats</b>"] + " !" }/>
 							</div>
 							<div className={ HomeStyles.footer }>
 								<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Créer mon compte"] }</Link>

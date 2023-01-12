@@ -81,7 +81,7 @@
         pointer-events: none;
         background-color: var(--background-sub-color);
         box-shadow: var(--box-shadow);
-        transition: top 0.3s ease, opacity 0.3s ease;
+        
         z-index: -1;
     }
     .navbar > .links.show {
@@ -98,7 +98,7 @@
         top: 0px;
         left: 0px;
         background-color: var(--background-sub-color);
-        transition: opacity 0.3s ease 0.3s;
+        
         z-index: 1;
     }
     .navbar > .links.show::before {
@@ -131,7 +131,7 @@
     border-bottom: var(--border);
     border-width: 3px;
     border-color: transparent;
-    transition: text-decoration 0.3s ease, border-color 0.3s ease;
+    
 }
 .navbar > .links > li > a:hover,
 .navbar > .links > li > button:hover {
@@ -181,7 +181,7 @@
     border-color: var(--logo-blue-color);
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    transition: opacity 0.3s ease, border-color 0.3s ease;
+    
 }
 .navbar > .links > li > ul > li + li {
     border-top: var(--border);
@@ -194,7 +194,7 @@
     white-space: nowrap;
 }
 .navbar > .links > li > ul > li > a {
-    transition: color 0.3s ease;
+    
 }
 .navbar > .links > li > ul > li > a:hover {
     color: var(--logo-blue-color);
@@ -210,7 +210,7 @@
         border-top: var(--border);
         border-radius: inherit;
         box-shadow: inherit;
-        transition: opacity 0.3s ease, max-height 0.3s ease;
+        
         overflow: hidden;
     }
     .navbar > .links > li > ul.show {
@@ -236,7 +236,7 @@
         right: 16px;
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.3s ease;
+        
     }
     .navbar > .links.show + .actions {
         opacity: 1;

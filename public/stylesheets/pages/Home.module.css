@@ -99,7 +99,7 @@
 	border-width: 2px;
 	border-color: var(--logo-blue-color);
 	background-color: var(--logo-blue-color);
-	transition: color 0.3s ease, background-color 0.3s ease;
+	
 }
 @media screen and (max-width: 576px) {
 	.presentation > div > a {
@@ -146,7 +146,7 @@
 	width: 100%;
 	height: max-content;
 	padding: 80px;
-	border-radius: 100px 0px 0px 0px;
+	border-radius: 100px 0px 0px 100px;
 	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
@@ -219,6 +219,15 @@
 .onboarding > div > .types > .type[data-type="partner"] > .head > div > h5 {
 	color: var(--logo-green-color);
 }
+.onboarding > div > .types > .type > .head > div > p {
+	color: var(--text-inactive-color);
+}
+.onboarding > div > .types > .type > .body {
+	margin: 0px 0px 16px 0px;
+}
+.onboarding > div > .types > .type > .body > div + div {
+	margin: 16px 0px 0px 0px;
+}
 .onboarding > div > .types > .type > .footer {
 	display: flex;
 	flex-direction: column;
@@ -227,7 +236,7 @@
 	margin: 16px auto 0px auto;
 	text-decoration: underline;
 	text-decoration-color: transparent;
-	transition: color 0.3s ease, text-decoration-color 0.3s ease;
+	
 }
 .onboarding > div > .types > .type > .footer > a:last-of-type:hover {
 	color: var(--logo-blue-color);
@@ -704,7 +713,7 @@
 }
 .questions > p > a {
 	text-decoration: underline;
-	transition: color 0.3s ease;
+	
 }
 .questions > p > a:hover {
 	color: var(--logo-blue-color);

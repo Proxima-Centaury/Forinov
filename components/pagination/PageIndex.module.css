@@ -22,7 +22,7 @@
     cursor: pointer;
     border-radius: 100%;
     color: var(--lighter-black-color);
-    transition: all .2s ease-in-out;
+    
 }
 
 .pageButton:hover {
