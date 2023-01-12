@@ -23,13 +23,13 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Home = ({ logos, startups, locales, states, stateSetters, config }: HomeInterface) => {
+const Home = ({ startups, opportunities, locales, states, stateSetters, config }: HomeInterface) => {
 	const { translations }: any = states;
 	const parentProps = { locales, states, stateSetters, config };
-	const title = translations["Forinov, le réseau social de l'Open Innovation"] as String;
+	const title = translations["Forinov, le réseau social de l'open innovation"] as String;
 	return <>
 		<Head>
-            <meta name="description" content={ translations["Forinov est le réseau social de l'Open innovation qui connecte startups, entreprises et partenaires pour faciliter leur collaboration. Forinov optimise veille, sourcing, gestion du portefeuille de start ups et de partenaires. (accélérateurs, incubateurs, …)"] + "." }/>
+            <meta name="description" content={ translations["Forinov est le réseau social de l'open innovation qui connecte startups, entreprises et partenaires pour faciliter leur collaboration. Forinov optimise veille, sourcing, gestion du portefeuille de start ups et de partenaires. (accélérateurs, incubateurs, …)"] + "." }/>
 			<title>{ title }</title>
 		</Head>
 		<div className="containerFull">
@@ -77,7 +77,9 @@ const Home = ({ logos, startups, locales, states, stateSetters, config }: HomeIn
 								</div>
 							</div>
 							<div className={ HomeStyles.body }>
-
+								<Format content={ translations["Optimisez votre <b>veille</b> et <bsourcing</b> de l'innovation (startups, incubateurs, etc.)"] + "." }/>
+								<Format content={ translations["Trouvez des <b>solutions concrètes</b> en partageant vos <b>appels à projets</b> et vos besoins en terme d'innovation"] + "." }/>
+								<Format content={ translations["Centralisez le suivi de vos <b>relations</b> entre <b>collaborateurs</b> et partagez-le avec <b>votre réseau</b> de startups et de partenaires"] + "." }/>
 							</div>
 							<div className={ HomeStyles.footer }>
 								<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Créer mon compte"] }</Link>
@@ -93,7 +95,9 @@ const Home = ({ logos, startups, locales, states, stateSetters, config }: HomeIn
 								</div>
 							</div>
 							<div className={ HomeStyles.body }>
-
+								<Format content={ translations["Apportez <b>visibilité</b> et <b>opportunités</b> à votre réseau de startups et d'entreprises"] + "." }/>
+								<Format content={ translations["Gérez vos <b>appels à candidatures</b> et partagez vos <b>opportunités</b>"] + "." }/>
+								<Format content={ translations["Simplifiez le <b>suivi de votre portefeuille</b> de startups (gestion du dealflow, suivi des mises en relation, etc.)"] + "." }/>
 							</div>
 							<div className={ HomeStyles.footer }>
 								<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Créer mon compte"] }</Link>
@@ -103,6 +107,57 @@ const Home = ({ logos, startups, locales, states, stateSetters, config }: HomeIn
 					</div>
                 </div>
             </div>
+			<div className={ HomeStyles.badges }>
+				<div>
+					<h2>{ translations["Plus qu'une communauté, la solution la plus complète pour faire décoller l'open innovation"] }</h2>
+					<div>
+						<div className="separator"></div>
+						<div className={ HomeStyles.badge }>
+							<i className="fa-light fa-chart-network"/>
+							<div>
+								<h4>{ translations["Connecter les acteurs"] }</h4>
+								<p>{ translations["Réunir les profils clés de l'open innovation dans un but : co-construire le monde de demain"] + " !" }</p>
+							</div>
+						</div>
+						<div className="separator"></div>
+						<div className={ HomeStyles.badge }>
+							<i className="fa-light fa-star"/>
+							<div>
+								<h4>{ translations["Créer des opportunités"] }</h4>
+								<p>{ translations["Matcher en un clic le besoin des entreprises avec les solutions de startups et échanger directement avec les bons interlocuteurs"] + "." }</p>
+							</div>
+						</div>
+						<div className="separator"></div>
+						<div className={ HomeStyles.badge }>
+							<i className="fa-light fa-hand-holding-seedling"/>
+							<div>
+								<h4>{ translations["Encourager l'innovation"] }</h4>
+								<p>{ translations["Engager les collaborateurs et leur permettre de trouver des solutions concrètes à leurs besoins métiers"] + "." }</p>
+							</div>
+						</div>
+						<div className="separator"></div>
+					</div>
+				</div>
+			</div>
+			<div className={ HomeStyles.startups }>
+				<div>
+					<h4>{ translations["Nos dernières startups inscrites"] + " :" }</h4>
+					<Carousel { ...parentProps } component={ "PartnersStartups" } data={ startups }/>
+					<div className={ HomeStyles.actions } data-align="left">
+						<Link href="/directories/startups" className={ ButtonStyles.callToAction }>{ translations["Accéder à l'annuaire des startups"] }</Link>
+					</div>
+				</div>
+			</div>
+			<div className={ HomeStyles.opportunity } data-type="startup">
+				<div>
+					<h4>{ translations["Les dernières oppotunités"] + " :" }</h4>
+					<Carousel { ...parentProps } component={ "TheLatestOpportunities" } data={ opportunities }/>
+					<div className={ HomeStyles.actions } data-align="left">
+						<Link href="/directories/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir toutes les opportunités"] }</Link>
+						<Link href="/opportunities" className={ ButtonStyles.callToActionAlternative }>{ translations["Qu'est-ce qu'une opportunité"] + " ?" }</Link>
+					</div>
+				</div>
+			</div>
         </div>
 	</>;
 };
@@ -112,17 +167,17 @@ const Home = ({ logos, startups, locales, states, stateSetters, config }: HomeIn
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { locale, locales, defaultLocale } = context;
 	const { endpoint, queries } = config.api;
-	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=startup&authkey=Landing");
-    const logosResponse = await logosPromise.json();
-    const formattedLogosResponse = Object.values(logosResponse[0].LOGOS);
 	const startupsPromise = await fetch(endpoint + "?q=" + queries.getLandingStartups + "&app=next&authkey=Landing");
     const startupsResponse = await startupsPromise.json();
     const formattedStartupsResponse = startupsResponse;
+	const landingOpportunitiesPromise = await fetch(endpoint + "?q=" + queries.getLandingOpportunities + "&app=next&authkey=Landing");
+    const landingOpportunitiesResponse = await landingOpportunitiesPromise.json();
+    const formattedLandingOpportunitiesResponse = Object.values(landingOpportunitiesResponse[0].PROJECT);
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			logos: formattedLogosResponse,
-			startups: formattedStartupsResponse,
+			opportunities: formattedLandingOpportunitiesResponse,
+			startups: formattedStartupsResponse
 		},
 	};
 };

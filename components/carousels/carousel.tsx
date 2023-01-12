@@ -214,7 +214,6 @@ const TheLatestOpportunities = ({ states, data }: any) => {
 /* Landing ( Companies Logos ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CompaniesLogos = ({ data, states }: any) => {
-	const { translations }: any = states;
     return <div className={ CarouselStyles.infinite }>
         <div className={ CarouselStyles.firstCopy }>
             { data.map(({ id, type, name, logo }: any, key: KeyType) => {
@@ -246,7 +245,6 @@ const CompaniesLogos = ({ data, states }: any) => {
 /* Landing ( Partners Startups ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnersStartups = ({ states, data }: any) => {
-	const { translations }: any = states;
     const [ transform, setTransform ] = useState(0);
     const scrollHandler = (event: any) => {
         event.preventDefault();
@@ -261,7 +259,7 @@ const PartnersStartups = ({ states, data }: any) => {
         opportunities.forEach((opportunity: HTMLElement) => opportunity.style.transform = "translateX(" + transform + "px)");
     };
     useEffect(() => {
-        let carousel = document.querySelector("[class*='startups'][data-type='partner'] > div > ." + CarouselStyles.container);
+        let carousel = document.querySelector("[class*='startups'] > div > ." + CarouselStyles.container);
         (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) : null;
         return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) as any;
     });
@@ -270,7 +268,8 @@ const PartnersStartups = ({ states, data }: any) => {
             { data.map((startup: any, key: KeyType) => {
                 const type = "startup";
                 const profile = startup;
-                const cardProps = { type, profile, states };
+                const page = "landing";
+                const cardProps = { type, profile, states, page };
                 const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
                 return <Link key={ key } href={ url } data-card="profile">
                     <ProfileCard { ...cardProps }/>

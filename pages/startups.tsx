@@ -55,33 +55,35 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 				</div>
 			</div>
 			<div className={ HomeStyles.badges } data-type="startup">
-				<h2>{ translations["Inscrire ma startup sur Forinov"] }</h2>
 				<div>
-					<div className="separator"></div>
-					<div className={ HomeStyles.badge }>
-						<i className="fa-light fa-chart-network"/>
-						<div>
-							<h4>{ translations["Complétez"] }</h4>
-							<p>{ translations["Je renseigne les informations de ma startup et je crée mon profil de membre"] }</p>
+					<h2>{ translations["Inscrire ma startup sur Forinov"] }</h2>
+					<div>
+						<div className="separator"></div>
+						<div className={ HomeStyles.badge }>
+							<i className="fa-light fa-chart-network"/>
+							<div>
+								<h4>{ translations["Complétez"] }</h4>
+								<p>{ translations["Je renseigne les informations de ma startup et je crée mon profil de membre"] }</p>
+							</div>
 						</div>
-					</div>
-					<div className="separator"></div>
-					<div className={ HomeStyles.badge }>
-						<i className="fa-light fa-badge-check"/>
-						<div>
-							<h4>{ translations["Validez"] }</h4>
-							<p>{ translations["Ton profil sera vérifié et validé par nos équipes dans les plus bref délais"] }</p>
+						<div className="separator"></div>
+						<div className={ HomeStyles.badge }>
+							<i className="fa-light fa-badge-check"/>
+							<div>
+								<h4>{ translations["Validez"] }</h4>
+								<p>{ translations["Ton profil sera vérifié et validé par nos équipes dans les plus bref délais"] }</p>
+							</div>
 						</div>
-					</div>
-					<div className="separator"></div>
-					<div className={ HomeStyles.badge }>
-						<i className="fa-light fa-gauge-high"/>
-						<div>
-							<h4>{ translations["Profitez"] }</h4>
-							<p>{ translations["J'accède GRATUITEMENT à toutes les opportunités ainsi qu'aux annuaires de Forinov"] }</p>
+						<div className="separator"></div>
+						<div className={ HomeStyles.badge }>
+							<i className="fa-light fa-gauge-high"/>
+							<div>
+								<h4>{ translations["Profitez"] }</h4>
+								<p>{ translations["J'accède GRATUITEMENT à toutes les opportunités ainsi qu'aux annuaires de Forinov"] }</p>
+							</div>
 						</div>
+						<div className="separator"></div>
 					</div>
-					<div className="separator"></div>
 				</div>
 			</div>
 			<div className={ HomeStyles.companies }>
@@ -117,7 +119,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 		props: {
 			locale, locales, defaultLocale,
 			opportunities: formattedLandingOpportunitiesResponse,
-			logos: formattedLogosResponse,
+			logos: formattedLogosResponse
 		},
 	};
 };

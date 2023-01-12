@@ -22,7 +22,7 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partners Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const PartnersHome = ({ logos, startups, locales, states, stateSetters, config }: HomeInterface) => {
+const PartnersHome = ({ startups, logos, locales, states, stateSetters, config }: HomeInterface) => {
 	const { translations }: any = states;
 	const parentProps = { locales, states, stateSetters, config };
 	const title = "Forinov " + translations["Partenaires"] + " - " + translations["Comment ça marche"] + " ?" as String;
@@ -58,35 +58,37 @@ const PartnersHome = ({ logos, startups, locales, states, stateSetters, config }
 				</div>
 			</div>
 			<div className={ HomeStyles.badges } data-type="partner">
-				<h2>{ translations["Comment créer une opportunité"] + " ?" }</h2>
 				<div>
-					<div className="separator"></div>
-					<div className={ HomeStyles.badge }>
-						<i className="fa-light fa-chart-network"/>
-						<div>
-							<h4>{ translations["Complétez"] }</h4>
-							<p>{ translations["Complétez les informations spécifiques de votre opportunité"] }</p>
+					<h2>{ translations["Comment créer une opportunité"] + " ?" }</h2>
+					<div>
+						<div className="separator"></div>
+						<div className={ HomeStyles.badge }>
+							<i className="fa-light fa-chart-network"/>
+							<div>
+								<h4>{ translations["Complétez"] }</h4>
+								<p>{ translations["Complétez les informations spécifiques de votre opportunité"] }</p>
+							</div>
 						</div>
-					</div>
-					<div className="separator"></div>
-					<div className={ HomeStyles.badge }>
-						<i className="fa-light fa-badge-check"/>
-						<div>
-							<h4>{ translations["Sourcez"] }</h4>
-							<p>{ translations["Recevez les candidatures des startups déjà inscrites ou sourcées par nos équipes"] }</p>
+						<div className="separator"></div>
+						<div className={ HomeStyles.badge }>
+							<i className="fa-light fa-badge-check"/>
+							<div>
+								<h4>{ translations["Sourcez"] }</h4>
+								<p>{ translations["Recevez les candidatures des startups déjà inscrites ou sourcées par nos équipes"] }</p>
+							</div>
 						</div>
-					</div>
-					<div className="separator"></div>
-					<div className={ HomeStyles.badge }>
-						<i className="fa-light fa-gauge-high"/>
-						<div>
-							<h4>{ translations["Évaluez"] }</h4>
-							<p>{ translations["Trouvez la startup de l'innovation qui correspond à vos besoins"] }</p>
+						<div className="separator"></div>
+						<div className={ HomeStyles.badge }>
+							<i className="fa-light fa-gauge-high"/>
+							<div>
+								<h4>{ translations["Évaluez"] }</h4>
+								<p>{ translations["Trouvez la startup de l'innovation qui correspond à vos besoins"] }</p>
+							</div>
 						</div>
+						<div className="separator"></div>
 					</div>
-					<div className="separator"></div>
+					<Link href="/" className={ ButtonStyles.callToAction }>{ translations["Découvrir le fonctionnement complet"] }</Link>
 				</div>
-				<Link href="/" className={ ButtonStyles.callToAction }>{ translations["Découvrir le fonctionnement complet"] }</Link>
 			</div>
 			<div className={ HomeStyles.startups } data-type="partner">
 				<div>
@@ -111,17 +113,17 @@ const PartnersHome = ({ logos, startups, locales, states, stateSetters, config }
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { locale, locales, defaultLocale } = context;
 	const { endpoint, queries } = config.api;
-	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=startup&authkey=Landing");
-    const logosResponse = await logosPromise.json();
-    const formattedLogosResponse = Object.values(logosResponse[0].LOGOS);
 	const startupsPromise = await fetch(endpoint + "?q=" + queries.getLandingStartups + "&app=next&authkey=Landing");
     const startupsResponse = await startupsPromise.json();
     const formattedStartupsResponse = startupsResponse;
+	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=startup&authkey=Landing");
+    const logosResponse = await logosPromise.json();
+    const formattedLogosResponse = Object.values(logosResponse[0].LOGOS);
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			logos: formattedLogosResponse,
 			startups: formattedStartupsResponse,
+			logos: formattedLogosResponse
 		},
 	};
 };
