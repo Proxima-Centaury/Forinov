@@ -38,7 +38,7 @@
 .overview > .details > .website > * + *,
 .overview > .details > .networks > * + * {
     margin: 0px 0px 0px 8px;
-    transition: color 0.3s ease;
+    
 }
 .overview > .details > .website > a {
     font-weight: bold;

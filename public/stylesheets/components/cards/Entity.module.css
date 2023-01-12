@@ -12,7 +12,7 @@
     border-radius: 10px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    
 }
 .client:nth-of-type(2n),
 .partner:nth-of-type(2n) {

@@ -15,7 +15,7 @@
     width: 100%;
     position: relative;
     border-top: var(--border);
-    transition: background-color 0.3s ease;
+    
 }
 .container > div:last-of-type {
     border-bottom: var(--border);
@@ -44,7 +44,7 @@
     right: 16px;
     transform: translateY(-50%);
     font-size: 20px;
-    transition: transform 0.3s ease;
+    
 }
 .container > div.active > button {
     font-weight: bold;
@@ -57,6 +57,6 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .content {
     max-height: 0px;
-    transition: max-height 0.3s ease;
+    
     overflow: hidden;
 }

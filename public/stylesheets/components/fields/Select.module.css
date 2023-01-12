@@ -35,7 +35,7 @@
     margin: auto 16px auto auto;
     pointer-events: none;
     color: var(--text-inactive-color);
-    transition: color 0.3s ease, transform 0.3s ease;
+    
 }
 .selectField.show > .toggleButton > i {
     color: var(--logo-blue-color);
@@ -57,7 +57,7 @@
     border-radius: 0px 0px 10px 10px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    transition: opacity 0.3s ease;
+    
 }
 .selectField.show > .options {
     opacity: 1;
@@ -73,7 +73,7 @@
     height: 40px;
     padding: 8px;
     border-radius: 10px;
-    transition: background-color 0.3s ease;
+    
 }
 .option + .option {
     margin: 8px 0px 0px 0px;

@@ -37,7 +37,7 @@
     color: var(--logo-blue-color);
     text-decoration: underline;
     text-decoration-color: transparent;
-    transition: text-decoration-color 0.3s ease;
+    
 }
 .registerFrame > p > a:hover {
     text-decoration-color: var(--logo-blue-color);

@@ -42,7 +42,7 @@
     white-space: nowrap;
 }
 .opportunities > button[data-status] > i {
-    transition: transform 0.3s ease;
+    
 }
 .opportunities > button[data-status] > i[class*="expanded"] {
     transform: rotate(90deg);

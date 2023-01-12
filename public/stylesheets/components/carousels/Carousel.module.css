@@ -166,7 +166,7 @@
 	justify-content: center;
 	min-width: 100%;
 	height: 100%;
-	transition: transform 0.3s ease;
+	
 }
 .container[data-direction="vertical"] > .item {
 	min-height: 200px;
@@ -195,7 +195,7 @@
 }
 .container > a[data-card="profile"] {
 	height: 100%;
-	transition: transform 0.3s ease;
+	
 }
 .container > a[data-card="profile"] + a[data-card="profile"] {
 	margin: 0px 0px 0px 16px;

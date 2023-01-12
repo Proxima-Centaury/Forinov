@@ -9,7 +9,7 @@
     cursor: pointer;
     border-radius: 10px;
     box-shadow: var(--box-shadow);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    
 }
 .opportunity:hover {
     transform: scale(1.02);
