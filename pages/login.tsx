@@ -19,9 +19,10 @@ const Login = ({ locales, states, stateSetters, config }: LoginInterface) => {
     const { locale, session, translations }: any = states;
     useEffect(() => { (session) ? redirectTo("/", router, locale) : null });
     const parentProps = { locales, states, stateSetters, config };
+    const title = "Forinov - " + translations["Connexion"] as String;
     return <>
         <Head>
-            <title>Forinov - { translations["Connexion"] }</title>
+            <title>{ title }</title>
         </Head>
         <div className="container">
             <LoginCard { ...parentProps }/>

@@ -20,7 +20,7 @@ const Register = ({ states }: RegisterInterface) => {
     useEffect(() => { (session) ? redirectTo("/", router, locale) : null });
     return <>
         <Head>
-            <title>Forinov - { translations["Inscription"] }</title>
+            <title>Forinov - Onboarding</title>
         </Head>
         <div className="container">
             <div className={ IframeStyles.registerFrame }>

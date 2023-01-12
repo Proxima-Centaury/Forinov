@@ -43,7 +43,8 @@ interface ProfileInterface extends BaseInterface {
     profile: any,
     products: any,
     activities: any,
-    folders: any
+    folders: any,
+    opportunity: any
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar Interface */
