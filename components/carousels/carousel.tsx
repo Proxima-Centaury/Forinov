@@ -190,12 +190,7 @@ const TheLatestOpportunities = ({ states, data }: any) => {
         opportunities.forEach((opportunity: HTMLElement) => opportunity.style.transform = "translateX(" + transform + "px)");
     };
     useEffect(() => {
-        let carousel = document.querySelector("[class*='opportunity'][data-type='startup'] > div > ." + CarouselStyles.container);
-        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) : null;
-        return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) as any;
-    });
-    useEffect(() => {
-        let carousel = document.querySelector("[class*='opportunity'][data-type='corporation'] > div > ." + CarouselStyles.container);
+        let carousel = document.querySelector("[class*='opportunity'] > div > ." + CarouselStyles.container);
         (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) : null;
         return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) as any;
     });

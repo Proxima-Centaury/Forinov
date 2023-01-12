@@ -148,7 +148,7 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 					</div>
 				</div>
 			</div>
-			<div className={ HomeStyles.opportunity } data-type="startup">
+			<div className={ HomeStyles.opportunity }>
 				<div>
 					<h4>{ translations["Les dernières oppotunités"] + " :" }</h4>
 					<Carousel { ...parentProps } component={ "TheLatestOpportunities" } data={ opportunities }/>

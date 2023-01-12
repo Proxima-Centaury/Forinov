@@ -130,6 +130,7 @@
     flex: 1;
     margin: 16px 0px;
     font-size: 18px;
+    line-break: anywhere;
 }
 .content > .left > .type[data-type="1"] > div > div {
     background-color: var(--project-color);
@@ -175,4 +176,7 @@
 .content > .left > [class="formattedContent"] {
     flex: 1;
     margin: 16px 0px 0px 0px;
+}
+.content > div:only-child {
+    margin: 0px;
 }
