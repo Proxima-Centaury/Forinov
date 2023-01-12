@@ -22,7 +22,7 @@ const Register = ({ states }: RegisterInterface) => {
         <Head>
             <title>Forinov - Onboarding</title>
         </Head>
-        <div className="container">
+        <div className="containerFull">
             <div className={ IframeStyles.registerFrame }>
                 <p dangerouslySetInnerHTML={ { __html: translations["Si vous souhaitez vous inscrire,<br>rendez-vous <a href='https://onboarding.forinov.net' target='_blank'>ici</a>"] + "." } }/>
                 <iframe src="https://onboarding.forinov.net"/>
