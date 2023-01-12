@@ -5,7 +5,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
-import { getTranslations } from "../scripts/utilities";
+import { getTranslations, scrollTo } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -51,6 +51,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         const body = document.body;
         body.setAttribute("data-theme", theme as string);
     }, [ theme ]);
+    useEffect(() => { scrollTo(0, 0) }, [ router.route ]);
     pageProps.states = {};
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;
