@@ -52,9 +52,8 @@ const Page = ({ profile, products, activities, folders, opportunity, states, sta
         type = (type.match(/(entreprise)/)) ? "corporation" : type;
         type = (type.match(/(partenaire)/)) ? "partner" : type;
     };
-    const parentProps = { type, profile, products, activities, folders, opportunity, states, stateSetters };
-    if(profile && !opportunity) {
-        useEffect(() => {
+    useEffect(() => {
+        if(profile && !opportunity) {
             let showRegisterPopup = (event: MouseEvent) => {
                 event.preventDefault();
                 if(lock) {
@@ -77,7 +76,10 @@ const Page = ({ profile, products, activities, folders, opportunity, states, sta
             };
             (lock) ? window.addEventListener("click", showRegisterPopup) : null;
             return () => window.removeEventListener("click", showRegisterPopup);
-        });
+        };
+    });
+    const parentProps = { type, profile, products, activities, folders, opportunity, states, stateSetters };
+    if(profile && !opportunity) {
         return <div id="profile" className="container">
             { (!session) ? <IdenfiticationBanner { ...parentProps }/> : null }
             { (profile.STATE === "WO") ? <RecoverBanner { ...parentProps }/> : null }
