@@ -76,7 +76,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			logos: formattedLogosResponse,
+			logos: formattedLogosResponse
 		},
 	};
 };

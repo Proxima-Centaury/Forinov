@@ -153,6 +153,9 @@ img {
     height: 100%;
     object-fit: cover;
 }
+* > i {
+    transition: none;
+}
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Custom */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -344,7 +347,6 @@ body {
     color: var(--logo-blue-color);
     text-decoration: underline;
     text-decoration-color: transparent;
-    
 }
 .formattedContent a:hover {
     text-decoration-color: var(--logo-blue-color);
@@ -366,7 +368,6 @@ body {
     pointer-events: none;
     background-color: var(--filter-color);
     backdrop-filter: blur(10px);
-    
     z-index: 9000;
 }
 .modalLayout.open {
@@ -415,12 +416,6 @@ body {
     background-color: var(--logo-blue-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Custom Lists ( Collapse Animation - See More Feature ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-[data-type="list"] {
-    
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Custom Tool Tips */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 [data-type="tooltip"] {
@@ -435,7 +430,6 @@ body {
     opacity: 0;
     pointer-events: none;
     transform: translate3d(0, -10px, 0);
-    
     z-index: 10;
 }
 [data-type="tooltip"]:before {
@@ -477,7 +471,6 @@ body {
     transform: translateY(0%);
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    
     z-index: 10000;
 }
 [data-type="devtools"].closed {
@@ -500,13 +493,9 @@ body {
     bottom: 100%;
     border-radius: 10px 10px 0px 0px;
     background-color: var(--background-sub-color);
-    
 }
 [data-type="devtools"] > button:hover {
     background-color: var(--logo-blue-color);
-}
-[data-type="devtools"]> button > i {
-    
 }
 [data-type="devtools"] > button:hover > i {
     color: var(--perfect-white-color);
@@ -532,9 +521,7 @@ body {
     font-size: 21px;
     font-weight: 400;
     color: var(--text-main-color);
-    
 }
-
 .large-callToAction i {
     display: flex;
     justify-content: center;
@@ -545,23 +532,17 @@ body {
     border-radius: 50%;
     background-color: var(--paleblue-color);
     color: var(--text-main-color);
-    
-
 }
-
 .large-callToAction:hover {
     background-color: var(--paleblue-color);
 }
-
 .large-callToAction:hover i {
     background-color: var(--logo-blue-color);
     color: var(--text-main-color);
 }
-
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Selector buttons */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-
 .selectorButton {
     box-sizing: border-box;
     background: none;
@@ -572,7 +553,6 @@ body {
     overflow: visible;
     display: inline-block;
     user-select: none;
-    
     vertical-align: middle;
     white-space: nowrap;
     border: 1px solid transparent;
@@ -590,14 +570,11 @@ body {
     color: #5a5859;
     font-weight: 800;
     cursor: pointer;
-    
     margin: 0 !important;
 }
-
 .selectorButton:hover {
     background-color: #e7e7e7;
 }
-
 .selectorButtonActive {
     box-sizing: border-box;
     background: none;
@@ -609,7 +586,6 @@ body {
     -webkit-appearance: button;
     appearance: button;
     user-select: none;
-    
     vertical-align: middle;
     white-space: nowrap;
     border: 1px solid transparent;
@@ -632,14 +608,9 @@ body {
     cursor: pointer;
     margin: 0 !important;
 }
-
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Lift on hover */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.lift {
-    
-}
-
 .lift:hover {
     box-shadow: 0 1rem 2.5rem rgb(22 28 45 / 10%), 0 0.5rem 1rem -0.75rem rgb(22 28 45 / 10%);
     transform: translateY(-3px);
@@ -659,7 +630,6 @@ body {
     border-radius: 20px;
     border: var(--border);
     border-color: var(--logo-blue-color);
-    
 }
 .callToActionRoundedIcon > i,
 .callToActionAlternativeRoundedIcon > i,
@@ -721,7 +691,6 @@ body {
     border-radius: 20px;
     border: var(--border);
     border-color: var(--logo-blue-color);
-    
     letter-spacing: 1.79px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -761,7 +730,6 @@ body {
     border-style: dashed;
     border-radius: 10px;
     background-color: var(--background-sub-color);
-    
 }
 .callToActionWide:hover {
     background-color: var(--paleblue-color);
@@ -775,7 +743,6 @@ body {
     margin: auto;
     border-radius: 32px;
     background-color: var(--paleblue-color);
-    
 }
 .callToActionWide:hover > .icon {
     background-color: var(--logo-blue-color);

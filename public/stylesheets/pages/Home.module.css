@@ -170,7 +170,6 @@
 .onboarding > div > .types {
 	display: flex;
 	justify-content: center;
-	align-items: center;
 }
 .onboarding > div > .types > .type {
 	display: flex;
@@ -187,7 +186,7 @@
 .onboarding > div > .types > .type > .head {
 	display: flex;
 	align-items: center;
-	margin: 0px 0px 16px 0px;
+	margin: 0px 0px 32px 0px;
 }
 .onboarding > div > .types > .type > .head > i {
 	margin: 0px 16px 0px 0px;
@@ -223,14 +222,15 @@
 	color: var(--text-inactive-color);
 }
 .onboarding > div > .types > .type > .body {
-	margin: 0px 0px 16px 0px;
+	margin: 0px 0px 32px 0px;
 }
 .onboarding > div > .types > .type > .body > div + div {
-	margin: 16px 0px 0px 0px;
+	margin: 32px 0px 0px 0px;
 }
 .onboarding > div > .types > .type > .footer {
 	display: flex;
 	flex-direction: column;
+	margin: auto 0px 0px 0px;
 }
 .onboarding > div > .types > .type > .footer > a:last-of-type {
 	margin: 16px auto 0px auto;
@@ -464,6 +464,9 @@
 /* Home ( Badges ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .badges {
+	background-color: var(--background-main-color);
+}
+.badges > div {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -471,51 +474,59 @@
 	width: 100%;
 	height: max-content;
 	padding: 80px;
-	background-color: var(--background-information-color);
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--background-sub-color);
 }
 @media screen and (max-width: 576px) {
-	.badges {
+	.badges > div {
 		padding: 40px;
 	}
 }
-.badges[data-type="startup"] {
+.badges[data-type="startup"] > div {
 	border-radius: 0px 100px 0px 0px;
 	background-color: var(--lightred-color);
 }
-.badges[data-type="partner"] {
+.badges[data-type="partner"] > div {
 	border-radius: 100px 0px 0px 0px;
 	background-color: var(--lightgreen-color);
 }
-.badges > h2 {
+.badges > div > h2 {
 	margin: 0px auto 50px auto;
 	font-family: "Nunito Sans";
 	font-size: 45px;
 	font-weight: 300;
 	text-align: center;
+}
+.badges[data-type="startup"] > div > h2,
+.badges[data-type="partner"] > div > h2 {
 	color: var(--perfect-black-color);
 }
-.badges > div {
+.badges > div > div {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
 }
 @media screen and (max-width: 1200px) {
-	.badges > div {
+	.badges > div > div {
 		justify-content: space-around;
 	}
 }
 @media screen and (min-width: 992px) {
-	.badges > div {
+	.badges > div > div {
+		margin: 0px 0px 250px 0px;
+	}
+	.badges[data-type="startup"] > div > div,
+	.badges[data-type="partner"] > div > div {
 		margin: 0px 0px 150px 0px;
 	}
 }
 @media screen and (max-width: 992px) {
-	.badges > div {
+	.badges > div > div {
 		flex-direction: column;
 	}
 }
-.badges > div > .badge {
+.badges > div > div > .badge {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -531,19 +542,21 @@
 	background-color: var(--background-sub-color);
 	box-shadow: var(--box-shadow);
 }
-.badges > div > .badge > i {
+.badges > div > div > .badge > i {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
 	height: 100%;
 	font-size: 70px;
+}
+.badges[data-type="startup"] > div > div > .badge > i {
 	color: var(--sunred-color);
 }
-.badges[data-type="partner"] > div > .badge > i {
+.badges[data-type="partner"] > div > div > .badge > i {
 	color: var(--grassgreen-color);
 }
-.badges > div > .badge > div {
+.badges > div > div > .badge > div {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -554,42 +567,52 @@
 	left: 50%;
 	transform: translateX(-50%);
 }
-.badges > div > .badge > div > h4 {
+.badges > div > div > .badge > div > h4 {
 	margin: 0px auto 8px auto;
 	font-family: "Nunito Sans";
 	font-size: 32px;
 	font-weight: bold;
 	text-align: center;
+}
+.badges[data-type="startup"] > div > div > .badge > div > h4,
+.badges[data-type="partner"] > div > div > .badge > div > h4 {
 	color: var(--perfect-black-color);
 }
-.badges > div > .badge > div > p {
+.badges > div > div > .badge > div > p {
 	font-size: 16px;
 	text-align: center;
+}
+.badges[data-type="startup"] > div > div > .badge > div > p,
+.badges[data-type="partner"] > div > div > .badge > div > p {
 	color: var(--perfect-black-color);
 }
-.badges > div > [class="separator"] {
+.badges[data-type="startup"] > div > div > [class="separator"] {
 	background-color: var(--sunred-color);
 }
-.badges[data-type="partner"] > div > [class="separator"] {
+.badges[data-type="partner"] > div > div > [class="separator"] {
 	background-color: var(--grassgreen-color);
 }
 @media screen and (max-width: 1200px) {
-	.badges > div > [class="separator"] {
+	.badges > div > div > [class="separator"] {
 		display: none;
 	}
 }
-.badges > div > * + * {
+.badges > div > div > * + * {
 	margin: 0px 0px 0px 16px;
 }
 @media screen and (max-width: 992px) {
-	.badges > div > * + * {
+	.badges > div > div > * + * {
 		margin: 0px;
 	}
-	.badges > div > [class*="badge"] {
+	.badges > div > div > [class*="badge"] {
+		margin: 0px 0px 250px 0px;
+	}
+	.badges[data-type="startup"] > div > div > [class*="badge"],
+	.badges[data-type="partner"] > div > div > [class*="badge"] {
 		margin: 0px 0px 150px 0px;
 	}
 }
-.badges > a {
+.badges > div > a {
 	margin: 32px 0px 0px 0px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

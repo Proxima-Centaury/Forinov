@@ -93,17 +93,17 @@ const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters,
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { locale, locales, defaultLocale } = context;
 	const { endpoint, queries } = config.api;
-	const landingOpportunitiesPromise = await fetch(endpoint + "?q=" + queries.getLandingOpportunities + "&app=next&authkey=Landing");
-    const landingOpportunitiesResponse = await landingOpportunitiesPromise.json();
-    const formattedLandingOpportunitiesResponse = Object.values(landingOpportunitiesResponse[0].PROJECT);
 	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=startup&authkey=Landing");
     const logosResponse = await logosPromise.json();
     const formattedLogosResponse = Object.values(logosResponse[0].LOGOS);
+	const landingOpportunitiesPromise = await fetch(endpoint + "?q=" + queries.getLandingOpportunities + "&app=next&authkey=Landing");
+    const landingOpportunitiesResponse = await landingOpportunitiesPromise.json();
+    const formattedLandingOpportunitiesResponse = Object.values(landingOpportunitiesResponse[0].PROJECT);
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			opportunities: formattedLandingOpportunitiesResponse,
 			logos: formattedLogosResponse,
+			opportunities: formattedLandingOpportunitiesResponse
 		},
 	};
 };

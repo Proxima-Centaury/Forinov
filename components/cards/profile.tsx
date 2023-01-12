@@ -18,7 +18,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileCard = ({ type, profile, states }: any) => {
+const ProfileCard = ({ type, profile, states, page }: any) => {
     const { session, lock, translations }: any = states;
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pdfButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-light fa-cloud-arrow-down", "", () => false, "PDF", 0 ];
@@ -26,9 +26,9 @@ const ProfileCard = ({ type, profile, states }: any) => {
     return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
             <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3840" height="2160" priority/>
-            { (type === "startup") ? <StartupActions translations={ translations }/> : null }
-            { (type === "corporation") ? <CorporationActions translations={ translations }/> : null }
-            { (type === "partner") ? <PartnerActions translations={ translations }/> : null }
+            { (type === "startup" && page !== "landing") ? <StartupActions translations={ translations }/> : null }
+            { (type === "corporation" && page !== "landing") ? <CorporationActions translations={ translations }/> : null }
+            { (type === "partner" && page !== "landing") ? <PartnerActions translations={ translations }/> : null }
         </div>
         <div className={ ProfileStyles.body }>
             <div className={ ProfileStyles.picture }>
@@ -52,8 +52,8 @@ const ProfileCard = ({ type, profile, states }: any) => {
                 </div>
                 { (profile.CATEGORY) ? <Tags tags={ Object.entries(profile.CATEGORY) } main={ true }/> : null }
                 { (profile.TAGS) ? <Tags tags={ Object.entries(profile.TAGS) }/> : null }
-                { (type === "startup") ? <div className="separator"></div> : null }
-                { (type === "startup") ? <div className={ ProfileStyles.stats }>
+                { (type === "startup" && page !== "landing") ? <div className="separator"></div> : null }
+                { (type === "startup" && page !== "landing") ? <div className={ ProfileStyles.stats }>
                     { (profile.CREATIONDATE) ? <div>
                         <p className={ ProfileStyles.label }>{ translations["Date de création"] }</p>
                         <div>
