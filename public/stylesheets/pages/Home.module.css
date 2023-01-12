@@ -549,6 +549,7 @@
 	width: 100%;
 	height: 100%;
 	font-size: 70px;
+	color: var(--text-inactive-color);
 }
 .badges[data-type="startup"] > div > div > .badge > i {
 	color: var(--sunred-color);
@@ -673,10 +674,10 @@
 	text-align: center;
 }
 .companies > div > div {
-	margin: 30px auto 132px auto;
+	margin: 0px auto;
 }
 .companies > div > div:last-of-type {
-	margin: 30px auto 0px auto;
+	margin: 0px auto;
 }
 .companies > div > h3 {
 	margin: 8px auto 40px auto;
