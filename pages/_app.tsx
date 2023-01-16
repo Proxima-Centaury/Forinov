@@ -47,7 +47,6 @@ const App = ({ Component, pageProps }: AppProps) => {
         };
         return () => refresh = undefined;
     });
-    console.log(router);
     useEffect(() => setLock(!session), [ session ]);
     useEffect(() => {
         setCookie("forinov_theme_preference", theme as String);
