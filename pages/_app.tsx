@@ -40,11 +40,14 @@ const App = ({ Component, pageProps }: AppProps) => {
     const [ modal, setModal ] = useState(null);
     useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
     useEffect(() => {
-        setCookie("NEXT_LOCALE", locale);
-        if(router.pathname !== "/404") {
-            router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
+        let refresh = null;
+        if(router.pathname !== "/404" && locale !== getCookie("NEXT_LOCALE")) {
+            setCookie("NEXT_LOCALE", locale);
+            refresh = router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() }) as any;
         };
-    }, [ locale ]);
+        return () => refresh = undefined;
+    });
+    console.log(router);
     useEffect(() => setLock(!session), [ session ]);
     useEffect(() => {
         setCookie("forinov_theme_preference", theme as String);
