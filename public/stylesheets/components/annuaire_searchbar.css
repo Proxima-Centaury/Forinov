@@ -202,7 +202,7 @@
     margin-bottom: .5rem;
     font-weight: bold;
     text-align: start;
-    transition: all .3s ease;
+    
 }
 
 .annuaire__searchbar-select-list-name {
@@ -238,7 +238,7 @@
     position: absolute;
     right: 2.2em;
     background-color: #006dff;
-    transition: background-color .2s ease;
+    
 }
 .annuaire__searchbar-more-wrapper {
     display: flex;

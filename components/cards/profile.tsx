@@ -18,7 +18,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileCard = ({ type, profile, states }: any) => {
+const ProfileCard = ({ type, profile, states, page }: any) => {
     const { session, lock, translations }: any = states;
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pdfButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-light fa-cloud-arrow-down", "", () => false, "PDF", 0 ];
@@ -26,9 +26,9 @@ const ProfileCard = ({ type, profile, states }: any) => {
     return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
             <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3840" height="2160" priority/>
-            { (type === "startup") ? <StartupActions translations={ translations }/> : null }
-            { (type === "corporation") ? <CorporationActions translations={ translations }/> : null }
-            { (type === "partner") ? <PartnerActions translations={ translations }/> : null }
+            { (type === "startup" && page !== "landing") ? <StartupActions translations={ translations }/> : null }
+            { (type === "corporation" && page !== "landing") ? <CorporationActions translations={ translations }/> : null }
+            { (type === "partner" && page !== "landing") ? <PartnerActions translations={ translations }/> : null }
         </div>
         <div className={ ProfileStyles.body }>
             <div className={ ProfileStyles.picture }>
@@ -42,48 +42,48 @@ const ProfileCard = ({ type, profile, states }: any) => {
                         <i className="fa-solid fa-location-dot"/>
                         <p>{ profile.ADDRESS.TOWN + ", " + profile.ADDRESS.ISO }</p>
                     </div> : null }
-                    <div>
+                    { (profile.WEBSITE) ? <div>
                         <i className="fa-solid fa-link"/>
                         <a href={ "https://" + profile.WEBSITE } target="blank">{ translations["Site internet"] }</a>
-                    </div>
+                    </div> : null }
                 </div>
                 <div className={ ProfileStyles.description }>
                     <Format content={ profile.COMMENT }/>
                 </div>
                 { (profile.CATEGORY) ? <Tags tags={ Object.entries(profile.CATEGORY) } main={ true }/> : null }
                 { (profile.TAGS) ? <Tags tags={ Object.entries(profile.TAGS) }/> : null }
-                { (type === "startup") ? <div className="separator"></div> : null }
-                { (type === "startup") ? <div className={ ProfileStyles.stats }>
-                    <div>
+                { (type === "startup" && page !== "landing") ? <div className="separator"></div> : null }
+                { (type === "startup" && page !== "landing") ? <div className={ ProfileStyles.stats }>
+                    { (profile.CREATIONDATE) ? <div>
                         <p className={ ProfileStyles.label }>{ translations["Date de création"] }</p>
                         <div>
                             <p>{ profile.CREATIONDATE.split("-")[2] + "/" + profile.CREATIONDATE.split("-")[1] }</p>
                         </div>
-                    </div>
-                    <div>
+                    </div> : null }
+                    { (profile.PEOPLE) ? <div>
                         <p className={ ProfileStyles.label }>{ translations["Effectifs"] }</p>
                         <div>
                             <i className="fa-light fa-user-helmet-safety"/>
                             <p>{ profile.PEOPLE }</p>
                         </div>
-                    </div>
-                    <div>
+                    </div> : null }
+                    { (profile.FUNDING) ? <div>
                         <p className={ ProfileStyles.label }>{ translations["Stade levée"] }</p>
                         <div className={ (lock) ? "locked" : "" }>
                             <p>{ profile.FUNDING }</p>
                         </div>
-                    </div>
-                    <div>
+                    </div> : null }
+                    { (profile.FUNDS) ? <div>
                         <p className={ ProfileStyles.label }>{ translations["Montant levé"] }</p>
                         <div className={ (lock) ? "locked" : "" }>
                             <p>{ profile.FUNDS + "€" }</p>
                         </div>
-                    </div>
+                    </div> : null }
                 </div> : null }
             </div>
         </div>
         { (profile.STATE === "WO") ? <div className={ ProfileStyles.note }>
-            <p>{ translations["Ce compte n’est pas officiel. S’il s’agit de votre startup, n’hésitez pas à récupérer les accès."] }</p>
+            <p>{ translations["Ce compte n'est pas officiel. S'il s'agit de votre startup, n'hésitez pas à récupérer les accès."] }</p>
         </div> : null }
     </div>;
 };

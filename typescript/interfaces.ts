@@ -25,7 +25,8 @@ interface NotFoundInterface extends BaseInterface {};
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 interface HomeInterface extends BaseInterface {
     opportunities: any,
-    companies: any
+    logos: any,
+    startups: any
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Login Interface */
@@ -42,7 +43,8 @@ interface ProfileInterface extends BaseInterface {
     profile: any,
     products: any,
     activities: any,
-    folders: any
+    folders: any,
+    opportunity: any
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar Interface */

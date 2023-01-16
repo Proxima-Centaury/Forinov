@@ -42,7 +42,7 @@ const LoginForm = ({ states }: LoginInterface) => {
             <Button { ...loginButtonObject as ButtonInterface }/>
         </div>
         <div className={ FormStyles.row }>
-            <Link href="/register" className={ ButtonStyles.callToActionAlternative }>{ translations["Créer mon compte"] }</Link>
+            <Link href="/onboarding" className={ ButtonStyles.callToActionAlternative }>{ translations["Créer mon compte"] }</Link>
         </div>
         <div className={ FormStyles.row }>
             <Link href="/password/recover">{ translations["J'ai oublié mon mot de passe"] + " !" }</Link>

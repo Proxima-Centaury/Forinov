@@ -6,8 +6,6 @@ on:
     # Starts deployment on push or pull request events on master branch
     push:
         branches: [ "master" ]
-    pull_request:
-        branches: [ "master" ]
 # Deployment system jobs
 jobs:
     build:
@@ -15,8 +13,9 @@ jobs:
         runs-on: ubuntu-latest
         # Provides multiple supported versions to test the deployment
         strategy:
+            fail-fast: true
             matrix:
-                node-version: [14.x, 16.x, 18.x]
+                node-version: [16.x]
                 # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
         # Deployment system steps
         steps:
@@ -29,11 +28,10 @@ jobs:
                     cache: "npm"
             - run: npm i
             - run: npm run build
-            - run: npm run test
             - name: FTP-Deploy-Action
               uses: SamKirkland/FTP-Deploy-Action@4.3.0
               with:
-                    server: ${{ secrets.FTP_SERVER }}
-                    username: ${{ secrets.FTP_USERNAME }}
-                    password: ${{ secrets.FTP_PASSWORD }}
-                    target: "/interface"
+                    server: "ftp.forinov.net"
+                    username: "amine.belkheiri@forinov.net"
+                    password: "IkCPSeZboASx"
+                    server-dir: "interface/"

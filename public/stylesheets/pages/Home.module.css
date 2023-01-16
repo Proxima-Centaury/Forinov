@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation Container ) */
+/* Home ( Presentation ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentation {
 	display: flex;
@@ -7,10 +7,26 @@
 	height: max-content;
 	padding: 80px;
 	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-information-color);
+	background-color: var(--background-sub-color);
+}
+@media screen and (max-width: 576px) {
+	.presentation {
+		padding: 40px;
+	}
 }
 .presentation[data-type="startup"] {
 	background-color: var(--lightred-color);
+}
+.presentation[data-type="corporation"] {
+	border-radius: 0px 0px 0px 100px;
+	background-color: var(--lightblue-color);
+}
+.presentation[data-type="partner"] {
+	border-radius: 0px 0px 0px 100px;
+	background-color: var(--lightgreen-color);
+}
+.presentation[data-type="opportunity"] {
+	background-color: var(--background-information-color);
 }
 .presentation::before {
 	content: "";
@@ -33,51 +49,257 @@
 	font-size: 65px;
 	font-weight: bold;
 }
+@media screen and (max-width: 576px) {
+	.presentation > div > h1 {
+		font-size: 60px;
+		text-align: center;
+	}
+}
 .presentation[data-type="startup"] > div > h1 {
-	color: var(--logo-orange-color);
+	color: var(--sunred-color);
+}
+.presentation[data-type="corporation"] > div > h1 {
+	color: var(--pureblue-color);
+}
+.presentation[data-type="partner"] > div > h1 {
+	color: var(--grassgreen-color);
 }
 .presentation > div > p {
-	margin: 0px 0px 32px 0px;
 	font-family: "Nunito Sans";
 	font-size: 24px;
 }
+@media screen and (max-width: 576px) {
+	.presentation > div > p {
+		font-size: 24px;
+		text-align: center;
+	}
+}
+.presentation > div > p + p {
+	margin: 16px 0px 0px 0px;
+}
 .presentation[data-type="startup"] > div > p {
-	color: var(--logo-orange-color);
+	color: var(--sunred-color);
+}
+.presentation[data-type="corporation"] > div > p {
+	color: var(--pureblue-color);
+}
+.presentation[data-type="partner"] > div > p {
+	color: var(--grassgreen-color);
 }
 .presentation > div > a {
 	width: fit-content;
+	margin: 16px 0px 0px 0px;
 	padding: 16px;
 	font-size: 19px;
 	font-weight: 600;
+	color: var(--perfect-white-color);
+	text-align: center;
 	border-radius: 100px;
 	border: var(--border);
 	border-width: 2px;
-	border-color: var(--background-sub-color);
-	background-color: var(--background-sub-color);
-	transition: color 0.3s ease, background-color 0.3s ease;
-}
-.presentation[data-type="startup"] > div > a {
-	color: var(--perfect-white-color);
 	border-color: var(--logo-blue-color);
 	background-color: var(--logo-blue-color);
+	
+}
+@media screen and (max-width: 576px) {
+	.presentation > div > a {
+		width: 100%;
+	}
+}
+.presentation > div > a + a {
+	margin: 16px 0px 0px 0px;
 }
 .presentation > div > a:hover {
+	color: var(--text-main-color);
 	background-color: transparent;
 }
-.presentation[data-type="startup"] > div > a:hover {
+.presentation[data-type="startup"] > div > a:hover,
+.presentation[data-type="corporation"] > div > a:hover,
+.presentation[data-type="partner"] > div > a:hover {
 	color: var(--perfect-black-color);
+}
+.presentation > div > a > i {
+	margin: 0px 0px 0px 16px;
+	color: var(--perfect-white-color);
+}
+.presentation > div > a:hover > i {
+	color: var(--text-main-color);
 }
 .presentation > img {
 	width: 500px;
 	height: 500px;
+	object-fit: contain;
 }
 @media screen and (max-width: 992px) {
 	.presentation > img {
 		display: none;
 	}
+
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Opportunity Container ) */
+/* Home ( Onboarding ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.onboarding {
+	background-color: var(--background-sub-color);
+}
+.onboarding > div {
+	width: 100%;
+	height: max-content;
+	padding: 80px;
+	border-radius: 100px 0px 0px 100px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.onboarding > div {
+		padding: 40px;
+	}
+}
+.onboarding > div > h3 {
+	margin: 0px auto;
+	font-family: "Nunito Sans";
+	font-size: 48px;
+	font-weight: bold;
+	text-align: center;
+}
+.onboarding > div > p {
+	margin: 0px auto 32px auto;
+	font-family: "Nunito Sans";
+	font-size: 21px;
+	text-align: center;
+}
+.onboarding > div > .types {
+	display: flex;
+	justify-content: center;
+}
+.onboarding > div > .types > .type {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: 16px;
+	border-radius: 15px;
+	background-color: var(--background-sub-color);
+	box-shadow: var(--box-shadow);
+}
+.onboarding > div > .types > .type + .type {
+	margin: 0px 0px 0px 32px;
+}
+.onboarding > div > .types > .type > .head {
+	display: flex;
+	align-items: center;
+	margin: 0px 0px 32px 0px;
+}
+.onboarding > div > .types > .type > .head > i {
+	margin: 0px 16px 0px 0px;
+	font-size: 56px;
+}
+.onboarding > div > .types > .type[data-type="startup"] > .head > i {
+	color: var(--logo-orange-color);
+}
+.onboarding > div > .types > .type[data-type="corporation"] > .head > i {
+	color: var(--logo-blue-color);
+}
+.onboarding > div > .types > .type[data-type="partner"] > .head > i {
+	color: var(--logo-green-color);
+}
+.onboarding > div > .types > .type[data-type="partner"] > .head > div {
+	display: flex;
+	flex-direction: column;
+}
+.onboarding > div > .types > .type > .head > div > h5 {
+	font-family: "Nunito Sans";
+	font-size: 24px;
+}
+.onboarding > div > .types > .type[data-type="startup"] > .head > div > h5 {
+	color: var(--logo-orange-color);
+}
+.onboarding > div > .types > .type[data-type="corporation"] > .head > div > h5 {
+	color: var(--logo-blue-color);
+}
+.onboarding > div > .types > .type[data-type="partner"] > .head > div > h5 {
+	color: var(--logo-green-color);
+}
+.onboarding > div > .types > .type > .head > div > p {
+	color: var(--text-inactive-color);
+}
+.onboarding > div > .types > .type > .body {
+	margin: 0px 0px 32px 0px;
+}
+.onboarding > div > .types > .type > .body > div + div {
+	margin: 32px 0px 0px 0px;
+}
+.onboarding > div > .types > .type > .footer {
+	display: flex;
+	flex-direction: column;
+	margin: auto 0px 0px 0px;
+}
+.onboarding > div > .types > .type > .footer > a:last-of-type {
+	margin: 16px auto 0px auto;
+	text-decoration: underline;
+	text-decoration-color: transparent;
+	
+}
+.onboarding > div > .types > .type > .footer > a:last-of-type:hover {
+	color: var(--logo-blue-color);
+	text-decoration-color: var(--logo-blue-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Sourcing ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.sourcing {
+	background-color: var(--background-main-color);
+}
+.sourcing > div {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: 80px;
+	border-radius: 100px 0px 0px 0px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.sourcing > div {
+		padding: 40px;
+	}
+}
+.sourcing > div > h3 {
+	margin: 0px auto;
+	font-family: "Nunito Sans";
+	font-size: 45px;
+	font-weight: 300;
+	text-align: center;
+	color: var(--perfect-black-color);
+}
+.sourcing > div > p {
+	margin: 0px auto 32px auto;
+	font-family: "Nunito Sans";
+	font-size: 21px;
+	text-align: center;
+	color: var(--perfect-black-color);
+}
+.sourcing[data-type="corporation"] > div {
+	background-color: var(--lightblue-color);
+}
+.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] {
+	position: relative;
+}
+.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] [class="separatorVertical"] {
+	background-color: var(--pureblue-color);
+}
+.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] button > i {
+	color: var(--pureblue-color);
+}
+.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] button:last-of-type {
+	background-color: var(--pureblue-color);
+}
+.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] button:last-of-type > i {
+	color: var(--perfect-white-color);
+}
+.sourcing > div > .actions {
+	margin: 32px auto 0px auto;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Opportunity ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .opportunity {
 	background-color: var(--background-information-color);
@@ -94,8 +316,16 @@
 	border-radius: 100px 0px 0px 0px;
 	background-color: var(--background-main-color);
 }
+@media screen and (max-width: 576px) {
+	.opportunity > div {
+		padding: 40px;
+	}
+}
 .opportunity[data-type="startup"] > div {
 	border-radius: 100px 0px 0px 100px;
+}
+.opportunity[data-type="corporation"] > div {
+	border-radius: 0px;
 }
 .opportunity > div > h2 {
 	margin: 0px auto;
@@ -103,9 +333,6 @@
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
-}
-.opportunity[data-type="startup"] > div > h2 {
-	font-weight: 300;
 }
 .opportunity > div > h3 {
 	margin: 32px auto;
@@ -115,12 +342,13 @@
 	text-align: center;
 }
 .opportunity[data-type="startup"] > div > h3 {
-	margin: 8px auto 40px auto;
-	font-size: 21px;
-	font-weight: normal;
+	margin: 0px auto;
 }
-.opportunity[data-type="startup"] > div > div[data-carousel="startup"] {
-	position: relative;
+.opportunity > div > p {
+	margin: 0px auto 32px auto;
+	font-family: "Nunito Sans";
+	font-size: 21px;
+	text-align: center;
 }
 .opportunity > div > h4 {
 	margin: 96px auto 40px auto;
@@ -129,6 +357,83 @@
 	font-weight: bold;
 	text-align: center;
 }
+.opportunity[data-type="corporation"] > div > h4 {
+	margin: 0px auto 40px auto;
+}
+.opportunity > div > [data-carousel="startup"] {
+	position: relative;
+}
+@media screen and (max-width: 768px) {
+	.opportunity > div > [class*="steps"] {
+		flex-direction: column;
+	}
+	.opportunity > div > [class*="steps"] > [class="separator"] {
+		display: none;
+	}
+	.opportunity > div > [class*="steps"] > button {
+		margin: 16px 0px 0px 0px;
+	}
+	.opportunity > div > [class*="steps"] > button:first-of-type {
+		margin: 0px;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Register ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.register {
+	background-color: var(--background-sub-color);
+}
+.register[data-type="corporation"] {
+	background-color: var(--lightblue-color);
+}
+.register[data-type="partner"] {
+	background-color: var(--lightgreen-color);
+}
+.register > div {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: 80px;
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.register > div {
+		padding: 40px;
+	}
+}
+.register > div > h3 {
+	margin: 32px auto;
+	font-family: "Nunito Sans";
+	font-size: 45px;
+	font-weight: 300;
+	text-align: center;
+}
+.register[data-type="corporation"] > div > h3,
+.register[data-type="partner"] > div > h3 {
+	margin: 0px auto 32px auto;
+}
+.register[data-type="corporation"] > div > [class*="steps"] > button[class*="active"] {
+	color: var(--perfect-white-color);
+	border-color: var(--pureblue-color);
+	background-color: var(--pureblue-color);
+}
+.register[data-type="corporation"] > div > [class*="steps"] > button:hover {
+	color: var(--pureblue-color);
+	border-color: var(--lightblue-color);
+	background-color: var(--lightblue-color);
+}
+.register[data-type="partner"] > div > [class*="steps"] > button[class*="active"] {
+	color: var(--perfect-white-color);
+	border-color: var(--grassgreen-color);
+	background-color: var(--grassgreen-color);
+}
+.register[data-type="partner"] > div > [class*="steps"] > button:hover {
+	color: var(--grassgreen-color);
+	border-color: var(--lightgreen-color);
+	background-color: var(--lightgreen-color);
+}
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Actions ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -136,7 +441,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 16px auto 170px auto;
+	margin: 16px auto 70px auto;
+}
+.actions:last-of-type {
+	margin: 16px auto 0px auto;
 }
 .actions[data-align="left"] {
 	margin: 40px auto auto 0px;
@@ -153,47 +461,233 @@
 	}
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges {
+	background-color: var(--background-main-color);
+}
+.badges > div {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	height: max-content;
+	padding: 80px;
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--background-sub-color);
+}
+@media screen and (max-width: 576px) {
+	.badges > div {
+		padding: 40px;
+	}
+}
+.badges[data-type="startup"] > div {
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--lightred-color);
+}
+.badges[data-type="partner"] > div {
+	border-radius: 100px 0px 0px 0px;
+	background-color: var(--lightgreen-color);
+}
+.badges > div > h2 {
+	margin: 0px auto 50px auto;
+	font-family: "Nunito Sans";
+	font-size: 45px;
+	font-weight: 300;
+	text-align: center;
+}
+.badges[data-type="startup"] > div > h2,
+.badges[data-type="partner"] > div > h2 {
+	color: var(--perfect-black-color);
+}
+.badges > div > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+@media screen and (max-width: 1200px) {
+	.badges > div > div {
+		justify-content: space-around;
+	}
+}
+@media screen and (min-width: 992px) {
+	.badges > div > div {
+		margin: 0px 0px 250px 0px;
+	}
+	.badges[data-type="startup"] > div > div,
+	.badges[data-type="partner"] > div > div {
+		margin: 0px 0px 150px 0px;
+	}
+}
+@media screen and (max-width: 992px) {
+	.badges > div > div {
+		flex-direction: column;
+	}
+}
+.badges > div > div > .badge {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-width: 128px;
+	width: 128px;
+	max-width: 128px;
+	min-height: 128px;
+	height: 128px;
+	max-height: 128px;
+	position: relative;
+	border-radius: calc(128px / 2);
+	background-color: var(--background-sub-color);
+	box-shadow: var(--box-shadow);
+}
+.badges > div > div > .badge > i {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	font-size: 70px;
+	color: var(--text-inactive-color);
+}
+.badges[data-type="startup"] > div > div > .badge > i {
+	color: var(--sunred-color);
+}
+.badges[data-type="partner"] > div > div > .badge > i {
+	color: var(--grassgreen-color);
+}
+.badges > div > div > .badge > div {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 180%;
+	position: absolute;
+	top: calc(100% + 16px);
+	left: 50%;
+	transform: translateX(-50%);
+}
+.badges > div > div > .badge > div > h4 {
+	margin: 0px auto 8px auto;
+	font-family: "Nunito Sans";
+	font-size: 32px;
+	font-weight: bold;
+	text-align: center;
+}
+.badges[data-type="startup"] > div > div > .badge > div > h4,
+.badges[data-type="partner"] > div > div > .badge > div > h4 {
+	color: var(--perfect-black-color);
+}
+.badges > div > div > .badge > div > p {
+	font-size: 16px;
+	text-align: center;
+}
+.badges[data-type="startup"] > div > div > .badge > div > p,
+.badges[data-type="partner"] > div > div > .badge > div > p {
+	color: var(--perfect-black-color);
+}
+.badges[data-type="startup"] > div > div > [class="separator"] {
+	background-color: var(--sunred-color);
+}
+.badges[data-type="partner"] > div > div > [class="separator"] {
+	background-color: var(--grassgreen-color);
+}
+@media screen and (max-width: 1200px) {
+	.badges > div > div > [class="separator"] {
+		display: none;
+	}
+}
+.badges > div > div > * + * {
+	margin: 0px 0px 0px 16px;
+}
+@media screen and (max-width: 992px) {
+	.badges > div > div > * + * {
+		margin: 0px;
+	}
+	.badges > div > div > [class*="badge"] {
+		margin: 0px 0px 250px 0px;
+	}
+	.badges[data-type="startup"] > div > div > [class*="badge"],
+	.badges[data-type="partner"] > div > div > [class*="badge"] {
+		margin: 0px 0px 150px 0px;
+	}
+}
+.badges > div > a {
+	margin: 32px 0px 0px 0px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Startups ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.startups {
+	background-color: var(--background-main-color);
+}
+.startups > div {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: 80px;
+}
+@media screen and (max-width: 576px) {
+	.startups > div {
+		padding: 40px;
+	}
+}
+.startups > div > h4 {
+	margin: 0px auto 40px auto;
+	font-family: "Nunito Sans";
+	font-size: 42px;
+	font-weight: bold;
+	text-align: center;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Companies ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .companies {
 	width: 100%;
 	height: max-content;
-	padding: 80px;
 }
-.companies > h2 {
+.companies[data-type="corporation"] {
+	background-color: var(--lightblue-color);
+}
+.companies[data-type="partner"] {
+	background-color: var(--lightgreen-color);
+}
+.companies > div {
+	display: flex;
+	flex-direction: column;
+	padding: 80px;
+	border-radius: 0px 0px 100px 0px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.companies > div {
+		padding: 40px;
+	}
+}
+.companies > div > h2 {
 	margin: 0px auto;
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
 }
-.companies > .logos {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	margin: 32px 0px 140px 0px;
-	padding: 0px 0px 0px 16px;
+.companies > div > div {
+	margin: 0px auto;
 }
-.companies > .logos > .company {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-    width: max-content;
-    height: 50px;
-	padding: 8px;
-	background-color: var(--background-sub-color);
-	border-radius: 100px;
-	box-shadow: var(--box-shadow);
+.companies > div > div:last-of-type {
+	margin: 0px auto;
 }
-.companies > .logos > .company {
-	margin: 8px 16px 0px 0px;
+.companies > div > h3 {
+	margin: 8px auto 40px auto;
+	font-size: 21px;
+	font-weight: normal;
+	text-align: center;
 }
-.companies > .logos > .company > img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+.companies > div > a {
+	width: fit-content;
+	margin: 0px auto;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Questions ) */
@@ -206,6 +700,11 @@
 	padding: 0px 80px 116px 80px;
 	background-color: var(--background-sub-color);
 }
+@media screen and (max-width: 576px) {
+	.questions {
+		padding: 0px 40px 116px 40px;
+	}
+}
 .questions > h2 {
 	margin: 80px auto 32px auto;
 	font-family: "Nunito Sans";
@@ -213,30 +712,70 @@
 	font-weight: bold;
 	text-align: center;
 }
-.questions > .actions {
-	margin: 16px auto;
+.questions[data-type="startup"] button[class*="active"] {
+	color: var(--sunred-color);
+	border-color: var(--lightred-color);
+	background-color: var(--lightred-color);
+}
+.questions[data-type="corporation"] button[class*="active"] {
+	color: var(--pureblue-color);
+	border-color: var(--lightblue-color);
+	background-color: var(--lightblue-color);
+}
+.questions[data-type="partner"] button[class*="active"] {
+	color: var(--grassgreen-color);
+	border-color: var(--lightgreen-color);
+	background-color: var(--lightgreen-color);
 }
 .questions > p {
 	margin: 0px auto;
 }
+@media screen and (max-width: 576px) {
+	.questions > p {
+		text-align: center;
+	}
+}
 .questions > p > a {
 	text-decoration: underline;
-	transition: color 0.3s ease;
+	
 }
 .questions > p > a:hover {
 	color: var(--logo-blue-color);
 }
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badges Container ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges {
-	display: flex;
-	width: 100%;
-	height: max-content;
-	padding: 80px;
-	background-color: var(--background-information-color);
+.questions [data-carousel] {
+	margin: 48px 0px 32px 0px;
+	overflow: hidden;
 }
-.badges[data-type="startup"] {
-	border-radius: 0px 100px 0px 0px;
+.questions [data-carousel] [class*="active"] * {
+	color: var(--perfect-white-color);
+}
+.questions[data-type="startup"] [data-carousel] [class*="active"] {
 	background-color: var(--lightred-color);
+}
+.questions[data-type="startup"] [data-carousel] [class*="active"] > button,
+.questions[data-type="startup"] [data-carousel] [class*="active"] > button > i {
+	color: var(--sunred-color);
+}
+.questions[data-type="startup"] [data-carousel] [class*="active"] > div {
+	color: var(--perfect-black-color);
+}
+.questions[data-type="corporation"] [data-carousel] [class*="active"] {
+	background-color: var(--lightblue-color);
+}
+.questions[data-type="corporation"] [data-carousel] [class*="active"] > button,
+.questions[data-type="corporation"] [data-carousel] [class*="active"] > button > i {
+	color: var(--pureblue-color);
+}
+.questions[data-type="corporation"] [data-carousel] [class*="active"] > div {
+	color: var(--perfect-black-color);
+}
+.questions[data-type="partner"] [data-carousel] [class*="active"] {
+	background-color: var(--lightgreen-color);
+}
+.questions[data-type="partner"] [data-carousel] [class*="active"] > button,
+.questions[data-type="partner"] [data-carousel] [class*="active"] > button > i {
+	color: var(--grassgreen-color);
+}
+.questions[data-type="partner"] [data-carousel] [class*="active"] > div {
+	color: var(--perfect-black-color);
 }

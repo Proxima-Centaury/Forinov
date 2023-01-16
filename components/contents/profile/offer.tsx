@@ -18,7 +18,7 @@ const ProfileOffer = ({ profile, states }: any) => {
             <Format content={ profile.OURVALUE }/>
             { (lock) ? <div className="lockedContent">
                 <i className="fa-solid fa-lock"/>
-                <p>{ translations["Rejoignez Forinov, accédez à l’intégralité des profils, rentrez en contact et lancez des partenariats"] }</p>
+                <p>{ translations["Rejoignez Forinov, accédez à l'intégralité des profils, rentrez en contact et lancez des partenariats"] }</p>
             </div> : null }
         </div>
     </div>;

@@ -7,14 +7,14 @@
     width: 100%;
 }
 .opportunities > h3 {
-    margin: 0px 0px 16px 16px;
+    margin: 0px 0px 0px 16px;
     font-size: 24px;
     font-weight: 800;
 }
 .opportunities > button {
     display: flex;
     align-items: center;
-    margin: 0px 0px 8px 16px;
+    margin: 16px 0px 8px 16px;
 }
 .opportunities > button > * + * {
     margin: 0px 0px 0px 16px;
@@ -40,9 +40,6 @@
     font-weight: 800;
     font-size: 24px;
     white-space: nowrap;
-}
-.opportunities > button[data-status] > i {
-    transition: transform 0.3s ease;
 }
 .opportunities > button[data-status] > i[class*="expanded"] {
     transform: rotate(90deg);

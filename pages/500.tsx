@@ -20,7 +20,7 @@ const ServerError = ({ states }: NotFoundInterface) => {
         <Head>
             <title>Forinov - 500</title>
         </Head>
-        <div id="404" className="container">
+        <div id="500" className="container">
             <div className={ NotFoundStyles.notFound }>
                 <h1>500</h1>
                 <p>{ "Oops ! " + translations["Une erreur serveur est survenue"] + " !" }</p>

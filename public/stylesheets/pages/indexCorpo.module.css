@@ -62,7 +62,7 @@
     border: 1px solid transparent;
     padding: 0.8125rem 1.25rem;
     line-height: 1.6;
-    transition: all .15s ease-in-out;
+    
     background-color: #006DFF;
     display: flex;
     -webkit-box-pack: justify;
@@ -157,7 +157,7 @@
     padding: 0.75rem !important;
     border: 2px solid #57595d;
     color: #57595d;
-    transition: ease-in-out 0.2s;
+    
     border-radius: 50px;
     margin: 0px 3px;
     font-size: 19px !important;
@@ -197,7 +197,7 @@
     height: 300px;
     display: flex;
     transform: translateX(0%);
-    transition: transform .75s cubic-bezier(0.54, -0.56, 0, 1);
+    
 }
 
 .carousel_item {
@@ -735,7 +735,7 @@
     user-select: none;
     border: 1px solid transparent;
     padding: .8125rem 1.25rem;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    
     text-transform: uppercase !important;
     border-radius: 50rem;
     font-family: "Open Sans", sans-serif;
@@ -748,7 +748,7 @@
     text-align: center;
     border-color: transparent !important;
     cursor: pointer;
-    transition: all .3s ease-in-out;
+    
 }
 
 .collapseCtaAlternative:hover {
@@ -761,7 +761,7 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
-    transition: all .3s ease-in-out;
+    
 }
 
 

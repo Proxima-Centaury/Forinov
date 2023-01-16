@@ -9,7 +9,7 @@
     cursor: pointer;
     border-radius: 10px;
     box-shadow: var(--box-shadow);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    
 }
 .opportunity:hover {
     transform: scale(1.02);
@@ -78,68 +78,107 @@
 /* Opportunity ( Content ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .content {
+    display: flex;
     flex: 1;
     padding: 16px;
     position: relative;
     border-radius: 0px 0px 10px 10px;
     background-color: var(--background-sub-color);
 }
-.content > .privacy {
+.content > .right > img {
+    width: 64px;
+    height: 64px;
+    border: var(--border);
+    border-width: 2px;
+    border-color: var(--logo-blue-color);
+    border-radius: 32px;
+}
+.content > .left {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0px 0px 0px 16px;
+}
+.content > .left > .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.content > .left > .top > .author {
     display: flex;
     align-items: center;
 }
-.content > .privacy > i {
+.content > .left > .top > .author > p {
+    color: var(--logo-blue-color);
+    font-size: 12px;
+}
+.content > .left > .top > .privacy {
+    display: flex;
+    align-items: center;
+}
+.content > .left > .top > .privacy > i {
     margin: 0px 8px 0px 0px;
+    font-size: 12px;
     color: var(--text-inactive-color);
 }
-.content > .privacy > p {
+.content > .left > .top > .privacy > p {
     margin: 0px;
     font-size: 12px;
     color: var(--text-inactive-color);
 }
-.content > h3 {
+.content > .left > h3 {
     flex: 1;
     margin: 16px 0px;
     font-size: 18px;
+    line-break: anywhere;
 }
-.content > .type[data-type="1"] > div > div {
+.content > .left > .type[data-type="1"] > div > div {
     background-color: var(--project-color);
 }
-.content > .type[data-type="1"] > div > div > p {
+.content > .left > .type[data-type="1"] > div > div > p {
     color: var(--perfect-white-color);
 }
-.content > .type[data-type="2"] > div > div {
+.content > .left > .type[data-type="2"] > div > div {
     background-color: var(--program-color);
 }
-.content > .type[data-type="2"] > div > div > p {
+.content > .left > .type[data-type="2"] > div > div > p {
     color: var(--perfect-black-color);
 }
-.content > .type[data-type="3"] > div > div {
+.content > .left > .type[data-type="3"] > div > div {
     background-color: var(--challenge-color);
 }
-.content > .type[data-type="3"] > div > div > p {
+.content > .left > .type[data-type="3"] > div > div > p {
     color: var(--perfect-black-color);
 }
-.content > .type[data-type="4"] > div > div {
+.content > .left > .type[data-type="4"] > div > div {
     background-color: var(--event-color);
 }
-.content > .type[data-type="4"] > div > div > p {
+.content > .left > .type[data-type="4"] > div > div > p {
     color: var(--perfect-white-color);
 }
-.content > .type[data-type="5"] > div > div {
+.content > .left > .type[data-type="5"] > div > div {
     background-color: var(--offer-color);
 }
-.content > .type[data-type="5"] > div > div > p {
+.content > .left > .type[data-type="5"] > div > div > p {
     color: var(--perfect-black-color);
 }
-.content > .remainingTime {
+.content > .left > .remainingTime {
     display: flex;
     align-items: center;
 }
-.content > .remainingTime > i {
+.content > .left > .remainingTime > i {
     margin: 0px 8px 0px 0px;
+    color: var(--text-inactive-color);
 }
-.content > .remainingTime > p {
+.content > .left > .remainingTime > p {
     margin: 0px;
     font-size: 12px;
+    color: var(--text-inactive-color);
+}
+.content > .left > [class="formattedContent"] {
+    flex: 1;
+    margin: 16px 0px 0px 0px;
+}
+.content > div:only-child {
+    margin: 0px;
 }

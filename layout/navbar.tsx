@@ -37,7 +37,7 @@ const Navbar = ({ states, stateSetters, config }: NavbarInterface) => {
         <div className={ NavbarStyles.logo }>
             <Link href="/">
                 <Image src="/assets/logo.png" alt={ translations["Logo de Forinov"] } width="50" height="50"/>
-                <span>Forinov</span>
+                <span>forinov</span>
             </Link>
         </div>
         <ul className={ NavbarStyles.links + ((menuState) ? " " + NavbarStyles.show : "") }>
@@ -46,7 +46,7 @@ const Navbar = ({ states, stateSetters, config }: NavbarInterface) => {
         <div className={ NavbarStyles.actions }>
             <Select { ...languageSelectObject as SelectInterface }/>
             <Link href="/login"><i className="fa-light fa-user"/></Link>
-            <Link href="/register" className={ ButtonStyles.callToAction }>{ translations["M'inscrire"] }</Link>
+            <Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["M'inscrire"] }</Link>
         </div>
         <Button { ...navigationButtonObject as ButtonInterface }/>
     </nav>;
@@ -81,7 +81,7 @@ const NavbarMenu = ({ navbar, translations }: any) => {
             { (url) ? <Link href={ url }>{ translations[text] }</Link> : <button onClick={ showSubMenu }>{ translations[text] }</button> }
             { (nesting) ? <ul data-menu="nest">
                 { nest.map(({ url, text }: any, key: KeyType) => <li key={ key }>
-                    <Link href={ url }>{ translations[text] }</Link>
+                    <Link href={ url }>{ translations[text] + ((text.match(/(Comment|How)/)) ? " ?" : "") }</Link>
                 </li>) }
             </ul> : null }
         </li>);

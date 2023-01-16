@@ -7,8 +7,8 @@ import { HomeInterface } from "../typescript/interfaces";
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import Carousel from "../components/carousels/carousel";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
@@ -20,72 +20,49 @@ import config from "../config.json";
 import HomeStyles from "../public/stylesheets/pages/Home.module.css";
 import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Corporations Home */
+/* Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters, config }: HomeInterface) => {
+const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) => {
 	const { translations }: any = states;
 	const parentProps = { locales, states, stateSetters, config };
-	const title = "Forinov " + translations["Entreprises"] + " - " + translations["Comment ça marche"] + " ?";
+    const title = "Forinov " + translations["Opportunités"] + " - " + translations["Comment ça marche"] + " ?" as String;
 	return <>
 		<Head>
 			<title>{ title }</title>
 		</Head>
 		<div className="containerFull">
-			<div className={ HomeStyles.presentation } data-type="corporation">
+			<div className={ HomeStyles.presentation } data-type="opportunity">
 				<div>
-					<h1>{ translations["Bienvenue sur Forinov"] }</h1>
-					<p className={ HomeStyles.paragraph }>{ translations["Sur Forinov, nous regroupons plus de 5000 startups, de quoi trouver votre partenaire de demain"] + " !" }</p>
-					<Link href="/onboarding">{ translations["Rejoindre la communauté"] }</Link>
+					<h1>{ translations["Trouver la startup qu'il vous faut"] }</h1>
+					<p className={ HomeStyles.paragraph }>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d'innovation, à chaque startup son Forinov"] + " !" }</p>
+					<Link href="/">{ translations["Voir la vidéo de présentation"] }</Link>
 				</div>
 				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
 			</div>
-			<div className={ HomeStyles.register } data-type="corporation">
+			<div className={ HomeStyles.opportunity } data-type="opportunity">
 				<div>
-					<h3>{ translations["Comment m'inscrire sur Forinov"] + " ?" }</h3>
-					<Carousel { ...parentProps } component={ "HowToRegister" }/>
-				</div>
-			</div>
-			<div className={ HomeStyles.companies } data-type="corporation">
-				<div>
-					<h2>{ translations["Ils nous font confiance"] }</h2>
-					<Carousel { ...parentProps } component={ "CompaniesLogos" } data={ logos }/>
-					<h2>{ translations["Rejoignez l'écosystème Forinov plus de 1200 startups vous attendent"] + " !" }</h2>
-					<h3>{ translations["Adaptez votre forfait à vos besoins"] + " !" }</h3>
+					<h2>{ translations["Lancez-vous"] + " !" }</h2>
+					<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
+					<Carousel { ...parentProps } component={ "HowToCreateAnOpportunity" }/>
 					<div className={ HomeStyles.actions }>
 						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
-						<Link href="/onboarding" className={ ButtonStyles.callToActionAlternative }>{ translations["Découvrir les offres"] }</Link>
+						<Link href="/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir les offres"] }</Link>
 					</div>
 				</div>
 			</div>
-			<div className={ HomeStyles.sourcing } data-type="corporation">
+			<div className={ HomeStyles.companies }>
 				<div>
-					<h3>{ translations["Comment bien débuter sur Forinov"] + " ?" }</h3>
-					<p>{ translations["Sourcer des startups"] }</p>
-					<div data-carousel="corporation">
-						<Carousel { ...parentProps } component={ "HowToGetStarted" }/>
-					</div>
-					<div className={ HomeStyles.actions }>
-						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Découvrir les avantages de la solution Forinov"] }</Link>
-					</div>
+					<h2>{ translations["Ils ont utilisé Forinov pour leurs opportunités"] }</h2>
+					<Carousel { ...parentProps } component={ "CompaniesLogos" } data={ logos }/>
 				</div>
 			</div>
-			<div className={ HomeStyles.opportunity } data-type="corporation">
-				<div>
-					<h4>{ translations["Les dernières oppotunités"] + " :" }</h4>
-					<Carousel { ...parentProps } component={ "TheLatestOpportunities" } data={ opportunities }/>
-					<div className={ HomeStyles.actions } data-align="left">
-						<Link href="/directories/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir toutes les opportunités"] }</Link>
-						<Link href="/opportunities" className={ ButtonStyles.callToActionAlternative }>{ translations["Qu'est-ce qu'une opportunité"] + " ?" }</Link>
-					</div>
-				</div>
-			</div>
-			<div className={ HomeStyles.questions } data-type="corporation">
+			<div className={ HomeStyles.questions } data-type="opportunity">
 				<h2>{ translations["Les réponses à vos questions"] }</h2>
-				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" } data={ Object.values(config.accordions.landings.corporation) }/>
+				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" } data={ Object.values(config.accordions.landings.opportunity) }/>
 				<p>{ translations["Vous avez des questions"] + " ? " }<Link href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
 			</div>
 		</div>
-	</>;
+	</>
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Properties */
@@ -93,22 +70,18 @@ const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters,
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { locale, locales, defaultLocale } = context;
 	const { endpoint, queries } = config.api;
-	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=startup&authkey=Landing");
+	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=opportunité&authkey=Landing");
     const logosResponse = await logosPromise.json();
     const formattedLogosResponse = Object.values(logosResponse[0].LOGOS);
-	const landingOpportunitiesPromise = await fetch(endpoint + "?q=" + queries.getLandingOpportunities + "&app=next&authkey=Landing");
-    const landingOpportunitiesResponse = await landingOpportunitiesPromise.json();
-    const formattedLandingOpportunitiesResponse = Object.values(landingOpportunitiesResponse[0].PROJECT);
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			logos: formattedLogosResponse,
-			opportunities: formattedLandingOpportunitiesResponse
+			logos: formattedLogosResponse
 		},
 	};
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default CorporationsHome;
+export default Home;
 export { getServerSideProps };

@@ -19,6 +19,15 @@ import config from "../config.json";
 * @method getCookie : {@link Utilities.getCookie}
 * @method getTranslations : {@link Utilities.getTranslations}
 * @method preventSubmit : {@link Utilities.preventSubmit}
+* @method buildProperties : {@link Utilities.buildProperties};
+* @method scrollTo : {@link Utilities.scrollTo};
+* @method seeMoreOrLess : {@link Utilities.seeMoreOrLess};
+* @method redirectTo : {@link Utilities.redirectTo};
+* @method uppercaseFirst : {@link Utilities.uppercaseFirst};
+* @method remainingTime : {@link Utilities.remainingTime};
+* @method formatNameForUrl : {@link Utilities.formatNameForUrl};
+* @method bindEventListener : {@link Utilities.bindEventListeners};
+* @method removeEventListeners : {@link Utilities.removeEventListeners};
 * @returns
 * - Instance returns ```void``` ( nothing ).
 * ---
@@ -402,10 +411,60 @@ class Utilities {
                     } else {
                         string.push(value + " " + translations["Jours"].toLowerCase());
                     };
-                }
+                };
             });
-            return (string) ? string.join(", ") : translations["Moins de 24 heures restantes"];
+            return (string.length > 0) ? string.join(", ") : translations["Moins de 24 heures restantes"];
         };
+    };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function formatNameForUrl
+    * @param { String } [ name ] Should be a ```string```.
+    * @returns { String|Boolean }
+    * - ```string```.
+    * - ```false``` if string parameter missing or wrong.
+    * ---
+    * @note This method is used to return the passed string trimed with all letters lowercased and spaces removed.
+    * @note The {@link string} parameter should be a string.
+    */
+    formatNameForUrl = (name: String): String|Boolean => (name) ? name.toLowerCase().replaceAll(/\s+/g, "").trim() : false;
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function bindEventListeners
+    * @param { HTMLElement } [ element ] Should be an ```html element```.
+    * @param { Array<String> } [ listeners ] Should be an ```array``` of ```strings```.
+    * @param { Function } [ callback ] Should be a ```function```.
+    * @returns { void|Boolean }
+    * - ```void```.
+    * - ```false``` if element, listeners or callback parameter missing or wrong.
+    * ---
+    * @note This method is used to return the passed string trimed with all letters lowercased and spaces removed.
+    * @note The {@link string} parameter should be a string.
+    */
+    bindEventListeners(element: HTMLElement, listeners: Array<String>, callback: Function): void|Boolean {
+        if(!element || !listeners || !callback) {
+            return false;
+        };
+        listeners.map((listener) => element.addEventListener(listener as any, callback as any));
+    };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function removeEventListeners
+    * @param { HTMLElement } [ element ] Should be an ```html element```.
+    * @param { Array<String> } [ listeners ] Should be an ```array``` of ```strings```.
+    * @param { Function } [ callback ] Should be a ```function```.
+    * @returns { void|Boolean }
+    * - ```void```.
+    * - ```false``` if element, listeners or callback parameter missing or wrong.
+    * ---
+    * @note This method is used to return the passed string trimed with all letters lowercased and spaces removed.
+    * @note The {@link string} parameter should be a string.
+    */
+    removeEventListeners(element: HTMLElement, listeners: Array<String>, callback: Function): void|Boolean {
+        if(!element || !listeners || !callback) {
+            return false;
+        };
+        listeners.map((listener) => element.removeEventListener(listener as any, callback as any));
     };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -428,6 +487,9 @@ const seeMoreOrLess = utilities.seeMoreOrLess;
 const redirectTo = utilities.redirectTo;
 const uppercaseFirst = utilities.uppercaseFirst;
 const remainingTime = utilities.remainingTime;
+const formatNameForUrl = utilities.formatNameForUrl;
+const bindEventListeners = utilities.bindEventListeners;
+const removeEventListeners = utilities.removeEventListeners;
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -445,5 +507,8 @@ export {
     seeMoreOrLess,
     redirectTo,
     uppercaseFirst,
-    remainingTime
+    remainingTime,
+    formatNameForUrl,
+    bindEventListeners,
+    removeEventListeners
 };

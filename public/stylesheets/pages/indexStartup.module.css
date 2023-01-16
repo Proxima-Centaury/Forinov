@@ -61,7 +61,7 @@
 	border: 1px solid transparent;
 	padding: 0.8125rem 1.25rem;
 	line-height: 1.6;
-	transition: all .15s ease-in-out;
+	
 	background-color: var(--logo-blue-color);
 	display: flex;
 	-webkit-box-pack: justify;
@@ -679,7 +679,7 @@
     user-select: none;
     border: 1px solid transparent;
     padding: .8125rem 1.25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    
     text-transform: uppercase!important;
     border-radius: 50rem;
     font-family: "Open Sans", sans-serif;
@@ -692,7 +692,7 @@
     text-align: center;
     border-color: transparent!important;
     cursor: pointer;
-	transition: all .3s ease-in-out;
+	
 }
 
 .collapseCtaAlternative:hover {
@@ -705,7 +705,7 @@
 	display: flex;
 	justify-content: center;
 	gap: 1rem;
-	transition: all .3s ease-in-out;
+	
 }
 
 

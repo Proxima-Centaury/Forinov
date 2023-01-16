@@ -16,8 +16,8 @@ const Tags = ({ tags, main = false, alternative = false, lock = false, count = t
     };
     const classList = TagsStyles.tag + ((main) ? " " + TagsStyles.main : "");
     return <div className={ TagsStyles.tags + ((lock) ? " locked" : "" ) + ((alternative) ? " " + TagsStyles.alternative : "" )}>
-        { (count) ? tags.map((entry: any, key: KeyType) => (parseInt(key) < 3) ? <div key={ key } className={ classList } data-type="tooltip" data-tooltip={ uppercaseFirst(entry[1]) }>
-            <p>{ uppercaseFirst(entry[1]) as String }</p>
+        { (count) ? tags.map((entry: any, key: KeyType) => (parseInt(key) < 3) ? <div key={ key } className={ classList } data-type="tooltip" data-tooltip={ uppercaseFirst(entry[1]) || uppercaseFirst(entry.NAME) }>
+            <p>{ uppercaseFirst(entry[1]) as String || uppercaseFirst(entry.NAME) as String }</p>
         </div> : null) : tags.map((entry: any, key: KeyType) => <div key={ key } className={ classList }>
             <p>{ uppercaseFirst(entry[1]) as String || uppercaseFirst(entry.NAME) as String }</p>
         </div>) }

@@ -16,7 +16,7 @@ const Footer = ({ states, config }: FooterInterface) => {
     return <footer className={ FooterStyles.footer }>
         <div className={ FooterStyles.section }>
             <img src="/assets/logo.png" alt="Forinov logo"/>
-            <p>{ translations["Forinov connecte startups, entreprises et partenaires pour matcher l’offre et le besoin d’innovation."] }</p>
+            <p>{ translations["Forinov connecte startups, entreprises et partenaires pour matcher l'offre et le besoin d'innovation."] }</p>
             <div className={ FooterStyles.socials }>
                 <a href="https://twitter.com/Forinov1" target="_blank">
                     <i className="fa-brands fa-twitter"/>

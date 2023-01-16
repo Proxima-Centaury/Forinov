@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Next Config */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/** @type {import('next').NextConfig} */
+/** @type { import('next').NextConfig } */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Config */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -9,14 +9,13 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     images: {
-        domains: [ "dev.forinov.fr" ],
+        domains: [ "www.forinov.fr", "dev.forinov.fr" ],
     },
     i18n: {
         defaultLocale: "fr-FR",
         locales: [ "fr-FR", "en-US" ],
         domains: [
-            { domain: "dev.forinov.fr", defaultLocale: "fr-FR", locales: [ "fr-BE", "fr-CA" ] },
-            { domain: "dev.forinov.com", defaultLocale: "en-US", locales: [ "en-AU", "en-GB" ] },
+            { domain: "interface.forinov.net", defaultLocale: "fr-FR", locales: [ "fr-BE", "fr-CA" ] }
         ]
     }
 };

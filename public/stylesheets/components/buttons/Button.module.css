@@ -13,7 +13,7 @@
     border-radius: 20px;
     border: var(--border);
     border-color: var(--logo-blue-color);
-    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    
 }
 .callToActionRoundedIcon > i,
 .callToActionAlternativeRoundedIcon > i,
@@ -78,7 +78,7 @@
     border-radius: 20px;
     border: var(--border);
     border-color: var(--logo-blue-color);
-    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    
 }
 @media screen and (max-width: 576px) {
     .callToAction,
@@ -196,7 +196,7 @@
     border-style: dashed;
     border-radius: 10px;
     background-color: var(--background-sub-color);
-    transition: background-color 0.3s ease;
+    
 }
 .callToActionWide:hover {
     background-color: var(--paleblue-color);
@@ -210,7 +210,7 @@
     margin: auto;
     border-radius: 32px;
     background-color: var(--paleblue-color);
-    transition: background-color 0.3s ease;
+    
 }
 .callToActionWide:hover > i {
     background-color: var(--logo-blue-color);
@@ -242,7 +242,7 @@
     font-size: 11px;
     color: var(--text-inactive-color);
     transform: rotate(90deg);
-    transition: transform 0.3s ease;
+    
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( See More Alternative ) */
@@ -257,7 +257,7 @@
     font-weight: 600;
     border: var(--border);
     border-radius: calc(32px / 2);
-    transition: background-color 0.3s ease;
+    
 }
 .moreOrLessAlternative:hover {
     background-color: var(--background-information-color);
@@ -288,7 +288,7 @@
     width: 25px;
     height: 2px;
     background-color: var(--logo-blue-color);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    
 }
 .navigationButton > span + span {
     margin: 8px 0px 0px 0px;
@@ -331,7 +331,7 @@
     top: 16px;
     right: 16px;
     border-radius: 30px;
-    transition: background-color 0.3s ease;
+    
 }
 .closeModal:hover {
     background-color: var(--paleblue-color);

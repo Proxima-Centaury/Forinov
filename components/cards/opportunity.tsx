@@ -1,8 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useState } from "react";
-import { seeMoreOrLess, buildProperties, uppercaseFirst, remainingTime } from "../../scripts/utilities";
+import { uppercaseFirst, remainingTime, formatNameForUrl } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -13,20 +12,24 @@ import Tags from "../tags/tags";
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import OpportunityStyles from "../../public/stylesheets/components/cards/Opportunity.module.css";
+import Format from "../texts/format";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Opportunity Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const OpportunityCard = ({ opportunity, index, maxVisibleByDefault, translations }: any) => {
     const {
         opportunity_id,
+        opportunity_author_name,
+        opportunity_author_logo,
         opportunity_type,
         opportunity_background,
         opportunity_lang,
         opportunity_name,
         opportunity_privacy,
-        remaining_time
+        remaining_time,
+        opportunity_desc
     }: any = opportunity;
-    return <Link href={ "" } className={ OpportunityStyles.opportunity + ((index > maxVisibleByDefault) ? " hidden" : "") } target="_blank" data-card="opportunity">
+    return <Link href={ "/directories/opportunities/" + formatNameForUrl(opportunity_name) + "_" + opportunity_id } className={ OpportunityStyles.opportunity + ((index > maxVisibleByDefault) ? " hidden" : "") } data-card="opportunity">
         <div className={ OpportunityStyles.background } data-type={ (opportunity_type && opportunity_type.ID) ? opportunity_type.ID : "" }>
             { (opportunity_background) ? <Image src={ opportunity_background } alt={ "Image de fond de l'opportunité " + opportunity_name + "." } width="3840" height="2160"/> : null }
             { (opportunity_lang === "en") ? <div className={ OpportunityStyles.informations }>
@@ -34,19 +37,30 @@ const OpportunityCard = ({ opportunity, index, maxVisibleByDefault, translations
             </div> : null }
         </div>
         <div className={ OpportunityStyles.content }>
-            <div className={ OpportunityStyles.privacy }>
-                <i className="fa-light fa-eye"/>
-                <p>{ (opportunity_privacy) ? (opportunity_privacy.match(/(ext)/)) ? translations["Externe"] : uppercaseFirst(opportunity_privacy) : translations["Confidentialité non-définie"] }</p>
+            { (opportunity_author_logo) ? <div className={ OpportunityStyles.right }>
+                <Image src={ opportunity_author_logo } width="64" height="64" alt={ opportunity_author_name + " logo." }/>
+            </div> : null }
+            <div className={ OpportunityStyles.left }>
+                <div className={ OpportunityStyles.top }>
+                    { (opportunity_author_name) ? <div className={ OpportunityStyles.author }>
+                        <p>{ opportunity_author_name }</p>
+                    </div> : null }
+                    <div className={ OpportunityStyles.privacy }>
+                        <i className="fa-light fa-eye"/>
+                        <p>{ (opportunity_privacy) ? (opportunity_privacy.match(/(ext)/)) ? translations["Externe"] : uppercaseFirst(opportunity_privacy) : translations["Confidentialité non-définie"] }</p>
+                    </div>
+                </div>
+                <h3>{ (opportunity_name) ? uppercaseFirst(opportunity_name) : translations["Nom non-défini"] }</h3>
+                { (opportunity.opportunity_type) ? <div className={ OpportunityStyles.type } data-type={ (opportunity_type && opportunity_type.ID) ? opportunity_type.ID : "" }>
+                    <Tags tags={ Object.entries({ "0": opportunity.opportunity_type.NAME }) } main={ true }/>
+                </div> : null }
+                <div className="separator"></div>
+                { (remaining_time) ? <div className={ OpportunityStyles.remainingTime }>
+                    <i className="fa-solid fa-calendar"/>
+                    <p>{ remainingTime(remaining_time, null, null, translations) }</p>
+                </div> : null }
+                { (opportunity_desc) ? <Format content={ opportunity_desc }/> : null }
             </div>
-            <h3>{ (opportunity_name) ? uppercaseFirst(opportunity_name) : translations["Nom non-défini"] }</h3>
-            { (opportunity.opportunity_type) ? <div className={ OpportunityStyles.type } data-type={ (opportunity_type && opportunity_type.ID) ? opportunity_type.ID : "" }>
-                <Tags tags={ Object.entries({ "0": opportunity.opportunity_type.NAME }) } main={ true }/>
-            </div> : null }
-            <div className="separator"></div>
-            { (remaining_time) ? <div className={ OpportunityStyles.remainingTime }>
-                <i className="fa-solid fa-calendar"/>
-                <p>{ remainingTime(remaining_time, null, null, translations) }</p>
-            </div> : null }
         </div>
     </Link>;
 };
