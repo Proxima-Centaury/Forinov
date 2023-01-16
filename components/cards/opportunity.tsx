@@ -59,7 +59,9 @@ const OpportunityCard = ({ opportunity, index, maxVisibleByDefault, translations
                     <i className="fa-solid fa-calendar"/>
                     <p>{ remainingTime(remaining_time, null, null, translations) }</p>
                 </div> : null }
-                { (opportunity_desc) ? <Format content={ opportunity_desc }/> : null }
+                <div className="formattedContent">
+                    <p>{ opportunity_desc }</p>
+                </div>
             </div>
         </div>
     </Link>;
