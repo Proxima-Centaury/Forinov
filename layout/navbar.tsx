@@ -3,7 +3,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { MouseEvent, useState } from "react";
 import { ButtonInterface, NavbarInterface, SelectInterface } from "../typescript/interfaces";
-import { buildProperties, preventSubmit } from "../scripts/utilities";
+import { selectifyTheOptions, buildProperties, preventSubmit } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -25,7 +25,8 @@ const Navbar = ({ states, stateSetters, config }: NavbarInterface) => {
     const { navbar } = config.navigations.unsigned.layout;
     const [ menuState, setMenuState ] = useState(false);
     const selectProps = [ "type", "options", "action", "defaultValue", "source" ];
-    const languageSelectValues = [ "Single", locales, setLocale, locale, "locales" ];
+    const languageSelectDefaultValue = [ ...selectifyTheOptions(locales, "locales") as Array<any> ]?.filter((option: any) => option.value === locale)[0];
+    const languageSelectValues = [ "Single", locales, setLocale, languageSelectDefaultValue, "locales" ];
     const languageSelectObject = buildProperties(selectProps, languageSelectValues);
     const buttonProps = [ "type", "action", "aria" ];
     const navigationButtonClass = ButtonStyles.navigationButton + ((menuState) ? " " + ButtonStyles.active : "");
