@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, Key, useEffect, useState } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
 import { buildProperties, formatNameForUrl, bindEventListeners, removeEventListeners } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -18,6 +18,32 @@ import Accordion from "../accordions/accordion";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import CarouselStyles from "../../public/stylesheets/components/carousels/Carousel.module.css";
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Commons */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const handleTransition = (event: any, preciseTarget: any, transform: Number, setTransform: any, touchstart: Number, setTouchstart: any, touchend: Number, setTouchend: any) => {
+    const cards = [ ...preciseTarget.children ];
+    const offset = (window.innerWidth > 768) ? 450 : 100;
+    if(event.type === "wheel") {
+        if(event.wheelDelta > 0) {
+            (transform < 0) ? setTransform(transform as number + offset) : null;
+        } else {
+            (transform > (cards.length - 1) * -offset) ? setTransform(transform as number - offset) : null;
+        };
+    } else {
+        (event.type === "touchstart") ? setTouchstart(event.touches[0].clientX) : setTouchend(event.changedTouches[0].clientX);
+        if(touchstart > parseInt(touchend as any) + 5) {
+            (transform > (cards.length - 1) * -offset) ? setTransform(transform as number - offset) : null;
+        } else {
+            (transform < 0) ? setTransform(transform as number + offset) : null;
+        };
+    };
+    if(window.innerWidth > 768) {
+        cards.forEach((card: HTMLElement) => card.style.transform = "translateX(" + transform + "px)");
+    } else {
+        cards.forEach((card: HTMLElement, key: Number) => card.style.transform = "translateX(calc(" + transform + "% + " + (-key as number * 16) + "px))");
+    };
+};
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -177,22 +203,18 @@ const HowToGetStarted = ({ states }: any) => {
 const TheLatestOpportunities = ({ states, data }: any) => {
 	const { translations }: any = states;
     const [ transform, setTransform ] = useState(0);
+    const [ touchstart, setTouchstart ] = useState(0);
+    const [ touchend, setTouchend ] = useState(0);
     const scrollHandler = (event: any) => {
         event.preventDefault();
         const target = event.target;
         const preciseTarget = target.closest("." + CarouselStyles.container);
-        const opportunities = [ ...preciseTarget.children ];
-        if(event.deltaY > 0) {
-            (preciseTarget.scrollWidth > (preciseTarget.clientWidth + 100)) ? setTransform(transform - 100) : null;
-        } else {
-            (transform < 0) ? setTransform(transform + 100) : null;
-        };
-        opportunities.forEach((opportunity: HTMLElement) => opportunity.style.transform = "translateX(" + transform + "px)");
+        return handleTransition(event, preciseTarget, transform, setTransform, touchstart, setTouchstart, touchend, setTouchend);
     };
     useEffect(() => {
         let carousel = document.querySelector("[class*='opportunity'] > div > ." + CarouselStyles.container);
-        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) : null;
-        return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) as any;
+        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchstart", "touchend" ], scrollHandler) : null;
+        return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchstart", "touchend" ], scrollHandler) as any;
     });
     return <>
         <div className={ CarouselStyles.container }>
@@ -241,22 +263,18 @@ const CompaniesLogos = ({ data, states }: any) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnersStartups = ({ states, data }: any) => {
     const [ transform, setTransform ] = useState(0);
+    const [ touchstart, setTouchstart ] = useState(0);
+    const [ touchend, setTouchend ] = useState(0);
     const scrollHandler = (event: any) => {
         event.preventDefault();
         const target = event.target;
         const preciseTarget = target.closest("." + CarouselStyles.container);
-        const opportunities = [ ...preciseTarget.children ];
-        if(event.deltaY > 0) {
-            (preciseTarget.scrollWidth > (preciseTarget.clientWidth + 100)) ? setTransform(transform - 100) : null;
-        } else {
-            (transform < 0) ? setTransform(transform + 100) : null;
-        };
-        opportunities.forEach((opportunity: HTMLElement) => opportunity.style.transform = "translateX(" + transform + "px)");
+        return handleTransition(event, preciseTarget, transform, setTransform, touchstart, setTouchstart, touchend, setTouchend);
     };
     useEffect(() => {
         let carousel = document.querySelector("[class*='startups'] > div > ." + CarouselStyles.container);
-        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) : null;
-        return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) as any;
+        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchstart", "touchend" ], scrollHandler) : null;
+        return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchstart", "touchend" ], scrollHandler) as any;
     });
     return <>
         <div className={ CarouselStyles.container }>
