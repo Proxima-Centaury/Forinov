@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { SelectInterface, OptionInterface } from "../../typescript/interfaces";
 import { SelectOption } from "../../typescript/types";
 import { selectifyTheOptions, handleOutOfArea } from "../../scripts/utilities";
@@ -15,12 +15,13 @@ import SelectStyles from "../../public/stylesheets/components/fields/Select.modu
 const Select = ({ type, version, options, action, defaultValue, source }: SelectInterface) => {
     const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
     options = selectifiedOptions;
+    const optionsReducer = (defaultValue: any) => defaultValue;
     const [ selectState, setSelectState ] = useState(false);
-    const [ defaultSelected, setDefaultSelected ]: any = useState(() => options.filter((option: any) => option.value === defaultValue)[0]);
+    const [ defaultSelected, setDefaultSelected ]: any = useReducer(optionsReducer, options.filter((option: any) => option.value === defaultValue)[0]);
     const [ defaultSelectedAsObject, setDefaultSelectedAsObject ]: any = useState(null);
     const condition = !defaultSelectedAsObject || (defaultSelectedAsObject && defaultSelectedAsObject.value !== defaultValue);
-    useEffect(() => setDefaultSelected(() => options.filter((option: any) => option.value === defaultValue)[0]), [ defaultValue ]);
     useEffect(() => (condition) ? setDefaultSelectedAsObject(defaultSelected) : undefined, [ defaultSelected ]);
+    useEffect(() => setDefaultSelected(() => options.filter((option: any) => option.value === defaultValue)[0]), [ defaultValue ]);
     useEffect(() => {
         const closeOptions = () => setSelectState(false);
         const selectSelector = "." + SelectStyles.selectField;
@@ -47,7 +48,7 @@ const Select = ({ type, version, options, action, defaultValue, source }: Select
                         defaultValue,
                         source,
                     };
-                    return <Option { ...optionProps } key={index + '-optionSelect'} />;
+                    return <Option { ...optionProps } key={ index + "-optionSelect" } />;
                 }) : null }
             </div>
         </div>;
