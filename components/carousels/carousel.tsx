@@ -21,28 +21,17 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Commons */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const handleTransition = (event: any, preciseTarget: any, transform: Number, setTransform: any, touchstart: Number, setTouchstart: any, touchend: Number, setTouchend: any) => {
+const handleTransition = (event: any, preciseTarget: any, transform: Number, setTransform: any) => {
+    const containerWidth = preciseTarget.offsetWidth;
     const cards = [ ...preciseTarget.children ];
-    const offset = (window.innerWidth > 768) ? 450 : 100;
-    if(event.type === "wheel") {
-        if(event.wheelDelta > 0) {
-            (transform < 0) ? setTransform(transform as number + offset) : null;
-        } else {
-            (transform > (cards.length - 1) * -offset) ? setTransform(transform as number - offset) : null;
-        };
+    const offset = 466;
+    const limit = ((cards.length - 1) * -offset) + (containerWidth / 2)
+    if(event.wheelDelta > 0) {
+        (transform < 0) ? setTransform(transform as number + offset) : null;
     } else {
-        (event.type === "touchstart") ? setTouchstart(event.touches[0].clientX) : setTouchend(event.changedTouches[0].clientX);
-        if(touchstart > parseInt(touchend as any) + 5) {
-            (transform > (cards.length - 1) * -offset) ? setTransform(transform as number - offset) : null;
-        } else {
-            (transform < 0) ? setTransform(transform as number + offset) : null;
-        };
+        (transform > limit) ? setTransform(transform as number - offset) : null;
     };
-    if(window.innerWidth > 768) {
-        cards.forEach((card: HTMLElement) => card.style.transform = "translateX(" + transform + "px)");
-    } else {
-        cards.forEach((card: HTMLElement, key: Number) => card.style.transform = "translateX(calc(" + transform + "% + " + (-key as number * 16) + "px))");
-    };
+    return cards.forEach((card: HTMLElement) => card.style.transform = "translateX(" + transform + "px)");
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel */
@@ -82,7 +71,7 @@ const Carousel = ({ states, component, data }: any) => {
         case "AnswersToYourQuestions":
             return <AnswersToYourQuestions { ...parentProps } handler={ handleCarousel }/>;
         default :
-            return <></>;
+            return <Fragment></Fragment>;
     };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -97,7 +86,7 @@ const HowToCreateAnOpportunity = ({ states, handler }: any) => {
 		translations["Profitez"]
 	];
 	const buttonProps = [ "type", "action", "text" ];
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.steps }>
             { opportunityCreationStepsButtons.map((button: any, key: number) => {
                 const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => handler(event, "HowToCreateAnOpportunity"), button ];
@@ -116,7 +105,7 @@ const HowToCreateAnOpportunity = ({ states, handler }: any) => {
                 </div>;
             }) }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( How To Register ) */
@@ -130,7 +119,7 @@ const HowToRegister = ({ states, handler }: any) => {
 		translations["Profitez"]
 	];
 	const buttonProps = [ "type", "action", "text" ];
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.steps }>
             { opportunityCreationStepsButtons.map((button: any, key: number) => {
                 const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => handler(event, "HowToCreateAnOpportunity"), button ];
@@ -149,7 +138,7 @@ const HowToRegister = ({ states, handler }: any) => {
                 </div>;
             }) }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( How To Apply To An Opportunity ) */
@@ -157,7 +146,7 @@ const HowToRegister = ({ states, handler }: any) => {
 const HowToApplyToAnOpportunity = ({ states }: any) => {
 	// const { translations }: any = states;
     const opportunityCreationStepsButtons = [ "", "", "" ];
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.steps } data-direction="vertical">
             { opportunityCreationStepsButtons.map((button: any, key: number) => <Fragment key={ key }>
                 <div className="separatorVertical"></div>
@@ -172,7 +161,7 @@ const HowToApplyToAnOpportunity = ({ states }: any) => {
                 { (key % 2 === 0) ? <div>Picture</div> : <div>Text</div> }
             </div>) }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( How To Get Started ) */
@@ -180,7 +169,7 @@ const HowToApplyToAnOpportunity = ({ states }: any) => {
 const HowToGetStarted = ({ states }: any) => {
 	// const { translations }: any = states;
     const opportunityCreationStepsButtons = [ "", "", "" ];
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.steps } data-direction="vertical">
             { opportunityCreationStepsButtons.map((button: any, key: number) => <Fragment key={ key }>
                 <div className="separatorVertical"></div>
@@ -195,7 +184,7 @@ const HowToGetStarted = ({ states }: any) => {
                 { (key % 2 === 0) ? <div>Picture</div> : <div>Text</div> }
             </div>) }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( The Latest Opportunities ) */
@@ -203,20 +192,18 @@ const HowToGetStarted = ({ states }: any) => {
 const TheLatestOpportunities = ({ states, data }: any) => {
 	const { translations }: any = states;
     const [ transform, setTransform ] = useState(0);
-    const [ touchstart, setTouchstart ] = useState(0);
-    const [ touchend, setTouchend ] = useState(0);
     const scrollHandler = (event: any) => {
         event.preventDefault();
         const target = event.target;
         const preciseTarget = target.closest("." + CarouselStyles.container);
-        return handleTransition(event, preciseTarget, transform, setTransform, touchstart, setTouchstart, touchend, setTouchend);
+        return handleTransition(event, preciseTarget, transform, setTransform);
     };
     useEffect(() => {
         let carousel = document.querySelector("[class*='opportunity'] > div > ." + CarouselStyles.container);
-        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchstart", "touchend" ], scrollHandler) : null;
-        return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchstart", "touchend" ], scrollHandler) as any;
+        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) : null;
+        return () => removeEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) as any;
     });
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.container }>
             { data.map((opportunity: any, key: KeyType) => {
                 const index = key + 1;
@@ -225,7 +212,7 @@ const TheLatestOpportunities = ({ states, data }: any) => {
                 return <OpportunityCard key={ key } { ...cardProps }/>;
             }) }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( Companies Logos ) */
@@ -256,27 +243,25 @@ const CompaniesLogos = ({ data, states }: any) => {
                 };
             }) }
         </div>
-    </div>
+    </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( Partners Startups ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnersStartups = ({ states, data }: any) => {
     const [ transform, setTransform ] = useState(0);
-    const [ touchstart, setTouchstart ] = useState(0);
-    const [ touchend, setTouchend ] = useState(0);
     const scrollHandler = (event: any) => {
         event.preventDefault();
         const target = event.target;
         const preciseTarget = target.closest("." + CarouselStyles.container);
-        return handleTransition(event, preciseTarget, transform, setTransform, touchstart, setTouchstart, touchend, setTouchend);
+        return handleTransition(event, preciseTarget, transform, setTransform);
     };
     useEffect(() => {
         let carousel = document.querySelector("[class*='startups'] > div > ." + CarouselStyles.container);
-        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchstart", "touchend" ], scrollHandler) : null;
-        return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchstart", "touchend" ], scrollHandler) as any;
+        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) : null;
+        return () => removeEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) as any;
     });
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.container }>
             { data.map((startup: any, key: KeyType) => {
                 const type = "startup";
@@ -289,7 +274,7 @@ const PartnersStartups = ({ states, data }: any) => {
                 </Link>;
             }) }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( Answers To Your Questions ) */
@@ -301,7 +286,7 @@ const AnswersToYourQuestions = ({ states, handler, data }: any) => {
 		translations["La communauté Forinov"]
 	];
 	const buttonProps = [ "type", "action", "text" ];
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.actions }>
             { questionsButtons.map((button: any, key: number) => {
                 const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => handler(event, "AnswersToYourQuestions"), button ];
@@ -314,7 +299,7 @@ const AnswersToYourQuestions = ({ states, handler, data }: any) => {
                 <Accordion data={ accordion } translations={ translations }/>
             </div>) : null }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
