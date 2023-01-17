@@ -40,7 +40,7 @@ const ProfileCard = ({ type, profile, states, page }: any) => {
                 <div className={ ProfileStyles.informations }>
                     { (profile.ADDRESS) ? <div>
                         <i className="fa-solid fa-location-dot"/>
-                        <p>{ profile.ADDRESS.TOWN + ", " + profile.ADDRESS.ISO }</p>
+                        <p>{ ((profile.ADDRESS.TOWN) ? profile.ADDRESS.TOWN + ", " : "") + ((profile.ADDRESS.ISO) ? profile.ADDRESS.ISO : "") }</p>
                     </div> : null }
                     { (profile.WEBSITE) ? <div>
                         <i className="fa-solid fa-link"/>

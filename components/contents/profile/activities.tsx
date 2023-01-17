@@ -18,14 +18,14 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Activities */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileActivities = ({ activities, states }: any) => {
+const ProfileActivities = ({ type, activities, states }: any) => {
     const { translations }: any = states;
     const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(3);
     const handleView = (event: any) => seeMoreOrLess(event, translations, "." + ActivityStyles.activity, activities, maxVisibleCardsByDefault);
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLessAlternative, false, "", "", handleView, translations["Voir plus"], activities.length - maxVisibleCardsByDefault ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
-    return <div id="newsfeed" className={ ActivitiesStyles.activities }>
+    return <div id="newsfeed" className={ ActivitiesStyles.activities } data-profile={ type }>
         <h3>{ translations["Fil d'actualité"] }</h3>
         <div className={ ActivitiesStyles.list } data-type="list">
             { activities.map((event: any, key: KeyType) => {

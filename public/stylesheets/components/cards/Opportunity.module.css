@@ -132,36 +132,6 @@
     font-size: 18px;
     line-break: anywhere;
 }
-.content > .left > .type[data-type="1"] > div > div {
-    background-color: var(--project-color);
-}
-.content > .left > .type[data-type="1"] > div > div > p {
-    color: var(--perfect-white-color);
-}
-.content > .left > .type[data-type="2"] > div > div {
-    background-color: var(--program-color);
-}
-.content > .left > .type[data-type="2"] > div > div > p {
-    color: var(--perfect-black-color);
-}
-.content > .left > .type[data-type="3"] > div > div {
-    background-color: var(--challenge-color);
-}
-.content > .left > .type[data-type="3"] > div > div > p {
-    color: var(--perfect-black-color);
-}
-.content > .left > .type[data-type="4"] > div > div {
-    background-color: var(--event-color);
-}
-.content > .left > .type[data-type="4"] > div > div > p {
-    color: var(--perfect-white-color);
-}
-.content > .left > .type[data-type="5"] > div > div {
-    background-color: var(--offer-color);
-}
-.content > .left > .type[data-type="5"] > div > div > p {
-    color: var(--perfect-black-color);
-}
 .content > .left > .remainingTime {
     display: flex;
     align-items: center;
@@ -181,4 +151,37 @@
 }
 .content > div:only-child {
     margin: 0px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Opportunity ( Types ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.type[data-type="1"] > div > div {
+    background-color: var(--project-color) !important;
+}
+.type[data-type="1"] > div > div > p {
+    color: var(--perfect-white-color) !important;
+}
+.type[data-type="2"] > div > div {
+    background-color: var(--program-color) !important;
+}
+.type[data-type="2"] > div > div > p {
+    color: var(--perfect-black-color) !important;
+}
+.type[data-type="3"] > div > div {
+    background-color: var(--challenge-color) !important;
+}
+.type[data-type="3"] > div > div > p {
+    color: var(--perfect-black-color) !important;
+}
+.type[data-type="4"] > div > div {
+    background-color: var(--event-color) !important;
+}
+.type[data-type="4"] > div > div > p {
+    color: var(--perfect-white-color) !important;
+}
+.type[data-type="5"] > div > div {
+    background-color: var(--offer-color) !important;
+}
+.type[data-type="5"] > div > div > p {
+    color: var(--perfect-black-color) !important;
 }

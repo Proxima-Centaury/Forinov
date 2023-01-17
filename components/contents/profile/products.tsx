@@ -28,12 +28,14 @@ const ProfileProducts = ({ type, products, states }: any) => {
     return <div className={ ProductsStyles.products }>
         <p className={ ProductsStyles.label }>{ (type === "startup") ? translations["Nos produits et services"] : translations["Nos offres"] }</p>
         <div className={ ProductsStyles.list } data-type="list">
-            { (products) ? products.map((product: any, key: KeyType) => {
+            { (products.length > 0) ? products.map((product: any, key: KeyType) => {
                 const index = key + 1;
                 const maxVisibleByDefault = maxVisibleCardsByDefault;
                 const cardProps = { product, index, maxVisibleByDefault, translations };
                 return <ProductCard key={ key } { ...cardProps }/>;
-            }) : null }
+            }) : <div className="placeholder">
+                <p>{ translations["Aucun produit à afficher"] + "." }</p>
+            </div> }
         </div>
         { (products.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
     </div>;
