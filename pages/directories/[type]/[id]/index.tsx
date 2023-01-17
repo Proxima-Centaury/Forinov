@@ -39,9 +39,9 @@ import MenuStyles from "../../../../public/stylesheets/components/menus/Profile.
 import BannerStyles from "../../../../public/stylesheets/components/banners/Banner.module.css";
 import ButtonStyles from "../../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Directory Type Page */
+/* Directory Id Page */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const DirectoryTypePage = ({ profile, products, activities, folders, opportunity, states, stateSetters }: ProfileInterface) => {
+const DirectoryIdPage = ({ profile, products, activities, folders, opportunity, states, stateSetters }: ProfileInterface) => {
     const router = useRouter();
     const { session, lock }: any = states;
     const { setModal }: any = stateSetters;
@@ -234,5 +234,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default DirectoryTypePage;
+export default DirectoryIdPage;
 export { getServerSideProps };
