@@ -187,7 +187,7 @@ body {
     overflow: hidden;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Main Container */
+/* Next Container */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 #__next {
     display: flex;
@@ -199,8 +199,11 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
 }
-#__next > .container,
-#__next > .containerFull {
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Main Container */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.container,
+.containerFull {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -209,35 +212,35 @@ body {
     margin: 0px auto;
     padding: 16px;
 }
-#__next > .containerFull {
+.containerFull {
     padding: 0px;
 }
 @media screen and (min-width: 576px) {
-    #__next > .container {
+    .container {
         max-width: 576px;
     }
 }
 @media screen and (min-width: 768px) {
-    #__next > .container {
+    .container {
         max-width: 568px;
     }
 }
 @media screen and (min-width: 992px) {
-    #__next > .container {
+    .container {
         max-width: 792px;
     }
 }
 @media screen and (min-width: 1200px) {
-    #__next > .container {
+    .container {
         max-width: 1000px;
     }
 }
 @media screen and (min-width: 1400px) {
-    #__next > .container {
+    .container {
         max-width: 1200px;
     }
 }
-#__next > .container > * + * {
+.container > * + * {
     margin: 16px 0px 0px 0px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
