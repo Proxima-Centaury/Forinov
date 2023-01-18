@@ -29,7 +29,7 @@ const OpportunityCard = ({ opportunity, index, maxVisibleByDefault, translations
         remaining_time,
         opportunity_desc
     }: any = opportunity;
-    return <Link href={ "/directories/opportunities/" + formatNameForUrl(opportunity_name) + "_" + opportunity_id } className={ OpportunityStyles.opportunity + ((index > maxVisibleByDefault) ? " hidden" : "") } data-card="opportunity">
+    return <Link href={ "/directories/opportunities/" + formatNameForUrl(opportunity_name) + "_" + opportunity_id } className={ OpportunityStyles.opportunity + ((index > maxVisibleByDefault) ? " hidden" : "") } data-card="opportunity" data-index={ index - 1 }>
         <div className={ OpportunityStyles.background } data-type={ (opportunity_type && opportunity_type.ID) ? opportunity_type.ID : "" }>
             { (opportunity_background) ? <Image src={ opportunity_background } alt={ "Image de fond de l'opportunité " + opportunity_name + "." } width="3840" height="2160"/> : null }
             { (opportunity_lang === "en") ? <div className={ OpportunityStyles.informations }>

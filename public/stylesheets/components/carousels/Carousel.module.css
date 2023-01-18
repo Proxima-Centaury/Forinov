@@ -71,30 +71,7 @@
 .container {
     display: flex;
 	width: 100%;
-}
-@media screen and (max-width: 768px) {
-	.container {
-		padding: 16px;
-		position: relative;
-		overflow: hidden;
-	}
-	.container::before,
-	.container::after {
-		width: 50px;
-		height: 100%;
-		content: "";
-		position: absolute;
-		top: 0px;
-		z-index: 1;
-	}
-	.container::before {
-		left: 0px;
-		background: linear-gradient(-90deg, #00000000 0%, var(--background-main-color) 80%);
-	}
-	.container::after {
-		right: 0px;
-		background: linear-gradient(90deg, #00000000 0%, var(--background-main-color) 80%);
-	}
+	position: relative;
 }
 .container[data-direction="vertical"] {
 	flex-direction: column;
@@ -247,4 +224,25 @@
 }
 .container > a[data-card="profile"] > div [class*="body"] [class*="tags"] {
 	flex: none;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Arrows ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.arrows {
+	display: flex;
+	justify-content: space-between;
+	width: calc(100% + (2 * 16px));
+	position: absolute;
+	top: 50%;
+	left: -16px;
+	transform: translateY(-50%);
+	z-index: 10;
+}
+@media screen and (min-width: 576px) {
+	.arrows {
+		display: none;
+	}
+}
+.arrows > button {
+	box-shadow: var(--box-shadow);
 }
