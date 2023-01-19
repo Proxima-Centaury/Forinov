@@ -24,6 +24,9 @@
     font-weight: bold;
     font-size: 16px;
 }
+.label:only-of-type {
+    margin: 0px;
+}
 .label > i {
     margin: 0px 8px 0px 0px;
     color: var(--error-color);

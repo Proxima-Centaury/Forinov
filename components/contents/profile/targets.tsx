@@ -11,26 +11,29 @@ import TargetsStyles from "../../../public/stylesheets/components/contents/profi
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileTargets = ({ profile, states }: any) => {
     const { lock, translations }: any = states;
+    const sectors = Object.entries(profile.TARGETSECTORS) || [];
+    const jobs = Object.entries(profile.TARGETJOBS) || [];
+    const partnerships = Object.entries(profile.TARGETPARTNERSHIP) || [];
     return <div className={ TargetsStyles.targets }>
         <div className={ TargetsStyles.details }>
             <div>
                 <p className={ TargetsStyles.label }>{ translations["Secteur(s) ciblé(s)"] }</p>
             </div>
-            <Tags tags={ Object.entries(profile.TARGETSECTORS) } lock={ lock }/>
+            { (sectors.length > 0) ? <Tags tags={ sectors } lock={ lock }/> : null }
         </div>
         <div className="separator"></div>
         <div className={ TargetsStyles.details }>
             <div>
                 <p className={ TargetsStyles.label }>{ translations["Métier(s) ciblé(s)"] }</p>
             </div>
-            <Tags tags={ Object.entries(profile.TARGETJOBS) } lock={ lock }/>
+            { (jobs.length > 0) ? <Tags tags={ jobs } lock={ lock }/> : null }
         </div>
         <div className="separator"></div>
         <div className={ TargetsStyles.details }>
             <div>
                 <p className={ TargetsStyles.label }>{ translations["Type(s) de partenariat"] }</p>
             </div>
-            <Tags tags={ Object.entries(profile.TARGETPARTNERSHIP) } lock={ lock }/>
+            { (partnerships.length > 0) ? <Tags tags={ partnerships } lock={ lock }/> : null }
         </div>
     </div>;
 };

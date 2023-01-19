@@ -1,6 +1,11 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { formatNameForUrl } from "../../../scripts/utilities";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
 import Tags from "../../tags/tags";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -12,6 +17,9 @@ import OverviewStyles from "../../../public/stylesheets/components/contents/prof
 const ProfileOverview = ({ type, profile, states }: any) => {
     const { translations }: any = states;
     const parentProps = { type, profile, states };
+    const address = ((profile.ADDRESS.STREET) ? profile.ADDRESS.STREET.trim() + ", " : "") +
+    ((profile.ADDRESS.ZIP) ? profile.ADDRESS.ZIP.trim() + ", " : "") +
+    ((profile.ADDRESS.TOWN) ? profile.ADDRESS.TOWN.trim() + ", " : "") + profile.ADDRESS.ISO;
     return <div className={ OverviewStyles.overview }>
         <h4>{ translations["En bref"] }</h4>
         <div className="separator"></div>
@@ -27,7 +35,7 @@ const ProfileOverview = ({ type, profile, states }: any) => {
         <div className={ OverviewStyles.details }>
             { (profile.ADDRESS) ? <div className={ OverviewStyles.location }>
                 <i className="fa-solid fa-location-dot"/>
-                <span>{ profile.ADDRESS.STREET + ", " + profile.ADDRESS.ZIP + ", " + profile.ADDRESS.TOWN + ", " + profile.ADDRESS.ISO }</span>
+                <span>{ address }</span>
             </div> : null }
             { (profile.WEBSITE) ? <div className={ OverviewStyles.website }>
                 <i className="fa-solid fa-thumbtack"/>
@@ -76,6 +84,9 @@ const Corporation = ({ profile, states }: any) => {
     return <>
         { (profile.HEADQUARTER) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Maison mère"] }</p>
+            <Link href={ "/directories/corporations/" + formatNameForUrl(profile.HEADQUARTER_NAME || profile.NAME) + "_" + profile.HEADQUARTER[0].Entreprise }>
+                <Tags tags={ Object.entries({ NAME: profile.HEADQUARTER_NAME || profile.NAME }) }/>
+            </Link>
         </div> : null }
         { (profile.CREATIONDATE) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Année de création"] }</p>

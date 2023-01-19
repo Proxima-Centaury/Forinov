@@ -41,20 +41,20 @@ const ProfilePartners = ({ type, profile, folders, states }: any) => {
     return <Fragment>
         <div className={ PartnersStyles.partners } style={ { margin: (type !== "startup") ? "0px" : undefined } }>
             <p className={ PartnersStyles.label }>{ translations["Nos partenaires"] + " (" + (partners.length || 0) + ")" }</p>
-            <div className={ PartnersStyles.list } data-type="list">
-                { (partners && partners.length > 0) ? partners.map((partner: any, key: KeyType) => {
+            { (partners.length > 0) ? <div className={ PartnersStyles.list } data-type="list">
+                { partners.map((partner: any, key: KeyType) => {
                     const entity = partner;
                     const type = "partner";
                     const index = key + 1;
                     const maxVisibleByDefault = maxVisibleCardsByDefault;
                     const cardProps = { entity, type, index, maxVisibleByDefault };
                     return <EntityCard key={ key } { ...cardProps }/>;
-                }) : null }
-            </div>
+                }) }
+            </div> : null }
             { (partners.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
         </div>
-        { (type !== "startup" && folders) ? <p className={ PartnersStyles.label } style={ { padding: "0px 0px 0px 16px" } }>{ translations["Dossiers de startups publics"] }</p>: null }
-        { (type !== "startup" && folders) ? <div className={ PartnersStyles.list } data-type="list">
+        { (type !== "startup") ? <p className={ PartnersStyles.label } style={ { padding: "0px 0px 0px 16px" } }>{ translations["Dossiers de startups publics"] }</p>: null }
+        { (type !== "startup" && folders.length > 0) ? <div className={ PartnersStyles.list } data-type="list">
             { folders.map((folder: any, key: KeyType) => {
                 const type = "folder";
                 const index = key + 1;
@@ -62,7 +62,9 @@ const ProfilePartners = ({ type, profile, folders, states }: any) => {
                 const cardProps = { folder, type, index, maxVisibleByDefault };
                 return <FolderCard key={ key } { ...cardProps }/>;
             }) }
-        </div> : null }
+        </div> : <div className="placeholder">
+            <p>{ translations["Aucun dossier de startup à afficher"] + "." }</p>
+        </div> }
         { (type !== "startup" && folders.length > maxVisibleFoldersByDefault) ? <Button { ...eventualFoldersMoreOfLessButtonProps as ButtonInterface }/> : null }
     </Fragment>;
 };

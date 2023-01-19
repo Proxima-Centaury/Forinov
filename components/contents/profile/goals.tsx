@@ -20,21 +20,18 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileGoals = ({ type, profile, products, activities, states, stateSetters }: any) => {
     const { lock, translations }: any = states;
-    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(3);
-    // const handleView = (event: any) => seeMoreOrLess(event, translations, "." + MemberStyles.member, team, maxVisibleCardsByDefault);
-    // const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    // const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], team.length - maxVisibleCardsByDefault ];
-    // const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
+    const partnerships = Object.entries(profile.PARTNER_SEARCH) || [];
+    const domains = Object.entries(profile.STARTUP_SEARCH) || [];
     const parentProps = { type, profile, products, activities, states, stateSetters };
     return <div id="goals" className={ GoalsStyles.goals }>
         <h3>{ translations["Objectifs et offres"] }</h3>
         <div className={ GoalsStyles.content }>
             <p className={ GoalsStyles.label }>{ translations["Types de collaborations recherchées"] }</p>
-            { (profile.PARTNER_SEARCH) ? <Tags tags={ Object.entries(profile.PARTNER_SEARCH) } lock={ lock }/> : null }
+            { (partnerships.length > 0) ? <Tags tags={ partnerships } lock={ lock }/> : <p>{ translations["Non renseigné"] + "." }</p> }
         </div>
         <div className={ GoalsStyles.content }>
             <p className={ GoalsStyles.label }>{ translations["Intérêts par les startups dans les domaines"] }</p>
-            { (profile.STARTUP_SEARCH) ? <Tags tags={ Object.entries(profile.STARTUP_SEARCH) } lock={ lock }/> : null }
+            { (domains.length > 0) ? <Tags tags={ domains } lock={ lock }/> : <p>{ translations["Non renseigné"] + "." }</p> }
         </div>
         { (products) ? <ProfileProducts { ...parentProps }/> : null }
     </div>;

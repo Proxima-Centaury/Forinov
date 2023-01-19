@@ -34,7 +34,9 @@ const ProfileProducts = ({ type, products, states }: any) => {
                 const cardProps = { product, index, maxVisibleByDefault, translations };
                 return <ProductCard key={ key } { ...cardProps }/>;
             }) : <div className="placeholder">
-                <p>{ translations["Aucun produit à afficher"] + "." }</p>
+                { (type === "startup") ? <p>{ translations["Aucun produit à afficher"] + "." }</p> : null }
+                { (type === "corporation") ? <p>{ translations["Aucune offre à afficher"] + "." }</p> : null }
+                { (type === "partner") ? <p>{ translations["Aucune offre à afficher"] + "." }</p> : null }
             </div> }
         </div>
         { (products.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
