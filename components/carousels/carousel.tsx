@@ -216,7 +216,7 @@ const HowToGetStarted = () => {
 /* Landing ( The Latest Opportunities ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const TheLatestOpportunities = ({ states, data }: any) => {
-	const { translations }: any = states;
+	const { translations, RGB }: any = states;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithArrows;
     const buttonProps = [ "type", "faIcon", "faIconClass", "action" ];
@@ -244,7 +244,7 @@ const TheLatestOpportunities = ({ states, data }: any) => {
             { data.map((opportunity: any, key: KeyType) => {
                 const index = key + 1;
                 const maxVisibleByDefault = undefined;
-                const cardProps = { opportunity, index, maxVisibleByDefault, translations };
+                const cardProps = { opportunity, index, maxVisibleByDefault, translations, RGB };
                 return <OpportunityCard key={ key } { ...cardProps }/>;
             }) }
         </div>
