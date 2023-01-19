@@ -695,6 +695,7 @@ body {
     border: var(--border);
     border-color: var(--logo-blue-color);
     letter-spacing: 1.79px;
+    width: fit-content;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Call To Action */
