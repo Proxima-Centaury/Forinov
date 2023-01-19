@@ -263,5 +263,13 @@
 	"Matcher en un clic le besoin des entreprises avec les solutions de startups et échanger directement avec les bons interlocuteurs": "Match in one click the needs of corporates with the solutions of startups and exchange directly with the right persons",
 	"Encourager l'innovation": "Encourage innovation",
 	"Engager les collaborateurs et leur permettre de trouver des solutions concrètes à leurs besoins métiers": "Involve collaborators and enable them to find concrete solutions to their business needs",
-	"Nos dernières startups inscrites": "Our latest registered startups"
+	"Nos dernières startups inscrites": "Our latest registered startups",
+	"annuaire_opport_selectors": [
+		"Tous",
+		"Appels à candidature",
+		"Programme d'accompagnement",
+		"Challenge ou concours",
+		"Évènements",
+		"Offres exclusives"
+	]
 }

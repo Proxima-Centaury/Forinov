@@ -1,10 +1,10 @@
-import styles from "../../../public/stylesheets/pages/AnnuaireOpport.module.css";
-import OpportSearchbar from "../../../components/searchbar/OpportSearchbar";
+import styles from "../../../../public/stylesheets/pages/AnnuaireOpport.module.css";
+import OpportSearchbar from "../../../../components/searchbar/OpportSearchbar";
 import Link from "next/link";
-import MediumOpportCard from "../../../components/opport-cards/MediumOpportCard";
+import MediumOpportCard from "../../../../components/opport-cards/MediumOpportCard";
 import { useRouter } from "next/router";
-import PageIndex from "../../../components/pagination/PageIndex";
-import { useGlobalContext } from "../../../components/context/globalContext";
+import PageIndex from "../../../../components/pagination/PageIndex";
+import { useGlobalContext } from "../../../../components/context/globalContext";
 
 import { useEffect, useState } from "react";
 
@@ -12,10 +12,8 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const router = useRouter() as any;
 	let { type, page } = router.query;
 
-	const opportunities = dataOpportunities[0]["PROJECT"];
-	
-	
 
+	let opportunities = dataOpportunities[0]["PROJECT"];
 	const [opportCards, setOpportCards] = useState<Array<JSX.Element>>([]);
 
 	const [isPage, setIsPage] = useState<boolean>(true);
@@ -177,7 +175,7 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 					if (selectorToURL === type) {
 						return (
 							<Link
-								href={"/annuaire-opportunite/" + selectorToURL}
+								href={"/directories/opportunites/" + selectorToURL + "/"}
 								key={selector}
 								style={{ margin: "0 !important" }}
 							>
@@ -187,7 +185,7 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 					} else {
 						return (
 							<Link
-								href={"/annuaire-opportunite/" + selectorToURL}
+								href={"/directories/opportunites/" + selectorToURL + "/"}
 								key={selector}
 								style={{ margin: "0 !important" }}
 							>
@@ -202,7 +200,7 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 				<PageIndex
 					nbPages={nbPages}
 					currentPage={page}
-					url={`/annuaire-opportunite/${type}`}
+					url={`/directories/opportunites/${type}`}
 				></PageIndex>
 			) : null}
 		</div>
@@ -216,13 +214,13 @@ export async function getServerSideProps(context: any) {
 	if (query.page === undefined || query.page === null || query.page === "0") {
 		//router push to page 1
 		res.writeHead(302, {
-			Location: "/annuaire-opportunite/" + query.type + "/1",
+			Location: "/directories/opportunites/" + query.type + "/1",
 		});
 		res.end();
 	}
 
 	const lang: any = locale.split("-")[0];
-	const url = require("../../../public/static/url_trad.json");
+	const url = require("../../../../public/static/url_trad.json");
 
 	const { type }: any = query;
 	let typeID: string | null;
