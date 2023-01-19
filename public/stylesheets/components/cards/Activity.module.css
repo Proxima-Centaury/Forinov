@@ -25,6 +25,8 @@
 /* Activity ( Content ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .content {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     padding: 16px 16px 16px calc((55px / 2) + 16px);
     position: relative;
@@ -57,7 +59,7 @@
     color: var(--text-inactive-color);
 }
 .content iframe {
-    width: 100% !important;
+    flex: 1;
     border-radius: 10px;
     overflow: hidden;
 }

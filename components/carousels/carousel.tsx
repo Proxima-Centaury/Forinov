@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, Key, useEffect, useState } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
 import { buildProperties, formatNameForUrl, bindEventListeners, removeEventListeners } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -19,11 +19,31 @@ import Accordion from "../accordions/accordion";
 import CarouselStyles from "../../public/stylesheets/components/carousels/Carousel.module.css";
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Carousel */
+/* Commons */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Carousel = ({ states, component, data }: any) => {
-	const parentProps = { states, data };
-    const handleCarousel = (event: any, name: String) => {
+class Transition {
+    transform: number;
+    transformArrows: number;
+    constructor() {
+        this.transform = 0;
+        this.transformArrows = 0;
+    };
+    handleTransition = (event: any, preciseTarget: any) => {
+        if(window.innerWidth > 576) {
+            const containerWidth = preciseTarget.offsetWidth;
+            const cards = [ ...preciseTarget.querySelectorAll("a") ];
+            const offset = 466;
+            const limit = ((cards.length - 1) * -offset) + (containerWidth / 2);
+            if(event.wheelDelta > 0) {
+                this.transform = (this.transform < 0) ? this.transform + offset : this.transform;
+            } else {
+                this.transform = (this.transform > limit) ? this.transform - offset : this.transform;
+            };
+            return cards.forEach((card: HTMLElement) => card.style.transform = "translateX(" + this.transform + "px)");
+        };
+        return false;
+    };
+    handleTransitionWithSteps = (event: any, name: String) => {
         const target = event.target.closest("button");
         const container = target.parentElement;
         const buttons = (container) ? Array.from(container.children).map((button) => button as HTMLElement) : [];
@@ -35,35 +55,56 @@ const Carousel = ({ states, component, data }: any) => {
         const index = parseInt(target.getAttribute("data-index"));
         const carouselItems = (carousel) ? Array.from(carousel.children).map((item) => item as HTMLElement) : [];
         if(carouselItems.length > 0) {
-            carouselItems.forEach((item) => item.style.transform = "translateX(-" + index + "00%)");
+            return carouselItems.forEach((item) => item.style.transform = "translateX(-" + index + "00%)");
         };
+        return false;
     };
+    handleTransitionWithArrows = (event: any, direction: String) => {
+        const target = event.target.closest("button");
+        const preciseTarget = target.closest("." + CarouselStyles.container);
+        const cards = [ ...preciseTarget.querySelectorAll("a") ];
+        const offset = 100;
+        if(direction === "left") {
+            this.transformArrows = (this.transformArrows < 0) ? this.transformArrows + offset : this.transformArrows;
+        } else {
+            this.transformArrows = (this.transformArrows > (cards.length - 1) * -offset) ? this.transformArrows - offset : this.transformArrows;
+        };
+        return cards.forEach((card: HTMLElement, key: number) => card.style.transform = "translateX(calc(" + this.transformArrows + "% + " + (key * -16) + "px)");
+    };
+};
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Carousel = ({ states, component, data }: any) => {
+	const parentProps = { states, data };
     switch(component) {
         case "HowToCreateAnOpportunity":
-            return <HowToCreateAnOpportunity { ...parentProps } handler={ handleCarousel }/>;
+            return <HowToCreateAnOpportunity { ...parentProps }/>;
         case "HowToRegister":
-            return <HowToRegister { ...parentProps } handler={ handleCarousel }/>;
+            return <HowToRegister { ...parentProps }/>;
         case "HowToApplyToAnOpportunity":
-            return <HowToApplyToAnOpportunity { ...parentProps } handler={ handleCarousel }/>;
+            return <HowToApplyToAnOpportunity/>;
         case "HowToGetStarted":
-            return <HowToGetStarted { ...parentProps } handler={ handleCarousel }/>;
+            return <HowToGetStarted/>;
         case "TheLatestOpportunities":
-            return <TheLatestOpportunities { ...parentProps } handler={ handleCarousel }/>;
+            return <TheLatestOpportunities { ...parentProps }/>;
         case "CompaniesLogos":
-            return <CompaniesLogos { ...parentProps } handler={ handleCarousel }/>;
+            return <CompaniesLogos { ...parentProps }/>;
         case "PartnersStartups":
-            return <PartnersStartups { ...parentProps } handler={ handleCarousel }/>
+            return <PartnersStartups { ...parentProps }/>
         case "AnswersToYourQuestions":
-            return <AnswersToYourQuestions { ...parentProps } handler={ handleCarousel }/>;
+            return <AnswersToYourQuestions { ...parentProps }/>;
         default :
-            return <></>;
+            return <Fragment></Fragment>;
     };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( How To Create An Opportunity ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const HowToCreateAnOpportunity = ({ states, handler }: any) => {
+const HowToCreateAnOpportunity = ({ states }: any) => {
 	const { translations }: any = states;
+    const transitionInstance = new Transition();
+    const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const opportunityCreationStepsButtons = [
 		translations["Démarrez"],
 		translations["Complétez"],
@@ -71,10 +112,10 @@ const HowToCreateAnOpportunity = ({ states, handler }: any) => {
 		translations["Profitez"]
 	];
 	const buttonProps = [ "type", "action", "text" ];
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.steps }>
             { opportunityCreationStepsButtons.map((button: any, key: number) => {
-                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => handler(event, "HowToCreateAnOpportunity"), button ];
+                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, "HowToCreateAnOpportunity"), button ];
                 const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
                 return <Fragment key={ key }>
                     <div className="separator"></div>
@@ -90,13 +131,15 @@ const HowToCreateAnOpportunity = ({ states, handler }: any) => {
                 </div>;
             }) }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( How To Register ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const HowToRegister = ({ states, handler }: any) => {
+const HowToRegister = ({ states }: any) => {
 	const { translations }: any = states;
+    const transitionInstance = new Transition();
+    const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const opportunityCreationStepsButtons = [
 		translations["Complétez"],
 		translations["Validez"],
@@ -104,10 +147,10 @@ const HowToRegister = ({ states, handler }: any) => {
 		translations["Profitez"]
 	];
 	const buttonProps = [ "type", "action", "text" ];
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.steps }>
             { opportunityCreationStepsButtons.map((button: any, key: number) => {
-                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => handler(event, "HowToCreateAnOpportunity"), button ];
+                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, "HowToCreateAnOpportunity"), button ];
                 const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
                 return <Fragment key={ key }>
                     <div className="separator"></div>
@@ -123,15 +166,14 @@ const HowToRegister = ({ states, handler }: any) => {
                 </div>;
             }) }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( How To Apply To An Opportunity ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const HowToApplyToAnOpportunity = ({ states }: any) => {
-	// const { translations }: any = states;
+const HowToApplyToAnOpportunity = () => {
     const opportunityCreationStepsButtons = [ "", "", "" ];
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.steps } data-direction="vertical">
             { opportunityCreationStepsButtons.map((button: any, key: number) => <Fragment key={ key }>
                 <div className="separatorVertical"></div>
@@ -146,15 +188,14 @@ const HowToApplyToAnOpportunity = ({ states }: any) => {
                 { (key % 2 === 0) ? <div>Picture</div> : <div>Text</div> }
             </div>) }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( How To Get Started ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const HowToGetStarted = ({ states }: any) => {
-	// const { translations }: any = states;
+const HowToGetStarted = () => {
     const opportunityCreationStepsButtons = [ "", "", "" ];
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.steps } data-direction="vertical">
             { opportunityCreationStepsButtons.map((button: any, key: number) => <Fragment key={ key }>
                 <div className="separatorVertical"></div>
@@ -169,33 +210,37 @@ const HowToGetStarted = ({ states }: any) => {
                 { (key % 2 === 0) ? <div>Picture</div> : <div>Text</div> }
             </div>) }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( The Latest Opportunities ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const TheLatestOpportunities = ({ states, data }: any) => {
 	const { translations }: any = states;
-    const [ transform, setTransform ] = useState(0);
+    const transitionInstance = new Transition();
+    const transitionHandler = transitionInstance.handleTransitionWithArrows;
+    const buttonProps = [ "type", "faIcon", "faIconClass", "action" ];
+    const leftButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-left", (event: MouseEvent) => transitionHandler(event, "left") ];
+    const leftButtonObject = buildProperties(buttonProps, leftButtonValues);
+    const rightButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-right", (event: MouseEvent) => transitionHandler(event, "right") ];
+    const rightButtonObject = buildProperties(buttonProps, rightButtonValues);
     const scrollHandler = (event: any) => {
         event.preventDefault();
         const target = event.target;
         const preciseTarget = target.closest("." + CarouselStyles.container);
-        const opportunities = [ ...preciseTarget.children ];
-        if(event.deltaY > 0) {
-            (preciseTarget.scrollWidth > (preciseTarget.clientWidth + 100)) ? setTransform(transform - 100) : null;
-        } else {
-            (transform < 0) ? setTransform(transform + 100) : null;
-        };
-        opportunities.forEach((opportunity: HTMLElement) => opportunity.style.transform = "translateX(" + transform + "px)");
+        return transitionInstance.handleTransition(event, preciseTarget);
     };
     useEffect(() => {
         let carousel = document.querySelector("[class*='opportunity'] > div > ." + CarouselStyles.container);
-        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) : null;
-        return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) as any;
+        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) : null;
+        return () => removeEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) as any;
     });
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.container }>
+            <div className={ CarouselStyles.arrows }>
+                <Button { ...leftButtonObject as ButtonInterface }/>
+                <Button { ...rightButtonObject as ButtonInterface }/>
+            </div>
             { data.map((opportunity: any, key: KeyType) => {
                 const index = key + 1;
                 const maxVisibleByDefault = undefined;
@@ -203,12 +248,12 @@ const TheLatestOpportunities = ({ states, data }: any) => {
                 return <OpportunityCard key={ key } { ...cardProps }/>;
             }) }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( Companies Logos ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const CompaniesLogos = ({ data, states }: any) => {
+const CompaniesLogos = ({ data }: any) => {
     return <div className={ CarouselStyles.infinite }>
         <div className={ CarouselStyles.firstCopy }>
             { data.map(({ id, type, name, logo }: any, key: KeyType) => {
@@ -234,32 +279,36 @@ const CompaniesLogos = ({ data, states }: any) => {
                 };
             }) }
         </div>
-    </div>
+    </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( Partners Startups ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnersStartups = ({ states, data }: any) => {
-    const [ transform, setTransform ] = useState(0);
+    const transitionInstance = new Transition();
+    const transitionHandler = transitionInstance.handleTransitionWithArrows;
+    const buttonProps = [ "type", "faIcon", "faIconClass", "action" ];
+    const leftButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-left", (event: MouseEvent) => transitionHandler(event, "left") ];
+    const leftButtonObject = buildProperties(buttonProps, leftButtonValues);
+    const rightButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-right", (event: MouseEvent) => transitionHandler(event, "right") ];
+    const rightButtonObject = buildProperties(buttonProps, rightButtonValues);
     const scrollHandler = (event: any) => {
         event.preventDefault();
         const target = event.target;
         const preciseTarget = target.closest("." + CarouselStyles.container);
-        const opportunities = [ ...preciseTarget.children ];
-        if(event.deltaY > 0) {
-            (preciseTarget.scrollWidth > (preciseTarget.clientWidth + 100)) ? setTransform(transform - 100) : null;
-        } else {
-            (transform < 0) ? setTransform(transform + 100) : null;
-        };
-        opportunities.forEach((opportunity: HTMLElement) => opportunity.style.transform = "translateX(" + transform + "px)");
+        return transitionInstance.handleTransition(event, preciseTarget);
     };
     useEffect(() => {
         let carousel = document.querySelector("[class*='startups'] > div > ." + CarouselStyles.container);
-        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) : null;
-        return () => removeEventListeners(carousel as HTMLElement, [ "wheel", "touchmove" ], scrollHandler) as any;
+        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) : null;
+        return () => removeEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) as any;
     });
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.container }>
+            <div className={ CarouselStyles.arrows }>
+                <Button { ...leftButtonObject as ButtonInterface }/>
+                <Button { ...rightButtonObject as ButtonInterface }/>
+            </div>
             { data.map((startup: any, key: KeyType) => {
                 const type = "startup";
                 const profile = startup;
@@ -271,22 +320,24 @@ const PartnersStartups = ({ states, data }: any) => {
                 </Link>;
             }) }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( Answers To Your Questions ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const AnswersToYourQuestions = ({ states, handler, data }: any) => {
+const AnswersToYourQuestions = ({ states, data }: any) => {
 	const { translations }: any = states;
+    const transitionInstance = new Transition();
+    const transitionHandler = transitionInstance.handleTransitionWithSteps;
 	const questionsButtons = [
 		translations["Général"],
 		translations["La communauté Forinov"]
 	];
 	const buttonProps = [ "type", "action", "text" ];
-    return <>
+    return <Fragment>
         <div className={ CarouselStyles.actions }>
             { questionsButtons.map((button: any, key: number) => {
-                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => handler(event, "AnswersToYourQuestions"), button ];
+                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, "AnswersToYourQuestions"), button ];
                 const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
                 return <Button key={ key } { ...stepButtonObject as ButtonInterface } index={ key }/>;
             }) }
@@ -296,7 +347,7 @@ const AnswersToYourQuestions = ({ states, handler, data }: any) => {
                 <Accordion data={ accordion } translations={ translations }/>
             </div>) : null }
         </div>
-    </>;
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */

@@ -20,7 +20,6 @@
 .identification {
     display: flex;
     width: 100%;
-    min-height: 110px;
     padding: 16px 16px 0px 152px;
     position: relative;
     background-color: var(--background-sub-color);
@@ -60,7 +59,6 @@
 .data {
     display: flex;
     width: 100%;
-    margin: 0px 0px 16px 0px;
 }
 .data > h3 {
     margin: 0px 8px 0px 0px;

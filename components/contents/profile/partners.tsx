@@ -7,6 +7,7 @@ import { seeMoreOrLess, buildProperties } from "../../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { Fragment } from "react";
 import EntityCard from "../../cards/entity";
 import Button from "../../buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -27,13 +28,17 @@ const ProfilePartners = ({ type, profile, folders, states }: any) => {
     const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
     const [ maxVisibleFoldersByDefault, setMaxVisibleFolderByDefault ] = useState(2);
     const handleView = (event: any) => seeMoreOrLess(event, translations, "." + EntityStyles.partner, partners, maxVisibleCardsByDefault);
-    const handleView2 = (event: any) => seeMoreOrLess(event, translations, "." + FolderStyles.folder, folders, maxVisibleFoldersByDefault);
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], partners.length - maxVisibleCardsByDefault ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
-    const moreOrLess2ButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView2, translations["Voir plus"], folders.length - maxVisibleFoldersByDefault ];
-    const moreOrLess2ButtonObject = buildProperties(buttonProps, moreOrLess2ButtonValues);
-    return <>
+    let eventualFoldersMoreOfLessButtonProps = null;
+    if(type !== "startup") {
+        const handleView2 = (event: any) => seeMoreOrLess(event, translations, "." + FolderStyles.folder, folders, maxVisibleFoldersByDefault);
+        const moreOrLess2ButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView2, translations["Voir plus"], folders.length - maxVisibleFoldersByDefault ];
+        const moreOrLess2ButtonObject = buildProperties(buttonProps, moreOrLess2ButtonValues);
+        eventualFoldersMoreOfLessButtonProps = moreOrLess2ButtonObject;
+    };
+    return <Fragment>
         <div className={ PartnersStyles.partners } style={ { margin: (type !== "startup") ? "0px" : undefined } }>
             <p className={ PartnersStyles.label }>{ translations["Nos partenaires"] + " (" + (partners.length || 0) + ")" }</p>
             <div className={ PartnersStyles.list } data-type="list">
@@ -58,8 +63,8 @@ const ProfilePartners = ({ type, profile, folders, states }: any) => {
                 return <FolderCard key={ key } { ...cardProps }/>;
             }) }
         </div> : null }
-        { (folders.length > maxVisibleFoldersByDefault) ? <Button { ...moreOrLess2ButtonObject as ButtonInterface }/> : null }
-    </>;
+        { (type !== "startup" && folders.length > maxVisibleFoldersByDefault) ? <Button { ...eventualFoldersMoreOfLessButtonProps as ButtonInterface }/> : null }
+    </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */

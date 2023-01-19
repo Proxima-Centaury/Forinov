@@ -11,7 +11,8 @@
 }
 @media screen and (max-width: 576px) {
 	.presentation {
-		padding: 40px;
+		padding: 16px;
+		border-radius: 0px 0px 50px 0px;
 	}
 }
 .presentation[data-type="startup"] {
@@ -21,9 +22,19 @@
 	border-radius: 0px 0px 0px 100px;
 	background-color: var(--lightblue-color);
 }
+@media screen and (max-width: 576px) {
+	.presentation[data-type="corporation"] {
+		border-radius: 0px 0px 0px 50px;
+	}
+}
 .presentation[data-type="partner"] {
 	border-radius: 0px 0px 0px 100px;
 	background-color: var(--lightgreen-color);
+}
+@media screen and (max-width: 576px) {
+	.presentation[data-type="partner"] {
+		border-radius: 0px 0px 0px 50px;
+	}
 }
 .presentation[data-type="opportunity"] {
 	background-color: var(--background-information-color);
@@ -44,6 +55,11 @@
 	height: fit-content;
 	margin: 0px 16px 0px 0px;
 }
+@media screen and (max-width: 576px) {
+	.presentation > div {
+		margin: 0px;
+	}
+}
 .presentation > div > h1 {
 	font-family: "Nunito Sans";
 	font-size: 65px;
@@ -51,7 +67,7 @@
 }
 @media screen and (max-width: 576px) {
 	.presentation > div > h1 {
-		font-size: 60px;
+		font-size: 55px;
 		text-align: center;
 	}
 }
@@ -70,7 +86,6 @@
 }
 @media screen and (max-width: 576px) {
 	.presentation > div > p {
-		font-size: 24px;
 		text-align: center;
 	}
 }
@@ -104,6 +119,7 @@
 @media screen and (max-width: 576px) {
 	.presentation > div > a {
 		width: 100%;
+		font-size: 16px;
 	}
 }
 .presentation > div > a + a {
@@ -151,7 +167,8 @@
 }
 @media screen and (max-width: 576px) {
 	.onboarding > div {
-		padding: 40px;
+		padding: 16px;
+		border-radius: 50px 0px 0px 50px;
 	}
 }
 .onboarding > div > h3 {
@@ -160,6 +177,11 @@
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
+}
+@media screen and (max-width: 576px) {
+	.onboarding > div > h3 {
+		font-size: 38px;
+	}
 }
 .onboarding > div > p {
 	margin: 0px auto 32px auto;
@@ -170,6 +192,11 @@
 .onboarding > div > .types {
 	display: flex;
 	justify-content: center;
+}
+@media screen and (max-width: 768px) {
+	.onboarding > div > .types {
+		flex-direction: column;
+	}
 }
 .onboarding > div > .types > .type {
 	display: flex;
@@ -182,6 +209,11 @@
 }
 .onboarding > div > .types > .type + .type {
 	margin: 0px 0px 0px 32px;
+}
+@media screen and (max-width: 768px) {
+	.onboarding > div > .types > .type + .type {
+		margin: 32px 0px 0px 0px;
+	}
 }
 .onboarding > div > .types > .type > .head {
 	display: flex;
@@ -259,7 +291,8 @@
 }
 @media screen and (max-width: 576px) {
 	.sourcing > div {
-		padding: 40px;
+		padding: 16px;
+		border-radius: 50px 0px 0px 0px;
 	}
 }
 .sourcing > div > h3 {
@@ -269,6 +302,11 @@
 	font-weight: 300;
 	text-align: center;
 	color: var(--perfect-black-color);
+}
+@media screen and (max-width: 576px) {
+	.sourcing > div > h3 {
+		font-size: 35px;
+	}
 }
 .sourcing > div > p {
 	margin: 0px auto 32px auto;
@@ -313,19 +351,26 @@
 	width: 100%;
 	height: 100%;
 	padding: 80px;
-	border-radius: 100px 0px 0px 0px;
 	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
 	.opportunity > div {
-		padding: 40px;
+		padding: 16px;
 	}
 }
 .opportunity[data-type="startup"] > div {
 	border-radius: 100px 0px 0px 100px;
 }
+@media screen and (max-width: 576px) {
+	.opportunity[data-type="startup"] > div {
+		border-radius: 50px 0px 0px 50px;
+	}
+}
 .opportunity[data-type="corporation"] > div {
 	border-radius: 0px;
+}
+.opportunity[data-type="opportunity"] > div {
+	border-radius: 100px 0px 0px 000px;
 }
 .opportunity > div > h2 {
 	margin: 0px auto;
@@ -334,6 +379,11 @@
 	font-weight: bold;
 	text-align: center;
 }
+@media screen and (max-width: 576px) {
+	.opportunity > div > h2 {
+		font-size: 38px;
+	}
+}
 .opportunity > div > h3 {
 	margin: 32px auto;
 	font-family: "Nunito Sans";
@@ -341,8 +391,18 @@
 	font-weight: 300;
 	text-align: center;
 }
+@media screen and (max-width: 576px) {
+	.opportunity > div > h3 {
+		font-size: 35px;
+	}
+}
 .opportunity[data-type="startup"] > div > h3 {
 	margin: 0px auto;
+}
+@media screen and (max-width: 576px) {
+	.opportunity[data-type="startup"] > div > h3 {
+		font-size: 35px;
+	}
 }
 .opportunity > div > p {
 	margin: 0px auto 32px auto;
@@ -351,11 +411,19 @@
 	text-align: center;
 }
 .opportunity > div > h4 {
-	margin: 96px auto 40px auto;
+	margin: 0px auto 40px auto;
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
 	text-align: center;
+}
+@media screen and (max-width: 576px) {
+	.opportunity > div > h4 {
+		font-size: 32px;
+	}
+}
+.opportunity[data-type="startup"] > div > h4 {
+	margin: 96px auto 40px auto;
 }
 .opportunity[data-type="corporation"] > div > h4 {
 	margin: 0px auto 40px auto;
@@ -363,7 +431,7 @@
 .opportunity > div > [data-carousel="startup"] {
 	position: relative;
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
 	.opportunity > div > [class*="steps"] {
 		flex-direction: column;
 	}
@@ -376,7 +444,7 @@
 	.opportunity > div > [class*="steps"] > button:first-of-type {
 		margin: 0px;
 	}
-}
+} */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Register ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -400,7 +468,8 @@
 }
 @media screen and (max-width: 576px) {
 	.register > div {
-		padding: 40px;
+		padding: 16px;
+		border-radius: 0px 50px 0px 0px;
 	}
 }
 .register > div > h3 {
@@ -409,6 +478,11 @@
 	font-size: 45px;
 	font-weight: 300;
 	text-align: center;
+}
+@media screen and (max-width: 576px) {
+	.register > div > h3 {
+		font-size: 35px;
+	}
 }
 .register[data-type="corporation"] > div > h3,
 .register[data-type="partner"] > div > h3 {
@@ -443,6 +517,11 @@
 	align-items: center;
 	margin: 16px auto 70px auto;
 }
+@media screen and (max-width: 576px) {
+	.actions {
+		width: 100%;
+	}
+}
 .actions:last-of-type {
 	margin: 16px auto 0px auto;
 }
@@ -455,6 +534,10 @@
 @media screen and (max-width: 768px) {
 	.actions {
 		flex-direction: column;
+		align-items: flex-start;
+	}
+	.actions > * {
+		width: 100%;
 	}
 	.actions > * + * {
 		margin: 16px 0px 0px 0px;
@@ -479,16 +562,27 @@
 }
 @media screen and (max-width: 576px) {
 	.badges > div {
-		padding: 40px;
+		padding: 16px;
+		border-radius: 0px 50px 0px 0px;
 	}
 }
 .badges[data-type="startup"] > div {
 	border-radius: 0px 100px 0px 0px;
 	background-color: var(--lightred-color);
 }
+@media screen and (max-width: 576px) {
+	.badges[data-type="startup"] > div {
+		border-radius: 0px 50px 0px 0px;
+	}
+}
 .badges[data-type="partner"] > div {
 	border-radius: 100px 0px 0px 0px;
 	background-color: var(--lightgreen-color);
+}
+@media screen and (max-width: 576px) {
+	.badges[data-type="partner"] > div {
+		border-radius: 50px 0px 0px 0px;
+	}
 }
 .badges > div > h2 {
 	margin: 0px auto 50px auto;
@@ -496,6 +590,11 @@
 	font-size: 45px;
 	font-weight: 300;
 	text-align: center;
+}
+@media screen and (max-width: 576px) {
+	.badges > div > h2 {
+		font-size: 35px;
+	}
 }
 .badges[data-type="startup"] > div > h2,
 .badges[data-type="partner"] > div > h2 {
@@ -575,6 +674,11 @@
 	font-weight: bold;
 	text-align: center;
 }
+@media screen and (max-width: 576px) {
+	.badges > div > div > .badge > div > h4 {
+		font-size: 22px;
+	}
+}
 .badges[data-type="startup"] > div > div > .badge > div > h4,
 .badges[data-type="partner"] > div > div > .badge > div > h4 {
 	color: var(--perfect-black-color);
@@ -582,6 +686,11 @@
 .badges > div > div > .badge > div > p {
 	font-size: 16px;
 	text-align: center;
+}
+@media screen and (max-width: 576px) {
+	.badges > div > div > .badge > div > p {
+		font-size: 14px;
+	}
 }
 .badges[data-type="startup"] > div > div > .badge > div > p,
 .badges[data-type="partner"] > div > div > .badge > div > p {
@@ -613,6 +722,11 @@
 		margin: 0px 0px 150px 0px;
 	}
 }
+@media screen and (max-width: 576px) {
+	.badges > div > div > [class*="badge"] {
+		margin: 0px 0px 170px 0px;
+	}
+}
 .badges > div > a {
 	margin: 32px 0px 0px 0px;
 }
@@ -631,7 +745,7 @@
 }
 @media screen and (max-width: 576px) {
 	.startups > div {
-		padding: 40px;
+		padding: 16px;
 	}
 }
 .startups > div > h4 {
@@ -640,6 +754,11 @@
 	font-size: 42px;
 	font-weight: bold;
 	text-align: center;
+}
+@media screen and (max-width: 576px) {
+	.startups > div > h4 {
+		font-size: 32px;
+	}
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Companies ) */
@@ -663,7 +782,8 @@
 }
 @media screen and (max-width: 576px) {
 	.companies > div {
-		padding: 40px;
+		padding: 16px;
+		border-radius: 0px 0px 50px 0px;
 	}
 }
 .companies > div > h2 {
@@ -672,6 +792,11 @@
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
+}
+@media screen and (max-width: 576px) {
+	.companies > div > h2 {
+		font-size: 38px;
+	}
 }
 .companies > div > div {
 	margin: 0px auto;
@@ -711,6 +836,11 @@
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
+}
+@media screen and (max-width: 576px) {
+	.questions > h2 {
+		font-size: 38px;
+	}
 }
 .questions[data-type="startup"] button[class*="active"] {
 	color: var(--sunred-color);

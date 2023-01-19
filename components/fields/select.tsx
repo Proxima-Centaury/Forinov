@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { SelectInterface, OptionInterface } from "../../typescript/interfaces";
 import { SelectOption } from "../../typescript/types";
 import { selectifyTheOptions, handleOutOfArea } from "../../scripts/utilities";
@@ -16,11 +16,6 @@ const Select = ({ type, version, options, action, defaultValue, source }: Select
     const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
     options = selectifiedOptions;
     const [ selectState, setSelectState ] = useState(false);
-    const [ defaultSelected, setDefaultSelected ]: any = useState(() => options.filter((option: any) => option.value === defaultValue)[0]);
-    const [ defaultSelectedAsObject, setDefaultSelectedAsObject ]: any = useState(null);
-    const condition = !defaultSelectedAsObject || (defaultSelectedAsObject && defaultSelectedAsObject.value !== defaultValue);
-    useEffect(() => setDefaultSelected(() => options.filter((option: any) => option.value === defaultValue)[0]), [ defaultValue ]);
-    useEffect(() => (condition) ? setDefaultSelectedAsObject(defaultSelected) : undefined, [ defaultSelected ]);
     useEffect(() => {
         const closeOptions = () => setSelectState(false);
         const selectSelector = "." + SelectStyles.selectField;
@@ -33,7 +28,7 @@ const Select = ({ type, version, options, action, defaultValue, source }: Select
             <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
                 <i className="fa-solid fa-caret-right"></i>
             </button>
-            <p>{ (defaultSelectedAsObject) ? defaultSelectedAsObject.text : defaultSelected.text }</p>
+            <p>{ defaultValue.text }</p>
             <div className={ SelectStyles.options }>
                 { (options.length > 0) ? options.map((option: any,index: any) => {
                     const optionAsObject: SelectOption = option;
@@ -47,7 +42,7 @@ const Select = ({ type, version, options, action, defaultValue, source }: Select
                         defaultValue,
                         source,
                     };
-                    return <Option { ...optionProps } key={index + '-optionSelect'} />;
+                    return <Option { ...optionProps } key={ index + "-optionSelect" } />;
                 }) : null }
             </div>
         </div>;
