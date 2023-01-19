@@ -268,7 +268,7 @@
 	"Aucun profil renseigné": "Aucun profil renseigné",
 	"Logo d'entreprise": "Logo d'entreprise",
 	"Bannière d'opportunité": "Bannière d'opportunité",
-	"Localisations": "Localisations"
+	"Localisations": "Localisations",
 	"annuaire_opport_selectors": [
 		"Tous",
 		"Appels à candidature",
@@ -276,5 +276,6 @@
 		"Challenge ou concours",
 		"Évènements",
 		"Offres exclusives"
-	]
+	],
+	"jour(s) restant(s)" : "jour(s) restant(s)"
 }
