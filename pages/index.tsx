@@ -165,8 +165,9 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 /* Server Side Properties */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-	const { locale, locales, defaultLocale } = context;
+	const { res, locale, locales, defaultLocale } = context;
 	const { endpoint, queries } = config.api;
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
 	const startupsPromise = await fetch(endpoint + "?q=" + queries.getLandingStartups + "&app=next&authkey=Landing");
     const startupsResponse = await startupsPromise.json();
     const formattedStartupsResponse = startupsResponse;

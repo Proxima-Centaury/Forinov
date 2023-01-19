@@ -68,8 +68,9 @@ const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) =
 /* Server Side Properties */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-	const { locale, locales, defaultLocale } = context;
+	const { res, locale, locales, defaultLocale } = context;
 	const { endpoint, queries } = config.api;
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
 	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=opportunité&authkey=Landing");
     const logosResponse = await logosPromise.json();
     const formattedLogosResponse = Object.values(logosResponse[0].LOGOS);

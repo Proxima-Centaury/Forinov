@@ -74,7 +74,7 @@ interface SelectInterface {
     version: Number,
     options: Array<Object>,
     action: Function,
-    defaultValue: String,
+    defaultValue: any,
     source: String
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

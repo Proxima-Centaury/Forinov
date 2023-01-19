@@ -19,3 +19,15 @@
     flex-direction: column;
     padding: 0px 0px 0px 16px;
 }
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Activities ( Markers ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.activities[data-profile="startup"] [class*="activity"] > [class*="marker"] {
+    background-color: var(--logo-orange-color);
+}
+.activities[data-profile="corporation"] [class*="activity"] > [class*="marker"] {
+    background-color: var(--logo-blue-color);
+}
+.activities[data-profile="partner"] [class*="activity"] > [class*="marker"] {
+    background-color: var(--logo-green-color);
+}
