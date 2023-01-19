@@ -270,6 +270,11 @@
 	"Bannière d'opportunité": "Opportunity banner",
 	"Localisations": "Localisations",
 	"Activer l'éclairage RGB": "Toggle RGB lighting",
+	"Aucune offre à afficher": "No offer to display",
+	"Aucun dossier de startup à afficher": "No startup folder to display",
+	"Aucun membre assigné à ce profil pour le moment": "No member assigned to this profile yet",
+	"Non renseigné": "Not specified",
+	"Aucune activité n'a été effectuée par ce profil": "No activity has been performed by this profile",
 	"annuaire_opport_selectors": [
 		"Tous",
 		"Appels à candidature",

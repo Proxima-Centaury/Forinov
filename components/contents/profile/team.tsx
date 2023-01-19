@@ -29,14 +29,16 @@ const ProfileTeam = ({ profile, states }: any) => {
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
     return <div id="team" className={ TeamStyles.team }>
         <h3>{ translations["Équipe"] }</h3>
-        <div className={ TeamStyles.team } data-type="list">
-            { (team) ? team.map((member: any, key: KeyType) => {
+        { (team && team.length > 0) ? <div className={ TeamStyles.team } data-type="list">
+            { team.map((member: any, key: KeyType) => {
                 const index = key + 1;
                 const maxVisibleByDefault = maxVisibleCardsByDefault;
                 const cardProps = { member, index, maxVisibleByDefault, translations };
                 return <MemberCard key={ key } { ...cardProps }/>;
-            }) : null }
-        </div>
+            }) }
+        </div> : <div className="placeholder">
+            <p>{ translations["Aucun membre assigné à ce profil pour le moment"] + "." }</p>
+        </div> }
         { (team.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
     </div>;
 };
