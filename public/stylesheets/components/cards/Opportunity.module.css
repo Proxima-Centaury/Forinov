@@ -7,13 +7,17 @@
     width: calc((100% / 2) - 8px);
     margin: 0px 8px 0px 0px;
     cursor: pointer;
+    border: var(--border);
+    border-color: transparent;
+    border-width: 5px;
     border-radius: 10px;
     box-shadow: var(--box-shadow);
     
 }
 .opportunity:hover {
-    transform: scale(1.02);
-    box-shadow: var(--darker-box-shadow);
+    /* transform: scale(1.02); */
+    border-color: var(--logo-blue-color);
+    /* box-shadow: var(--darker-box-shadow); */
 }
 .opportunity:nth-of-type(2n) {
     margin: 0px 0px 0px 8px;
