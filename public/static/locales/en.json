@@ -264,9 +264,17 @@
 	"Encourager l'innovation": "Encourage innovation",
 	"Engager les collaborateurs et leur permettre de trouver des solutions concrètes à leurs besoins métiers": "Involve collaborators and enable them to find concrete solutions to their business needs",
 	"Nos dernières startups inscrites": "Our latest registered startups",
-	"Aucun produit à afficher": "No product to display",
+  "Aucun produit à afficher": "No product to display",
 	"Aucun profil renseigné": "No profile entered",
 	"Logo d'entreprise": "Company logo",
 	"Bannière d'opportunité": "Opportunity banner",
-	"Localisations": "Localisations"
+	"Localisations": "Localisations",
+	"annuaire_opport_selectors": [
+		"Tous",
+		"Appels à candidature",
+		"Programme d'accompagnement",
+		"Challenge ou concours",
+		"Évènements",
+		"Offres exclusives"
+	]
 }

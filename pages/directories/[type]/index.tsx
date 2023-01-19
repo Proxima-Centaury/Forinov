@@ -7,7 +7,7 @@ import { useState, useRef } from "react";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Directory */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Directory = ({ data, filters }: any) => {
+const Directory = ({ data, filters, key }: any) => {
     const nbPerCategory: any = {};
     const icon = useRef(null);
     const [selectedCategories, setSelectedCategories] = useState([]);
@@ -16,11 +16,11 @@ const Directory = ({ data, filters }: any) => {
     const [currentInput, setCurrentInput] = useState("");
     const [moreFiltersClicked, setMoreFiltersClicked] = useState(false);
     const [startupCards, setStartupCards] = useState([]);
+    const tempCardsId: Array<any> = [];
     //Nécessaire sinon bug connu avec le useState
     var tempCards: Array<any> = [];
     //On garde uniquement les catégories du call API
-    console.log(filters);
-    
+
     const categories = filters
     let catArray: Array<any> = [];
     const catCards: Array<any> = [];
@@ -34,7 +34,7 @@ const Directory = ({ data, filters }: any) => {
             <Image src={category.LOGO} alt={category.ID} className="annuaire__category-logo" width="100" height="100" />
             <div className="annuaire__category-count">{category.NB}</div>
             <h1 className="annuaire__category-title">{category.NAME}</h1>
-            <div className="annuaire__category-tags">
+            {category.SSCAT ? <div className="annuaire__category-tags">
                 {(category.SSCAT[0]) ? <div className="annuaire__category-tag">
                     {category.SSCAT[0].NAME}
                 </div> : null}
@@ -44,11 +44,12 @@ const Directory = ({ data, filters }: any) => {
                 {(category.SSCAT[2]) ? <div className="annuaire__category-tag">
                     {category.SSCAT[2].NAME}
                 </div> : null}
-            </div>
+            </div> : null}
         </div>);
     });
     //Fonction qui permet de remplir le tableau de cards de startups
     const setCards = (categorie = [], input = "") => {
+
         //Si au moins une catégorie est sélectionnée
         if (categorie.length > 0) {
             //Si l'input n'est pas vide
@@ -56,10 +57,11 @@ const Directory = ({ data, filters }: any) => {
                 //On boucle sur les startups en regardant si les catégories correspondent ou si l'input correspond avec le nom OU la catégorie
                 data.filter((item: any) => {
                     if (
-                        item.categorie_id.toString() === categorie.toString() &&
-                        item.name.toLowerCase().includes(input.toLowerCase())
+                        (item.categorie_id.toString() === categorie.toString() &&
+                            item.name.toLowerCase().includes(input.toLowerCase())) && !tempCardsId.includes(item.id)
                     ) {
                         tempCards.push(item);
+                        tempCardsId.push(item.id);
                     }
                 });
             }
@@ -67,8 +69,9 @@ const Directory = ({ data, filters }: any) => {
             else {
                 //On boucle sur les startups en regardant si les catégories correspondent
                 data.filter((item: any) => {
-                    if (item.categorie_id.toString() === categorie.toString()) {
+                    if ((item.categorie_id.toString() === categorie.toString() || JSON.stringify(item.categorie_id).includes(categorie.toString())) && !tempCardsId.includes(item.id)) {
                         tempCards.push(item);
+                        tempCardsId.push(item.id);
                     }
                 });
             }
@@ -77,10 +80,11 @@ const Directory = ({ data, filters }: any) => {
             //On boucle sur les startups en regardant si l'input correspond avec le nom OU la catégorie
             data.map((item: any) => {
                 if (
-                    item.name.toLowerCase().includes(input.toLowerCase()) ||
-                    item.categorie.toLowerCase().includes(input.toLowerCase())
+                    (item.name.toLowerCase().includes(input.toLowerCase()) ||
+                        item.categorie.toLowerCase().includes(input.toLowerCase())) && !tempCardsId.includes(item.id)
                 ) {
                     tempCards.push(item);
+                    tempCardsId.push(item.id);
                 }
             });
         };
@@ -118,7 +122,6 @@ const Directory = ({ data, filters }: any) => {
             setSelectedCategoriesLength(selectedCategories.length);
             selectedCategories.forEach((categorie: any) => {
                 setCards(categorie);
-                console.log(startupCards);
             });
             //Si plus au moins une catégorie est sélectionnée et que l'input n'est pas vide : on set les cards avec les catégories sélectionnées et l'input
             if (currentInput.length > 0) {
@@ -223,7 +226,14 @@ const Directory = ({ data, filters }: any) => {
                         className="annuaire__searchbar-select"
                     >
                         <p style={{ margin: 0 }}>
-                            Catégories{" "}
+
+                            {key === "CATEGORY" ?
+                                "Catégories" :
+                                key === "SECTEURS" ?
+                                    "Secteurs" :
+                                    "Types"
+                            }
+
                             {selectedCategories.length > 0 ? (
                                 <span className="annuaire__searchbar-select-count">
                                     {selectedCategoriesLength}
@@ -371,8 +381,8 @@ export async function getServerSideProps(context: any) {
     // Appel API des données de filtres
     const fetchFilters = await fetch(
         "https://www.forinov.fr/remote/back/api.php?q=V5_GET_PUBLIC_COMMONS&authkey=Landing&ssid=5cpbs0k7574bv0jlrh0322boe7"
-        );
-        const filtersRes = await fetchFilters.json();
+    );
+    const filtersRes = await fetchFilters.json();
 
     if (type === "startups") {
         // Appel API des données de startups
@@ -401,7 +411,7 @@ export async function getServerSideProps(context: any) {
 
     const filters = filtersRes[index][key];
     // On passe les deux variables au composant via les props
-    return { props: { locale, locales, defaultLocale, data, filters } };
+    return { props: { locale, locales, defaultLocale, data, filters, key } };
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
