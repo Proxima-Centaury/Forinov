@@ -602,7 +602,7 @@ body {
     z-index: 1;
     text-transform: initial;
     padding: 15px 16px 14px;
-    background-color: rgb(41, 41, 41);
+    background-color: var(--perfect-black-color);
     color: #ffffff;
     font-weight: 800;
     cursor: pointer;

@@ -1,6 +1,5 @@
 import styles from "../../../../public/stylesheets/pages/AnnuaireOpport.module.css";
 import OpportSearchbar from "../../../../components/searchbar/OpportSearchbar";
-import Link from "next/link";
 import MediumOpportCard from "../../../../components/opport-cards/MediumOpportCard";
 import { useRouter } from "next/router";
 import PageIndex from "../../../../components/pagination/PageIndex";
@@ -174,23 +173,25 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 
 					if (selectorToURL === type) {
 						return (
-							<Link
+							<a
 								href={"/directories/opportunites/" + selectorToURL + "/"}
 								key={selector}
 								style={{ margin: "0 !important" }}
+								className="selectorButtonActive"
 							>
-								<button className="selectorButtonActive">{selector}</button>
-							</Link>
+								{selector}
+							</a>
 						);
 					} else {
 						return (
-							<Link
-								href={"/directories/opportunites/" + selectorToURL + "/"}
-								key={selector}
-								style={{ margin: "0 !important" }}
-							>
-								<button className="selectorButton">{selector}</button>
-							</Link>
+							<a
+							href={"/directories/opportunites/" + selectorToURL + "/"}
+							key={selector}
+							style={{ margin: "0 !important" }}
+							className="selectorButton"
+						>
+							{selector}
+						</a>
 						);
 					}
 				})}
