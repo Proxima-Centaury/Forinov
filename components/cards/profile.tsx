@@ -19,11 +19,11 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Profile Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileCard = ({ type, profile, states, page }: any) => {
-    const { session, lock, translations }: any = states;
+    const { session, lock, translations, RGB }: any = states;
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pdfButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-light fa-cloud-arrow-down", "", () => false, "PDF", 0 ];
     const pdfButtonObject = buildProperties(buttonProps, pdfButtonValues);
-    return <div className={ ProfileStyles.card }>
+    return <div className={ ProfileStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ ProfileStyles.banner }>
             <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3840" height="2160" priority/>
             { (type === "startup" && page !== "landing") ? <StartupActions translations={ translations }/> : null }

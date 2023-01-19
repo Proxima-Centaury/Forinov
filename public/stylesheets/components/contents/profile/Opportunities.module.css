@@ -14,7 +14,7 @@
 .opportunities > button {
     display: flex;
     align-items: center;
-    margin: 16px 0px 8px 16px;
+    margin: 16px 0px 8px 0px;
 }
 .opportunities > button > * + * {
     margin: 0px 0px 0px 16px;

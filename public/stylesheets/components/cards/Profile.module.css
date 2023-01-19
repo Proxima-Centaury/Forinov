@@ -2,6 +2,7 @@
 /* Profile ( Card ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .card {
+    position: relative;
     border-radius: 15px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);

@@ -38,7 +38,7 @@ const ProfileOpportunities = ({ profile, states }: any) => {
 /* Profile Opportunities ( Content ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const OpportunitiesContent = ({ counters, opportunities, states, status }: any) => {
-    const { translations }: any = states;
+    const { translations, RGB }: any = states;
     const [ expanded, setExpanded ] = useState(true);
     const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
     const handleView = (event: any) => seeMoreOrLess(event, translations, "." + OpportunityStyles.opportunity, opportunities, maxVisibleCardsByDefault);
@@ -57,7 +57,7 @@ const OpportunitiesContent = ({ counters, opportunities, states, status }: any) 
             { opportunities.map((opportunity: any, key: KeyType) => {
                 const index = key + 1;
                 const maxVisibleByDefault = maxVisibleCardsByDefault;
-                const cardProps = { opportunity, index, maxVisibleByDefault, translations };
+                const cardProps = { opportunity, index, maxVisibleByDefault, translations, RGB };
                 return <OpportunityCard key={ key } { ...cardProps }/>;
             }) }
             { (opportunities.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
