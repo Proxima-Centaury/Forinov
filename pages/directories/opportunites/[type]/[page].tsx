@@ -11,6 +11,7 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const router = useRouter() as any;
 	let { type, page } = router.query;
 
+	
 
 	let opportunities = dataOpportunities[0]["PROJECT"];
 	const [opportCards, setOpportCards] = useState<Array<JSX.Element>>([]);

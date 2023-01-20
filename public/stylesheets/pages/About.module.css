@@ -30,6 +30,19 @@
     object-fit: contain;
 }
 
+.heroDesc {
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #161c2d;
+    font-family: "Open Sans", sans-serif;
+    pointer-events: auto;
+    box-sizing: border-box;
+    margin-top: 0;
+    margin-bottom: 0!important;
+    text-align: left!important;
+}
+
 .banner {
     display: flex;
     flex-direction: column;
