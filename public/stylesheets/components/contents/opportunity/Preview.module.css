@@ -5,10 +5,10 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    position: relative;
     border-radius: 15px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    overflow: hidden;
 }
 .opportunityPreview [class="separator"] {
     width: initial;
@@ -24,6 +24,10 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .background {
     height: 250px;
+    border-radius: 15px 15px 0px 0px;
+}
+.background > img {
+    border-radius: 15px 15px 0px 0px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Preview ( Idenfitication ) */

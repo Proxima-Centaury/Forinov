@@ -25,6 +25,7 @@ import ProfileActivities from "../../../../components/contents/profile/activitie
 import ProfileSocials from "../../../../components/contents/profile/socials";
 import ProfileGoals from "../../../../components/contents/profile/goals";
 import OpportunityPreview from "../../../../components/contents/opportunity/preview";
+// import OpportunityLinks from "../../../../components/contents/opportunity/links";
 import Button from "../../../../components/buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
@@ -101,6 +102,7 @@ const DirectoryIdPage = ({ profile, products, activities, folders, opportunity, 
     };
     return <div id="opportunity" className="container">
         <OpportunityPreview { ...parentProps }/>
+        {/* <OpportunityLinks { ...parentProps }/> */}
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

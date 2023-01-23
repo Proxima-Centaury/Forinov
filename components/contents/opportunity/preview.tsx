@@ -18,8 +18,7 @@ import OpportunityStyles from "../../../public/stylesheets/components/cards/Oppo
 /* Opportunity Preview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const OpportunityPreview = ({ opportunity, states }: any) => {
-    const { translations }: any = states;
-    console.log(opportunity)
+    const { translations, RGB }: any = states;
     const ownerLogo = opportunity.opportunity_owner_logo || null;
     const ownerName = opportunity.opportunity_owner_name || null;
     const title = opportunity.opportunity_name || null;
@@ -36,7 +35,7 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
     const countries = (opportunity.opportunity_country) ? Object.values(opportunity.opportunity_country).map((country: any) => country.NAME) : null;
     const background = opportunity.opportunity_background || null;
     return <div className={ PreviewStyles.opportunityPreview }>
-        <div className={ PreviewStyles.background } data-opportunity-type={ (type && type.ID) ? type.ID : "" }>
+        <div className={ PreviewStyles.background } data-opportunity-type={ (type && type.ID) ? type.ID : "" } data-rgb={ (RGB) ? "enabled" : "disabled" }>
             { (background) ? <Image src={ background } width="3840" height="2160" alt={ translations["Bannière d'opportunité"] + "." }/> : null }
         </div>
         <div className={ PreviewStyles.identification }>
