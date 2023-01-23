@@ -165,12 +165,10 @@
 /* Button ( Call To Action ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .callToActionStep {
-    color: var(--text-inactive-color);
     border-color: var(--text-inactive-color);
     background-color: var(--background-main-color);
 }
 .callToActionStep:hover {
-    color: var(--perfect-black-color);
     border-color: var(--light-grey-color);
     background-color: var(--light-grey-color);
 }
@@ -180,15 +178,31 @@
     background-color: var(--perfect-grey-color);
 }
 .callToActionStep > i {
-    color: var(--perfect-white-color);
+    color: var(--text-inactive-color);
 }
 .callToActionStep:hover > i {
-    color: var(--logo-blue-color);
+    color: var(--perfect-black-color);
+}
+.callToActionStep.active > i {
+    color: var(--perfect-white-color);
+}
+.callToActionStep > p {
+    color: var(--text-inactive-color);
+}
+.callToActionStep:hover > p {
+    color: var(--perfect-black-color);
+}
+.callToActionStep.active > p {
+    color: var(--perfect-white-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Call To Action Wide ) Core */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .callToActionWide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     padding: 16px;
     position: relative;
@@ -196,7 +210,6 @@
     border-style: dashed;
     border-radius: 10px;
     background-color: var(--background-sub-color);
-    
 }
 .callToActionWide:hover {
     background-color: var(--paleblue-color);
@@ -207,26 +220,20 @@
     align-items: center;
     width: 64px;
     height: 64px;
-    margin: auto;
+    margin: auto auto 8px auto;
+    font-size: 30px;
+    color: var(--logo-blue-color);
     border-radius: 32px;
     background-color: var(--paleblue-color);
     
 }
 .callToActionWide:hover > i {
-    background-color: var(--logo-blue-color);
+    background-color: var(--perfect-white-color);
 }
-.callToActionWide {
+.callToActionWide > p {
     font-family: "Nunito Sans";
     font-size: 21px;
     color: var(--logo-blue-color);
-}
-.callToActionWide > i {
-    margin: auto auto 8px auto;
-    font-size: 30px;
-    color: var(--logo-blue-color);
-}
-.callToActionWide:hover > i {
-    color: var(--perfect-white-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( See More ) */

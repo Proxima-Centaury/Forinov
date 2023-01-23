@@ -56,7 +56,7 @@ const OpportunityCard = ({ opportunity, index, maxVisibleByDefault, translations
                 </div> : null }
                 <div className="separator"></div>
                 { (remaining_time) ? <div className={ OpportunityStyles.remainingTime }>
-                    <i className="fa-solid fa-calendar"/>
+                    <i className="fa-light fa-calendar"/>
                     <p>{ remainingTime(remaining_time, null, null, translations) }</p>
                 </div> : null }
                 <div className="formattedContent">
