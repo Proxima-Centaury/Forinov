@@ -103,6 +103,7 @@
     display: flex;
     align-items: center;
     margin: 0px auto 8px auto;
+    z-index: 1;
 }
 .content > .startups > div,
 .content > .startups > div > img {

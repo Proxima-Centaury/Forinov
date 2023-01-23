@@ -121,6 +121,7 @@
     font-family: "Nunito Sans";
     font-size: 24px;
     font-weight: 800;
+    text-transform: uppercase;
 }
 .content > .informations {
     display: flex;

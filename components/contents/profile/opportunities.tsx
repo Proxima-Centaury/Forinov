@@ -3,13 +3,10 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { useState } from "react";
 import { ButtonInterface } from "../../../typescript/interfaces";
-import { seeMoreOrLess, buildProperties, uppercaseFirst, remainingTime } from "../../../scripts/utilities";
+import { seeMoreOrLess, buildProperties } from "../../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Link from "next/link";
-import Image from "next/image";
-import Tags from "../../tags/tags";
 import OpportunityCard from "../../cards/opportunity";
 import Button from "../../buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

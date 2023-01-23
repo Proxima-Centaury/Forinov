@@ -17,7 +17,6 @@ import EntityStyles from "../../public/stylesheets/components/cards/Entity.modul
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const EntityCard = ({ entity, type, index, maxVisibleByDefault = 3 }: any) => {
     const tags = Object.entries(entity.TAG) || [];
-    console.log(entity)
     return <Link href={ "/directories/partners/" + formatNameForUrl(entity.NAME) + "_" + entity.ID } className={ EntityStyles[type] + ((index > maxVisibleByDefault) ? " hidden" : "")}>
         <div className={ EntityStyles.marker }></div>
         <div className={ EntityStyles.content }>
