@@ -217,7 +217,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const opportunityPromise = await fetch(endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&authkey=Sorbonne" + language);
     const opportunityResponse = await opportunityPromise.json();
     const formattedOpportunityResponse = opportunityResponse;
-    if(!formattedOpportunityResponse) {
+    if(!formattedOpportunityResponse || (formattedOpportunityResponse && formattedOpportunityResponse.ERROR)) {
         return {
             redirect: {
                 destination: "/" + locale + "/404",
