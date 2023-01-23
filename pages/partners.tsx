@@ -111,7 +111,7 @@ const PartnersHome = ({ startups, logos, locales, states, stateSetters, config }
 /* Server Side Properties */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-	const { res, locale, locales, defaultLocale } = context;
+	const { req, res, locale, locales, defaultLocale } = context;
 	const { endpoint, queries } = config.api;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
 	const startupsPromise = await fetch(endpoint + "?q=" + queries.getLandingStartups + "&app=next&authkey=Landing");
@@ -123,6 +123,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	return {
 		props: {
 			locale, locales, defaultLocale,
+			production: (req.headers.host?.match("interface.forinov")) ? true : false,
 			startups: formattedStartupsResponse,
 			logos: formattedLogosResponse
 		},

@@ -168,9 +168,10 @@ const Partner = ({ type, profile, products, activities, folders, states, stateSe
 /* Server Side Properties */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-    const { query, locale, locales, defaultLocale } = context;
+    const { req, res, query, locale, locales, defaultLocale } = context;
     let { id, type }: any = query;
     const { endpoint, queries } = config.api;
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     id = id?.substring(id.indexOf("_") + 1, id.length);
     const language = "&lang=" + locale?.substring(0, 2);
     if(!type.match(/(opport)/)) {
@@ -207,6 +208,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         return {
             props: {
                 locale, locales, defaultLocale,
+                production: (req.headers.host?.match("interface.forinov")) ? true : false,
                 profile: formattedProfileResponse || null,
                 products: formattedProductsResponse || null,
                 activities: formattedActivitiesResponse || null,
@@ -228,6 +230,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             locale, locales, defaultLocale,
+            production: (req.headers.host?.match("interface.forinov")) ? true : false,
             opportunity: formattedOpportunityResponse || null,
         }
     };

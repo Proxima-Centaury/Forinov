@@ -91,8 +91,9 @@ const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters,
 /* Server Side Properties */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-	const { locale, locales, defaultLocale } = context;
+	const { req, res, locale, locales, defaultLocale } = context;
 	const { endpoint, queries } = config.api;
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
 	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=startup&authkey=Landing");
     const logosResponse = await logosPromise.json();
     const formattedLogosResponse = Object.values(logosResponse[0].LOGOS);
@@ -102,6 +103,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	return {
 		props: {
 			locale, locales, defaultLocale,
+			production: (req.headers.host?.match("interface.forinov")) ? true : false,
 			logos: formattedLogosResponse,
 			opportunities: formattedLandingOpportunitiesResponse
 		},
