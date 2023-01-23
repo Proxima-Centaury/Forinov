@@ -172,6 +172,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     let { id, type }: any = query;
     const { endpoint, queries } = config.api;
     id = id?.substring(id.indexOf("_") + 1, id.length);
+    const language = "&lang=" + locale?.substring(0, 2);
     if(!type.match(/(opport)/)) {
         if(type) {
             type = String(type);
@@ -179,22 +180,22 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             type = (type.match(/(corporation)/)) ? "entreprise" : type;
             type = (type.match(/(partner)/)) ? "partenaire" : type;
         };
-        const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         const profileResponse = await profilePromise.json();
         const formattedProfileResponse = profileResponse[0];
-        const productsPromise = await fetch(endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        const productsPromise = await fetch(endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         const productsResponse = await productsPromise.json();
         const formattedProductsResponse = Object.values(productsResponse[0].PRODUCTS);
-        const activitiesPromise = await fetch(endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        const activitiesPromise = await fetch(endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         const activitiesResponse = await activitiesPromise.json();
         const formattedActivitiesResponse = Object.values(activitiesResponse[0].EVENTS);
-        const foldersPromise = await fetch(endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        const foldersPromise = await fetch(endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         const foldersResponse = await foldersPromise.json();
         const formattedFoldersResponse = foldersResponse.folders;
-        beautifyTheLogs("[CALL] PROFILE : " + endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne");
-        beautifyTheLogs("[CALL] PRODUCTS : " + endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-        beautifyTheLogs("[CALL] ACTIVITIES : " + endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-        beautifyTheLogs("[CALL] FOLDERS : " + endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        beautifyTheLogs("[CALL] PROFILE : " + endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne&lang=" + locale?.substring(0, 2));
+        beautifyTheLogs("[CALL] PRODUCTS : " + endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
+        beautifyTheLogs("[CALL] ACTIVITIES : " + endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
+        beautifyTheLogs("[CALL] FOLDERS : " + endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         if(!formattedProfileResponse || (formattedProfileResponse && Object.keys(formattedProfileResponse).length === 0)) {
             return {
                 redirect: {
@@ -213,7 +214,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             }
         };
     };
-    const opportunityPromise = await fetch(endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&lang=" + locale?.substring(0, 2) + "&authkey=Sorbonne");
+    const opportunityPromise = await fetch(endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&authkey=Sorbonne" + language);
     const opportunityResponse = await opportunityPromise.json();
     const formattedOpportunityResponse = opportunityResponse;
     if(!formattedOpportunityResponse) {

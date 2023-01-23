@@ -62,9 +62,9 @@ const ProfilePartners = ({ type, profile, folders, states }: any) => {
                 const cardProps = { folder, type, index, maxVisibleByDefault };
                 return <FolderCard key={ key } { ...cardProps }/>;
             }) }
-        </div> : <div className="placeholder">
+        </div> : (type !== "startup") ? <div className="placeholder">
             <p>{ translations["Aucun dossier de startup à afficher"] + "." }</p>
-        </div> }
+        </div> : null }
         { (type !== "startup" && folders.length > maxVisibleFoldersByDefault) ? <Button { ...eventualFoldersMoreOfLessButtonProps as ButtonInterface }/> : null }
     </Fragment>;
 };

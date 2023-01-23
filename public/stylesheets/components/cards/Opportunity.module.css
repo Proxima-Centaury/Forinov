@@ -126,7 +126,6 @@
     flex: 1;
     margin: 16px 0px;
     font-size: 18px;
-    line-break: anywhere;
 }
 .content > .left > .remainingTime {
     display: flex;

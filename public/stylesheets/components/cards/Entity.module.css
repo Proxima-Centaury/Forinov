@@ -5,7 +5,6 @@
 .partner {
     display: flex;
     width: calc((100% / 2) - 8px);
-    min-height: 128px;
     max-height: 218px;
     margin: 0px 8px 0px 0px;
     cursor: pointer;
@@ -82,4 +81,5 @@
     margin: 0px 0px 0px 16px;
     font-size: 16px;
     font-weight: bold;
+    text-transform: uppercase;
 }

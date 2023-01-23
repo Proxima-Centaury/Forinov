@@ -225,7 +225,9 @@ const TheLatestOpportunities = ({ states, data }: any) => {
     const rightButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-right", (event: MouseEvent) => transitionHandler(event, "right") ];
     const rightButtonObject = buildProperties(buttonProps, rightButtonValues);
     const scrollHandler = (event: any) => {
-        event.preventDefault();
+        if(window.innerWidth > 576) {
+            event.preventDefault();
+        };
         const target = event.target;
         const preciseTarget = target.closest("." + CarouselStyles.container);
         return transitionInstance.handleTransition(event, preciseTarget);
@@ -293,7 +295,9 @@ const PartnersStartups = ({ states, data }: any) => {
     const rightButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-right", (event: MouseEvent) => transitionHandler(event, "right") ];
     const rightButtonObject = buildProperties(buttonProps, rightButtonValues);
     const scrollHandler = (event: any) => {
-        event.preventDefault();
+        if(window.innerWidth > 576) {
+            event.preventDefault();
+        };
         const target = event.target;
         const preciseTarget = target.closest("." + CarouselStyles.container);
         return transitionInstance.handleTransition(event, preciseTarget);

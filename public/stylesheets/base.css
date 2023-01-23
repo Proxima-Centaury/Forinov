@@ -442,6 +442,7 @@ body {
     bottom: 100%;
     content: attr(data-tooltip);
     color: var(--logo-blue-color);
+    text-transform: capitalize;
     white-space: break-spaces;
     background-color: var(--background-sub-color);
     border-radius: 5px;
@@ -777,8 +778,8 @@ body {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* RGB Feature */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-*[data-rgb='enabled']::before,
-*[data-rgb='enabled']::after {
+*[data-rgb="enabled"]::before,
+*[data-rgb="enabled"]::after {
     width: calc(100% + (2 * 2px));
     height: calc(100% + (2 * 2px));
     content: "";
@@ -791,7 +792,7 @@ body {
     animation: rgb 20s linear infinite;
     z-index: -1;
 }
-*[data-rgb='enabled']::before {
+*[data-rgb="enabled"]::before {
     filter: blur(100px);
 }
 @keyframes rgb {
