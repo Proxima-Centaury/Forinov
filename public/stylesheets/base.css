@@ -804,3 +804,21 @@ body {
 		background-position: 0% 0%;
 	}
 }
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Opportunity Types */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+[data-opportunity-type="1"] {
+    background-color: var(--project-color);
+}
+[data-opportunity-type="2"] {
+    background-color: var(--program-color);
+}
+[data-opportunity-type="3"] {
+    background-color: var(--challenge-color);
+}
+[data-opportunity-type="4"] {
+    background-color: var(--event-color);
+}
+[data-opportunity-type="5"] {
+    background-color: var(--offer-color);
+}

@@ -30,7 +30,7 @@ const Devtools = ({ states, stateSetters }: any) => {
     const RGBButtonIcon = (RGB) ? "fa-light fa-lightbulb" : "fa-light fa-lightbulb-on";
     const RGBButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, RGBButtonIcon, "", () => setRGB(!RGB), "", 0 ];
     const RGBButtonObject = buildProperties(buttonProps, RGBButtonValues);
-    return <div className={ (hidden) ? "closed" : "" } data-type="devtools">
+    return (!window.location.href.match("interface.forinov")) ? <div className={ (hidden) ? "closed" : "" } data-type="devtools">
         <p>Devtools</p>
         <div data-type="tooltip" data-tooltip={ translations["Simuler la connexion"] }>
             <Button { ...loginButtonObject as ButtonInterface }/>
@@ -47,7 +47,7 @@ const Devtools = ({ states, stateSetters }: any) => {
         <button title={ translations["Afficher les devtools"] } onClick={ (event) => preventSubmit(event as any, () => setHidden(!hidden)) }>
             <i className="fa-light fa-chevron-down"/>
         </button>
-    </div>;
+    </div> : null;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */

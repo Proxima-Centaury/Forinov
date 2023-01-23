@@ -30,7 +30,7 @@ const OpportunityCard = ({ opportunity, index, maxVisibleByDefault, translations
         opportunity_desc
     }: any = opportunity;
     return <Link href={ "/directories/opportunities/" + formatNameForUrl(opportunity_name) + "_" + opportunity_id } className={ OpportunityStyles.opportunity + ((index > maxVisibleByDefault) ? " hidden" : "") } data-card="opportunity" data-index={ index - 1 } data-rgb={ (RGB) ? "enabled" : "disabled" }>
-        <div className={ OpportunityStyles.background } data-type={ (opportunity_type && opportunity_type.ID) ? opportunity_type.ID : "" }>
+        <div className={ OpportunityStyles.background } data-opportunity-type={ (opportunity_type && opportunity_type.ID) ? opportunity_type.ID : "" }>
             { (opportunity_background) ? <Image src={ opportunity_background } alt={ "Image de fond de l'opportunité " + opportunity_name + "." } width="3840" height="2160"/> : null }
             { (opportunity_lang === "en") ? <div className={ OpportunityStyles.informations }>
                 <p>{ translations["Anglais"] }</p>
@@ -51,7 +51,7 @@ const OpportunityCard = ({ opportunity, index, maxVisibleByDefault, translations
                     </div>
                 </div>
                 <h3>{ (opportunity_name) ? uppercaseFirst(opportunity_name) : translations["Nom non-défini"] }</h3>
-                { (opportunity.opportunity_type) ? <div className={ OpportunityStyles.type } data-type={ (opportunity_type && opportunity_type.ID) ? opportunity_type.ID : "" }>
+                { (opportunity.opportunity_type) ? <div className={ OpportunityStyles.type } data-opportunity-type={ (opportunity_type && opportunity_type.ID) ? opportunity_type.ID : "" }>
                     <Tags tags={ Object.entries({ "0": opportunity.opportunity_type.NAME }) } main={ true }/>
                 </div> : null }
                 <div className="separator"></div>
