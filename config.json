@@ -99,24 +99,24 @@
             "startup": {
                 "general" : [
                     {
-                        "button": "Comment me faire repérer par les entreprises",
-                        "content": ""
-                    },
-                    {
                         "button": "Forinov, est-ce vraiment gratuit pour les startups",
-                        "content": ""
+                        "content": "Forinov, c'est gratuit pour les startups. Que ce soit pour référencer votre startup, contacter des membres ou répondre aux [appels à candidatures=/directories/opportunities/1]"
                     },
                     {
                         "button": "Mon profil est-il celui d'une startup ou d'une entreprise",
-                        "content": ""
+                        "content": "Lors de [l'inscription=/onboarding], vous devrez choisir entre startups ou entreprise (PME, ETI ou grand Groupe). Le profil startup est gratuit et permet de référencer vos solutions, de contacter des entreprises et répondre aux [opportunités (appels à projets...)=/directories/opportunities]. Le profil entreprise sert à identifier, suivre et partager un portefeuille de startups entre collaborateurs, à lancer des appels à candidatures et assurer toute la gestion de son réseau de startups et de partenaires. Ce profil plus avancé est payant en fonction du nombre d'utilisateurs et d'appels à candidatures souhaités"
                     },
                     {
                         "button": "Qui sont les personnes que je peux contacter sur Forinov",
-                        "content": ""
+                        "content": "Il existe trois types de comptes et donc trois annuaires distincts : [startups=/directories/startups], [entreprises=/directories/corporations] et [partenaires=/directories/partners] (incubateurs, investisseurs...). Sur chaque profil, vous aurez la possibilité de contacter les membres actifs. Par exemple sur le profil d'un grand groupe, vous pourrez y trouver les responsable des relations et partenariats startups, le directeur marketing ou encore innovation et RSE. En résumé toutes les personnes qui sont à la recherche de solutions innovantes et habilitées à signer avec des startups"
+                    },
+                    {
+                        "button": "Comment me faire repérer et suivre par les entreprises",
+                        "content": "Compléter votre profil au maximum vous permet d'être mieux référencé dans [l'annuaire de startups=/directories/startups] et dans le moteur de recommandations. Vous pouvez aussi directement rechercher dans [l'annuaire des entreprises=/directories/corporations], les suivre et contacter leurs collaborateurs. BONUS TIPS : Pensez à compléter votre \"Wishlist\" d'entreprises, vous apparaitrez directement dans leurs suggestions de startups"
                     },
                     {
                         "button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
-                        "content": ""
+                        "content": "Nous avons créé Forinov pour simplifier les relations et les collaborations entre startups, entreprises et partenaires. Forinov réunit les décisionnaires et porteurs de projets sur une même plateforme et permet de faire se rencontrer le besoin d'innovation avec l'offre. Sur Forinov, vous accédez et contactez les bonnes personnes, vous êtes alertés des besoins publiés par les entreprises et pouvez y répondre directement. L'objectif est de faire gagner du temps à chacun et d'éviter la prospection via email ou Linkedin qui nécessite trop d'énergie et de \"spams\" pour peu de résultats"
                     }
                 ],
                 "community" : [

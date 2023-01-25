@@ -13,6 +13,7 @@ import Button from "../../components/buttons/button";
 import OpportunityCard from "../cards/opportunity";
 import ProfileCard from "../cards/profile";
 import Accordion from "../accordions/accordion";
+import Format from "../texts/format";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -85,7 +86,7 @@ const Carousel = ({ states, component, data }: any) => {
         case "HowToApplyToAnOpportunity":
             return <HowToApplyToAnOpportunity/>;
         case "HowToGetStarted":
-            return <HowToGetStarted/>;
+            return <HowToGetStarted { ...parentProps }/>;
         case "TheLatestOpportunities":
             return <TheLatestOpportunities { ...parentProps }/>;
         case "CompaniesLogos":
@@ -193,8 +194,25 @@ const HowToApplyToAnOpportunity = () => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Landing ( How To Get Started ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const HowToGetStarted = () => {
-    const opportunityCreationStepsButtons = [ "", "", "" ];
+const HowToGetStarted = ({ states }: any) => {
+	const { translations }: any = states;
+    const opportunityCreationStepsButtons = [
+        {
+            "picture": "",
+            "title": "Je m'inscris",
+            "text": "[Je crée le profil de ma startup=/onboarding] gratuitement en 5min. Je complète mon profil pour optimiser mon référencement dans l'annuaire de startups"
+        },
+        {
+            "picture": "",
+            "title": "J'entre en relation",
+            "text": "Grâce à [l'annuaire des entreprises=/directories/corporations], je peux contacter les prospects qui m'intéressent. Avec [l'annuaire des opportunités=/directories/opportunities], je candidate aux appels à projets qui correspondent à ma startup"
+        },
+        {
+            "picture": "",
+            "title": "Je développe mon réseau",
+            "text": "Je peux suivre des entreprises et partenaires pour être informé de leurs actualités. Je simplifie et centralise mes échanges grâce à la messagerie interne et sécurisée"
+        }
+    ];
     return <Fragment>
         <div className={ CarouselStyles.steps } data-direction="vertical">
             { opportunityCreationStepsButtons.map((button: any, key: number) => <Fragment key={ key }>
@@ -206,8 +224,14 @@ const HowToGetStarted = () => {
         </div>
         <div className={ CarouselStyles.container } data-direction="vertical" data-carousel="HowToApplyToAnOpportunity">
             { opportunityCreationStepsButtons.map((step: any, key: number) => <div key={ key } className={ CarouselStyles.item } data-index={ key }>
-                { (key % 2 === 0) ? <div>Text</div> : <div>Picture</div> }
-                { (key % 2 === 0) ? <div>Picture</div> : <div>Text</div> }
+                { (key % 2 === 1) ? <div>
+                    <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
+                    <Format content={ translations[step.text] }/>
+                </div> : <div>Picture</div> }
+                { (key % 2 === 1) ? <div>Picture</div> : <div>
+                    <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
+                    <Format content={ translations[step.text] }/>
+                </div> }
             </div>) }
         </div>
     </Fragment>;

@@ -164,29 +164,46 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .item  {
     display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
 	min-width: 100%;
 	height: 100%;
-	
+	padding: 0px 0px 40px 0px;
 }
 .container[data-direction="vertical"] > .item {
 	min-height: 200px;
 }
 .item > div {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	flex: 1;
 }
 .item > div:first-of-type {
+	align-items: flex-end;
 	margin: 0px 36px 0px 0px;
 }
+.item > div:first-of-type * {
+	text-align: right;
+}
 .item > div:last-of-type {
+	align-items: flex-start;
 	margin: 0px 0px 0px 36px;
+}
+.item > div:last-of-type * {
+	text-align: left;
 }
 .item > div:only-of-type {
 	margin: 0px;
+}
+.item > div * {
+	font-size: 16px;
+}
+.item > div > h4 {
+	font-family: "Nunito Sans";
+	font-size: 32px;
+  	font-weight: bold;
 }
 .container > a[data-card="opportunity"] {
 	min-width: 450px;

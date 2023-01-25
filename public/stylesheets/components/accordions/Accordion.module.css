@@ -57,6 +57,11 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .content {
     max-height: 0px;
-    
     overflow: hidden;
+}
+.container > div.active > .content > div[class="formattedContent"] {
+    color: var(--perfect-black-color);
+}
+.container > div.active > .content > div[class="formattedContent"] a {
+    color: var(--logo-blue-color);
 }

@@ -10,6 +10,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Carousel from "../components/carousels/carousel";
+import Format from "../components/texts/format";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -33,18 +34,18 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 		<div className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="startup">
 				<div>
-					<h1>{ translations["Bienvenue sur Forinov"] }</h1>
-					<p className={ HomeStyles.paragraph }>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d'innovation, à chaque startup son Forinov"] + " !" }</p>
-					<Link href="/onboarding">{ translations["Rejoindre la communauté"] }</Link>
+					<h1>{ translations["Développe ton business"] }</h1>
+					<p className={ HomeStyles.paragraph }>{ translations["Il n'a jamais été aussi simple pour les startups de trouver des clients, des opportunités (appels à projets, appels à candidatures...) et de développer leurs réseaux"] + " !" }</p>
+					<Link href="/onboarding">{ translations["Créer mon profil gratuitement"] }</Link>
 				</div>
 				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
 			</div>
 			<div className={ HomeStyles.opportunity } data-type="startup">
 				<div>
-					<h3>{ translations["Comment postuler à une opportunité"] }</h3>
-					<p>{ translations["Trouver des opportunités, faire grandir sa startup"] + ", etc..." }</p>
+					<h3>{ translations["Et comment ça marche"] + "?" }</h3>
+					<p>{ translations["S'inscrire sur Forinov c'est simple et rapide"] }</p>
 					<div data-carousel="startup">
-						<Carousel { ...parentProps } component={ "HowToApplyToAnOpportunity" }/>
+						<Carousel { ...parentProps } component={ "HowToGetStarted" }/>
 					</div>
 					<h4>{ translations["Les dernières oppotunités"] + " :" }</h4>
 					<Carousel { ...parentProps } component={ "TheLatestOpportunities" } data={ opportunities }/>
@@ -62,24 +63,24 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 						<div className={ HomeStyles.badge }>
 							<i className="fa-light fa-chart-network"/>
 							<div>
-								<h4>{ translations["Complétez"] }</h4>
-								<p>{ translations["Je renseigne les informations de ma startup et je crée mon profil de membre"] }</p>
+								<h4>{ translations["Découvre"] }</h4>
+								<Format content={ translations["Les appels à candidatures, programmes d'accompagnement, concours dans [l'annuaire d'opportunités=/directories/opportunities]"] }/>
 							</div>
 						</div>
 						<div className="separator"></div>
 						<div className={ HomeStyles.badge }>
 							<i className="fa-light fa-badge-check"/>
 							<div>
-								<h4>{ translations["Validez"] }</h4>
-								<p>{ translations["Ton profil sera vérifié et validé par nos équipes dans les plus bref délais"] }</p>
+								<h4>{ translations["Candidate"] }</h4>
+								<p>{ translations["Aux opportunités qui te correspondent, les entreprises concernées te répondront directement"] + " !" }</p>
 							</div>
 						</div>
 						<div className="separator"></div>
 						<div className={ HomeStyles.badge }>
 							<i className="fa-light fa-gauge-high"/>
 							<div>
-								<h4>{ translations["Profitez"] }</h4>
-								<p>{ translations["J'accède GRATUITEMENT à toutes les opportunités ainsi qu'aux annuaires de Forinov"] }</p>
+								<h4>{ translations["Concrétise"] }</h4>
+								<p>{ translations["Ces opportunités en contrats grâce à un suivi simplifié et centralisé de tes échanges et de toutes tes candidatures"] + "." }</p>
 							</div>
 						</div>
 						<div className="separator"></div>
@@ -88,11 +89,11 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 			</div>
 			<div className={ HomeStyles.companies }>
 				<div>
-					<h2>{ translations["Ces entreprises et partenaires utilisent Forinov pour leurs relations startups"] }</h2>
+					<h2>{ translations["Ils nous font confiance pour vous trouver"] + " !" }</h2>
 					<Carousel { ...parentProps } component={ "CompaniesLogos" } data={ logos }/>
-					<h2>{ translations["Créer mon compte startup gratuitement"] }</h2>
-					<h3>{ translations["Et rejoindre une communauté grandissante rassemblant tous les acteurs de l'innovation"].toLowerCase() }</h3>
-					<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Rejoindre la communauté"] }</Link>
+					<h2>{ translations["Et oui, Forinov c'est gratuit pour les startups"] }</h2>
+					<h3>{ translations["De l'inscription à la concrétisation, en passant par la prise de contact"] }</h3>
+					<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["J'en profite dès maintenant"] }</Link>
 				</div>
 			</div>
 			<div className={ HomeStyles.questions } data-type="startup">
