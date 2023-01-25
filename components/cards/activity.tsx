@@ -19,7 +19,6 @@ const ActivityCard = ({ event, index, maxVisibleByDefault = 3 }: any) => {
     //     return daysDifference;
     // };
     // activityTimestamp(event.DATE);
-    // console.log(event)
     return <div className={ ActivityStyles.activity + ((index > maxVisibleByDefault) ? " hidden" : "") }>
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content }>

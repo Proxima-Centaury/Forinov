@@ -33,15 +33,15 @@ const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters,
 		<div className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="corporation">
 				<div>
-					<h1>{ translations["Bienvenue sur Forinov"] }</h1>
-					<p className={ HomeStyles.paragraph }>{ translations["Sur Forinov, nous regroupons plus de 5000 startups, de quoi trouver votre partenaire de demain"] + " !" }</p>
-					<Link href="/onboarding">{ translations["Rejoindre la communauté"] }</Link>
+					<h1>{ translations["Innover plus simplement"] }</h1>
+					<p className={ HomeStyles.paragraph }>{ translations["Lancez vos appels à candidatures, trouvez les meilleures solutions, développez et gérez votre réseau de startups et de partenaires en quelques clics"] + "." }</p>
+					<Link href="/onboarding">{ translations["Pré-inscription gratuite"] }</Link>
 				</div>
 				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
 			</div>
 			<div className={ HomeStyles.register } data-type="corporation">
 				<div>
-					<h3>{ translations["Comment m'inscrire sur Forinov"] + " ?" }</h3>
+					<h3>{ translations["Et comment ça marche"] + " ?" }</h3>
 					<Carousel { ...parentProps } component={ "HowToRegister" }/>
 				</div>
 			</div>
@@ -49,18 +49,18 @@ const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters,
 				<div>
 					<h2>{ translations["Ils nous font confiance"] }</h2>
 					<Carousel { ...parentProps } component={ "CompaniesLogos" } data={ logos }/>
-					<h2>{ translations["Rejoignez l'écosystème Forinov plus de 1200 startups vous attendent"] + " !" }</h2>
+					<h2>{ translations["Des milliers de startups, d'entreprises et de partenaires vous attendent sur Forinov"] + " !" }</h2>
 					<h3>{ translations["Adaptez votre forfait à vos besoins"] + " !" }</h3>
 					<div className={ HomeStyles.actions }>
-						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
+						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Rejoindre la communauté"] }</Link>
 						<Link href="/onboarding" className={ ButtonStyles.callToActionAlternative }>{ translations["Découvrir les offres"] }</Link>
 					</div>
 				</div>
 			</div>
 			<div className={ HomeStyles.sourcing } data-type="corporation">
 				<div>
-					<h3>{ translations["Comment bien débuter sur Forinov"] + " ?" }</h3>
-					<p>{ translations["Sourcer des startups"] }</p>
+					<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
+					<p>{ translations["Publiez appels à projets, appels à candidatures et challenges en quelques clics"] }</p>
 					<div data-carousel="corporation">
 						<Carousel { ...parentProps } component={ "HowToGetStarted" }/>
 					</div>
