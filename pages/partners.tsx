@@ -42,7 +42,7 @@ const PartnersHome = ({ startups, logos, locales, states, stateSetters, config }
 			<div className={ HomeStyles.register } data-type="partner">
 				<div>
 					<h3>{ translations["Comment m'inscrire sur Forinov"] + " ?" }</h3>
-					<Carousel { ...parentProps } component={ "HowToRegister" }/>
+					<Carousel { ...parentProps } component={ "PartnerHowTo" }/>
 				</div>
 			</div>
 			<div className={ HomeStyles.companies } data-type="partner">
@@ -93,7 +93,7 @@ const PartnersHome = ({ startups, logos, locales, states, stateSetters, config }
 			<div className={ HomeStyles.startups } data-type="partner">
 				<div>
 					<h4>{ translations["Nos startups à la une"] + " :" }</h4>
-					<Carousel { ...parentProps } component={ "PartnersStartups" } data={ startups }/>
+					<Carousel { ...parentProps } component={ "LatestStartups" } data={ startups }/>
 					<div className={ HomeStyles.actions } data-align="left">
 						<Link href="/" className={ ButtonStyles.callToAction }>{ translations["Accéder à l'annuaire des startups"] }</Link>
 					</div>
@@ -101,7 +101,7 @@ const PartnersHome = ({ startups, logos, locales, states, stateSetters, config }
 			</div>
 			<div className={ HomeStyles.questions } data-type="partner">
 				<h2>{ translations["Les réponses à vos questions"] }</h2>
-				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" } data={ Object.values(config.accordions.landings.partner) }/>
+				<Carousel { ...parentProps } component={ "PartnerAccordions" } data={ Object.values(config.accordions.landings.partner) }/>
 				<p>{ translations["Vous avez des questions"] + " ? " }<Link href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
 			</div>
 		</div>

@@ -35,7 +35,7 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 			<div className={ HomeStyles.presentation } data-type="startup">
 				<div>
 					<h1>{ translations["Développe ton business"] }</h1>
-					<p className={ HomeStyles.paragraph }>{ translations["Il n'a jamais été aussi simple pour les startups de trouver des clients, des opportunités (appels à projets, appels à candidatures...) et de développer leurs réseaux"] + " !" }</p>
+					<p className={ HomeStyles.paragraph }>{ translations["Il n'a jamais été aussi simple pour les startups de trouver des clients, des opportunités (appels à projets, appels à candidatures, etc.) et de développer leurs réseaux"] + " !" }</p>
 					<Link href="/onboarding">{ translations["Créer mon profil gratuitement"] }</Link>
 				</div>
 				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
@@ -48,7 +48,7 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 						<Carousel { ...parentProps } component={ "HowToGetStarted" }/>
 					</div>
 					<h4>{ translations["Les dernières oppotunités"] + " :" }</h4>
-					<Carousel { ...parentProps } component={ "TheLatestOpportunities" } data={ opportunities }/>
+					<Carousel { ...parentProps } component={ "LatestOpportunities" } data={ opportunities }/>
 					<div className={ HomeStyles.actions } data-align="left">
 						<Link href="/directories/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir toutes les opportunités"] }</Link>
 						<Link href="/opportunities" className={ ButtonStyles.callToActionAlternative }>{ translations["Qu'est-ce qu'une opportunité"] + " ?" }</Link>
@@ -98,7 +98,7 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 			</div>
 			<div className={ HomeStyles.questions } data-type="startup">
 				<h2>{ translations["Les réponses à vos questions"] }</h2>
-				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" } data={ Object.values(config.accordions.landings.startup) }/>
+				<Carousel { ...parentProps } component={ "StartupAccordions" } data={ Object.values(config.accordions.landings.startup) }/>
 				<p>{ translations["Vous avez des questions"] + " ? " }<Link href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
 			</div>
 		</div>
