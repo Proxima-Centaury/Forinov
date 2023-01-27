@@ -78,6 +78,9 @@
 	flex-direction: column;
 	min-height: inherit;
 }
+.steps + .container {
+	overflow: hidden;
+}
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Infinite ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -173,28 +176,28 @@
 .container[data-direction="vertical"] > .item {
 	min-height: 200px;
 }
-.item > div {
+.item > div:not([class*="stepContent"]) {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	flex: 1;
 }
-.item > div:first-of-type {
+.item > div:not([class*="stepContent"]):first-of-type {
 	align-items: flex-end;
 	margin: 0px 36px 0px 0px;
 }
-.item > div:first-of-type * {
+.item > div:not([class*="stepContent"]):first-of-type * {
 	text-align: right;
 }
-.item > div:last-of-type {
+.item > div:not([class*="stepContent"]):last-of-type {
 	align-items: flex-start;
 	margin: 0px 0px 0px 36px;
 }
-.item > div:last-of-type * {
+.item > div:not([class*="stepContent"]):last-of-type * {
 	text-align: left;
 }
-.item > div:only-of-type {
+.item > div:not([class*="stepContent"]):only-of-type {
 	margin: 0px;
 }
 .item > div * {
@@ -263,4 +266,33 @@
 }
 .arrows > button {
 	box-shadow: var(--box-shadow);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Step ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.stepContent,
+.stepPicture {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex: 1;
+	width: 100%;
+	height: 100%;
+	padding: 16px;
+}
+.stepContent > ul {
+	display: flex;
+	flex-direction: column;
+	margin: 16px 0px 0px 0px;
+}
+.stepContent > ul > li + li {
+	margin: 8px 0px 0px 0px;
+}
+.stepContent > ul > li i {
+	margin: 0px 8px 0px 0px;
+	color: var(--logo-blue-color);
+}
+.stepContent > ul > li div {
+	display: inline;
 }

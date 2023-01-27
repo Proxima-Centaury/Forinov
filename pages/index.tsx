@@ -59,9 +59,9 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 								</div>
 							</div>
 							<div className={ HomeStyles.body }>
-								<Format content={ translations["Accédez à plus <b>d'opportunités</b> (appels à projets, concours, etc.)"] + "." }/>
-								<Format content={ translations["Gagnez en <b>visibilité</b> et faites <b>matcher</b> vos solutions avec le besoin des entreprises"] + "." }/>
-								<Format content={ translations["Entrez en <b>contact direct</b> avec les décideurs et remportez des <b>contrats</b>"] + " !" }/>
+								<Format content={ translations["Accédez à plus <b>d'opportunités</b> (appels à projets, concours, etc.)"] }/>
+								<Format content={ translations["Gagnez en <b>visibilité</b> et faites <b>matcher</b> vos solutions avec le besoin des entreprises"] }/>
+								<Format content={ translations["Entrez en <b>contact direct</b> avec les décideurs et remportez des <b>contrats</b>"] }/>
 							</div>
 							<div className={ HomeStyles.footer }>
 								<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Créer mon compte"] }</Link>
@@ -77,9 +77,9 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 								</div>
 							</div>
 							<div className={ HomeStyles.body }>
-								<Format content={ translations["Optimisez votre <b>veille</b> et <bsourcing</b> de l'innovation (startups, incubateurs, etc.)"] + "." }/>
-								<Format content={ translations["Trouvez des <b>solutions concrètes</b> en partageant vos <b>appels à projets</b> et vos besoins en terme d'innovation"] + "." }/>
-								<Format content={ translations["Centralisez le suivi de vos <b>relations</b> entre <b>collaborateurs</b> et partagez-le avec <b>votre réseau</b> de startups et de partenaires"] + "." }/>
+								<Format content={ translations["Optimisez votre <b>veille</b> et <bsourcing</b> de l'innovation (startups, incubateurs, etc.)"] }/>
+								<Format content={ translations["Trouvez des <b>solutions concrètes</b> en partageant vos <b>appels à projets</b> et vos besoins en terme d'innovation"] }/>
+								<Format content={ translations["Centralisez le suivi de vos <b>relations</b> entre <b>collaborateurs</b> et partagez-le avec <b>votre réseau</b> de startups et de partenaires"] }/>
 							</div>
 							<div className={ HomeStyles.footer }>
 								<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Créer mon compte"] }</Link>
@@ -95,9 +95,9 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 								</div>
 							</div>
 							<div className={ HomeStyles.body }>
-								<Format content={ translations["Apportez <b>visibilité</b> et <b>opportunités</b> à votre réseau de startups et d'entreprises"] + "." }/>
-								<Format content={ translations["Gérez vos <b>appels à candidatures</b> et partagez vos <b>opportunités</b>"] + "." }/>
-								<Format content={ translations["Simplifiez le <b>suivi de votre portefeuille</b> de startups (gestion du dealflow, suivi des mises en relation, etc.)"] + "." }/>
+								<Format content={ translations["Apportez <b>visibilité</b> et <b>opportunités</b> à votre réseau de startups et d'entreprises"] }/>
+								<Format content={ translations["Gérez vos <b>appels à candidatures</b> et partagez vos <b>opportunités</b>"] }/>
+								<Format content={ translations["Simplifiez le <b>suivi de votre portefeuille</b> de startups (gestion du dealflow, suivi des mises en relation, etc.)"] }/>
 							</div>
 							<div className={ HomeStyles.footer }>
 								<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Créer mon compte"] }</Link>
@@ -142,7 +142,7 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 			<div className={ HomeStyles.startups }>
 				<div>
 					<h4>{ translations["Nos dernières startups inscrites"] + " :" }</h4>
-					<Carousel { ...parentProps } component={ "PartnersStartups" } data={ startups }/>
+					<Carousel { ...parentProps } component={ "LatestStartups" } data={ startups }/>
 					<div className={ HomeStyles.actions } data-align="left">
 						<Link href="/directories/startups" className={ ButtonStyles.callToAction }>{ translations["Accéder à l'annuaire des startups"] }</Link>
 					</div>
@@ -151,7 +151,7 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 			<div className={ HomeStyles.opportunity }>
 				<div>
 					<h4>{ translations["Les dernières oppotunités"] + " :" }</h4>
-					<Carousel { ...parentProps } component={ "TheLatestOpportunities" } data={ opportunities }/>
+					<Carousel { ...parentProps } component={ "LatestOpportunities" } data={ opportunities }/>
 					<div className={ HomeStyles.actions } data-align="left">
 						<Link href="/directories/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir toutes les opportunités"] }</Link>
 						<Link href="/opportunities" className={ ButtonStyles.callToActionAlternative }>{ translations["Qu'est-ce qu'une opportunité"] + " ?" }</Link>

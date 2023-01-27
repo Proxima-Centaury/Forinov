@@ -42,7 +42,7 @@ const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters,
 			<div className={ HomeStyles.register } data-type="corporation">
 				<div>
 					<h3>{ translations["Et comment ça marche"] + " ?" }</h3>
-					<Carousel { ...parentProps } component={ "HowToRegister" }/>
+					<Carousel { ...parentProps } component={ "CorporationHowTo" }/>
 				</div>
 			</div>
 			<div className={ HomeStyles.companies } data-type="corporation">
@@ -62,17 +62,17 @@ const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters,
 					<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
 					<p>{ translations["Publiez appels à projets, appels à candidatures et challenges en quelques clics"] }</p>
 					<div data-carousel="corporation">
-						<Carousel { ...parentProps } component={ "HowToGetStarted" }/>
+						<Carousel { ...parentProps } component={ "HowToCreateOpportunity" }/>
 					</div>
 					<div className={ HomeStyles.actions }>
-						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Découvrir les avantages de la solution Forinov"] }</Link>
+						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Je publie mon opportunité"] }</Link>
 					</div>
 				</div>
 			</div>
 			<div className={ HomeStyles.opportunity } data-type="corporation">
 				<div>
 					<h4>{ translations["Les dernières oppotunités"] + " :" }</h4>
-					<Carousel { ...parentProps } component={ "TheLatestOpportunities" } data={ opportunities }/>
+					<Carousel { ...parentProps } component={ "LatestOpportunities" } data={ opportunities }/>
 					<div className={ HomeStyles.actions } data-align="left">
 						<Link href="/directories/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir toutes les opportunités"] }</Link>
 						<Link href="/opportunities" className={ ButtonStyles.callToActionAlternative }>{ translations["Qu'est-ce qu'une opportunité"] + " ?" }</Link>
@@ -81,7 +81,7 @@ const CorporationsHome = ({ opportunities, logos, locales, states, stateSetters,
 			</div>
 			<div className={ HomeStyles.questions } data-type="corporation">
 				<h2>{ translations["Les réponses à vos questions"] }</h2>
-				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" } data={ Object.values(config.accordions.landings.corporation) }/>
+				<Carousel { ...parentProps } component={ "CorporationAccordions" } data={ Object.values(config.accordions.landings.corporation) }/>
 				<p>{ translations["Vous avez des questions"] + " ? " }<Link href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
 			</div>
 		</div>

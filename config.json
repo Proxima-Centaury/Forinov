@@ -94,6 +94,103 @@
             }
         }
     },
+    "carousels": {
+        "HowToGetStarted": [
+            {
+                "picture": "/assets/logo_full.png", "title": "Je m'inscris",
+                "text": "[Je crée le profil de ma startup=/onboarding] gratuitement en 5min. Je complète mon profil pour optimiser mon référencement dans l'annuaire de startups"
+            },
+            {
+                "picture": "/assets/logo_full.png", "title": "J'entre en relation",
+                "text": "Grâce à [l'annuaire des entreprises=/directories/corporations], je peux contacter les prospects qui m'intéressent. Avec [l'annuaire des opportunités=/directories/opportunities], je candidate aux appels à projets qui correspondent à ma startup"
+            },
+            {
+                "picture": "/assets/logo_full.png", "title": "Je développe mon réseau",
+                "text": "Je peux suivre des entreprises et partenaires pour être informé de leurs actualités. Je simplifie et centralise mes échanges grâce à la messagerie interne et sécurisée"
+            }
+        ],
+        "HowToCreateOpportunity": [
+            {
+                "picture": "/assets/logo_full.png", "title": "Publication",
+                "text": "Je créé mon opportunité (critères d'éligibilités, solutions recherchées, etc.) et le formulaire de candidature associé"
+            },
+            {
+                "picture": "/assets/logo_full.png", "title": "Évaluation",
+                "text": "Je reçois et évalue des candidatures de startups (notations, commentaires, etc.) et partage avec mes collaborateurs"
+            },
+            {
+                "picture": "/assets/logo_full.png", "title": "Prise de contacts",
+                "text": "Je contacte les startups retenues via messagerie sécurisée. Je simplifie le suivi de mes projets en interne et avec mes partenaires externes"
+            }
+        ],
+        "CorporationHowTo": [
+            {
+                "picture": "/assets/logo_full.png", "title": "Je m'inscris",
+                "list": [
+                    "[Je complète les informations essentielles=/onboarding] pour demander une démo",
+                    "L'équipe Forinov me propose un rendez-vous de démo",
+                    "Je choisis l'offre qui correspond à mes besoins (nombre d'utilisateurs, d'opportunités, etc.)"
+                ]
+            },
+            {
+                "picture": "/assets/logo_full.png", "title": "Je découvre",
+                "list": [
+                    "Forinov m'accompagne dans les premières étapes (compléter mon profil, prise en main, etc.)",
+                    "J'invite mes collaborateurs à me rejoindre"
+                ]
+            },
+            {
+                "picture": "/assets/logo_full.png", "title": "Je me lance",
+                "list": [
+                    "Je trouve les startups qui m'intéressent et les ajoute aux dossiers de mon portefeuille",
+                    "Je gère et centralise toutes mes relations (messages, documents, RDVs, etc.)",
+                    "Je simplifie le suivi de mes démarches et projets (suivi du dealflow, dashboard, etc.)"
+                ]
+            },
+            {
+                "picture": "/assets/logo_full.png", "title": "Je développe",
+                "list": [
+                    "Je lance des opportunités sur Forinov (appels à projets, appels à candidatures, programmes d'accompagnements)",
+                    "J'évalue et sélectionne les startups pertinentes (système d'évaluation simplifié)",
+                    "Je peux faire appel aux services Forinov pour sourcer des startups à l'international"
+                ]
+            }
+        ],
+        "PartnerHowTo": [
+            {
+                "picture": "/assets/logo_full.png", "title": "Je m'inscris",
+                "list": [
+                    "[Je complète les informations essentielles=/onboarding] de ma structure",
+                    "Je fais ma demande d'inscription auprès de Forinov",
+                    "Je définis mes besoins auprès des équipes Forinov afin de sélectionner l'offre qui correspond le plus à mes besoins (incubateur, investisseur, etc.)"
+                ]
+            },
+            {
+                "picture": "/assets/logo_full.png", "title": "Je découvre",
+                "list": [
+                    "Forinov m'accompagne dans les premières étapes (compléter mon profil, prise en main, etc.)",
+                    "J'invite mes collaborateurs à me rejoindre",
+                    "Je définis mes besoins (mettre en avant mes startups, gérer mon réseau, sourcer des startups, etc."
+                ]
+            },
+            {
+                "picture": "/assets/logo_full.png", "title": "Je me lance",
+                "list": [
+                    "Je trouve les startups qui m'intéressent et les ajoute aux dossiers de mon portefeuille",
+                    "Je gère et centralise toutes mes relations (messages, documents, RDVs, etc.)",
+                    "Je simplifie le suivi de mes démarches et projets (suivi du dealflow, dashboard, etc.)"
+                ]
+            },
+            {
+                "picture": "/assets/logo_full.png", "title": "Je développe",
+                "list": [
+                    "Je lance des opportunités sur Forinov (appels à projets, appels à candidatures, programmes d'accompagnements)",
+                    "J'évalue et sélectionne les startups pertinentes (système d'évaluation simplifié)",
+                    "Je peux faire appel aux services Forinov pour sourcer des startups à l'international"
+                ]
+            }
+        ]
+    },
     "accordions": {
         "landings": {
             "startup": {
@@ -104,11 +201,11 @@
                     },
                     {
                         "button": "Mon profil est-il celui d'une startup ou d'une entreprise",
-                        "content": "Lors de [l'inscription=/onboarding], vous devrez choisir entre startups ou entreprise (PME, ETI ou grand Groupe). Le profil startup est gratuit et permet de référencer vos solutions, de contacter des entreprises et répondre aux [opportunités (appels à projets...)=/directories/opportunities]. Le profil entreprise sert à identifier, suivre et partager un portefeuille de startups entre collaborateurs, à lancer des appels à candidatures et assurer toute la gestion de son réseau de startups et de partenaires. Ce profil plus avancé est payant en fonction du nombre d'utilisateurs et d'appels à candidatures souhaités"
+                        "content": "Lors de [l'inscription=/onboarding], vous devrez choisir entre startups ou entreprise (PME, ETI ou grand Groupe). Le profil startup est gratuit et permet de référencer vos solutions, de contacter des entreprises et répondre aux [opportunités (appels à projets, etc.)=/directories/opportunities]. Le profil entreprise sert à identifier, suivre et partager un portefeuille de startups entre collaborateurs, à lancer des appels à candidatures et assurer toute la gestion de son réseau de startups et de partenaires. Ce profil plus avancé est payant en fonction du nombre d'utilisateurs et d'appels à candidatures souhaités"
                     },
                     {
                         "button": "Qui sont les personnes que je peux contacter sur Forinov",
-                        "content": "Il existe trois types de comptes et donc trois annuaires distincts : [startups=/directories/startups], [entreprises=/directories/corporations] et [partenaires=/directories/partners] (incubateurs, investisseurs...). Sur chaque profil, vous aurez la possibilité de contacter les membres actifs. Par exemple sur le profil d'un grand groupe, vous pourrez y trouver les responsable des relations et partenariats startups, le directeur marketing ou encore innovation et RSE. En résumé toutes les personnes qui sont à la recherche de solutions innovantes et habilitées à signer avec des startups"
+                        "content": "Il existe trois types de comptes et donc trois annuaires distincts : [startups=/directories/startups], [entreprises=/directories/corporations] et [partenaires=/directories/partners] (incubateurs, investisseurs, etc.). Sur chaque profil, vous aurez la possibilité de contacter les membres actifs. Par exemple sur le profil d'un grand groupe, vous pourrez y trouver les responsable des relations et partenariats startups, le directeur marketing ou encore innovation et RSE. En résumé toutes les personnes qui sont à la recherche de solutions innovantes et habilitées à signer avec des startups"
                     },
                     {
                         "button": "Comment me faire repérer et suivre par les entreprises",
@@ -145,24 +242,24 @@
             "corporation": {
                 "general" : [
                     {
-                        "button": "Quels sont les outils mis à disposition sur Forinov pour mon entreprise",
-                        "content": ""
+                        "button": "Comment Forinov peut m'aider à m'informer et innover",
+                        "content": "Forinov c'est une plateforme 3 en 1.<br><br>- Le premier réseau d'acteurs innovants qui met en relation startups, partenaires et entreprises.<br>- Une plateforme d'appels à candidatures pour trouver les meilleures startups.<br>- Une solution pour simplifier et centraliser tout le suivi de vos relations et projets (SURM)"
                     },
                     {
-                        "button": "Forinov, est-ce vraiment gratuit pour les startups",
-                        "content": ""
+                        "button": "Comment entrer en contact avec des startups et développer mon réseau",
+                        "content": "Pour contacter des startups et développer votre réseau, c'est très simple !<br><br>1- Vous pouvez rechercher des startups dans l'annuaire puis, à partir de leur profil, contacter directement des membres de leur équipe, via messagerie sécurisée. <br>2 - Vous pouvez suivre et ainsi ajouter les startups à votre portefeuille. Cela vous permet de les classer en dossiers thématiques, de suivre leurs actualités ou encore de renseigner l'avancée de vos relations (statut, prises de notes, suivi des RDVs, documents envoyés, etc.)<br>3 - En créant une opportunité (appel à candidatures, concours, etc.) vous recevrez des candidatures de startups, internes ou externes au réseau Forinov. En quelques clics, vous sélectionnez les plus pertinentes et poursuivez les échanges avec elles. La plateforme garde l'historique des candidatures et des évaluations pour vous permettre de suivre l'évolution des startups au fil du temps et vous faire gagner du temps"
                     },
                     {
-                        "button": "Toutes les informations sont-elles publiques",
-                        "content": ""
+                        "button": "À quelle typologie d'entreprises s'adresse Forinov",
+                        "content": "Forinov permet à toutes les entreprises (PME, ETI, Grands groupes) qui cherchent à innover et capitaliser sur l'écosystème innovant d'avoir une solution simple et intuitive pour gérer et suivre leurs projets"
                     },
                     {
-                        "button": "Quel est le coût d'inscription sur Forinov pour mon entreprise",
-                        "content": ""
+                        "button": "Quelles sont les informations publiques et privées",
+                        "content": "Les informations publiques (visibles par l'ensemble de nos membres), sont celles renseignées sur votre profil d'entreprise et personnel.<br><br>Nous vous proposons de renseigner informations permettant d'identifier votre entreprise, d'en comprendre les enjeux et besoins en terme d'innovation (année de création, description, secteur, effectif de l'entreprise, etc.). La plupart des autres informations sont privées et uniquement accessibles par vous et vos collaborateurs (qui vous suivez, les dossiers reçus, vos commentaires sur la gestion de relation ou lors de l'évaluation de startups ou encore les messages que vous pouvez échnager par message privée)"
                     },
                     {
-                        "button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
-                        "content": ""
+                        "button": "Quels sont les tarifs pour mon entreprise",
+                        "content": "Les taris dépendent du nombre d'utilisateurs et du nombre d'opportunités que vous souhaitez publier. Nos tarifs entreprises commencent à 300 euros par mois, soit 3600 euros par an. N'hésitez à [nous contacter=/contact] pour demander une démo et nos tarifs, adaptés à votre besoin"
                     }
                 ],
                 "community" : [
