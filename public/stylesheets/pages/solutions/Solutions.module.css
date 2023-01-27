@@ -190,11 +190,11 @@
 .bannerImgSeating {
     position: absolute;
     width: fit-content;
-    height: 100%;
+    height: 400px;
     object-fit: contain;
     margin: 0;
     right: 5rem;
-    transform: translateY(11%);
+    bottom: -48.5%;
 }
 
 .banner3 {
