@@ -39,11 +39,13 @@ const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) =
 				</div>
 				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
 			</div>
-			<div className={ HomeStyles.opportunity } data-type="opportunity">
+			<div className={ HomeStyles.sourcing } data-type="opportunity">
 				<div>
-					<h2>{ translations["Lancez-vous"] + " !" }</h2>
 					<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
-					<Carousel { ...parentProps } component={ "HowToCreateAnOpportunity" }/>
+					<p>{ translations["Publiez appels à projets, appels à candidatures et challenges en quelques clics"] }</p>
+					<div data-carousel="opportunity">
+						<Carousel { ...parentProps } component={ "HowToCreateOpportunity" }/>
+					</div>
 					<div className={ HomeStyles.actions }>
 						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
 						<Link href="/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir les offres"] }</Link>
