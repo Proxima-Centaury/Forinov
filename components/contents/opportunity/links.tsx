@@ -1,4 +1,8 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Imports */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { useRouter } from "next/router";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
@@ -11,10 +15,16 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* Opportunity Links */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const OpportunityLinks = ({ states }: any) => {
+    const router = useRouter();
     const { translations }: any = states;
+    const { domainLocales }: any = router;
+    const { domain }: any = domainLocales[0];
+    const opportunityUrl = domain + router.asPath;
+    const mailToSubject = "?subject=Opportunité Forinov";
+    const mailToBody = "&body=Lien vers l'opportunité : " + opportunityUrl;
     return <div className={ LinksStyles.container }>
         <div>
-            <Link href={ "/" } className={ ButtonStyles.callToActionStep }>
+            <Link href={ "mailto:" + mailToSubject + mailToBody + "." } className={ ButtonStyles.callToActionStep }>
                 <i className="fa-light fa-chart-network"/>
                 <p>{ translations["Partager"] }</p>
             </Link>
@@ -27,7 +37,7 @@ const OpportunityLinks = ({ states }: any) => {
                 <p>{ translations["Voir toutes les opportunités"] }</p>
             </Link>
         </div>
-        <Link href={ "/" } className={ ButtonStyles.callToActionWide }>
+        <Link href={ "/login" } className={ ButtonStyles.callToActionWide }>
             <i className="fa-light fa-file-signature"/>
             <p>{ translations["Postuler"] }</p>
         </Link>

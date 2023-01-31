@@ -27,6 +27,8 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
     const privacy = opportunity.opportunity_privacy || null;
     const description = opportunity.opportunity_desc || null;
     const eligibility = opportunity.opportunity_eligibility || null;
+    const attachments = opportunity.opportunity_attachments || null;
+    console.log(attachments)
     const startingDate = opportunity.opportunity_startingdate || null;
     const endingDate = opportunity.opportunity_endingdate || null;
     const endingDateDisplay = opportunity.opportunity_endingdate_display || null;
