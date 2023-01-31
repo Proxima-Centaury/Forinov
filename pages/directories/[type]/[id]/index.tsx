@@ -45,7 +45,7 @@ import ButtonStyles from "../../../../public/stylesheets/components/buttons/Butt
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const DirectoryIdPage = ({ profile, products, activities, folders, opportunity, states, stateSetters }: ProfileInterface) => {
     const router = useRouter();
-    const { session, lock }: any = states;
+    const { translations, session, lock }: any = states;
     const { setModal }: any = stateSetters;
     let { type } = router.query;
     if(type) {
@@ -196,7 +196,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         const foldersPromise = await fetch(endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         const foldersResponse = await foldersPromise.json();
         const formattedFoldersResponse = foldersResponse.folders;
-        beautifyTheLogs("[CALL] PROFILE : " + endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne&lang=" + locale?.substring(0, 2));
+        beautifyTheLogs("[CALL] PROFILE : " + endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         beautifyTheLogs("[CALL] PRODUCTS : " + endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         beautifyTheLogs("[CALL] ACTIVITIES : " + endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         beautifyTheLogs("[CALL] FOLDERS : " + endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
@@ -219,9 +219,10 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             }
         };
     };
-    const opportunityPromise = await fetch(endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&authkey=Sorbonne" + language);
+    const opportunityPromise = await fetch(endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&app=next&authkey=Sorbonne" + language);
     const opportunityResponse = await opportunityPromise.json();
     const formattedOpportunityResponse = opportunityResponse;
+    beautifyTheLogs("[CALL] OPPORTUNITY : " + endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&app=next&authkey=Sorbonne" + language);
     if(!formattedOpportunityResponse || (formattedOpportunityResponse && formattedOpportunityResponse.ERROR)) {
         return {
             redirect: {

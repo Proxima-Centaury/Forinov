@@ -21,12 +21,13 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
     const ownerLogo = opportunity.opportunity_owner_logo || null;
     const ownerName = opportunity.opportunity_owner_name || null;
     const title = opportunity.opportunity_name || null;
-    const type = (opportunity.opportunity_type) ? opportunity.opportunity_type[1] : null;
+    const type = opportunity.opportunity_type || null;
     const category = opportunity.opportunity_category || null;
     const tags = (opportunity.opportunity_tags) ? opportunity.opportunity_tags.split(",").map((tag: any, key: KeyType) => ({ ID: key, NAME: tag })) : null;
     const privacy = opportunity.opportunity_privacy || null;
     const description = opportunity.opportunity_desc || null;
     const eligibility = opportunity.opportunity_eligibility || null;
+    const attachments = opportunity.opportunity_attachments || null;
     const startingDate = opportunity.opportunity_startingdate || null;
     const endingDate = opportunity.opportunity_endingdate || null;
     const endingDateDisplay = opportunity.opportunity_endingdate_display || null;
