@@ -21,7 +21,7 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
     const ownerLogo = opportunity.opportunity_owner_logo || null;
     const ownerName = opportunity.opportunity_owner_name || null;
     const title = opportunity.opportunity_name || null;
-    const type = opportunity.opportunity_type || null;
+    const type = opportunity.opportunity_type[0] || opportunity.opportunity_type || null;
     const category = opportunity.opportunity_category || null;
     const tags = (opportunity.opportunity_tags) ? opportunity.opportunity_tags.split(",").map((tag: any, key: KeyType) => ({ ID: key, NAME: tag })) : null;
     const privacy = opportunity.opportunity_privacy || null;
