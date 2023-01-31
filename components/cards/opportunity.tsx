@@ -20,12 +20,13 @@ const OpportunityCard = ({ opportunity, index, maxVisibleByDefault, translations
     const ownerName = opportunity.opportunity_owner_name || null;
     const id = opportunity.opportunity_id || null;
     const title = opportunity.opportunity_name || null;
-    const type = opportunity.opportunity_type || null;
+    const type = opportunity.opportunity_type[0] || opportunity.opportunity_type || null;
     const language = opportunity.opportunity_lang || null;
     const privacy = opportunity.opportunity_privacy || null;
     const description = opportunity.opportunity_desc || null;
     const remainingTimeString = opportunity.remaining_time || null;
     const background = opportunity.opportunity_background || null;
+    console.log(type)
     return <Link href={ "/directories/opportunities/" + formatNameForUrl(title) + "_" + id } className={ OpportunityStyles.opportunity + ((index > maxVisibleByDefault) ? " hidden" : "") } data-card="opportunity" data-index={ index - 1 } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ OpportunityStyles.background } data-opportunity-type={ (type && type.ID) ? type.ID : "" }>
             { (background) ? <Image src={ background } alt={ "Image de fond de l'opportunité " + title + "." } width="3840" height="2160"/> : null }
