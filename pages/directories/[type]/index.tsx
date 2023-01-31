@@ -27,6 +27,12 @@ const Directory = ({ data, filters, key }: any) => {
     for (let catIndex in categories) {
         catArray.push(categories[catIndex]);
     };
+
+    console.log(data);
+    
+    
+    
+
     //On boucle sur les catégories pour construire les cards de catégories (affichée lorsqu'aucune catégorie n'est sélectionnée)
     catArray.forEach((category, key) => {
         nbPerCategory[category.NAME] = category.NB;
@@ -380,14 +386,14 @@ export async function getServerSideProps(context: any) {
 
     // Appel API des données de filtres
     const fetchFilters = await fetch(
-        "https://www.forinov.fr/remote/back/api.php?q=V5_GET_PUBLIC_COMMONS&authkey=Landing&ssid=5cpbs0k7574bv0jlrh0322boe7"
+        "https://dev.forinov.fr/remote/back/api.php?q=V5_GET_PUBLIC_COMMONS&authkey=Landing&ssid=5cpbs0k7574bv0jlrh0322boe7"
     );
     const filtersRes = await fetchFilters.json();
 
     if (type === "startups") {
         // Appel API des données de startups
         const res = await fetch(
-            "https://dev.forinov.fr/remote/back/api.php?q=SEARCH_FULLSU&authkey=Landing&app=next"
+            "https://dev.forinov.fr/remote/back/api.php?q=SEARCH_FULLSU&authkey=Landing&app=next&1"
         );
         data = await res.json();
         index = 0;
@@ -395,14 +401,14 @@ export async function getServerSideProps(context: any) {
     } else if (type === "corporations") {
         // Appel API des données de startups
         const res = await fetch(
-            "https://dev.forinov.fr/remote/back/api.php?q=V5_SEARCHCORPO&authkey=Landing&app=next"
+            "https://dev.forinov.fr/remote/back/api.php?q=V5_SEARCHCORPO&authkey=Landing&app=next&1"
         );
         data = await res.json();
         index = 1;
         key = "SECTEURS";
     } else if (type === "partners") {
         const res = await fetch(
-            "https://dev.forinov.fr/remote/back/api.php?q=V5_SEARCHINCUB&authkey=Landing&app=next"
+            "https://dev.forinov.fr/remote/back/api.php?q=V5_SEARCHINCUB&authkey=Landing&app=next&2"
         );
         data = await res.json();
         index = 2;

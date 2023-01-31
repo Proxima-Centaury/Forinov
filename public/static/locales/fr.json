@@ -264,7 +264,7 @@
 	"Encourager l'innovation": "Encourager l'innovation",
 	"Engager les collaborateurs et leur permettre de trouver des solutions concrètes à leurs besoins métiers": "Engager les collaborateurs et leur permettre de trouver des solutions concrètes à leurs besoins métiers",
 	"Nos dernières startups inscrites": "Nos dernières startups inscrites",
-  	"Aucun produit à afficher": "Aucun produit à afficher",
+  "Aucun produit à afficher": "Aucun produit à afficher",
 	"Aucun profil renseigné": "Aucun profil renseigné",
 	"Logo d'entreprise": "Logo d'entreprise",
 	"Bannière d'opportunité": "Bannière d'opportunité",
@@ -378,5 +378,23 @@
 		"Évènements",
 		"Offres exclusives"
 	],
-	"jour(s) restant(s)" : "jour(s) restant(s)"
+	"jour(s) restant(s)": "jour(s) restant(s)",
+	"Rejoindre Forinov": "Rejoindre Forinov",
+	"Notre histoire et nos missions chez Forinov": "Notre histoire et nos missions chez Forinov",
+	"« Notre mission chez Forinov ? »": "« Notre mission chez Forinov ? »",
+	"Mettre en relation des startups, entreprises et partenaires de l’innovation et leur apporter une solution simple et complète pour innover ensemble ! Rien que ça !": "Mettre en relation des startups, entreprises et partenaires de l’innovation et leur apporter une solution simple et complète pour innover ensemble ! Rien que ça !",
+	"about_paragraphs": [
+		"Forinov c’est l’histoire de deux frère et sœur, passionnés d’innovation et convaincus que l’entreprise de demain doit collaborer avec les startups.",
+		"Après 5 ans d’expérience en conseil en transformation d’entreprises puis dans les directions innovation, notre CEO Marie Josephine Brognon, constate que les startups perdent une énergie folle pour tenter de contacter la bonne personne et obtenir un RDV. Trop de (re-re-re)relances pour trop peu de projets concrétisés.",
+		"Du côté des entreprises c’est une veille sans fin, une infinité d’interlocuteurs et des fichiers de startups incomplets et obsolètes. Bref, il n’existait aucune solution commune pour répondre à leurs besoins.",
+		"C’est en 2018 qu’elle décide, avec son frère Thomas Brognon, CTO avec 17 ans d’expérience, de développer une solution complète et collaborative d’innovation. Leur ambition : connecter l’ensemble de ces acteurs et réunir le meilleur des solutions d’open innovation, en une plateforme !",
+		"En 2019, une première version co-construite main dans la main avec chaque typologie d’acteurs voit le jour.",
+		"Aujourd’hui, Forinov réunit des milliers d’utilisateurs qui échangent, concrétisent des opportunités et démontrent que la collaboration Startups x Corporates n’est pas qu’un mythe, mais une nécessité."
+	],
+	"Toi aussi tu es passionné·e d’innovation ?": "Toi aussi tu es passionné·e d’innovation ?",
+	"Nous recherchons des talents": "Nous recherchons des talents",
+	"Les meilleures startups sont sur Forinov, inscrivez-vous gratuitement": "Les meilleures startups sont sur Forinov, inscrivez-vous gratuitement",
+	"Vous proposez une solution innovante ? Vous cherchez des clients B2B ? Rejoignez Forinov pour booster votre visibilité et entrer en relation simplement avec des entreprises qui ont besoin de vos solutions pour innover !": "Vous proposez une solution innovante ? Vous cherchez des clients B2B ? Rejoignez Forinov pour booster votre visibilité et entrer en relation simplement avec des entreprises qui ont besoin de vos solutions pour innover !",
+	"J'inscris ma startup": "J'inscris ma startup",
+	"Forinov, la solution la plus complète d’open innovation": "Forinov, la solution la plus complète d’open innovation"
 }
