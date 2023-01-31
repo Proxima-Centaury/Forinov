@@ -26,7 +26,6 @@ const OpportunityLinks = ({ opportunity, states }: any) => {
     const opportunityUrl = domain + router.asPath;
     const mailToSubject = "?subject=Opportunité Forinov";
     const mailToBody = "&body=Lien vers l'opportunité : " + opportunityUrl;
-    console.log(opportunities)
     return <div className={ LinksStyles.container }>
         <div>
             <Link href={ "mailto:" + mailToSubject + mailToBody + "." } className={ ButtonStyles.callToActionStep }>
