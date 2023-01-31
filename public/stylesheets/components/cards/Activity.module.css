@@ -46,10 +46,26 @@
     box-shadow: var(--box-shadow);
 }
 .content > .user {
+    display: flex;
+    align-items: center;
     margin: 0px 0px 16px 0px;
     font-weight: 900;
     font-family: "Nunito Sans";
     font-size: 21px;
+    text-transform: uppercase;
+}
+.content > .user > i {
+    margin: 0px 0px 0px 8px;
+    font-size: 16px;
+}
+[data-profile="startup"] .content > .user > i {
+    color: var(--logo-orange-color);
+}
+[data-profile="corporation"] .content > .user > i {
+    color: var(--logo-blue-color);
+}
+[data-profile="partner"] .content > .user > i {
+    color: var(--logo-green-color);
 }
 .content > .time {
     margin: 0px;
@@ -60,6 +76,7 @@
 }
 .content iframe {
     flex: 1;
+    width: 100% !important;
     border-radius: 10px;
     overflow: hidden;
 }

@@ -27,14 +27,16 @@ const ProfileActivities = ({ type, activities, states }: any) => {
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
     return <div id="newsfeed" className={ ActivitiesStyles.activities } data-profile={ type }>
         <h3>{ translations["Fil d'actualité"] }</h3>
-        <div className={ ActivitiesStyles.list } data-type="list">
+        { (activities.length > 0) ? <div className={ ActivitiesStyles.list } data-type="list">
             { activities.map((event: any, key: KeyType) => {
                 const index = key + 1;
                 const maxVisibleByDefault = maxVisibleCardsByDefault;
                 const cardProps = { event, index, maxVisibleByDefault };
                 return <ActivityCard key={ key } { ...cardProps }/>;
             }) }
-        </div>
+        </div> : <div className="placeholder">
+            <p>{ translations["Aucune activité n'a été effectuée par ce profil"] + "." }</p>
+        </div> }
         { (activities.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
     </div>;
 };

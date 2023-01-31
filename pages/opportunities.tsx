@@ -39,11 +39,13 @@ const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) =
 				</div>
 				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
 			</div>
-			<div className={ HomeStyles.opportunity } data-type="opportunity">
+			<div className={ HomeStyles.sourcing } data-type="opportunity">
 				<div>
-					<h2>{ translations["Lancez-vous"] + " !" }</h2>
 					<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
-					<Carousel { ...parentProps } component={ "HowToCreateAnOpportunity" }/>
+					<p>{ translations["Publiez appels à projets, appels à candidatures et challenges en quelques clics"] }</p>
+					<div data-carousel="opportunity">
+						<Carousel { ...parentProps } component={ "HowToCreateOpportunity" }/>
+					</div>
 					<div className={ HomeStyles.actions }>
 						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
 						<Link href="/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir les offres"] }</Link>
@@ -58,7 +60,7 @@ const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) =
 			</div>
 			<div className={ HomeStyles.questions } data-type="opportunity">
 				<h2>{ translations["Les réponses à vos questions"] }</h2>
-				<Carousel { ...parentProps } component={ "AnswersToYourQuestions" } data={ Object.values(config.accordions.landings.opportunity) }/>
+				<Carousel { ...parentProps } component={ "OpportunityAccordions" } data={ Object.values(config.accordions.landings.opportunity) }/>
 				<p>{ translations["Vous avez des questions"] + " ? " }<Link href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
 			</div>
 		</div>
@@ -68,7 +70,7 @@ const Home = ({ logos, locales, states, stateSetters, config }: HomeInterface) =
 /* Server Side Properties */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-	const { res, locale, locales, defaultLocale } = context;
+	const { req, res, locale, locales, defaultLocale } = context;
 	const { endpoint, queries } = config.api;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
 	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=opportunité&authkey=Landing");
@@ -77,6 +79,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	return {
 		props: {
 			locale, locales, defaultLocale,
+			production: (req.headers.host?.match("interface.forinov")) ? true : false,
 			logos: formattedLogosResponse
 		},
 	};

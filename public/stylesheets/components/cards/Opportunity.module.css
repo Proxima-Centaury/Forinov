@@ -6,14 +6,10 @@
     flex-direction: column;
     width: calc((100% / 2) - 8px);
     margin: 0px 8px 0px 0px;
+    position: relative;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: var(--box-shadow);
-    
-}
-.opportunity:hover {
-    transform: scale(1.02);
-    box-shadow: var(--darker-box-shadow);
 }
 .opportunity:nth-of-type(2n) {
     margin: 0px 0px 0px 8px;
@@ -39,23 +35,8 @@
     width: 100%;
     min-height: 152px;
     height: 152px;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 15px 15px 0px 0px;
     overflow: hidden;
-}
-.background[data-type="1"] {
-    background-color: var(--project-color);
-}
-.background[data-type="2"] {
-    background-color: var(--program-color);
-}
-.background[data-type="3"] {
-    background-color: var(--challenge-color);
-}
-.background[data-type="4"] {
-    background-color: var(--event-color);
-}
-.background[data-type="5"] {
-    background-color: var(--offer-color);
 }
 .background > img {
     width: 100%;
@@ -82,7 +63,7 @@
     flex: 1;
     padding: 16px;
     position: relative;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px 15px 15px;
     background-color: var(--background-sub-color);
 }
 .content > .right > img {
@@ -130,7 +111,6 @@
     flex: 1;
     margin: 16px 0px;
     font-size: 18px;
-    line-break: anywhere;
 }
 .content > .left > .remainingTime {
     display: flex;
@@ -155,33 +135,36 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Opportunity ( Types ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.type[data-type="1"] > div > div {
+.type[data-opportunity-type] {
+    background-color: transparent;
+}
+.type[data-opportunity-type="1"] > div > div {
     background-color: var(--project-color) !important;
 }
-.type[data-type="1"] > div > div > p {
+.type[data-opportunity-type="1"] > div > div > p {
     color: var(--perfect-white-color) !important;
 }
-.type[data-type="2"] > div > div {
+.type[data-opportunity-type="2"] > div > div {
     background-color: var(--program-color) !important;
 }
-.type[data-type="2"] > div > div > p {
+.type[data-opportunity-type="2"] > div > div > p {
     color: var(--perfect-black-color) !important;
 }
-.type[data-type="3"] > div > div {
+.type[data-opportunity-type="3"] > div > div {
     background-color: var(--challenge-color) !important;
 }
-.type[data-type="3"] > div > div > p {
+.type[data-opportunity-type="3"] > div > div > p {
     color: var(--perfect-black-color) !important;
 }
-.type[data-type="4"] > div > div {
+.type[data-opportunity-type="4"] > div > div {
     background-color: var(--event-color) !important;
 }
-.type[data-type="4"] > div > div > p {
+.type[data-opportunity-type="4"] > div > div > p {
     color: var(--perfect-white-color) !important;
 }
-.type[data-type="5"] > div > div {
+.type[data-opportunity-type="5"] > div > div {
     background-color: var(--offer-color) !important;
 }
-.type[data-type="5"] > div > div > p {
+.type[data-opportunity-type="5"] > div > div > p {
     color: var(--perfect-black-color) !important;
 }

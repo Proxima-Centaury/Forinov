@@ -5,14 +5,29 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    position: relative;
     border-radius: 15px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    overflow: hidden;
 }
 .opportunityPreview [class="separator"] {
     width: initial;
     margin: 16px 16px 16px 152px;
+}
+@media screen and (max-width: 992px) {
+    .opportunityPreview [class="separator"] {
+        margin: 16px;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Preview ( Background ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.background {
+    height: 250px;
+    border-radius: 15px 15px 0px 0px;
+}
+.background > img {
+    border-radius: 15px 15px 0px 0px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Preview ( Idenfitication ) */
@@ -26,6 +41,14 @@
 }
 .identification:last-of-type {
     padding: 16px 16px 16px 152px;
+}
+@media screen and (max-width: 992px) {
+    .identification {
+        padding: 76px 16px 0px 16px;
+    }
+    .identification:last-of-type {
+        padding: 16px;
+    }
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Preview ( Logo ) */
@@ -42,6 +65,12 @@
     border-radius: 100%;
     box-shadow: var(--darker-box-shadow);
     overflow: hidden;
+}
+@media screen and (max-width: 992px) {
+    .logo {
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 .logo > img {
     width: 100%;
@@ -63,7 +92,6 @@
 .data > h3 {
     margin: 0px 8px 0px 0px;
     font-size: 21px;
-    white-space: nowrap;
 }
 .data > h3 > span {
     font-size: 21px;
@@ -78,6 +106,11 @@
     align-items: center;
     width: 100%;
     padding: 0px 16px 0px 152px;
+}
+@media screen and (max-width: 992px) {
+    .informations {
+        padding: 0px 16px;
+    }
 }
 .informations > div {
     display: flex;
@@ -107,6 +140,11 @@
     width: 100%;
     padding: 0px 16px 0px 152px;
 }
+@media screen and (max-width: 992px) {
+    .description {
+        padding: 0px 16px;
+    }
+}
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Preview ( Eligibility ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -115,6 +153,11 @@
     flex-direction: column;
     width: 100%;
     padding: 0px 16px 0px 152px;
+}
+@media screen and (max-width: 992px) {
+    .eligibility {
+        padding: 0px 16px;
+    }
 }
 .eligibility > h4 {
     margin: 0px 0px 8px 0px;
@@ -128,5 +171,10 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 0px 16px 16px 152px;
+    padding: 0px 16px 8px 152px;
+}
+@media screen and (max-width: 992px) {
+    .tags {
+        padding: 0px 16px 8px 16px;
+    }
 }

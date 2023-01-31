@@ -1,6 +1,11 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { formatNameForUrl } from "../../../scripts/utilities";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
 import Tags from "../../tags/tags";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -12,6 +17,9 @@ import OverviewStyles from "../../../public/stylesheets/components/contents/prof
 const ProfileOverview = ({ type, profile, states }: any) => {
     const { translations }: any = states;
     const parentProps = { type, profile, states };
+    const address = ((profile.ADDRESS.STREET) ? profile.ADDRESS.STREET.trim() + ", " : "") +
+    ((profile.ADDRESS.ZIP) ? profile.ADDRESS.ZIP.trim() + ", " : "") +
+    ((profile.ADDRESS.TOWN) ? profile.ADDRESS.TOWN.trim() + ", " : "") + profile.ADDRESS.ISO;
     return <div className={ OverviewStyles.overview }>
         <h4>{ translations["En bref"] }</h4>
         <div className="separator"></div>
@@ -22,17 +30,26 @@ const ProfileOverview = ({ type, profile, states }: any) => {
         { (profile.IMMAT) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Numéro d'immatriculation"] }</p>
             <p>{ profile.IMMAT }</p>
-        </div> : null }
+        </div> : <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Numéro d'immatriculation"] }</p>
+            <p>{ translations["Non renseigné"] + "." }</p>
+        </div> }
         <div className="separator"></div>
         <div className={ OverviewStyles.details }>
-            { (profile.ADDRESS) ? <div className={ OverviewStyles.location }>
+            { (address.length > 0) ? <div className={ OverviewStyles.location }>
                 <i className="fa-solid fa-location-dot"/>
-                <span>{ profile.ADDRESS.STREET + ", " + profile.ADDRESS.ZIP + ", " + profile.ADDRESS.TOWN + ", " + profile.ADDRESS.ISO }</span>
-            </div> : null }
+                <span>{ address }</span>
+            </div> : <div className={ OverviewStyles.location }>
+                <i className="fa-solid fa-location-dot"/>
+                <span>{ translations["Non renseigné"] + "." }</span>
+            </div> }
             { (profile.WEBSITE) ? <div className={ OverviewStyles.website }>
                 <i className="fa-solid fa-thumbtack"/>
                 <a href={ "https://" + profile.WEBSITE } target="_blank" rel="noreferrer">{ translations["Site internet"] }</a>
-            </div> : null }
+            </div> : <div className={ OverviewStyles.location }>
+                <i className="fa-solid fa-thumbtack"/>
+                <span>{ translations["Non renseigné"] + "." }</span>
+            </div> }
             <div className={ OverviewStyles.networks }>
                 { (profile.FACEBOOK) ? <a href={ profile.FACEBOOK } target="_blank" rel="noreferrer">
                     <i className="fa-brands fa-facebook-f"/>
@@ -76,6 +93,9 @@ const Corporation = ({ profile, states }: any) => {
     return <>
         { (profile.HEADQUARTER) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Maison mère"] }</p>
+            <Link href={ "/directories/corporations/" + formatNameForUrl(profile.HEADQUARTER_NAME || profile.NAME) + "_" + profile.HEADQUARTER[0].Entreprise }>
+                <Tags tags={ Object.entries({ NAME: profile.HEADQUARTER_NAME || profile.NAME }) }/>
+            </Link>
         </div> : null }
         { (profile.CREATIONDATE) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Année de création"] }</p>
@@ -97,18 +117,27 @@ const Corporation = ({ profile, states }: any) => {
 const Partner = ({ profile, states }: any) => {
     const { lock, translations }: any = states;
     return <>
-        { (profile.CREATIONDATE) ? <div className={ OverviewStyles.details }>
+        { (profile.CREATIONDATE && !isNaN(new Date(profile.CREATIONDATE).getTime())) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Année de création"] }</p>
-            <span>{ new Date(profile.CREATIONDATE).getFullYear() }</span>
-        </div> : null }
-        { (profile.SUPPORT) ? <div className={ OverviewStyles.details }>
+            <p>{ new Date(profile.CREATIONDATE).getFullYear() }</p>
+        </div> : <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Année de création"] }</p>
+            <p>{ translations["Non renseigné"] + "." }</p>
+        </div> }
+        { (profile.SUPPORT && Object.entries(profile.SUPPORT).length > 0) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Type d'accompagnement"] }</p>
-            <span>{ <Tags tags={ Object.entries(profile.SUPPORT) } lock={ lock }/> }</span>
-        </div> : null }
-        { (profile.PEOPLE) ? <div className={ OverviewStyles.details }>
+            <Tags tags={ Object.entries(profile.SUPPORT) } lock={ lock }/>
+        </div> : <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Technologie(s)"] }</p>
+            <p>{ translations["Non renseigné"] + "." }</p>
+        </div> }
+        { (profile.PEOPLE > 0) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Effectifs"] }</p>
-            <span>{ profile.PEOPLE }</span>
-        </div> : null }
+            <p>{ profile.PEOPLE }</p>
+        </div> : <div className={ OverviewStyles.details }>
+            <p className={ OverviewStyles.label }>{ translations["Effectifs"] }</p>
+            <p>{ translations["Non renseigné"] + "." }</p>
+        </div> }
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

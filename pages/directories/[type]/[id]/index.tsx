@@ -9,6 +9,7 @@ import { beautifyTheLogs, buildProperties } from "../../../../scripts/utilities"
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
 import IdenfiticationBanner from "../../../../components/banners/identification";
 import RecoverBanner from "../../../../components/banners/recover";
 import ProfileCard from "../../../../components/cards/profile";
@@ -25,6 +26,7 @@ import ProfileActivities from "../../../../components/contents/profile/activitie
 import ProfileSocials from "../../../../components/contents/profile/socials";
 import ProfileGoals from "../../../../components/contents/profile/goals";
 import OpportunityPreview from "../../../../components/contents/opportunity/preview";
+import OpportunityLinks from "../../../../components/contents/opportunity/links";
 import Button from "../../../../components/buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
@@ -101,6 +103,7 @@ const DirectoryIdPage = ({ profile, products, activities, folders, opportunity, 
     };
     return <div id="opportunity" className="container">
         <OpportunityPreview { ...parentProps }/>
+        <OpportunityLinks { ...parentProps }/>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -168,10 +171,12 @@ const Partner = ({ type, profile, products, activities, folders, states, stateSe
 /* Server Side Properties */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-    const { query, locale, locales, defaultLocale } = context;
+    const { req, res, query, locale, locales, defaultLocale } = context;
     let { id, type }: any = query;
     const { endpoint, queries } = config.api;
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     id = id?.substring(id.indexOf("_") + 1, id.length);
+    const language = "&lang=" + locale?.substring(0, 2);
     if(!type.match(/(opport)/)) {
         if(type) {
             type = String(type);
@@ -179,22 +184,22 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             type = (type.match(/(corporation)/)) ? "entreprise" : type;
             type = (type.match(/(partner)/)) ? "partenaire" : type;
         };
-        const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         const profileResponse = await profilePromise.json();
         const formattedProfileResponse = profileResponse[0];
-        const productsPromise = await fetch(endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        const productsPromise = await fetch(endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         const productsResponse = await productsPromise.json();
         const formattedProductsResponse = Object.values(productsResponse[0].PRODUCTS);
-        const activitiesPromise = await fetch(endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        const activitiesPromise = await fetch(endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         const activitiesResponse = await activitiesPromise.json();
         const formattedActivitiesResponse = Object.values(activitiesResponse[0].EVENTS);
-        const foldersPromise = await fetch(endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        const foldersPromise = await fetch(endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         const foldersResponse = await foldersPromise.json();
         const formattedFoldersResponse = foldersResponse.folders;
-        beautifyTheLogs("[CALL] PROFILE : " + endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne");
-        beautifyTheLogs("[CALL] PRODUCTS : " + endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-        beautifyTheLogs("[CALL] ACTIVITIES : " + endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-        beautifyTheLogs("[CALL] FOLDERS : " + endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
+        beautifyTheLogs("[CALL] PROFILE : " + endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne&lang=" + locale?.substring(0, 2));
+        beautifyTheLogs("[CALL] PRODUCTS : " + endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
+        beautifyTheLogs("[CALL] ACTIVITIES : " + endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
+        beautifyTheLogs("[CALL] FOLDERS : " + endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         if(!formattedProfileResponse || (formattedProfileResponse && Object.keys(formattedProfileResponse).length === 0)) {
             return {
                 redirect: {
@@ -206,6 +211,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         return {
             props: {
                 locale, locales, defaultLocale,
+                production: (req.headers.host?.match("interface.forinov")) ? true : false,
                 profile: formattedProfileResponse || null,
                 products: formattedProductsResponse || null,
                 activities: formattedActivitiesResponse || null,
@@ -213,10 +219,10 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             }
         };
     };
-    const opportunityPromise = await fetch(endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&lang=" + locale?.substring(0, 2) + "&authkey=Sorbonne");
+    const opportunityPromise = await fetch(endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&authkey=Sorbonne" + language);
     const opportunityResponse = await opportunityPromise.json();
     const formattedOpportunityResponse = opportunityResponse;
-    if(!formattedOpportunityResponse) {
+    if(!formattedOpportunityResponse || (formattedOpportunityResponse && formattedOpportunityResponse.ERROR)) {
         return {
             redirect: {
                 destination: "/" + locale + "/404",
@@ -227,6 +233,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             locale, locales, defaultLocale,
+            production: (req.headers.host?.match("interface.forinov")) ? true : false,
             opportunity: formattedOpportunityResponse || null,
         }
     };

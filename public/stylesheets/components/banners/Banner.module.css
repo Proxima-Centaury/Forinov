@@ -28,6 +28,9 @@
     margin: 0px 16px 0px 0px;
     font-size: 16px;
 }
+.recoverBanner > p {
+    color: var(--perfect-black-color);
+}
 @media screen and (max-width: 576px) {
     .identificationBanner > p,
     .recoverBanner > p {
@@ -54,5 +57,6 @@
     color: var(--text-main-color);
 }
 .recoverBanner > .actions > button:hover {
+    color: var(--perfect-black-color);
     background-color: var(--warning-color);
 }

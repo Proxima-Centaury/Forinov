@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { Fragment, Key, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
 import { buildProperties, formatNameForUrl, bindEventListeners, removeEventListeners } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -13,6 +13,11 @@ import Button from "../../components/buttons/button";
 import OpportunityCard from "../cards/opportunity";
 import ProfileCard from "../cards/profile";
 import Accordion from "../accordions/accordion";
+import Format from "../texts/format";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* JSON */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import config from "../../config.json";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -76,46 +81,48 @@ class Transition {
 /* Carousel */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Carousel = ({ states, component, data }: any) => {
-	const parentProps = { states, data };
+	const parentProps = { states, component, data };
     switch(component) {
-        case "HowToCreateAnOpportunity":
-            return <HowToCreateAnOpportunity { ...parentProps }/>;
-        case "HowToRegister":
-            return <HowToRegister { ...parentProps }/>;
-        case "HowToApplyToAnOpportunity":
-            return <HowToApplyToAnOpportunity/>;
-        case "HowToGetStarted":
-            return <HowToGetStarted/>;
-        case "TheLatestOpportunities":
-            return <TheLatestOpportunities { ...parentProps }/>;
+        case "LatestStartups":
+            return <ClassicHorizontal { ...parentProps }/>;
+        case "LatestOpportunities":
+            return <ClassicHorizontal { ...parentProps }/>;
         case "CompaniesLogos":
-            return <CompaniesLogos { ...parentProps }/>;
-        case "PartnersStartups":
-            return <PartnersStartups { ...parentProps }/>
-        case "AnswersToYourQuestions":
-            return <AnswersToYourQuestions { ...parentProps }/>;
+            return <InfiniteScrollHorizontal { ...parentProps }/>;
+        case "HowToGetStarted":
+            return <CustomVertical { ...parentProps }/>;
+        case "HowToCreateOpportunity":
+            return <CustomVertical { ...parentProps }/>;
+        case "StartupAccordions":
+            return <AccordionsHorizontal { ...parentProps }/>;
+        case "CorporationAccordions":
+            return <AccordionsHorizontal { ...parentProps }/>;
+        case "PartnerAccordions":
+            return <AccordionsHorizontal { ...parentProps }/>;
+        case "OpportunityAccordions":
+            return <AccordionsHorizontal { ...parentProps }/>;
+        case "CorporationHowTo":
+            return <StepsCarousel { ...parentProps }/>;
+        case "PartnerHowTo":
+            return <StepsCarousel { ...parentProps }/>;
         default :
             return <Fragment></Fragment>;
     };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Landing ( How To Create An Opportunity ) */
+/* Steps Carousel */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const HowToCreateAnOpportunity = ({ states }: any) => {
+const StepsCarousel = ({ states, component }: any) => {
 	const { translations }: any = states;
+    const { carousels }: any = config;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
-    const opportunityCreationStepsButtons = [
-		translations["Démarrez"],
-		translations["Complétez"],
-		translations["Diffusez"],
-		translations["Profitez"]
-	];
+    const steps: Array<any> = carousels[component];
 	const buttonProps = [ "type", "action", "text" ];
     return <Fragment>
         <div className={ CarouselStyles.steps }>
-            { opportunityCreationStepsButtons.map((button: any, key: number) => {
-                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, "HowToCreateAnOpportunity"), button ];
+            { steps.map((button: any, key: number) => {
+                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, component), button.title ];
                 const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
                 return <Fragment key={ key }>
                     <div className="separator"></div>
@@ -124,99 +131,64 @@ const HowToCreateAnOpportunity = ({ states }: any) => {
             }) }
             <div className="separator"></div>
         </div>
-        <div className={ CarouselStyles.container } data-carousel="HowToCreateAnOpportunity">
-            { opportunityCreationStepsButtons.map((step: any, key: number) => {
+        <div className={ CarouselStyles.container } data-carousel={ component }>
+            { steps.map((step: any, key: number) => {
                 return <div key={ key } className={ CarouselStyles.item } data-index={ key }>
-                    { step }
+                    <div className={ CarouselStyles.stepContent }>
+                        <h4>{ translations[step.title] }</h4>
+                        <ul>
+                            { step.list.map((item: String, key: KeyType) => <li key={ key }>
+                                <div><i className="fa-light fa-arrow-right"/><Format content={ translations[item as keyof Object] }/></div>
+                            </li>) }
+                        </ul>
+                    </div>
+                    <div className={ CarouselStyles.stepPicture }>
+                        <Image src={ step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                    </div>
                 </div>;
             }) }
         </div>
     </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Landing ( How To Register ) */
+/* Custom Vertical */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const HowToRegister = ({ states }: any) => {
+const CustomVertical = ({ states, component }: any) => {
 	const { translations }: any = states;
-    const transitionInstance = new Transition();
-    const transitionHandler = transitionInstance.handleTransitionWithSteps;
-    const opportunityCreationStepsButtons = [
-		translations["Complétez"],
-		translations["Validez"],
-		translations["Créez"],
-		translations["Profitez"]
-	];
-	const buttonProps = [ "type", "action", "text" ];
-    return <Fragment>
-        <div className={ CarouselStyles.steps }>
-            { opportunityCreationStepsButtons.map((button: any, key: number) => {
-                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, "HowToCreateAnOpportunity"), button ];
-                const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
-                return <Fragment key={ key }>
-                    <div className="separator"></div>
-                    <Button { ...stepButtonObject as ButtonInterface } index={ key }/>
-                </Fragment>;
-            }) }
-            <div className="separator"></div>
-        </div>
-        <div className={ CarouselStyles.container } data-carousel="HowToCreateAnOpportunity">
-            { opportunityCreationStepsButtons.map((step: any, key: number) => {
-                return <div key={ key } className={ CarouselStyles.item } data-index={ key }>
-                    { step }
-                </div>;
-            }) }
-        </div>
-    </Fragment>;
-};
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Landing ( How To Apply To An Opportunity ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const HowToApplyToAnOpportunity = () => {
-    const opportunityCreationStepsButtons = [ "", "", "" ];
+    const { carousels }: any = config;
+    const steps: Array<any> = carousels[component];
     return <Fragment>
         <div className={ CarouselStyles.steps } data-direction="vertical">
-            { opportunityCreationStepsButtons.map((button: any, key: number) => <Fragment key={ key }>
+            { steps.map((button: any, key: number) => <Fragment key={ key }>
                 <div className="separatorVertical"></div>
                 <button>
-                    <i className={ (key === opportunityCreationStepsButtons.length - 1) ? "fa-light fa-check" : "fa-light fa-chevron-down" }/>
+                    <i className={ (key === steps.length - 1) ? "fa-light fa-check" : "fa-light fa-chevron-down" }/>
                 </button>
             </Fragment>) }
         </div>
-        <div className={ CarouselStyles.container } data-direction="vertical" data-carousel="HowToApplyToAnOpportunity">
-            { opportunityCreationStepsButtons.map((step: any, key: number) => <div key={ key } className={ CarouselStyles.item } data-index={ key }>
-                { (key % 2 === 0) ? <div>Text</div> : <div>Picture</div> }
-                { (key % 2 === 0) ? <div>Picture</div> : <div>Text</div> }
+        <div className={ CarouselStyles.container } data-direction="vertical" data-carousel={ component }>
+            { steps.map((step: any, key: number) => <div key={ key } className={ CarouselStyles.item } data-index={ key }>
+                { (key % 2 === 1) ? <div>
+                    <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
+                    <Format content={ translations[step.text] }/>
+                </div> : <div>
+                    <Image src={ step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                </div> }
+                { (key % 2 === 1) ? <div>
+                    <Image src={ step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                </div> : <div>
+                    <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
+                    <Format content={ translations[step.text] }/>
+                </div> }
             </div>) }
         </div>
     </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Landing ( How To Get Started ) */
+/* Classic Horizontal */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const HowToGetStarted = () => {
-    const opportunityCreationStepsButtons = [ "", "", "" ];
-    return <Fragment>
-        <div className={ CarouselStyles.steps } data-direction="vertical">
-            { opportunityCreationStepsButtons.map((button: any, key: number) => <Fragment key={ key }>
-                <div className="separatorVertical"></div>
-                <button>
-                    <i className={ (key === opportunityCreationStepsButtons.length - 1) ? "fa-light fa-check" : "fa-light fa-chevron-down" }/>
-                </button>
-            </Fragment>) }
-        </div>
-        <div className={ CarouselStyles.container } data-direction="vertical" data-carousel="HowToApplyToAnOpportunity">
-            { opportunityCreationStepsButtons.map((step: any, key: number) => <div key={ key } className={ CarouselStyles.item } data-index={ key }>
-                { (key % 2 === 0) ? <div>Text</div> : <div>Picture</div> }
-                { (key % 2 === 0) ? <div>Picture</div> : <div>Text</div> }
-            </div>) }
-        </div>
-    </Fragment>;
-};
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Landing ( The Latest Opportunities ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const TheLatestOpportunities = ({ states, data }: any) => {
-	const { translations }: any = states;
+const ClassicHorizontal = ({ states, component, data }: any) => {
+	const { translations, RGB }: any = states;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithArrows;
     const buttonProps = [ "type", "faIcon", "faIconClass", "action" ];
@@ -225,124 +197,103 @@ const TheLatestOpportunities = ({ states, data }: any) => {
     const rightButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-right", (event: MouseEvent) => transitionHandler(event, "right") ];
     const rightButtonObject = buildProperties(buttonProps, rightButtonValues);
     const scrollHandler = (event: any) => {
-        event.preventDefault();
+        if(window.innerWidth > 576) {
+            event.preventDefault();
+        };
         const target = event.target;
         const preciseTarget = target.closest("." + CarouselStyles.container);
         return transitionInstance.handleTransition(event, preciseTarget);
     };
     useEffect(() => {
-        let carousel = document.querySelector("[class*='opportunity'] > div > ." + CarouselStyles.container);
+        let carousel = document.querySelector("[data-carousel='" + component + "']." + CarouselStyles.container);
         (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) : null;
         return () => removeEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) as any;
     });
+    const Items = () => {
+        switch(component) {
+            case "LatestStartups":
+                return data.map((startup: any, key: KeyType) => {
+                    const type = "startup";
+                    const profile = startup;
+                    const page = "landing";
+                    const cardProps = { type, profile, states, page };
+                    const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
+                    return <Link key={ key } href={ url } data-card="profile">
+                        <ProfileCard { ...cardProps }/>
+                    </Link>;
+                });
+            case "LatestOpportunities":
+                return data.map((opportunity: any, key: KeyType) => {
+                    const index = key + 1;
+                    const maxVisibleByDefault = undefined;
+                    const cardProps = { opportunity, index, maxVisibleByDefault, translations, RGB };
+                    return <OpportunityCard key={ key } { ...cardProps }/>;
+                });
+            default:
+                return <div></div>;
+        };
+    };
     return <Fragment>
-        <div className={ CarouselStyles.container }>
+        <div className={ CarouselStyles.container } data-carousel={ component }>
             <div className={ CarouselStyles.arrows }>
                 <Button { ...leftButtonObject as ButtonInterface }/>
                 <Button { ...rightButtonObject as ButtonInterface }/>
             </div>
-            { data.map((opportunity: any, key: KeyType) => {
-                const index = key + 1;
-                const maxVisibleByDefault = undefined;
-                const cardProps = { opportunity, index, maxVisibleByDefault, translations };
-                return <OpportunityCard key={ key } { ...cardProps }/>;
-            }) }
+            <Items/>
         </div>
     </Fragment>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Landing ( Companies Logos ) */
+/* Infinite Scroll Horizontal */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const CompaniesLogos = ({ data }: any) => {
+const InfiniteScrollHorizontal = ({ component, data }: any) => {
+    const Items = () => {
+        switch(component) {
+            case "CompaniesLogos":
+                return data.map(({ id, type, name, logo }: any, key: KeyType) => {
+                    type = (type.match(/(entreprise)/i)) ? "corporation" : type;
+                    type = (type.match(/(partenaire)/i)) ? "partner" : type;
+                    if(parseInt(key) < 14) {
+                        const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
+                        return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
+                            <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
+                        </Link>;
+                    };
+                });
+            default:
+                return <div></div>;
+        };
+    };
     return <div className={ CarouselStyles.infinite }>
         <div className={ CarouselStyles.firstCopy }>
-            { data.map(({ id, type, name, logo }: any, key: KeyType) => {
-                type = (type.match(/(entreprise)/i)) ? "corporation" : type;
-                type = (type.match(/(partenaire)/i)) ? "partner" : type;
-                if(parseInt(key) < 14) {
-                    const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
-                    return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
-                        <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
-                    </Link>;
-                };
-            }) }
+            <Items/>
         </div>
         <div className={ CarouselStyles.secondCopy }>
-            { data.map(({ id, type, name, logo }: any, key: KeyType) => {
-                type = (type.match(/(entreprise)/i)) ? "corporation" : type;
-                type = (type.match(/(partenaire)/i)) ? "partner" : type;
-                if(parseInt(key) < 14) {
-                    const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
-                    return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
-                        <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
-                    </Link>;
-                };
-            }) }
+            <Items/>
         </div>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Landing ( Partners Startups ) */
+/* Accordions Horizontal */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const PartnersStartups = ({ states, data }: any) => {
-    const transitionInstance = new Transition();
-    const transitionHandler = transitionInstance.handleTransitionWithArrows;
-    const buttonProps = [ "type", "faIcon", "faIconClass", "action" ];
-    const leftButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-left", (event: MouseEvent) => transitionHandler(event, "left") ];
-    const leftButtonObject = buildProperties(buttonProps, leftButtonValues);
-    const rightButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-right", (event: MouseEvent) => transitionHandler(event, "right") ];
-    const rightButtonObject = buildProperties(buttonProps, rightButtonValues);
-    const scrollHandler = (event: any) => {
-        event.preventDefault();
-        const target = event.target;
-        const preciseTarget = target.closest("." + CarouselStyles.container);
-        return transitionInstance.handleTransition(event, preciseTarget);
-    };
-    useEffect(() => {
-        let carousel = document.querySelector("[class*='startups'] > div > ." + CarouselStyles.container);
-        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) : null;
-        return () => removeEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) as any;
-    });
-    return <Fragment>
-        <div className={ CarouselStyles.container }>
-            <div className={ CarouselStyles.arrows }>
-                <Button { ...leftButtonObject as ButtonInterface }/>
-                <Button { ...rightButtonObject as ButtonInterface }/>
-            </div>
-            { data.map((startup: any, key: KeyType) => {
-                const type = "startup";
-                const profile = startup;
-                const page = "landing";
-                const cardProps = { type, profile, states, page };
-                const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
-                return <Link key={ key } href={ url } data-card="profile">
-                    <ProfileCard { ...cardProps }/>
-                </Link>;
-            }) }
-        </div>
-    </Fragment>;
-};
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Landing ( Answers To Your Questions ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const AnswersToYourQuestions = ({ states, data }: any) => {
+const AccordionsHorizontal = ({ states, component, data }: any) => {
 	const { translations }: any = states;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
-	const questionsButtons = [
-		translations["Général"],
-		translations["La communauté Forinov"]
-	];
-	const buttonProps = [ "type", "action", "text" ];
+    const buttonProps = [ "type", "action", "text" ];
+    const questionsButtons = [
+        translations["Général"],
+        translations["La communauté Forinov"]
+    ];
     return <Fragment>
         <div className={ CarouselStyles.actions }>
             { questionsButtons.map((button: any, key: number) => {
-                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, "AnswersToYourQuestions"), button ];
+                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, component), button ];
                 const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
                 return <Button key={ key } { ...stepButtonObject as ButtonInterface } index={ key }/>;
             }) }
         </div>
-        <div className={ CarouselStyles.container } data-carousel="AnswersToYourQuestions">
+        <div className={ CarouselStyles.container } data-carousel={ component }>
             { (data) ? data.map((accordion: any, key: KeyType) => <div key={ key } className={ CarouselStyles.item }>
                 <Accordion data={ accordion } translations={ translations }/>
             </div>) : null }

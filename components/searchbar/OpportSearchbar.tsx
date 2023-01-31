@@ -66,7 +66,6 @@ const OpportSearchbar = (props: any) => {
 		}
 
 		//On gère les éléments du DOM pour un feedback user
-		console.log(element);
     //si l'attribut data-selected est false
     if (element.getAttribute("data-selected") === "false") { 
       element.children[0].style.color = "#006dff";

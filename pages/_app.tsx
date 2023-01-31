@@ -38,6 +38,8 @@ const App = ({ Component, pageProps }: AppProps) => {
     const [ theme, setTheme ] = useState(getCookie("forinov_theme_preference") || "light");
     const [ lock, setLock ] = useState(true);
     const [ modal, setModal ] = useState(null);
+    const [ RGB, setRGB ] = useState(false);
+    const [ production, setProduction ] = useState(pageProps.production);
     useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
     useEffect(() => {
         let refresh = null;
@@ -62,6 +64,8 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.states["theme"] = theme;
     pageProps.states["lock"] = lock;
     pageProps.states["modal"] = modal;
+    pageProps.states["RGB"] = RGB;
+    pageProps.states["production"] = production;
     pageProps.stateSetters = {};
     pageProps.stateSetters["setLocale"] = setLocale;
     pageProps.stateSetters["setLocales"] = setLocales;
@@ -70,6 +74,8 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.stateSetters["setTheme"] = setTheme;
     pageProps.stateSetters["setLock"] = setLock;
     pageProps.stateSetters["setModal"] = setModal;
+    pageProps.stateSetters["setRGB"] = setRGB;
+    pageProps.stateSetters["setProduction"] = setProduction;
     pageProps.config = config;
     return <>
         <Head>
@@ -86,7 +92,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <Footer { ...pageProps }/>
         </Transition>
         <Modal { ...pageProps }/>
-        <Devtools { ...pageProps }/>
+        { (!production) ? <Devtools { ...pageProps }/> : null }
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

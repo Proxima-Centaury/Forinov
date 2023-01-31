@@ -1,7 +1,6 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useState, useEffect } from "react";
 import { remainingTime } from "../../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -18,13 +17,13 @@ import OpportunityStyles from "../../../public/stylesheets/components/cards/Oppo
 /* Opportunity Preview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const OpportunityPreview = ({ opportunity, states }: any) => {
-    const { translations }: any = states;
+    const { translations, RGB }: any = states;
     const ownerLogo = opportunity.opportunity_owner_logo || null;
     const ownerName = opportunity.opportunity_owner_name || null;
     const title = opportunity.opportunity_name || null;
-    const type = opportunity.opportunity_type[1];
+    const type = (opportunity.opportunity_type) ? opportunity.opportunity_type[1] : null;
     const category = opportunity.opportunity_category || null;
-    const tags = opportunity.opportunity_tags.split(",").map((tag: any, key: KeyType) => ({ ID: key, NAME: tag })) || null;
+    const tags = (opportunity.opportunity_tags) ? opportunity.opportunity_tags.split(",").map((tag: any, key: KeyType) => ({ ID: key, NAME: tag })) : null;
     const privacy = opportunity.opportunity_privacy || null;
     const description = opportunity.opportunity_desc || null;
     const eligibility = opportunity.opportunity_eligibility || null;
@@ -32,10 +31,10 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
     const endingDate = opportunity.opportunity_endingdate || null;
     const endingDateDisplay = opportunity.opportunity_endingdate_display || null;
     const remainingTimeString = opportunity.remaining_time || null;
-    const countries = Object.values(opportunity.opportunity_country).map((country: any) => country.NAME);
+    const countries = (opportunity.opportunity_country) ? Object.values(opportunity.opportunity_country).map((country: any) => country.NAME) : null;
     const background = opportunity.opportunity_background || null;
     return <div className={ PreviewStyles.opportunityPreview }>
-        <div className={ PreviewStyles.background }>
+        <div className={ PreviewStyles.background } data-opportunity-type={ (type && type.ID) ? type.ID : "" } data-rgb={ (RGB) ? "enabled" : "disabled" }>
             { (background) ? <Image src={ background } width="3840" height="2160" alt={ translations["Bannière d'opportunité"] + "." }/> : null }
         </div>
         <div className={ PreviewStyles.identification }>
@@ -44,18 +43,18 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
             </div>
             <div className={ PreviewStyles.data }>
                 <h3>{ ownerName + " — " }<span>{ title }</span></h3>
-                <div className={ OpportunityStyles.type } data-type={ (type && type.ID) ? type.ID : "" }>
-                    <Tags tags={ Object.entries({ "0": type.NAME }) } main={ true }/>
+                <div className={ OpportunityStyles.type } data-opportunity-type={ (type && type.ID) ? type.ID : "" }>
+                    { (type && type.NAME) ? <Tags tags={ Object.entries({ "0": type.NAME }) } main={ true }/> : null }
                 </div>
             </div>
         </div>
         <div className="separator"></div>
         <div className={ PreviewStyles.informations }>
             { (endingDate) ? <p>{ translations["Expire le"] + " " + endingDateDisplay }</p> : null }
-            <div style={ { margin: "0px 16px 0px 0px !important" } }>
+            { (startingDate && remainingTimeString) ? <div style={ { margin: "0px 16px 0px 0px !important" } }>
                 <i className="fa-light fa-calendar"/>
                 <p>{ remainingTime(remainingTimeString, startingDate, null, translations) }</p>
-            </div>
+            </div> : null }
             { (countries && countries.length <= 3) ? <p>{ translations["Localisations"] + " : " + ((countries) ? countries.join(", ") : translations["Non-défini"]) }</p> : null }
             { (countries && countries.length > 3) ? <p>{ translations["Localisations"] + " : " + ((countries) ? countries.splice(0, 3).join(", ") + ", +" + countries.length : translations["Non-défini"]) }</p> : null }
             { (privacy) ? <div>
@@ -65,18 +64,19 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
         </div>
         <div className="separator"></div>
         <div className={ PreviewStyles.description }>
-            <Format content={ description }/>
+            { (description) ? <Format content={ description }/> : <p>{ translations["Non renseigné"] + "." }</p> }
         </div>
         <div className="separator"></div>
         <div className={ PreviewStyles.eligibility }>
             <h4 className="mainTitleBold">{ translations["Critères d'éligibilité"] + " :" }</h4>
-            <Format content={ eligibility }/>
+            { (eligibility) ? <Format content={ eligibility }/> : <p>{ translations["Non renseigné"] + "." }</p> }
         </div>
         <div className="separator"></div>
         <div className={ PreviewStyles.tags }>
             { (category) ? <Tags tags={ Object.values(category) } main={ true }/> : null }
             { (tags) ? <Tags tags={ tags }/> : null }
         </div>
+        <div className="separator"></div>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

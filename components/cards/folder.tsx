@@ -2,7 +2,7 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { useRouter } from "next/router";
-import { uppercaseFirst } from "../../scripts/utilities";
+import { uppercaseFirst, formatNameForUrl } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -17,8 +17,7 @@ import FolderStyles from "../../public/stylesheets/components/cards/Folder.modul
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const FolderCard = ({ folder, index, maxVisibleByDefault = 2 }: any) => {
     const route = useRouter();
-    const { type, id }: any = route.query;
-    return <Link href={ "/annuaires/" + type + "/" + id + "/folders/" + folder.id } className={ FolderStyles.folder + ((index > maxVisibleByDefault) ? " hidden" : "") }>
+    return <Link href={ route.asPath + "/folders/" + formatNameForUrl(folder.name) + "_" + folder.id } className={ FolderStyles.folder + ((index > maxVisibleByDefault) ? " hidden" : "") }>
         <div className={ FolderStyles.content }>
             <div className={ FolderStyles.geometry }></div>
             { (folder.startups.length > 0 && folder.startups.length <= 3) ? <div className={ FolderStyles.startups }>

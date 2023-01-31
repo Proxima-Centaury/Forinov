@@ -19,7 +19,7 @@ const ProfileActivities = ({ type, profile, states }: any) => {
                 <div className={ ActivityStyles.marker }></div>
                 <div className={ ActivityStyles.content }>
                     <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
-                    <p className={ ActivityStyles.user }>{ profile.NAME }</p>
+                    <p className={ ActivityStyles.user }>{ profile.NAME }<i className="fa-brands fa-twitter"/></p>
                     <p>{ translations["Aucun profil renseigné"] + "." }</p>
                 </div>
             </div> }
@@ -27,7 +27,7 @@ const ProfileActivities = ({ type, profile, states }: any) => {
                 <div className={ ActivityStyles.marker }></div>
                 <div className={ ActivityStyles.content }>
                     <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
-                    <p className={ ActivityStyles.user }>{ profile.NAME }</p>
+                    <p className={ ActivityStyles.user }>{ profile.NAME }<i className="fa-brands fa-facebook-f"/></p>
                     <p>{ translations["Aucun profil renseigné"] + "." }</p>
                 </div>
             </div> }
@@ -42,7 +42,7 @@ const TwitterFeed = ({ profile }: any) => {
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content }>
             <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
-            <p className={ ActivityStyles.user }>{ profile.NAME }</p>
+            <p className={ ActivityStyles.user }>{ profile.NAME }<i className="fa-brands fa-twitter"/></p>
             <a className="twitter-timeline" href={ profile.TWITTER } data-height="400">Tweets by Forinov</a>
             <script async src="https://platform.twitter.com/widgets.js"></script>
         </div>
@@ -62,7 +62,7 @@ const FacebookFeed = ({ profile }: any) => {
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content } style={ { minHeight: "400px" } }>
             <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
-            <p className={ ActivityStyles.user }>{ profile.NAME }</p>
+            <p className={ ActivityStyles.user }>{ profile.NAME }<i className="fa-brands fa-facebook-f"/></p>
             <iframe { ...iframeProps }></iframe>
         </div>
     </div>;

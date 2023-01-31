@@ -51,9 +51,7 @@ const ProfileMenu = ({ type, states }: any) => {
         return (container) ? scrollTo(0, container.offsetTop) : null;
     };
     useEffect(() => {
-        const scrollMenuDisplayHandler = () => {
-            console.log(window.scroll)
-        };
+        const scrollMenuDisplayHandler = () => {}; // TODO Animate menu on content scroll
         window.addEventListener("scroll", scrollMenuDisplayHandler);
         return () => window.removeEventListener("scroll", scrollMenuDisplayHandler);
     }, []);

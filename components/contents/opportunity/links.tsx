@@ -1,35 +1,39 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Image from "next/image";
-import Format from "../texts/format";
+import Link from "next/link";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import ActivityStyles from "../../public/stylesheets/components/cards/Activity.module.css";
+import LinksStyles from "../../../public/stylesheets/components/contents/opportunity/Links.module.css";
+import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Activity Card */
+/* Opportunity Links */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ActivityCard = ({ event, index, maxVisibleByDefault = 3 }: any) => {
-    // const activityTimestamp = (date: string) => {
-    //     const activityDate = new Date(date);
-    //     const currentDate = new Date();
-    //     const timeDifference = currentDate.getTime() - activityDate.getTime();
-    //     const daysDifference = Math.round(timeDifference / (1000 * 3600 * 24));
-    //     return daysDifference;
-    // };
-    // activityTimestamp(event.DATE);
-    return <div className={ ActivityStyles.activity + ((index > maxVisibleByDefault) ? " hidden" : "") }>
-        <div className={ ActivityStyles.marker }></div>
-        <div className={ ActivityStyles.content }>
-            <Image src={ event.LOGO } alt={ "Logo de la structure " + event.NAME + "." } width="55" height="55"/>
-            <p className={ ActivityStyles.user }>{ event.NAME }</p>
-            <Format content={ event.CONTENT }/>
-            {/* <p className={ ActivityStyles.time }>{ activityTimestamp(event.DATE) + "d" }</p> */}
+const OpportunityLinks = ({ states }: any) => {
+    const { translations }: any = states;
+    return <div className={ LinksStyles.container }>
+        <div>
+            <Link href={ "/" } className={ ButtonStyles.callToActionStep }>
+                <i className="fa-light fa-chart-network"/>
+                <p>{ translations["Partager"] }</p>
+            </Link>
+            <Link href={ "/" } className={ ButtonStyles.callToActionStep }>
+                <i className="fa-light fa-calendar"/>
+                <p>{ translations["Ajouter à mon calendrier"] }</p>
+            </Link>
+            <Link href={ "/directories/opportunities" } className={ ButtonStyles.callToActionStep }>
+                <i className="fa-light fa-star"/>
+                <p>{ translations["Voir toutes les opportunités"] }</p>
+            </Link>
         </div>
+        <Link href={ "/" } className={ ButtonStyles.callToActionWide }>
+            <i className="fa-light fa-file-signature"/>
+            <p>{ translations["Postuler"] }</p>
+        </Link>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default ActivityCard;
+export default OpportunityLinks;

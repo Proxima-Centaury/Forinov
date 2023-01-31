@@ -20,7 +20,6 @@ const Opportunity = ({ opportunity, states, stateSetters }: any) => {
 	const [copied, setCopied] = useState(false);
 	const [showMore, setShowMore] = useState(false);
 	const categoryLimit = 4;
-	console.log(opportunity);
 	if (opportunity.ERROR.length > 0) {
 		return (
 			<div className="container">
