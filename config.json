@@ -1,6 +1,7 @@
 {
+    "host": "https://dev.forinov.fr",
     "api": {
-        "endpoint": "https://www.forinov.fr/remote/back/api.php",
+        "endpoint": "https://dev.forinov.fr/remote/back/api.php",
         "queries": {
             "getProfile": "V5_GET_PROFILE",
             "getProducts": "V5_GET_PRODUCTS",

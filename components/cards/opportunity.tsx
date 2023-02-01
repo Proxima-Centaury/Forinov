@@ -20,15 +20,14 @@ const OpportunityCard = ({ opportunity, index, maxVisibleByDefault, translations
     const ownerName = opportunity.opportunity_owner_name || null;
     const id = opportunity.opportunity_id || null;
     const title = opportunity.opportunity_name || null;
-    const type = opportunity.opportunity_type[0] || opportunity.opportunity_type || null;
+    const type = opportunity.opportunity_type || null;
     const language = opportunity.opportunity_lang || null;
     const privacy = opportunity.opportunity_privacy || null;
     const description = opportunity.opportunity_desc || null;
     const remainingTimeString = opportunity.remaining_time || null;
     const background = opportunity.opportunity_background || null;
-    console.log(type)
     return <Link href={ "/directories/opportunities/" + formatNameForUrl(title) + "_" + id } className={ OpportunityStyles.opportunity + ((index > maxVisibleByDefault) ? " hidden" : "") } data-card="opportunity" data-index={ index - 1 } data-rgb={ (RGB) ? "enabled" : "disabled" }>
-        <div className={ OpportunityStyles.background } data-opportunity-type={ (type && type.ID) ? type.ID : "" }>
+        <div className={ OpportunityStyles.background } data-opportunity-type={ type[0].ID || "" }>
             { (background) ? <Image src={ background } alt={ "Image de fond de l'opportunité " + title + "." } width="3840" height="2160"/> : null }
             { (language === "en") ? <div className={ OpportunityStyles.informations }>
                 <p>{ translations["Anglais"] }</p>
@@ -49,8 +48,8 @@ const OpportunityCard = ({ opportunity, index, maxVisibleByDefault, translations
                     </div>
                 </div>
                 <h3>{ (title) ? uppercaseFirst(title) : translations["Nom non-défini"] }</h3>
-                { (type) ? <div className={ OpportunityStyles.type } data-opportunity-type={ (type && type.ID) ? type.ID : "" }>
-                    <Tags tags={ Object.entries({ "0": type.NAME }) } main={ true }/>
+                { (type) ? <div className={ OpportunityStyles.type } data-opportunity-type={ type[0].ID || "" }>
+                    <Tags tags={ type } main={ true }/>
                 </div> : null }
                 <div className="separator"></div>
                 { (remainingTimeString) ? <div className={ OpportunityStyles.remainingTime }>
