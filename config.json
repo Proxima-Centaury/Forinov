@@ -1,4 +1,5 @@
 {
+    "host": "https://www.forinov.fr",
     "api": {
         "endpoint": "https://www.forinov.fr/remote/back/api.php",
         "queries": {
