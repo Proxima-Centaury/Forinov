@@ -20,6 +20,7 @@
 .notFound > p {
     font-size: 20px;
     color: var(--text-inactive-color);
+    text-align: center;
 }
 .notFound > button {
     margin: 16px auto auto auto;
