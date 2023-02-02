@@ -1,9 +1,17 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { useState, useRef } from "react";
+import { GetServerSideProps } from "next";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef } from "react";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* JSON */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import config from "../../../config.json";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Directory */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -375,11 +383,15 @@ const Directory = ({ data, filters, key }: any) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Props */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export async function getServerSideProps(context: any) {
-    const { locale, locales, defaultLocale }: any = context;
-
-    const type = context.query.type;
-
+const getServerSideProps: GetServerSideProps = async (context) => {
+    const { req, res, query, locale, locales, defaultLocale } = context;
+    let { id, type }: any = query;
+	const { endpoint, queries } = config.api;
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+    id = id?.substring(id.indexOf("_") + 1, id.length);
+    const language = "&lang=" + locale?.substring(0, 2);
+    if(!type.match(/(opport)/)) {
+    };
     let data: any = [];
     let index: number = 0;
     let key: any = "";
@@ -417,9 +429,16 @@ export async function getServerSideProps(context: any) {
 
     const filters = filtersRes[index][key];
     // On passe les deux variables au composant via les props
-    return { props: { locale, locales, defaultLocale, data, filters, key } };
+    return {
+        props: {
+            locale, locales, defaultLocale,
+            production: (req.headers.host?.match("interface.forinov")) ? true : false,
+            data, filters, key
+        }
+    };
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 export default Directory;
+export { getServerSideProps };
