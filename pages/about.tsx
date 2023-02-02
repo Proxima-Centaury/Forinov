@@ -7,6 +7,7 @@ import { HomeInterface } from "../typescript/interfaces";
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/image";
+import { Fragment } from "react";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -37,12 +38,12 @@ const About = (pageProps: HomeInterface) => {
         </div>
         <div className={"container " + AboutStyles.descriptionContainer}>
         <p className={AboutStyles.description}>
-            {translations["about_paragraphs"].map((paragraph: string, index: number) => (
-            <>
-                <span key={index}>{paragraph}</span>
+            {translations["about_paragraphs"].map((paragraph: string, key: number) => (
+            <Fragment key={ key }>
+                <span>{paragraph}</span>
                 <br />
                 <br />
-            </>
+            </Fragment>
             ))}
         </p>
         <Image className={ AboutStyles.descriptionImg } src="/assets/landings/about-2.svg" alt="Picture of the author" width={ 500 } height={ 500 }/>
