@@ -40,7 +40,6 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
     const remainingTimeString = opportunity.remaining_time || null;
     const countries = (opportunity.opportunity_country) ? Object.values(opportunity.opportunity_country).map((country: any) => country.NAME) : null;
     const background = opportunity.opportunity_background || null;
-    console.log(attachments)
     return <div className={ PreviewStyles.opportunityPreview }>
         <div className={ PreviewStyles.background } data-opportunity-type={ type[0].ID || "" } data-rgb={ (RGB) ? "enabled" : "disabled" }>
             { (background) ? <Image src={ background } width="3840" height="2160" alt={ translations["Bannière d'opportunité"] + "." }/> : null }

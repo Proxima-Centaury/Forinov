@@ -11,9 +11,9 @@ import TargetsStyles from "../../../public/stylesheets/components/contents/profi
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileTargets = ({ profile, states }: any) => {
     const { lock, translations }: any = states;
-    const sectors = Object.entries(profile.TARGETSECTORS) || [];
-    const jobs = Object.entries(profile.TARGETJOBS) || [];
-    const partnerships = Object.entries(profile.TARGETPARTNERSHIP) || [];
+    const sectors = profile.TARGETSECTORS || [];
+    const jobs = profile.TARGETJOBS || [];
+    const partnerships = profile.TARGETPARTNERSHIP || [];
     return <div className={ TargetsStyles.targets }>
         <div className={ TargetsStyles.details }>
             <div>

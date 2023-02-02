@@ -173,6 +173,9 @@
     width: 100%;
     padding: 0px 16px 8px 152px;
 }
+.tags:last-child {
+    margin: 0px 0px 8px 0px;
+}
 @media screen and (max-width: 992px) {
     .tags {
         padding: 0px 16px 8px 16px;

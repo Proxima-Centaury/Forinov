@@ -9,7 +9,6 @@ import { beautifyTheLogs, buildProperties } from "../../../../scripts/utilities"
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Link from "next/link";
 import IdenfiticationBanner from "../../../../components/banners/identification";
 import RecoverBanner from "../../../../components/banners/recover";
 import ProfileCard from "../../../../components/cards/profile";
@@ -45,7 +44,7 @@ import ButtonStyles from "../../../../public/stylesheets/components/buttons/Butt
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const DirectoryIdPage = ({ profile, products, activities, folders, opportunity, states, stateSetters }: ProfileInterface) => {
     const router = useRouter();
-    const { translations, session, lock }: any = states;
+    const { session, lock }: any = states;
     const { setModal }: any = stateSetters;
     let { type } = router.query;
     if(type) {

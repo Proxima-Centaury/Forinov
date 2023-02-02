@@ -50,8 +50,8 @@ const ProfileCard = ({ type, profile, states, page }: any) => {
                 <div className={ ProfileStyles.description }>
                     <Format content={ profile.COMMENT }/>
                 </div>
-                { (profile.CATEGORY) ? <Tags tags={ Object.entries(profile.CATEGORY) } main={ true }/> : null }
-                { (profile.TAGS) ? <Tags tags={ Object.entries(profile.TAGS) }/> : null }
+                { (profile.CATEGORY.length > 0) ? <Tags tags={ profile.CATEGORY } main={ true }/> : null }
+                { (profile.TAGS) ? <Tags tags={ profile.TAGS.split(",") }/> : null }
                 { (type === "startup" && page !== "landing") ? <div className="separator"></div> : null }
                 { (type === "startup" && page !== "landing") ? <div className={ ProfileStyles.stats }>
                     { (profile.CREATIONDATE) ? <div>

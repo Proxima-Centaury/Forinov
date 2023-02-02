@@ -12,8 +12,8 @@ import GoalsStyles from "../../../public/stylesheets/components/contents/profile
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileGoals = ({ type, profile, products, activities, states, stateSetters }: any) => {
     const { lock, translations }: any = states;
-    const partnerships = (type !== "partner") ? Object.entries(profile.PARTNER_SEARCH) || [] : [];
-    const domains = Object.entries(profile.STARTUP_SEARCH) || [];
+    const partnerships = (type !== "partner") ? profile.PARTNER_SEARCH || [] : [];
+    const domains = profile.STARTUP_SEARCH || [];
     const parentProps = { type, profile, products, activities, states, stateSetters };
     return <div id="goals" className={ GoalsStyles.goals }>
         <h3>{ translations["Objectifs et offres"] }</h3>
