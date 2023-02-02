@@ -14,7 +14,8 @@ import ServerErrorStyles from "../public/stylesheets/pages/ServerError.module.cs
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Error */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ServerError = ({ states }: ServerErrorInterface) => {
+const ServerError = (pageProps: ServerErrorInterface) => {
+    const { states }: any = pageProps;
     const { translations }: any = states;
     return <>
         <Head>
