@@ -14,18 +14,18 @@ import LoginCard from "../components/cards/login";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Login */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Login = ({ locales, states, stateSetters, config }: LoginInterface) => {
+const Login = (pageProps: LoginInterface) => {
     const router = useRouter();
+    const { states }: any = pageProps;
     const { locale, session, translations }: any = states;
     useEffect(() => { (session) ? redirectTo("/", router, locale) : null });
-    const parentProps = { locales, states, stateSetters, config };
     const title = "Forinov - " + translations["Connexion"] as String;
     return <>
         <Head>
             <title>{ title }</title>
         </Head>
         <div className="container">
-            <LoginCard { ...parentProps }/>
+            <LoginCard { ...pageProps }/>
         </div>
     </>;
 };
