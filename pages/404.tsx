@@ -14,7 +14,8 @@ import NotFoundStyles from "../public/stylesheets/pages/NotFound.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Not Found */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const NotFound = ({ states }: NotFoundInterface) => {
+const NotFound = (pageProps: NotFoundInterface) => {
+    const { states }: any = pageProps;
     const { translations }: any = states;
     return <>
         <Head>
