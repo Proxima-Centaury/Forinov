@@ -2,7 +2,7 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { ButtonInterface } from "../../typescript/interfaces";
-import { buildProperties } from "../../scripts/utilities";
+import { buildProperties, structureTags } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -51,7 +51,7 @@ const ProfileCard = ({ type, profile, states, page }: any) => {
                     <Format content={ profile.COMMENT }/>
                 </div>
                 { (profile.CATEGORY.length > 0) ? <Tags tags={ profile.CATEGORY } main={ true }/> : null }
-                { (profile.TAGS) ? <Tags tags={ profile.TAGS.split(",") }/> : null }
+                { (profile.TAGS) ? <Tags tags={ structureTags(profile.TAGS) }/> : null }
                 { (type === "startup" && page !== "landing") ? <div className="separator"></div> : null }
                 { (type === "startup" && page !== "landing") ? <div className={ ProfileStyles.stats }>
                     { (profile.CREATIONDATE) ? <div>

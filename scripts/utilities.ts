@@ -7,6 +7,7 @@ import { SelectOption } from "../typescript/types";
 /* JSON */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import config from "../config.json";
+import { stringify } from "querystring";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Utilities */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -28,6 +29,7 @@ import config from "../config.json";
 * @method formatNameForUrl : {@link Utilities.formatNameForUrl};
 * @method bindEventListener : {@link Utilities.bindEventListeners};
 * @method removeEventListeners : {@link Utilities.removeEventListeners};
+* @method structureTags : {@link Utilities.structureTags};
 * @returns
 * - Instance returns ```void``` ( nothing ).
 * ---
@@ -466,6 +468,24 @@ class Utilities {
         };
         listeners.map((listener) => element.removeEventListener(listener as any, callback as any));
     };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function structureTags
+    * @param { String } [ string ] Should be a ```string```.
+    * @returns { Array<any>|Boolean }
+    * - ```array``` of ```object```.
+    * - ```false``` if string parameter missing or wrong.
+    * ---
+    * @note This method is used to return the passed string as an array of objects for proper tag display.
+    * @note The {@link string} parameter should be a string.
+    */
+    structureTags(string: String): Array<any>|Boolean {
+        if(!string || string.length <= 0) {
+            return false;
+        };
+        const array = (string.match(",")) ? string.split(",").map((element, key) => ({ ID: key, NAME: element })) : [ { ID: 0, NAME: string } ];
+        return array;
+    };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Instance */
@@ -490,6 +510,7 @@ const remainingTime = utilities.remainingTime;
 const formatNameForUrl = utilities.formatNameForUrl;
 const bindEventListeners = utilities.bindEventListeners;
 const removeEventListeners = utilities.removeEventListeners;
+const structureTags = utilities.structureTags;
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -510,5 +531,6 @@ export {
     remainingTime,
     formatNameForUrl,
     bindEventListeners,
-    removeEventListeners
+    removeEventListeners,
+    structureTags
 };

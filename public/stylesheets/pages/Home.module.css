@@ -700,7 +700,9 @@
 	}
 }
 .badges[data-type="startup"] > div > div > .badge > div > p,
-.badges[data-type="partner"] > div > div > .badge > div > p {
+.badges[data-type="partner"] > div > div > .badge > div > p,
+.badges[data-type="startup"] > div > div > .badge > div > div,
+.badges[data-type="partner"] > div > div > .badge > div > div {
 	color: var(--perfect-black-color);
 }
 .badges[data-type="startup"] > div > div > [class="separator"] {
