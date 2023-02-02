@@ -1,0 +1,29 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Server Error ( Container ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.serverError {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+}
+.serverError > h1 {
+    font-weight: bold;
+    font-size: 60px;
+    color: var(--logo-blue-color);
+}
+.serverError > p {
+    font-size: 20px;
+    color: var(--text-inactive-color);
+    text-align: center;
+}
+.serverError > button {
+    margin: 16px auto auto auto;
+    color: var(--logo-blue-color);
+    text-decoration: underline;
+}
