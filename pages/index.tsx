@@ -166,25 +166,22 @@ const Home = (pageProps: HomeInterface) => {
 /* Server Side Properties */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-	const { req, res, locale, locales, defaultLocale } = context;
+	const { res, locale, locales, defaultLocale } = context;
 	const { endpoint, queries } = config.api;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const language = "&lang=" + locale?.substring(0, 2);
 	const startupsPromise = await fetch(endpoint + "?q=" + queries.getLandingStartups + "&app=next&authkey=Landing" + language);
     const startupsResponse = await startupsPromise.json();
     const formattedStartupsResponse = startupsResponse;
-	beautifyTheLogs("[CALL] LANDING STARTUPS : " + endpoint + "?q=" + queries.getLandingStartups + "&app=next&authkey=Landing" + language);
 	const landingOpportunitiesPromise = await fetch(endpoint + "?q=" + queries.getLandingOpportunities + "&app=next&authkey=Landing" + language);
     const landingOpportunitiesResponse = await landingOpportunitiesPromise.json();
     const formattedLandingOpportunitiesResponse = Object.values(landingOpportunitiesResponse[0].PROJECT);
-	beautifyTheLogs("[CALL] LANDING OPPORTUNITIES : " + endpoint + "?q=" + queries.getLandingOpportunities + "&app=next&authkey=Landing" + language);
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			production: (req.headers.host?.match("interface.forinov")) ? true : false,
 			opportunities: formattedLandingOpportunitiesResponse,
 			startups: formattedStartupsResponse
-		},
+		}
 	};
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

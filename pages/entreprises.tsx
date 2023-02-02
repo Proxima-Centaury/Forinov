@@ -28,7 +28,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 			locale, locales, defaultLocale,
 			logos: formattedLogosResponse,
 			opportunities: formattedLandingOpportunitiesResponse
-		},
+		}
 	};
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
