@@ -24,9 +24,9 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Home = ({ startups, opportunities, locales, states, stateSetters, config }: HomeInterface) => {
+const Home = (pageProps: HomeInterface) => {
+	const { startups, opportunities, states }: any = pageProps;
 	const { translations }: any = states;
-	const parentProps = { locales, states, stateSetters, config };
 	const title = translations["Forinov, le réseau social de l'open innovation"] as String;
 	return <>
 		<Head>
@@ -143,7 +143,7 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 			<div className={ HomeStyles.startups }>
 				<div>
 					<h4>{ translations["Nos dernières startups inscrites"] + " :" }</h4>
-					<Carousel { ...parentProps } component={ "LatestStartups" } data={ startups }/>
+					<Carousel { ...pageProps } component={ "LatestStartups" } data={ startups }/>
 					<div className={ HomeStyles.actions } data-align="left">
 						<Link href="/directories/startups" className={ ButtonStyles.callToAction }>{ translations["Accéder à l'annuaire des startups"] }</Link>
 					</div>
@@ -152,7 +152,7 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 			<div className={ HomeStyles.opportunity }>
 				<div>
 					<h4>{ translations["Les dernières oppotunités"] + " :" }</h4>
-					<Carousel { ...parentProps } component={ "LatestOpportunities" } data={ opportunities }/>
+					<Carousel { ...pageProps } component={ "LatestOpportunities" } data={ opportunities }/>
 					<div className={ HomeStyles.actions } data-align="left">
 						<Link href="/directories/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir toutes les opportunités"] }</Link>
 						<Link href="/opportunities" className={ ButtonStyles.callToActionAlternative }>{ translations["Qu'est-ce qu'une opportunité"] + " ?" }</Link>
