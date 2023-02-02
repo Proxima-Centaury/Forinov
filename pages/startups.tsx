@@ -23,9 +23,9 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startups Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, config }: HomeInterface) => {
+const StartupsHome = (pageProps: HomeInterface) => {
+	const { opportunities, logos, locales, states, stateSetters, config }: any = pageProps;
 	const { translations }: any = states;
-	const parentProps = { locales, states, stateSetters, config };
 	const title = "Forinov Startups - " + translations["Comment ça marche"] + " ?" as String;
 	return <>
 		<Head>
@@ -45,10 +45,10 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 					<h3>{ translations["Et comment ça marche"] + "?" }</h3>
 					<p>{ translations["S'inscrire sur Forinov c'est simple et rapide"] }</p>
 					<div data-carousel="startup">
-						<Carousel { ...parentProps } component={ "HowToGetStarted" }/>
+						<Carousel { ...pageProps } component={ "HowToGetStarted" }/>
 					</div>
 					<h4>{ translations["Les dernières oppotunités"] + " :" }</h4>
-					<Carousel { ...parentProps } component={ "LatestOpportunities" } data={ opportunities }/>
+					<Carousel { ...pageProps } component={ "LatestOpportunities" } data={ opportunities }/>
 					<div className={ HomeStyles.actions } data-align="left">
 						<Link href="/directories/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir toutes les opportunités"] }</Link>
 						<Link href="/opportunities" className={ ButtonStyles.callToActionAlternative }>{ translations["Qu'est-ce qu'une opportunité"] + " ?" }</Link>
@@ -90,7 +90,7 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 			<div className={ HomeStyles.companies }>
 				<div>
 					<h2>{ translations["Ils nous font confiance pour vous trouver"] + " !" }</h2>
-					<Carousel { ...parentProps } component={ "CompaniesLogos" } data={ logos }/>
+					<Carousel { ...pageProps } component={ "CompaniesLogos" } data={ logos }/>
 					<h2>{ translations["Et oui, Forinov c'est gratuit pour les startups"] }</h2>
 					<h3>{ translations["De l'inscription à la concrétisation, en passant par la prise de contact"] }</h3>
 					<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["J'en profite dès maintenant"] }</Link>
@@ -98,7 +98,7 @@ const StartupsHome = ({ opportunities, logos, locales, states, stateSetters, con
 			</div>
 			<div className={ HomeStyles.questions } data-type="startup">
 				<h2>{ translations["Les réponses à vos questions"] }</h2>
-				<Carousel { ...parentProps } component={ "StartupAccordions" } data={ Object.values(config.accordions.landings.startup) }/>
+				<Carousel { ...pageProps } component={ "StartupAccordions" } data={ Object.values(config.accordions.landings.startup) }/>
 				<p>{ translations["Vous avez des questions"] + " ? " }<Link href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
 			</div>
 		</div>
