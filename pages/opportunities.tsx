@@ -81,7 +81,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 			locale, locales, defaultLocale,
 			production: (req.headers.host?.match("interface.forinov")) ? true : false,
 			logos: formattedLogosResponse
-		},
+		}
 	};
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

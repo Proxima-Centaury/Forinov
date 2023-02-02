@@ -434,7 +434,7 @@ class Utilities {
     * This is a ```method``` ( ```function``` inside ```class``` ).
     * @function bindEventListeners
     * @param { HTMLElement } [ element ] Should be an ```html element```.
-    * @param { Array<String> } [ listeners ] Should be an ```array``` of ```strings```.
+    * @param { Array<string> } [ listeners ] Should be an ```array``` of ```strings```.
     * @param { Function } [ callback ] Should be a ```function```.
     * @returns { void|Boolean }
     * - ```void```.
@@ -443,7 +443,7 @@ class Utilities {
     * @note This method is used to return the passed string trimed with all letters lowercased and spaces removed.
     * @note The {@link string} parameter should be a string.
     */
-    bindEventListeners(element: HTMLElement, listeners: Array<String>, callback: Function): void|Boolean {
+    bindEventListeners(element: HTMLElement, listeners: Array<string>, callback: Function): void|Boolean {
         if(!element || !listeners || !callback) {
             return false;
         };
