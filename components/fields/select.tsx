@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import { SelectInterface, OptionInterface } from "../../typescript/interfaces";
 import { SelectOption } from "../../typescript/types";
 import { selectifyTheOptions, handleOutOfArea } from "../../scripts/utilities";

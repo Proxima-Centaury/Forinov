@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Not Found ( Container ) */
+/* Server Error ( Container ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.notFound {
+.serverError {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,17 +12,17 @@
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
 }
-.notFound > h1 {
+.serverError > h1 {
     font-weight: bold;
     font-size: 60px;
     color: var(--logo-blue-color);
 }
-.notFound > p {
+.serverError > p {
     font-size: 20px;
     color: var(--text-inactive-color);
     text-align: center;
 }
-.notFound > button {
+.serverError > button {
     margin: 16px auto auto auto;
     color: var(--logo-blue-color);
     text-decoration: underline;

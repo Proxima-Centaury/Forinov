@@ -13,6 +13,50 @@
             "getOpportunity": "V5_GET_OPPORTUNITY"
         }
     },
+    "utilities": {
+        "calls": {
+            "getProfile": {
+                "query": "V5_GET_PROFILE",
+                "app": "next",
+                "authkey": "Sorbonne"
+            },
+            "getProducts": {
+                "query": "V5_GET_PRODUCTS",
+                "app": "next",
+                "authkey": "Sorbonne"
+            },
+            "getActivity": {
+                "query": "V5_GET_ACTIVITY_FEED_ITEMS",
+                "app": "next",
+                "authkey": "Sorbonne"
+            },
+            "getFolders": {
+                "query": "V5_GET_FOLDERS",
+                "app": "next",
+                "authkey": "Sorbonne"
+            },
+            "getLandingOpportunities": {
+                "query": "LANDING_OPPORTUNITES",
+                "app": "next",
+                "authkey": "Landing"
+            },
+            "getLandingLogos": {
+                "query": "LANDING_LOGOS",
+                "app": "next",
+                "authkey": "Landing"
+            },
+            "getLandingStartups": {
+                "query": "LANDING_SU",
+                "app": "next",
+                "authkey": "Landing"
+            },
+            "getOpportunity": {
+                "query": "V5_GET_OPPORTUNITY",
+                "app": "next",
+                "authkey": "Sorbonne"
+            }
+        }
+    },
     "locales": { "fr-FR": "FR", "en-US": "EN" },
     "fontawesome": {
         "rel": "stylesheet",
@@ -57,11 +101,11 @@
                     { "url": "", "text": "Opportunités", "nesting": true, "nest": [
                         { "url": "/opportunities", "text": "Comment ça marche" },
                         { "url": "/directories/opportunities", "text": "Toutes les opportunités" },
-                        { "url": "/directories/opportunities/callsforproposals", "text": "Appels à candidatures" },
-                        { "url": "/directories/opportunities/program", "text": "Programmes d'accompagnement" },
-                        { "url": "/directories/opportunities/challenges", "text": "Challenges et concours" },
+                        { "url": "/directories/opportunities/calls_for_proposals", "text": "Appels à candidatures" },
+                        { "url": "/directories/opportunities/followship_programs", "text": "Programmes d'accompagnement" },
+                        { "url": "/directories/opportunities/challenges_and_contests", "text": "Challenges et concours" },
                         { "url": "/directories/opportunities/events", "text": "Évènements" },
-                        { "url": "/directories/opportunities/exclusiveoffers", "text": "Offres exclusives" }
+                        { "url": "/directories/opportunities/exclusive_offers", "text": "Offres exclusives" }
                     ] },
                     { "url": "/about", "text": "À propos", "nesting": false, "nest": [] }
                 ]
@@ -82,14 +126,17 @@
                         { "url": "/", "text": "CGV" },
                         { "url": "/", "text": "Mentions légales" },
                         { "url": "/", "text": "Protection des données" },
-                        { "url": "/", "text": "Blog" }
+                        { "url": "/blog", "text": "Blog" }
                     ] },
                     { "url": "", "text": "Communauté", "nesting": true, "nest": [
                         { "url": "/directories/startups", "text": "Annuaire de startups" },
                         { "url": "/directories/corporations", "text": "Annuaire d'entreprises" },
                         { "url": "/directories/partners", "text": "Annuaire de partenaires" },
-                        { "url": "/", "text": "Appels à candidatures" },
-                        { "url": "/", "text": "Challenges et concours" }
+                        { "url": "/directories/opportunities/calls_for_proposals", "text": "Appels à candidatures" },
+                        { "url": "/directories/opportunities/followship_programs", "text": "Programmes d'accompagnement" },
+                        { "url": "/directories/opportunities/challenges_and_contests", "text": "Challenges et concours" },
+                        { "url": "/directories/opportunities/events", "text": "Évènements" },
+                        { "url": "/directories/opportunities/exclusive_offers", "text": "Offres exclusives" }
                     ] }
                 ]
             }
