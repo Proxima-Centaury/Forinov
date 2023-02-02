@@ -3,6 +3,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
 import { HomeInterface } from "../typescript/interfaces";
+import utilities from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -24,7 +25,7 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Startups Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StartupsHome = (pageProps: HomeInterface) => {
-	const { opportunities, logos, locales, states, stateSetters, config }: any = pageProps;
+	const { opportunities, logos, states, config }: any = pageProps;
 	const { translations }: any = states;
 	const title = "Forinov Startups - " + translations["Comment ça marche"] + " ?" as String;
 	return <>
