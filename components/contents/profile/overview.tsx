@@ -71,21 +71,21 @@ const ProfileOverview = ({ type, profile, states }: any) => {
 const Startup = ({ profile, states }: any) => {
     const { lock, translations }: any = states;
     return <>
-        { (profile.TECHNO) ? <div className={ OverviewStyles.details }>
+        { (profile.TECHNO.length > 0) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Technologie(s)"] }</p>
             <Tags tags={ profile.TECHNO } lock={ lock }/>
         </div> : <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Technologie(s)"] }</p>
             <p>{ translations["Non renseigné"] + "." }</p>
         </div> }
-        { (profile.BUSINESSMODEL) ? <div className={ OverviewStyles.details }>
+        { (profile.BUSINESSMODEL.length > 0) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Business model"] }</p>
             <Tags tags={ profile.BUSINESSMODEL } lock={ lock }/>
         </div> : <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Business model"] }</p>
             <p>{ translations["Non renseigné"] + "." }</p>
         </div> }
-        { (profile.LOCATION) ? <div className={ OverviewStyles.details }>
+        { (profile.LOCATION.length > 0) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Présence"] }</p>
             <Tags tags={ profile.LOCATION } lock={ lock }/>
         </div> : <div className={ OverviewStyles.details }>
@@ -123,7 +123,7 @@ const Corporation = ({ profile, states }: any) => {
             <p className={ OverviewStyles.label }>{ translations["Effectifs"] }</p>
             <p>{ translations["Non renseigné"] + "." }</p>
         </div> }
-        { (profile.CATEGORY) ? <div className={ OverviewStyles.details }>
+        { (profile.CATEGORY.length > 0) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Secteur d'activités"] }</p>
             <Tags tags={ profile.CATEGORY }/>
         </div> : <div className={ OverviewStyles.details }>
@@ -145,7 +145,7 @@ const Partner = ({ profile, states }: any) => {
             <p className={ OverviewStyles.label }>{ translations["Année de création"] }</p>
             <p>{ translations["Non renseigné"] + "." }</p>
         </div> }
-        { (profile.SUPPORT && profile.SUPPORT.length > 0) ? <div className={ OverviewStyles.details }>
+        { (profile.SUPPORT.length > 0) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Type d'accompagnement"] }</p>
             <Tags tags={ profile.SUPPORT } lock={ lock }/>
         </div> : <div className={ OverviewStyles.details }>
