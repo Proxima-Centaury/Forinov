@@ -2,17 +2,6 @@
     "host": "https://dev.forinov.fr",
     "api": {
         "endpoint": "https://dev.forinov.fr/remote/back/api.php",
-        "queries": {
-            "getProfile": "V5_GET_PROFILE",
-            "getProducts": "V5_GET_PRODUCTS",
-            "getActivity": "V5_GET_ACTIVITY_FEED_ITEMS",
-            "getFolders": "V5_GET_FOLDERS",
-            "getLandingOpportunities": "LANDING_OPPORTUNITES",
-            "getLandingLogos": "LANDING_LOGOS",
-            "getLandingStartups": "LANDING_SU",
-            "getOpportunity": "V5_GET_OPPORTUNITY",
-            "getPublicCommons": "V5_GET_PUBLIC_COMMONS"
-        },
         "calls": {
             "getProfile": {
                 "query": "V5_GET_PROFILE",
