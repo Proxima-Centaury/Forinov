@@ -3,7 +3,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
 import { HomeInterface } from "../typescript/interfaces";
-import { beautifyTheLogs } from "../scripts/utilities";
+import api from "../scripts/api";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -12,10 +12,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Carousel from "../components/carousels/carousel";
 import Format from "../components/texts/format";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* JSON */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../config.json";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -167,20 +163,13 @@ const Home = (pageProps: HomeInterface) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { res, locale, locales, defaultLocale } = context;
-	const { endpoint, queries } = config.api;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-    const language = "&lang=" + locale?.substring(0, 2);
-	const startupsPromise = await fetch(endpoint + "?q=" + queries.getLandingStartups + "&app=next&authkey=Landing" + language);
-    const startupsResponse = await startupsPromise.json();
-    const formattedStartupsResponse = startupsResponse;
-	const landingOpportunitiesPromise = await fetch(endpoint + "?q=" + queries.getLandingOpportunities + "&app=next&authkey=Landing" + language);
-    const landingOpportunitiesResponse = await landingOpportunitiesPromise.json();
-    const formattedLandingOpportunitiesResponse = Object.values(landingOpportunitiesResponse[0].PROJECT);
+    const language = locale?.substring(0, 2);
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			opportunities: formattedLandingOpportunitiesResponse,
-			startups: formattedStartupsResponse
+			opportunities: await api.getLandingOpportunities("next", "Landing", language),
+			startups: await api.getLandingStartups("next", "Landing", language)
 		}
 	};
 };
