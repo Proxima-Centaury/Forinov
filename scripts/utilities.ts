@@ -30,7 +30,7 @@ import config from "../config.json";
 * @method removeEventListeners : {@link Utilities.removeEventListeners};
 * @method structureTags : {@link Utilities.structureTags};
 * @returns
-* - Instance returns ```void``` ( nothing ).
+* - ```void``` ( nothing ).
 * ---
 * @note This class is used to complete many general tasks.
 * @note These tasks are usually tasks that are common to multiple pages.
@@ -44,7 +44,7 @@ class Utilities {
     * @function beautifyTheLogs
     * @param { any } [ logs ] Could be anything, any type.
     * @returns { Array|Boolean }
-    * - An ```array``` with all passed parameters.
+    * - ```array``` with all passed parameters.
     * - The only passed parameter.
     * - ```false``` if no parameters passed.
     * ---
@@ -66,8 +66,8 @@ class Utilities {
     * @param { Array } [ options ] Optionnal, should be an ```array``` of ```strings``` or ```objects```.
     * @param { String } [ source ] Optionnal, should be a ```string```.
     * @returns { Array|Boolean }
-    * - An ```array``` of ```objects```.
-    * - A ```boolean```.
+    * - ```array``` of ```objects```.
+    * - ```boolean```.
     * ---
     * @example
     * const options = selectifyTheOptions([ "John", "Jane", "Jeff", "Jinx" ]).
@@ -168,7 +168,7 @@ class Utilities {
     * @function getCookie
     * @param { String|RegExp } [ name ] Should be a ```string```.
     * @returns { String | null }
-    * - A ```string```.
+    * - ```string```.
     * - ```null``` if no cookie value set.
     * ---
     * @note This method is used to retrieve a cookie's value.
@@ -185,7 +185,7 @@ class Utilities {
     * @function getTranslations
     * @param { String|RegExp } [ locale ] Should be a ```string```.
     * @returns { Object }
-    * - An ```object```.
+    * - ```object```.
     * ---
     * @note This method is used to get the proper texts according to locale's value.
     * @note The {@link locale} parameter should be the user's selected language.
@@ -205,7 +205,7 @@ class Utilities {
     * @param { Array<String> } [ targets ] Should be an ```array``` of ```strings```.
     * @param { Function } [ action ] Should be a ```function```.
     * @returns { Function|Boolean }
-    * - A ```function```.
+    * - ```function```.
     * ---
     * @note This method triggers an action if the user clicks outside of the target.
     * @note The {@link event} parameter should be the user's triggered event.

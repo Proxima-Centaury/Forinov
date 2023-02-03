@@ -13,50 +13,6 @@
             "getOpportunity": "V5_GET_OPPORTUNITY"
         }
     },
-    "utilities": {
-        "calls": {
-            "getProfile": {
-                "query": "V5_GET_PROFILE",
-                "app": "next",
-                "authkey": "Sorbonne"
-            },
-            "getProducts": {
-                "query": "V5_GET_PRODUCTS",
-                "app": "next",
-                "authkey": "Sorbonne"
-            },
-            "getActivity": {
-                "query": "V5_GET_ACTIVITY_FEED_ITEMS",
-                "app": "next",
-                "authkey": "Sorbonne"
-            },
-            "getFolders": {
-                "query": "V5_GET_FOLDERS",
-                "app": "next",
-                "authkey": "Sorbonne"
-            },
-            "getLandingOpportunities": {
-                "query": "LANDING_OPPORTUNITES",
-                "app": "next",
-                "authkey": "Landing"
-            },
-            "getLandingLogos": {
-                "query": "LANDING_LOGOS",
-                "app": "next",
-                "authkey": "Landing"
-            },
-            "getLandingStartups": {
-                "query": "LANDING_SU",
-                "app": "next",
-                "authkey": "Landing"
-            },
-            "getOpportunity": {
-                "query": "V5_GET_OPPORTUNITY",
-                "app": "next",
-                "authkey": "Sorbonne"
-            }
-        }
-    },
     "locales": { "fr-FR": "FR", "en-US": "EN" },
     "fontawesome": {
         "rel": "stylesheet",
