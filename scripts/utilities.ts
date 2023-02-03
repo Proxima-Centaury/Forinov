@@ -30,7 +30,7 @@ import config from "../config.json";
 * @method removeEventListeners : {@link Utilities.removeEventListeners};
 * @method structureTags : {@link Utilities.structureTags};
 * @returns
-* - Instance returns ```void``` ( nothing ).
+* - ```void``` ( nothing ).
 * ---
 * @note This class is used to complete many general tasks.
 * @note These tasks are usually tasks that are common to multiple pages.
@@ -44,7 +44,7 @@ class Utilities {
     * @function beautifyTheLogs
     * @param { any } [ logs ] Could be anything, any type.
     * @returns { Array|Boolean }
-    * - An ```array``` with all passed parameters.
+    * - ```array``` with all passed parameters.
     * - The only passed parameter.
     * - ```false``` if no parameters passed.
     * ---
@@ -66,8 +66,8 @@ class Utilities {
     * @param { Array } [ options ] Optionnal, should be an ```array``` of ```strings``` or ```objects```.
     * @param { String } [ source ] Optionnal, should be a ```string```.
     * @returns { Array|Boolean }
-    * - An ```array``` of ```objects```.
-    * - A ```boolean```.
+    * - ```array``` of ```objects```.
+    * - ```boolean```.
     * ---
     * @example
     * const options = selectifyTheOptions([ "John", "Jane", "Jeff", "Jinx" ]).
