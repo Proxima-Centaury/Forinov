@@ -6,13 +6,19 @@ import { remainingTime } from "../../../scripts/utilities";
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/image";
+import Link from "next/link";
 import Format from "../../texts/format";
 import Tags from "../../tags/tags";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* JSON */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import config from "../../../config.json";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import PreviewStyles from "../../../public/stylesheets/components/contents/opportunity/Preview.module.css";
 import OpportunityStyles from "../../../public/stylesheets/components/cards/Opportunity.module.css";
+import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Opportunity Preview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -21,12 +27,13 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
     const ownerLogo = opportunity.opportunity_owner_logo || null;
     const ownerName = opportunity.opportunity_owner_name || null;
     const title = opportunity.opportunity_name || null;
-    const type = (opportunity.opportunity_type) ? opportunity.opportunity_type[1] : null;
+    const type = opportunity.opportunity_type || null;
     const category = opportunity.opportunity_category || null;
     const tags = (opportunity.opportunity_tags) ? opportunity.opportunity_tags.split(",").map((tag: any, key: KeyType) => ({ ID: key, NAME: tag })) : null;
     const privacy = opportunity.opportunity_privacy || null;
     const description = opportunity.opportunity_desc || null;
     const eligibility = opportunity.opportunity_eligibility || null;
+    const attachments = Object.values(opportunity.opportunity_attachments) || null;
     const startingDate = opportunity.opportunity_startingdate || null;
     const endingDate = opportunity.opportunity_endingdate || null;
     const endingDateDisplay = opportunity.opportunity_endingdate_display || null;
@@ -34,7 +41,7 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
     const countries = (opportunity.opportunity_country) ? Object.values(opportunity.opportunity_country).map((country: any) => country.NAME) : null;
     const background = opportunity.opportunity_background || null;
     return <div className={ PreviewStyles.opportunityPreview }>
-        <div className={ PreviewStyles.background } data-opportunity-type={ (type && type.ID) ? type.ID : "" } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+        <div className={ PreviewStyles.background } data-opportunity-type={ type[0].ID || "" } data-rgb={ (RGB) ? "enabled" : "disabled" }>
             { (background) ? <Image src={ background } width="3840" height="2160" alt={ translations["Bannière d'opportunité"] + "." }/> : null }
         </div>
         <div className={ PreviewStyles.identification }>
@@ -43,8 +50,8 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
             </div>
             <div className={ PreviewStyles.data }>
                 <h3>{ ownerName + " — " }<span>{ title }</span></h3>
-                <div className={ OpportunityStyles.type } data-opportunity-type={ (type && type.ID) ? type.ID : "" }>
-                    { (type && type.NAME) ? <Tags tags={ Object.entries({ "0": type.NAME }) } main={ true }/> : null }
+                <div className={ OpportunityStyles.type } data-opportunity-type={ type[0].ID || "" }>
+                    <Tags tags={ type } main={ true }/>
                 </div>
             </div>
         </div>
@@ -76,7 +83,13 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
             { (category) ? <Tags tags={ Object.values(category) } main={ true }/> : null }
             { (tags) ? <Tags tags={ tags }/> : null }
         </div>
-        <div className="separator"></div>
+        { (attachments.length > 0) ? <div className="separator"></div> : null }
+        { (attachments.length > 0) ? <div className={ PreviewStyles.attachments }>
+            { attachments.map(({ name, url, size }: any, key: number) => <Link key={ key } href={ config.host + url } className={ ButtonStyles.classicLink } target={ "_blank" }>
+                <i className="fa-light fa-cloud-download"/>
+                <p>{ name }</p>
+            </Link>) }
+        </div> : null }
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

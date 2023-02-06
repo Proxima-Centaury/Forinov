@@ -3,6 +3,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
 import { HomeInterface } from "../typescript/interfaces";
+import api from "../scripts/api";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -12,10 +13,6 @@ import Link from "next/link";
 import Carousel from "../components/carousels/carousel";
 import Format from "../components/texts/format";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* JSON */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../config.json";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import HomeStyles from "../public/stylesheets/pages/Home.module.css";
@@ -23,9 +20,9 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Home = ({ startups, opportunities, locales, states, stateSetters, config }: HomeInterface) => {
+const Home = (pageProps: HomeInterface) => {
+	const { startups, opportunities, states }: any = pageProps;
 	const { translations }: any = states;
-	const parentProps = { locales, states, stateSetters, config };
 	const title = translations["Forinov, le réseau social de l'open innovation"] as String;
 
 	console.log(locales)
@@ -146,7 +143,7 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 			<div className={ HomeStyles.startups }>
 				<div>
 					<h4>{ translations["Nos dernières startups inscrites"] + " :" }</h4>
-					<Carousel { ...parentProps } component={ "LatestStartups" } data={ startups }/>
+					<Carousel { ...pageProps } component={ "LatestStartups" } data={ startups }/>
 					<div className={ HomeStyles.actions } data-align="left">
 						<Link href="/directories/startups" className={ ButtonStyles.callToAction }>{ translations["Accéder à l'annuaire des startups"] }</Link>
 					</div>
@@ -155,7 +152,7 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 			<div className={ HomeStyles.opportunity }>
 				<div>
 					<h4>{ translations["Les dernières oppotunités"] + " :" }</h4>
-					<Carousel { ...parentProps } component={ "LatestOpportunities" } data={ opportunities }/>
+					<Carousel { ...pageProps } component={ "LatestOpportunities" } data={ opportunities }/>
 					<div className={ HomeStyles.actions } data-align="left">
 						<Link href="/directories/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir toutes les opportunités"] }</Link>
 						<Link href="/opportunities" className={ ButtonStyles.callToActionAlternative }>{ translations["Qu'est-ce qu'une opportunité"] + " ?" }</Link>
@@ -169,22 +166,15 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 /* Server Side Properties */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-	const { req, res, locale, locales, defaultLocale } = context;
-	const { endpoint, queries } = config.api;
+	const { res, locale, locales, defaultLocale } = context;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-	const startupsPromise = await fetch(endpoint + "?q=" + queries.getLandingStartups + "&app=next&authkey=Landing");
-    const startupsResponse = await startupsPromise.json();
-    const formattedStartupsResponse = startupsResponse;
-	const landingOpportunitiesPromise = await fetch(endpoint + "?q=" + queries.getLandingOpportunities + "&app=next&authkey=Landing");
-    const landingOpportunitiesResponse = await landingOpportunitiesPromise.json();
-    const formattedLandingOpportunitiesResponse = Object.values(landingOpportunitiesResponse[0].PROJECT);
+    const language = locale?.substring(0, 2);
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			production: (req.headers.host?.match("interface.forinov")) ? true : false,
-			opportunities: formattedLandingOpportunitiesResponse,
-			startups: formattedStartupsResponse
-		},
+			opportunities: await api.getLandingOpportunities("next", "Landing", language),
+			startups: await api.getLandingStartups("next", "Landing", language)
+		}
 	};
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

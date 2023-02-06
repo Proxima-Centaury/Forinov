@@ -35,7 +35,7 @@ const ProfileEcosystem = ({ type, profile, states }: any) => {
         { (type === "startup") ? <div className={ EcosystemStyles.content }>
             <p className={ EcosystemStyles.label }>{ translations["Nos références clients"] + " (" + clients.length + ")" }</p>
             <div className={ EcosystemStyles.list + ((lock) ? " locked" : "") } data-type="list">
-                { (clients) ? clients.map((client: any, key: KeyType) => {
+                { (clients.length > 0) ? clients.map((client: any, key: KeyType) => {
                     const entity = client;
                     const type = "client";
                     const index = key + 1;

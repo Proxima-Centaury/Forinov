@@ -2,7 +2,7 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetStaticProps } from "next";
-import { NotFoundInterface } from "../typescript/interfaces";
+import { ServerErrorInterface } from "../typescript/interfaces";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -10,18 +10,19 @@ import Head from "next/head";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import NotFoundStyles from "../public/stylesheets/pages/NotFound.module.css";
+import ServerErrorStyles from "../public/stylesheets/pages/ServerError.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* NotFound */
+/* Server Error */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ServerError = ({ states }: NotFoundInterface) => {
+const ServerError = (pageProps: ServerErrorInterface) => {
+    const { states }: any = pageProps;
     const { translations }: any = states;
     return <>
         <Head>
             <title>Forinov - 500</title>
         </Head>
         <div id="500" className="container">
-            <div className={ NotFoundStyles.notFound }>
+            <div className={ ServerErrorStyles.serverError }>
                 <h1>500</h1>
                 <p>{ "Oops ! " + translations["Une erreur serveur est survenue"] + " !" }</p>
                 <button onClick={ () => window.history.go(-1) }>{ translations["Retournez à la page précédente"] + "." }</button>

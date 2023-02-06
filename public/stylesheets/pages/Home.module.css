@@ -306,6 +306,9 @@
 	text-align: center;
 	color: var(--perfect-black-color);
 }
+.sourcing[data-type="opportunity"] > div > h3 {
+	color: var(--text-main-color);
+}
 @media screen and (max-width: 576px) {
 	.sourcing > div > h3 {
 		font-size: 35px;
@@ -317,6 +320,9 @@
 	font-size: 21px;
 	text-align: center;
 	color: var(--perfect-black-color);
+}
+.sourcing[data-type="opportunity"] > div > p {
+	color: var(--text-main-color);
 }
 .sourcing[data-type="corporation"] > div {
 	background-color: var(--lightblue-color);
@@ -700,7 +706,9 @@
 	}
 }
 .badges[data-type="startup"] > div > div > .badge > div > p,
-.badges[data-type="partner"] > div > div > .badge > div > p {
+.badges[data-type="partner"] > div > div > .badge > div > p,
+.badges[data-type="startup"] > div > div > .badge > div > div,
+.badges[data-type="partner"] > div > div > .badge > div > div {
 	color: var(--perfect-black-color);
 }
 .badges[data-type="startup"] > div > div > [class="separator"] {

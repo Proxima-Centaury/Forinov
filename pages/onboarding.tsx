@@ -14,8 +14,9 @@ import IframeStyles from "../public/stylesheets/components/Iframe.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Register */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Register = ({ states }: RegisterInterface) => {
+const Register = (pageProps: RegisterInterface) => {
     const router = useRouter();
+    const { states }: any = pageProps;
     const { locale, session, translations }: any = states;
     useEffect(() => { (session) ? redirectTo("/", router, locale) : null });
     return <>

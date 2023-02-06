@@ -11,29 +11,29 @@ import TargetsStyles from "../../../public/stylesheets/components/contents/profi
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileTargets = ({ profile, states }: any) => {
     const { lock, translations }: any = states;
-    const sectors = Object.entries(profile.TARGETSECTORS) || [];
-    const jobs = Object.entries(profile.TARGETJOBS) || [];
-    const partnerships = Object.entries(profile.TARGETPARTNERSHIP) || [];
+    const sectors = profile.TARGETSECTORS;
+    const jobs = profile.TARGETJOBS;
+    const partnerships = profile.TARGETPARTNERSHIP;
     return <div className={ TargetsStyles.targets }>
         <div className={ TargetsStyles.details }>
             <div>
                 <p className={ TargetsStyles.label }>{ translations["Secteur(s) ciblé(s)"] }</p>
             </div>
-            { (sectors.length > 0) ? <Tags tags={ sectors } lock={ lock }/> : null }
+            { (sectors.length > 0) ? <Tags tags={ sectors } lock={ lock }/> : <p>{ translations["Non renseigné"] + "." }</p> }
         </div>
         <div className="separator"></div>
         <div className={ TargetsStyles.details }>
             <div>
                 <p className={ TargetsStyles.label }>{ translations["Métier(s) ciblé(s)"] }</p>
             </div>
-            { (jobs.length > 0) ? <Tags tags={ jobs } lock={ lock }/> : null }
+            { (jobs.length > 0) ? <Tags tags={ jobs } lock={ lock }/> : <p>{ translations["Non renseigné"] + "." }</p> }
         </div>
         <div className="separator"></div>
         <div className={ TargetsStyles.details }>
             <div>
                 <p className={ TargetsStyles.label }>{ translations["Type(s) de partenariat"] }</p>
             </div>
-            { (partnerships.length > 0) ? <Tags tags={ partnerships } lock={ lock }/> : null }
+            { (partnerships.length > 0) ? <Tags tags={ partnerships } lock={ lock }/> : <p>{ translations["Non renseigné"] + "." }</p> }
         </div>
     </div>;
 };

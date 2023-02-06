@@ -5,11 +5,11 @@ import { GetServerSideProps } from "next";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { ProfileInterface, ButtonInterface } from "../../../../typescript/interfaces";
-import { beautifyTheLogs, buildProperties } from "../../../../scripts/utilities";
+import { buildProperties } from "../../../../scripts/utilities";
+import api from "../../../../scripts/api";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Link from "next/link";
 import IdenfiticationBanner from "../../../../components/banners/identification";
 import RecoverBanner from "../../../../components/banners/recover";
 import ProfileCard from "../../../../components/cards/profile";
@@ -29,10 +29,6 @@ import OpportunityPreview from "../../../../components/contents/opportunity/prev
 import OpportunityLinks from "../../../../components/contents/opportunity/links";
 import Button from "../../../../components/buttons/button";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* JSON */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../../../../config.json";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ProfileStyles from "../../../../public/stylesheets/pages/Profile.module.css";
@@ -43,11 +39,12 @@ import ButtonStyles from "../../../../public/stylesheets/components/buttons/Butt
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Directory Id Page */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const DirectoryIdPage = ({ profile, products, activities, folders, opportunity, states, stateSetters }: ProfileInterface) => {
+const DirectoryIdPage = (pageProps: ProfileInterface) => {
     const router = useRouter();
+    let { type } = router.query;
+    const { profile, products, activities, folders, opportunity, states, stateSetters }: any = pageProps;
     const { session, lock }: any = states;
     const { setModal }: any = stateSetters;
-    let { type } = router.query;
     if(type) {
         type = String(type);
         type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
@@ -171,9 +168,8 @@ const Partner = ({ type, profile, products, activities, folders, states, stateSe
 /* Server Side Properties */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-    const { req, res, query, locale, locales, defaultLocale } = context;
+    const { res, query, locale, locales, defaultLocale } = context;
     let { id, type }: any = query;
-    const { endpoint, queries } = config.api;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     id = id?.substring(id.indexOf("_") + 1, id.length);
     const language = "&lang=" + locale?.substring(0, 2);
@@ -184,23 +180,8 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             type = (type.match(/(corporation)/)) ? "entreprise" : type;
             type = (type.match(/(partner)/)) ? "partenaire" : type;
         };
-        const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
-        const profileResponse = await profilePromise.json();
-        const formattedProfileResponse = profileResponse[0];
-        const productsPromise = await fetch(endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
-        const productsResponse = await productsPromise.json();
-        const formattedProductsResponse = Object.values(productsResponse[0].PRODUCTS);
-        const activitiesPromise = await fetch(endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
-        const activitiesResponse = await activitiesPromise.json();
-        const formattedActivitiesResponse = Object.values(activitiesResponse[0].EVENTS);
-        const foldersPromise = await fetch(endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
-        const foldersResponse = await foldersPromise.json();
-        const formattedFoldersResponse = foldersResponse.folders;
-        beautifyTheLogs("[CALL] PROFILE : " + endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne&lang=" + locale?.substring(0, 2));
-        beautifyTheLogs("[CALL] PRODUCTS : " + endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
-        beautifyTheLogs("[CALL] ACTIVITIES : " + endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
-        beautifyTheLogs("[CALL] FOLDERS : " + endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
-        if(!formattedProfileResponse || (formattedProfileResponse && Object.keys(formattedProfileResponse).length === 0)) {
+        const profile = await api.getProfile(type, id, "next", "Sorbonne", language);
+        if(!profile || (profile && Object.keys(profile).length === 0)) {
             return {
                 redirect: {
                     destination: "/" + locale + "/404",
@@ -211,18 +192,15 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         return {
             props: {
                 locale, locales, defaultLocale,
-                production: (req.headers.host?.match("interface.forinov")) ? true : false,
-                profile: formattedProfileResponse || null,
-                products: formattedProductsResponse || null,
-                activities: formattedActivitiesResponse || null,
-                folders: formattedFoldersResponse || null
+                profile: profile,
+                products: await api.getProducts(type, id, "next", "Sorbonne", language),
+                activities: await api.getActivity(type, id, "next", "Sorbonne", language),
+                folders: await api.getFolders(type, id, "next", "Sorbonne", language)
             }
         };
     };
-    const opportunityPromise = await fetch(endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&authkey=Sorbonne" + language);
-    const opportunityResponse = await opportunityPromise.json();
-    const formattedOpportunityResponse = opportunityResponse;
-    if(!formattedOpportunityResponse || (formattedOpportunityResponse && formattedOpportunityResponse.ERROR)) {
+    const opportunity = await api.getOpportunity(id, "next", "Sorbonne", language);
+    if(!opportunity || (opportunity && opportunity.ERROR)) {
         return {
             redirect: {
                 destination: "/" + locale + "/404",
@@ -233,8 +211,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             locale, locales, defaultLocale,
-            production: (req.headers.host?.match("interface.forinov")) ? true : false,
-            opportunity: formattedOpportunityResponse || null,
+            opportunity: opportunity,
         }
     };
 };

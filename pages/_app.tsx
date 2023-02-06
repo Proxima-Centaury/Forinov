@@ -39,7 +39,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     const [ lock, setLock ] = useState(true);
     const [ modal, setModal ] = useState(null);
     const [ RGB, setRGB ] = useState(false);
-    const [ production, setProduction ] = useState(pageProps.production);
+    const [ production, setProduction ] = useState((process.env.NODE_ENV === "development") ? false : true);
     useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
     useEffect(() => {
         let refresh = null;

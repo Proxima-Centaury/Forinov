@@ -257,6 +257,7 @@
 	top: 50%;
 	left: -16px;
 	transform: translateY(-50%);
+	pointer-events: none;
 	z-index: 10;
 }
 @media screen and (min-width: 576px) {
@@ -265,6 +266,7 @@
 	}
 }
 .arrows > button {
+	pointer-events: all;
 	box-shadow: var(--box-shadow);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

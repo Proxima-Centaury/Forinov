@@ -173,8 +173,26 @@
     width: 100%;
     padding: 0px 16px 8px 152px;
 }
+.tags:last-child {
+    margin: 0px 0px 8px 0px;
+}
 @media screen and (max-width: 992px) {
     .tags {
         padding: 0px 16px 8px 16px;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Preview ( Attachments ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.attachments {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0px 0px 16px 0px;
+    padding: 0px 16px 0px 152px;
+}
+@media screen and (max-width: 992px) {
+    .attachments {
+        padding: 0px 16px;
     }
 }

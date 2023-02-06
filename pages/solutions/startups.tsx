@@ -1,19 +1,28 @@
-import SolutionStyles from '../../public/stylesheets/pages/solutions/Solutions.module.css'
-import { GetServerSideProps, GetStaticProps } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
-import HomeStyles from '../../public/stylesheets/pages/Home.module.css';
-import ButtonStyles from '../../public/stylesheets/components/buttons/Button.module.css';
-import Carousel from '../../components/carousels/carousel';
-import config from "../../config.json";
-
-import Head from 'next/head';
-
-
-export default function Startups({ locales, states, stateSetters, config, opportunities }: any) {
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Imports */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { GetServerSideProps } from "next";
+import { HomeInterface } from "../../typescript/interfaces";
+import api from "../../scripts/api";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
+import Carousel from "../../components/carousels/carousel";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Styles */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import HomeStyles from "../../public/stylesheets/pages/Home.module.css";
+import SolutionStyles from "../../public/stylesheets/pages/solutions/Solutions.module.css"
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Startup Solutions */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const StartupSolutions = (pageProps: HomeInterface) => {
+    const { locales, states, stateSetters, config, opportunities }: any = pageProps;
     const { translations }: any = states;
-    const parentProps = { locales, states, stateSetters, config };
-
     return (
         <>
             <Head>
@@ -118,7 +127,7 @@ export default function Startups({ locales, states, stateSetters, config, opport
                 <div className={HomeStyles.opportunity} data-type="corporation">
                     <div style={{ background: "var(--background-sub-color)", paddingTop: '15rem' }}>
                         <h4>{translations["Les dernières oppotunités"] + " :"}</h4>
-                        <Carousel {...parentProps} component={"TheLatestOpportunities"} data={opportunities} />
+                        <Carousel {...pageProps} component={"LatestOpportunities"} data={opportunities}/>
                         <div className={HomeStyles.actions} data-align="left">
                             <Link href="/directories/opportunities" className={ButtonStyles.callToAction}>{translations["Découvrir toutes les opportunités"]}</Link>
                             <Link href="/opportunities" className={ButtonStyles.callToActionAlternative}>{translations["Qu'est-ce qu'une opportunité"] + " ?"}</Link>
@@ -169,18 +178,22 @@ export default function Startups({ locales, states, stateSetters, config, opport
         </>
     )
 }
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Server Side Props */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-    const { locale, locales, defaultLocale } = context;
-    const { endpoint, queries } = config.api;
-    const landingOpportunitiesPromise = await fetch(endpoint + "?q=" + queries.getLandingOpportunities + "&app=next&authkey=Landing");
-    const landingOpportunitiesResponse = await landingOpportunitiesPromise.json();
-    const formattedLandingOpportunitiesResponse = Object.values(landingOpportunitiesResponse[0].PROJECT);
+    const { res, locale, locales, defaultLocale } = context;
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+    const language = locale?.substring(0, 2);
     return {
         props: {
             locale, locales, defaultLocale,
-            opportunities: formattedLandingOpportunitiesResponse
+            opportunities: await api.getLandingOpportunities("next", "Landing", language)
         },
     };
 };
-
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Exports */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+export default StartupSolutions;
 export { getServerSideProps };
