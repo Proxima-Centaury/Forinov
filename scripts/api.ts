@@ -47,6 +47,14 @@ class API {
                         return Object.values(response[0].PROJECT);
                     case "getLandingLogos":
                         return Object.values(response[0].LOGOS);
+                    case "getProfile":
+                        return response[0];
+                    case "getProducts":
+                        return Object.values(response[0].PRODUCTS);
+                    case "getActivity":
+                        return Object.values(response[0].EVENTS);
+                    case "getFolders":
+                        return response.folders;
                     default :
                         return response;
                 };

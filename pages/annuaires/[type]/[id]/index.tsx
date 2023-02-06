@@ -2,22 +2,20 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
+import api from "../../../../scripts/api";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Page */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Profile from "../../../directories/[type]/[id]";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* JSON */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../../../../config.json";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Rendering */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-    const { query, locale, locales, defaultLocale } = context;
+    const { res, query, locale, locales, defaultLocale } = context;
     let { id, type }: any = query;
-    const { endpoint, queries } = config.api;
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     id = id?.substring(id.indexOf("_") + 1, id.length);
+    const language = "&lang=" + locale?.substring(0, 2);
     if(!type.match(/(opport)/)) {
         if(type) {
             type = String(type);
@@ -25,19 +23,8 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             type = (type.match(/(corporation)/)) ? "entreprise" : type;
             type = (type.match(/(partner)/)) ? "partenaire" : type;
         };
-        const profilePromise = await fetch(endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-        const profileResponse = await profilePromise.json();
-        const formattedProfileResponse = profileResponse[0];
-        const productsPromise = await fetch(endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-        const productsResponse = await productsPromise.json();
-        const formattedProductsResponse = Object.values(productsResponse[0].PRODUCTS);
-        const activitiesPromise = await fetch(endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-        const activitiesResponse = await activitiesPromise.json();
-        const formattedActivitiesResponse = Object.values(activitiesResponse[0].EVENTS);
-        const foldersPromise = await fetch(endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&authkey=Sorbonne");
-        const foldersResponse = await foldersPromise.json();
-        const formattedFoldersResponse = foldersResponse.folders;
-        if(!formattedProfileResponse || (formattedProfileResponse && Object.keys(formattedProfileResponse).length === 0)) {
+        const profile = await api.getProfile(type, id, "next", "Sorbonne", language);
+        if(!profile || (profile && Object.keys(profile).length === 0)) {
             return {
                 redirect: {
                     destination: "/" + locale + "/404",
@@ -48,17 +35,15 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         return {
             props: {
                 locale, locales, defaultLocale,
-                profile: formattedProfileResponse || null,
-                products: formattedProductsResponse || null,
-                activities: formattedActivitiesResponse || null,
-                folders: formattedFoldersResponse || null
+                profile: profile,
+                products: await api.getProducts(type, id, "next", "Sorbonne", language),
+                activities: await api.getActivity(type, id, "next", "Sorbonne", language),
+                folders: await api.getFolders(type, id, "next", "Sorbonne", language)
             }
         };
     };
-    const opportunityPromise = await fetch(endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&lang=" + locale?.substring(0, 2) + "&authkey=Sorbonne");
-    const opportunityResponse = await opportunityPromise.json();
-    const formattedOpportunityResponse = opportunityResponse;
-    if(!formattedOpportunityResponse) {
+    const opportunity = await api.getOpportunity(id, "next", "Sorbonne", language);
+    if(!opportunity || (opportunity && opportunity.ERROR)) {
         return {
             redirect: {
                 destination: "/" + locale + "/404",
@@ -69,7 +54,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             locale, locales, defaultLocale,
-            opportunity: formattedOpportunityResponse || null,
+            opportunity: opportunity,
         }
     };
 };
