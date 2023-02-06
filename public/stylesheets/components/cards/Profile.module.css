@@ -112,7 +112,6 @@
 @media screen and (max-width: 990px) {
     .content {
         width: 100%;
-        margin-top: calc(120px / 2);
         padding: 16px;
     }
 }

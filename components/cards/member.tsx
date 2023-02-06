@@ -21,7 +21,7 @@ const MemberCard = ({ member, index, maxVisibleByDefault = 4, translations }: an
     const [ maxVisibleDetailsByDefault, setMaxVisibleDetailsByDefault ] = useState(0);
     const handleView = (event: any) => seeMoreOrLess(event, translations, "." + MemberStyles.details, [], maxVisibleDetailsByDefault);
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const messageButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-message", "", handleView, translations["Voir plus"], 0 ];
+    const messageButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-message", "", () => false, translations["Voir plus"], 0 ];
     const messageButtonObject = buildProperties(buttonProps, messageButtonValues);
     const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], 0 ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
