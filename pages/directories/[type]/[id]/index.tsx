@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { ProfileInterface, ButtonInterface } from "../../../../typescript/interfaces";
 import { beautifyTheLogs, buildProperties } from "../../../../scripts/utilities";
+import api from "../../../../scripts/api";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -27,10 +28,6 @@ import ProfileGoals from "../../../../components/contents/profile/goals";
 import OpportunityPreview from "../../../../components/contents/opportunity/preview";
 import OpportunityLinks from "../../../../components/contents/opportunity/links";
 import Button from "../../../../components/buttons/button";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* JSON */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../../../../config.json";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -195,10 +192,6 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         const foldersPromise = await fetch(endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         const foldersResponse = await foldersPromise.json();
         const formattedFoldersResponse = foldersResponse.folders;
-        beautifyTheLogs("[CALL] PROFILE : " + endpoint + "?q=" + queries.getProfile + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
-        beautifyTheLogs("[CALL] PRODUCTS : " + endpoint + "?q=" + queries.getProducts + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
-        beautifyTheLogs("[CALL] ACTIVITIES : " + endpoint + "?q=" + queries.getActivity + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
-        beautifyTheLogs("[CALL] FOLDERS : " + endpoint + "?q=" + queries.getFolders + "&TYPE=" + type + "&PID=" + id + "&app=next&authkey=Sorbonne" + language);
         if(!formattedProfileResponse || (formattedProfileResponse && Object.keys(formattedProfileResponse).length === 0)) {
             return {
                 redirect: {
@@ -210,7 +203,6 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         return {
             props: {
                 locale, locales, defaultLocale,
-                production: (req.headers.host?.match("interface.forinov")) ? true : false,
                 profile: formattedProfileResponse || null,
                 products: formattedProductsResponse || null,
                 activities: formattedActivitiesResponse || null,
@@ -221,7 +213,6 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const opportunityPromise = await fetch(endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&app=next&authkey=Sorbonne" + language);
     const opportunityResponse = await opportunityPromise.json();
     const formattedOpportunityResponse = opportunityResponse;
-    beautifyTheLogs("[CALL] OPPORTUNITY : " + endpoint + "?q=" + queries.getOpportunity + "&ID=" + id + "&app=next&authkey=Sorbonne" + language);
     if(!formattedOpportunityResponse || (formattedOpportunityResponse && formattedOpportunityResponse.ERROR)) {
         return {
             redirect: {
