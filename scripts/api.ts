@@ -45,6 +45,8 @@ class API {
                 switch(query[0]) {
                     case "getLandingOpportunities":
                         return Object.values(response[0].PROJECT);
+                    case "getLandingLogos":
+                        return Object.values(response[0].LOGOS);
                     default :
                         return response;
                 };
