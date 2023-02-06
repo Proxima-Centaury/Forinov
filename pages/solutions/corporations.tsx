@@ -1,15 +1,24 @@
-import Image from 'next/image'
-import Link from 'next/link';
-
-import SolutionStyles from '../../public/stylesheets/pages/solutions/Solutions.module.css'
-import { GetServerSideProps } from 'next';
-import Head from 'next/head';
-
-export default function Corporations({ locales, states, stateSetters, config, opportunities }: any) {
-
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Imports */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { GetServerSideProps } from "next";
+import { HomeInterface } from "../../typescript/interfaces";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Head from "next/head";
+import Image from "next/image"
+import Link from "next/link";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Styles */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import SolutionStyles from "../../public/stylesheets/pages/solutions/Solutions.module.css"
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Corporation Solutions */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const CorporationSolutions = (pageProps: HomeInterface) => {
+    const { locales, states, stateSetters, config, opportunities }: any = pageProps;
     const { translations }: any = states;
-    const parentProps = { locales, states, stateSetters, config };
-
     return (
         <>
             <Head>
@@ -288,14 +297,21 @@ export default function Corporations({ locales, states, stateSetters, config, op
         </>
     )
 }
-
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Server Side Props */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
-    const { locale, locales, defaultLocale } = context;
+    const { res, locale, locales, defaultLocale } = context;
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+    const language = locale?.substring(0, 2);
     return {
         props: {
             locale, locales, defaultLocale,
         },
     };
 };
-
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Exports */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+export default CorporationSolutions;
 export { getServerSideProps };

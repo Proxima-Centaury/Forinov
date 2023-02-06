@@ -2,15 +2,43 @@
     "host": "https://dev.forinov.fr",
     "api": {
         "endpoint": "https://dev.forinov.fr/remote/back/api.php",
-        "queries": {
-            "getProfile": "V5_GET_PROFILE",
-            "getProducts": "V5_GET_PRODUCTS",
-            "getActivity": "V5_GET_ACTIVITY_FEED_ITEMS",
-            "getFolders": "V5_GET_FOLDERS",
-            "getLandingOpportunities": "LANDING_OPPORTUNITES",
-            "getLandingLogos": "LANDING_LOGOS",
-            "getLandingStartups": "LANDING_SU",
-            "getOpportunity": "V5_GET_OPPORTUNITY"
+        "calls": {
+            "getProfile": {
+                "query": "V5_GET_PROFILE",
+                "parameters": [ "TYPE", "PID", "app", "authkey", "lang" ]
+            },
+            "getProducts": {
+                "query": "V5_GET_PRODUCTS",
+                "parameters": [ "TYPE", "PID", "app", "authkey", "lang" ]
+            },
+            "getActivity": {
+                "query": "V5_GET_ACTIVITY_FEED_ITEMS",
+                "parameters": [ "TYPE", "PID", "app", "authkey", "lang" ]
+            },
+            "getFolders": {
+                "query": "V5_GET_FOLDERS",
+                "parameters": [ "TYPE", "PID", "app", "authkey", "lang" ]
+            },
+            "getLandingOpportunities": {
+                "query": "LANDING_OPPORTUNITES",
+                "parameters": [ "app", "authkey", "lang" ]
+            },
+            "getLandingLogos": {
+                "query": "LANDING_LOGOS",
+                "parameters": [ "app", "authkey", "lang" ]
+            },
+            "getLandingStartups": {
+                "query": "LANDING_SU",
+                "parameters": [ "app", "authkey", "lang" ]
+            },
+            "getOpportunity": {
+                "query": "V5_GET_OPPORTUNITY",
+                "parameters": [ "ID", "app", "authkey", "lang" ]
+            },
+            "getPublicCommons": {
+                "query": "V5_GET_PUBLIC_COMMONS",
+                "parameters": [ "" ]
+            }
         }
     },
     "locales": { "fr-FR": "FR", "en-US": "EN" },

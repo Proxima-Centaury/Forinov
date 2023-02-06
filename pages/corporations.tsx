@@ -3,6 +3,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
 import { HomeInterface } from "../typescript/interfaces";
+import api from "../scripts/api";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -10,10 +11,6 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Carousel from "../components/carousels/carousel";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* JSON */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../config.json";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -92,19 +89,13 @@ const CorporationsHome = (pageProps: HomeInterface) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { res, locale, locales, defaultLocale } = context;
-	const { endpoint, queries } = config.api;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-	const logosPromise = await fetch(endpoint + "?q=" + queries.getLandingLogos + "&type=startup&authkey=Landing");
-    const logosResponse = await logosPromise.json();
-    const formattedLogosResponse = Object.values(logosResponse[0].LOGOS);
-	const landingOpportunitiesPromise = await fetch(endpoint + "?q=" + queries.getLandingOpportunities + "&app=next&authkey=Landing");
-    const landingOpportunitiesResponse = await landingOpportunitiesPromise.json();
-    const formattedLandingOpportunitiesResponse = Object.values(landingOpportunitiesResponse[0].PROJECT);
+    const language = locale?.substring(0, 2);
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			logos: formattedLogosResponse,
-			opportunities: formattedLandingOpportunitiesResponse
+			opportunities: await api.getLandingOpportunities("next", "Landing", language),
+			logos: await api.getLandingLogos("next", "Landing", language)
 		}
 	};
 };
