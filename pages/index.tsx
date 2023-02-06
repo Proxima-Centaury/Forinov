@@ -27,6 +27,10 @@ const Home = ({ startups, opportunities, locales, states, stateSetters, config }
 	const { translations }: any = states;
 	const parentProps = { locales, states, stateSetters, config };
 	const title = translations["Forinov, le réseau social de l'open innovation"] as String;
+
+	console.log(locales)
+	const meta = require("../public/static/meta/meta_" + states.locale.split("-")[0] + ".json");
+
 	return <>
 		<Head>
             <meta name="description" content={ translations["Forinov est le réseau social de l'open innovation qui connecte startups, entreprises et partenaires pour faciliter leur collaboration. Forinov optimise veille, sourcing, gestion du portefeuille de start ups et de partenaires. (accélérateurs, incubateurs, …)"] + "." }/>
