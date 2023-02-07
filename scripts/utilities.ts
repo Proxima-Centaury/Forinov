@@ -18,6 +18,7 @@ import config from "../config.json";
 * @method setCookie : {@link Utilities.setCookie}
 * @method getCookie : {@link Utilities.getCookie}
 * @method getTranslations : {@link Utilities.getTranslations}
+* @method getMetadataTranslations : {@link Utilities.getMetadataTranslations}
 * @method preventSubmit : {@link Utilities.preventSubmit}
 * @method buildProperties : {@link Utilities.buildProperties};
 * @method scrollTo : {@link Utilities.scrollTo};
@@ -197,6 +198,24 @@ class Utilities {
             return translations;
         };
         return require("../public/static/locales/fr.json");
+    };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function getMetadataTranslations
+    * @param { String|RegExp } [ locale ] Should be a ```string```.
+    * @returns { Object }
+    * - ```object```.
+    * ---
+    * @note This method is used to get the proper metadatas according to locale's value.
+    * @note The {@link locale} parameter should be the user's selected language.
+    */
+    getMetadataTranslations = (locale: String): Object => {
+        if(locale) {
+            const language = locale.substring(0, 2);
+            const translations = require("../public/static/locales/metadata/" + language + ".json");
+            return translations;
+        };
+        return require("../public/static/locales/metadata/fr.json");
     };
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
@@ -498,6 +517,7 @@ const selectifyTheOptions = utilities.selectifyTheOptions;
 // const setCookie = utilities.setCookie;
 // const getCookie = utilities.getCookie;
 const getTranslations = utilities.getTranslations;
+const getMetadataTranslations = utilities.getMetadataTranslations;
 const handleOutOfArea = utilities.handleOutOfArea;
 const preventSubmit = utilities.preventSubmit;
 const buildProperties = utilities.buildProperties;
@@ -520,6 +540,7 @@ export {
     // setCookie,
     // getCookie,
     getTranslations,
+    getMetadataTranslations,
     handleOutOfArea,
     preventSubmit,
     buildProperties,
