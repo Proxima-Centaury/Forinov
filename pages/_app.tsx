@@ -5,7 +5,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
-import { getTranslations, scrollTo } from "../scripts/utilities";
+import { getTranslations, getMetadataTranslations, scrollTo } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -33,6 +33,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
     const [ locale, setLocale ] = useState(pageProps.locale);
     const [ locales, setLocales ] = useState(pageProps.locales);
+    const [ metadatas, setMetadatas ] = useState(getMetadataTranslations(locale));
     const [ translations, setTranslations ] = useState(getTranslations(locale));
     const [ session, setSession ] = useState(false);
     const [ theme, setTheme ] = useState(getCookie("forinov_theme_preference") || "light");
@@ -40,6 +41,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     const [ modal, setModal ] = useState(null);
     const [ RGB, setRGB ] = useState(false);
     const [ production, setProduction ] = useState((process.env.NODE_ENV === "development") ? false : true);
+    useEffect(() => setMetadatas(getMetadataTranslations(locale)), [ locale ]);
     useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
     useEffect(() => {
         let refresh = null;
@@ -59,6 +61,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.states = {};
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;
+    pageProps.states["metadatas"] = metadatas;
     pageProps.states["translations"] = translations;
     pageProps.states["session"] = session;
     pageProps.states["theme"] = theme;
@@ -69,6 +72,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.stateSetters = {};
     pageProps.stateSetters["setLocale"] = setLocale;
     pageProps.stateSetters["setLocales"] = setLocales;
+    pageProps.stateSetters["setMetadatas"] = setMetadatas;
     pageProps.stateSetters["setTranslations"] = setTranslations;
     pageProps.stateSetters["setSession"] = setSession;
     pageProps.stateSetters["setTheme"] = setTheme;
