@@ -82,7 +82,6 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.stateSetters["setProduction"] = setProduction;
     pageProps.config = config;
     pageProps.router = router;
-    console.log(pageProps)
     return <>
         <Head>
             <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8"/>
