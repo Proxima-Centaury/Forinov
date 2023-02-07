@@ -81,12 +81,13 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.stateSetters["setRGB"] = setRGB;
     pageProps.stateSetters["setProduction"] = setProduction;
     pageProps.config = config;
+    pageProps.router = router;
     return <>
         <Head>
             <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <title>Forinov</title>
-            <link rel="icon" href="/assets/logo.png"/>
+            <link rel="icon" href={ router.basePath + "/assets/logo.png" }/>
         </Head>
         { (!session) ? <Navbar { ...pageProps }/> : null }
         <Transition>

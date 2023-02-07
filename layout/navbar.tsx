@@ -19,7 +19,8 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Navbar = ({ states, stateSetters, config }: NavbarInterface) => {
+const Navbar = (pageProps: NavbarInterface) => {
+    const { states, stateSetters, config, router }: any = pageProps;
     const { locale, locales, translations }: any = states;
     const { setLocale }: any = stateSetters;
     const { navbar } = config.navigations.unsigned.layout;
@@ -37,7 +38,7 @@ const Navbar = ({ states, stateSetters, config }: NavbarInterface) => {
     return <nav className={ NavbarStyles.navbar }>
         <div className={ NavbarStyles.logo }>
             <Link href="/">
-                <Image src="/assets/logo.png" alt={ translations["Logo de Forinov"] } width="50" height="50"/>
+                <Image src={ router.basePath + "/assets/logo.png" } alt={ translations["Logo de Forinov"] } width="50" height="50"/>
                 <span>forinov</span>
             </Link>
         </div>

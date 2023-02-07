@@ -15,7 +15,7 @@ import ServerErrorStyles from "../public/stylesheets/pages/ServerError.module.cs
 /* Server Error */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ServerError = (pageProps: ServerErrorInterface) => {
-    const { states }: any = pageProps;
+    const { states, router }: any = pageProps;
     const { translations }: any = states;
     return <>
         <Head>
@@ -25,7 +25,7 @@ const ServerError = (pageProps: ServerErrorInterface) => {
             <div className={ ServerErrorStyles.serverError }>
                 <h1>500</h1>
                 <p>{ "Oops ! " + translations["Une erreur serveur est survenue"] + " !" }</p>
-                <button onClick={ () => window.history.go(-1) }>{ translations["Retournez à la page précédente"] + "." }</button>
+                <button onClick={ () => router.back() }>{ translations["Retournez à la page précédente"] + "." }</button>
             </div>
         </div>
     </>;
