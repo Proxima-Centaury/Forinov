@@ -1,6 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { HomeInterface } from "../typescript/interfaces";
 import api from "../scripts/api";
@@ -20,12 +21,13 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Partners Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnersHome = (pageProps: HomeInterface) => {
+    const router = useRouter();
 	const { startups, logos, states, config }: any = pageProps;
-	const { translations }: any = states;
-	const title = "Forinov " + translations["Partenaires"] + " - " + translations["Comment ça marche"] + " ?" as String;
+	const { metadatas, translations }: any = states;
 	return <>
 		<Head>
-			<title>{ title }</title>
+			<title>{ metadatas[router.route].title }</title>
+			<meta name="description" content={ metadatas[router.route].description }/>
 		</Head>
 		<div className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="partner">

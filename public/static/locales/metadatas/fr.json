@@ -2,5 +2,17 @@
     "/startups": {
         "title": "Forinov pour votre startup, comment ça marche ?",
         "description": "Forinov pour votre startup, comment ça marche ? Inscrire votre startup sur Forinov, répondre à des appels à candidatures, référencer votre startup dans l'annuaire de startups de France sur Forinov. Intégrez votre startup à notre base de données de startups. Vos avez des questions ? Toutes les réponses sont sur Forinov."
+    },
+    "/corporations": {
+        "title": "Forinov pour votre entreprise, comment ça marche ?",
+        "description": "Comment inscrire votre entreprise sur Forinov ?  Créer un appel à projets / candidatures, trouver des startups pertinentes. Découvrir des startups innovantes pour votre entreprise sur Forinov. Startups par catégories / secteurs. Entrer en relation avec les startups. Toutes les réponses à vos questions sont sur Forinov."
+    },
+    "/partners": {
+        "title": "Forinov en tant que partenaire, comment ça marche ?",
+        "description": "Comment s'inscrire en tant que partenaire sur Forinov ?  Créer des opportunités sur Forinov. Retrouvez notre annuaire de startups Françaises et internationales sur Forinov. Ajoutez des startups et entreprises à votre réseau. Vous souhaitez avoir une place de choix dans l'écosystème innovant ? Toutes les réponses sont sur Forinov."
+    },
+    "/opportunities": {
+        "title": "Les opportunités Forinov, comment ça marche ?",
+        "description": "Comment créer votre appel à candidatures / appel à projets / concours / challenges / évènements sur Forinov. Trouver des startups pertinentes, contactez les startups les plus intéressantes de notre annuaire de startups France, et suivez les via votre porte-feuille de startups. Toutes les réponses à vos questions sont sur Forinov."
     }
 }
