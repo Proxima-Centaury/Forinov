@@ -23,15 +23,15 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 const Home = (pageProps: HomeInterface) => {
 	const { startups, opportunities, states }: any = pageProps;
 	const { translations }: any = states;
-	const title = translations["Forinov, le réseau social de l'open innovation"] as String;
 
-	console.log(locales)
 	const meta = require("../public/static/meta/meta_" + states.locale.split("-")[0] + ".json");
 
+	const title = meta['landing_title']
 	return <>
 		<Head>
             <meta name="description" content={ translations["Forinov est le réseau social de l'open innovation qui connecte startups, entreprises et partenaires pour faciliter leur collaboration. Forinov optimise veille, sourcing, gestion du portefeuille de start ups et de partenaires. (accélérateurs, incubateurs, …)"] + "." }/>
-			<title>{ title }</title>
+			<title>{title}</title>
+			<meta name="description" content={ meta['landing_desc']} />
 		</Head>
 		<div className="containerFull">
 			<div className={ HomeStyles.presentation }>
