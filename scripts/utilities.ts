@@ -212,10 +212,10 @@ class Utilities {
     getMetadataTranslations = (locale: String): Object => {
         if(locale) {
             const language = locale.substring(0, 2);
-            const translations = require("../public/static/locales/metadata/" + language + ".json");
+            const translations = require("../public/static/locales/metadatas/" + language + ".json");
             return translations;
         };
-        return require("../public/static/locales/metadata/fr.json");
+        return require("../public/static/locales/metadatas/fr.json");
     };
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
