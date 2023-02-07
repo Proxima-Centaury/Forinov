@@ -3,9 +3,9 @@
 name: Forinov's interface deployment system
 # Workflow controls
 on:
-    # Starts deployment on push or pull request events on master branch
+    # Starts deployment on push or pull request events on production branch
     push:
-        branches: [ "master" ]
+        branches: [ "production" ]
 # Deployment system jobs
 jobs:
     build:
