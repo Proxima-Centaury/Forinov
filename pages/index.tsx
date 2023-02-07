@@ -21,7 +21,7 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = (pageProps: HomeInterface) => {
-	const { startups, opportunities, states }: any = pageProps;
+	const { startups, opportunities, states, router }: any = pageProps;
 	const { translations }: any = states;
 	const title = translations["Forinov, le réseau social de l'open innovation"] as String;
 	return <>
@@ -40,7 +40,7 @@ const Home = (pageProps: HomeInterface) => {
 					<Link href="/directories/partners">{ translations["Découvrez les partenaires"] }<i className="fa-light fa-arrow-right"/></Link>
 					<Link href="/directories/opportunities">{ translations["Postulez aux opportunités en cours"] }<i className="fa-light fa-arrow-right"/></Link>
 				</div>
-				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
+				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
 			</div>
             <div className={ HomeStyles.onboarding }>
                 <div>
