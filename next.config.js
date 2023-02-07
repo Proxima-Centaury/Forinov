@@ -6,6 +6,7 @@
 /* Config */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const nextConfig = {
+    basePath: (process.env.NODE_ENV === "production") ? "" : "/dev",
     distDir: "production",
     reactStrictMode: true,
     swcMinify: true,
