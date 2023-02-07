@@ -22,8 +22,8 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Startups Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StartupsHome = (pageProps: HomeInterface) => {
-    const router = useRouter();
 	const { opportunities, logos, states, config }: any = pageProps;
+    const router = useRouter();
 	const { metadatas, translations }: any = states;
 	return <>
 		<Head>

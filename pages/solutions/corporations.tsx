@@ -13,16 +13,21 @@ import Link from "next/link";
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import SolutionStyles from "../../public/stylesheets/pages/solutions/Solutions.module.css"
+import { useRouter } from "next/router";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Corporation Solutions */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CorporationSolutions = (pageProps: HomeInterface) => {
     const { locales, states, stateSetters, config, opportunities }: any = pageProps;
-    const { translations }: any = states;
+
+    const router = useRouter();
+    const { metadatas, translations }: any = states;
+
     return (
         <>
             <Head>
-                <title>Forinov - Solutions pour les entreprises</title>
+                <title>{metadatas[router.route].title}</title>
+                <meta name="description" content={metadatas[router.route].description} />
                 <style>
                     {`
                         :root {

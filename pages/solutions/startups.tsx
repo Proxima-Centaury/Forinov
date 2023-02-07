@@ -17,16 +17,18 @@ import Carousel from "../../components/carousels/carousel";
 import HomeStyles from "../../public/stylesheets/pages/Home.module.css";
 import SolutionStyles from "../../public/stylesheets/pages/solutions/Solutions.module.css"
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
+import { useRouter } from "next/router";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startup Solutions */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StartupSolutions = (pageProps: HomeInterface) => {
     const { locales, states, stateSetters, config, opportunities }: any = pageProps;
-    const { translations }: any = states;
+    const { metadatas, translations }: any = states;
+    const router = useRouter();
     return (
         <>
             <Head>
-                <title>Forinov - Solutions pour les startups</title>
+                <title>{metadatas[router.route].title}</title>
                 <style>
                     {`
                         :root {
@@ -127,7 +129,7 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                 <div className={HomeStyles.opportunity} data-type="corporation">
                     <div style={{ background: "var(--background-sub-color)", paddingTop: '15rem' }}>
                         <h4>{translations["Les dernières oppotunités"] + " :"}</h4>
-                        <Carousel {...pageProps} component={"LatestOpportunities"} data={opportunities}/>
+                        <Carousel {...pageProps} component={"LatestOpportunities"} data={opportunities} />
                         <div className={HomeStyles.actions} data-align="left">
                             <Link href="/directories/opportunities" className={ButtonStyles.callToAction}>{translations["Découvrir toutes les opportunités"]}</Link>
                             <Link href="/opportunities" className={ButtonStyles.callToActionAlternative}>{translations["Qu'est-ce qu'une opportunité"] + " ?"}</Link>
