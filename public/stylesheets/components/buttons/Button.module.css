@@ -353,6 +353,12 @@
 .classicLink {
     display: flex;
     align-items: center;
+    width: max-content;
+    border-bottom: var(--border);
+    border-color: transparent;
+}
+.classicLink:hover {
+    border-color: var(--logo-blue-color);
 }
 .classicLink > p {
     color: var(--logo-blue-color);
