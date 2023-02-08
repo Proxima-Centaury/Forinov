@@ -1,7 +1,6 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { HomeInterface } from "../typescript/interfaces";
 import api from "../scripts/api";
@@ -22,8 +21,7 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Startups Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StartupsHome = (pageProps: HomeInterface) => {
-    const router = useRouter();
-	const { opportunities, logos, states, config }: any = pageProps;
+	const { opportunities, logos, states, config, router }: any = pageProps;
 	const { metadatas, translations }: any = states;
 	return <>
 		<Head>
@@ -37,7 +35,7 @@ const StartupsHome = (pageProps: HomeInterface) => {
 					<p className={ HomeStyles.paragraph }>{ translations["Il n'a jamais été aussi simple pour les startups de trouver des clients, des opportunités (appels à projets, appels à candidatures, etc.) et de développer leurs réseaux"] + " !" }</p>
 					<Link href="/onboarding">{ translations["Créer mon profil gratuitement"] }</Link>
 				</div>
-				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
+				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
 			</div>
 			<div className={ HomeStyles.opportunity } data-type="startup">
 				<div>
