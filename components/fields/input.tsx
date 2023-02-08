@@ -31,9 +31,9 @@ const Input = ({ label, type, name, placeholder, version, action, defaultValue }
         onInput: getValue,
         defaultValue: defaultValue
     };
-    return <div className={ InputStyles.inputField }>
+    return <div className={ InputStyles[type] }>
         <input { ...inputProps }/>
-        <label htmlFor={ name + "FieldId" }>{ label }</label>
+        { (label) ? <label htmlFor={ name + "FieldId" }>{ label }</label> : null }
         { (type === "password") ? <button onClick={ (event) => preventSubmit(event as any, () => setVisible(!visible)) }>
             { (visible) ? <i className="fa-eye-slash fa-solid"/> : <i className="fa-eye fa-solid"/> }
         </button> : null }
