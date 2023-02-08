@@ -15,12 +15,12 @@ import FooterStyles from "../public/stylesheets/layout/Footer.module.css";
 /* Footer */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Footer = (pageProps: FooterInterface) => {
-    const { states, config }: any = pageProps;
+    const { states, config, router }: any = pageProps;
     const { translations }: any = states;
     const { footer }: any = config.navigations.common.layout;
     return <footer className={ FooterStyles.footer }>
         <div className={ FooterStyles.section }>
-            <Image src="/assets/logo.png" alt="Forinov logo" width="50" height="50"/>
+            <Image src={ router.basePath + "/assets/logo.png" } alt="Forinov logo" width="50" height="50"/>
             <p>{ translations["Forinov connecte startups, entreprises et partenaires pour matcher l'offre et le besoin d'innovation."] }</p>
             <div className={ FooterStyles.socials }>
                 <a href="https://twitter.com/Forinov1" target="_blank">

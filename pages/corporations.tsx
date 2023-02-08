@@ -1,7 +1,6 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { HomeInterface } from "../typescript/interfaces";
 import api from "../scripts/api";
@@ -21,8 +20,7 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Corporations Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CorporationsHome = (pageProps: HomeInterface) => {
-    const router = useRouter();
-	const { opportunities, logos, states, config }: any = pageProps;
+	const { opportunities, logos, states, config, router }: any = pageProps;
 	const { metadatas, translations }: any = states;
 	return <>
 		<Head>
@@ -36,7 +34,7 @@ const CorporationsHome = (pageProps: HomeInterface) => {
 					<p className={ HomeStyles.paragraph }>{ translations["Lancez vos appels à candidatures, trouvez les meilleures solutions, développez et gérez votre réseau de startups et de partenaires en quelques clics"] + "." }</p>
 					<Link href="/onboarding">{ translations["Pré-inscription gratuite"] }</Link>
 				</div>
-				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
+				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
 			</div>
 			<div className={ HomeStyles.register } data-type="corporation">
 				<div>
