@@ -62,5 +62,13 @@
         "description3" : " retrouvez les contacts clés des équipes innovation (directeur innovation de ",
         "description4" : ", responsable partenariats startups…), leurs besoins et recherches de startups et toutes les opportunités de collaborations et de mise en relation avec ",
         "description5" : " :  appels à projets, appels à candidatures, concours challenges..."
+    },
+    "/annuaires/partners/[id]" : {
+        "title1": "Le profil de ",
+        "title2": " sur Forinov :",
+        "description1" : "Profil de l’incubateur ",
+        "description2" : ". Retrouvez les informations toutes les informations sur ",
+        "description3" : ", les contacts clés, les offres et services, les conditions d'éligibilité, les startups accompagnées et en portefeuille, leurs alumni…Et bien sur toutes les opportunités de ",
+        "description4" : " : appels à candidatures, concours, challenges, évènements…"
     }
 }

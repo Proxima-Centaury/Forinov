@@ -62,5 +62,13 @@
         "description3" : "open innovation page, find the key contacts of the innovation teams ( ",
         "description4" : "'s innovation director, startup partnership manager, etc.), their needs and searches for startups, and all the opportunities for collaborations and connections with ",
         "description5" : ": calls for projects, calls for applications, challenges, etc..."
+    },
+    "/annuaires/partners/[id]" : {
+        "title1": "The profile of ",
+        "title2": " on Forinov :",
+        "description1" : "Profil of ",
+        "description2" : ". Find all the information on ",
+        "description3" : ", key contacts, offers and services, eligibility requirements, startups supported and in portfolio, their alumni... And of course all the opportunities to ",
+        "description4" : " : calls for applications, competitions, challenges, events..."
     }
 }

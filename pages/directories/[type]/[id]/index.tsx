@@ -91,17 +91,27 @@ const DirectoryIdPage = (pageProps: ProfileInterface) => {
                 {metadatas["/annuaires/startups/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/startups/[id]"].title2 + " " + profile.CATEGORY[0].NAME}
             </title>
                 <meta name="description" content={metadatas["/annuaires/startups/[id]"].description1 + profile.NAME + metadatas["/annuaires/startups/[id]"].description2 + profile.CATEGORY[0].NAME + ", " + metadataComment + ", " + profileTagsString} /></>
-        } else if (type === "corporation") { 
-            metadata = 
-            <><title>
-                {metadatas["/annuaires/corporations/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/corporations/[id]"].title2 + " " + profile.CATEGORY[0] + metadatas["/annuaires/corporations/[id]"].title3}
-            </title>
+        } else if (type === "corporation") {
+            metadata =
+                <><title>
+                    {metadatas["/annuaires/corporations/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/corporations/[id]"].title2 + " " + profile.CATEGORY[0] + metadatas["/annuaires/corporations/[id]"].title3}
+                </title>
                     <meta name="description" content={metadatas["/annuaires/corporations/[id]"].description1 + profile.NAME +
                         metadatas["/annuaires/corporations/[id]"].description2 + profile.NAME +
                         metadatas["/annuaires/corporations/[id]"].description3 + profile.NAME +
                         metadatas["/annuaires/corporations/[id]"].description4 + profile.NAME +
                         metadatas["/annuaires/corporations/[id]"].description5 + profile.NAME
-                }
+                    }
+                    /></>
+        } else if (type === "partner") { 
+            <><title>
+                    {metadatas["/annuaires/partners/[id]"].title1 + profile.NAME + metadatas["/annuaires/partners/[id]"].title2 + profile.CATEGORY[0]}
+                </title>
+                    <meta name="description" content={metadatas["/annuaires/partners/[id]"].description1 + profile.NAME +
+                        metadatas["/annuaires/partners/[id]"].description2 + profile.NAME +
+                        metadatas["/annuaires/partners/[id]"].description3 + profile.NAME +
+                        metadatas["/annuaires/partners/[id]"].description4
+                    }
                     /></>
         }
 
