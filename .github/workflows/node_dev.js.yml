@@ -1,11 +1,11 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-name: Forinov's interface deployment system ( Production )
+name: Forinov's interface deployment system ( Development )
 # Workflow controls
 on:
-    # Starts deployment on push or pull request events on production branch
+    # Starts deployment on push or pull request events on master branch
     push:
-        branches: [ "production" ]
+        branches: [ "master" ]
 # Deployment system jobs
 jobs:
     build:
@@ -38,11 +38,10 @@ jobs:
                     node-version: ${{ matrix.node-version }}
                     cache: "npm"
             - run: npm i
-            - run: npm run build
             - name: FTP-Deploy-Action
               uses: SamKirkland/FTP-Deploy-Action@4.3.0
               with:
                     server: "ftp.forinov.net"
                     username: "amine.belkheiri@forinov.net"
                     password: "IkCPSeZboASx"
-                    server-dir: "interface/"
+                    server-dir: "interface_dev/"

@@ -21,14 +21,12 @@ import { useRouter } from 'next/router';
 /* Partners Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnersHome = (pageProps: HomeInterface) => {
-	const { startups, logos, states, config }: any = pageProps;
-
-	const router = useRouter();
+	const { startups, logos, states, config, router }: any = pageProps;
 	const { metadatas, translations }: any = states;
 	return <>
 		<Head>
-			<title>{metadatas[router.route].title}</title>
-			<meta name="description" content={metadatas[router.route].description} />
+			<title>{ metadatas[router.route].title }</title>
+			<meta name="description" content={ metadatas[router.route].description }/>
 		</Head>
 		<div className="containerFull">
 			<div className={HomeStyles.presentation} data-type="partner">
@@ -37,7 +35,7 @@ const PartnersHome = (pageProps: HomeInterface) => {
 					<p className={HomeStyles.paragraph}>{translations["Partagez vos appels à candidatures, contactez les meilleures startups et partenaires ! Faites vous connaitre au sein de l'écosystème. Forinov est la solution qui fait grandir votre réseau"] + " !"}</p>
 					<Link href="/onboarding">{translations["Rejoindre la communauté"]}</Link>
 				</div>
-				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority />
+				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
 			</div>
 			<div className={HomeStyles.register} data-type="partner">
 				<div>

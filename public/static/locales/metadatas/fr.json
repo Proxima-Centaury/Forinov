@@ -4,17 +4,21 @@
         "description": "Forinov est le réseau social de l'Open innovation qui connecte startups, entreprises et partenaires pour faciliter leur collaboration. Forinov optimise veille, sourcing, gestion du portefeuille de start ups et de partenaires. (accélérateurs, incubateurs, …) "
     },
     "/startups": {
-        "title": "S'inscrire sur Forinov, le premier réseau social qui met en relation les acteurs de l'innovation",
-        "description": "Comment s’inscrire sur Forinov si je suis une startup ? Comment postuler à une opportunité si je suis une start-up  ? Découvrez les fonctionnalités de Forinov, le premier réseau social de l’Open Innovation"
-    }, 
-    "/corporations" : {
-        "title": "Inscrire votre entreprise sur Forinov, le premier réseau social de l’innovation",
-        "description" : "Comment inscrire votre entreprise sur Forinov ? Comment créer une opportunité ? Avec Forinov, découvrez les meilleures startups de l’Open Innovation, créez des opportunités, gérez vos collaborations. "
+        "title": "Forinov pour votre startup, comment ça marche ?",
+        "description": "Forinov pour votre startup, comment ça marche ? Inscrire votre startup sur Forinov, répondre à des appels à candidatures, référencer votre startup dans l'annuaire de startups de France sur Forinov. Intégrez votre startup à notre base de données de startups. Vos avez des questions ? Toutes les réponses sont sur Forinov."
     },
-    "/partners" : {
-        "title": "S’inscrire sur Forinov, les étapes pour créer votre profil partenaire",
-        "description" : "Comment s’inscrire sur Forinov, le premier réseau social de l’Open Innovation ? Comment lancer / créer une opportunité ? Découvrez les fonctionnalités de Forinov, le réseau phare pour les acteurs de l’innovation."
+    "/corporations": {
+        "title": "Forinov pour votre entreprise, comment ça marche ?",
+        "description": "Comment inscrire votre entreprise sur Forinov ?  Créer un appel à projets / candidatures, trouver des startups pertinentes. Découvrir des startups innovantes pour votre entreprise sur Forinov. Startups par catégories / secteurs. Entrer en relation avec les startups. Toutes les réponses à vos questions sont sur Forinov."
     },
+    "/partners": {
+        "title": "Forinov en tant que partenaire, comment ça marche ?",
+        "description": "Comment s'inscrire en tant que partenaire sur Forinov ?  Créer des opportunités sur Forinov. Retrouvez notre annuaire de startups Françaises et internationales sur Forinov. Ajoutez des startups et entreprises à votre réseau. Vous souhaitez avoir une place de choix dans l'écosystème innovant ? Toutes les réponses sont sur Forinov."
+    },
+    "/opportunities": {
+        "title": "Les opportunités Forinov, comment ça marche ?",
+        "description": "Comment créer votre appel à candidatures / appel à projets / concours / challenges / évènements sur Forinov. Trouver des startups pertinentes, contactez les startups les plus intéressantes de notre annuaire de startups France, et suivez les via votre porte-feuille de startups. Toutes les réponses à vos questions sont sur Forinov."
+    }
     "/solutions/startups" : {
         "title": "Forinov, créez votre profil startup gratuitement",
         "description" : "Forinov, met en relation les meilleures startups avec les entreprises en recherche de solutions, permet de postuler aux opportunités (appels à projets, appels à candidatures, programmes partenaires…) et de simplifier les relations clients. Plus qu’une solution de prospection, c’est un réseau d'affaires ! "

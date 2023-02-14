@@ -15,10 +15,6 @@ import ProfileCard from "../cards/profile";
 import Accordion from "../accordions/accordion";
 import Format from "../texts/format";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* JSON */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../../config.json";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import CarouselStyles from "../../public/stylesheets/components/carousels/Carousel.module.css";
@@ -80,31 +76,31 @@ class Transition {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Carousel = ({ states, component, data }: any) => {
-	const parentProps = { states, component, data };
+const Carousel = (pageProps: any) => {
+    const { component }: any = pageProps;
     switch(component) {
         case "LatestStartups":
-            return <ClassicHorizontal { ...parentProps }/>;
+            return <ClassicHorizontal { ...pageProps }/>;
         case "LatestOpportunities":
-            return <ClassicHorizontal { ...parentProps }/>;
+            return <ClassicHorizontal { ...pageProps }/>;
         case "CompaniesLogos":
-            return <InfiniteScrollHorizontal { ...parentProps }/>;
+            return <InfiniteScrollHorizontal { ...pageProps }/>;
         case "HowToGetStarted":
-            return <CustomVertical { ...parentProps }/>;
+            return <CustomVertical { ...pageProps }/>;
         case "HowToCreateOpportunity":
-            return <CustomVertical { ...parentProps }/>;
+            return <CustomVertical { ...pageProps }/>;
         case "StartupAccordions":
-            return <AccordionsHorizontal { ...parentProps }/>;
+            return <AccordionsHorizontal { ...pageProps }/>;
         case "CorporationAccordions":
-            return <AccordionsHorizontal { ...parentProps }/>;
+            return <AccordionsHorizontal { ...pageProps }/>;
         case "PartnerAccordions":
-            return <AccordionsHorizontal { ...parentProps }/>;
+            return <AccordionsHorizontal { ...pageProps }/>;
         case "OpportunityAccordions":
-            return <AccordionsHorizontal { ...parentProps }/>;
+            return <AccordionsHorizontal { ...pageProps }/>;
         case "CorporationHowTo":
-            return <StepsCarousel { ...parentProps }/>;
+            return <StepsCarousel { ...pageProps }/>;
         case "PartnerHowTo":
-            return <StepsCarousel { ...parentProps }/>;
+            return <StepsCarousel { ...pageProps }/>;
         default :
             return <Fragment></Fragment>;
     };
@@ -112,7 +108,8 @@ const Carousel = ({ states, component, data }: any) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Steps Carousel */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const StepsCarousel = ({ states, component }: any) => {
+const StepsCarousel = (pageProps: any) => {
+    const { states, component, config, router }: any = pageProps;
 	const { translations }: any = states;
     const { carousels }: any = config;
     const transitionInstance = new Transition();
@@ -143,7 +140,7 @@ const StepsCarousel = ({ states, component }: any) => {
                         </ul>
                     </div>
                     <div className={ CarouselStyles.stepPicture }>
-                        <Image src={ step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                        <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                     </div>
                 </div>;
             }) }
@@ -153,7 +150,8 @@ const StepsCarousel = ({ states, component }: any) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Custom Vertical */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const CustomVertical = ({ states, component }: any) => {
+const CustomVertical = (pageProps: any) => {
+    const { states, config, router, component }: any = pageProps;
 	const { translations }: any = states;
     const { carousels }: any = config;
     const steps: Array<any> = carousels[component];
@@ -172,10 +170,10 @@ const CustomVertical = ({ states, component }: any) => {
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
                     <Format content={ translations[step.text] }/>
                 </div> : <div>
-                    <Image src={ step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                    <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                 </div> }
                 { (key % 2 === 1) ? <div>
-                    <Image src={ step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                    <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                 </div> : <div>
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
                     <Format content={ translations[step.text] }/>

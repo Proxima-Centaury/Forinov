@@ -4,7 +4,11 @@
 .callToActionRoundedIcon,
 .callToActionAlternativeRoundedIcon,
 .callToActionNegativeRoundedIcon,
-.callToActionNegativeAlternativeRoundedIcon {
+.callToActionNegativeAlternativeRoundedIcon,
+.callToActionSquaredIcon,
+.callToActionAlternativeSquaredIcon,
+.callToActionNegativeSquaredIcon,
+.callToActionNegativeAlternativeSquaredIcon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,18 +17,31 @@
     border-radius: 20px;
     border: var(--border);
     border-color: var(--logo-blue-color);
-    
+}
+.callToActionSquaredIcon,
+.callToActionAlternativeSquaredIcon,
+.callToActionNegativeSquaredIcon,
+.callToActionNegativeAlternativeSquaredIcon {
+    border-radius: 0px;
 }
 .callToActionRoundedIcon > i,
 .callToActionAlternativeRoundedIcon > i,
 .callToActionNegativeRoundedIcon > i,
-.callToActionNegativeAlternativeRoundedIcon > i {
+.callToActionNegativeAlternativeRoundedIcon > i,
+.callToActionSquaredIcon > i,
+.callToActionAlternativeSquaredIcon > i,
+.callToActionNegativeSquaredIcon > i,
+.callToActionNegativeAlternativeSquaredIcon > i {
     font-size: 16px;
 }
 .callToActionRoundedIcon > i.fa-ellipsis,
 .callToActionAlternativeRoundedIcon > i.fa-ellipsis,
 .callToActionNegativeRoundedIcon > i.fa-ellipsis,
-.callToActionNegativeAlternativeRoundedIcon > i.fa-ellipsis {
+.callToActionNegativeAlternativeRoundedIcon > i.fa-ellipsis,
+.callToActionSquaredIcon > i.fa-ellipsis,
+.callToActionAlternativeSquaredIcon > i.fa-ellipsis,
+.callToActionNegativeSquaredIcon > i.fa-ellipsis,
+.callToActionNegativeAlternativeSquaredIcon > i.fa-ellipsis {
     font-size: 26px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -55,6 +72,25 @@
     color: var(--logo-blue-color);
 }
 .callToActionAlternativeRoundedIcon:hover > i {
+    color: var(--perfect-white-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Alternative Squared Icon ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionAlternativeSquaredIcon {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: var(--lightblue-color);
+}
+.callToActionAlternativeSquaredIcon:hover {
+    background-color: var(--logo-blue-color);
+}
+.callToActionAlternativeSquaredIcon > i {
+    font-size: 20px;
+    color: var(--logo-blue-color);
+}
+.callToActionAlternativeSquaredIcon:hover > i {
     color: var(--perfect-white-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -353,6 +389,12 @@
 .classicLink {
     display: flex;
     align-items: center;
+    width: max-content;
+    border-bottom: var(--border);
+    border-color: transparent;
+}
+.classicLink:hover {
+    border-color: var(--logo-blue-color);
 }
 .classicLink > p {
     color: var(--logo-blue-color);

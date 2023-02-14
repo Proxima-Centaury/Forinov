@@ -8,8 +8,8 @@ import api from "../scripts/api";
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import Carousel from "../components/carousels/carousel";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -20,12 +20,12 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Home */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = (pageProps: HomeInterface) => {
-	const { logos, states, config }: any = pageProps;
-	const { translations }: any = states;
-    const title = "Forinov " + translations["Opportunités"] + " - " + translations["Comment ça marche"] + " ?" as String;
+	const { logos, states, config, router }: any = pageProps;
+	const { metadatas, translations }: any = states;
 	return <>
 		<Head>
-			<title>{ title }</title>
+			<title>{ metadatas[router.route].title }</title>
+			<meta name="description" content={ metadatas[router.route].description }/>
 		</Head>
 		<div className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="opportunity">
@@ -34,7 +34,7 @@ const Home = (pageProps: HomeInterface) => {
 					<p className={ HomeStyles.paragraph }>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d'innovation, à chaque startup son Forinov"] + " !" }</p>
 					<Link href="/">{ translations["Voir la vidéo de présentation"] }</Link>
 				</div>
-				<Image src="/assets/landings/presentation.png" alt="Illustration" width="3840" height="2160" priority/>
+				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
 			</div>
 			<div className={ HomeStyles.sourcing } data-type="opportunity">
 				<div>
