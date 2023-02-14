@@ -13,7 +13,9 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled = false, aria, index }: ButtonInterface) => {
     const roundedButtonTypes = [
         ButtonStyles.callToActionRoundedIcon,
-        ButtonStyles.callToActionAlternativeRoundedIcon
+        ButtonStyles.callToActionAlternativeRoundedIcon,
+        ButtonStyles.callToActionSquaredIcon,
+        ButtonStyles.callToActionAlternativeSquaredIcon
     ];
     const buttonTypes = [
         ButtonStyles.callToAction,

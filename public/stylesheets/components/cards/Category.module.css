@@ -1,0 +1,56 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Category ( Card ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.category {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
+    padding: 16px;
+    position: relative;
+    border-radius: 15px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+}
+.category > img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+.category > i {
+    font-size: 80px;
+}
+.category > div[class*="tags"] {
+    justify-content: center;
+    flex: 0;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Category ( Count ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border-radius: 20px;
+    background-color: var(--logo-blue-color);
+}
+.count > p {
+    color: var(--perfect-white-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Category ( Name ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.name {
+    font-family: "Nunito Sans";
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    text-transform: capitalize;
+}

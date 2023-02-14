@@ -5,16 +5,12 @@
     display: flex;
     flex-wrap: wrap;
     flex: 1;
+    grid-gap: 8px;
+    gap: 8px;
     position: relative;
 }
 .tags[class*="locked"] {
     padding: 0px 0px 8px 8px;
-}
-.tags > .tag:first-of-type {
-    margin: 8px 8px 0px 0px;
-}
-.tags > * + * {
-    margin: 8px 8px 0px 0px;
 }
 .tags > .tag {
     display: flex;
