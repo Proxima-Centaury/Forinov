@@ -2,11 +2,11 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
-import { LoginInterface } from "../../typescript/interfaces";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import LoginForm from "../../components/forms/login";
+import Format from "../texts/format";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -14,32 +14,22 @@ import LoginStyles from "../../public/stylesheets/components/cards/Login.module.
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Login Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const LoginCard = ({ locales, states, stateSetters, config }: LoginInterface) => {
+const LoginCard = (pageProps: any) => {
+    const { states }: any = pageProps;
     const { translations }: any = states;
-    const parentProps = { locales, states, stateSetters, config };
     return <>
         <div className={ LoginStyles.card }>
             <div className={ LoginStyles.head }>
                 <h2>{ translations["Accéder à tout Forinov"] }</h2>
-                <p>{ translations["Pas encore membre Forinov"] + " ?" }&nbsp;<Link href="/onboarding">{ translations["Inscrivez-vous"] }</Link>&nbsp;!</p>
+                <p>{ translations["Pas encore membre Forinov"] + " ?" } <Link href="/onboarding">{ translations["Inscrivez-vous"] }</Link> !</p>
             </div>
             <div className={ LoginStyles.body }>
-                <LoginForm { ...parentProps }/>
+                <LoginForm { ...pageProps }/>
             </div>
             <div className={ LoginStyles.footer }>
-                <div>
-                    <p dangerouslySetInnerHTML={ { __html: translations["Une question, un problème"] + " ?" } }/>
-                    &nbsp;
-                    <Link href="/contact">{ translations["Contactez-nous"] }</Link>
-                    .
-                </div>
-                <p dangerouslySetInnerHTML={ { __html: translations["Forinov s'engage à respecter vos données"] + "." } }/>
-                <div>
-                    <p dangerouslySetInnerHTML={ { __html: translations["En continuant votre inscription, vous acceptez nos"] } }/>
-                    &nbsp;
-                    <Link href='/terms'>{ translations["Conditions générales"].toLowerCase() }</Link>
-                    .
-                </div>
+                <Format { ...pageProps } content={ translations["Une question, un problème ? [Contactez-nous=/contact]"] }/>
+                <p>{ translations["Forinov s'engage à respecter vos données"] + "." }</p>
+                <Format { ...pageProps } content={ translations["En continuant votre inscription, vous acceptez nos [conditions générales=https://fr.forinov.com/files/CGU%20v5.pdf]"] }/>
             </div>
         </div>
     </>;
