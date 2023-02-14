@@ -23,6 +23,14 @@
         "title": "",
         "description": ""
     },
+    "/connexion": {
+        "title": "",
+        "description": ""
+    },
+    "/onboarding": {
+        "title": "",
+        "description": ""
+    },
     "/solutions/startups" : {
         "title": "Forinov, créez votre profil startup gratuitement",
         "description" : "Forinov, met en relation les meilleures startups avec les entreprises en recherche de solutions, permet de postuler aux opportunités (appels à projets, appels à candidatures, programmes partenaires…) et de simplifier les relations clients. Plus qu’une solution de prospection, c’est un réseau d'affaires ! "

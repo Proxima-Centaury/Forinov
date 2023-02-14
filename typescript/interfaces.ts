@@ -37,9 +37,9 @@ interface HomeInterface extends BaseInterface {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 interface LoginInterface extends BaseInterface {};
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Register Interface */
+/* Onboarding Interface */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-interface RegisterInterface extends BaseInterface {};
+interface OnboardingInterface extends BaseInterface {};
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Directory Interface */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -126,7 +126,7 @@ export type {
     ServerErrorInterface,
     HomeInterface,
     LoginInterface,
-    RegisterInterface,
+    OnboardingInterface,
     DirectoryInterface,
     ProfileInterface,
     FoldersInterface,
