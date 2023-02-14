@@ -15,7 +15,7 @@ import NotFoundStyles from "../public/stylesheets/pages/NotFound.module.css";
 /* Not Found */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const NotFound = (pageProps: NotFoundInterface) => {
-    const { states }: any = pageProps;
+    const { states, router }: any = pageProps;
     const { translations }: any = states;
     return <>
         <Head>
@@ -25,7 +25,7 @@ const NotFound = (pageProps: NotFoundInterface) => {
             <div className={ NotFoundStyles.notFound }>
                 <h1>404</h1>
                 <p>{ "Oops ! " + translations["La page que vous recherchez, n'existe pas"] + " !" }</p>
-                <button onClick={ () => window.history.go(-1) }>{ translations["Retournez à la page précédente"] + "." }</button>
+                <button onClick={ () => router.back() }>{ translations["Retournez à la page précédente"] + "." }</button>
             </div>
         </div>
     </>;

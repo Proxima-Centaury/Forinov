@@ -42,7 +42,10 @@ class API {
                 const url = this.endpoint + "?" + buildParameters();
                 const promise = await fetch(url);
                 const response = await promise.json();
+                console.error("[ " + chalk.blueBright("CALL") + " ]\n" + url);
                 switch(query[0]) {
+                    case "getPublicCommons":
+                        return response[0];
                     case "getLandingOpportunities":
                         return Object.values(response[0].PROJECT);
                     case "getLandingLogos":

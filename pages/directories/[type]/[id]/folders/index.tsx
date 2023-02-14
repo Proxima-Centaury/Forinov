@@ -2,23 +2,29 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { FoldersInterface } from "../../../../../typescript/interfaces";
 import api from "../../../../../scripts/api";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Button from "../../../../../components/buttons/button";
+import Link from "next/link";
+import Filters from "../../../../../components/filters/filters";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import ButtonStyles from "../../../../public/stylesheets/components/buttons/Button.module.css";
+import ButtonStyles from "../../../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Folders */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Folders = ({ profile, folders, states, stateSetters }: any) => {
+const Folders = (pageProps: FoldersInterface) => {
+    const { states, router }: any = pageProps;
+    const { translations }: any = states;
     return <div id="folders" className="container">
-
+        <Link href={ router.asPath.replace(/(\/folders|\/dossiers)/, "") } className={ ButtonStyles.classicLink }>
+            <i className="fa-light fa-arrow-left"/>
+            <p>{ translations["Retourner au profil"] + "." }</p>
+        </Link>
+        <Filters { ...pageProps }/>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
