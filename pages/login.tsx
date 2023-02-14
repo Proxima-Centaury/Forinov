@@ -2,7 +2,6 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetStaticProps } from "next";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { LoginInterface } from "../typescript/interfaces";
 import { redirectTo } from "../scripts/utilities";
@@ -15,14 +14,13 @@ import LoginCard from "../components/cards/login";
 /* Login */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Login = (pageProps: LoginInterface) => {
-    const router = useRouter();
-    const { states }: any = pageProps;
-    const { locale, session, translations }: any = states;
+    const { states, router }: any = pageProps;
+    const { locale, session, metadatas }: any = states;
     useEffect(() => { (session) ? redirectTo("/", router, locale) : null });
-    const title = "Forinov - " + translations["Connexion"] as String;
     return <>
         <Head>
-            <title>{ title }</title>
+            <title>{ metadatas[router.route].title }</title>
+			<meta name="description" content={ metadatas[router.route].description }/>
         </Head>
         <div className="container">
             <LoginCard { ...pageProps }/>
