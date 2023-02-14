@@ -447,7 +447,7 @@ class Utilities {
     * @note This method is used to return the passed string trimed with all letters lowercased and spaces removed.
     * @note The {@link string} parameter should be a string.
     */
-    formatNameForUrl = (name: String): String|Boolean => (name) ? name.toLowerCase().replaceAll(/\s+/g, "").trim() : false;
+    formatNameForUrl = (name: String): String|Boolean => (name) ? name.toLowerCase().replaceAll(/\s+/g, "").replaceAll(/\&/g, "-").trim() : false;
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
     * @function bindEventListeners
