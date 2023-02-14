@@ -17,7 +17,8 @@ import FormStyles from "../../public/stylesheets/components/Form.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Login Form */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const LoginForm = ({ states }: LoginInterface) => {
+const LoginForm = (pageProps: any) => {
+    const { states }: any = pageProps;
     const { translations }: any = states;
     const inputProps = [ "label", "type", "name", "placeholder", "version", "action", "defaultValue" ];
     const emailInputValues = [ translations["Adresse email"] + " *", "email", "email", "", 1, undefined, undefined ];
@@ -45,7 +46,7 @@ const LoginForm = ({ states }: LoginInterface) => {
             <Link href="/onboarding" className={ ButtonStyles.callToActionAlternative }>{ translations["Créer mon compte"] }</Link>
         </div>
         <div className={ FormStyles.row }>
-            <Link href="/password/recover">{ translations["J'ai oublié mon mot de passe"] + " !" }</Link>
+            <Link href="/password/recover" className={ ButtonStyles.pureLink }>{ translations["J'ai oublié mon mot de passe"] + " !" }</Link>
         </div>
         <div className="separatorOr">
             <span>{ translations["Ou"] }</span>
