@@ -13,16 +13,20 @@ import Link from "next/link";
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import SolutionStyles from "../../public/stylesheets/pages/solutions/Solutions.module.css"
+import { useRouter } from "next/router";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partner Solutions */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnerSolutions = (pageProps: HomeInterface) => {
     const { locales, states, stateSetters, config, opportunities }: any = pageProps;
-    const { translations }: any = states;
+    const { metadatas, translations }: any = states;
+    const router = useRouter();
     return (
         <>
             <Head>
-                <title>Forinov - Solutions pour les entreprises</title>
+
+                <title>{metadatas[router.route].title}</title>
+                <meta name="description" content={metadatas[router.route].description} />
                 <style>
                     {`
                         :root {
@@ -154,7 +158,7 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
                         |   SECTION A LA UNE   |
                         |                      |
                         ------------------------
-                */} 
+                */}
                 </div>
                 <div className={SolutionStyles.banner + ' ' + SolutionStyles.bannerWithImg} style={{ position: 'relative', marginBottom: "10rem" }}>
                     <div className="container">

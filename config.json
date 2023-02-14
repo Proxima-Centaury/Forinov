@@ -106,10 +106,10 @@
                     { "url": "", "text": "Forinov", "nesting": true, "nest": [
                         { "url": "/about", "text": "Qui sommes-nous ?" },
                         { "url": "/contact", "text": "Contacts et recrutement" },
-                        { "url": "/", "text": "CGU" },
-                        { "url": "/", "text": "CGV" },
-                        { "url": "/", "text": "Mentions légales" },
-                        { "url": "/", "text": "Protection des données" },
+                        { "url": "https://fr.forinov.com/files/CGU%20v5.pdf", "text": "CGU" },
+                        { "url": "https://fr.forinov.com/legales/CGV_FORINOV_V4.pdf", "text": "CGV" },
+                        { "url": "https://fr.forinov.com/legales/Informations_legales.pdf", "text": "Mentions légales" },
+                        { "url": "https://fr.forinov.com/files/202112%20-%20Protection_des_données_personnelles.pdf", "text": "Protection des données" },
                         { "url": "/blog", "text": "Blog" }
                     ] },
                     { "url": "", "text": "Communauté", "nesting": true, "nest": [

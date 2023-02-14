@@ -36,6 +36,7 @@ import NavbarStyles from "../../../../public/stylesheets/layout/Navbar.module.cs
 import MenuStyles from "../../../../public/stylesheets/components/menus/Profile.module.css";
 import BannerStyles from "../../../../public/stylesheets/components/banners/Banner.module.css";
 import ButtonStyles from "../../../../public/stylesheets/components/buttons/Button.module.css";
+import Head from 'next/head';
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Directory Id Page */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -43,19 +44,19 @@ const DirectoryIdPage = (pageProps: ProfileInterface) => {
     const router = useRouter();
     let { type } = router.query;
     const { profile, products, activities, folders, opportunity, states, stateSetters }: any = pageProps;
-    const { session, lock }: any = states;
+    const { session, lock, metadatas }: any = states;
     const { setModal }: any = stateSetters;
-    if(type) {
+    if (type) {
         type = String(type);
         type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
         type = (type.match(/(entreprise)/)) ? "corporation" : type;
         type = (type.match(/(partenaire)/)) ? "partner" : type;
     };
     useEffect(() => {
-        if(profile && !opportunity) {
+        if (profile && !opportunity) {
             let showRegisterPopup = (event: MouseEvent) => {
                 event.preventDefault();
-                if(lock) {
+                if (lock) {
                     const target = event.target as Element;
                     const selectors = [
                         "." + MenuStyles.menu,
@@ -65,8 +66,8 @@ const DirectoryIdPage = (pageProps: ProfileInterface) => {
                         "." + NavbarStyles.navbar,
                         "[data-type='devtools']"
                     ];
-                    if(!target.closest(selectors.join(", "))) {
-                        if(lock) {
+                    if (!target.closest(selectors.join(", "))) {
+                        if (lock) {
                             return setModal("register");
                         };
                     };
@@ -78,50 +79,94 @@ const DirectoryIdPage = (pageProps: ProfileInterface) => {
         };
     });
     const parentProps = { type, profile, products, activities, folders, opportunity, states, stateSetters };
-    if(profile && !opportunity) {
-        return <div id="profile" className="container">
-            { (!session) ? <IdenfiticationBanner { ...parentProps }/> : null }
-            { (profile.STATE === "WO") ? <RecoverBanner { ...parentProps }/> : null }
-            <ProfileCard { ...parentProps }/>
-            <div className={ ProfileStyles.details }>
-                <div className={ ProfileStyles.leftSide }>
-                    <div className="sticky">
-                        <ProfileMenu { ...parentProps }/>
-                        <ProfileOverview { ...parentProps }/>
+    if (profile && !opportunity) {
+        console.log(profile)
+        const profileTagsString = profile.TAGS.split(",").slice(0, 3).join(", ")
+        const metadataComment = profile.COMMENT.substring(0, 20)
+
+        let metadata: JSX.Element = <></>
+        console.log("TYPE", type)
+        if (type === "startup") {
+            metadata = <><title>
+                {metadatas["/annuaires/startups/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/startups/[id]"].title2 + " " + profile.CATEGORY[0].NAME}
+            </title>
+                <meta name="description" content={metadatas["/annuaires/startups/[id]"].description1 + profile.NAME + metadatas["/annuaires/startups/[id]"].description2 + profile.CATEGORY[0].NAME + ", " + metadataComment + ", " + profileTagsString} /></>
+        } else if (type === "corporation") {
+            metadata =
+                <><title>
+                    {metadatas["/annuaires/corporations/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/corporations/[id]"].title2 + " " + profile.CATEGORY[0] + metadatas["/annuaires/corporations/[id]"].title3}
+                </title>
+                    <meta name="description" content={metadatas["/annuaires/corporations/[id]"].description1 + profile.NAME +
+                        metadatas["/annuaires/corporations/[id]"].description2 + profile.NAME +
+                        metadatas["/annuaires/corporations/[id]"].description3 + profile.NAME +
+                        metadatas["/annuaires/corporations/[id]"].description4 + profile.NAME +
+                        metadatas["/annuaires/corporations/[id]"].description5 + profile.NAME
+                    }
+                    /></>
+        } else if (type === "partner") { 
+            <><title>
+                    {metadatas["/annuaires/partners/[id]"].title1 + profile.NAME + metadatas["/annuaires/partners/[id]"].title2 + profile.CATEGORY[0]}
+                </title>
+                    <meta name="description" content={metadatas["/annuaires/partners/[id]"].description1 + profile.NAME +
+                        metadatas["/annuaires/partners/[id]"].description2 + profile.NAME +
+                        metadatas["/annuaires/partners/[id]"].description3 + profile.NAME +
+                        metadatas["/annuaires/partners/[id]"].description4
+                    }
+                    /></>
+        }
+
+        return <>
+            <Head>
+                {metadata}
+            </Head><div id="profile" className="container">
+                {(!session) ? <IdenfiticationBanner {...parentProps} /> : null}
+                {(profile.STATE === "WO") ? <RecoverBanner {...parentProps} /> : null}
+                <ProfileCard {...parentProps} />
+                <div className={ProfileStyles.details}>
+                    <div className={ProfileStyles.leftSide}>
+                        <div className="sticky">
+                            <ProfileMenu {...parentProps} />
+                            <ProfileOverview {...parentProps} />
+                        </div>
+                    </div>
+                    <div className={ProfileStyles.content}>
+                        {(type === "startup") ? <Startup {...parentProps} /> : null}
+                        {(type === "corporation") ? <Corporation {...parentProps} /> : null}
+                        {(type === "partner") ? <Partner {...parentProps} /> : null}
                     </div>
                 </div>
-                <div className={ ProfileStyles.content }>
-                    { (type === "startup") ? <Startup { ...parentProps }/> : null }
-                    { (type === "corporation") ? <Corporation { ...parentProps }/> : null }
-                    { (type === "partner") ? <Partner { ...parentProps }/> : null }
-                </div>
-            </div>
-        </div>;
+            </div></>;
     };
-    return <div id="opportunity" className="container">
-        <OpportunityPreview { ...parentProps }/>
-        <OpportunityLinks { ...parentProps }/>
-    </div>;
+    return <>
+        <Head>
+            <title>
+                {metadatas["/annuaires/startups/[id]"].title1 + " " + profile.NAME + " " + metadatas["/annuaires/startups/[id]"].title2}
+            </title>
+        </Head>
+        <div id="opportunity" className="container">
+            <OpportunityPreview {...parentProps} />
+            <OpportunityLinks {...parentProps} />
+        </div></>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startup Profile Content */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Startup = ({ type, profile, products, activities, folders, states, stateSetters }: any) => {
     const { translations }: any = states;
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
+    const buttonProps = ["type", "faIcon", "faIconClass", "url", "action", "text", "count"];
+    const pitchDeckButtonValues = [ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0];
     const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
     const parentProps = { type, profile, products, activities, folders, states, stateSetters };
     return <>
-        <ProfileOffer { ...parentProps }/>
-        <ProfileTargets { ...parentProps }/>
-        { (products) ? <ProfileProducts { ...parentProps }/> : null }
-        <Button { ...pitchDeckButtonObject as ButtonInterface }/>
-        <ProfileEcosystem { ...parentProps }/>
-        <ProfilePartners { ...parentProps }/>
-        <ProfileTeam { ...parentProps }/>
-        <ProfileActivities { ...parentProps }/>
-        <ProfileSocials { ...parentProps }/>
+        <ProfileOffer {...parentProps} />
+        <ProfileTargets {...parentProps} />
+        {(products) ? <ProfileProducts {...parentProps} /> : null}
+        <Button {...pitchDeckButtonObject as ButtonInterface} />
+        <ProfileEcosystem {...parentProps} />
+        <ProfilePartners {...parentProps} />
+        <ProfileTeam {...parentProps} />
+        <ProfileActivities {...parentProps} />
+        <ProfileSocials {...parentProps} />
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -129,19 +174,19 @@ const Startup = ({ type, profile, products, activities, folders, states, stateSe
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Corporation = ({ type, profile, products, activities, folders, states, stateSetters }: any) => {
     const { translations }: any = states;
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
+    const buttonProps = ["type", "faIcon", "faIconClass", "url", "action", "text", "count"];
+    const pitchDeckButtonValues = [ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0];
     const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
     const parentProps = { type, profile, products, activities, folders, states, stateSetters };
     return <>
-        <ProfileTeam { ...parentProps }/>
-        <ProfileOpportunities { ...parentProps }/>
-        <ProfileGoals { ...parentProps }/>
-        <Button { ...pitchDeckButtonObject as ButtonInterface }/>
-        <ProfileEcosystem { ...parentProps }/>
-        <ProfilePartners { ...parentProps }/>
-        <ProfileActivities { ...parentProps }/>
-        <ProfileSocials { ...parentProps }/>
+        <ProfileTeam {...parentProps} />
+        <ProfileOpportunities {...parentProps} />
+        <ProfileGoals {...parentProps} />
+        <Button {...pitchDeckButtonObject as ButtonInterface} />
+        <ProfileEcosystem {...parentProps} />
+        <ProfilePartners {...parentProps} />
+        <ProfileActivities {...parentProps} />
+        <ProfileSocials {...parentProps} />
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -149,19 +194,19 @@ const Corporation = ({ type, profile, products, activities, folders, states, sta
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Partner = ({ type, profile, products, activities, folders, states, stateSetters }: any) => {
     const { translations }: any = states;
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0 ];
+    const buttonProps = ["type", "faIcon", "faIconClass", "url", "action", "text", "count"];
+    const pitchDeckButtonValues = [ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", "", () => false, translations["Voir le pitch deck"], 0];
     const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
     const parentProps = { type, profile, products, activities, folders, states, stateSetters };
     return <>
-        <ProfileTeam { ...parentProps }/>
-        <ProfileOpportunities { ...parentProps }/>
-        <ProfileGoals { ...parentProps }/>
-        <Button { ...pitchDeckButtonObject as ButtonInterface }/>
-        <ProfileEcosystem { ...parentProps }/>
-        <ProfilePartners { ...parentProps }/>
-        <ProfileActivities { ...parentProps }/>
-        <ProfileSocials { ...parentProps }/>
+        <ProfileTeam {...parentProps} />
+        <ProfileOpportunities {...parentProps} />
+        <ProfileGoals {...parentProps} />
+        <Button {...pitchDeckButtonObject as ButtonInterface} />
+        <ProfileEcosystem {...parentProps} />
+        <ProfilePartners {...parentProps} />
+        <ProfileActivities {...parentProps} />
+        <ProfileSocials {...parentProps} />
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -173,15 +218,15 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     id = id?.substring(id.indexOf("_") + 1, id.length);
     const language = "&lang=" + locale?.substring(0, 2);
-    if(!type.match(/(opport)/)) {
-        if(type) {
+    if (!type.match(/(opport)/)) {
+        if (type) {
             type = String(type);
             type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
             type = (type.match(/(corporation)/)) ? "entreprise" : type;
             type = (type.match(/(partner)/)) ? "partenaire" : type;
         };
         const profile = await api.getProfile(type, id, "next", "Sorbonne", language);
-        if(!profile || (profile && Object.keys(profile).length === 0)) {
+        if (!profile || (profile && Object.keys(profile).length === 0)) {
             return {
                 redirect: {
                     destination: "/" + locale + "/404",
@@ -200,7 +245,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         };
     };
     const opportunity = await api.getOpportunity(id, "next", "Sorbonne", language);
-    if(!opportunity || (opportunity && opportunity.ERROR)) {
+    if (!opportunity || (opportunity && opportunity.ERROR)) {
         return {
             redirect: {
                 destination: "/" + locale + "/404",

@@ -9,10 +9,12 @@ import api from "../../../scripts/api";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from 'next/router';
+import Head from "next/head";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Directory */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Directory = ({ data, filters, key }: any) => {
+const Directory = ({ data, filters, key, locale, locales, states, type }: any) => {
     const nbPerCategory: any = {};
     const icon = useRef(null);
     const [selectedCategories, setSelectedCategories] = useState([]);
@@ -33,10 +35,10 @@ const Directory = ({ data, filters, key }: any) => {
         catArray.push(categories[catIndex]);
     };
 
-    console.log(data);
-    
-    
-    
+
+    const router = useRouter();
+    const { metadatas, translations }: any = states;
+
 
     //On boucle sur les catégories pour construire les cards de catégories (affichée lorsqu'aucune catégorie n'est sélectionnée)
     catArray.forEach((category, key) => {
@@ -172,210 +174,219 @@ const Directory = ({ data, filters, key }: any) => {
         }
     };
 
-    return <div className="container">
-        <div className="annuaire__searchbar">
-            {/* Title */}
-            <div className="annuaire__searchbar-title">
-                <i className="fa-solid fa-rocket"></i>
-                <h1>Startups ({data.length})</h1>
-                <i className="fa-solid fa-caret-down"></i>
-            </div>
+    console.log(type)
+    console.log(metadatas[router.route])
 
-            {/* Breadcrumbs */}
-            <ul className="annuaire__searchbar-breadcrumb">
-                <li className="annuaire__searchbar-breadcrumb-item breadcrumb-item-active">
-                    <i className="fa-solid fa-book"></i>
-                    <span>Toutes les startups</span>
-                </li>
 
-                <li className="annuaire__searchbar-breadcrumb-item breadcrumb-item-disabled">
-                    <i className="fa-solid fa-heart"></i>
-                    <span>Portefeuille</span>
-                </li>
-
-                <li className="annuaire__searchbar-breadcrumb-item breadcrumb-item-disabled">
-                    <i className="fa-solid fa-globe"></i>
-                    <span>Écosystème</span>
-                </li>
-
-                <li className="annuaire__searchbar-breadcrumb-item breadcrumb-item-disabled">
-                    <i className="fa-solid fa-share-from-square"></i>
-                    <span>Recommandations</span>
-                </li>
-            </ul>
-
-            {/* Searchbar Input */}
-            <div className="annuaire__searchbar-wrapper">
-                <input
-                    type="text"
-                    className="annuaire__searchbar-input"
-                    placeholder="Rechercher dans l'annuaire des startups"
-                    onChange={(e) => {
-                        handleSearch(e.target.value);
-                    }}
-                />
-                <button className="annuaire__searchbar-trigger">
-                    <i className="fa-solid fa-search"></i>
-                </button>
-            </div>
-
-            {/* Multiselect */}
-            <div className="annuaire__searchbar-multiselect-wrapper">
-                <div className="annuaire__searchbar-principal-filters">
-                    <button onClick={(e) => {
-                        let element;
-                        let list = document.querySelector(".annuaire__searchbar-select-list") as HTMLElement;
-                        e.preventDefault();
-                        const target = e.target as Element;
-                        target.tagName.toLowerCase() === "button" ? (element = target)
-                            : target.parentElement?.tagName.toLowerCase() === "p"
-                                ? (element = target.parentElement.parentElement)
-                                : (element = target.parentElement);
-                        (list && list.style.display === "none") ? (list.style.display = "block") : (list.style.display = "none");
-                        element?.children[1].classList.toggle("fa-caret-up");
-                    }}
-                        className="annuaire__searchbar-select"
-                    >
-                        <p style={{ margin: 0 }}>
-
-                            {key === "CATEGORY" ?
-                                "Catégories" :
-                                key === "SECTEURS" ?
-                                    "Secteurs" :
-                                    "Types"
-                            }
-
-                            {selectedCategories.length > 0 ? (
-                                <span className="annuaire__searchbar-select-count">
-                                    {selectedCategoriesLength}
-                                </span>
-                            ) : null}
-                        </p>
-                        <i className="fa-solid fa-caret-down" ref={icon}></i>
-                    </button>
-                    <ul
-                        className="annuaire__searchbar-select-list"
-                        style={{ display: "none" }}
-                    >
-                        {catArray.map((categorie: any) => {
-                            return (
-                                <button
-                                    className="annuaire__searchbar-select-list-item"
-                                    onClick={() => {
-                                        categorieClickHandler(categorie.ID);
-                                    }}
-                                    id={categorie.ID}
-                                    key={"categorie-" + categorie.ID}
-                                >
-                                    <span className="annuaire__searchbar-select-list-name">
-                                        {categorie.NAME}
-                                    </span>
-                                    <span className="annuaire__searchbar-select-list-count">
-                                        {nbPerCategory[categorie.NAME]}
-                                    </span>
-                                    <div className="annuaire__searchbar-select-list-pastille"></div>
-                                </button>
-                            );
-                        })}
-                    </ul>
+    return <>
+        <Head>
+            <title>{metadatas['/directories/' + type].title}</title>
+            <meta name="description" content={metadatas['/directories/' + type].description} />
+        </Head>
+        <div className="container">
+            <div className="annuaire__searchbar">
+                {/* Title */}
+                <div className="annuaire__searchbar-title">
+                    <i className="fa-solid fa-rocket"></i>
+                    <h1>{translations["Startups"]} ({data.length})</h1>
+                    <i className="fa-solid fa-caret-down"></i>
                 </div>
 
-                <button className="annuaire__searchbar-select-disabled">
-                    <p style={{ margin: 0 }}>Sous-catégories</p>
-                    <i className="fa-solid fa-caret-down"></i>
-                </button>
+                {/* Breadcrumbs */}
+                <ul className="annuaire__searchbar-breadcrumb">
+                    <li className="annuaire__searchbar-breadcrumb-item breadcrumb-item-active">
+                        <i className="fa-solid fa-book"></i>
+                        <span>{translations["Toutes les startups"]}</span>
+                    </li>
 
-                <button className="annuaire__searchbar-select-disabled">
-                    <p style={{ margin: 0 }}>Secteurs</p>
-                    <i className="fa-solid fa-caret-down"></i>
-                </button>
+                    <li className="annuaire__searchbar-breadcrumb-item breadcrumb-item-disabled">
+                        <i className="fa-solid fa-heart"></i>
+                        <span>{translations["Portefeuille"]}</span>
+                    </li>
 
-                <div className="annuaire__searchbar-additional-select">
-                    <button className="annuaire__searchbar-select-disabled">
-                        <p style={{ margin: 0 }}>Technologies</p>
-                        <i className="fa-solid fa-caret-down"></i>
-                    </button>
+                    <li className="annuaire__searchbar-breadcrumb-item breadcrumb-item-disabled">
+                        <i className="fa-solid fa-globe"></i>
+                        <span>{translations["Écosystème"]}</span>
+                    </li>
 
-                    <button className="annuaire__searchbar-select-disabled">
-                        <p style={{ margin: 0 }}>Métiers cibles</p>
-                        <i className="fa-solid fa-caret-down"></i>
+                    <li className="annuaire__searchbar-breadcrumb-item breadcrumb-item-disabled">
+                        <i className="fa-solid fa-share-from-square"></i>
+                        <span>{translations["Reccomandations"]}</span>
+                    </li>
+                </ul>
+
+                {/* Searchbar Input */}
+                <div className="annuaire__searchbar-wrapper">
+                    <input
+                        type="text"
+                        className="annuaire__searchbar-input"
+                        placeholder="Rechercher dans l'annuaire des startups"
+                        onChange={(e) => {
+                            handleSearch(e.target.value);
+                        }}
+                    />
+                    <button className="annuaire__searchbar-trigger">
+                        <i className="fa-solid fa-search"></i>
                     </button>
                 </div>
-            </div>
 
-            {/* Plus de filtres */}
-            <p
-                className="annuaire__searchbar-more"
-                id="moreFilters"
-                onClick={() => {
-                    if (moreFiltersClicked) {
-                        const element = document.querySelector(".annuaire__searchbar-additional-select") as HTMLElement;
-                        element.style.display = "none"
-                        setMoreFiltersClicked(false);
-                    } else {
-                        const element = document.querySelector(".annuaire__searchbar-additional-select") as HTMLElement;
-                        element.style.display = "flex";
-                        setMoreFiltersClicked(true);
-                    }
-                }}
-            >
-                {moreFiltersClicked ? "Moins de filtres" : "Plus de filtres"}
-            </p>
-        </div>
-        {isSelected === false ? (
-            <div className="annuaire__categories">{catCards}</div>
-        ) : startupCards.length > 0 ? (
-            <div className="annuaire__cards">
-                {startupCards.map((item: any) => {
-                    return (
-                        <Link
-                            className="annuaire__card lift"
-                            id={item.id}
-                            key={item.id}
-                            href={"/annuaires/startups/" + item.id}
+                {/* Multiselect */}
+                <div className="annuaire__searchbar-multiselect-wrapper">
+                    <div className="annuaire__searchbar-principal-filters">
+                        <button onClick={(e) => {
+                            let element;
+                            let list = document.querySelector(".annuaire__searchbar-select-list") as HTMLElement;
+                            e.preventDefault();
+                            const target = e.target as Element;
+                            target.tagName.toLowerCase() === "button" ? (element = target)
+                                : target.parentElement?.tagName.toLowerCase() === "p"
+                                    ? (element = target.parentElement.parentElement)
+                                    : (element = target.parentElement);
+                            (list && list.style.display === "none") ? (list.style.display = "block") : (list.style.display = "none");
+                            element?.children[1].classList.toggle("fa-caret-up");
+                        }}
+                            className="annuaire__searchbar-select"
                         >
-                            <div className="annuaire__card-avatar-wrapper">
-                                <div className="annuaire__card-avatar">
-                                    <Image src={item.logo} alt="Logo" width="100" height="100" />
-                                </div>
-                            </div>
-                            <div className="annuaire__card-content-wrapper">
-                                <h3 className="annuaire__card-name">{item.name}</h3>
-                                <p className="annuaire__card-category">{item.categorie}</p>
-                                {Object.keys(item.tags).length > 0 ? (
-                                    <div className="annuaire__card-tags">
-                                        {item.tags[0] ? (
-                                            <p className="annuaire__card-tag">{item.tags[0]}</p>
-                                        ) : null}
-                                        {item.tags[1] ? (
-                                            <p className="annuaire__card-tag">{item.tags[1]}</p>
-                                        ) : null}
-                                        {item.tags[2] ? (
-                                            <p className="annuaire__card-tag">{item.tags[2]}</p>
-                                        ) : null}
-                                        {Object.keys(item.tags).length > 3 ? (
-                                            <p className="annuaire__card-tag">
-                                                +{Object.keys(item.tags).length - 3}
-                                            </p>
-                                        ) : null}
-                                    </div>
+                            <p style={{ margin: 0 }}>
+
+                                {key === "CATEGORY" ?
+                                    "Catégories" :
+                                    key === "SECTEURS" ?
+                                        "Secteurs" :
+                                        "Types"
+                                }
+
+                                {selectedCategories.length > 0 ? (
+                                    <span className="annuaire__searchbar-select-count">
+                                        {selectedCategoriesLength}
+                                    </span>
                                 ) : null}
-                                <p className="annuaire__card-description">{item.comment}</p>
-                                <div className="annuaire__card-suivre">
-                                    <i className="fa-solid fa-folder-open"></i>
-                                    <p>suivre</p>
+                            </p>
+                            <i className="fa-solid fa-caret-down" ref={icon}></i>
+                        </button>
+                        <ul
+                            className="annuaire__searchbar-select-list"
+                            style={{ display: "none" }}
+                        >
+                            {catArray.map((categorie: any) => {
+                                return (
+                                    <button
+                                        className="annuaire__searchbar-select-list-item"
+                                        onClick={() => {
+                                            categorieClickHandler(categorie.ID);
+                                        }}
+                                        id={categorie.ID}
+                                        key={"categorie-" + categorie.ID}
+                                    >
+                                        <span className="annuaire__searchbar-select-list-name">
+                                            {categorie.NAME}
+                                        </span>
+                                        <span className="annuaire__searchbar-select-list-count">
+                                            {nbPerCategory[categorie.NAME]}
+                                        </span>
+                                        <div className="annuaire__searchbar-select-list-pastille"></div>
+                                    </button>
+                                );
+                            })}
+                        </ul>
+                    </div>
+
+                    <button className="annuaire__searchbar-select-disabled">
+                        <p style={{ margin: 0 }}>{translations["Sous-catégories"]}</p>
+                        <i className="fa-solid fa-caret-down"></i>
+                    </button>
+
+                    <button className="annuaire__searchbar-select-disabled">
+                        <p style={{ margin: 0 }}>{translations["Secteurs"]}</p>
+                        <i className="fa-solid fa-caret-down"></i>
+                    </button>
+
+                    <div className="annuaire__searchbar-additional-select">
+                        <button className="annuaire__searchbar-select-disabled">
+                            <p style={{ margin: 0 }}>{translations["Technologies"]}</p>
+                            <i className="fa-solid fa-caret-down"></i>
+                        </button>
+
+                        <button className="annuaire__searchbar-select-disabled">
+                            <p style={{ margin: 0 }}>{translations["Metiers cible"]}</p>
+                            <i className="fa-solid fa-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+
+                {/* Plus de filtres */}
+                <p
+                    className="annuaire__searchbar-more"
+                    id="moreFilters"
+                    onClick={() => {
+                        if (moreFiltersClicked) {
+                            const element = document.querySelector(".annuaire__searchbar-additional-select") as HTMLElement;
+                            element.style.display = "none"
+                            setMoreFiltersClicked(false);
+                        } else {
+                            const element = document.querySelector(".annuaire__searchbar-additional-select") as HTMLElement;
+                            element.style.display = "flex";
+                            setMoreFiltersClicked(true);
+                        }
+                    }}
+                >
+                    {moreFiltersClicked ? "Moins de filtres" : "Plus de filtres"}
+                </p>
+            </div>
+            {isSelected === false ? (
+                <div className="annuaire__categories">{catCards}</div>
+            ) : startupCards.length > 0 ? (
+                <div className="annuaire__cards">
+                    {startupCards.map((item: any) => {
+                        return (
+                            <Link
+                                className="annuaire__card lift"
+                                id={item.id}
+                                key={item.id}
+                                href={"/annuaires/startups/" + item.id}
+                            >
+                                <div className="annuaire__card-avatar-wrapper">
+                                    <div className="annuaire__card-avatar">
+                                        <Image src={item.logo} alt="Logo" width="100" height="100" />
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
-                    );
-                })}
-            </div>
-        ) : (
-            <div className="annuaire__no-results">
-                <h1>Aucun résultat</h1>
-            </div>
-        )}
-    </div>;
+                                <div className="annuaire__card-content-wrapper">
+                                    <h3 className="annuaire__card-name">{item.name}</h3>
+                                    <p className="annuaire__card-category">{item.categorie}</p>
+                                    {Object.keys(item.tags).length > 0 ? (
+                                        <div className="annuaire__card-tags">
+                                            {item.tags[0] ? (
+                                                <p className="annuaire__card-tag">{item.tags[0]}</p>
+                                            ) : null}
+                                            {item.tags[1] ? (
+                                                <p className="annuaire__card-tag">{item.tags[1]}</p>
+                                            ) : null}
+                                            {item.tags[2] ? (
+                                                <p className="annuaire__card-tag">{item.tags[2]}</p>
+                                            ) : null}
+                                            {Object.keys(item.tags).length > 3 ? (
+                                                <p className="annuaire__card-tag">
+                                                    +{Object.keys(item.tags).length - 3}
+                                                </p>
+                                            ) : null}
+                                        </div>
+                                    ) : null}
+                                    <p className="annuaire__card-description">{item.comment}</p>
+                                    <div className="annuaire__card-suivre">
+                                        <i className="fa-solid fa-folder-open"></i>
+                                        <p>{translations["Suivre"]}</p>
+                                    </div>
+                                </div>
+                            </Link>
+                        );
+                    })}
+                </div>
+            ) : (
+                <div className="annuaire__no-results">
+                    <h1>{translations["Aucun résultat"]}</h1>
+                </div>
+            )}
+        </div></>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Props */
@@ -386,7 +397,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     id = id?.substring(id.indexOf("_") + 1, id.length);
     const language = "&lang=" + locale?.substring(0, 2);
-    if(!type.match(/(opport)/)) {
+    if (!type.match(/(opport)/)) {
     };
     let data: any = [];
     let index: number = 0;
@@ -429,7 +440,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         props: {
             locale, locales, defaultLocale,
             production: (req.headers.host?.match("interface.forinov")) ? true : false,
-            data, filters, key
+            data, filters, key, type
         }
     };
 }

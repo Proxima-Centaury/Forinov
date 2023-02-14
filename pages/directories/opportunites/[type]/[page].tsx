@@ -6,19 +6,20 @@ import PageIndex from "../../../../components/pagination/PageIndex";
 import { useGlobalContext } from "../../../../components/context/globalContext";
 
 import { useEffect, useState } from "react";
+import Head from 'next/head';
 
 const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 	const router = useRouter() as any;
 	let { type, page } = router.query;
 
-	
+
 
 	let opportunities = dataOpportunities[0]["PROJECT"];
 	const [opportCards, setOpportCards] = useState<Array<JSX.Element>>([]);
 
 	const [isPage, setIsPage] = useState<boolean>(true);
 	const cardPerPage = 20;
-	const { translations }: any = states;
+	const { translations, metadatas }: any = states;
 
 	const nbPages = Math.ceil(Object.keys(opportunities).length / cardPerPage);
 
@@ -155,7 +156,10 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 		setOpportCards(defaultData);
 	}, [defaultData]);
 
-	return (
+	return (<>
+		<Head>
+			<title>{metadatas["/directories/opportunities"]}</title>
+		</Head>
 		<div className="container">
 			<OpportSearchbar
 				active="1"
@@ -186,13 +190,13 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 					} else {
 						return (
 							<a
-							href={"/directories/opportunites/" + selectorToURL + "/"}
-							key={selector}
-							style={{ margin: "0 !important" }}
-							className="selectorButton"
-						>
-							{selector}
-						</a>
+								href={"/directories/opportunites/" + selectorToURL + "/"}
+								key={selector}
+								style={{ margin: "0 !important" }}
+								className="selectorButton"
+							>
+								{selector}
+							</a>
 						);
 					}
 				})}
@@ -206,6 +210,7 @@ const AnnuaireOpport = ({ filters, dataOpportunities, states }: any) => {
 				></PageIndex>
 			) : null}
 		</div>
+	</>
 	);
 };
 
