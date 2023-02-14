@@ -2,30 +2,34 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetStaticProps } from "next";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { RegisterInterface } from "../typescript/interfaces";
+import { OnboardingInterface } from "../typescript/interfaces";
 import { redirectTo } from "../scripts/utilities";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Head from "next/head";
+import Link from "next/link";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Head from "next/head";
 import IframeStyles from "../public/stylesheets/components/Iframe.module.css";
+import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Register */
+/* Onboarding */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Register = (pageProps: RegisterInterface) => {
-    const router = useRouter();
-    const { states }: any = pageProps;
-    const { locale, session, translations }: any = states;
+const Onboarding = (pageProps: OnboardingInterface) => {
+    const { states, router }: any = pageProps;
+    const { locale, session, metadatas, translations }: any = states;
     useEffect(() => { (session) ? redirectTo("/", router, locale) : null });
     return <>
         <Head>
-            <title>Forinov - Onboarding</title>
+            <title>{ metadatas[router.route].title }</title>
+			<meta name="description" content={ metadatas[router.route].description }/>
         </Head>
         <div className="containerFull">
             <div className={ IframeStyles.registerFrame }>
-                <p dangerouslySetInnerHTML={ { __html: translations["Si vous souhaitez vous inscrire,<br>rendez-vous <a href='https://onboarding.forinov.net' target='_blank'>ici</a>"] + "." } }/>
+                <p>{ translations["Si vous souhaitez vous inscrire"] },<br/>{ translations["Rendez-vous"].toLowerCase() } <Link href="https://onboarding.forinov.net" className={ ButtonStyles.pureLink }>{ translations["Ici"].toLowerCase() }</Link> !</p>
                 <iframe src="https://onboarding.forinov.net"/>
             </div>
         </div>
@@ -38,5 +42,5 @@ const getStaticProps: GetStaticProps = async (context) => ({ props: { ...context
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default Register;
+export default Onboarding;
 export { getStaticProps };
