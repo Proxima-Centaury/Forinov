@@ -114,7 +114,6 @@
 	border-width: 2px;
 	border-color: var(--logo-blue-color);
 	background-color: var(--logo-blue-color);
-	
 }
 @media screen and (max-width: 576px) {
 	.presentation > div > a {
@@ -150,7 +149,6 @@
 	.presentation > img {
 		display: none;
 	}
-
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Onboarding ) */
