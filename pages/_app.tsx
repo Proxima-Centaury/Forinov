@@ -5,7 +5,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
-import { getTranslations, getMetadataTranslations, scrollTo } from "../scripts/utilities";
+import { getTranslations, getMetadatasTranslations, scrollTo } from "../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -32,33 +32,33 @@ import "../public/stylesheets/pages/annuaire_su.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const App = ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
-    const [locale, setLocale] = useState(pageProps.locale);
-    const [locales, setLocales] = useState(pageProps.locales);
-    const [metadatas, setMetadatas] = useState(getMetadataTranslations(locale));
-    const [translations, setTranslations] = useState(getTranslations(locale));
-    const [session, setSession] = useState(false);
-    const [theme, setTheme] = useState(getCookie("forinov_theme_preference") || "light");
-    const [lock, setLock] = useState(true);
-    const [modal, setModal] = useState(null);
-    const [RGB, setRGB] = useState(false);
-    const [production, setProduction] = useState((process.env.NODE_ENV === "development") ? false : true);
-    useEffect(() => setMetadatas(getMetadataTranslations(locale)), [locale]);
-    useEffect(() => setTranslations(getTranslations(locale)), [locale]);
+    const [ locale, setLocale ] = useState(pageProps.locale);
+    const [ locales, setLocales ] = useState(pageProps.locales);
+    const [ metadatas, setMetadatas ] = useState(getMetadatasTranslations(locale));
+    const [ translations, setTranslations ] = useState(getTranslations(locale));
+    const [ session, setSession ] = useState(false);
+    const [ theme, setTheme ] = useState(getCookie("forinov_theme_preference") || "light");
+    const [ lock, setLock ] = useState(true);
+    const [ modal, setModal ] = useState(null);
+    const [ RGB, setRGB ] = useState(false);
+    const [ production, setProduction ] = useState((process.env.NODE_ENV === "development") ? false : true);
+    useEffect(() => setMetadatas(getMetadatasTranslations(locale)), [ locale ]);
+    useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
     useEffect(() => {
         let refresh = null;
-        if (router.pathname !== "/404" && locale !== getCookie("NEXT_LOCALE")) {
+        if(router.pathname !== "/404" && locale !== getCookie("NEXT_LOCALE")) {
             setCookie("NEXT_LOCALE", locale);
-            refresh = router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() }) as any;
+            refresh = router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
         };
         return () => refresh = undefined;
     });
-    useEffect(() => setLock(!session), [session]);
+    useEffect(() => setLock(!session), [ session ]);
     useEffect(() => {
-        setCookie("forinov_theme_preference", theme as String);
+        setCookie("forinov_theme_preference", theme);
         const body = document.body;
         body.setAttribute("data-theme", theme as string);
-    }, [theme]);
-    useEffect(() => { scrollTo(0, 0) }, [router.route]);
+    }, [ theme ]);
+    useEffect(() => { scrollTo(0, 0) }, [ router.route ]);
     pageProps.states = {};
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;
@@ -85,20 +85,20 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.router = router;
     return <>
         <Head>
-            <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <title>Forinov</title>
             <link rel="icon" href={ router.basePath + "/assets/logo.png" }/>
         </Head>
-        {(!session) ? <Navbar {...pageProps} /> : <AuthNavbar {...pageProps} />}
+        { (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/> }
         <Transition>
             <GlobalContext>
-                <Component {...pageProps} />
+                <Component { ...pageProps }/>
             </GlobalContext>
-            <Footer {...pageProps} />
+            <Footer { ...pageProps }/>
         </Transition>
-        <Modal {...pageProps} />
-        {(!production) ? <Devtools {...pageProps} /> : null}
+        <Modal { ...pageProps }/>
+        { (!production) ? <Devtools { ...pageProps }/> : null }
     </>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
