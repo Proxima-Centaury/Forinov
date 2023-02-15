@@ -1,19 +1,21 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Format */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Format = ({ content }: any) => {
-    const router = useRouter();
+const Format = (pageProps: any) => {
+    const { content, router }: any = pageProps;
     const [ newContent, setNewContent ] = useState(undefined);
     const handleRouting = (event: any) => {
         event.preventDefault();
         const target = event.target.closest("a");
-        const href = new URL(target.href).pathname;
-        return router.push(href);
+        if(target.href[0] === "/") {
+            const route = router.basePath + "/" + router.locale + "/" + new URL(target.href).pathname;
+            return window.location = route as any;
+        };
+        return router.push(target.href);
     };
     useEffect(() => {
         if(content) {

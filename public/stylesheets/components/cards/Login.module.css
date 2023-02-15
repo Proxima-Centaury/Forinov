@@ -28,15 +28,6 @@
 .head > p {
     color: var(--text-inactive-color);
 }
-.head > p > a {
-    color: var(--logo-blue-color);
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    
-}
-.head > p > a:hover {
-    text-decoration-color: var(--logo-blue-color);
-}
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Login ( Body ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -50,17 +41,4 @@
 .footer {
     padding: 1rem;
     flex: 1 1 auto;
-}
-.footer > div {
-    display: flex;
-    flex-wrap: wrap;
-}
-.footer > div > a {
-    color: var(--logo-blue-color);
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    
-}
-.footer > div > a:hover {
-    text-decoration-color: var(--logo-blue-color);
 }
