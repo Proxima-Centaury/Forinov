@@ -50,15 +50,21 @@ const App = ({ Component, pageProps }: AppProps) => {
             setCookie("NEXT_LOCALE", locale);
             refresh = router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
         };
-        return () => refresh = undefined;
+        return () => { refresh = undefined };
     });
     useEffect(() => setLock(!session), [ session ]);
     useEffect(() => {
-        setCookie("forinov_theme_preference", theme);
-        const body = document.body;
-        body.setAttribute("data-theme", theme as string);
+        let applyTheme = () => {
+            setCookie("forinov_theme_preference", theme);
+            const body = document.body;
+            return body.setAttribute("data-theme", theme as string);
+        }; applyTheme();
+        return () => { applyTheme = () => false };
     }, [ theme ]);
-    useEffect(() => { scrollTo(0, 0) }, [ router.route ]);
+    useEffect(() => {
+        let goToTop = scrollTo(0, 0);
+        return () => { goToTop = undefined };
+    }, [ router.route ]);
     pageProps.states = {};
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;
