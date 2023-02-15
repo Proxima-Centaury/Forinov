@@ -2,8 +2,8 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { ProfileInterface, ButtonInterface } from "../../../../typescript/interfaces";
 import { buildProperties } from "../../../../scripts/utilities";
 import api from "../../../../scripts/api";
@@ -217,9 +217,9 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     let { id, type }: any = query;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     id = id?.substring(id.indexOf("_") + 1, id.length);
-    const language = "&lang=" + locale?.substring(0, 2);
-    if (!type.match(/(opport)/)) {
-        if (type) {
+    const language = locale?.substring(0, 2);
+    if(!type.match(/(opport)/)) {
+        if(type) {
             type = String(type);
             type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
             type = (type.match(/(corporation)/)) ? "entreprise" : type;
