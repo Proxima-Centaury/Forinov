@@ -10,8 +10,8 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled = false, aria, index }: ButtonInterface) => {
-    const roundedButtonTypes = [
+const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled = false, aria, index, active }: ButtonInterface) => {
+    const smallButtonStypes = [
         ButtonStyles.callToActionRoundedIcon,
         ButtonStyles.callToActionAlternativeRoundedIcon,
         ButtonStyles.callToActionSquaredIcon,
@@ -22,7 +22,7 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled 
         ButtonStyles.callToActionAlternative,
         ButtonStyles.callToActionNegative,
         ButtonStyles.callToActionStep,
-        ButtonStyles.callToActionWide,
+        ButtonStyles.callToActionWide
     ];
     if(type === "default") {
         return <button aria-label={ aria as string }>{ text }</button>;
@@ -47,8 +47,8 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled 
             { (faIcon) ? <i className={ faIconClass }/> : null }
             { text }
         </button>
-    } else if(!url && roundedButtonTypes.includes(type)) {
-        return <button className={ type + ((disabled) ? " disabled" : "") } onClick={ action } aria-label={ aria as string }>
+    } else if(!url && smallButtonStypes.includes(type)) {
+        return <button className={ type + ((disabled) ? " disabled" : "") + ((active) ? " " + ButtonStyles.active : "") } onClick={ action } aria-label={ aria as string }>
             { (faIcon) ? <i className={ faIconClass }/> : null }
         </button>
     } else if(!url && type === ButtonStyles.closeModal) {

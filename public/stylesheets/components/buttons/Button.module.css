@@ -83,14 +83,16 @@
     border: none;
     background-color: var(--lightblue-color);
 }
-.callToActionAlternativeSquaredIcon:hover {
+.callToActionAlternativeSquaredIcon:hover,
+.callToActionAlternativeSquaredIcon.active {
     background-color: var(--logo-blue-color);
 }
 .callToActionAlternativeSquaredIcon > i {
     font-size: 20px;
     color: var(--logo-blue-color);
 }
-.callToActionAlternativeSquaredIcon:hover > i {
+.callToActionAlternativeSquaredIcon:hover > i,
+.callToActionAlternativeSquaredIcon.active > i {
     color: var(--perfect-white-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
