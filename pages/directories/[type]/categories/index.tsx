@@ -26,7 +26,7 @@ const DirectoryByCategories = (pageProps: DirectoryInterface) => {
     const { type } = router.query;
     const [ display, setDisplay ] = useState("grid threeColumns");
     return <div id="directory" className="container">
-        <Filters { ...pageProps } title={ type } setDisplay={ setDisplay }/>
+        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay }/>
         <IdenfiticationBanner { ...pageProps }/>
         { (type.match(/(startup)/)) ? <div className={ display }>
             { filters.CATEGORIES.map((filter: any, key: KeyType) => <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/>) }

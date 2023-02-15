@@ -79,7 +79,8 @@ interface ButtonInterface {
     count: Number,
     disabled: Boolean,
     aria: String,
-    index: Number
+    index: Number,
+    active: Boolean
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Input Interface */

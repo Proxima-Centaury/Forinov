@@ -6,8 +6,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    grid-gap: 8px;
-    gap: 8px;
+    grid-gap: 16px;
+    gap: 16px;
     padding: 16px;
     position: relative;
     border-radius: 15px;

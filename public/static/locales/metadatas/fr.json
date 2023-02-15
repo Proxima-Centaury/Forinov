@@ -1,4 +1,12 @@
 {
+    "/404": {
+        "title": "",
+        "description": ""
+    },
+    "/500": {
+        "title": "",
+        "description": ""
+    },
     "/": {
         "title": "Forinov, le réseau social de l'open innovation",
         "description": "Forinov est le réseau social de l'open innovation qui connecte startups, entreprises et partenaires pour faciliter leur collaboration. Forinov optimise veille, sourcing, gestion du portefeuille de startups et de partenaires (accélérateurs, incubateurs, etc.)."

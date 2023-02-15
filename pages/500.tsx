@@ -16,10 +16,11 @@ import ServerErrorStyles from "../public/stylesheets/pages/ServerError.module.cs
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ServerError = (pageProps: ServerErrorInterface) => {
     const { states, router }: any = pageProps;
-    const { translations }: any = states;
+    const { metadatas, translations }: any = states;
     return <>
         <Head>
-            <title>Forinov - 500</title>
+            <title>{ metadatas[router.route].title }</title>
+			<meta name="description" content={ metadatas[router.route].description }/>
         </Head>
         <div id="500" className="container">
             <div className={ ServerErrorStyles.serverError }>

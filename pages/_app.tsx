@@ -42,23 +42,26 @@ const App = ({ Component, pageProps }: AppProps) => {
     const [ modal, setModal ] = useState(null);
     const [ RGB, setRGB ] = useState(false);
     const [ production, setProduction ] = useState((process.env.NODE_ENV === "development") ? false : true);
-    useEffect(() => setMetadatas(getMetadatasTranslations(locale)), [ locale ]);
-    useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
     useEffect(() => {
-        let refresh = null;
+        setMetadatas(getMetadatasTranslations(locale));
+        setTranslations(getTranslations(locale));
+    }, [ locale ]);
+    useEffect(() => {
         if(router.pathname !== "/404" && locale !== getCookie("NEXT_LOCALE")) {
             setCookie("NEXT_LOCALE", locale);
-            refresh = router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
+            router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
         };
-        return () => refresh = undefined;
     });
     useEffect(() => setLock(!session), [ session ]);
     useEffect(() => {
-        setCookie("forinov_theme_preference", theme);
-        const body = document.body;
-        body.setAttribute("data-theme", theme as string);
+        let applyTheme = () => {
+            setCookie("forinov_theme_preference", theme);
+            const body = document.body;
+            return body.setAttribute("data-theme", theme as string);
+        }; applyTheme();
+        return () => { applyTheme = () => false };
     }, [ theme ]);
-    useEffect(() => { scrollTo(0, 0) }, [ router.route ]);
+    useEffect(() => scrollTo(0, 0) as any, [ router.route ]);
     pageProps.states = {};
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;
