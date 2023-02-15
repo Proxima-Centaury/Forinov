@@ -1,4 +1,12 @@
 {
+    "/404": {
+        "title": "",
+        "description": ""
+    },
+    "/500": {
+        "title": "",
+        "description": ""
+    },
 	"/": {
 		"title": "Forinov, the open innovation social network",
 		"description": "Forinov is the open innovation social network that connects startups, companies and partners to facilitate their collaboration. Forinov optimizes monitoring, sourcing, portfolio management of startups and partners (accelerators, incubators, etc.)."

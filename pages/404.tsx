@@ -16,10 +16,11 @@ import NotFoundStyles from "../public/stylesheets/pages/NotFound.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const NotFound = (pageProps: NotFoundInterface) => {
     const { states, router }: any = pageProps;
-    const { translations }: any = states;
+    const { metadatas, translations }: any = states;
     return <>
         <Head>
-            <title>Forinov - 404</title>
+            <title>{ metadatas[router.route].title }</title>
+			<meta name="description" content={ metadatas[router.route].description }/>
         </Head>
         <div id="404" className="container">
             <div className={ NotFoundStyles.notFound }>
