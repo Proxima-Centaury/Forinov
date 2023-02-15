@@ -125,6 +125,8 @@
 /* Defaults */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 * {
+    grid-gap: 0px;
+    gap: 0px;
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -333,25 +335,27 @@ body {
     min-width: 20px;
     width: 100%;
     height: 1px;
-    margin: 16px 0px;
     position: relative;
     background-color: var(--separator-color);
+}
+.separator + .separator {
+    display: none;
 }
 .separatorVertical {
     min-width: inherit;
     width: 1px;
     min-height: 20px;
     height: 100%;
-    margin: 0px;
-}
-.separator + .separator {
-    display: none;
 }
 .separatorOr {
-    margin: calc(16px + 8px) 0px;
+    margin: 19.5px 0px;
 }
 .separatorOr > span {
-    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
     position: absolute;
     color: var(--text-inactive-color);
     text-transform: uppercase;
