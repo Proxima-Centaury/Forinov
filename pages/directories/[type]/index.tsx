@@ -30,7 +30,7 @@ const Directory = (pageProps: DirectoryInterface) => {
         { ID: 0, NAME: translations["Pays"], ROUTE: (locale === "en-US") ? "/countries" : "/pays" },
     ];
     return <div id="directory" className="container">
-        <Filters { ...pageProps } title={ type } setDisplay={ setDisplay }/>
+        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay }/>
         <IdenfiticationBanner { ...pageProps }/>
         <div className={ display }>
             { filters.map((filter: any, key: number) => <Link key={ key } href={ router.asPath + filter.ROUTE } className={ CategoryStyles.category }>
