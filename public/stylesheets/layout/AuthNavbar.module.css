@@ -25,7 +25,7 @@
 .rightAvatarWrapper {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     gap: 1rem;
 }
@@ -69,7 +69,8 @@
 .userName {
     font-size: 1rem;
     font-weight: 800;
-    color: #fff;
+    color: #fff;    
+    max-width: calc(200px - 2rem - 45px);
 }
 
 .spacer {
@@ -85,10 +86,13 @@
 }
 
 .blocsTitle {
-    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     text-align: center;
     color: #fff;
     text-decoration: underline;
+    margin-bottom: .5rem;
 }
 
 .blocsWrapper {
@@ -97,7 +101,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 1rem;
+    gap: .25rem;
 }
 
 .bloc {
@@ -107,7 +111,121 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: .5rem;
     background-color: #fff;
     border-radius: 10px;
 }
+
+.bloc h1 {
+    color: var(--logo-blue-color);
+    font-size: 1.25rem;
+}
+
+.bloc p {
+    color: var(--logo-blue-color);
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-style: italic;
+    opacity: 0.75;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.link {
+    width: calc(100% + 1rem);
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: #fff;
+    border-radius: 0 9999px 9999px 0;
+    position: relative;
+    left: -1rem;
+}
+
+.link > p {
+    color: #fff;
+    font-weight: bold;
+}
+
+.link > i, .icon {
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.link:hover {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.link:hover p, .link:hover i {
+    color: var(--logo-blue-color);
+}
+
+.calendar {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.calendarButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 0rem;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.calendarButtons > i {
+    font-size: 1rem;
+    color: var(--text-inactive-color);
+    padding: .5rem;
+    background-color: var(--background-main-color);
+}
+
+.calendarButtons > i:hover {
+    cursor: pointer;
+    background-color: var(--background-sub-color);
+}
+
+.calendar p {
+    color: var(--text-inactive-color);
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.addTool {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.addTool > p, .addTool > i {
+    color: #fff;
+    font-size: 1rem;
+}
+
+.addTool:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
