@@ -6,7 +6,7 @@ import { APIInterface } from "../typescript/interfaces";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../config.json";
+import apiConfigurations from "../configurations/api.json";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* API */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -19,10 +19,10 @@ import config from "../config.json";
 * @note This class is used to fetch data from external API.
 */
 class API {
-    endpoint: String = config.api.endpoint;
+    endpoint: String = apiConfigurations.api.endpoint;
     language: String = "";
     constructor() {
-        const queryProps = Object.entries(config.api.calls);
+        const queryProps = Object.entries(apiConfigurations.api.calls);
         queryProps.map((query: Array<any>) => {
             Object.defineProperty(this, query[0] as PropertyKey, { value: async (...parameters: Array<any>) => {
                 const expectedParameters = query[1].parameters;

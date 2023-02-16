@@ -109,12 +109,11 @@ const Carousel = (pageProps: any) => {
 /* Steps Carousel */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StepsCarousel = (pageProps: any) => {
-    const { states, component, config, router }: any = pageProps;
+    const { states, component, carouselsConfigurations, router }: any = pageProps;
 	const { translations }: any = states;
-    const { carousels }: any = config;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
-    const steps: Array<any> = carousels[component];
+    const steps: Array<any> = carouselsConfigurations[component];
 	const buttonProps = [ "type", "action", "text" ];
     return <Fragment>
         <div className={ CarouselStyles.steps }>
@@ -151,10 +150,9 @@ const StepsCarousel = (pageProps: any) => {
 /* Custom Vertical */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CustomVertical = (pageProps: any) => {
-    const { states, config, router, component }: any = pageProps;
+    const { states, carouselsConfigurations, router, component }: any = pageProps;
 	const { translations }: any = states;
-    const { carousels }: any = config;
-    const steps: Array<any> = carousels[component];
+    const steps: Array<any> = carouselsConfigurations[component];
     return <Fragment>
         <div className={ CarouselStyles.steps } data-direction="vertical">
             { steps.map((button: any, key: number) => <Fragment key={ key }>

@@ -15,9 +15,9 @@ import FooterStyles from "../public/stylesheets/layout/Footer.module.css";
 /* Footer */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Footer = (pageProps: FooterInterface) => {
-    const { states, config, router }: any = pageProps;
+    const { states, layoutConfigurations, router }: any = pageProps;
     const { translations }: any = states;
-    const { footer }: any = config.navigations.common.layout;
+    const { footer }: any = layoutConfigurations.navigations.common.layout;
     return <footer className={ FooterStyles.footer }>
         <div className={ FooterStyles.section }>
             <Image src={ router.basePath + "/assets/logo.png" } alt="Forinov logo" width="50" height="50"/>

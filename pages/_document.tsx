@@ -5,13 +5,13 @@ import { Html, Head, Main, NextScript } from "next/document";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../config.json";
+import resourcesConfigurations from "../configurations/resources.json";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Document */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Document = () => {
-    const fontawesomeProps: any = config.fontawesome;
-    const fontsProps: any = config.fonts;
+    const fontawesomeProps: any = resourcesConfigurations.fontawesome;
+    const fontsProps: any = resourcesConfigurations.fonts;
     return <Html>
         <Head>
             <meta charSet="utf-8"/>
