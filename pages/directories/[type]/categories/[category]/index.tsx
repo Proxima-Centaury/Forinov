@@ -4,6 +4,7 @@
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { DirectoryInterface } from "../../../../../typescript/interfaces";
+import { formatType } from "../../../../../scripts/utilities";
 import api from "../../../../../scripts/api";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -11,7 +12,7 @@ import api from "../../../../../scripts/api";
 import Link from "next/link";
 import Filters from "../../../../../components/filters/filters";
 import IdenfiticationBanner from "../../../../../components/banners/identification";
-import CategoryCard from "../../../../../components/cards/category";
+import EntityCard from "../../../../../components/cards/entity";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -29,7 +30,7 @@ const DirectoryByCategories = (pageProps: DirectoryInterface) => {
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay }/>
         <IdenfiticationBanner { ...pageProps }/>
         { (companies.length > 0) ? <div className={ display }>
-            { companies.map((filter: any, key: KeyType) => <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/>) }
+            { companies.map((company: any, key: KeyType) => <EntityCard key={ key } { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>) }
         </div> : null}
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
@@ -43,17 +44,17 @@ const DirectoryByCategories = (pageProps: DirectoryInterface) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, query, locale, locales, defaultLocale } = context;
-    let { id, type }: any = query;
+    let { type, category }: any = query;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-    id = id?.substring(id.indexOf("_") + 1, id.length);
+    category = category?.substring(category.indexOf("_") + 1, category.length);
     const language = locale?.substring(0, 2);
     const companies = async () => {
         if(type.match(/(startup)/)) {
-            return await api.getFilteredStartups("next", "Sorbonne", language);
+            return await api.getFilteredStartupsByCategory(category, "next", "Sorbonne", language);
         } else if(type.match(/(corporation|entreprise)/)) {
-            return await api.getFilteredCorporations("next", "Sorbonne", language);
+            return await api.getFilteredCorporationsByCategory(category, "next", "Sorbonne", language);
         } else if(type.match(/(partner|partenaire)/)) {
-            return await api.getFilteredPartners("next", "Sorbonne", language);
+            return await api.getFilteredPartnersByCategory(category, "next", "Sorbonne", language);
         };
     };
     return {

@@ -210,10 +210,10 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    grid-gap: 16px;
-    gap: 16px;
     max-width: 100%;
     width: 100%;
+    grid-gap: 16px;
+    gap: 16px;
     margin: 0px auto;
     padding: 16px;
 }
@@ -252,27 +252,27 @@ body {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
     grid-gap: 16px;
     gap: 16px;
 }
 .twoColumns {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
 }
 .threeColumns {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
 }
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1200px) {
     .twoColumns {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
     }
     .threeColumns {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
     }
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
     .threeColumns {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
     }
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

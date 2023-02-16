@@ -30,6 +30,7 @@ import config from "../configurations/config.json";
 * @method bindEventListener : {@link Utilities.bindEventListeners};
 * @method removeEventListeners : {@link Utilities.removeEventListeners};
 * @method structureTags : {@link Utilities.structureTags};
+* @method formatType : {@link Utilities.formatType};
 * @returns
 * - ```void``` ( nothing ).
 * ---
@@ -445,9 +446,9 @@ class Utilities {
     * - ```false``` if string parameter missing or wrong.
     * ---
     * @note This method is used to return the passed string trimed with all letters lowercased and spaces removed.
-    * @note The {@link string} parameter should be a string.
+    * @note The {@link name} parameter should be a string.
     */
-    formatNameForUrl = (name: String): String|Boolean => (name) ? name.toLowerCase().replaceAll(/\s+/g, "").replaceAll(/\&/g, "-").trim() : false;
+    formatNameForUrl = (name: String): String|Boolean => (name) ? name.toLowerCase().replaceAll(/\s+/g, "").replaceAll(/\&/g, "-").replaceAll(/\&/g, "\/").trim() : false;
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
     * @function bindEventListeners
@@ -504,6 +505,27 @@ class Utilities {
         const array = (string.match(",")) ? string.split(",").map((element, key) => ({ ID: key, NAME: element })) : [ { ID: 0, NAME: string } ];
         return array;
     };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function formatType
+    * @param { String } [ type ] Should be a ```string```.
+    * @returns { String|Boolean }
+    * - ```string```.
+    * - ```false``` if string parameter missing or wrong.
+    * ---
+    * @note This method is used to return the correct company type according to the router type parameter.
+    * @note The {@link type} parameter should be a string.
+    */
+    formatType = (type: String): String|Boolean => {
+        if(!type || type.trim().length <= 0) {
+            return false;
+        };
+        type = String(type);
+        type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
+        type = (type.match(/(entreprise)/)) ? "corporation" : type;
+        type = (type.match(/(partenaire)/)) ? "partner" : type;
+        return type;
+    };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Instance */
@@ -530,6 +552,7 @@ const formatNameForUrl = utilities.formatNameForUrl;
 const bindEventListeners = utilities.bindEventListeners;
 const removeEventListeners = utilities.removeEventListeners;
 const structureTags = utilities.structureTags;
+const formatType = utilities.formatType;
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -552,5 +575,6 @@ export {
     formatNameForUrl,
     bindEventListeners,
     removeEventListeners,
-    structureTags
+    structureTags,
+    formatType
 };

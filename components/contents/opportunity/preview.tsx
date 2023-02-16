@@ -10,10 +10,6 @@ import Link from "next/link";
 import Format from "../../texts/format";
 import Tags from "../../tags/tags";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* JSON */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../../../config.json";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import PreviewStyles from "../../../public/stylesheets/components/contents/opportunity/Preview.module.css";
@@ -85,10 +81,10 @@ const OpportunityPreview = ({ opportunity, states }: any) => {
         </div>
         { (attachments.length > 0) ? <div className="separator"></div> : null }
         { (attachments.length > 0) ? <div className={ PreviewStyles.attachments }>
-            { attachments.map(({ name, url, size }: any, key: number) => <Link key={ key } href={ config.host + url } className={ ButtonStyles.classicLink } target={ "_blank" }>
+            {/* { attachments.map(({ name, url, size }: any, key: number) => <Link key={ key } href={ config.host + url } className={ ButtonStyles.classicLink } target={ "_blank" }>
                 <i className="fa-light fa-cloud-download"/>
                 <p>{ name }</p>
-            </Link>) }
+            </Link>) } */}
         </div> : null }
     </div>;
 };
