@@ -50,17 +50,8 @@ const Directory = (pageProps: DirectoryInterface) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, locale, locales, defaultLocale } = context;
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const language = locale?.substring(0, 2);
-    // const companies = async () => {
-    //     if(type.match(/(startup)/)) {
-    //         return await api.getFilteredStartups("next", "Sorbonne", language);
-    //     } else if(type.match(/(corporation|entreprise)/)) {
-    //         return await api.getFilteredCorporations("next", "Sorbonne", language);
-    //     } else if(type.match(/(partner|partenaire)/)) {
-    //         return await api.getFilteredPartners("next", "Sorbonne", language);
-    //     };
-    // };
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     return {
         props: {
             locale, locales, defaultLocale,

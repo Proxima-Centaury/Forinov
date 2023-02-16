@@ -58,9 +58,9 @@ const ProfileMenu = ({ type, states }: any) => {
     return <div className={ ProfileStyles.menu }>
         <p className={ ProfileStyles.label }>Menu</p>
         <ul>
-            { [ ...menu as Array<any> ].map(({ url, classList, text }: any, key: number) => <li key={ key }>
+            {/* { [ ...menu as Array<any> ].map(({ url, classList, text }: any, key: number) => <li key={ key }>
                 <a href={ url } className={ classList } onClick={ scrollToHandler }>{ translations[text] }</a>
-            </li>) }
+            </li>) } */}
         </ul>
     </div>;
 };
