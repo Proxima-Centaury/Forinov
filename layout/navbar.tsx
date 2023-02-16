@@ -20,10 +20,10 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Navbar */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Navbar = (pageProps: NavbarInterface) => {
-    const { states, stateSetters, config, router }: any = pageProps;
+    const { states, stateSetters, layoutConfigurations, router }: any = pageProps;
     const { locale, locales, translations }: any = states;
     const { setLocale }: any = stateSetters;
-    const { navbar } = config.navigations.unsigned.layout;
+    const { navbar } = layoutConfigurations.navigations.unsigned.layout;
     const [ menuState, setMenuState ] = useState(false);
     const selectProps = [ "type", "options", "action", "defaultValue", "source" ];
     const languageSelectDefaultValue = [ ...selectifyTheOptions(locales, "locales") as Array<any> ]?.filter((option: any) => option.value === locale)[0];

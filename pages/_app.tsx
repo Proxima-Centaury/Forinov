@@ -20,7 +20,12 @@ import { GlobalContext } from "../components/context/globalContext";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../config.json";
+import baseConfigurations from "../configurations/config.json";
+import apiConfigurations from "../configurations/api.json";
+import resourcesConfigurations from "../configurations/resources.json";
+import layoutConfigurations from "../configurations/layout.json";
+import carouselsConfigurations from "../configurations/carousels.json";
+import accordionsConfigurations from "../configurations/accordions.json";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -84,7 +89,12 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.stateSetters["setModal"] = setModal;
     pageProps.stateSetters["setRGB"] = setRGB;
     pageProps.stateSetters["setProduction"] = setProduction;
-    pageProps.config = config;
+    pageProps.baseConfigurations = baseConfigurations;
+    pageProps.apiConfigurations = apiConfigurations;
+    pageProps.resourcesConfigurations = resourcesConfigurations;
+    pageProps.layoutConfigurations = layoutConfigurations;
+    pageProps.carouselsConfigurations = carouselsConfigurations;
+    pageProps.accordionsConfigurations = accordionsConfigurations;
     pageProps.router = router;
     return <>
         <Head>

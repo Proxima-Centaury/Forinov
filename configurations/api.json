@@ -1,0 +1,55 @@
+{
+    "api": {
+        "endpoint": "https://www.forinov.fr/remote/back/api.php",
+        "calls": {
+            "getProfile": {
+                "query": "V5_GET_PROFILE",
+                "parameters": [ "TYPE", "PID", "app", "authkey", "lang" ]
+            },
+            "getProducts": {
+                "query": "V5_GET_PRODUCTS",
+                "parameters": [ "TYPE", "PID", "app", "authkey", "lang" ]
+            },
+            "getActivity": {
+                "query": "V5_GET_ACTIVITY_FEED_ITEMS",
+                "parameters": [ "TYPE", "PID", "app", "authkey", "lang" ]
+            },
+            "getFolders": {
+                "query": "V5_GET_FOLDERS",
+                "parameters": [ "TYPE", "PID", "app", "authkey", "lang" ]
+            },
+            "getLandingOpportunities": {
+                "query": "LANDING_OPPORTUNITES",
+                "parameters": [ "app", "authkey", "lang" ]
+            },
+            "getLandingLogos": {
+                "query": "LANDING_LOGOS",
+                "parameters": [ "app", "authkey", "lang" ]
+            },
+            "getLandingStartups": {
+                "query": "LANDING_SU",
+                "parameters": [ "app", "authkey", "lang" ]
+            },
+            "getOpportunity": {
+                "query": "V5_GET_OPPORTUNITY",
+                "parameters": [ "ID", "app", "authkey", "lang" ]
+            },
+            "getPublicCommons": {
+                "query": "V5_GET_PUBLIC_COMMONS",
+                "parameters": [ "app", "authkey", "lang" ]
+            },
+            "getFilteredStartupsByCategory": {
+                "query": "SEARCH_FULLSU",
+                "parameters": [ "CATEGORY", "app", "authkey", "lang" ]
+            },
+            "getFilteredCorporationsByCategory": {
+                "query": "V5_SEARCHCORPO",
+                "parameters": [ "CATEGORY", "app", "authkey", "lang" ]
+            },
+            "getFilteredPartnersByCategory": {
+                "query": "V5_SEARCHINCUB",
+                "parameters": [ "CATEGORY", "app", "authkey", "lang" ]
+            }
+        }
+    }
+}
