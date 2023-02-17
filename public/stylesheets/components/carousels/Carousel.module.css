@@ -4,6 +4,8 @@
 .steps {
 	display: flex;
 	align-items: center;
+	grid-gap: 8px;
+	gap: 8px;
 	margin: 16px 0px;
 }
 .steps[data-direction="vertical"] {
@@ -13,12 +15,6 @@
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-}
-.steps > * + * {
-	margin: 0px 0px 0px 8px;
-}
-.steps[data-direction="vertical"] > * + * {
-	margin: 0px;
 }
 .steps[data-direction="vertical"] > button {
 	display: flex;
@@ -54,15 +50,9 @@
 	justify-content: center;
 	align-items: center;
 }
-.actions > * + * {
-	margin: 0px 0px 0px 16px;
-}
 @media screen and (max-width: 768px) {
 	.actions {
 		flex-direction: column;
-	}
-	.actions > * + * {
-		margin: 16px 0px 0px 0px;
 	}
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -171,10 +161,6 @@
 	align-items: center;
 	min-width: 100%;
 	height: 100%;
-	padding: 0px 0px 40px 0px;
-}
-.container[data-direction="vertical"] > .item {
-	min-height: 200px;
 }
 .item > div:not([class*="stepContent"]) {
 	display: flex;
@@ -182,6 +168,7 @@
 	justify-content: center;
 	align-items: center;
 	flex: 1;
+	padding: 16px 0px calc(40px + 8px + (8px / 2) + 16px) 0px;
 }
 .item > div:not([class*="stepContent"]):first-of-type {
 	align-items: flex-end;
@@ -200,13 +187,13 @@
 .item > div:not([class*="stepContent"]):only-of-type {
 	margin: 0px;
 }
-.item > div * {
-	font-size: 16px;
-}
 .item > div > h4 {
 	font-family: "Nunito Sans";
 	font-size: 32px;
-  	font-weight: bold;
+	font-weight: bold;
+}
+.item > div * {
+	font-size: 16px;
 }
 .container > a[data-card="opportunity"] {
 	min-width: 450px;

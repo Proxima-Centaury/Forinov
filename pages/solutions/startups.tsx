@@ -128,7 +128,7 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                 </div>
                 <div className={HomeStyles.opportunity} data-type="corporation">
                     <div style={{ background: "var(--background-sub-color)", paddingTop: '15rem' }}>
-                        <h4>{translations["Les dernières oppotunités"] + " :"}</h4>
+                        <h4>{translations["Les dernières opportunités"] + " :"}</h4>
                         <Carousel {...pageProps} component={"LatestOpportunities"} data={opportunities} />
                         <div className={HomeStyles.actions} data-align="left">
                             <Link href="/directories/opportunities" className={ButtonStyles.callToAction}>{translations["Découvrir toutes les opportunités"]}</Link>

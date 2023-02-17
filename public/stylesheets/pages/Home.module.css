@@ -5,6 +5,8 @@
 	display: flex;
 	width: 100%;
 	height: max-content;
+	grid-gap: 24px;
+	gap: 24px;
 	padding: 80px;
 	border-radius: 0px 0px 100px 0px;
 	background-color: var(--background-sub-color);
@@ -53,21 +55,16 @@
 	display: flex;
 	flex-direction: column;
 	height: fit-content;
-	margin: 0px 16px 0px 0px;
-}
-@media screen and (max-width: 576px) {
-	.presentation > div {
-		margin: 0px;
-	}
+	grid-gap: 40px;
+	gap: 40px;
 }
 .presentation > div > h1 {
 	font-family: "Nunito Sans";
 	font-size: 65px;
-	font-weight: bold;
+	font-weight: 600;
 }
 @media screen and (max-width: 576px) {
 	.presentation > div > h1 {
-		font-size: 55px;
 		text-align: center;
 	}
 }
@@ -88,9 +85,6 @@
 	.presentation > div > p {
 		text-align: center;
 	}
-}
-.presentation > div > p + p {
-	margin: 16px 0px 0px 0px;
 }
 .presentation[data-type="startup"] > div > p {
 	color: var(--sunred-color);
@@ -398,25 +392,15 @@
 .opportunity > div > h3 {
 	margin: 32px auto;
 	font-family: "Nunito Sans";
-	font-size: 45px;
+	font-size: 48px;
 	font-weight: 300;
 	text-align: center;
-}
-@media screen and (max-width: 576px) {
-	.opportunity > div > h3 {
-		font-size: 35px;
-	}
 }
 .opportunity[data-type="startup"] > div > h3 {
 	margin: 0px auto;
 }
-@media screen and (max-width: 576px) {
-	.opportunity[data-type="startup"] > div > h3 {
-		font-size: 35px;
-	}
-}
 .opportunity > div > p {
-	margin: 0px auto 32px auto;
+	margin: 0px auto 40px auto;
 	font-family: "Nunito Sans";
 	font-size: 21px;
 	text-align: center;
@@ -598,14 +582,9 @@
 .badges > div > h2 {
 	margin: 0px auto 50px auto;
 	font-family: "Nunito Sans";
-	font-size: 45px;
+	font-size: 48px;
 	font-weight: 300;
 	text-align: center;
-}
-@media screen and (max-width: 576px) {
-	.badges > div > h2 {
-		font-size: 35px;
-	}
 }
 .badges[data-type="startup"] > div > h2,
 .badges[data-type="partner"] > div > h2 {
@@ -628,7 +607,7 @@
 	}
 	.badges[data-type="startup"] > div > div,
 	.badges[data-type="partner"] > div > div {
-		margin: 0px 0px 150px 0px;
+		margin: 0px 0px 250px 0px;
 	}
 }
 @media screen and (max-width: 992px) {
@@ -685,23 +664,13 @@
 	font-weight: bold;
 	text-align: center;
 }
-@media screen and (max-width: 576px) {
-	.badges > div > div > .badge > div > h4 {
-		font-size: 22px;
-	}
-}
 .badges[data-type="startup"] > div > div > .badge > div > h4,
 .badges[data-type="partner"] > div > div > .badge > div > h4 {
 	color: var(--perfect-black-color);
 }
 .badges > div > div > .badge > div * {
-	font-size: 14px;
+	font-size: 16px;
 	text-align: center;
-}
-@media screen and (max-width: 576px) {
-	.badges > div > div > .badge > div > p {
-		font-size: 14px;
-	}
 }
 .badges[data-type="startup"] > div > div > .badge > div > p,
 .badges[data-type="partner"] > div > div > .badge > div > p,
