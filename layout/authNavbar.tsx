@@ -6,10 +6,16 @@ import Link from 'next/link';
 
 function AuthNavbar(pageProps: any) {
     const { states } = pageProps;
-    const { session } = states;
+    const { session, translations } = states;
     const [isRightOpen, setIsRightOpen] = useState<boolean>(false);
     const [rightOpenMobile, setRightOpenMobile] = useState<boolean>(false);
     const [profileHovered, setProfileHovered] = useState<boolean>(false);
+
+    const user = {
+        name: "Marie-Joséphine Brognon",
+        company: "Startup",
+        initials: "DJ"
+    }
 
     return (<>
         {/* TOP BAR */}
@@ -50,7 +56,44 @@ function AuthNavbar(pageProps: any) {
                     >
                         <i className='fa-light fa-ellipsis'></i>
                     </button>
-                </div></div>
+                </div>
+            </div>
+
+            <div className={styles.bottomBarContent}>
+                <div className={styles.logo}></div>
+                <button className={styles.leftBarTrigger}></button>
+                <Link
+                    href={"/"}
+                    className={styles.topRightLink}>
+                    <i className='fa-light fa-search'></i>
+                </Link>
+                <Link
+                    href={"/"}
+                    className={styles.topRightLink + ' ' + styles.topRightMobileLink}>
+                    <i className='fa-light fa-bell'></i>
+                </Link>
+                <Link
+                    href={"/"}
+                    className={styles.topRightLink + ' ' + styles.topRightMobileLink}>
+                    <i className='fa-light fa-message'></i>
+                </Link>
+                <button
+                    className={styles.topRightLink + ' ' + styles.topRightMobileLink}
+                    onClick={() => {
+                        if (!rightOpenMobile) {
+                            setIsRightOpen(true);
+                            setRightOpenMobile(true);
+                        } else if (rightOpenMobile) {
+                            setIsRightOpen(false);
+                            setRightOpenMobile(false);
+                        }
+                        console.log("rightOpenMobile: " + rightOpenMobile);
+                        console.log("isRightOpen: " + isRightOpen);
+                    }}
+                >
+                    <i className='fa-light fa-ellipsis'></i>
+                </button>
+            </div>
         </div>
 
         {/* LEFT BAR */}
@@ -70,24 +113,24 @@ function AuthNavbar(pageProps: any) {
 
 
                 {profileHovered && <div className={styles.profileModal}>
-                    <h3>Profile</h3>
-                    <Link href="/"><p>Profil de mon entreprise</p></Link>
-                    <Link href="/"><p>Profil personnel</p></Link>
+                    <h3>{translations['Profil']}</h3>
+                    <Link href="/"><p>{translations["Profil de mon entreprise"]}</p></Link>
+                    <Link href="/"><p>{translations["Profil personnel"]}</p></Link>
 
                     <div className={styles.modalSpacer}></div>
-                    <h3>Paramètres</h3>
-                    <Link href="/"><p>Général</p></Link>
-                    <Link href="/"><p>Langues</p></Link>
+                    <h3>{translations['Paramètres']}</h3>
+                    <Link href="/"><p>{translations["Général"]}</p></Link>
+                    <Link href="/"><p>{translations["Langue"]}</p></Link>
                     <div className={styles.modalSpacer}></div>
 
-                    <Link href="/"><p>Déconnexion</p></Link>
+                    <Link href="/"><p>{translations["Déconnexion"]}</p></Link>
                 </div>}
                 <div className={styles.company}>
-                    <div className={styles.initials}>DJ</div>
+                    <div className={styles.initials}>{user.initials}</div>
                 </div>
                 {isRightOpen && <div className={styles.rightUserDetails}>
-                    <p className={styles.companyName}>Startup</p>
-                    <p className={styles.userName}>Marie-Joséphine Brognon</p>
+                    <p className={styles.companyName}>{user.company}</p>
+                    <p className={styles.userName}>{user.name}</p>
                 </div>}
             </div>
             <div className={styles.spacer}></div>
@@ -97,19 +140,19 @@ function AuthNavbar(pageProps: any) {
             >
                 <p className={styles.blocsTitle}
                     style={{ width: isRightOpen ? "100%" : "50px" }}
-                >Blocs 1</p>
+                >{translations["Candidatures"]}</p>
                 <div className={styles.blocsWrapper} style={{ flexDirection: isRightOpen ? "row" : "column" }}>
                     <div className={styles.bloc}
                         style={{ width: isRightOpen ? "100px" : "50px" }}
                     >
                         <h1>0</h1>
-                        {isRightOpen && <p>Envoyées</p>}
+                        {isRightOpen && <p>{translations["Envoyées"]}</p>}
                     </div>
                     <div className={styles.bloc}
                         style={{ width: isRightOpen ? "100px" : "50px" }}
                     >
                         <h1>0</h1>
-                        {isRightOpen && <p>Brouillons</p>}
+                        {isRightOpen && <p>{translations["Brouillons"]}</p>}
                     </div>
                 </div>
             </div>
@@ -119,19 +162,19 @@ function AuthNavbar(pageProps: any) {
             >
                 <p className={styles.blocsTitle}
                     style={{ width: isRightOpen ? "100%" : "50px" }}
-                >Blocs 2</p>
+                >{translations["Profils"]}</p>
                 <div className={styles.blocsWrapper} style={{ flexDirection: isRightOpen ? "row" : "column" }}>
                     <div className={styles.bloc}
                         style={{ width: isRightOpen ? "100px" : "50px" }}
                     >
                         <h1>0</h1>
-                        {isRightOpen && <p>Envoyées</p>}
+                        {isRightOpen && <p>{translations["Visites"]}</p>}
                     </div>
                     <div className={styles.bloc}
                         style={{ width: isRightOpen ? "100px" : "50px" }}
                     >
                         <h1>0</h1>
-                        {isRightOpen && <p>Brouillons</p>}
+                        {isRightOpen && <p>{translations["Abonnés"]}</p>}
                     </div>
                 </div>
             </div>
@@ -144,7 +187,7 @@ function AuthNavbar(pageProps: any) {
                     style={{ justifyContent: isRightOpen ? "flex-start" : "center", left: isRightOpen ? "-1rem" : "0", width: isRightOpen ? "calc(100% + 1rem)" : "100%" }}
                     className={styles.link}>
                     <i className='fa-light fa-bell'></i>
-                    {isRightOpen && <p>Retour</p>}
+                    {isRightOpen && <p>{translations['Notifications']}</p>}
                 </Link>
 
                 <Link
@@ -152,7 +195,7 @@ function AuthNavbar(pageProps: any) {
                     style={{ justifyContent: isRightOpen ? "flex-start" : "center", left: isRightOpen ? "-1rem" : "0" }}
                     className={styles.link}>
                     <i className='fa-light fa-message'></i>
-                    {isRightOpen && <p>Messages</p>}
+                    {isRightOpen && <p>{translations['Messages']}</p>}
                 </Link>
             </div>
 
@@ -168,7 +211,7 @@ function AuthNavbar(pageProps: any) {
 
             {!isRightOpen ? <i className={'fa-light fa-circle-plus ' + styles.icon}></i> : <div className={styles.addTool}>
                 <i className='fa-light fa-plus'></i>
-                <p>Ajouter un outil</p>
+                <p>{translations["Ajouter un outil"]}</p>
             </div>}
         </div>
 

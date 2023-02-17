@@ -410,5 +410,18 @@
 	"Secteurs": "Sectors",
 	"Technologies": "Technologies",
 	"Metiers cible": "Target jobs",
-	"Aucun résultat": "No result"
+	"Aucun résultat": "No result",
+	"Profil de mon entreprise": "Company profile",
+	"Profil personnel": "Personal profile",
+	"Paramètres" : "Settings",
+	"Langue" : "Language",
+	"Déconnexion" : "Log out",
+	"Candidatures" : "Applications",
+	"Envoyées" : "Sent",
+	"Profils" : "Profiles",
+	"Visites" : "Visits",
+	"Abonnés" : "Subscribers",
+	"Notifications" : "Notifications",
+	"Messages" : "Messages",
+	"Ajouter un outil" : "Add a tool"
 }

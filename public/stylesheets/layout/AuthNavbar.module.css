@@ -273,6 +273,7 @@
     width: 100%;
     top: 0;
     left: 0;
+    background: var(--background-main-color);
 }
 
 .topBarContent {
@@ -322,10 +323,18 @@
     color: #fff;
 }
 
+.bottomBarContent {
+    display: none;
+}
+
 @media screen and (max-width: 1200px) {
     .right {
         display: none;
         top: inherit;
+    }
+
+    .bottomBarContent {
+        display: none;
     }
 
     .rightMobile {
@@ -346,5 +355,32 @@
 
     .topRightMobileLink {
         display: flex;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .rightMobile {
+        top: 0;
+    }
+
+    .topBar {
+        bottom: 0;
+        top: inherit;
+    }
+
+    .topBarContent {
+        display: none !important;
+    }
+
+    .bottomBarContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .topRightLink>i {
+        font-size: 1rem;
     }
 }
