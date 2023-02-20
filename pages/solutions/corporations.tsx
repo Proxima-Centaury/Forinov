@@ -75,11 +75,11 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                 </div>
                 <div className={SolutionStyles.banner}>
                     <div className="container">
-                        <h1 className={SolutionStyles.bannerTitle}>Titre</h1>
+                        <h1 className={SolutionStyles.bannerTitle}>{translations["Pourquoi rejoindre Forinov ?"]}</h1>
                         <div className={SolutionStyles.bannerBlockWrapper}>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Gagner en visibilité"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Référencer et promouvoir mes solutions grâce à un profil clair et complet. Être identifié et contacté par des entreprises à la recherche de startups innovantes. Partager mon actualité auprès d’une communauté d’acteurs innovants."]}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
                                 <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
