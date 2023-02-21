@@ -167,11 +167,11 @@ const CustomVertical = (pageProps: any) => {
     const { states, carouselsConfigurations, router, component }: any = pageProps;
 	const { translations }: any = states;
     const steps: Array<any> = carouselsConfigurations[component];
-    return <Fragment>
+    return <div className="containerFull">
         <div className={ CarouselStyles.steps } data-direction="vertical">
             { steps.map((button: any, key: number) => <Fragment key={ key }>
                 <div className="separatorVertical"></div>
-                <button>
+                <button className={ (key === steps.length - 1) ? "active" : "" }>
                     <i className={ (key === steps.length - 1) ? "fa-light fa-check" : "fa-light fa-chevron-down" }/>
                 </button>
             </Fragment>) }
@@ -192,7 +192,7 @@ const CustomVertical = (pageProps: any) => {
                 </div> }
             </div>) }
         </div>
-    </Fragment>;
+    </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Classic Horizontal */

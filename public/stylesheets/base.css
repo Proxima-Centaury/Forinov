@@ -95,13 +95,18 @@
     --error-color: #E01E3E;
     --information-color: #1F4497;
     /* Blue Tones */
-    --lightblue-color: #F0F6FF;
-    --paleblue-color: #B2D1FF;
-    --skyblue-color: #7EC9FF;
+    --pastelblue-color: #F0F6FF;
+    --lightblue-color: #B2D1FF;
+    --paleblue-color: #97C0FD;
+    --pureblue-color: #005AEB;
     /* Green Tones */
-    --palegreen-color: #D1F2E4;
+    --lightgreen-color: #D1F2E4;
+    --palegreen-color: #9FE9CA;
+    --grassgreen-color: #38BF84;
     /* Red Tones */
+    --lightred-color: #FFEFE6;
     --palered-color: #FFCFD1;
+    --sunred-color: #FE6A28;
     /* Text Colors */
     --text-main-color: var(--perfect-white-color);
     --text-inactive-color: var(--perfect-grey-color);
@@ -127,9 +132,10 @@
 * {
     grid-gap: 0px;
     gap: 0px;
+    box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-    box-sizing: border-box;
+    position: relative;
     font-family: "Open Sans";
     color: var(--text-main-color);
     list-style: none;
@@ -905,4 +911,10 @@ body {
 }
 [data-opportunity-type="5"] {
     background-color: var(--offer-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Carousels ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+div[data-carousel] {
+	position: relative;
 }
