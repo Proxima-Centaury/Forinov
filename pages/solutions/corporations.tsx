@@ -40,28 +40,28 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                 <div className={"container " + SolutionStyles.heroContainer}>
                     <h1 className={SolutionStyles.heroTitle}>{translations["Forinov, la solution la plus complète d’open innovation"]}</h1>
                     <p className={SolutionStyles.heroDesc}>
-                        {translations["Vous proposez une solution innovante ? Vous cherchez des clients B2B ? Rejoignez Forinov pour booster votre visibilité et entrer en relation simplement avec des entreprises qui ont besoin de vos solutions pour innover !"]}
+                        {translations["Trouvez et entrez en relation avec les startups qui répondent à vos besoins. Veille, sourcing, appels à projet et gestion de portefeuilles… Autant de solutions qui vous attendent sur Forinov !"]}
                     </p>
                     <div className={SolutionStyles.heroLinks}>
                         <Link
                             href={'/'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
-                            <span>{translations["J'inscris ma startup"]}</span>
+                            <span>{translations["Je rejoins la communauté"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
                             href={'/'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
-                            <span>{translations["J'inscris ma startup"]}</span>
+                            <span>{translations["Je découvre les offres Pro / Entreprise"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
                             href={'/'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
-                            <span>{translations["J'inscris ma startup"]}</span>
+                            <span>{translations["J'accède à l'annuaire des membres"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                     </div>
@@ -75,47 +75,47 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                 </div>
                 <div className={SolutionStyles.banner}>
                     <div className="container">
-                        <h1 className={SolutionStyles.bannerTitle}>{translations["Pourquoi rejoindre Forinov ?"]}</h1>
+                        <h1 className={SolutionStyles.bannerTitle}>{translations["Bien plus qu’une communauté... La plateforme d’open innovation nouvelle génération, connectée à l’écosystème !"]}</h1>
                         <div className={SolutionStyles.bannerBlockWrapper}>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Gagner en visibilité"]}</h3>
-                                <p className={SolutionStyles.bannerParagraph}>{translations["Référencer et promouvoir mes solutions grâce à un profil clair et complet. Être identifié et contacté par des entreprises à la recherche de startups innovantes. Partager mon actualité auprès d’une communauté d’acteurs innovants."]}</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Être membre d’un réseau d’acteurs innovants"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Identifier et contacter des startups et partenaires innovants. Suivre des profils qualifiés et actualisés, tous domaines confondus. Me connecter et communiquer avec les écosystèmes innovants."]}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Trouver des solutions à mes besoins"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Recevoir des recommandations en fonction de mes critères de recherche. Communiquer et gérer des opportunités : appels à projets, concours… Centraliser et simplifier le suivi des dossiers de candidatures."]}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Profiter de démarches simplifiées"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Gérer et faire grandir mon portefeuille de startups et partenaires. Simplifier les échanges avec mon réseau et engager mes collaborateurs. Centraliser et piloter mon activité."]}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="container" style={{ marginTop: "5rem" }}>
-                    <h1 className={SolutionStyles.coloredTitle}>Quel que soit votre métier, <br />
-                        Forinov est fait pour vous</h1>
-                    <h2 className={SolutionStyles.coloredSubtitle}>Car on est tous concerné par l’innovation !</h2>
+                    <h1 className={SolutionStyles.coloredTitle}>{translations["Quel que soit votre métier, "]}<br />
+                        {translations["Forinov est fait pour vous"]}</h1>
+                    <h2 className={SolutionStyles.coloredSubtitle}>tra{translations["Car on est tous concerné par l’innovation !"]}</h2>
                     <div className={SolutionStyles.cardWrapper}>
                         <div className={SolutionStyles.card}>
-                            <h1 className={SolutionStyles.cardTitle}>Card Title</h1>
-                            <p className={SolutionStyles.cardDesc}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis voluptatum beatae autem impedit possimus voluptatibus dicta ullam similique corporis laudantium?</p>
+                            <h1 className={SolutionStyles.cardTitle}>{translations["Gestion de l’innovation"]}</h1>
+                            <p className={SolutionStyles.cardDesc}>{translations["Vous cherchez des solutions aux besoins métiers. Vous provoquez et diffusez l’innovation pour préparer l’après-demain."]}</p>
                         </div>
                         <div className={SolutionStyles.card}>
-                            <h1 className={SolutionStyles.cardTitle}>Card Title</h1>
-                            <p className={SolutionStyles.cardDesc}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis voluptatum beatae autem impedit possimus voluptatibus dicta ullam similique corporis laudantium?</p>
+                            <h1 className={SolutionStyles.cardTitle}>{translations["Change management"]}</h1>
+                            <p className={SolutionStyles.cardDesc}>{translations["Vous concevez et mettez en œuvre les stratégies marketing et communication et cherchez toujours à vous réinventer."]}</p>
                         </div>
                         <div className={SolutionStyles.card}>
-                            <h1 className={SolutionStyles.cardTitle}>Card Title</h1>
-                            <p className={SolutionStyles.cardDesc}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis voluptatum beatae autem impedit possimus voluptatibus dicta ullam similique corporis laudantium?</p>
+                            <h1 className={SolutionStyles.cardTitle}>{translations["Communication et marketing"]}</h1>
+                            <p className={SolutionStyles.cardDesc}>{translations["Vous concevez et mettez en œuvre les stratégies marketing et communication et cherchez toujours à vous réinventer."]}</p>
                         </div>
                         <div className={SolutionStyles.card}>
-                            <h1 className={SolutionStyles.cardTitle}>Card Title</h1>
-                            <p className={SolutionStyles.cardDesc}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis voluptatum beatae autem impedit possimus voluptatibus dicta ullam similique corporis laudantium?</p>
+                            <h1 className={SolutionStyles.cardTitle}>{translations["Ressources humaines"]}</h1>
+                            <p className={SolutionStyles.cardDesc}>{translations["Vous attirez et retenez les talents, vous managez la marque employeur et recherchez des solutions innovantes à leur proposer."]}</p>
                         </div>
                         <div className={SolutionStyles.card}>
-                            <h1 className={SolutionStyles.cardTitle}>Card Title</h1>
-                            <p className={SolutionStyles.cardDesc}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis voluptatum beatae autem impedit possimus voluptatibus dicta ullam similique corporis laudantium?</p>
+                            <h1 className={SolutionStyles.cardTitle}>{translations["Direction des achats"]}</h1>
+                            <p className={SolutionStyles.cardDesc}>{translations["Vous cherchez à trouver des prestataires et fournisseurs toujours plus innovants. Vous êtes la tête chercheuse des solutions de demain."]}</p>
                         </div>
                     </div>
                     <button className="callToAction" style={{ margin: '2rem auto' }}>Je m&apos;inscris</button>
