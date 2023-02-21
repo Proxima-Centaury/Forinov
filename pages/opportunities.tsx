@@ -30,36 +30,34 @@ const Home = (pageProps: HomeInterface) => {
 		</Head>
 		<div className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="opportunity">
-				<div>
+				<div className={ HomeStyles.presentationContent }>
 					<h1>{ translations["Trouver la startup qu'il vous faut"] }</h1>
 					<p className={ HomeStyles.paragraph }>{ translations["Postule à des opportunités uniques, rentre en contact avec des entreprises et des partenaires d'innovation, à chaque startup son Forinov"] + " !" }</p>
-					<Link href="/">{ translations["Voir la vidéo de présentation"] }</Link>
+					<div className={ HomeStyles.presentationLinks }>
+						<Link className={ ButtonStyles.callToAction } href="/">{ translations["Voir la vidéo de présentation"] }</Link>
+					</div>
 				</div>
 				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
 			</div>
 			<div className={ HomeStyles.sourcing } data-type="opportunity">
-				<div>
-					<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
-					<p>{ translations["Publiez appels à projets, appels à candidatures et challenges en quelques clics"] }</p>
-					<div data-carousel="opportunity">
-						<Carousel { ...pageProps } component={ "HowToCreateOpportunity" }/>
-					</div>
-					<div className={ HomeStyles.actions }>
-						<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
-						<Link href="/opportunities" className={ ButtonStyles.callToAction }>{ translations["Découvrir les offres"] }</Link>
-					</div>
+				<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
+				<p>{ translations["Publiez appels à projets, appels à candidatures et challenges en quelques clics"] }</p>
+				<Carousel { ...pageProps } component="HowToCreateOpportunity"/>
+				<div className={ HomeStyles.actions } data-justify="center">
+					<Link className={ ButtonStyles.callToAction } href="/onboarding">{ translations["Rejoindre l'écosystème Forinov"] }</Link>
+					<Link className={ ButtonStyles.callToAction } href="/opportunities">{ translations["Découvrir les offres"] }</Link>
 				</div>
 			</div>
-			<div className={ HomeStyles.companies }>
-				<div>
-					<h2>{ translations["Ils ont utilisé Forinov pour leurs opportunités"] }</h2>
-					<Carousel { ...pageProps } component={ "CompaniesLogos" } data={ logos }/>
-				</div>
+			<div className={ HomeStyles.companies } data-type="opportunity">
+				<h4>{ translations["Ils ont utilisé Forinov pour leurs opportunités"] }</h4>
+				<Carousel { ...pageProps } component="CompaniesLogos" data={ logos }/>
 			</div>
 			<div className={ HomeStyles.questions } data-type="opportunity">
-				<h2>{ translations["Les réponses à vos questions"] }</h2>
-				<Carousel { ...pageProps } component={ "OpportunityAccordions" } data={ Object.values(landings.opportunity) }/>
-				<p>{ translations["Vous avez des questions"] + " ? " }<Link href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
+				<h5>{ translations["Les réponses à vos questions"] }</h5>
+				<Carousel { ...pageProps } component="OpportunityAccordions" data={ Object.values(landings.opportunity) }/>
+				<div className={ HomeStyles.actions } data-justify="center">
+					<p>{ translations["Vous avez des questions"] + " ? " }<Link className={ ButtonStyles.pureLink } href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
+				</div>
 			</div>
 		</div>
 	</>

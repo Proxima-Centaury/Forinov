@@ -115,8 +115,22 @@ const StepsCarousel = (pageProps: any) => {
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const steps: Array<any> = carouselsConfigurations[component];
 	const buttonProps = [ "type", "action", "text" ];
+    useEffect(() => {
+        let handleStepButtonsTitle = () => {
+            const stepButtons = document.querySelectorAll("." + CarouselStyles.steps + "[data-carousel='" + component + "Steps'] button") || [];
+            if(stepButtons.length > 0) {
+                stepButtons.forEach((button, key) => {
+                    const typedButton = button as HTMLElement;
+                    const stepTitle = (window.innerWidth < 992) ? key + 1 : (key + 1) + ". " + steps[key].title;
+                    typedButton.innerText = stepTitle.toString();
+                });
+            };
+        };
+        window.addEventListener("resize", handleStepButtonsTitle);
+        return () => window.removeEventListener("resize", handleStepButtonsTitle);
+    });
     return <Fragment>
-        <div className={ CarouselStyles.steps }>
+        <div className={ CarouselStyles.steps } data-carousel={ component + "Steps" }>
             { steps.map((button: any, key: number) => {
                 const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, component), button.title ];
                 const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
@@ -131,7 +145,7 @@ const StepsCarousel = (pageProps: any) => {
             { steps.map((step: any, key: number) => {
                 return <div key={ key } className={ CarouselStyles.item } data-index={ key }>
                     <div className={ CarouselStyles.stepContent }>
-                        <h4>{ translations[step.title] }</h4>
+                        <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
                         <ul>
                             { step.list.map((item: String, key: KeyType) => <li key={ key }>
                                 <div><i className="fa-light fa-arrow-right"/><Format content={ translations[item as keyof Object] }/></div>
@@ -153,32 +167,32 @@ const CustomVertical = (pageProps: any) => {
     const { states, carouselsConfigurations, router, component }: any = pageProps;
 	const { translations }: any = states;
     const steps: Array<any> = carouselsConfigurations[component];
-    return <Fragment>
+    return <div className="containerFull">
         <div className={ CarouselStyles.steps } data-direction="vertical">
             { steps.map((button: any, key: number) => <Fragment key={ key }>
                 <div className="separatorVertical"></div>
-                <button>
+                <button className={ (key === steps.length - 1) ? "active" : "" }>
                     <i className={ (key === steps.length - 1) ? "fa-light fa-check" : "fa-light fa-chevron-down" }/>
                 </button>
             </Fragment>) }
         </div>
         <div className={ CarouselStyles.container } data-direction="vertical" data-carousel={ component }>
             { steps.map((step: any, key: number) => <div key={ key } className={ CarouselStyles.item } data-index={ key }>
-                { (key % 2 === 1) ? <div>
+                { (key % 2 === 1) ? <div className={ CarouselStyles.verticalContent }>
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
                     <Format content={ translations[step.text] }/>
-                </div> : <div>
+                </div> : <div className={ CarouselStyles.verticalPicture }>
                     <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                 </div> }
-                { (key % 2 === 1) ? <div>
+                { (key % 2 === 1) ? <div className={ CarouselStyles.verticalPicture }>
                     <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
-                </div> : <div>
+                </div> : <div className={ CarouselStyles.verticalContent }>
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
                     <Format content={ translations[step.text] }/>
                 </div> }
             </div>) }
         </div>
-    </Fragment>;
+    </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Classic Horizontal */
