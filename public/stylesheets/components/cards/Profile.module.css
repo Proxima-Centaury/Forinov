@@ -26,6 +26,8 @@
 .actions {
     display: flex;
     justify-content: space-between;
+    grid-gap: 16px;
+    gap: 16px;
     position: absolute;
     right: 16px;
     bottom: 16px;
@@ -40,17 +42,15 @@
         bottom: inherit;
     }
 }
-.actions > * + * {
-    margin: 0px 0px 0px 16px;
-}
 .actions > div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
     height: 100%;
 }
 .actions > div > p {
-    margin: 8px 0px 0px 0px;
     font-size: 11px;
     font-weight: 600;
     color: var(--logo-blue-color);
@@ -60,7 +60,8 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .body {
     display: flex;
-    flex: 1;
+    width: 100%;
+    height: calc(100% - 192px);
 }
 @media screen and (max-width: 990px) {
     .body {
@@ -106,6 +107,8 @@
 .content {
     display: flex;
     flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
     width: calc(100% - (120px + (2 * 16px)));
     padding: 16px 16px 16px 0px;
 }
@@ -116,7 +119,6 @@
     }
 }
 .content > h3 {
-    margin: 0px auto 8px 0px;
     font-family: "Nunito Sans";
     font-size: 24px;
     font-weight: 800;
@@ -125,10 +127,8 @@
 .content > .informations {
     display: flex;
     align-items: center;
-    margin: 0px auto 8px 0px;
-}
-.content > .informations > * + * {
-    margin: 0px 0px 0px 24px;
+    grid-gap: 24px;
+    gap: 24px;
 }
 .content > .informations > div {
     display: flex;
@@ -147,17 +147,10 @@
     text-decoration: underline;
     
 }
-.content > .description {
-    margin: 0px 0px 8px 0px;
-}
-.content > .description > p {
-    margin: 0px;
-}
 .content > .stats {
     display: flex;
-}
-.content > .stats > * + * {
-    margin: 0px 0px 0px 16px;
+    grid-gap: 16px;
+    gap: 16px;
 }
 .content > .stats > div {
     display: flex;

@@ -37,7 +37,7 @@ const ProfileCard = ({ type, profile, states, page }: any) => {
             </div>
             <div className={ ProfileStyles.content }>
                 <h3>{ profile.NAME }</h3>
-                <div className={ ProfileStyles.informations }>
+                { (profile.ADDRESS || profile.WEBSITE) ? <div className={ ProfileStyles.informations }>
                     { (profile.ADDRESS) ? <div>
                         <i className="fa-solid fa-location-dot"/>
                         <p>{ ((profile.ADDRESS.TOWN) ? profile.ADDRESS.TOWN + ", " : "") + ((profile.ADDRESS.ISO) ? profile.ADDRESS.ISO : "") }</p>
@@ -46,7 +46,7 @@ const ProfileCard = ({ type, profile, states, page }: any) => {
                         <i className="fa-solid fa-link"/>
                         <a href={ "https://" + profile.WEBSITE } target="blank">{ translations["Site internet"] }</a>
                     </div> : null }
-                </div>
+                </div> : null }
                 <div className={ ProfileStyles.description }>
                     <Format content={ profile.COMMENT }/>
                 </div>
