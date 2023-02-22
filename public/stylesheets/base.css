@@ -38,7 +38,7 @@
     --pastelblue-color: #F0F6FF;
     --lightblue-color: #B2D1FF;
     --paleblue-color: #97C0FD;
-    --pureblue-color: #005AEB;
+    --pureblue-color: #006DFF;
     /* Green Tones */
     --lightgreen-color: #D1F2E4;
     --palegreen-color: #9FE9CA;
@@ -46,7 +46,7 @@
     /* Red Tones */
     --lightred-color: #FFEFE6;
     --palered-color: #FFCFD1;
-    --sunred-color: #FE6A28;
+    --sunred-color: #FF5500;
     /* Text Colors */
     --text-main-color: var(--perfect-black-color);
     --text-inactive-color: var(--perfect-grey-color);
@@ -98,7 +98,7 @@
     --pastelblue-color: #F0F6FF;
     --lightblue-color: #B2D1FF;
     --paleblue-color: #97C0FD;
-    --pureblue-color: #005AEB;
+    --pureblue-color: #006DFF;
     /* Green Tones */
     --lightgreen-color: #D1F2E4;
     --palegreen-color: #9FE9CA;
@@ -106,7 +106,7 @@
     /* Red Tones */
     --lightred-color: #FFEFE6;
     --palered-color: #FFCFD1;
-    --sunred-color: #FE6A28;
+    --sunred-color: #FF5500;
     /* Text Colors */
     --text-main-color: var(--perfect-white-color);
     --text-inactive-color: var(--perfect-grey-color);

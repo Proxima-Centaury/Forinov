@@ -177,6 +177,11 @@
 	gap: 16px;
 	width: max-content;
 }
+@media screen and (max-width: 576px) {
+	.presentationLinks {
+		width: 100%;
+	}
+}
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Onboarding ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -359,19 +364,21 @@
 	}
 }
 .sourcing[data-type="startup"] button {
-	background-color: var(--palered-color);
+	border: var(--border);
+	border-color: var(--sunred-color);
+	background-color: var(--lightred-color);
 }
 .sourcing[data-type="startup"] button > i {
-	color: var(--logo-orange-color);
+	color: var(--sunred-color);
 }
 .sourcing[data-type="startup"] button[class="active"] {
-	background-color: var(--logo-orange-color);
+	background-color: var(--sunred-color);
 }
 .sourcing[data-type="startup"] button[class="active"] > i {
 	color: var(--perfect-white-color);
 }
 .sourcing[data-type="startup"] div[class="separatorVertical"] {
-	background-color: var(--logo-orange-color);
+	background-color: var(--sunred-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Sourcing For Corporation ) */
@@ -380,31 +387,33 @@
 	background-color: var(--background-main-color);
 }
 .sourcing[data-type="corporation"]::after {
-	border-radius: 100px 0px 0px 0px;
+	border-radius: 100px 0px 0px 100px;
 	background-color: var(--lightblue-color);
 }
 @media screen and (max-width: 576px) {
 	.sourcing[data-type="corporation"]::after {
-		border-radius: 50px 0px 0px 0px;
+		border-radius: 50px 0px 0px 50px;
 	}
 }
 .sourcing[data-type="corporation"] *:not([class*="callToAction"], i) {
 	color: var(--perfect-black-color);
 }
 .sourcing[data-type="corporation"] button {
-	background-color: var(--paleblue-color);
+	border: var(--border);
+	border-color: var(--pureblue-color);
+	background-color: var(--lightblue-color);
 }
 .sourcing[data-type="corporation"] button > i {
-	color: var(--logo-blue-color);
+	color: var(--pureblue-color);
 }
 .sourcing[data-type="corporation"] button[class="active"] {
-	background-color: var(--logo-blue-color);
+	background-color: var(--pureblue-color);
 }
 .sourcing[data-type="corporation"] button[class="active"] > i {
 	color: var(--perfect-white-color);
 }
 .sourcing[data-type="corporation"] div[class="separatorVertical"] {
-	background-color: var(--logo-blue-color);
+	background-color: var(--pureblue-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Sourcing For Opportunity ) */
@@ -467,6 +476,36 @@
 	font-size: 42px;
 	font-weight: bold;
 	text-align: center;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Opportunity For Startup ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.opportunity[data-type="startup"]::before {
+	background-color: var(--lightred-color);
+}
+.opportunity[data-type="startup"]::after {
+	border-radius: 0px 0px 0px 100px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.opportunity[data-type="startup"]::after {
+		border-radius: 0px 0px 0px 50px;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Opportunity For Corporation ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.opportunity[data-type="corporation"]::before {
+	background-color: var(--lightblue-color);
+}
+.opportunity[data-type="corporation"]::after {
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.opportunity[data-type="corporation"]::after {
+		border-radius: 0px 50px 0px 0px;
+	}
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Register ) */
@@ -583,6 +622,21 @@
 	text-align: center;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Startups For Partner ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.startups[data-type="partner"]::before {
+	background-color: var(--lightgreen-color);
+}
+.startups[data-type="partner"]::after {
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.startups[data-type="partner"]::after {
+		border-radius: 0px 50px 0px 0px;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Companies ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .companies {
@@ -620,6 +674,21 @@
 	text-align: center;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Companies For Startup ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.companies[data-type="startup"]::before {
+	background-color: var(--lightred-color);
+}
+.companies[data-type="startup"]::after {
+	border-radius: 100px 0px 0px 0px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.companies[data-type="startup"]::after {
+		border-radius: 50px 0px 0px 0px;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Companies For Corporation ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .companies[data-type="corporation"]::before {
@@ -633,6 +702,190 @@
 	.companies[data-type="corporation"]::after {
 		border-radius: 0px 0px 50px 0px;
 	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Companies For Partner ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.companies[data-type="partner"]::before {
+	background-color: var(--lightgreen-color);
+}
+.companies[data-type="partner"]::after {
+	border-radius: 0px 0px 100px 0px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.companies[data-type="partner"]::after {
+		border-radius: 0px 0px 50px 0px;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 24px;
+	gap: 24px;
+	width: 100%;
+	padding: 80px;
+}
+@media screen and (max-width: 576px) {
+	.badges {
+		padding: 16px;
+	}
+}
+.badges::before,
+.badges::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.badges > h3 {
+	font-family: "Nunito Sans";
+	font-size: 48px;
+	font-weight: 300;
+	text-align: center;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges For Home ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges[data-type="home"]::before {
+	background-color: var(--background-sub-color);
+}
+.badges[data-type="home"]::after {
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.badges[data-type="home"]::after {
+		border-radius: 0px 50px 0px 0px;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges For Startup ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges[data-type="startup"]::before {
+	background-color: var(--background-main-color);
+}
+.badges[data-type="startup"]::after {
+	border-radius: 0px 100px 100px 0px;
+	background-color: var(--lightred-color);
+}
+@media screen and (max-width: 576px) {
+	.badges[data-type="startup"]::after {
+		border-radius: 0px 50px 50px 0px;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges For Partner ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges[data-type="partner"]::before {
+	background-color: var(--background-main-color);
+}
+.badges[data-type="partner"]::after {
+	border-radius: 100px 0px 0px 100px;
+	background-color: var(--lightgreen-color);
+}
+@media screen and (max-width: 576px) {
+	.badges[data-type="partner"]::after {
+		border-radius: 50px 0px 0px 50px;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges List ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badgesList {
+	display: flex;
+	grid-gap: 16px;
+	gap: 16px;
+}
+@media screen and (max-width: 768px) {
+	.badgesList  {
+		flex-direction: column;
+	}
+}
+.badgesList > div[class="separator"] {
+	margin: calc(128px / 2) 0px auto 0px;
+}
+@media screen and (max-width: 1200px) {
+	.badgesList > div[class="separator"] {
+		display: none;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badge ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badge {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	grid-gap: 16px;
+	gap: 16px;
+	flex: 1;
+}
+.badge > i {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 128px;
+	width: 128px;
+	max-width: 128px;
+	min-height: 128px;
+	height: 128px;
+	max-height: 128px;
+	position: relative;
+	font-size: 60px;
+	border-radius: calc(128px / 2);
+	background-color: var(--background-sub-color);
+	box-shadow: var(--box-shadow);
+}
+.badge > .content {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 16px;
+	gap: 16px;
+}
+.badge > .content > h6 {
+	font-family: "Nunito Sans";
+	font-size: 32px;
+	font-weight: bold;
+	text-align: center;
+}
+.badge > .content > p {
+	text-align: center;
+	font-size: 16px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badge For Startup ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges[data-type="startup"] div[class="separator"] {
+	background-color: var(--sunred-color);
+}
+.badges[data-type="startup"] .badge > i {
+	color: var(--sunred-color);
+}
+.badges[data-type="startup"] > h3,
+.badges[data-type="startup"] .badge > .content > h6,
+.badges[data-type="startup"] .badge > .content > p {
+	color: var(--perfect-black-color);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badge For Partner ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges[data-type="partner"] div[class="separator"] {
+	background-color: var(--grassgreen-color);
+}
+.badges[data-type="partner"] .badge > i {
+	color: var(--grassgreen-color);
+}
+.badges[data-type="partner"] > h3,
+.badges[data-type="partner"] .badge > .content > h6,
+.badges[data-type="partner"] .badge > .content > p {
+	color: var(--perfect-black-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Questions ) */

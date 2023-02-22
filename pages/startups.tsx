@@ -53,35 +53,33 @@ const StartupsHome = (pageProps: HomeInterface) => {
 				</div>
 			</div>
 			<div className={ HomeStyles.badges } data-type="startup">
-				<div>
-					<h2>{ translations["Inscrire ma startup sur Forinov"] }</h2>
-					<div>
-						<div className="separator"></div>
-						<div className={ HomeStyles.badge }>
-							<i className="fa-light fa-chart-network"/>
-							<div>
-								<h4>{ translations["Découvre"] }</h4>
-								<p>{ translations["Les appels à candidatures, programmes d'accompagnement, concours dans"] } <Link href="/directories/opportunities/categories" className={ ButtonStyles.pureLink }>{ translations["L'annuaire d'opportunités"].toLowerCase() }</Link>.</p>
-							</div>
+				<h3>{ translations["Inscrire ma startup sur Forinov"] }</h3>
+				<div className={ HomeStyles.badgesList }>
+					<div className="separator"></div>
+					<div className={ HomeStyles.badge }>
+						<i className="fa-light fa-chart-network"/>
+						<div className={ HomeStyles.content }>
+							<h6>{ translations["Découvre"] }</h6>
+							<p>{ translations["Les appels à candidatures, programmes d'accompagnement, concours dans"] } <Link href="/directories/opportunities/categories" className={ ButtonStyles.pureLink }>{ translations["L'annuaire d'opportunités"].toLowerCase() }</Link>.</p>
 						</div>
-						<div className="separator"></div>
-						<div className={ HomeStyles.badge }>
-							<i className="fa-light fa-badge-check"/>
-							<div>
-								<h4>{ translations["Candidate"] }</h4>
-								<p>{ translations["Aux opportunités qui te correspondent, les entreprises concernées te répondront directement"] + " !" }</p>
-							</div>
-						</div>
-						<div className="separator"></div>
-						<div className={ HomeStyles.badge }>
-							<i className="fa-light fa-gauge-high"/>
-							<div>
-								<h4>{ translations["Concrétise"] }</h4>
-								<p>{ translations["Ces opportunités en contrats grâce à un suivi simplifié et centralisé de tes échanges et de toutes tes candidatures"] + "." }</p>
-							</div>
-						</div>
-						<div className="separator"></div>
 					</div>
+					<div className="separator"></div>
+					<div className={ HomeStyles.badge }>
+						<i className="fa-light fa-badge-check"/>
+						<div className={ HomeStyles.content }>
+							<h6>{ translations["Candidate"] }</h6>
+							<p>{ translations["Aux opportunités qui te correspondent, les entreprises concernées te répondront directement"] + " !" }</p>
+						</div>
+					</div>
+					<div className="separator"></div>
+					<div className={ HomeStyles.badge }>
+						<i className="fa-light fa-gauge-high"/>
+						<div className={ HomeStyles.content }>
+							<h6>{ translations["Concrétise"] }</h6>
+							<p>{ translations["Ces opportunités en contrats grâce à un suivi simplifié et centralisé de tes échanges et de toutes tes candidatures"] + "." }</p>
+						</div>
+					</div>
+					<div className="separator"></div>
 				</div>
 			</div>
 			<div className={ HomeStyles.companies } data-type="startup">

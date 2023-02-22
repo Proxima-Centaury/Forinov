@@ -54,36 +54,36 @@ const PartnersHome = (pageProps: HomeInterface) => {
 				</div>
 			</div>
 			<div className={ HomeStyles.badges } data-type="partner">
-				<div>
-					<h2>{ translations["Comment créer une opportunité"] + " ?" }</h2>
-					<div>
-						<div className="separator"></div>
-						<div className={ HomeStyles.badge }>
-							<i className="fa-light fa-chart-network"/>
-							<div>
-								<h4>{ translations["Publication"] }</h4>
-								<p>{ translations["Je créé mon opportunité (critères d'éligibilité, solutions recherchées, etc.) et le formulaire de candidature pour les startups"] + "." }</p>
-							</div>
+				<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
+				<div className={ HomeStyles.badgesList }>
+					<div className="separator"></div>
+					<div className={ HomeStyles.badge }>
+						<i className="fa-light fa-chart-network"/>
+						<div className={ HomeStyles.content }>
+							<h6>{ translations["Publication"] }</h6>
+							<p>{ translations["Je créé mon opportunité (critères d'éligibilité, solutions recherchées, etc.) et le formulaire de candidature pour les startups"] + "." }</p>
 						</div>
-						<div className="separator"></div>
-						<div className={ HomeStyles.badge }>
-							<i className="fa-light fa-badge-check"/>
-							<div>
-								<h4>{ translations["Évaluation"] }</h4>
-								<p>{ translations["Je reçois et évalue des candidatures de startups (notations, commentaires, etc.) et partage avec mes collaborateurs"] + "." }</p>
-							</div>
-						</div>
-						<div className="separator"></div>
-						<div className={ HomeStyles.badge }>
-							<i className="fa-light fa-gauge-high"/>
-							<div>
-								<h4>{ translations["Prise de contacts"] }</h4>
-								<p>{ translations["Je contacte les startups retenues via messagerie sécurisée. Je simplifie le suivi de mes projets en interne et avec mes partenaires externes"] + "." }</p>
-							</div>
-						</div>
-						<div className="separator"></div>
 					</div>
-					<Link href="/" className={ ButtonStyles.callToAction }>{ translations["Je lance mon opportunité"] }</Link>
+					<div className="separator"></div>
+					<div className={ HomeStyles.badge }>
+						<i className="fa-light fa-badge-check"/>
+						<div className={ HomeStyles.content }>
+							<h6>{ translations["Évaluation"] }</h6>
+							<p>{ translations["Je reçois et évalue des candidatures de startups (notations, commentaires, etc.) et partage avec mes collaborateurs"] + "." }</p>
+						</div>
+					</div>
+					<div className="separator"></div>
+					<div className={ HomeStyles.badge }>
+						<i className="fa-light fa-gauge-high"/>
+						<div className={ HomeStyles.content }>
+							<h6>{ translations["Prise de contacts"] }</h6>
+							<p>{ translations["Je contacte les startups retenues via messagerie sécurisée. Je simplifie le suivi de mes projets en interne et avec mes partenaires externes"] + "." }</p>
+						</div>
+					</div>
+					<div className="separator"></div>
+				</div>
+				<div className={ HomeStyles.actions } data-justify="center">
+					<Link className={ ButtonStyles.callToAction } href="/">{ translations["Je lance mon opportunité"] }</Link>
 				</div>
 			</div>
 			<div className={ HomeStyles.startups } data-type="partner">
