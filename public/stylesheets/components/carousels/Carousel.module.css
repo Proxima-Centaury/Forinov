@@ -1,4 +1,205 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Carousel ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.carousel {
+    display: flex;
+	width: 100%;
+}
+.carousel[data-direction="vertical"] {
+	flex-direction: column;
+}
+.carousel[data-direction="bidirectional"] {
+	flex-direction: column;
+	grid-gap: 24px;
+	gap: 24px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Container ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.container {
+    display: flex;
+	grid-gap: 16px;
+	gap: 16px;
+	width: 100%;
+	z-index: 1;
+}
+.steps + .container,
+.actions + .container {
+	overflow: hidden;
+}
+.carousel[data-direction="vertical"] > .container {
+	flex-direction: column;
+	min-height: inherit;
+}
+.carousel[data-direction="bidirectional"] > .container {
+	grid-gap: 0px;
+	gap: 0px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Item ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.item,
+.itemFullWidth  {
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+}
+.itemFullWidth {
+	grid-gap: 16px;
+	gap: 16px;
+	min-width: 100%;
+}
+@media screen and (max-width: 576px) {
+	.item {
+		min-width: 100%;
+	}
+}
+@media screen and (max-width: 992px) {
+	.itemFullWidth {
+		flex-direction: column;
+	}
+}
+.carousel[data-direction="vertical"] > .container > .itemFullWidth {
+	grid-gap: calc(40px + (2 * 16px));
+	gap: calc(40px + (2 * 16px));
+}
+@media screen and (max-width: 992px) {
+	.carousel[data-direction="vertical"] > .container > .itemFullWidth {
+		grid-gap: 16px;
+		gap: 16px;
+	}
+}
+.item > * {
+	min-width: 420px;
+	width: 420px;
+	max-width: 420px;
+	height: 100%;
+}
+.itemFullWidth > * {
+	width: 100%;
+}
+@media screen and (max-width: 576px) {
+	.item > * {
+		min-width: 100%;
+		width: 100%;
+		max-width: 100%;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Item Step Content ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.itemFullWidth > .stepPicture,
+.itemFullWidth > .stepContent {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	grid-gap: 16px;
+	gap: 16px;
+	flex: 1;
+	width: 100%;
+	height: 100%;
+}
+.itemFullWidth > .stepPicture > img {
+	border-radius: 15px;
+}
+.itemFullWidth > .stepContent > ul {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 16px;
+	gap: 16px;
+}
+.itemFullWidth > .stepContent > ul > li i {
+	margin: 0px 8px 0px 0px;
+	color: var(--logo-blue-color);
+}
+.itemFullWidth > .stepContent > ul > li div {
+	display: inline;
+}
+.itemFullWidth > .stepContent > h4 {
+	font-family: "Nunito Sans";
+	font-size: 32px;
+	font-weight: bold;
+}
+.itemFullWidth > .stepContent * {
+	font-size: 16px;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Item Vertical Content ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.itemFullWidth > .verticalPicture,
+.itemFullWidth > .verticalContent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+.itemFullWidth > .verticalContent {
+	flex-direction: column;
+}
+.itemFullWidth > .verticalPicture > img {
+	border-radius: 15px;
+}
+.itemFullWidth > .verticalContent > h4 {
+	font-family: "Nunito Sans";
+	font-size: 32px;
+	font-weight: bold;
+}
+.itemFullWidth > .verticalContent * {
+	font-size: 16px;
+}
+.itemFullWidth > .verticalContent:nth-of-type(2n) {
+	align-items: flex-start;
+}
+.itemFullWidth > .verticalContent:nth-of-type(2n) * {
+	text-align: left;
+}
+.itemFullWidth > .verticalContent:nth-of-type(2n+1) {
+	align-items: flex-end;
+}
+.itemFullWidth > .verticalContent:nth-of-type(2n+1) * {
+	text-align: right;
+}
+@media screen and (max-width: 992px) {
+	.itemFullWidth > .verticalPicture {
+		order: 2;
+	}
+	.itemFullWidth > .verticalContent:nth-of-type(2n),
+	.itemFullWidth > .verticalContent:nth-of-type(2n+1) {
+		align-items: flex-start;
+		order: 1;
+	}
+	.itemFullWidth > .verticalContent:nth-of-type(2n) *,
+	.itemFullWidth > .verticalContent:nth-of-type(2n+1) * {
+		text-align: left;
+	}
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Arrows ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.arrows {
+	display: flex;
+	justify-content: space-between;
+	width: calc(100% + (2 * 16px));
+	position: absolute;
+	top: 50%;
+	left: -16px;
+	transform: translateY(-50%);
+	pointer-events: none;
+	z-index: 10;
+}
+@media screen and (min-width: 576px) {
+	.arrows {
+		display: none;
+	}
+}
+.arrows > button {
+	pointer-events: all;
+	box-shadow: var(--box-shadow);
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Steps ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .steps {
@@ -6,7 +207,6 @@
 	align-items: center;
 	grid-gap: 16px;
 	gap: 16px;
-	margin: 16px 0px;
 }
 @media screen and (max-width: 576px) {
 	.steps {
@@ -28,20 +228,19 @@
 		border-radius: 20px;
 	}
 }
-.steps[data-direction="vertical"] {
+.carousel[data-direction="vertical"] > .steps {
 	flex-direction: column;
 	height: 100%;
-	margin: 0px;
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
 }
 @media screen and (max-width: 992px) {
-	.steps[data-direction="vertical"] {
+	.carousel[data-direction="vertical"] > .steps {
 		display: none;
 	}
 }
-.steps[data-direction="vertical"] > button {
+.carousel[data-direction="vertical"] > .steps > button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -52,20 +251,9 @@
 	height: 40px;
 	max-height: 40px;
 	border-radius: 20px;
-	background-color: var(--background-sub-color);
 }
-.steps[data-direction="vertical"] > button:last-of-type {
-	background-color: var(--logo-orange-color);
-}
-.steps[data-direction="vertical"] > button > i {
+.carousel[data-direction="vertical"] > .steps > button > i {
 	font-size: 20px;
-	color: var(--logo-orange-color);
-}
-.steps[data-direction="vertical"] > button:last-of-type > i {
-	color: var(--perfect-white-color);
-}
-.steps[data-direction="vertical"] > div {
-	background-color: var(--logo-orange-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Actions ) */
@@ -83,28 +271,6 @@
 	}
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Carousel ( Container ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.container {
-    display: flex;
-	width: 100%;
-	position: relative;
-	z-index: 1;
-}
-.container[data-direction="vertical"] {
-	flex-direction: column;
-	min-height: inherit;
-}
-@media screen and (max-width: 992px) {
-	.container[data-direction="vertical"] {
-		grid-gap: 40px;
-		gap: 40px;
-	}
-}
-.steps + .container {
-	overflow: hidden;
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Infinite ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .infinite {
@@ -113,18 +279,15 @@
 	width: 100%;
 	max-width: calc(15 * 160px);
 	height: calc(80px + (2 * 48px));
-	margin: 0px auto;
 	padding: 48px 0px;
-	position: relative;
 	overflow-x: hidden;
 }
 .infinite::before,
 .infinite::after {
 	width: 50px;
 	height: 100%;
-	content: "";
 	position: absolute;
-	top: 0px;
+	content: "";
 	z-index: 1;
 }
 .infinite::before {
@@ -141,8 +304,6 @@
 	grid-gap: 16px;
 	gap: 16px;
 	position: absolute;
-	top: 48px;
-	left: 0px;
 }
 .firstCopy {
 	animation: scroll1 10s linear infinite;
@@ -171,7 +332,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex: 0 0 auto;
     width: max-content;
 	min-width: 160px;
 	width: 160px;
@@ -183,172 +343,6 @@
 	box-shadow: var(--box-shadow);
 }
 .logo > img {
-	object-fit: contain;
+	object-fit: scale-down;
 	border-radius: 100px;
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Carousel ( Item ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.item  {
-    display: flex;
-	justify-content: center;
-	align-items: center;
-	min-width: 100%;
-	height: 100%;
-}
-@media screen and (max-width: 992px) {
-	.item {
-		flex-direction: column;
-	}
-	.container[data-direction="vertical"] .item {
-		grid-gap: 16px;
-		gap: 16px;
-	}
-}
-.item > div:not([class*="stepContent"]) {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	flex: 1;
-}
-.container[data-direction="vertical"] .item > div:not([class*="stepContent"]) {
-	padding: 16px 0px calc(40px + 8px + (8px / 2) + 16px) 0px;
-}
-.item > div:not([class*="stepContent"]):first-of-type {
-	align-items: flex-end;
-	margin: 0px 36px 0px 0px;
-}
-.container[data-direction="vertical"] .item > div:not([class*="stepContent"]):first-of-type {
-	margin: 0px 36px 0px 0px;
-}
-.item > div:not([class*="stepContent"]):first-of-type * {
-	text-align: right;
-}
-.item > div:not([class*="stepContent"]):last-of-type {
-	align-items: flex-start;
-}
-.container[data-direction="vertical"] .item > div:not([class*="stepContent"]):last-of-type {
-	margin: 0px 0px 0px 36px;
-}
-.item > div:not([class*="stepContent"]):last-of-type * {
-	text-align: left;
-}
-.item > div:not([class*="stepContent"]):only-of-type {
-	margin: 0px;
-}
-@media screen and (max-width: 992px) {
-	.container[data-direction="vertical"] .item > div:not([class*="stepContent"]):first-of-type,
-	.container[data-direction="vertical"] .item > div:not([class*="stepContent"]):last-of-type {
-		margin: 0px;
-		padding: 0px;
-	}
-	.container[data-direction="vertical"] .item > .verticalContent {
-		align-items: flex-start;
-		order: 1;
-	}
-	.container[data-direction="vertical"] .item > .verticalContent * {
-		text-align: left;
-	}
-	.container[data-direction="vertical"] .item > .verticalPicture {
-		order: 2;
-	}
-}
-.item > div > h4 {
-	font-family: "Nunito Sans";
-	font-size: 32px;
-	font-weight: bold;
-}
-.item > div * {
-	font-size: 16px;
-}
-.container > a[data-card="opportunity"] {
-	min-width: 450px;
-	margin: 0px;
-}
-@media screen and (max-width: 576px) {
-	.container > a[data-card="opportunity"] {
-		min-width: 100%;
-	}
-}
-.container > a[data-card="opportunity"] + a[data-card="opportunity"] {
-	margin: 0px 0px 0px 16px;
-}
-.container > a[data-card="profile"] {
-	height: 100%;	
-}
-@media screen and (max-width: 576px) {
-	.container > a[data-card="profile"] {
-		min-width: 100%;
-	}
-}
-.container > a[data-card="profile"] + a[data-card="profile"] {
-	margin: 0px 0px 0px 16px;
-}
-.container > a[data-card="profile"] > div {
-	display: flex;
-	flex-direction: column;
-	min-width: 450px;
-	height: 100%;
-}
-.container > a[data-card="profile"] > div [class*="body"] {
-	height: 100%;
-}
-.container > a[data-card="profile"] > div [class*="body"] [class*="description"] {
-	flex: 1;
-}
-.container > a[data-card="profile"] > div [class*="body"] [class*="tags"] {
-	flex: none;
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Carousel ( Arrows ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.arrows {
-	display: flex;
-	justify-content: space-between;
-	width: calc(100% + (2 * 16px));
-	position: absolute;
-	top: 50%;
-	left: -16px;
-	transform: translateY(-50%);
-	pointer-events: none;
-	z-index: 10;
-}
-@media screen and (min-width: 576px) {
-	.arrows {
-		display: none;
-	}
-}
-.arrows > button {
-	pointer-events: all;
-	box-shadow: var(--box-shadow);
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Carousel ( Step ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.stepContent,
-.stepPicture {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
-	flex: 1;
-	width: 100%;
-	height: 100%;
-	padding: 16px;
-}
-.stepContent > ul {
-	display: flex;
-	flex-direction: column;
-	margin: 16px 0px 0px 0px;
-}
-.stepContent > ul > li + li {
-	margin: 8px 0px 0px 0px;
-}
-.stepContent > ul > li i {
-	margin: 0px 8px 0px 0px;
-	color: var(--logo-blue-color);
-}
-.stepContent > ul > li div {
-	display: inline;
 }

@@ -104,35 +104,33 @@ const Home = (pageProps: HomeInterface) => {
 				</div>
 			</div>
 			<div className={ HomeStyles.badges } data-type="home">
-				<div>
-					<h2>{ translations["Plus qu'une communauté, la solution la plus complète pour faire décoller l'open innovation"] }</h2>
-					<div>
-						<div className="separator"></div>
-						<div className={ HomeStyles.badge }>
-							<i className="fa-light fa-chart-network"/>
-							<div>
-								<h4>{ translations["Connecter les acteurs"] }</h4>
-								<p>{ translations["Réunir les profils clés de l'open innovation dans un but : co-construire le monde de demain"] + " !" }</p>
-							</div>
+				<h3>{ translations["Plus qu'une communauté, la solution la plus complète pour faire décoller l'open innovation"] }</h3>
+				<div className={ HomeStyles.badgesList }>
+					<div className="separator"></div>
+					<div className={ HomeStyles.badge }>
+						<i className="fa-light fa-chart-network"/>
+						<div className={ HomeStyles.content }>
+							<h6>{ translations["Connecter les acteurs"] }</h6>
+							<p>{ translations["Réunir les profils clés de l'open innovation dans un but : co-construire le monde de demain"] + " !" }</p>
 						</div>
-						<div className="separator"></div>
-						<div className={ HomeStyles.badge }>
-							<i className="fa-light fa-star"/>
-							<div>
-								<h4>{ translations["Créer des opportunités"] }</h4>
-								<p>{ translations["Matcher en un clic le besoin des entreprises avec les solutions de startups et échanger directement avec les bons interlocuteurs"] + "." }</p>
-							</div>
-						</div>
-						<div className="separator"></div>
-						<div className={ HomeStyles.badge }>
-							<i className="fa-light fa-hand-holding-seedling"/>
-							<div>
-								<h4>{ translations["Encourager l'innovation"] }</h4>
-								<p>{ translations["Engager les collaborateurs et leur permettre de trouver des solutions concrètes à leurs besoins métiers"] + "." }</p>
-							</div>
-						</div>
-						<div className="separator"></div>
 					</div>
+					<div className="separator"></div>
+					<div className={ HomeStyles.badge }>
+						<i className="fa-light fa-star"/>
+						<div className={ HomeStyles.content }>
+							<h6>{ translations["Créer des opportunités"] }</h6>
+							<p>{ translations["Matcher en un clic le besoin des entreprises avec les solutions de startups et échanger directement avec les bons interlocuteurs"] + "." }</p>
+						</div>
+					</div>
+					<div className="separator"></div>
+					<div className={ HomeStyles.badge }>
+						<i className="fa-light fa-hand-holding-seedling"/>
+						<div className={ HomeStyles.content }>
+							<h6>{ translations["Encourager l'innovation"] }</h6>
+							<p>{ translations["Engager les collaborateurs et leur permettre de trouver des solutions concrètes à leurs besoins métiers"] + "." }</p>
+						</div>
+					</div>
+					<div className="separator"></div>
 				</div>
 			</div>
 			<div className={ HomeStyles.startups } data-type="home">

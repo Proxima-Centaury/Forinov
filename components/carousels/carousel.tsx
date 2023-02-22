@@ -30,19 +30,19 @@ class Transition {
         this.transformArrows = 0;
     };
     handleTransition = (event: any, preciseTarget: any) => {
+        const itemWidth = 420;
+        const container = preciseTarget.querySelector("." + CarouselStyles.container);
+        const cards = [ ...container.children ];
+        const limit = ((cards.length - 1) * itemWidth) * -1;
         if(window.innerWidth > 576) {
-            const containerWidth = preciseTarget.offsetWidth;
-            const cards = [ ...preciseTarget.querySelectorAll("a") ];
-            const offset = 466;
-            const limit = ((cards.length - 1) * -offset) + (containerWidth / 2);
             if(event.wheelDelta > 0) {
-                this.transform = (this.transform < 0) ? this.transform + offset : this.transform;
+                this.transform = (this.transform < 0) ? this.transform + itemWidth + 16 : this.transform;
             } else {
-                this.transform = (this.transform > limit) ? this.transform - offset : this.transform;
+                this.transform = (this.transform > limit) ? this.transform - itemWidth - 16 : this.transform;
             };
-            return cards.forEach((card: HTMLElement) => card.style.transform = "translateX(" + this.transform + "px)");
         };
-        return false;
+        container.style.transform = "translateX(" + this.transform + "px)";
+        return true;
     };
     handleTransitionWithSteps = (event: any, name: String) => {
         const target = event.target.closest("button");
@@ -62,15 +62,18 @@ class Transition {
     };
     handleTransitionWithArrows = (event: any, direction: String) => {
         const target = event.target.closest("button");
-        const preciseTarget = target.closest("." + CarouselStyles.container);
-        const cards = [ ...preciseTarget.querySelectorAll("a") ];
-        const offset = 100;
+        const preciseTarget = target.closest("." + CarouselStyles.carousel);
+        const itemWidth = 100;
+        const container = preciseTarget.querySelector("." + CarouselStyles.container);
+        const cards = [ ...container.children ];
+        const limit = ((cards.length - 1) * itemWidth) * -1;
         if(direction === "left") {
-            this.transformArrows = (this.transformArrows < 0) ? this.transformArrows + offset : this.transformArrows;
+            this.transform = (this.transform < 0) ? this.transform + itemWidth : this.transform;
         } else {
-            this.transformArrows = (this.transformArrows > (cards.length - 1) * -offset) ? this.transformArrows - offset : this.transformArrows;
+            this.transform = (this.transform > limit) ? this.transform - itemWidth : this.transform;
         };
-        return cards.forEach((card: HTMLElement, key: number) => card.style.transform = "translateX(calc(" + this.transformArrows + "% + " + (key * -16) + "px)");
+        container.style.transform = "translateX(calc(" + this.transform + "% + " + ((this.transform / 100) * 16) + "px))";
+        return true;
     };
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -126,10 +129,11 @@ const StepsCarousel = (pageProps: any) => {
                 });
             };
         };
+        handleStepButtonsTitle();
         window.addEventListener("resize", handleStepButtonsTitle);
         return () => window.removeEventListener("resize", handleStepButtonsTitle);
     });
-    return <Fragment>
+    return <div className={ CarouselStyles.carousel } data-direction="bidirectional">
         <div className={ CarouselStyles.steps } data-carousel={ component + "Steps" }>
             { steps.map((button: any, key: number) => {
                 const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, component), button.title ];
@@ -143,7 +147,7 @@ const StepsCarousel = (pageProps: any) => {
         </div>
         <div className={ CarouselStyles.container } data-carousel={ component }>
             { steps.map((step: any, key: number) => {
-                return <div key={ key } className={ CarouselStyles.item } data-index={ key }>
+                return <div key={ key } className={ CarouselStyles.itemFullWidth } data-index={ key }>
                     <div className={ CarouselStyles.stepContent }>
                         <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
                         <ul>
@@ -158,7 +162,7 @@ const StepsCarousel = (pageProps: any) => {
                 </div>;
             }) }
         </div>
-    </Fragment>;
+    </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Custom Vertical */
@@ -167,8 +171,8 @@ const CustomVertical = (pageProps: any) => {
     const { states, carouselsConfigurations, router, component }: any = pageProps;
 	const { translations }: any = states;
     const steps: Array<any> = carouselsConfigurations[component];
-    return <div className="containerFull">
-        <div className={ CarouselStyles.steps } data-direction="vertical">
+    return <div className={ CarouselStyles.carousel } data-direction="vertical">
+        <div className={ CarouselStyles.steps }>
             { steps.map((button: any, key: number) => <Fragment key={ key }>
                 <div className="separatorVertical"></div>
                 <button className={ (key === steps.length - 1) ? "active" : "" }>
@@ -176,8 +180,8 @@ const CustomVertical = (pageProps: any) => {
                 </button>
             </Fragment>) }
         </div>
-        <div className={ CarouselStyles.container } data-direction="vertical" data-carousel={ component }>
-            { steps.map((step: any, key: number) => <div key={ key } className={ CarouselStyles.item } data-index={ key }>
+        <div className={ CarouselStyles.container } data-carousel={ component }>
+            { steps.map((step: any, key: number) => <div key={ key } className={ CarouselStyles.itemFullWidth } data-index={ key }>
                 { (key % 2 === 1) ? <div className={ CarouselStyles.verticalContent }>
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
                     <Format content={ translations[step.text] }/>
@@ -211,11 +215,11 @@ const ClassicHorizontal = ({ states, component, data }: any) => {
             event.preventDefault();
         };
         const target = event.target;
-        const preciseTarget = target.closest("." + CarouselStyles.container);
+        const preciseTarget = target.closest("." + CarouselStyles.carousel);
         return transitionInstance.handleTransition(event, preciseTarget);
     };
     useEffect(() => {
-        let carousel = document.querySelector("[data-carousel='" + component + "']." + CarouselStyles.container);
+        let carousel = document.querySelector("[data-carousel='" + component + "']." + CarouselStyles.carousel);
         (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) : null;
         return () => removeEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) as any;
     });
@@ -227,8 +231,8 @@ const ClassicHorizontal = ({ states, component, data }: any) => {
                     const profile = startup;
                     const page = "landing";
                     const cardProps = { type, profile, states, page };
-                    const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
-                    return <Link key={ key } href={ url } data-card="profile">
+                    const url = "/directories/" + type.toLowerCase() + "s/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
+                    return <Link key={ key } className={ CarouselStyles.item } href={ url } data-card="profile">
                         <ProfileCard { ...cardProps }/>
                     </Link>;
                 });
@@ -237,19 +241,23 @@ const ClassicHorizontal = ({ states, component, data }: any) => {
                     const index = key + 1;
                     const maxVisibleByDefault = undefined;
                     const cardProps = { opportunity, index, maxVisibleByDefault, translations, RGB };
-                    return <OpportunityCard key={ key } { ...cardProps }/>;
+                    return <div key={ key } className={ CarouselStyles.item }>
+                        <OpportunityCard { ...cardProps }/>
+                    </div>;
                 });
             default:
                 return <div></div>;
         };
     };
     return <Fragment>
-        <div className={ CarouselStyles.container } data-carousel={ component }>
+        <div className={ CarouselStyles.carousel } data-carousel={ component }>
             <div className={ CarouselStyles.arrows }>
                 <Button { ...leftButtonObject as ButtonInterface }/>
                 <Button { ...rightButtonObject as ButtonInterface }/>
             </div>
-            <Items/>
+            <div className={ CarouselStyles.container }>
+                <Items/>
+            </div>
         </div>
     </Fragment>;
 };
@@ -295,7 +303,7 @@ const AccordionsHorizontal = ({ states, component, data }: any) => {
         translations["Général"],
         translations["La communauté Forinov"]
     ];
-    return <Fragment>
+    return <div className={ CarouselStyles.carousel } data-direction="bidirectional">
         <div className={ CarouselStyles.actions }>
             { questionsButtons.map((button: any, key: number) => {
                 const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, component), button ];
@@ -304,11 +312,11 @@ const AccordionsHorizontal = ({ states, component, data }: any) => {
             }) }
         </div>
         <div className={ CarouselStyles.container } data-carousel={ component }>
-            { (data) ? data.map((accordion: any, key: KeyType) => <div key={ key } className={ CarouselStyles.item }>
+            { (data) ? data.map((accordion: any, key: KeyType) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
                 <Accordion data={ accordion } translations={ translations }/>
             </div>) : null }
         </div>
-    </Fragment>;
+    </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
