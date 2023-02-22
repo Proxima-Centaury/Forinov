@@ -71,11 +71,9 @@ const DirectoryIdPage = (pageProps: ProfileInterface) => {
         };
     });
     if(profile && !opportunity) {
-        console.log(profile)
         const profileTagsString = profile.TAGS.split(",").slice(0, 3).join(", ")
         const metadataComment = profile.COMMENT.substring(0, 20)
         let metadata: JSX.Element = <></>
-        console.log("TYPE", type)
         if (type === "startup") {
             metadata = <><title>
                 {metadatas["/annuaires/startups/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/startups/[id]"].title2 + " " + profile.CATEGORY[0].NAME}
