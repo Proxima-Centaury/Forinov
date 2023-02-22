@@ -118,34 +118,37 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                             <p className={SolutionStyles.cardDesc}>{translations["Vous cherchez à trouver des prestataires et fournisseurs toujours plus innovants. Vous êtes la tête chercheuse des solutions de demain."]}</p>
                         </div>
                     </div>
-                    <button className="callToAction" style={{ margin: '2rem auto' }}>Je m&apos;inscris</button>
+                    <button className="callToAction" style={{ margin: '2rem auto' }}>{translations["Je m'inscris"]}</button>
                 </div>
                 <div className={SolutionStyles.banner2}>
                     <div className="container">
-                        <h1 className={SolutionStyles.bannerTitle2} style={{ marginBottom: "2rem" }}>Titre</h1>
+                        <h1 className={SolutionStyles.bannerTitle2} style={{ marginBottom: "2rem" }}>{translations["La plateforme la plus complète d'open innovation"]}</h1>
                         <div className={SolutionStyles.cardWrapper}>
                             <div className={SolutionStyles.listItem}>
-                                <h3 className={SolutionStyles.listItemTitle}>Un réseau social B2B</h3>
+                                <h3 className={SolutionStyles.listItemTitle}>{translations["Un réseau social B2B"]}</h3>
                                 <ul>
-                                    <li>Option 1</li>
-                                    <li>Option 2</li>
-                                    <li>Option 3</li>
+                                    <li>{translations["Annuaires de startups et partenaires."]}</li>
+                                    <li>{translations["Moteurs de recherche avancés."]}</li>
+                                    <li>{translations["Messagerie interne."]}</li>
+                                    <li>{translations["Fil d’actualités."]}</li>
                                 </ul>
                             </div>
                             <div className={SolutionStyles.listItem}>
-                                <h3 className={SolutionStyles.listItemTitle}>Un réseau social B2B</h3>
+                                <h3 className={SolutionStyles.listItemTitle}>{translations["Une plateforme d’appels à projets"]}</h3>
                                 <ul>
-                                    <li>Option 1</li>
-                                    <li>Option 2</li>
-                                    <li>Option 3</li>
+                                    <li>{translations["Éditeur d’appels à projets."]}</li>
+                                    <li>{translations["Formulaires personnalisés."]}</li>
+                                    <li>{translations["Gestion des dossiers de candidatures."]}</li>
+                                    <li>{translations["Algorithme de matching."]}</li>
                                 </ul>
                             </div>
                             <div className={SolutionStyles.listItem}>
-                                <h3 className={SolutionStyles.listItemTitle}>Un réseau social B2B</h3>
+                                <h3 className={SolutionStyles.listItemTitle}>{translations["Un outil de gestion de portefeuilles"]}</h3>
                                 <ul>
-                                    <li>Option 1</li>
-                                    <li>Option 2</li>
-                                    <li>Option 3</li>
+                                    <li>{translations["Éditeur d’appels à projets."]}</li>
+                                    <li>{translations["Formulaires personnalisés."]}</li>
+                                    <li>{translations["Gestion des dossiers de candidatures."]}</li>
+                                    <li>{translations["Algorithme de matching."]}</li>
                                 </ul>
                             </div>
                         </div>
