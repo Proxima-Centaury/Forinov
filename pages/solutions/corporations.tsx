@@ -18,10 +18,12 @@ import { useRouter } from "next/router";
 /* Corporation Solutions */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CorporationSolutions = (pageProps: HomeInterface) => {
-    const { locales, states, stateSetters, config, opportunities }: any = pageProps;
+    const { locales, states, stateSetters, config, opportunities, landingData }: any = pageProps;
 
     const router = useRouter();
     const { metadatas, translations }: any = states;
+
+    const startupsCount: number = landingData.COUNTERS.STARTUPS
 
     return (
         <>
@@ -145,10 +147,10 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                             <div className={SolutionStyles.listItem}>
                                 <h3 className={SolutionStyles.listItemTitle}>{translations["Un outil de gestion de portefeuilles"]}</h3>
                                 <ul>
-                                    <li>{translations["Éditeur d’appels à projets."]}</li>
-                                    <li>{translations["Formulaires personnalisés."]}</li>
-                                    <li>{translations["Gestion des dossiers de candidatures."]}</li>
-                                    <li>{translations["Algorithme de matching."]}</li>
+                                    <li>{translations["ÉSuivi de startups et partenaires."]}</li>
+                                    <li>{translations["Gestion de dossiers, Kanban..."]}</li>
+                                    <li>{translations["Suivi d’activités (RDV, tâches, documents...)."]}</li>
+                                    <li>{translations["Dashboards personnalisables."]}</li>
                                 </ul>
                             </div>
                         </div>
@@ -156,8 +158,8 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                 </div>
                 <div className={SolutionStyles.greyBanner} style={{ paddingBottom: 0 }}>
                     <div className="container" style={{ position: "relative" }}>
-                        <h3 className={SolutionStyles.bannerSubtitle2}>Aujourd’hui, la communauté Forinov c’est</h3>
-                        <h2 className={SolutionStyles.bannerTitle2} style={{ width: "50%" }}>1983 startups et des centaines de partenaires qui n’attendent que vous</h2>
+                        <h3 className={SolutionStyles.bannerSubtitle2}>{translations['Aujourd’hui, la communauté Forinov c’est']}</h3>
+                        <h2 className={SolutionStyles.bannerTitle2} style={{ width: "50%" }}>{startupsCount + translations[" startups et des centaines de partenaires qui n’attendent que vous"]}</h2>
                         <Image
                             src="/assets/landings/solutions-corpo-seating.png"
                             alt="Seating"
@@ -170,59 +172,59 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                     </div>
                     <div className={SolutionStyles.banner} style={{ width: "100%", paddingTop: '10rem', borderBottomRightRadius: 0 }}>
                         <div className="container">
-                            <h1 className={SolutionStyles.bannerTitle}>Titre</h1>
+                            <h1 className={SolutionStyles.bannerTitle}>{ translations["Choisissez l’offre la plus adaptée pour vous et votre entreprise"]}</h1>
                             <div className={SolutionStyles.cardWrapper}>
                                 <div className={SolutionStyles.solutionsCards}>
                                     {/* 1st card */}
                                     <div className={SolutionStyles.solutionItem}>
-                                        <h2 className={SolutionStyles.solutionTitle}>Professionnel</h2>
-                                        <p className={SolutionStyles.solutionConstraint}>1 utilisateur</p>
-                                        <h1 className={SolutionStyles.solutionPricing}>3 mois gratuit puis 59,99€ par mois</h1>
-                                        <button className='callToAction'>Commencer mon essai</button>
+                                        <h2 className={SolutionStyles.solutionTitle}>{translations['Professionnel']}</h2>
+                                        <p className={SolutionStyles.solutionConstraint}>{translations["1 utilisateur"]}</p>
+                                        <h1 className={SolutionStyles.solutionPricing}>{translations["3 mois gratuit puis 59,99€ par mois"]}</h1>
+                                        <button className='callToAction'>{translations["Commencer mon essai"]}</button>
                                         <ul className={SolutionStyles.solutionFonctionnalities}>
                                             <li>
-                                                <i className='fa-solid fa-search'></i>
-                                                <p className={SolutionStyles.solutionFonctionnality}>Recherche avancée</p>
+                                                <i className='fa-light fa-search'></i>
+                                                <p className={SolutionStyles.solutionFonctionnality}>{translations["Recherche avancée"]}</p>
                                             </li>
                                             <div className="spacer"></div>
                                             <li>
-                                                <i className='fa-solid fa-search'></i>
-                                                <p className={SolutionStyles.solutionFonctionnality}>Recherche avancée</p>
+                                                <i className='fa-light fa-folder'></i>
+                                                <p className={SolutionStyles.solutionFonctionnality}>{translations["Quota portefeuille : 50"]}</p>
                                             </li>
                                             <div className="spacer"></div>
                                             <li>
-                                                <i className='fa-solid fa-search'></i>
-                                                <p className={SolutionStyles.solutionFonctionnality}>Recherche avancée</p>
+                                                <i className='fa-light fa-chart-network'></i>
+                                                <p className={SolutionStyles.solutionFonctionnality}>{translations["Appel à projets : 1"]}</p>
                                             </li>
                                             <div className="spacer"></div>
                                         </ul>
-                                        <p className={SolutionStyles.solutionSeeDetails}>Voir le détails</p>
+                                        <p className={SolutionStyles.solutionSeeDetails}>{translations["Voir le détails"]}</p>
                                     </div>
                                     {/* 2nd card */}
                                     <div className={SolutionStyles.solutionItem}>
-                                        <p className={SolutionStyles.solutionLabel}><i className='fa-solid fa-star'></i> Populaire</p>
-                                        <h2 className={SolutionStyles.solutionTitle}>Professionnel</h2>
-                                        <p className={SolutionStyles.solutionConstraint}>1 utilisateur</p>
-                                        <h1 className={SolutionStyles.solutionPricing}>3 mois gratuit puis 59,99€ par mois</h1>
-                                        <button className='callToAction'>Commencer mon essai</button>
+                                        <p className={SolutionStyles.solutionLabel}><i className='fa-solid fa-star'></i>{translations[" Populaire"]}</p>
+                                        <h2 className={SolutionStyles.solutionTitle}>{translations["Entreprise"]}</h2>
+                                        <p className={SolutionStyles.solutionConstraint}>{translations["MULTI-UTILISATEURS"]}</p>
+                                        <h1 className={SolutionStyles.solutionPricing}>{translations["À partir de 300€ par mois"]}</h1>
+                                        <button className='callToAction'>{translations['Nous contacter']}</button>
                                         <ul className={SolutionStyles.solutionFonctionnalities}>
                                             <li>
                                                 <i className='fa-solid fa-search'></i>
-                                                <p className={SolutionStyles.solutionFonctionnality}>Recherche avancée</p>
+                                                <p className={SolutionStyles.solutionFonctionnality}>{translations["Recherche avancée"]}</p>
                                             </li>
                                             <div className="spacer"></div>
                                             <li>
                                                 <i className='fa-solid fa-search'></i>
-                                                <p className={SolutionStyles.solutionFonctionnality}>Recherche avancée</p>
+                                                <p className={SolutionStyles.solutionFonctionnality}>{translations["Recherche avancée"]}</p>
                                             </li>
                                             <div className="spacer"></div>
                                             <li>
                                                 <i className='fa-solid fa-search'></i>
-                                                <p className={SolutionStyles.solutionFonctionnality}>Recherche avancée</p>
+                                                <p className={SolutionStyles.solutionFonctionnality}>{translations["Recherche avancée"]}</p>
                                             </li>
                                             <div className="spacer"></div>
                                         </ul>
-                                        <p className={SolutionStyles.solutionSeeDetails}>Voir le détails</p>
+                                        <p className={SolutionStyles.solutionSeeDetails}>{translations["Voir le détails"]}</p>
                                     </div>
                                 </div>
                             </div>
@@ -230,7 +232,7 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                     </div>
                 </div>
                 <div className='container' style={{ padding: "5rem 0" }}>
-                    <h1 className={SolutionStyles.bannerTitle2} style={{ marginBottom: "2rem" }}>Ils nous font confiance</h1>
+                    <h1 className={SolutionStyles.bannerTitle2} style={{ marginBottom: "2rem" }}>{translations['Ils nous font confiance']}</h1>
                     <div className={SolutionStyles.trusters}>
                         <div className={SolutionStyles.trusterItem}>
                             <div className={SolutionStyles.trusterAvatar}>
@@ -239,11 +241,9 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                             </div>
 
                             <h1 className={SolutionStyles.trusterName}>Gilles Favre</h1>
-                            <h2 className={SolutionStyles.trusterJob}>Responsable innovation <br />
-                                Groupe Crédit Mutuel-CIC</h2>
-                            <p className={SolutionStyles.trusterTalk}>Nous partageons le même constat que les équipes de Forinov : il est urgent de faciliter les relations entre les grandes entreprises et les startups.
-
-                                C’est pourquoi nous avons décidé de leur faire confiance et de les accompagner dès la sortie de leur plateforme. Aujourd’hui Forinov nous permet de centraliser le flux de sollicitations de startups, de découvrir de nouvelles solutions et de suivre, de manière collaborative, nos différents portefeuilles de startups, ce qui est essentiel pour un groupe mutualiste comme le nôtre !</p>
+                            <h2 className={SolutionStyles.trusterJob}>{translations['Responsable innovation']}<br />
+                                {translations['Groupe Crédit Mutuel-CIC']}</h2>
+                            <p className={SolutionStyles.trusterTalk}>{translations['Nous partageons le même constat que les équipes de Forinov : il est urgent de faciliter les relations entre les grandes entreprises et les startups. C’est pourquoi nous avons décidé de leur faire confiance et de les accompagner dès la sortie de leur plateforme. Aujourd’hui Forinov nous permet de centraliser le flux de sollicitations de startups, de découvrir de nouvelles solutions et de suivre, de manière collaborative, nos différents portefeuilles de startups, ce qui est essentiel pour un groupe mutualiste comme le nôtre !']}</p>
                         </div>
 
                         <div className={SolutionStyles.trusterItem}>
@@ -254,50 +254,49 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
 
                             <h1 className={SolutionStyles.trusterName}>Grégory Fournier
                             </h1>
-                            <h2 className={SolutionStyles.trusterJob}>Délégué général <br />
-                                Réseau Les Premières</h2>
-                            <p className={SolutionStyles.trusterTalk}>Rejoindre Forinov va contribuer au développement de nos entrepreneur·es. C’est un atout précieux pour nos incubées !
-                                En plus d’optimiser le suivi de notre accompagnement avec l’ensemble de nos membres, Forinov permet d’apporter plus de visibilité au sein de l’écosystème entrepreneurial et un accès privilégié aux opportunités (appels à projets...).</p>
+                            <h2 className={SolutionStyles.trusterJob}>{ translations['Délégué général']}<br />
+                                {translations['Réseau Les Premières']}</h2>
+                            <p className={SolutionStyles.trusterTalk}>{translations['Rejoindre Forinov va contribuer au développement de nos entrepreneur·es. C’est un atout précieux pour nos incubées ! En plus d’optimiser le suivi de notre accompagnement avec l’ensemble de nos membres, Forinov permet d’apporter plus de visibilité au sein de l’écosystème entrepreneurial et un accès privilégié aux opportunités (appels à projets...).']}</p>
                         </div>
                     </div>
                 </div>
                 <div className={SolutionStyles.banner3}>
                     <div className="container">
-                        <h1 className={SolutionStyles.bannerTitle}>Titre</h1>
+                        <h1 className={SolutionStyles.bannerTitle}>{translations['Les réponses à vos questions']}</h1>
                         <div className={SolutionStyles.bannerBlockWrapper}>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations['Pourquoi publier un appel à projet sur Forinov ?']}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Forinov vous permet de diffuser vos besoins et opportunités (appels à projets, concours…) en quelques clics. Vous pouvez créer vos formulaires personnalisés et centraliser la gestion des candidatures (notations, commentaires). Les startups gagnent un temps précieux en suivant le statut de leur candidature (et donc vous sollicitent moins). Les + pour vous : nous vous aidons dans le sourcing de startups, en invitant notamment les startups qui ne seraient pas encore sur Forinov."]}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations['Toutes les informations sont-elles publiques ?']}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations['Non, vous disposez d’espaces totalement privés et réservés à vous et vos collaborateurs pour y partager, par exemple, vos compte rendus de RDV, vos avis et commentaires… Seuls les utilisateurs habilités sur votre compte ont accès à ces informations confidentielles.']}</p>
                             </div>
                         </div>
                         <div className={SolutionStyles.bannerBlockWrapper}>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations['Quels sont les avantages de Forinov pour mon équipe ?']}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations['Fini les reportings fastidieux et obsolètes au bout d’un mois ! Les forces de Forinov : la centralisation des recherches, la possibilité de partager certains dossiers de votre portefeuille avec vos collaborateurs et surtout la mise à jour des fiches par les startups elles-mêmes ! Votre collaborateur a rencontré une startup il y a quelques mois et n’a pas donné suite ? Découvrez pourquoi sans avoir à remonter dans ses mails !']}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations['D’où viennent les données et comment sont-elles mises à jour ?']}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations['Les utilisateurs mettent à jour leur propre profil ce qui permet d’avoir l’information directement à la source est d’être informé des dernières actualités. Pour les startups c’est l’occasion d’être en visibilité non pas d’une entreprise mais de tout un écosystème. Pour vous, c’est un gain de temps précieux : plus besoin de créer et mettre à jour des fiches, il vous suffit de les suivre pour les ajouter à votre portefeuille. Vous pourrez ensuite gérer le suivi de vos relations (RDV, notes…)']}</p>
                             </div>
                         </div>
                         <div className={SolutionStyles.bannerBlockWrapper}>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations['J’ai déjà un CRM de startups, qu’est-ce que Forinov m’apporte de plus ?']}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations['Les équipes de Forinov s’occupent d’inviter gratuitement les startups de votre CRM. L’avantage ? Vous n’aurez plus à actualiser les données tous les mois car la startup s’occupe de tout ! Forinov vous donne donc accès à des données en temps réel, et à un reporting automatisé !']}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations['En quoi Forinov permet d’éviter la sur-sollicitation ?']}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations['Avec votre profil personnalisé et complet, vous indiquez précisément ce que vous recherchez sur Forinov, mais aussi ce que vous ne cherchez pas. Vous pouvez aussi suivre des profils de startups : elles en sont informées et ne cherchent donc pas à vous repartager et à vous vendre leurs produits, car vous y avez accès en quelques clics. Les appels à projets sont le signal pour elles que vous recherchez une technologie bien précise !']}</p>
                             </div>
                         </div>
-                        <h1 className={SolutionStyles.banner3Redirect}>Vous avez des questions ? <Link
+                        <h1 className={SolutionStyles.banner3Redirect}>{translations["Vous avez des questions ?"]} <Link
                             href="/contact"
                         >
-                            N&apos;hésitez pas à nous contacter
+                            {translations["N'hésitez pas à nous contacter"]}
                         </Link></h1>
                     </div>
                 </div>
@@ -312,9 +311,14 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, locale, locales, defaultLocale } = context;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const language = locale?.substring(0, 2);
+
+    const fetchLanding = await fetch(`https://www.forinov.fr/remote/back/api.php?q=LANDING&lg=fr&app=next`);
+    const landingData = await fetchLanding.json();
+
+
     return {
         props: {
-            locale, locales, defaultLocale,
+            locale, locales, defaultLocale, landingData
         },
     };
 };
