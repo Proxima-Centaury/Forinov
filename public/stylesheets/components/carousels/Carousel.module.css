@@ -30,6 +30,7 @@
 .carousel[data-direction="vertical"] > .container {
 	flex-direction: column;
 	min-height: inherit;
+	overflow: inherit;
 }
 .carousel[data-direction="bidirectional"] > .container {
 	grid-gap: 0px;
@@ -141,6 +142,7 @@
 }
 .itemFullWidth > .verticalPicture > img {
 	border-radius: 15px;
+	box-shadow: var(--box-shadow);
 }
 .itemFullWidth > .verticalContent > h4 {
 	font-family: "Nunito Sans";

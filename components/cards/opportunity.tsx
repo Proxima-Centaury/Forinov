@@ -16,28 +16,30 @@ import OpportunityStyles from "../../public/stylesheets/components/cards/Opportu
 /* Opportunity Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const OpportunityCard = ({ opportunity, index, maxVisibleByDefault, translations, RGB }: any) => {
-    const ownerLogo = opportunity.opportunity_owner_logo || null;
-    const ownerName = opportunity.opportunity_owner_name || null;
+    const ownerLogo = opportunity.opportunity_owner_logo || opportunity.opportunity_author_logo || null;
+    const ownerName = opportunity.opportunity_owner_name || opportunity.opportunity_author_name || null;
     const id = opportunity.opportunity_id || null;
     const title = opportunity.opportunity_name || null;
-    const type = opportunity.opportunity_type[0] || null;
+    const type = opportunity.opportunity_type || null;
+    const typeId = type[0].ID || null;
+    const typeName = type[0].NAME || null;
     const language = opportunity.opportunity_lang || null;
     const privacy = opportunity.opportunity_privacy || null;
     const description = opportunity.opportunity_desc || null;
     const remainingTimeString = opportunity.remaining_time || null;
     const background = opportunity.opportunity_background || null;
-    return <Link href={ "/directories/opportunities/categories/" + formatNameForUrl(type.NAME) + "_" + type.ID + "/" + formatNameForUrl(title) + "_" + id } className={ OpportunityStyles.opportunity + ((index > maxVisibleByDefault) ? " hidden" : "") } data-card="opportunity" data-index={ index - 1 } data-rgb={ (RGB) ? "enabled" : "disabled" }>
-        <div className={ OpportunityStyles.background } data-opportunity-type={ type.ID || "" }>
+    return <Link href={ "/directories/opportunities/categories/" + formatNameForUrl(typeName) + "_" + typeId + "/" + formatNameForUrl(title) + "_" + id } className={ OpportunityStyles.opportunity + ((index > maxVisibleByDefault) ? " hidden" : "") } data-card="opportunity" data-index={ index - 1 } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+        <div className={ OpportunityStyles.background } data-opportunity-type={ typeId || "" }>
             { (background) ? <Image src={ background } alt={ "Image de fond de l'opportunité " + title + "." } width="3840" height="2160"/> : null }
             { (language === "en") ? <div className={ OpportunityStyles.informations }>
                 <p>{ translations["Anglais"] }</p>
             </div> : null }
         </div>
         <div className={ OpportunityStyles.content }>
-            { (ownerLogo) ? <div className={ OpportunityStyles.right }>
+            { (ownerLogo) ? <div className={ OpportunityStyles.rightContainer }>
                 <Image src={ ownerLogo } width="64" height="64" alt={ ownerName + " logo." }/>
             </div> : null }
-            <div className={ OpportunityStyles.left }>
+            <div className={ OpportunityStyles.leftContainer }>
                 <div className={ OpportunityStyles.top }>
                     { (ownerName) ? <div className={ OpportunityStyles.author }>
                         <p>{ ownerName }</p>
@@ -48,7 +50,7 @@ const OpportunityCard = ({ opportunity, index, maxVisibleByDefault, translations
                     </div>
                 </div>
                 <h3>{ (title) ? uppercaseFirst(title) : translations["Nom non-défini"] }</h3>
-                { (type) ? <div className={ OpportunityStyles.type } data-opportunity-type={ type.ID || "" }>
+                { (type) ? <div className={ OpportunityStyles.type } data-opportunity-type={ typeId || "" }>
                     <Tags tags={ type } main={ true }/>
                 </div> : null }
                 <div className="separator"></div>
