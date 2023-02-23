@@ -61,6 +61,21 @@
                 "query": "V5_SEARCHINCUB",
                 "parameters": [ "CATEGORY", "app", "authkey", "lang" ],
                 "modified": "15-02-2023"
+            },
+            "getFilteredStartupsByCountry": {
+                "query": "SEARCH_FULLSU",
+                "parameters": [ "COUNTRY", "app", "authkey", "lang" ],
+                "modified": "12-02-2023"
+            },
+            "getFilteredCorporationsByCountry": {
+                "query": "V5_SEARCHCORPO",
+                "parameters": [ "COUNTRY", "app", "authkey", "lang" ],
+                "modified": "15-02-2023"
+            },
+            "getFilteredPartnersByCountry": {
+                "query": "V5_SEARCHINCUB",
+                "parameters": [ "COUNTRY", "app", "authkey", "lang" ],
+                "modified": "15-02-2023"
             }
         }
     }
