@@ -19,9 +19,9 @@ import EntityCard from "../../../../../components/cards/entity";
 import DirectoryStyles from "../../../../../public/stylesheets/pages/Directory.module.css";
 import ButtonStyles from "../../../../../public/stylesheets/components/buttons/Button.module.css";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Directory By Category */
+/* Directory By Country */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const DirectoryByCategory = (pageProps: DirectoryInterface) => {
+const DirectoryByCountry = (pageProps: DirectoryInterface) => {
     const { companies, states, router }: any = pageProps;
     const { translations }: any = states;
     const { type } = router.query;
@@ -44,17 +44,17 @@ const DirectoryByCategory = (pageProps: DirectoryInterface) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, query, locale, locales, defaultLocale } = context;
-    let { type, category }: any = query;
+    let { type, country }: any = query;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-    category = category?.substring(category.indexOf("_") + 1, category.length);
+    country = country?.substring(country.indexOf("_") + 1, country.length);
     const language = locale?.substring(0, 2);
     const companies = async () => {
         if(type.match(/(startup)/)) {
-            return await api.getFilteredStartupsByCategory(category, "next", "Sorbonne", language);
+            return await api.getFilteredStartupsByCountry(country, "next", "Sorbonne", language);
         } else if(type.match(/(corporation|entreprise)/)) {
-            return await api.getFilteredCorporationsByCategory(category, "next", "Sorbonne", language);
+            return await api.getFilteredCorporationsByCountry(country, "next", "Sorbonne", language);
         } else if(type.match(/(partner|partenaire)/)) {
-            return await api.getFilteredPartnersByCategory(category, "next", "Sorbonne", language);
+            return await api.getFilteredPartnersByCountry(country, "next", "Sorbonne", language);
         };
     };
     return {
@@ -67,5 +67,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default DirectoryByCategory;
+export default DirectoryByCountry;
 export { getServerSideProps };
