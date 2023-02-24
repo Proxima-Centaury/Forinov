@@ -29,7 +29,7 @@ const Onboarding = (pageProps: OnboardingInterface) => {
         </Head>
         <div className="containerFull">
             <div className={ IframeStyles.registerFrame }>
-                <p>{ translations["Si vous souhaitez vous inscrire"] },<br/>{ translations["Rendez-vous"].toLowerCase() } <Link href="https://onboarding.forinov.net" className={ ButtonStyles.pureLink }>{ translations["Ici"].toLowerCase() }</Link> !</p>
+                <p>{ translations["Si vous souhaitez vous inscrire"] },<br/>{ translations["Rendez-vous"].toLowerCase() } <Link className={ ButtonStyles.pureLink } href="https://onboarding.forinov.net">{ translations["Ici"].toLowerCase() }</Link> !</p>
                 <iframe src="https://onboarding.forinov.net"/>
             </div>
         </div>
