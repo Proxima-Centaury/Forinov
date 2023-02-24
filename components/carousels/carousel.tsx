@@ -229,7 +229,7 @@ const ClassicHorizontal = (pageProps: any) => {
         switch(component) {
             case "LatestStartups":
                 return data.map((startup: any, key: KeyType) => {
-                    const url = "/directories/" + type + "/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
+                    const url = "/directories/startups/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
                     return <Link key={ key } className={ CarouselStyles.item } href={ url } data-card="profile">
                         <ProfileCard { ...pageProps } profile={ startup } definedType="startup" page="landing"/>
                     </Link>;
