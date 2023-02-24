@@ -17,13 +17,13 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* About */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const About = (pageProps: HomeInterface) => {
-    const { states }: any = pageProps;
+    const { states, router }: any = pageProps;
     const { translations }: any = states;
     return <div className="containerFull" style={ { background: "var(--background-sub-color)" } }>
         <div className={ "container " + AboutStyles.heroContainer }>
             <h1 className={ AboutStyles.heroTitle }>{ translations["Notre histoire et nos missions chez Forinov"] }</h1>
-            <button className="callToAction">{ translations["Rejoindre Forinov"] }</button>
-            <Image className={ AboutStyles.heroImg } src="/assets/landings/hero-about-img.svg" alt="Picture of the author" width={500} height={500}/>
+            <button className={ ButtonStyles.callToAction }>{ translations["Rejoindre Forinov"] }</button>
+            <Image className={ AboutStyles.heroImg } src={ router.basePath + "/assets/landings/hero-about-img.svg" } alt="Picture of the author" width={500} height={500}/>
         </div>
         <div className={ AboutStyles.banner} >
             <div className={ "container " + AboutStyles.bannerText }>
@@ -39,13 +39,13 @@ const About = (pageProps: HomeInterface) => {
                     <br/>
                 </Fragment>) }
             </p>
-            <Image className={ AboutStyles.descriptionImg } src="/assets/landings/about-2.svg" alt="Picture of the author" width={ 500 } height={ 500 }/>
+            <Image className={ AboutStyles.descriptionImg } src={ router.basePath + "/assets/landings/about-2.svg" } alt="Picture of the author" width={ 500 } height={ 500 }/>
         </div>
         <div className={ "container " + AboutStyles.banner2 }>
             <div className={ "container " + AboutStyles.bannerText2 }>
                 <h1 className={ AboutStyles.title }>{ translations["Toi aussi tu es passionné·e d’innovation ?"] }</h1>
                 <p className={ AboutStyles.paragraph }>{ translations["Nous recherchons des talents"] }</p>
-                <button className={ AboutStyles.bannerCta }>{ translations["Nous contacter"] }</button>
+                <button className={ ButtonStyles.callToAction }>{ translations["Nous contacter"] }</button>
             </div>
         </div>
     </div>;
