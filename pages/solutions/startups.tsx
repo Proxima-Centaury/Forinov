@@ -115,7 +115,7 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                 <div className={SolutionStyles.banner + ' ' + SolutionStyles.bannerWithImg} style={{ position: 'relative' }}>
                     <div className="container" >
                         <h2 className={SolutionStyles.bannerUnderlineTitle}>{ translations["DÉCOUVREZ NOTRE COMMUNAUTÉ DE STARTUPS"]}</h2>
-                        <h1 className={SolutionStyles.bannerTitle}>{translations["L’innovation a déjà un nom"]} <br /><span>title</span>.</h1>
+                        <h1 className={SolutionStyles.bannerTitle}>{translations["L’innovation a déjà un nom"]}, <br /><span>title</span>.</h1>
                         <Image
                             src="/assets/landings/solutions-su-seating.png"
                             alt="Man seating and working on a laptop"
