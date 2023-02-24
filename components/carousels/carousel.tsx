@@ -201,8 +201,10 @@ const CustomVertical = (pageProps: any) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Classic Horizontal */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ClassicHorizontal = ({ states, component, data }: any) => {
+const ClassicHorizontal = (pageProps: any) => {
+    const { states, component, data, router }: any = pageProps;
 	const { translations, RGB }: any = states;
+    const { type }: any = router.query;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithArrows;
     const buttonProps = [ "type", "faIcon", "faIconClass", "action" ];
@@ -227,13 +229,9 @@ const ClassicHorizontal = ({ states, component, data }: any) => {
         switch(component) {
             case "LatestStartups":
                 return data.map((startup: any, key: KeyType) => {
-                    const type = "startup";
-                    const profile = startup;
-                    const page = "landing";
-                    const cardProps = { type, profile, states, page };
-                    const url = "/directories/" + type.toLowerCase() + "s/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
+                    const url = "/directories/" + type + "/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
                     return <Link key={ key } className={ CarouselStyles.item } href={ url } data-card="profile">
-                        <ProfileCard { ...cardProps }/>
+                        <ProfileCard { ...pageProps } profile={ startup } definedType="startup" page="landing"/>
                     </Link>;
                 });
             case "LatestOpportunities":

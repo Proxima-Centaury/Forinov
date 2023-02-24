@@ -1,6 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { useState, useEffect } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
 import { buildProperties, structureTags } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -18,22 +19,26 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileCard = ({ type, profile, states, page }: any) => {
+const ProfileCard = (pageProps: any) => {
+    const [ profileType, setProfileType ] = useState("");
+    const { profile, definedType, page, states, router }: any = pageProps;
     const { session, lock, translations, RGB }: any = states;
+    const { type }: any = router.query;
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pdfButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-light fa-cloud-arrow-down", "", () => false, "PDF", 0 ];
     const pdfButtonObject = buildProperties(buttonProps, pdfButtonValues);
+    useEffect(() => (!type) ? setProfileType(definedType) : setProfileType(type));
     return <div className={ ProfileStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ ProfileStyles.banner }>
             <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3840" height="2160" priority/>
-            { (type === "startup" && page !== "landing") ? <StartupActions translations={ translations }/> : null }
-            { (type === "corporation" && page !== "landing") ? <CorporationActions translations={ translations }/> : null }
-            { (type === "partner" && page !== "landing") ? <PartnerActions translations={ translations }/> : null }
+            { (profileType.match(/(startup)/) && page !== "landing") ? <StartupActions translations={ translations }/> : null }
+            { (profileType.match(/(corporation|entreprise)/) && page !== "landing") ? <CorporationActions translations={ translations }/> : null }
+            { (profileType.match(/(partner|partenaire)/) && page !== "landing") ? <PartnerActions translations={ translations }/> : null }
         </div>
         <div className={ ProfileStyles.body }>
             <div className={ ProfileStyles.picture }>
                 <Image src={ profile.LOGO } alt="Company background." width="120" height="120"/>
-                { (type !== "startup" && (!session || (session && profile.PDF))) ? <Button { ...pdfButtonObject as ButtonInterface }/> : null }
+                { (type !== "startup" && (!session || (session && profile.PDF)) && page !== "landing") ? <Button { ...pdfButtonObject as ButtonInterface }/> : null }
             </div>
             <div className={ ProfileStyles.content }>
                 <h3>{ profile.NAME }</h3>
@@ -47,13 +52,11 @@ const ProfileCard = ({ type, profile, states, page }: any) => {
                         <a href={ "https://" + profile.WEBSITE } target="blank">{ translations["Site internet"] }</a>
                     </div> : null }
                 </div> : null }
-                <div className={ ProfileStyles.description }>
-                    <Format content={ profile.COMMENT }/>
-                </div>
+                { (profile.COMMENT) ? <Format content={ profile.COMMENT }/> : null }
                 { (profile.CATEGORY.length > 0) ? <Tags tags={ profile.CATEGORY } main={ true }/> : null }
                 { (profile.TAGS) ? <Tags tags={ structureTags(profile.TAGS) }/> : null }
-                { (type === "startup" && page !== "landing") ? <div className="separator"></div> : null }
-                { (type === "startup" && page !== "landing") ? <div className={ ProfileStyles.stats }>
+                { (profileType.match(/(startup)/) && page !== "landing") ? <div className="separator"></div> : null }
+                { (profileType.match(/(startup)/) && page !== "landing") ? <div className={ ProfileStyles.stats }>
                     { (profile.CREATIONDATE) ? <div>
                         <p className={ ProfileStyles.label }>{ translations["Date de création"] }</p>
                         <div>
