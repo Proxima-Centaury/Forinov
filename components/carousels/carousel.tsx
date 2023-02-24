@@ -202,9 +202,8 @@ const CustomVertical = (pageProps: any) => {
 /* Classic Horizontal */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ClassicHorizontal = (pageProps: any) => {
-    const { states, component, data, router }: any = pageProps;
+    const { states, component, data }: any = pageProps;
 	const { translations, RGB }: any = states;
-    const { type }: any = router.query;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithArrows;
     const buttonProps = [ "type", "faIcon", "faIconClass", "action" ];
