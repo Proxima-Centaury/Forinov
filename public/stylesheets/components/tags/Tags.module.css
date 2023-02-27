@@ -26,7 +26,6 @@
 .tags > .tag > p {
     margin: 0px;
     color: var(--logo-blue-color);
-    text-transform: capitalize;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

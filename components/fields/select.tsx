@@ -2,8 +2,7 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { useEffect, useState } from "react";
-import { SelectInterface, OptionInterface } from "../../typescript/interfaces";
-import { SelectOption } from "../../typescript/types";
+import { SelectInterface } from "../../typescript/interfaces";
 import { selectifyTheOptions, handleOutOfArea } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -28,20 +27,11 @@ const Select = ({ type, version, options, action, defaultValue, source }: Select
             <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
                 <i className="fa-solid fa-caret-right"></i>
             </button>
-            <p>{ defaultValue.text }</p>
+            <p>{ defaultValue.NAME }</p>
             <div className={ SelectStyles.options }>
                 { (options.length > 0) ? options.map((option: any,index: any) => {
-                    const optionAsObject: SelectOption = option;
-                    const optionProps = {
-                        type,
-                        version,
-                        options,
-                        ...optionAsObject,
-                        action: action,
-                        selected: optionAsObject.value === defaultValue,
-                        defaultValue,
-                        source,
-                    };
+                    const optionAsObject: any = option;
+                    const optionProps = { ...optionAsObject, action: action, selected: optionAsObject.VALUE === defaultValue };
                     return <Option { ...optionProps } key={ index + "-optionSelect" } />;
                 }) : null }
             </div>
@@ -52,14 +42,16 @@ const Select = ({ type, version, options, action, defaultValue, source }: Select
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Select ( Option ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Option = ({ value, text, action, selected }: OptionInterface) => {
+const Option = (option: any) => {
+    const { ID, NAME, VALUE, action, selected }: any = option;
     const props = {
         className: SelectStyles.option + " " + ((selected) ? SelectStyles.selected : ""),
-        "data-value": value,
-        onClick: () => (action) ? action(value) : undefined
+        "data-id": ID,
+        "data-value": VALUE,
+        onClick: () => (action) ? action(VALUE) : undefined
     };
     return <button { ...props }>
-        <p>{ text }</p>
+        <p>{ NAME }</p>
     </button>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */

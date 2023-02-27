@@ -76,23 +76,23 @@ class Utilities {
     * console.log(options);
     * // outputs :
     * [
-    *     { key: 0, value: "John", text: "John" },
-    *     { key: 1, value: "Jane", text: "Jane" },
-    *     { key: 2, value: "Jeff", text: "Jeff" },
-    *     { key: 3, value: "Jinx", text: "Jinx" },
+    *     { ID: 0, NAME: "John", VALUE: "John" },
+    *     { ID: 1, NAME: "Jane", VALUE: "Jane" },
+    *     { ID: 2, NAME: "Jeff", VALUE: "Jeff" },
+    *     { ID: 3, NAME: "Jinx", VALUE: "Jinx" },
     * ]
-    * @note The key property will be added automatically upon the execution  if an array of strings only is passed.
-    * @note The {@link source} parameter is an optionnal addon that helps you customize the text of the options.
+    * @note The ID property will be added automatically upon the execution  if an array of strings only is passed.
+    * @note The {@link source} parameter is an optionnal addon that helps you customize the NAME of the options.
     * @example
     * const options = selectifyTheOptions([ "fr-FR", "en-US", "ja-JP" ], "locales").
     * console.log(options);
     * // outputs :
     * [
-    *     { key: 0, value: "fr-FR", text: "Français" },
-    *     { key: 1, value: "en-US", text: "English" },
-    *     { key: 2, value: "ja-JP", text: "日本語" }
+    *     { ID: 0, NAME: "Français", VALUE: "fr-FR" },
+    *     { ID: 1, NAME: "English", VALUE: "en-US" },
+    *     { ID: 2, NAME: "日本語", VALUE: "ja-JP" }
     * ]
-    * @note To make it work, you'll need to add conditions to this method to switch texts according to {@link source}'s value.
+    * @note To make it work, you'll need to add conditions to this method to switch NAMEs according to {@link source}'s value.
     * @example
     * selectifyTheOptions(options?: any, source?: String) {
     *     if(!options || options.length <= 0 || (options && !Array.isArray(options))) {
@@ -101,31 +101,34 @@ class Utilities {
     *     const selectifiedOptions: Array<Object> = [];
     *     options.map((option: any, key: KeyType) => {
     *         if(typeof option === "string") {
-    *             // Here, I imported a json file that contains the proper texts to display.
+    *             // Here, I imported a json file that contains the proper NAMEs to display.
     *             const { locales } = config;
-    *             // I store each text in this constant according to option ( which is a string, "fr-FR" in that case ).
-    *             // You could put this constant inside a switch to get the needed values according to source parameter.
+    *             // I store each NAME in this constant according to option ( which is a string, "fr-FR" in that case ).
+    *             // You could put this constant inside a switch to get the needed VALUEs according to source parameter.
     *             const optionText = (source) ? locales[option as keyof Object] : option;
     *             // Example :
     *             // switch(source) {
     *             //    case "locales":
     *             //        optionText = (source) ? locales[option as keyof Object] : option;
     *             // }
-    *             (option.length > 0) ? selectifiedOptions.push({ key: key, value: option, text: optionText }) : null;
+    *             (option.length > 0) ? selectifiedOptions.push({ ID: key, NAME: optionText, VALUE: option }) : null;
     *             // And then you may push inside or outside the switch, depends on your logic / architecture.
     *         } else {
     *             // We don't touch this part because here, we're assuming that there's no change needed.
     *             // By that, I mean if you get into the else, then it means that options contains objects.
-    *             // And then we assume that each object looks like that : { value: 107, text: "Kazakhstan" }.
+    *             // And then we assume that each object looks like that : { NAME: "Kazakhstan", VALUE: 107 }.
     *             const optionAsObject: SelectOption = option;
-    *             optionAsObject.key = key;
+    *             if(!option.hasProperty("ID")) {
+    *                 optionAsObject.ID = key;
+    *             };
     *             selectifiedOptions.push(optionAsObject);
     *         };
     *     });
     *     return selectifiedOptions;
     * };
     * @note If you pass an array of objects, make sure to follow the instruction bellow.
-    * @note Each object in the {@link options} parameter should have the same structure as above without the key property.
+    * @note Each object in the {@link options} parameter should have the same structure as above.
+    * @note If the {@link options} parameter doesn't have any ID, make sure to add your own.
     */
     selectifyTheOptions(options?: any, source?: String): Array<Object>|Boolean {
         if(!options || options.length <= 0 || (options && !Array.isArray(options))) {
@@ -136,10 +139,12 @@ class Utilities {
             if(typeof option === "string") {
                 const { locales } = config;
                 const optionText = (source) ? locales[option as keyof Object] : option;
-                (option.length > 0) ? selectifiedOptions.push({ key: key, value: option, text: optionText }) : null;
+                (option.length > 0) ? selectifiedOptions.push({ ID: key, NAME: optionText, VALUE: option }) : null;
             } else {
                 const optionAsObject: SelectOption = option;
-                optionAsObject.key = key;
+                if(!option.hasProperty("ID")) {
+                    optionAsObject.ID = key;
+                };
                 selectifiedOptions.push(optionAsObject);
             };
         });
@@ -453,7 +458,7 @@ class Utilities {
             return false;
         };
         name = name.toLowerCase().replaceAll(/\s+/g, "").trim();
-        const characters = [ "-", "/" ];
+        const characters = [ "/", "&" ];
         characters.forEach((character) => name = name.replaceAll(character, "-"));
         return name;
     };

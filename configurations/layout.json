@@ -31,8 +31,8 @@
                     { "url": "", "text": "Opportunités", "nesting": true, "nest": [
                         { "url": "/opportunities", "text": "Comment ça marche" },
                         { "url": "/directories/opportunities/categories", "text": "Toutes les opportunités" },
-                        { "url": "/directories/opportunities/categories/calls_for_proposals", "text": "Appels à candidatures" },
-                        { "url": "/directories/opportunities/categories/followship_programs", "text": "Programmes d'accompagnement" },
+                        { "url": "/directories/opportunities/categories/callforproposals_1", "text": "Appels à candidatures" },
+                        { "url": "/directories/opportunities/categories/programs_2", "text": "Programmes d'accompagnement" },
                         { "url": "/directories/opportunities/categories/challenges_and_contests", "text": "Challenges et concours" },
                         { "url": "/directories/opportunities/categories/events", "text": "Évènements" },
                         { "url": "/directories/opportunities/categories/exclusive_offers", "text": "Offres exclusives" }
@@ -62,8 +62,8 @@
                         { "url": "/directories/startups/categories", "text": "Annuaire de startups" },
                         { "url": "/directories/corporations/categories", "text": "Annuaire d'entreprises" },
                         { "url": "/directories/partners/categories", "text": "Annuaire de partenaires" },
-                        { "url": "/directories/opportunities/categories/calls_for_proposals", "text": "Appels à candidatures" },
-                        { "url": "/directories/opportunities/categories/followship_programs", "text": "Programmes d'accompagnement" },
+                        { "url": "/directories/opportunities/categories/callforproposals_1", "text": "Appels à candidatures" },
+                        { "url": "/directories/opportunities/categories/programs_2", "text": "Programmes d'accompagnement" },
                         { "url": "/directories/opportunities/categories/challenges_and_contests", "text": "Challenges et concours" },
                         { "url": "/directories/opportunities/categories/events", "text": "Évènements" },
                         { "url": "/directories/opportunities/categories/exclusive_offers", "text": "Offres exclusives" }
