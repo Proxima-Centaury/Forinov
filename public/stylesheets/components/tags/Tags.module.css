@@ -9,7 +9,7 @@
     position: relative;
 }
 .tags[class*="locked"] {
-    padding: 0px 0px 8px 8px;
+    padding: 8px;
 }
 .tags > .tag {
     display: flex;

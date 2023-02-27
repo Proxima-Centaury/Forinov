@@ -3,7 +3,8 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .details {
     display: flex;
-    margin: 32px 0px 0px 0px !important;
+    grid-gap: 24px;
+    gap: 24px;
 }
 @media screen and (max-width: 990px) {
     .details {
@@ -19,7 +20,6 @@
     min-width: 296px;
     width: 296px;
     max-width: 296px;
-    margin: 0px 24px 0px 0px;
     position: relative;
 }
 @media screen and (max-width: 990px) {
@@ -34,17 +34,18 @@
 /* Profile ( Left's Containers ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .details > .leftSide > div {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
     position: sticky;
     top: 16px;
 }
-.details > .leftSide > div > * + * {
-    margin: 16px 0px 0px 0px;
-}
-@media screen and (max-width: 990px) {
+/* @media screen and (max-width: 990px) {
     .details > .leftSide > div > * + * {
         margin: 0px;
     }
-}
+} */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile ( Content Container ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
