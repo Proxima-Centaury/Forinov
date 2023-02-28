@@ -16,9 +16,19 @@
 .opportunityPreview > div:not(.background) {
     padding: 0px 16px 0px 152px;
 }
+.opportunityPreview > div[class="separator"] {
+    width: calc(100% - 16px - 152px);
+    padding: 0px;
+    margin: 0px 16px 0px 152px;
+}
 @media screen and (max-width: 992px) {
     .opportunityPreview > div:not(.background) {
         padding: 0px 16px;
+    }
+    .opportunityPreview > div[class="separator"] {
+        width: calc(100% - (2 * 16px));
+        padding: 0px;
+        margin: 0px 16px;
     }
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
