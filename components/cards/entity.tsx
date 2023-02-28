@@ -22,12 +22,16 @@ const EntityCard = (pageProps: any) => {
     return <Link href={ router.asPath + "/" + formatNameForUrl(entity.NAME) + "_" + entity.ID } className={ EntityStyles[type] + ((index > maxVisibleByDefault) ? " hidden" : "")} data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ EntityStyles.marker }></div>
         <div className={ EntityStyles.content }>
-            <div className={ EntityStyles.identity }>
-                <Image src={ entity.LOGO } alt={ "Logo de la structure " + entity.NAME + "." } width="55" height="55"/>
-                <p className={ EntityStyles.name }>{ entity.NAME }</p>
+            <div className={ EntityStyles.head }>
+                <div className={ EntityStyles.identity }>
+                    <div className={ EntityStyles.branding }>
+                        <Image src={ entity.LOGO } alt={ "Logo de la structure " + entity.NAME + "." } width="55" height="55"/>
+                        <p className={ EntityStyles.name }>{ entity.NAME }</p>
+                    </div>
+                    { (entity.TAG || entity.CATEGORY) ? <Tags tags={ structureTags(entity.TAG) || entity.CATEGORY } main={ true }/> : null }
+                </div>
+                { (entity.TECHNOLOGIES) ? <Tags tags={ entity.TECHNOLOGIES } limit={ 2 }/> : null }
             </div>
-            { (entity.TAG || entity.CATEGORY) ? <Tags tags={ structureTags(entity.TAG) || entity.CATEGORY } main={ true }/> : null }
-            { (entity.TECHNOLOGIES) ? <Tags tags={ entity.TECHNOLOGIES } limit={ 2 }/> : null }
             { (details) ? <div className={ EntityStyles.description }>
                 <Format content={ entity.DESCRIPTION }/>
             </div> : null }

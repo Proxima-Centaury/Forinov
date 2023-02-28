@@ -4,6 +4,8 @@
 .overview {
     display: flex;
     flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
     padding: 16px;
     border-radius: 15px;
     background-color: var(--background-sub-color);
@@ -18,27 +20,21 @@
 .overview > .details {
     display: flex;
     flex-direction: column;
-}
-.overview > .details + .details {
-    margin: 16px 0px 0px 0px;
+    grid-gap: 8px;
+    gap: 8px;
 }
 .overview > .details > .label {
-    margin: 0px 0px 0px 0px;
+    margin: 0px;
     font-weight: bold;
     font-size: 16px;
 }
-.overview > .details > p {
-    margin: 8px 0px 0px 0px;
-}
 .overview > .details > .location,
-.overview > .details > .website {
-    margin: 0px 0px 8px 0px;
-}
-.overview > .details > .location > * + *,
-.overview > .details > .website > * + *,
-.overview > .details > .networks > * + * {
-    margin: 0px 0px 0px 8px;
-    
+.overview > .details > .website,
+.overview > .details > .networks {
+    display: flex;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px; 
 }
 .overview > .details > .website > a {
     font-weight: bold;

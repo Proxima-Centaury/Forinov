@@ -26,7 +26,7 @@ const Navbar = (pageProps: NavbarInterface) => {
     const { navbar } = layoutConfigurations.navigations.unsigned.layout;
     const [ menuState, setMenuState ] = useState(false);
     const selectProps = [ "type", "options", "action", "defaultValue", "source" ];
-    const languageSelectDefaultValue = [ ...selectifyTheOptions(locales, "locales") as Array<any> ]?.filter((option: any) => option.value === locale)[0];
+    const languageSelectDefaultValue = [ ...selectifyTheOptions(locales, "locales") as Array<any> ]?.filter((option: any) => option.VALUE === locale)[0];
     const languageSelectValues = [ "Single", locales, setLocale, languageSelectDefaultValue, "locales" ];
     const languageSelectObject = buildProperties(selectProps, languageSelectValues);
     const buttonProps = [ "type", "action", "aria" ];

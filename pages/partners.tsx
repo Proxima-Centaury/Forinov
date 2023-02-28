@@ -49,8 +49,8 @@ const PartnersHome = (pageProps: HomeInterface) => {
 				<h4>{ translations["Rejoignez l'écosystème Forinov plus de 1200 startups vous attendent"] + " !" }</h4>
 				<p>{ translations["Adaptez votre forfait à vos besoins"] + " !" }</p>
 				<div className={ HomeStyles.actions } data-justify="center">
-					<Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["Rejoindre l'écosystème Forinov"] }</Link>
-					<Link href="/onboarding" className={ ButtonStyles.callToActionAlternative }>{ translations["Découvrir les offres"] }</Link>
+					<Link className={ ButtonStyles.callToAction } href="/onboarding">{ translations["Rejoindre l'écosystème Forinov"] }</Link>
+					<Link className={ ButtonStyles.callToActionAlternative } href="/onboarding">{ translations["Découvrir les offres"] }</Link>
 				</div>
 			</div>
 			<div className={ HomeStyles.badges } data-type="partner">
@@ -90,7 +90,7 @@ const PartnersHome = (pageProps: HomeInterface) => {
 				<h4>{ translations["Nos startups à la une"] + " :" }</h4>
 				<Carousel { ...pageProps } component="LatestStartups" data={ startups }/>
 				<div className={ HomeStyles.actions } data-justify="left">
-					<Link href="/" className={ ButtonStyles.callToAction }>{ translations["Accéder à l'annuaire des startups"] }</Link>
+					<Link className={ ButtonStyles.callToAction } href="/">{ translations["Accéder à l'annuaire des startups"] }</Link>
 				</div>
 			</div>
 			<div className={ HomeStyles.questions } data-type="partner">
@@ -108,8 +108,8 @@ const PartnersHome = (pageProps: HomeInterface) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { res, locale, locales, defaultLocale } = context;
-	const language = locale?.substring(0, 2);
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+	const language = locale?.substring(0, 2);
 	return {
 		props: {
 			locale, locales, defaultLocale,
