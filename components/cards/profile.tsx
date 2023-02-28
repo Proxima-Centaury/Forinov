@@ -42,7 +42,7 @@ const ProfileCard = (pageProps: any) => {
             </div>
             <div className={ ProfileStyles.content }>
                 <h3>{ profile.NAME }</h3>
-                { (profile.ADDRESS.TOWN || profile.ADDRESS.ISO || profile.WEBSITE) ? <div className={ ProfileStyles.informations }>
+                { ((profile.ADDRESS && (profile.ADDRESS.TOWN || profile.ADDRESS.ISO)) || profile.WEBSITE) ? <div className={ ProfileStyles.informations }>
                     { (profile.ADDRESS.TOWN || profile.ADDRESS.ISO) ? <div>
                         <i className="fa-solid fa-location-dot"/>
                         <p>{ ((profile.ADDRESS.TOWN) ? profile.ADDRESS.TOWN + ", " : "") + ((profile.ADDRESS.ISO) ? profile.ADDRESS.ISO : "") }</p>
