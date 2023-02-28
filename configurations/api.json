@@ -25,7 +25,7 @@
             "getLandingOpportunities": {
                 "query": "LANDING_OPPORTUNITES",
                 "parameters": [ "app", "authkey", "lang" ],
-                "modified": "01-02-2023"
+                "modified": "27-02-2023"
             },
             "getLandingLogos": {
                 "query": "LANDING_LOGOS",
@@ -40,7 +40,7 @@
             "getOpportunity": {
                 "query": "V5_GET_OPPORTUNITY",
                 "parameters": [ "ID", "app", "authkey", "lang" ],
-                "modified": "01-02-2023"
+                "modified": "28-02-2023"
             },
             "getPublicCommons": {
                 "query": "V5_GET_PUBLIC_COMMONS",
@@ -65,7 +65,7 @@
             "getFilteredOpportunitiesByCategory": {
                 "query": "LANDING_FULLOPPORTUNITES",
                 "parameters": [ "CATEGORY", "app", "authkey", "lang" ],
-                "modified": ""
+                "modified": "27-02-2023"
             },
             "getFilteredStartupsByCountry": {
                 "query": "SEARCH_FULLSU",
