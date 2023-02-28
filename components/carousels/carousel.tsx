@@ -202,8 +202,7 @@ const CustomVertical = (pageProps: any) => {
 /* Classic Horizontal */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ClassicHorizontal = (pageProps: any) => {
-    const { states, component, data }: any = pageProps;
-	const { translations, RGB }: any = states;
+    const { component, data }: any = pageProps;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithArrows;
     const buttonProps = [ "type", "faIcon", "faIconClass", "action" ];
@@ -229,18 +228,16 @@ const ClassicHorizontal = (pageProps: any) => {
             case "LatestStartups":
                 return data.map((startup: any, key: KeyType) => {
                     const url = "/directories/startups/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
-                    return <Link key={ key } className={ CarouselStyles.item } href={ url } data-card="profile">
+                    return <Link key={ key } className={ CarouselStyles.item } href={ url }>
                         <ProfileCard { ...pageProps } profile={ startup } definedType="startup" page="landing"/>
                     </Link>;
                 });
             case "LatestOpportunities":
                 return data.map((opportunity: any, key: KeyType) => {
-                    const index = key + 1;
-                    const maxVisibleByDefault = undefined;
-                    const cardProps = { opportunity, index, maxVisibleByDefault, translations, RGB };
-                    return <div key={ key } className={ CarouselStyles.item }>
-                        <OpportunityCard { ...cardProps }/>
-                    </div>;
+                    const url = "/directories/opportunities/categories/" + formatNameForUrl(opportunity.TYPE[0].NAME) + "_" + opportunity.TYPE[0].ID + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID;
+                    return <Link key={ key } className={ CarouselStyles.item } href={ url }>
+                        <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ key + 1 }/>
+                    </Link>;
                 });
             default:
                 return <div></div>;

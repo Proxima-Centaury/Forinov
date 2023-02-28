@@ -27,7 +27,7 @@ const ProfileCard = (pageProps: any) => {
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pdfButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-light fa-cloud-arrow-down", "", () => false, "PDF", 0 ];
     const pdfButtonObject = buildProperties(buttonProps, pdfButtonValues);
-    useEffect(() => (!type) ? setProfileType(definedType) : setProfileType(type));
+    useEffect(() => (!type) ? setProfileType(definedType) : setProfileType(type), [ type, definedType ]);
     return <div className={ ProfileStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ ProfileStyles.banner }>
             <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3840" height="2160" priority/>
