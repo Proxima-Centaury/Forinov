@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 /* Format */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Format = (pageProps: any) => {
-    const { content, router }: any = pageProps;
+    const { content, disableLinks, router }: any = pageProps;
     const [ newContent, setNewContent ] = useState(undefined);
     const handleRouting = (event: any) => {
         event.preventDefault();
@@ -18,7 +18,7 @@ const Format = (pageProps: any) => {
         return router.push(target.href);
     };
     useEffect(() => {
-        if(content) {
+        if(content && !disableLinks) {
             const links: Array<any> = [];
             const matches = content.match(/\[(.*?)\]/g);
             if(matches && matches.length > 0) {
@@ -42,7 +42,7 @@ const Format = (pageProps: any) => {
         const nextLinks = document.querySelectorAll("a[data-next-link]");
         (nextLinks.length > 0) ? nextLinks.forEach((link: any) => link.onclick = handleRouting) : null;
     });
-    return <div className="formattedContent" dangerouslySetInnerHTML={ { __html: (newContent || content) + "." } } />;
+    return <div className="formattedContent" dangerouslySetInnerHTML={ { __html: (newContent || content) + "." } }/>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
