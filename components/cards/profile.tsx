@@ -42,8 +42,8 @@ const ProfileCard = (pageProps: any) => {
             </div>
             <div className={ ProfileStyles.content }>
                 <h3>{ profile.NAME }</h3>
-                { (profile.ADDRESS || profile.WEBSITE) ? <div className={ ProfileStyles.informations }>
-                    { (profile.ADDRESS) ? <div>
+                { (profile.ADDRESS.TOWN || profile.ADDRESS.ISO || profile.WEBSITE) ? <div className={ ProfileStyles.informations }>
+                    { (profile.ADDRESS.TOWN || profile.ADDRESS.ISO) ? <div>
                         <i className="fa-solid fa-location-dot"/>
                         <p>{ ((profile.ADDRESS.TOWN) ? profile.ADDRESS.TOWN + ", " : "") + ((profile.ADDRESS.ISO) ? profile.ADDRESS.ISO : "") }</p>
                     </div> : null }
@@ -86,7 +86,7 @@ const ProfileCard = (pageProps: any) => {
             </div>
         </div>
         { (profile.STATE === "WO") ? <div className={ ProfileStyles.note }>
-            <p>{ translations["Ce compte n'est pas officiel. S'il s'agit de votre startup, n'hésitez pas à récupérer les accès."] }</p>
+            <p>{ translations["Ce compte n'est pas officiel. S'il s'agit de votre compte, n'hésitez pas à récupérer les accès."] }</p>
         </div> : null }
     </div>;
 };

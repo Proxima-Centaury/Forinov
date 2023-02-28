@@ -24,7 +24,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             type = (type.match(/(partner)/)) ? "partenaire" : type;
         };
         const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);
-        if (!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {
+        if(!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {
             return {
                 redirect: {
                     destination: "/" + locale + "/404",
@@ -43,7 +43,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         };
     };
     const opportunity = await api.getOpportunity(profile, "next", "Sorbonne", language);
-    if (!opportunity || (opportunity && opportunity.ERROR)) {
+    if(!opportunity || (opportunity && opportunity.ERROR)) {
         return {
             redirect: {
                 destination: "/" + locale + "/404",

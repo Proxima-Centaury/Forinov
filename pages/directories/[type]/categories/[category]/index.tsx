@@ -33,9 +33,9 @@ const DirectoryByCategory = (pageProps: DirectoryInterface) => {
         { (!type.match(/(opport)/) && result.length > 0) ? <div className={ display }>
             { result.map((company: any, key: KeyType) => <EntityCard key={ key } { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>) }
         </div> : null}
-        {/* { (type.match(/(opport)/) && result.length > 0) ? <div className={ display }>
-            { result.map((opportunity: any, key: KeyType) => <OpportunityCard key={ key } { ...pageProps } opportunity={ opportunity } type={ formatType(type) || undefined } details/>) }
-        </div> : null} */}
+        { (type.match(/(opport)/) && result.length > 0) ? <div className={ display }>
+            { result.map((opportunity: any, key: KeyType) => <OpportunityCard key={ key } { ...pageProps } opportunity={ opportunity } index={ key + 1 }/>) }
+        </div> : null}
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
             <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
