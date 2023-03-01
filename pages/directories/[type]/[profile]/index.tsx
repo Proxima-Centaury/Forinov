@@ -118,9 +118,9 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
                         </div>
                     </div>
                     <div className={ ProfileStyles.content }>
-                        { (type === "startup") ? <Startup { ...pageProps }/> : null }
-                        { (type === "corporation") ? <Corporation { ...pageProps }/> : null }
-                        { (type === "partner") ? <Partner { ...pageProps }/> : null }
+                        { (type.match(/(startup)/)) ? <Startup { ...pageProps }/> : null }
+                        { (type.match(/(corporation|entreprise)/)) ? <Corporation { ...pageProps }/> : null }
+                        { (type.match(/(partner|partenaire)/)) ? <Partner { ...pageProps }/> : null }
                     </div>
                 </div>
             </div>

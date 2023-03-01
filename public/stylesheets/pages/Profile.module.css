@@ -52,19 +52,16 @@
 .details > .content {
     display: flex;
     flex-direction: column;
+    grid-gap: 32px;
+    gap: 32px;
     width: 100%;
     max-width: calc(100% - (296px + 24px));
 }
 @media screen and (max-width: 990px) {
     .details > .content {
         max-width: initial;
-        margin: 16px 0px 0px 0px;
     }
-}
-.details > .content > * + * {
-    margin: 16px 0px 0px 0px;
 }
 .details > .content > button:not([class*="callTo"]) {
     width: fit-content;
-    margin: 16px 0px 0px auto;
 }
