@@ -18,7 +18,7 @@ const RecoverBanner = ({ states }: any) => {
     const recoverButtonValues = [ ButtonStyles.callToActionNegative, false, "", "", () => false, translations["Récupérer les accès"], 0 ];
     const recoverButtonObject = buildProperties(buttonProps, recoverButtonValues);
     return <div className={ BannerStyles.recoverBanner }>
-        <p>{ translations["Ce compte a été créé par nos équipes, s'il s'agit de votre startup, n'hésitez pas à :"] }</p>
+        <p>{ translations["Ce compte a été créé par nos équipes, s'il s'agit de votre compte, n'hésitez pas à :"] }</p>
         <div className={ BannerStyles.actions }>
             <Button { ...recoverButtonObject as ButtonInterface }/>
         </div>

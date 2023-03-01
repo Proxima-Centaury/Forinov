@@ -4,10 +4,11 @@
 .ecosystem {
     display: flex;
     flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
     width: 100%;
 }
 .ecosystem > h3 {
-    margin: 0px 0px 16px 16px;
     font-size: 24px;
     font-weight: 800;
 }

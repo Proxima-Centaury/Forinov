@@ -18,11 +18,13 @@ import CategoryStyles from "../../public/stylesheets/components/cards/Category.m
 const CategoryCard = (pageProps: any) => {
     const { category, display, states, router }: any = pageProps;
     const { RGB }: any = states;
-    return <Link href={ router.asPath + "/" + formatNameForUrl(category.NAME) + "_" + category.ID } className={ CategoryStyles.category } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+    const url = router.asPath + "/" + formatNameForUrl(category.NAME) + "_" + category.ID;
+    const source = router.basePath + (category.LOGO || "/assets/flags/" + category.CODE.toLowerCase() + ".png");
+    return <Link href={ url } className={ CategoryStyles.category } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         { (category.COUNT) ? <div className={ CategoryStyles.count }>
             <p>{ category.COUNT }</p>
         </div> : null }
-        { (category.LOGO) ? <Image src={ category.LOGO } alt={ category.ID } width="80" height="80"/> : <i className="fa-light fa-circle-star"/> }
+        { (category.LOGO || category.CODE) ? <Image src={ source } alt={ category.ID } width="80" height="80"/> : <i className="fa-light fa-circle-star"/> }
         <h4 className={ CategoryStyles.name }>{ category.NAME }</h4>
         { (category.SSCAT && category.SSCAT.length > 0) ? <Tags tags={ category.SSCAT } limit={ (display === "list") ? 1 : undefined }/> : null }
     </Link>;

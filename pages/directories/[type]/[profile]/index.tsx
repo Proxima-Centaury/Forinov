@@ -104,7 +104,7 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
         }
         return <>
             <Head>
-                {metadata}
+                { metadata }
             </Head>
             <div id="profile" className="container">
                 { (!session) ? <IdenfiticationBanner { ...pageProps }/> : null }
@@ -118,9 +118,9 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
                         </div>
                     </div>
                     <div className={ ProfileStyles.content }>
-                        { (type === "startup") ? <Startup { ...pageProps }/> : null }
-                        { (type === "corporation") ? <Corporation { ...pageProps }/> : null }
-                        { (type === "partner") ? <Partner { ...pageProps }/> : null }
+                        { (type.match(/(startup)/)) ? <Startup { ...pageProps }/> : null }
+                        { (type.match(/(corporation|entreprise)/)) ? <Corporation { ...pageProps }/> : null }
+                        { (type.match(/(partner|partenaire)/)) ? <Partner { ...pageProps }/> : null }
                     </div>
                 </div>
             </div>
@@ -128,7 +128,8 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
     };
     return <>
         <Head>
-            <title>{ metadatas["/annuaires/startups/[id]"].title1 + " " + profile.NAME + " " + metadatas["/annuaires/startups/[id]"].title2 }</title>
+            <title>{ opportunity.TITLE }</title>
+            <meta name="description" content={ opportunity.DESCRIPTION }/>
         </Head>
         <div id="opportunity" className="container">
             <OpportunityPreview { ...pageProps }/>
@@ -214,7 +215,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             type = (type.match(/(partner)/)) ? "partenaire" : type;
         };
         const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);
-        if (!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {
+        if(!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {
             return {
                 redirect: {
                     destination: "/" + locale + "/404",
@@ -233,7 +234,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         };
     };
     const opportunity = await api.getOpportunity(profile, "next", "Sorbonne", language);
-    if (!opportunity || (opportunity && opportunity.ERROR)) {
+    if(!opportunity || (opportunity && opportunity.ERROR)) {
         return {
             redirect: {
                 destination: "/" + locale + "/404",

@@ -2,7 +2,6 @@
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import chalk from "chalk";
-import { SelectOption } from "../typescript/types";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -117,7 +116,7 @@ class Utilities {
     *             // We don't touch this part because here, we're assuming that there's no change needed.
     *             // By that, I mean if you get into the else, then it means that options contains objects.
     *             // And then we assume that each object looks like that : { NAME: "Kazakhstan", VALUE: 107 }.
-    *             const optionAsObject: SelectOption = option;
+    *             const optionAsObject: any = option;
     *             if(!option.hasProperty("ID")) {
     *                 optionAsObject.ID = key;
     *             };
@@ -141,7 +140,7 @@ class Utilities {
                 const optionText = (source) ? locales[option as keyof Object] : option;
                 (option.length > 0) ? selectifiedOptions.push({ ID: key, NAME: optionText, VALUE: option }) : null;
             } else {
-                const optionAsObject: SelectOption = option;
+                const optionAsObject: any = option;
                 if(!option.hasProperty("ID")) {
                     optionAsObject.ID = key;
                 };
@@ -439,7 +438,11 @@ class Utilities {
                     };
                 };
             });
-            return (string.length > 0) ? string.join(", ") : translations["Moins de 24 heures restantes"];
+            const finalText = (string.length > 0) ? string.join(", ") : null;
+            if(finalText) {
+                return translations["Expire dans"] + " " + finalText;
+            };
+            return translations["Moins de 24 heures restantes"];
         };
     };
     /**

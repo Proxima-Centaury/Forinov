@@ -61,7 +61,6 @@
 .body {
     display: flex;
     width: 100%;
-    height: calc(100% - 192px);
 }
 @media screen and (max-width: 990px) {
     .body {
@@ -124,53 +123,59 @@
     font-weight: 800;
     text-transform: uppercase;
 }
-.content > .informations {
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile ( Informations ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.informations {
     display: flex;
     align-items: center;
     grid-gap: 24px;
     gap: 24px;
 }
-.content > .informations > div {
+.informations > div {
     display: flex;
     align-items: center;
 }
-.content > .informations > div > i {
+.informations > div > i {
     padding: 0px 8px 0px 0px;
 }
-.content > .informations > div > p {
+.informations > div > p {
     margin: 0px;
     font-size: 14px;
 }
-.content > .informations > div > a {
+.informations > div > a {
     font-weight: bold;
     color: var(--logo-blue-color);
     text-decoration: underline;
     
 }
-.content > .stats {
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Profile ( Stats ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.stats {
     display: flex;
     grid-gap: 16px;
     gap: 16px;
 }
-.content > .stats > div {
+.stats > div {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.content > .stats > div > p {
+.stats > div > p {
     margin: 0px;
 }
-.content > .stats > div > div {
+.stats > div > div {
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1;
     width: 100%;
 }
-.content > .stats > div > div > i {
+.stats > div > div > i {
     font-size: 26px;
 }
-.content > .stats > div > div > p:not(.label) {
+.stats > div > div > p:not(.label) {
     display: flex;
     justify-content: center;
     align-items: center;

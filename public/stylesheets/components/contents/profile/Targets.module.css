@@ -4,6 +4,8 @@
 .targets {
     display: flex;
     flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
     padding: 16px;
     border-radius: 15px;
     background-color: var(--background-sub-color);
