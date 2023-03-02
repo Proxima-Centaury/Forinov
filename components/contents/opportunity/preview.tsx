@@ -57,12 +57,12 @@ const OpportunityPreview = (pageProps: any) => {
         </div>
         <div className="separator"/>
         <div className={ PreviewStyles.description }>
-            { (opportunity.DESCRIPTION) ? <Format content={ opportunity.DESCRIPTION }/> : <p>{ translations["Non renseigné"] + "." }</p> }
+            { (opportunity.DESCRIPTION) ? <Format { ...pageProps } content={ opportunity.DESCRIPTION }/> : <p>{ translations["Non renseigné"] + "." }</p> }
         </div>
         <div className="separator"/>
         <div className={ PreviewStyles.eligibility }>
             <h4 className="mainTitleBold">{ translations["Critères d'éligibilité"] + " :" }</h4>
-            { (opportunity.ELIGIBILITY) ? <Format content={ opportunity.ELIGIBILITY }/> : <p>{ translations["Non renseigné"] + "." }</p> }
+            { (opportunity.ELIGIBILITY) ? <Format { ...pageProps } content={ opportunity.ELIGIBILITY }/> : <p>{ translations["Non renseigné"] + "." }</p> }
         </div>
         { (opportunity.CATEGORIES.length > 0 || structureTags(opportunity.TAGS)) ? <Fragment>
             <div className="separator"/>

@@ -152,7 +152,7 @@ const StepsCarousel = (pageProps: any) => {
                         <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
                         <ul>
                             { step.list.map((item: String, key: KeyType) => <li key={ key }>
-                                <div><i className="fa-light fa-arrow-right"/><Format content={ translations[item as keyof Object] }/></div>
+                                <div><i className="fa-light fa-arrow-right"/><Format { ...pageProps } content={ translations[item as keyof Object] }/></div>
                             </li>) }
                         </ul>
                     </div>
@@ -172,27 +172,25 @@ const CustomVertical = (pageProps: any) => {
 	const { translations }: any = states;
     const steps: Array<any> = carouselsConfigurations[component];
     return <div className={ CarouselStyles.carousel } data-direction="vertical">
-        <div className={ CarouselStyles.steps }>
-            { steps.map((button: any, key: number) => <Fragment key={ key }>
-                <div className="separatorVertical"></div>
-                <button className={ (key === steps.length - 1) ? "active" : "" }>
-                    <i className={ (key === steps.length - 1) ? "fa-light fa-check" : "fa-light fa-chevron-down" }/>
-                </button>
-            </Fragment>) }
-        </div>
         <div className={ CarouselStyles.container } data-carousel={ component }>
             { steps.map((step: any, key: number) => <div key={ key } className={ CarouselStyles.itemFullWidth } data-index={ key }>
                 { (key % 2 === 1) ? <div className={ CarouselStyles.verticalContent }>
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
-                    <Format content={ translations[step.text] }/>
+                    <Format { ...pageProps } content={ translations[step.text] }/>
                 </div> : <div className={ CarouselStyles.verticalPicture }>
                     <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                 </div> }
+                <div className={ CarouselStyles.steps }>
+                    <div className="separatorVertical"></div>
+                    <button className={ (key === steps.length - 1) ? "active" : "" }>
+                        <i className={ (key === steps.length - 1) ? "fa-light fa-check" : "fa-light fa-chevron-down" }/>
+                    </button>
+                </div>
                 { (key % 2 === 1) ? <div className={ CarouselStyles.verticalPicture }>
                     <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                 </div> : <div className={ CarouselStyles.verticalContent }>
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
-                    <Format content={ translations[step.text] }/>
+                    <Format { ...pageProps } content={ translations[step.text] }/>
                 </div> }
             </div>) }
         </div>
@@ -288,7 +286,8 @@ const InfiniteScrollHorizontal = ({ component, data }: any) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Accordions Horizontal */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const AccordionsHorizontal = ({ states, component, data }: any) => {
+const AccordionsHorizontal = (pageProps: any) => {
+    const { component, data, states }: any = pageProps;
 	const { translations }: any = states;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
@@ -307,7 +306,7 @@ const AccordionsHorizontal = ({ states, component, data }: any) => {
         </div>
         <div className={ CarouselStyles.container } data-carousel={ component }>
             { (data) ? data.map((accordion: any, key: KeyType) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
-                <Accordion data={ accordion } translations={ translations }/>
+                <Accordion { ...pageProps } data={ accordion } translations={ translations }/>
             </div>) : null }
         </div>
     </div>;

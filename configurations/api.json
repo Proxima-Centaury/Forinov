@@ -25,7 +25,7 @@
             "getLandingOpportunities": {
                 "query": "LANDING_OPPORTUNITES",
                 "parameters": [ "app", "authkey", "lang" ],
-                "modified": "27-02-2023"
+                "modified": "02-03-2023"
             },
             "getLandingLogos": {
                 "query": "LANDING_LOGOS",
@@ -65,7 +65,7 @@
             "getFilteredOpportunitiesByCategory": {
                 "query": "LANDING_FULLOPPORTUNITES",
                 "parameters": [ "CATEGORY", "app", "authkey", "lang" ],
-                "modified": "27-02-2023"
+                "modified": "02-03-2023"
             },
             "getFilteredStartupsByCountry": {
                 "query": "SEARCH_FULLSU",
