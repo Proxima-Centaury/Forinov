@@ -19,7 +19,7 @@ const CategoryCard = (pageProps: any) => {
     const { category, display, states, router }: any = pageProps;
     const { RGB }: any = states;
     const url = router.asPath + "/" + formatNameForUrl(category.NAME) + "_" + category.ID;
-    const source = router.basePath + (category.LOGO || "/assets/flags/" + category.CODE.toLowerCase() + ".png");
+    const source = (category.CODE) ? router.basePath + "/assets/flags/" + category.CODE.toLowerCase() + ".png" : category.LOGO;
     return <Link href={ url } className={ CategoryStyles.category } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         { (category.COUNT) ? <div className={ CategoryStyles.count }>
             <p>{ category.COUNT }</p>
