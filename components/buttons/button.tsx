@@ -66,7 +66,7 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled 
             { (text) ? <span>{ text }</span> : null }
         </Link>;
     } else {
-        return <button aria-label={ aria as string }>
+        return <button onClick={ action } aria-label={ aria as string }>
             <span>{ text }</span>
         </button>;
     };
