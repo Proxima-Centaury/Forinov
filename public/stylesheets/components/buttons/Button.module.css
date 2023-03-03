@@ -1,5 +1,19 @@
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Button ( Call To Action Rounded Icon ) Core */
+/* Button ( Default ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.default {
+    display: flex;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
+    width: max-content;
+}
+.default:hover > i,
+.default:hover > span {
+    color: var(--logo-blue-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Squared & Rounded Icon ) */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .callToActionRoundedIcon,
 .callToActionAlternativeRoundedIcon,
@@ -12,8 +26,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 40px;
     width: 40px;
+    max-width: 40px;
+    min-height: 40px;
     height: 40px;
+    max-height: 40px;
     border-radius: 20px;
     border: var(--border);
     border-color: var(--logo-blue-color);
@@ -96,7 +114,7 @@
     color: var(--perfect-white-color);
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Button ( Call To Action ) Core */
+/* Button ( Call To Action ) */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .callToAction,
 .callToActionAlternative,
@@ -118,7 +136,6 @@
     border-radius: 20px;
     border: var(--border);
     border-color: var(--logo-blue-color);
-    
 }
 @media screen and (max-width: 576px) {
     .callToAction,
@@ -149,16 +166,12 @@
 .callToAction:hover {
     background-color: transparent;
 }
+.callToAction > i,
 .callToAction > span {
     color: var(--perfect-white-color);
 }
+.callToAction:hover > i,
 .callToAction:hover > span {
-    color: var(--logo-blue-color);
-}
-.callToAction > i {
-    color: var(--perfect-white-color);
-}
-.callToAction:hover > i {
     color: var(--logo-blue-color);
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -170,15 +183,11 @@
 .callToActionAlternative:hover {
     background-color: var(--logo-blue-color);
 }
-.callToActionAlternative > i {
-    color: var(--logo-blue-color);
-}
-.callToActionAlternative:hover > i {
-    color: var(--perfect-white-color);
-}
+.callToActionAlternative > i,
 .callToActionAlternative > span {
     color: var(--logo-blue-color);
 }
+.callToActionAlternative:hover > i,
 .callToActionAlternative:hover > span {
     color: var(--perfect-white-color);
 }
@@ -226,16 +235,12 @@
     border-color: var(--light-grey-color);
     background-color: var(--light-grey-color);
 }
-.callToActionStep > i {
-    color: var(--text-inactive-color);
-}
-.callToActionStep:hover > i,
-.callToActionStep.active > i {
-    color: var(--perfect-black-color);
-}
+.callToActionStep > i,
 .callToActionStep > span {
     color: var(--text-inactive-color);
 }
+.callToActionStep:hover > i,
+.callToActionStep.active > i,
 .callToActionStep:hover > span,
 .callToActionStep.active > span {
     color: var(--perfect-black-color);
@@ -270,7 +275,6 @@
     color: var(--logo-blue-color);
     border-radius: 32px;
     background-color: var(--paleblue-color);
-    
 }
 .callToActionWide:hover > i {
     background-color: var(--perfect-white-color);
@@ -405,9 +409,7 @@
 .classicLink:hover {
     border-color: var(--logo-blue-color);
 }
+.classicLink > i,
 .classicLink > span {
-    color: var(--logo-blue-color);
-}
-.classicLink > i {
     color: var(--logo-blue-color);
 }

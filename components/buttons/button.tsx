@@ -60,7 +60,7 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled 
             <span></span>
             <span></span>
         </button>;
-    } else if(url && (type === "default" || buttonTypes.includes(type) || smallButtonStypes.includes(type))) {
+    } else if(url && (type === ButtonStyles.default || buttonTypes.includes(type) || smallButtonStypes.includes(type))) {
         return <Link className={ type + ((disabled) ? " disabled" : "") } href={ url as any } aria-label={ aria as string }>
             { (faIcon) ? <i className={ faIconClass }/> : null }
             { (text) ? <span>{ text }</span> : null }
