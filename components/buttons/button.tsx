@@ -27,11 +27,7 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled 
         ButtonStyles.callToActionSquared,
         ButtonStyles.classicLink
     ];
-    if(type === "default") {
-        return <button aria-label={ aria as string }>
-            <span>{ text }</span>
-        </button>;
-    } else if(!url && type === ButtonStyles.moreOrLess) {
+    if(!url && type === ButtonStyles.moreOrLess) {
         return <button className={ type + ((disabled) ? " disabled" : "") } onClick={ action } aria-label={ aria as string }>
             <span>{ text + ((count)  ? " (" + count + ")" : " ") }</span>
             <i className="fa-solid fa-caret-right"/>
@@ -64,7 +60,7 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled 
             <span></span>
             <span></span>
         </button>;
-    } else if(url && (buttonTypes.includes(type) || smallButtonStypes.includes(type))) {
+    } else if(url && (type === "default" || buttonTypes.includes(type) || smallButtonStypes.includes(type))) {
         return <Link className={ type + ((disabled) ? " disabled" : "") } href={ url as any } aria-label={ aria as string }>
             { (faIcon) ? <i className={ faIconClass }/> : null }
             { (text) ? <span>{ text }</span> : null }
