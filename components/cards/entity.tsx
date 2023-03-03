@@ -33,7 +33,7 @@ const EntityCard = (pageProps: any) => {
                 { (entity.TECHNOLOGIES) ? <Tags tags={ entity.TECHNOLOGIES } limit={ 2 }/> : null }
             </div>
             { (details) ? <div className={ EntityStyles.description }>
-                <Format content={ entity.DESCRIPTION }/>
+                <Format { ...pageProps } content={ entity.DESCRIPTION }/>
             </div> : null }
         </div>
     </Link>;

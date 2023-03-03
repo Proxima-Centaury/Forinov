@@ -16,7 +16,6 @@ import Transition from "../layout/transition";
 import Modal from "../layout/modal";
 import Footer from "../layout/footer";
 import Devtools from "../components/devtools/devtools";
-import { GlobalContext } from "../components/context/globalContext";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -98,16 +97,14 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.router = router;
     return <>
         <Head>
-            <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <title>Forinov</title>
+            <meta charSet="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <link rel="icon" href={ router.basePath + "/assets/logo.png" }/>
         </Head>
         { (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/> }
         <Transition>
-            <GlobalContext>
-                <Component { ...pageProps }/>
-            </GlobalContext>
+            <Component { ...pageProps }/>
             <Footer { ...pageProps }/>
         </Transition>
         <Modal { ...pageProps }/>
