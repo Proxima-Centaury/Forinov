@@ -557,7 +557,7 @@ class Utilities {
             type: type || "default",
             faIcon: faIcon || false, faIconClass: faIconClass || undefined,
             url: url || undefined, action: action || undefined,
-            text: text || "Placeholder", count: count || undefined,
+            text: text || undefined, count: count || undefined,
             aria: aria || undefined, index: index || undefined,
             active: active || false, disabled: disabled || false
         };
