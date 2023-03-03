@@ -14,7 +14,6 @@ const Document = () => {
     const fontsProps: any = resourcesConfigurations.fonts;
     return <Html>
         <Head>
-            <meta charSet="UTF-8"/>
             <link rel="preconnect" href="https://fonts.googleapis.com"/>
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
             <link { ...fontsProps }/>
