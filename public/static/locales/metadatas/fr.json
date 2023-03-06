@@ -26,6 +26,7 @@
     "/opportunities": {
         "title": "Les opportunités Forinov, comment ça marche ?",
         "description": "Comment créer votre appel à candidatures / appel à projets / concours / challenges / évènements sur Forinov. Trouver des startups pertinentes, contactez les startups les plus intéressantes de notre annuaire de startups France, et suivez les via votre porte-feuille de startups. Toutes les réponses à vos questions sont sur Forinov."
+    },
     "/login": {
         "title": "",
         "description": ""
