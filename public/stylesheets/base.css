@@ -905,22 +905,27 @@ body {
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* RGB Feature */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-*[data-rgb="enabled"]::before,
-*[data-rgb="enabled"]::after {
+*[data-rgb]::before,
+*[data-rgb]::after {
     width: calc(100% + (2 * 2px));
     height: calc(100% + (2 * 2px));
     content: "";
     position: absolute;
     top: -2px;
     left: -2px;
+    opacity: 0;
     border-radius: 15px;
     background: var(--gradient-rgb);
     background-size: 400%;
     animation: rgb 20s linear infinite;
     z-index: -1;
 }
-*[data-rgb="enabled"]::before {
+*[data-rgb]::before {
     filter: blur(100px);
+}
+*[data-rgb="enabled"]::before,
+*[data-rgb="enabled"]::after {
+    opacity: 1;
 }
 @keyframes rgb {
 	0% {
