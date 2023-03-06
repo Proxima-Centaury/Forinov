@@ -33,6 +33,6 @@
     text-align: center;
     z-index: 2;
 }
-.registerFrame > p > a {
+.registerFrame > p > a > span {
     font-size: 30px;
 }
