@@ -176,6 +176,11 @@
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
 }
+.navbar > .links > li > ul > li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .navbar > .links > li > ul > li + li {
     border-top: var(--border);
 }
