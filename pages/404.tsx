@@ -13,7 +13,6 @@ import Button from "../components/buttons/button";
 /* Styles */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import NotFoundStyles from "../public/stylesheets/pages/NotFound.module.css";
-import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Not Found */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -30,7 +29,7 @@ const NotFound = (pageProps: NotFoundInterface) => {
                 <div className={ NotFoundStyles.notFound }>
                     <h1>404</h1>
                     <p>{ "Oops ! " + translations["La page que vous recherchez, n'existe pas"] + " !" }</p>
-                    <Button { ...buildButtonProps(ButtonStyles.classicLink, undefined, undefined, undefined, router.back, translations["Retournez à la page précédente"]) as ButtonInterface }/>
+                    <Button { ...buildButtonProps("404Back", router.back) as ButtonInterface }/>
                 </div>
             </div>
         </div>
