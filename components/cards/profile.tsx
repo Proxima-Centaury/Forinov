@@ -52,7 +52,7 @@ const ProfileCard = (pageProps: any) => {
                         <a href={ "https://" + profile.WEBSITE } target="blank">{ translations["Site internet"] }</a>
                     </div> : null }
                 </div> : null }
-                { (profile.COMMENT) ? <Format { ...pageProps } content={ profile.COMMENT }/> : null }
+                { (profile.COMMENT) ? <Format content={ profile.COMMENT }/> : null }
                 { (profile.CATEGORY.length > 0) ? <Tags tags={ profile.CATEGORY } main={ true }/> : null }
                 { (profile.TAGS) ? <Tags tags={ structureTags(profile.TAGS) }/> : null }
                 { (profileType.match(/(startup)/) && page !== "landing") ? <div className="separator"></div> : null }

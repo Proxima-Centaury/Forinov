@@ -1,23 +1,24 @@
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { MouseEvent, useState } from "react";
 import { ButtonInterface, NavbarInterface, SelectInterface } from "../typescript/interfaces";
-import { selectifyTheOptions, buildProperties, buildButtonProps } from "../scripts/utilities";
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { selectifyTheOptions, buildProperties, preventSubmit } from "../scripts/utilities";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
 import Image from "next/image";
 import Select from "../components/fields/select";
 import Button from "../components/buttons/button";
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import NavbarStyles from "../public/stylesheets/layout/Navbar.module.css";
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Navbar = (pageProps: NavbarInterface) => {
     const { states, stateSetters, layoutConfigurations, router }: any = pageProps;
     const { locale, locales, translations }: any = states;
@@ -28,6 +29,12 @@ const Navbar = (pageProps: NavbarInterface) => {
     const languageSelectDefaultValue = [ ...selectifyTheOptions(locales, "locales") as Array<any> ]?.filter((option: any) => option.VALUE === locale)[0];
     const languageSelectValues = [ "Single", locales, setLocale, languageSelectDefaultValue, "locales" ];
     const languageSelectObject = buildProperties(selectProps, languageSelectValues);
+    const buttonProps = [ "type", "action", "aria" ];
+    const navigationButtonClass = ButtonStyles.navigationButton + ((menuState) ? " " + ButtonStyles.active : "");
+    const navigationButtonAction = (event: any) => preventSubmit(event, () => setMenuState(!menuState));
+    const navigationButtonValues = [ navigationButtonClass, navigationButtonAction, translations["Bouton du menu de navigation"] ];
+    const navigationButtonObject = buildProperties(buttonProps, navigationButtonValues)
+    const parentProps = { navbar, translations };
     return <nav className={ NavbarStyles.navbar }>
         <div className={ NavbarStyles.logo }>
             <Link href="/">
@@ -36,22 +43,20 @@ const Navbar = (pageProps: NavbarInterface) => {
             </Link>
         </div>
         <ul className={ NavbarStyles.links + ((menuState) ? " " + NavbarStyles.show : "") }>
-            <NavbarMenu { ...pageProps } navbar={ navbar }/>
+            <NavbarMenu { ...parentProps }/>
         </ul>
         <div className={ NavbarStyles.actions }>
             <Select { ...languageSelectObject as SelectInterface }/>
-            <Button { ...buildButtonProps(translations, "navbarLogin") as ButtonInterface }/>
-            <Button { ...buildButtonProps(translations, "navbarSignup") as ButtonInterface }/>
+            <Link href="/login"><i className="fa-light fa-user"/></Link>
+            <Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["M'inscrire"] }</Link>
         </div>
-        <Button { ...buildButtonProps(translations, "navbarMenu", () => setMenuState(!menuState)) as ButtonInterface } active={ menuState }/>
+        <Button { ...navigationButtonObject as ButtonInterface }/>
     </nav>;
 };
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar ( Menu ) */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const NavbarMenu = (pageProps: any) => {
-    const { navbar, states }: any = pageProps;
-    const { translations }: any = states;
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const NavbarMenu = ({ navbar, translations }: any) => {
     const showSubMenu = (event: MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
         const target = event.target as HTMLButtonElement;
@@ -74,19 +79,18 @@ const NavbarMenu = (pageProps: any) => {
         };
     };
     if(navbar) {
-        return navbar.map(({ text, url, nesting, nest }: any, key: KeyType) => <li key={ key }>
-            { (!url) ? <button onClick={ showSubMenu }>{ translations[text] }</button> : null }
-            { (url) ? <Button { ...buildButtonProps(translations, "navbarMenuLink") as ButtonInterface } url={ url } text={ translations[text] }/> : null }
+        return navbar.map(({ url, text, nesting, nest }: any, key: KeyType) => <li key={ key }>
+            { (url) ? <Link href={ url }>{ translations[text] }</Link> : <button onClick={ showSubMenu }>{ translations[text] }</button> }
             { (nesting) ? <ul data-menu="nest">
                 { nest.map(({ url, text }: any, key: KeyType) => <li key={ key }>
-                    <Button { ...buildButtonProps(translations, "navbarMenuLink") as ButtonInterface } url={ url } text={ translations[text] + ((text.match(/(Comment|How)/)) ? " ?" : "") }/>
+                    <Link href={ url }>{ translations[text] + ((text.match(/(Comment|How)/)) ? " ?" : "") }</Link>
                 </li>) }
             </ul> : null }
         </li>);
     };
     return <></>;
 };
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 export default Navbar;

@@ -1,44 +1,44 @@
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { HomeInterface, ButtonInterface } from "../typescript/interfaces";
-import { formatNameForUrl, buildButtonProps } from "../scripts/utilities";
+import { HomeInterface } from "../typescript/interfaces";
 import api from "../scripts/api";
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import Image from "next/image";
-import Button from "../components/buttons/button";
+import Link from "next/link";
 import Carousel from "../components/carousels/carousel";
 import Format from "../components/texts/format";
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 import HomeStyles from "../public/stylesheets/pages/Home.module.css";
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = (pageProps: HomeInterface) => {
-	const { landing, startups, opportunities, states, router }: any = pageProps;
-	const { session, translations, metadatas }: any = states;
+	const { startups, opportunities, states, router }: any = pageProps;
+	const { translations, metadatas }: any = states;
 	return <>
 		<Head>
 			<title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
 		</Head>
-		<div className={ (session) ? "containerFullLogged" : "containerFull" }>
+		<div className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="home">
 				<div className={ HomeStyles.presentationContent }>
 					<h1>{ translations["Rejoignez le plus grand réseau social des acteurs de l'innovation"] }</h1>
 					<p className={ HomeStyles.paragraph }>{ translations["Forinov est la plateforme qui connecte startups, entreprises et partenaires pour matcher le besoin avec l'offre d'innovation"] + "." }</p>
 					<p className={ HomeStyles.paragraph }>{ translations["Découvrez et contactez les meilleures startups sur Forinov pour transformer vos bonnes idées en projets concrets"] + " !" }</p>
 					<div className={ HomeStyles.presentationLinks }>
-						<Button { ...buildButtonProps(translations, "homeFindStartups") as ButtonInterface }/>
-						<Button { ...buildButtonProps(translations, "homeFindCorporations") as ButtonInterface }/>
-						<Button { ...buildButtonProps(translations, "homeFindPartners") as ButtonInterface }/>
-						<Button { ...buildButtonProps(translations, "homeFindOpportunities") as ButtonInterface }/>
+						<Link className={ ButtonStyles.callToAction } href="/directories/startups">{ translations["Trouvez des startups"] }</Link>
+						<Link className={ ButtonStyles.callToAction } href="/directories/corporations">{ translations["Découvrez les entreprises membres"] }</Link>
+						<Link className={ ButtonStyles.callToAction } href="/directories/partners">{ translations["Découvrez les partenaires"] }</Link>
+						<Link className={ ButtonStyles.callToAction } href="/directories/opportunities">{ translations["Postulez aux opportunités en cours"] }</Link>
 					</div>
 				</div>
 				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
@@ -56,13 +56,13 @@ const Home = (pageProps: HomeInterface) => {
 							</div>
 						</div>
 						<div className={ HomeStyles.body }>
-							<Format { ...pageProps } content={ translations["Accédez à plus <b>d'opportunités</b> (appels à projets, concours, etc.)"] }/>
-							<Format { ...pageProps } content={ translations["Gagnez en <b>visibilité</b> et faites <b>matcher</b> vos solutions avec le besoin des entreprises"] }/>
-							<Format { ...pageProps } content={ translations["Entrez en <b>contact direct</b> avec les décideurs et remportez des <b>contrats</b>"] }/>
+							<Format content={ translations["Accédez à plus <b>d'opportunités</b> (appels à projets, concours, etc.)"] }/>
+							<Format content={ translations["Gagnez en <b>visibilité</b> et faites <b>matcher</b> vos solutions avec le besoin des entreprises"] }/>
+							<Format content={ translations["Entrez en <b>contact direct</b> avec les décideurs et remportez des <b>contrats</b>"] }/>
 						</div>
 						<div className={ HomeStyles.footer }>
-							<Button { ...buildButtonProps(translations, "homeSignup") as ButtonInterface }/>
-							<Button { ...buildButtonProps(translations, "homeStartups") as ButtonInterface }/>
+							<Link className={ ButtonStyles.callToAction } href="/onboarding">{ translations["Créer mon compte"] }</Link>
+							<Link className={ ButtonStyles.pureLink } href="/startups">{ translations["En savoir plus"] }</Link>
 						</div>
 					</div>
 					<div className={ HomeStyles.type } data-type="corporation">
@@ -74,13 +74,13 @@ const Home = (pageProps: HomeInterface) => {
 							</div>
 						</div>
 						<div className={ HomeStyles.body }>
-							<Format { ...pageProps } content={ translations["Optimisez votre <b>veille</b> et <bsourcing</b> de l'innovation (startups, incubateurs, etc.)"] }/>
-							<Format { ...pageProps } content={ translations["Trouvez des <b>solutions concrètes</b> en partageant vos <b>appels à projets</b> et vos besoins en terme d'innovation"] }/>
-							<Format { ...pageProps } content={ translations["Centralisez le suivi de vos <b>relations</b> entre <b>collaborateurs</b> et partagez-le avec <b>votre réseau</b> de startups et de partenaires"] }/>
+							<Format content={ translations["Optimisez votre <b>veille</b> et <bsourcing</b> de l'innovation (startups, incubateurs, etc.)"] }/>
+							<Format content={ translations["Trouvez des <b>solutions concrètes</b> en partageant vos <b>appels à projets</b> et vos besoins en terme d'innovation"] }/>
+							<Format content={ translations["Centralisez le suivi de vos <b>relations</b> entre <b>collaborateurs</b> et partagez-le avec <b>votre réseau</b> de startups et de partenaires"] }/>
 						</div>
 						<div className={ HomeStyles.footer }>
-							<Button { ...buildButtonProps(translations, "homeSignup") as ButtonInterface }/>
-							<Button { ...buildButtonProps(translations, "homeCorporations") as ButtonInterface }/>
+							<Link className={ ButtonStyles.callToAction } href="/onboarding">{ translations["Créer mon compte"] }</Link>
+							<Link className={ ButtonStyles.pureLink } href="/corporations">{ translations["En savoir plus"] }</Link>
 						</div>
 					</div>
 					<div className={ HomeStyles.type } data-type="partner">
@@ -92,13 +92,13 @@ const Home = (pageProps: HomeInterface) => {
 							</div>
 						</div>
 						<div className={ HomeStyles.body }>
-							<Format { ...pageProps } content={ translations["Apportez <b>visibilité</b> et <b>opportunités</b> à votre réseau de startups et d'entreprises"] }/>
-							<Format { ...pageProps } content={ translations["Gérez vos <b>appels à candidatures</b> et partagez vos <b>opportunités</b>"] }/>
-							<Format { ...pageProps } content={ translations["Simplifiez le <b>suivi de votre portefeuille</b> de startups (gestion du dealflow, suivi des mises en relation, etc.)"] }/>
+							<Format content={ translations["Apportez <b>visibilité</b> et <b>opportunités</b> à votre réseau de startups et d'entreprises"] }/>
+							<Format content={ translations["Gérez vos <b>appels à candidatures</b> et partagez vos <b>opportunités</b>"] }/>
+							<Format content={ translations["Simplifiez le <b>suivi de votre portefeuille</b> de startups (gestion du dealflow, suivi des mises en relation, etc.)"] }/>
 						</div>
 						<div className={ HomeStyles.footer }>
-							<Button { ...buildButtonProps(translations, "homeSignup") as ButtonInterface }/>
-							<Button { ...buildButtonProps(translations, "homePartners") as ButtonInterface }/>
+							<Link className={ ButtonStyles.callToAction } href="/onboarding">{ translations["Créer mon compte"] }</Link>
+							<Link className={ ButtonStyles.pureLink } href="/partners">{ translations["En savoir plus"] }</Link>
 						</div>
 					</div>
 				</div>
@@ -133,39 +133,27 @@ const Home = (pageProps: HomeInterface) => {
 					<div className="separator"></div>
 				</div>
 			</div>
-			{ (startups.length > 0) ? <div className={ HomeStyles.startups } data-type="home">
+			<div className={ HomeStyles.startups } data-type="home">
 				<h4>{ translations["Nos dernières startups inscrites"] + " :" }</h4>
 				<Carousel { ...pageProps } component="LatestStartups" data={ startups }/>
 				<div className={ HomeStyles.actions } data-justify="left">
-					<Button { ...buildButtonProps(translations, "homeFindStartups") as ButtonInterface } text={ translations["Accéder à l'annuaire des startups"] }/>
+					<Link className={ ButtonStyles.callToAction } href="/directories/startups">{ translations["Accéder à l'annuaire des startups"] }</Link>
 				</div>
-			</div> : null }
-			{ (landing.CATEGORIES.length > 0) ? <div className={ HomeStyles.startups } data-type="home">
-				<h4>{ translations["Trouvez votre pépite parmi"] + " " + landing.COUNTERS.STARTUPS + " " + translations["Startups réparties en"].toLowerCase() + " " + landing.COUNTERS.STARTUPSCATEGORIES + " " + translations["Catégories"].toLowerCase() }</h4>
-				<div className={ HomeStyles.startupsCategories }>
-					{ landing.CATEGORIES.map((category: any, key: KeyType) => {
-						const url = "/directories/startups/categories/" + formatNameForUrl(category.NAME) + "_"  + category.ID;
-						return <Button key={ key } { ...buildButtonProps(translations, "homeCategories") as ButtonInterface } url={ url } text={ category.NAME }/>;
-					}) }
-				</div>
-				<div className={ HomeStyles.actions } data-justify="center">
-					<Button { ...buildButtonProps(translations, "homeFindStartups") as ButtonInterface } text={ translations["Accéder à l'annuaire des startups"] }/>
-				</div>
-			</div> : null }
-			{ (opportunities.length > 0) ? <div className={ HomeStyles.opportunity } data-type="home">
+			</div>
+			<div className={ HomeStyles.opportunity } data-type="home">
 				<h4>{ translations["Les dernières opportunités"] + " :" }</h4>
 				<Carousel { ...pageProps } component="LatestOpportunities" data={ opportunities }/>
 				<div className={ HomeStyles.actions } data-justify="left">
-					<Button { ...buildButtonProps(translations, "homeFindOpportunities") as ButtonInterface } text={ translations["Découvrir toutes les opportunités"] }/>
-					<Button { ...buildButtonProps(translations, "homeOppportunities") as ButtonInterface } text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
+					<Link className={ ButtonStyles.callToAction } href="/directories/opportunities">{ translations["Découvrir toutes les opportunités"] }</Link>
+					<Link className={ ButtonStyles.callToActionAlternative } href="/opportunities">{ translations["Qu'est-ce qu'une opportunité"] + " ?" }</Link>
 				</div>
-			</div> : null }
+			</div>
 		</div>
 	</>;
 };
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Properties */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { res, locale, locales, defaultLocale } = context;
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
@@ -173,14 +161,13 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			landing: await api.getLanding("next", "Landing", language),
 			opportunities: await api.getLandingOpportunities("next", "Landing", language),
 			startups: await api.getLandingStartups("next", "Landing", language)
 		}
 	};
 };
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 export default Home;
 export { getServerSideProps };

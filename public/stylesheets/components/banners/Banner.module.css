@@ -1,13 +1,11 @@
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Banners ( Identification & Recover ) */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .identificationBanner,
 .recoverBanner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    grid-gap: 16px;
-    gap: 16px;
     padding: 16px;
     border-radius: 15px;
     box-shadow: var(--box-shadow);
@@ -27,10 +25,17 @@
 }
 .identificationBanner > p,
 .recoverBanner > p {
+    margin: 0px 16px 0px 0px;
     font-size: 16px;
 }
 .recoverBanner > p {
     color: var(--perfect-black-color);
+}
+@media screen and (max-width: 576px) {
+    .identificationBanner > p,
+    .recoverBanner > p {
+        margin: 0px 0px 16px 0px;
+    }
 }
 .identificationBanner > p {
     color: var(--perfect-white-color);
@@ -39,11 +44,14 @@
 .recoverBanner > .actions {
     display: flex;
     align-items: center;
-    grid-gap: 16px;
-    gap: 16px;
 }
-.identificationBanner > .actions > a > p {
+.identificationBanner > .actions > * + *,
+.recoverBanner > .actions > * + * {
+    margin: 0px 0px 0px 16px;
+}
+.identificationBanner > .actions > a:not([class*="callToAction"]) {
     color: var(--perfect-white-color);
+    text-decoration: underline;
 }
 .recoverBanner > .actions > button {
     color: var(--text-main-color);

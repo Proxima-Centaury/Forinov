@@ -9,9 +9,7 @@ import AccordionStyles from "../../public/stylesheets/components/accordions/Acco
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Accordion */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Accordion = (pageProps: any) => {
-	const { data, states }: any = pageProps;
-	const { translations }: any = states;
+const Accordion = ({ data, translations }: any) => {
 	const expandContent = (event: any) => {
 		const target = event.target as Element;
 		const preciseTarget = target.closest("button");
@@ -27,7 +25,7 @@ const Accordion = (pageProps: any) => {
 		{ data.map(({ button, content }: any, key: KeyType) => <div key={ key }>
 			<button className={ AccordionStyles.button } onClick={ (event) => expandContent(event) }>{ translations[button] + " ?" }<i className="fa-light fa-chevron-down"/></button>
 			<div className={ AccordionStyles.content }>
-				{ (content) ? <Format { ...pageProps } content={ translations[content] }/> : "Lorem ipsum sit amet, dolor adipiscim consectetur...".repeat(100) + "." }
+				{ (content) ? <Format content={ translations[content] }/> : "Lorem ipsum sit amet, dolor adipiscim consectetur...".repeat(100) + "." }
 			</div>
 		</div>) }
 	</div>;
