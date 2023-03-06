@@ -74,8 +74,9 @@ const NavbarMenu = (pageProps: any) => {
         };
     };
     if(navbar) {
-        return navbar.map(({ text, nesting, nest }: any, key: KeyType) => <li key={ key }>
-            <button onClick={ showSubMenu }>{ translations[text] }</button>
+        return navbar.map(({ text, url, nesting, nest }: any, key: KeyType) => <li key={ key }>
+            { (!url) ? <button onClick={ showSubMenu }>{ translations[text] }</button> : null }
+            { (url) ? <Button { ...buildButtonProps(translations, "navbarMenuLink") as ButtonInterface } url={ url } text={ translations[text] }/> : null }
             { (nesting) ? <ul data-menu="nest">
                 { nest.map(({ url, text }: any, key: KeyType) => <li key={ key }>
                     <Button { ...buildButtonProps(translations, "navbarMenuLink") as ButtonInterface } url={ url } text={ translations[text] + ((text.match(/(Comment|How)/)) ? " ?" : "") }/>
