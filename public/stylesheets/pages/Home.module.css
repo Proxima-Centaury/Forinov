@@ -944,9 +944,11 @@
 /* Home ( Questions For Startup ) */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .questions[data-type="startup"] button[class*="active"] {
-	color: var(--sunred-color);
 	border-color: var(--lightred-color);
 	background-color: var(--lightred-color);
+}
+.questions[data-type="startup"] button[class*="active"] > span {
+	color: var(--sunred-color);
 }
 .questions[data-type="startup"] div[class*="active"] {
 	background-color: var(--lightred-color);
@@ -962,9 +964,11 @@
 /* Home ( Questions For Corporation ) */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .questions[data-type="corporation"] button[class*="active"] {
-	color: var(--pureblue-color);
 	border-color: var(--lightblue-color);
 	background-color: var(--lightblue-color);
+}
+.questions[data-type="corporation"] button[class*="active"] > span {
+	color: var(--pureblue-color);
 }
 .questions[data-type="corporation"] div[class*="active"] {
 	background-color: var(--lightblue-color);
@@ -980,9 +984,11 @@
 /* Home ( Questions For Partner ) */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .questions[data-type="partner"] button[class*="active"] {
-	color: var(--grassgreen-color);
 	border-color: var(--lightgreen-color);
 	background-color: var(--lightgreen-color);
+}
+.questions[data-type="partner"] button[class*="active"] > span {
+	color: var(--grassgreen-color);
 }
 .questions[data-type="partner"] div[class*="active"] {
 	background-color: var(--lightgreen-color);
@@ -998,9 +1004,11 @@
 /* Home ( Questions For Opportunity ) */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .questions[data-type="opportunity"] button[class*="active"] {
-	color: var(--perfect-black-color);
 	border-color: var(--light-grey-color);
 	background-color: var(--light-grey-color);
+}
+.questions[data-type="opportunity"] button[class*="active"] > span {
+	color: var(--perfect-black-color);
 }
 .questions[data-type="opportunity"] div[class*="active"] {
 	background-color: var(--light-grey-color);
