@@ -29,7 +29,7 @@ const NotFound = (pageProps: NotFoundInterface) => {
                 <div className={ NotFoundStyles.notFound }>
                     <h1>404</h1>
                     <p>{ "Oops ! " + translations["La page que vous recherchez, n'existe pas"] + " !" }</p>
-                    <Button { ...buildButtonProps("404Back", router.back) as ButtonInterface }/>
+                    <Button { ...buildButtonProps(translations, "404Back", router.back) as ButtonInterface }/>
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ const ServerError = (pageProps: ServerErrorInterface) => {
                 <div className={ ServerErrorStyles.serverError }>
                     <h1>500</h1>
                     <p>{ "Oops ! " + translations["Une erreur serveur est survenue"] + " !" }</p>
-                    <Button { ...buildButtonProps("500Back", router.back) as ButtonInterface }/>
+                    <Button { ...buildButtonProps(translations, "500Back", router.back) as ButtonInterface }/>
                 </div>
             </div>
         </div>
