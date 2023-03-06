@@ -17,9 +17,9 @@ import LoginStyles from "../../public/stylesheets/components/cards/Login.module.
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const LoginCard = (pageProps: any) => {
     const { states }: any = pageProps;
-    const { translations }: any = states;
+    const { translations, RGB }: any = states;
     return <>
-        <div className={ LoginStyles.card }>
+        <div className={ LoginStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
             <div className={ LoginStyles.head }>
                 <h2>{ translations["Accéder à tout Forinov"] }</h2>
                 <p>{ translations["Pas encore membre Forinov"] + " ?" } <Button { ...buildButtonProps(translations, "loginSignup") as ButtonInterface }/> !</p>
