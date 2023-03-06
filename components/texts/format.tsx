@@ -1,22 +1,24 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Format */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Format = ({ content }: any) => {
-    const router = useRouter();
+const Format = (pageProps: any) => {
+    const { content, disableLinks, router }: any = pageProps;
     const [ newContent, setNewContent ] = useState(undefined);
     const handleRouting = (event: any) => {
         event.preventDefault();
         const target = event.target.closest("a");
-        const href = new URL(target.href).pathname;
-        return router.push(href);
+        if(target.href[0] === "/") {
+            const route = router.basePath + "/" + router.locale + "/" + new URL(target.href).pathname;
+            return window.location = route as any;
+        };
+        return router.push(target.href);
     };
     useEffect(() => {
-        if(content) {
+        if(content && !disableLinks) {
             const links: Array<any> = [];
             const matches = content.match(/\[(.*?)\]/g);
             if(matches && matches.length > 0) {
@@ -40,7 +42,7 @@ const Format = ({ content }: any) => {
         const nextLinks = document.querySelectorAll("a[data-next-link]");
         (nextLinks.length > 0) ? nextLinks.forEach((link: any) => link.onclick = handleRouting) : null;
     });
-    return <div className="formattedContent" dangerouslySetInnerHTML={ { __html: (newContent || content) + "." } } />;
+    return <div className="formattedContent" dangerouslySetInnerHTML={ { __html: (newContent || content) + "." } }/>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */

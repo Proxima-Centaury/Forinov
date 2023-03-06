@@ -18,14 +18,18 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Filters */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Filters = (pageProps: any) => {
-    const { title, setDisplay, states }: any = pageProps;
+    const { title, display, setDisplay, states }: any = pageProps;
     const { translations }: any = states;
-    const buttonProps = [ "type", "faIcon", "faIconClass", "action", "aria" ];
+    const buttonProps = [ "type", "faIcon", "faIconClass", "action", "aria", "active" ];
     const gridButtonAction = (event: any) => preventSubmit(event, () => setDisplay("grid threeColumns"));
-    const gridButtonValues = [ ButtonStyles.callToActionAlternativeSquaredIcon, true, "fa-light fa-grid-2", gridButtonAction, translations["Bouton d'affichage en grille"] ];
+    const gridButtonClass = ButtonStyles.callToActionAlternativeSquaredIcon;
+    const gridButtonActive = (display === "grid threeColumns") ? true : false;
+    const gridButtonValues = [ gridButtonClass, true, "fa-light fa-grid-2", gridButtonAction, translations["Bouton d'affichage en grille"], gridButtonActive ];
     const gridButtonObject = buildProperties(buttonProps, gridButtonValues);
     const listButtonAction = (event: any) => preventSubmit(event, () => setDisplay("list"));
-    const listButtonValues = [ ButtonStyles.callToActionAlternativeSquaredIcon, true, "fa-light fa-list", listButtonAction, translations["Bouton d'affichage en liste"] ];
+    const listButtonClass = ButtonStyles.callToActionAlternativeSquaredIcon;
+    const listButtonActive = (display === "list") ? true : false;
+    const listButtonValues = [ listButtonClass, true, "fa-light fa-list", listButtonAction, translations["Bouton d'affichage en liste"], listButtonActive ];
     const listButtonObject = buildProperties(buttonProps, listButtonValues);
     const inputProps = [ "type", "name", "placeholder", "version", "action" ];
     const searchInputValues = [ "search", "search", translations[""], 1, undefined ];

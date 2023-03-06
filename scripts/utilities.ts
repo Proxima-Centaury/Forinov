@@ -1,15 +1,18 @@
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import chalk from "chalk";
-import { SelectOption } from "../typescript/types";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../config.json";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import config from "../configurations/config.json";
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Styles */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Utilities */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /**
 * This is a ```class```.
 * @class Utilities
@@ -18,7 +21,7 @@ import config from "../config.json";
 * @method setCookie : {@link Utilities.setCookie}
 * @method getCookie : {@link Utilities.getCookie}
 * @method getTranslations : {@link Utilities.getTranslations}
-* @method getMetadataTranslations : {@link Utilities.getMetadataTranslations}
+* @method getMetadatasTranslations : {@link Utilities.getMetadatasTranslations}
 * @method preventSubmit : {@link Utilities.preventSubmit}
 * @method buildProperties : {@link Utilities.buildProperties};
 * @method scrollTo : {@link Utilities.scrollTo};
@@ -30,6 +33,8 @@ import config from "../config.json";
 * @method bindEventListener : {@link Utilities.bindEventListeners};
 * @method removeEventListeners : {@link Utilities.removeEventListeners};
 * @method structureTags : {@link Utilities.structureTags};
+* @method formatType : {@link Utilities.formatType};
+* @method buildButtonProps : {@link Utilities.buildButtonProps};
 * @returns
 * - ```void``` ( nothing ).
 * ---
@@ -75,23 +80,23 @@ class Utilities {
     * console.log(options);
     * // outputs :
     * [
-    *     { key: 0, value: "John", text: "John" },
-    *     { key: 1, value: "Jane", text: "Jane" },
-    *     { key: 2, value: "Jeff", text: "Jeff" },
-    *     { key: 3, value: "Jinx", text: "Jinx" },
+    *     { ID: 0, NAME: "John", VALUE: "John" },
+    *     { ID: 1, NAME: "Jane", VALUE: "Jane" },
+    *     { ID: 2, NAME: "Jeff", VALUE: "Jeff" },
+    *     { ID: 3, NAME: "Jinx", VALUE: "Jinx" },
     * ]
-    * @note The key property will be added automatically upon the execution  if an array of strings only is passed.
-    * @note The {@link source} parameter is an optionnal addon that helps you customize the text of the options.
+    * @note The ID property will be added automatically upon the execution  if an array of strings only is passed.
+    * @note The {@link source} parameter is an optionnal addon that helps you customize the NAME of the options.
     * @example
     * const options = selectifyTheOptions([ "fr-FR", "en-US", "ja-JP" ], "locales").
     * console.log(options);
     * // outputs :
     * [
-    *     { key: 0, value: "fr-FR", text: "Français" },
-    *     { key: 1, value: "en-US", text: "English" },
-    *     { key: 2, value: "ja-JP", text: "日本語" }
+    *     { ID: 0, NAME: "Français", VALUE: "fr-FR" },
+    *     { ID: 1, NAME: "English", VALUE: "en-US" },
+    *     { ID: 2, NAME: "日本語", VALUE: "ja-JP" }
     * ]
-    * @note To make it work, you'll need to add conditions to this method to switch texts according to {@link source}'s value.
+    * @note To make it work, you'll need to add conditions to this method to switch NAMEs according to {@link source}'s value.
     * @example
     * selectifyTheOptions(options?: any, source?: String) {
     *     if(!options || options.length <= 0 || (options && !Array.isArray(options))) {
@@ -100,31 +105,34 @@ class Utilities {
     *     const selectifiedOptions: Array<Object> = [];
     *     options.map((option: any, key: KeyType) => {
     *         if(typeof option === "string") {
-    *             // Here, I imported a json file that contains the proper texts to display.
+    *             // Here, I imported a json file that contains the proper NAMEs to display.
     *             const { locales } = config;
-    *             // I store each text in this constant according to option ( which is a string, "fr-FR" in that case ).
-    *             // You could put this constant inside a switch to get the needed values according to source parameter.
+    *             // I store each NAME in this constant according to option ( which is a string, "fr-FR" in that case ).
+    *             // You could put this constant inside a switch to get the needed VALUEs according to source parameter.
     *             const optionText = (source) ? locales[option as keyof Object] : option;
     *             // Example :
     *             // switch(source) {
     *             //    case "locales":
     *             //        optionText = (source) ? locales[option as keyof Object] : option;
     *             // }
-    *             (option.length > 0) ? selectifiedOptions.push({ key: key, value: option, text: optionText }) : null;
+    *             (option.length > 0) ? selectifiedOptions.push({ ID: key, NAME: optionText, VALUE: option }) : null;
     *             // And then you may push inside or outside the switch, depends on your logic / architecture.
     *         } else {
     *             // We don't touch this part because here, we're assuming that there's no change needed.
     *             // By that, I mean if you get into the else, then it means that options contains objects.
-    *             // And then we assume that each object looks like that : { value: 107, text: "Kazakhstan" }.
-    *             const optionAsObject: SelectOption = option;
-    *             optionAsObject.key = key;
+    *             // And then we assume that each object looks like that : { NAME: "Kazakhstan", VALUE: 107 }.
+    *             const optionAsObject: any = option;
+    *             if(!option.hasProperty("ID")) {
+    *                 optionAsObject.ID = key;
+    *             };
     *             selectifiedOptions.push(optionAsObject);
     *         };
     *     });
     *     return selectifiedOptions;
     * };
     * @note If you pass an array of objects, make sure to follow the instruction bellow.
-    * @note Each object in the {@link options} parameter should have the same structure as above without the key property.
+    * @note Each object in the {@link options} parameter should have the same structure as above.
+    * @note If the {@link options} parameter doesn't have any ID, make sure to add your own.
     */
     selectifyTheOptions(options?: any, source?: String): Array<Object>|Boolean {
         if(!options || options.length <= 0 || (options && !Array.isArray(options))) {
@@ -135,10 +143,12 @@ class Utilities {
             if(typeof option === "string") {
                 const { locales } = config;
                 const optionText = (source) ? locales[option as keyof Object] : option;
-                (option.length > 0) ? selectifiedOptions.push({ key: key, value: option, text: optionText }) : null;
+                (option.length > 0) ? selectifiedOptions.push({ ID: key, NAME: optionText, VALUE: option }) : null;
             } else {
-                const optionAsObject: SelectOption = option;
-                optionAsObject.key = key;
+                const optionAsObject: any = option;
+                if(!option.hasProperty("ID")) {
+                    optionAsObject.ID = key;
+                };
                 selectifiedOptions.push(optionAsObject);
             };
         });
@@ -201,7 +211,7 @@ class Utilities {
     };
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
-    * @function getMetadataTranslations
+    * @function getMetadatasTranslations
     * @param { String|RegExp } [ locale ] Should be a ```string```.
     * @returns { Object }
     * - ```object```.
@@ -209,7 +219,7 @@ class Utilities {
     * @note This method is used to get the proper metadatas according to locale's value.
     * @note The {@link locale} parameter should be the user's selected language.
     */
-    getMetadataTranslations = (locale: String): Object => {
+    getMetadatasTranslations = (locale: String): Object => {
         if(locale) {
             const language = locale.substring(0, 2);
             const translations = require("../public/static/locales/metadatas/" + language + ".json");
@@ -433,7 +443,11 @@ class Utilities {
                     };
                 };
             });
-            return (string.length > 0) ? string.join(", ") : translations["Moins de 24 heures restantes"];
+            const finalText = (string.length > 0) ? string.join(", ") : null;
+            if(finalText) {
+                return translations["Expire dans"] + " " + finalText;
+            };
+            return translations["Moins de 24 heures restantes"];
         };
     };
     /**
@@ -445,9 +459,17 @@ class Utilities {
     * - ```false``` if string parameter missing or wrong.
     * ---
     * @note This method is used to return the passed string trimed with all letters lowercased and spaces removed.
-    * @note The {@link string} parameter should be a string.
+    * @note The {@link name} parameter should be a string.
     */
-    formatNameForUrl = (name: String): String|Boolean => (name) ? name.toLowerCase().replaceAll(/\s+/g, "").replaceAll(/\&/g, "-").trim() : false;
+    formatNameForUrl = (name: String): String|Boolean => {
+        if(!name) {
+            return false;
+        };
+        name = name.toLowerCase().replaceAll(/\s+/g, "").trim();
+        const characters = [ "/", "&" ];
+        characters.forEach((character) => name = name.replaceAll(character, "-"));
+        return name;
+    };
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
     * @function bindEventListeners
@@ -504,20 +526,61 @@ class Utilities {
         const array = (string.match(",")) ? string.split(",").map((element, key) => ({ ID: key, NAME: element })) : [ { ID: 0, NAME: string } ];
         return array;
     };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function formatType
+    * @param { String } [ type ] Should be a ```string```.
+    * @returns { String|Boolean }
+    * - ```string```.
+    * - ```false``` if string parameter missing or wrong.
+    * ---
+    * @note This method is used to return the correct company type according to the router type parameter.
+    * @note The {@link type} parameter should be a string.
+    */
+    formatType = (type: String): String|Boolean => {
+        if(!type || type.trim().length <= 0) {
+            return false;
+        };
+        type = String(type);
+        type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
+        type = (type.match(/(entreprise)/)) ? "corporation" : type;
+        type = (type.match(/(partenaire)/)) ? "partner" : type;
+        return type;
+    };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function buildButtonProps
+    * @returns { Object }
+    * - ```object```.
+    * ---
+    * @note This method is used to return an object of properties to build buttons fast.
+    * @note All the parameters are optional and refers to the button component's properties.
+    */
+    buildButtonProps = (type?: String, faIcon?: Boolean, faIconClass?: String, url?: String, action?: Function, text?: String, count?: Number, disabled?: Boolean, aria?: String, index?: Number, active?: Boolean): Object => {
+        const complete = {
+            type: type || ButtonStyles.default,
+            faIcon: faIcon || false, faIconClass: faIconClass || undefined,
+            url: url || undefined, action: action || undefined,
+            text: text || undefined, count: count || undefined,
+            aria: aria || undefined, index: index || undefined,
+            active: active || false, disabled: disabled || false
+        };
+        return complete;
+    };
 };
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Instance */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const utilities = new Utilities();
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Quick Method Access */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const beautifyTheLogs = utilities.beautifyTheLogs;
 const selectifyTheOptions = utilities.selectifyTheOptions;
 // const setCookie = utilities.setCookie;
 // const getCookie = utilities.getCookie;
 const getTranslations = utilities.getTranslations;
-const getMetadataTranslations = utilities.getMetadataTranslations;
+const getMetadatasTranslations = utilities.getMetadatasTranslations;
 const handleOutOfArea = utilities.handleOutOfArea;
 const preventSubmit = utilities.preventSubmit;
 const buildProperties = utilities.buildProperties;
@@ -530,9 +593,11 @@ const formatNameForUrl = utilities.formatNameForUrl;
 const bindEventListeners = utilities.bindEventListeners;
 const removeEventListeners = utilities.removeEventListeners;
 const structureTags = utilities.structureTags;
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+const formatType = utilities.formatType;
+const buildButtonProps = utilities.buildButtonProps;
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 export default utilities;
 export {
     beautifyTheLogs,
@@ -540,7 +605,7 @@ export {
     // setCookie,
     // getCookie,
     getTranslations,
-    getMetadataTranslations,
+    getMetadatasTranslations,
     handleOutOfArea,
     preventSubmit,
     buildProperties,
@@ -552,5 +617,7 @@ export {
     formatNameForUrl,
     bindEventListeners,
     removeEventListeners,
-    structureTags
+    structureTags,
+    formatType,
+    buildButtonProps
 };

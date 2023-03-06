@@ -1,148 +1,32 @@
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentation {
 	display: flex;
+	grid-gap: 24px;
+	gap: 24px;
 	width: 100%;
-	height: max-content;
 	padding: 80px;
-	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-sub-color);
 }
 @media screen and (max-width: 576px) {
 	.presentation {
 		padding: 16px;
-		border-radius: 0px 0px 50px 0px;
 	}
 }
-.presentation[data-type="startup"] {
-	background-color: var(--lightred-color);
-}
-.presentation[data-type="corporation"] {
-	border-radius: 0px 0px 0px 100px;
-	background-color: var(--lightblue-color);
-}
-@media screen and (max-width: 576px) {
-	.presentation[data-type="corporation"] {
-		border-radius: 0px 0px 0px 50px;
-	}
-}
-.presentation[data-type="partner"] {
-	border-radius: 0px 0px 0px 100px;
-	background-color: var(--lightgreen-color);
-}
-@media screen and (max-width: 576px) {
-	.presentation[data-type="partner"] {
-		border-radius: 0px 0px 0px 50px;
-	}
-}
-.presentation[data-type="opportunity"] {
-	background-color: var(--background-information-color);
-}
-.presentation::before {
-	content: "";
+.presentation::before,
+.presentation::after {
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	background-color: var(--background-main-color);
+	content: "";
 	z-index: -1;
-}
-.presentation > div {
-	display: flex;
-	flex-direction: column;
-	height: fit-content;
-	margin: 0px 16px 0px 0px;
-}
-@media screen and (max-width: 576px) {
-	.presentation > div {
-		margin: 0px;
-	}
-}
-.presentation > div > h1 {
-	font-family: "Nunito Sans";
-	font-size: 65px;
-	font-weight: bold;
-}
-@media screen and (max-width: 576px) {
-	.presentation > div > h1 {
-		font-size: 55px;
-		text-align: center;
-	}
-}
-.presentation[data-type="startup"] > div > h1 {
-	color: var(--sunred-color);
-}
-.presentation[data-type="corporation"] > div > h1 {
-	color: var(--pureblue-color);
-}
-.presentation[data-type="partner"] > div > h1 {
-	color: var(--grassgreen-color);
-}
-.presentation > div > p {
-	font-family: "Nunito Sans";
-	font-size: 24px;
-}
-@media screen and (max-width: 576px) {
-	.presentation > div > p {
-		text-align: center;
-	}
-}
-.presentation > div > p + p {
-	margin: 16px 0px 0px 0px;
-}
-.presentation[data-type="startup"] > div > p {
-	color: var(--sunred-color);
-}
-.presentation[data-type="corporation"] > div > p {
-	color: var(--pureblue-color);
-}
-.presentation[data-type="partner"] > div > p {
-	color: var(--grassgreen-color);
-}
-.presentation > div > a {
-	width: fit-content;
-	margin: 16px 0px 0px 0px;
-	padding: 16px;
-	font-size: 19px;
-	font-weight: 600;
-	color: var(--perfect-white-color);
-	text-align: center;
-	border-radius: 100px;
-	border: var(--border);
-	border-width: 2px;
-	border-color: var(--logo-blue-color);
-	background-color: var(--logo-blue-color);
-}
-@media screen and (max-width: 576px) {
-	.presentation > div > a {
-		width: 100%;
-		font-size: 16px;
-	}
-}
-.presentation > div > a + a {
-	margin: 16px 0px 0px 0px;
-}
-.presentation > div > a:hover {
-	color: var(--text-main-color);
-	background-color: transparent;
-}
-.presentation[data-type="startup"] > div > a:hover,
-.presentation[data-type="corporation"] > div > a:hover,
-.presentation[data-type="partner"] > div > a:hover {
-	color: var(--perfect-black-color);
-}
-.presentation > div > a > i {
-	margin: 0px 0px 0px 16px;
-	color: var(--perfect-white-color);
-}
-.presentation > div > a:hover > i {
-	color: var(--text-main-color);
 }
 .presentation > img {
 	width: 500px;
 	height: 500px;
+	margin: auto;
 	object-fit: contain;
 }
 @media screen and (max-width: 992px) {
@@ -150,495 +34,809 @@
 		display: none;
 	}
 }
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Onboarding ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.onboarding {
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation For Home ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentation[data-type="home"]::before {
 	background-color: var(--background-sub-color);
 }
-.onboarding > div {
-	width: 100%;
-	height: max-content;
-	padding: 80px;
-	border-radius: 100px 0px 0px 100px;
+.presentation[data-type="home"]::after {
+	border-radius: 0px 0px 100px 0px;
 	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
-	.onboarding > div {
-		padding: 16px;
-		border-radius: 50px 0px 0px 50px;
+	.presentation[data-type="home"]::after {
+		border-radius: 0px 0px 50px 0px;
 	}
 }
-.onboarding > div > h3 {
-	margin: 0px auto;
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation For Startup ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentation[data-type="startup"]::before {
+	background-color: var(--background-main-color);
+}
+.presentation[data-type="startup"]::after {
+	border-radius: 0px 0px 100px 0px;
+	background-color: var(--lightred-color);
+}
+@media screen and (max-width: 576px) {
+	.presentation[data-type="startup"]::after {
+		border-radius: 0px 0px 50px 0px;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation For Corporation ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentation[data-type="corporation"]::before {
+	background-color: var(--background-main-color);
+}
+.presentation[data-type="corporation"]::after {
+	border-radius: 0px 0px 0px 100px;
+	background-color: var(--lightblue-color);
+}
+@media screen and (max-width: 576px) {
+	.presentation[data-type="corporation"]::after {
+		border-radius: 0px 0px 0px 50px;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation For Partner ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentation[data-type="partner"]::before {
+	background-color: var(--background-main-color);
+}
+.presentation[data-type="partner"]::after {
+	border-radius: 0px 0px 0px 100px;
+	background-color: var(--lightgreen-color);
+}
+@media screen and (max-width: 576px) {
+	.presentation[data-type="partner"]::after {
+		border-radius: 0px 0px 0px 50px;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation For Opportunity ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentation[data-type="opportunity"]::before {
+	background-color: var(--background-main-color);
+}
+.presentation[data-type="opportunity"]::after {
+	border-radius: 0px 0px 100px 0px;
+	background-color: var(--light-grey-color);
+}
+@media screen and (max-width: 576px) {
+	.presentation[data-type="opportunity"]::after {
+		border-radius: 0px 0px 50px 0px;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation Content ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentationContent {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+}
+.presentationContent > h1 {
+	font-family: "Nunito Sans";
+	font-size: 65px;
+	font-weight: 600;
+}
+.presentationContent > p {
+	font-family: "Nunito Sans";
+	font-size: 24px;
+}
+@media screen and (max-width: 576px) {
+	.presentationContent > h1,
+	.presentationContent > p {
+		text-align: center;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation Content For Home ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentation[data-type="home"] > .presentationContent > h1,
+.presentation[data-type="home"] > .presentationContent > p {
+	color: var(--text-main-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation Content For Startup ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentation[data-type="startup"] > .presentationContent > h1,
+.presentation[data-type="startup"] > .presentationContent > p {
+	color: var(--sunred-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation Content For Corporation ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentation[data-type="corporation"] > .presentationContent > h1,
+.presentation[data-type="corporation"] > .presentationContent > p {
+	color: var(--pureblue-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation Content For Partner ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentation[data-type="partner"] > .presentationContent > h1,
+.presentation[data-type="partner"] > .presentationContent > p {
+	color: var(--grassgreen-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation Content For Opportunity ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentation[data-type="opportunity"] > .presentationContent > h1,
+.presentation[data-type="opportunity"] > .presentationContent > p {
+	color: var(--perfect-black-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation Links ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentationLinks {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 16px;
+	gap: 16px;
+	width: max-content;
+}
+@media screen and (max-width: 576px) {
+	.presentationLinks {
+		width: 100%;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Onboarding ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.onboarding {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: 80px;
+}
+@media screen and (max-width: 576px) {
+	.onboarding {
+		padding: 16px;
+	}
+}
+.onboarding::before,
+.onboarding::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.onboarding > h3 {
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
 }
-@media screen and (max-width: 576px) {
-	.onboarding > div > h3 {
-		font-size: 38px;
-	}
-}
-.onboarding > div > p {
-	margin: 0px auto 32px auto;
+.onboarding > p {
 	font-family: "Nunito Sans";
 	font-size: 21px;
 	text-align: center;
 }
-.onboarding > div > .types {
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Onboarding For Home ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.onboarding[data-type="home"]::before {
+	background-color: var(--background-main-color);
+}
+.onboarding[data-type="home"]::after {
+	border-radius: 100px 0px 0px 100px;
+	background-color: var(--background-sub-color);
+}
+@media screen and (max-width: 576px) {
+	.onboarding[data-type="home"]::after {
+		border-radius: 50px 0px 0px 50px;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Onboarding Types ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.types {
 	display: flex;
 	justify-content: center;
+	grid-gap: 40px;
+	gap: 40px;
 }
 @media screen and (max-width: 768px) {
-	.onboarding > div > .types {
+	.types {
 		flex-direction: column;
 	}
 }
-.onboarding > div > .types > .type {
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Onboarding Type ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.type {
 	display: flex;
 	flex-direction: column;
 	flex: 1;
+	grid-gap: 32px;
+	gap: 32px;
 	padding: 16px;
 	border-radius: 15px;
 	background-color: var(--background-sub-color);
 	box-shadow: var(--box-shadow);
 }
-.onboarding > div > .types > .type + .type {
-	margin: 0px 0px 0px 32px;
-}
-@media screen and (max-width: 768px) {
-	.onboarding > div > .types > .type + .type {
-		margin: 32px 0px 0px 0px;
-	}
-}
-.onboarding > div > .types > .type > .head {
+.type > .head {
 	display: flex;
 	align-items: center;
-	margin: 0px 0px 32px 0px;
+	grid-gap: 16px;
+	gap: 16px;
 }
-.onboarding > div > .types > .type > .head > i {
-	margin: 0px 16px 0px 0px;
+.type > .head > i {
 	font-size: 56px;
 }
-.onboarding > div > .types > .type[data-type="startup"] > .head > i {
+.type[data-type="startup"] > .head > i {
 	color: var(--logo-orange-color);
 }
-.onboarding > div > .types > .type[data-type="corporation"] > .head > i {
+.type[data-type="corporation"] > .head > i {
 	color: var(--logo-blue-color);
 }
-.onboarding > div > .types > .type[data-type="partner"] > .head > i {
+.type[data-type="partner"] > .head > i {
 	color: var(--logo-green-color);
 }
-.onboarding > div > .types > .type[data-type="partner"] > .head > div {
-	display: flex;
-	flex-direction: column;
-}
-.onboarding > div > .types > .type > .head > div > h5 {
+.type > .head > div > h5 {
 	font-family: "Nunito Sans";
 	font-size: 24px;
 }
-.onboarding > div > .types > .type[data-type="startup"] > .head > div > h5 {
+.type[data-type="startup"] > .head > div > h5 {
 	color: var(--logo-orange-color);
 }
-.onboarding > div > .types > .type[data-type="corporation"] > .head > div > h5 {
+.type[data-type="corporation"] > .head > div > h5 {
 	color: var(--logo-blue-color);
 }
-.onboarding > div > .types > .type[data-type="partner"] > .head > div > h5 {
+.type[data-type="partner"] > .head > div > h5 {
 	color: var(--logo-green-color);
 }
-.onboarding > div > .types > .type > .head > div > p {
+.type > .head > div > p {
 	color: var(--text-inactive-color);
 }
-.onboarding > div > .types > .type > .body {
-	margin: 0px 0px 32px 0px;
-}
-.onboarding > div > .types > .type > .body > div + div {
-	margin: 32px 0px 0px 0px;
-}
-.onboarding > div > .types > .type > .footer {
+.type > .body {
 	display: flex;
 	flex-direction: column;
+	grid-gap: 16px;
+	gap: 16px;
+}
+.type > .footer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 8px;
+	gap: 8px;
 	margin: auto 0px 0px 0px;
 }
-.onboarding > div > .types > .type > .footer > a:last-of-type {
-	margin: 16px auto 0px auto;
-	text-decoration: underline;
-	text-decoration-color: transparent;
-	
-}
-.onboarding > div > .types > .type > .footer > a:last-of-type:hover {
-	color: var(--logo-blue-color);
-	text-decoration-color: var(--logo-blue-color);
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Sourcing ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .sourcing {
-	background-color: var(--background-main-color);
-}
-.sourcing[data-type="opportunity"] {
-	background-color: var(--background-information-color);
-}
-.sourcing > div {
 	display: flex;
 	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: 80px;
+}
+@media screen and (max-width: 576px) {
+	.sourcing {
+		padding: 16px;
+	}
+}
+.sourcing::before,
+.sourcing::after {
 	width: 100%;
 	height: 100%;
-	padding: 80px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.sourcing > h3 {
+	font-family: "Nunito Sans";
+	font-size: 48px;
+	font-weight: 300;
+	text-align: center;
+}
+.sourcing > p {
+	font-family: "Nunito Sans";
+	font-size: 21px;
+	text-align: center;
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Sourcing For Startup ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.sourcing[data-type="startup"]::before {
+	background-color: var(--lightred-color);
+}
+.sourcing[data-type="startup"]::after {
 	border-radius: 100px 0px 0px 0px;
 	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
-	.sourcing > div {
-		padding: 16px;
+	.sourcing[data-type="startup"]::after {
 		border-radius: 50px 0px 0px 0px;
 	}
 }
-.sourcing > div > h3 {
-	margin: 0px auto;
-	font-family: "Nunito Sans";
-	font-size: 45px;
-	font-weight: 300;
-	text-align: center;
-	color: var(--perfect-black-color);
-}
-.sourcing[data-type="opportunity"] > div > h3 {
-	color: var(--text-main-color);
-}
-@media screen and (max-width: 576px) {
-	.sourcing > div > h3 {
-		font-size: 35px;
-	}
-}
-.sourcing > div > p {
-	margin: 0px auto 32px auto;
-	font-family: "Nunito Sans";
-	font-size: 21px;
-	text-align: center;
-	color: var(--perfect-black-color);
-}
-.sourcing[data-type="opportunity"] > div > p {
-	color: var(--text-main-color);
-}
-.sourcing[data-type="corporation"] > div {
-	background-color: var(--lightblue-color);
-}
-.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] * {
-	color: var(--perfect-black-color);
-}
-.sourcing[data-type="corporation"] > div > [data-carousel="corporation"],
-.sourcing[data-type="opportunity"] > div > [data-carousel="opportunity"] {
-	position: relative;
-}
-.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] [class="separatorVertical"] {
-	background-color: var(--pureblue-color);
-}
-.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] button > i {
-	color: var(--pureblue-color);
-}
-.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] button:last-of-type {
-	background-color: var(--pureblue-color);
-}
-.sourcing[data-type="corporation"] > div > [data-carousel="corporation"] button:last-of-type > i {
-	color: var(--perfect-white-color);
-}
-.sourcing > div > .actions {
-	margin: 32px auto 0px auto;
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Opportunity ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.opportunity {
-	background-color: var(--background-information-color);
-}
-.opportunity[data-type="startup"] {
+.sourcing[data-type="startup"] button {
+	border: var(--border);
+	border-color: var(--sunred-color);
 	background-color: var(--lightred-color);
 }
-.opportunity > div {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-	padding: 80px;
+.sourcing[data-type="startup"] button > i {
+	color: var(--sunred-color);
+}
+.sourcing[data-type="startup"] button[class="active"] {
+	background-color: var(--sunred-color);
+}
+.sourcing[data-type="startup"] button[class="active"] > i {
+	color: var(--perfect-white-color);
+}
+.sourcing[data-type="startup"] div[class="separatorVertical"] {
+	background-color: var(--sunred-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Sourcing For Corporation ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.sourcing[data-type="corporation"]::before {
 	background-color: var(--background-main-color);
 }
-@media screen and (max-width: 576px) {
-	.opportunity > div {
-		padding: 16px;
-	}
-}
-.opportunity[data-type="startup"] > div {
+.sourcing[data-type="corporation"]::after {
 	border-radius: 100px 0px 0px 100px;
+	background-color: var(--lightblue-color);
 }
 @media screen and (max-width: 576px) {
-	.opportunity[data-type="startup"] > div {
+	.sourcing[data-type="corporation"]::after {
 		border-radius: 50px 0px 0px 50px;
 	}
 }
-.opportunity[data-type="corporation"] > div {
-	border-radius: 0px;
+.sourcing[data-type="corporation"] *:not([class*="callToAction"], i) {
+	color: var(--perfect-black-color);
 }
-.opportunity[data-type="opportunity"] > div {
-	border-radius: 100px 0px 0px 000px;
+.sourcing[data-type="corporation"] button {
+	border: var(--border);
+	border-color: var(--pureblue-color);
+	background-color: var(--lightblue-color);
 }
-.opportunity > div > h2 {
-	margin: 0px auto;
-	font-family: "Nunito Sans";
-	font-size: 48px;
-	font-weight: bold;
-	text-align: center;
+.sourcing[data-type="corporation"] button > i {
+	color: var(--pureblue-color);
 }
-@media screen and (max-width: 576px) {
-	.opportunity > div > h2 {
-		font-size: 38px;
-	}
+.sourcing[data-type="corporation"] button[class="active"] {
+	background-color: var(--pureblue-color);
 }
-.opportunity > div > h3 {
-	margin: 32px auto;
-	font-family: "Nunito Sans";
-	font-size: 45px;
-	font-weight: 300;
-	text-align: center;
+.sourcing[data-type="corporation"] button[class="active"] > i {
+	color: var(--perfect-white-color);
 }
-@media screen and (max-width: 576px) {
-	.opportunity > div > h3 {
-		font-size: 35px;
-	}
+.sourcing[data-type="corporation"] div[class="separatorVertical"] {
+	background-color: var(--pureblue-color);
 }
-.opportunity[data-type="startup"] > div > h3 {
-	margin: 0px auto;
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Sourcing For Opportunity ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.sourcing[data-type="opportunity"]::before {
+	background-color: var(--light-grey-color);
+}
+.sourcing[data-type="opportunity"]::after {
+	border-radius: 100px 0px 0px 0px;
+	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
-	.opportunity[data-type="startup"] > div > h3 {
-		font-size: 35px;
+	.sourcing[data-type="opportunity"]::after {
+		border-radius: 50px 0px 0px 0px;
 	}
 }
-.opportunity > div > p {
-	margin: 0px auto 32px auto;
-	font-family: "Nunito Sans";
-	font-size: 21px;
-	text-align: center;
+.sourcing[data-type="opportunity"] button {
+	background-color: var(--perfect-white-color);
 }
-.opportunity > div > h4 {
-	margin: 0px auto 40px auto;
+.sourcing[data-type="opportunity"] button > i {
+	color: var(--perfect-black-color);
+}
+.sourcing[data-type="opportunity"] button[class="active"] {
+	background-color: var(--light-grey-color);
+}
+.sourcing[data-type="opportunity"] button[class="active"] > i {
+	color: var(--perfect-black-color);
+}
+.sourcing[data-type="opportunity"] div[class="separatorVertical"] {
+	background-color: var(--light-grey-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Opportunity ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.opportunity {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: 80px;
+}
+@media screen and (max-width: 576px) {
+	.opportunity {
+		padding: 16px;
+	}
+}
+.opportunity::before,
+.opportunity::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.opportunity > h4 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
 	text-align: center;
 }
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Opportunity For Startup ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.opportunity[data-type="startup"]::before {
+	background-color: var(--lightred-color);
+}
+.opportunity[data-type="startup"]::after {
+	border-radius: 0px 0px 0px 100px;
+	background-color: var(--background-main-color);
+}
 @media screen and (max-width: 576px) {
-	.opportunity > div > h4 {
-		font-size: 32px;
+	.opportunity[data-type="startup"]::after {
+		border-radius: 0px 0px 0px 50px;
 	}
 }
-.opportunity[data-type="startup"] > div > h4 {
-	margin: 96px auto 40px auto;
-}
-.opportunity[data-type="corporation"] > div > h4 {
-	margin: 0px auto 40px auto;
-}
-.opportunity > div > [data-carousel="startup"] {
-	position: relative;
-}
-/* @media screen and (max-width: 768px) {
-	.opportunity > div > [class*="steps"] {
-		flex-direction: column;
-	}
-	.opportunity > div > [class*="steps"] > [class="separator"] {
-		display: none;
-	}
-	.opportunity > div > [class*="steps"] > button {
-		margin: 16px 0px 0px 0px;
-	}
-	.opportunity > div > [class*="steps"] > button:first-of-type {
-		margin: 0px;
-	}
-} */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Register ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.register {
-	background-color: var(--background-sub-color);
-}
-.register[data-type="corporation"] {
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Opportunity For Corporation ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.opportunity[data-type="corporation"]::before {
 	background-color: var(--lightblue-color);
 }
-.register[data-type="partner"] {
-	background-color: var(--lightgreen-color);
-}
-.register > div {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-	padding: 80px;
+.opportunity[data-type="corporation"]::after {
 	border-radius: 0px 100px 0px 0px;
 	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
-	.register > div {
-		padding: 16px;
+	.opportunity[data-type="corporation"]::after {
 		border-radius: 0px 50px 0px 0px;
 	}
 }
-.register > div > h3 {
-	margin: 32px auto;
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Register ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.register {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: 80px;
+}
+@media screen and (max-width: 576px) {
+	.register {
+		padding: 16px;
+	}
+}
+.register::before,
+.register::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.register > h3 {
 	font-family: "Nunito Sans";
 	font-size: 45px;
 	font-weight: 300;
 	text-align: center;
 }
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Register For Corporation ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.register[data-type="corporation"]::before {
+	background-color: var(--lightblue-color);
+}
+.register[data-type="corporation"]::after {
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--background-main-color);
+}
 @media screen and (max-width: 576px) {
-	.register > div > h3 {
-		font-size: 35px;
+	.register[data-type="corporation"]::after {
+		border-radius: 0px 50px 0px 0px;
 	}
 }
-.register[data-type="corporation"] > div > h3,
-.register[data-type="partner"] > div > h3 {
-	margin: 0px auto 32px auto;
-}
-.register[data-type="corporation"] > div > [class*="steps"] > button[class*="active"] {
+.register[data-type="corporation"] [class*="steps"] > button[class*="active"] {
 	color: var(--perfect-white-color);
 	border-color: var(--pureblue-color);
 	background-color: var(--pureblue-color);
 }
-.register[data-type="corporation"] > div > [class*="steps"] > button:hover {
+.register[data-type="corporation"] [class*="steps"] > button:hover {
 	color: var(--pureblue-color);
 	border-color: var(--lightblue-color);
 	background-color: var(--lightblue-color);
 }
-.register[data-type="partner"] > div > [class*="steps"] > button[class*="active"] {
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Register For Partner ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.register[data-type="partner"]::before {
+	background-color: var(--lightgreen-color);
+}
+.register[data-type="partner"]::after {
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.register[data-type="partner"]::after {
+		border-radius: 0px 50px 0px 0px;
+	}
+}
+.register[data-type="partner"] [class*="steps"] > button[class*="active"] {
 	color: var(--perfect-white-color);
 	border-color: var(--grassgreen-color);
 	background-color: var(--grassgreen-color);
 }
-.register[data-type="partner"] > div > [class*="steps"] > button:hover {
+.register[data-type="partner"] [class*="steps"] > button:hover {
 	color: var(--grassgreen-color);
 	border-color: var(--lightgreen-color);
 	background-color: var(--lightgreen-color);
 }
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Actions ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.actions {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 16px auto 70px auto;
-}
-@media screen and (max-width: 576px) {
-	.actions {
-		width: 100%;
-	}
-}
-.actions:last-of-type {
-	margin: 16px auto 0px auto;
-}
-.actions[data-align="left"] {
-	margin: 40px auto auto 0px;
-}
-.actions > * + * {
-	margin: 0px 0px 0px 16px;
-}
-@media screen and (max-width: 768px) {
-	.actions {
-		flex-direction: column;
-		align-items: flex-start;
-	}
-	.actions > * {
-		width: 100%;
-	}
-	.actions > * + * {
-		margin: 16px 0px 0px 0px;
-	}
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badges ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges {
-	background-color: var(--background-main-color);
-}
-.badges > div {
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Startups ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.startups {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
+	grid-gap: 40px;
+	gap: 40px;
 	width: 100%;
-	height: max-content;
 	padding: 80px;
-	border-radius: 0px 100px 0px 0px;
-	background-color: var(--background-sub-color);
 }
 @media screen and (max-width: 576px) {
-	.badges > div {
+	.startups {
 		padding: 16px;
-		border-radius: 0px 50px 0px 0px;
 	}
 }
-.badges[data-type="startup"] > div {
-	border-radius: 0px 100px 0px 0px;
-	background-color: var(--lightred-color);
+.startups::before,
+.startups::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
 }
-@media screen and (max-width: 576px) {
-	.badges[data-type="startup"] > div {
-		border-radius: 0px 50px 0px 0px;
-	}
+.startups > h4 {
+	font-family: "Nunito Sans";
+	font-size: 42px;
+	font-weight: bold;
+	text-align: center;
 }
-.badges[data-type="partner"] > div {
-	border-radius: 100px 0px 0px 0px;
+.startups > .startupsCategories {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	grid-gap: 16px;
+	gap: 16px;
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Startups For Partner ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.startups[data-type="partner"]::before {
 	background-color: var(--lightgreen-color);
 }
+.startups[data-type="partner"]::after {
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--background-main-color);
+}
 @media screen and (max-width: 576px) {
-	.badges[data-type="partner"] > div {
+	.startups[data-type="partner"]::after {
+		border-radius: 0px 50px 0px 0px;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Companies ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.companies {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: 80px;
+}
+@media screen and (max-width: 576px) {
+	.companies {
+		padding: 16px;
+	}
+}
+.companies::before,
+.companies::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.companies > h4 {
+	font-family: "Nunito Sans";
+	font-size: 48px;
+	font-weight: bold;
+	text-align: center;
+}
+.companies > p {
+	font-size: 21px;
+	font-weight: bold;
+	text-align: center;
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Companies For Startup ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.companies[data-type="startup"]::before {
+	background-color: var(--lightred-color);
+}
+.companies[data-type="startup"]::after {
+	border-radius: 100px 0px 0px 0px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.companies[data-type="startup"]::after {
 		border-radius: 50px 0px 0px 0px;
 	}
 }
-.badges > div > h2 {
-	margin: 0px auto 50px auto;
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Companies For Corporation ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.companies[data-type="corporation"]::before {
+	background-color: var(--lightblue-color);
+}
+.companies[data-type="corporation"]::after {
+	border-radius: 0px 0px 100px 0px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.companies[data-type="corporation"]::after {
+		border-radius: 0px 0px 50px 0px;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Companies For Partner ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.companies[data-type="partner"]::before {
+	background-color: var(--lightgreen-color);
+}
+.companies[data-type="partner"]::after {
+	border-radius: 0px 0px 100px 0px;
+	background-color: var(--background-main-color);
+}
+@media screen and (max-width: 576px) {
+	.companies[data-type="partner"]::after {
+		border-radius: 0px 0px 50px 0px;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: 80px;
+}
+@media screen and (max-width: 576px) {
+	.badges {
+		padding: 16px;
+	}
+}
+.badges::before,
+.badges::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.badges > h3 {
 	font-family: "Nunito Sans";
-	font-size: 45px;
+	font-size: 48px;
 	font-weight: 300;
 	text-align: center;
 }
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges For Home ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges[data-type="home"]::before {
+	background-color: var(--background-sub-color);
+}
+.badges[data-type="home"]::after {
+	border-radius: 0px 100px 0px 0px;
+	background-color: var(--background-main-color);
+}
 @media screen and (max-width: 576px) {
-	.badges > div > h2 {
-		font-size: 35px;
+	.badges[data-type="home"]::after {
+		border-radius: 0px 50px 0px 0px;
 	}
 }
-.badges[data-type="startup"] > div > h2,
-.badges[data-type="partner"] > div > h2 {
-	color: var(--perfect-black-color);
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges For Startup ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges[data-type="startup"]::before {
+	background-color: var(--background-main-color);
 }
-.badges > div > div {
+.badges[data-type="startup"]::after {
+	border-radius: 0px 100px 100px 0px;
+	background-color: var(--lightred-color);
+}
+@media screen and (max-width: 576px) {
+	.badges[data-type="startup"]::after {
+		border-radius: 0px 50px 50px 0px;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges For Partner ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges[data-type="partner"]::before {
+	background-color: var(--background-main-color);
+}
+.badges[data-type="partner"]::after {
+	border-radius: 100px 0px 0px 100px;
+	background-color: var(--lightgreen-color);
+}
+@media screen and (max-width: 576px) {
+	.badges[data-type="partner"]::after {
+		border-radius: 50px 0px 0px 50px;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badges List ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badgesList {
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
+	grid-gap: 16px;
+	gap: 16px;
 }
-@media screen and (max-width: 1200px) {
-	.badges > div > div {
-		justify-content: space-around;
-	}
-}
-@media screen and (min-width: 992px) {
-	.badges > div > div {
-		margin: 0px 0px 250px 0px;
-	}
-	.badges[data-type="startup"] > div > div,
-	.badges[data-type="partner"] > div > div {
-		margin: 0px 0px 150px 0px;
-	}
-}
-@media screen and (max-width: 992px) {
-	.badges > div > div {
+@media screen and (max-width: 768px) {
+	.badgesList  {
 		flex-direction: column;
 	}
 }
-.badges > div > div > .badge {
+.badgesList > div[class="separator"] {
+	margin: calc(128px / 2) 0px auto 0px;
+}
+@media screen and (max-width: 1200px) {
+	.badgesList > div[class="separator"] {
+		display: none;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badge ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badge {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	grid-gap: 16px;
+	gap: 16px;
+	flex: 1;
+}
+.badge > i {
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	min-width: 128px;
@@ -648,281 +846,187 @@
 	height: 128px;
 	max-height: 128px;
 	position: relative;
+	font-size: 60px;
 	border-radius: calc(128px / 2);
 	background-color: var(--background-sub-color);
 	box-shadow: var(--box-shadow);
 }
-.badges > div > div > .badge > i {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 100%;
-	font-size: 70px;
-	color: var(--text-inactive-color);
-}
-.badges[data-type="startup"] > div > div > .badge > i {
-	color: var(--sunred-color);
-}
-.badges[data-type="partner"] > div > div > .badge > i {
-	color: var(--grassgreen-color);
-}
-.badges > div > div > .badge > div {
+.badge > .content {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-	width: 180%;
-	position: absolute;
-	top: calc(100% + 16px);
-	left: 50%;
-	transform: translateX(-50%);
+	grid-gap: 16px;
+	gap: 16px;
 }
-.badges > div > div > .badge > div > h4 {
-	margin: 0px auto 8px auto;
+.badge > .content > h6 {
+	width: 200%;
 	font-family: "Nunito Sans";
 	font-size: 32px;
 	font-weight: bold;
 	text-align: center;
 }
-@media screen and (max-width: 576px) {
-	.badges > div > div > .badge > div > h4 {
-		font-size: 22px;
-	}
-}
-.badges[data-type="startup"] > div > div > .badge > div > h4,
-.badges[data-type="partner"] > div > div > .badge > div > h4 {
-	color: var(--perfect-black-color);
-}
-.badges > div > div > .badge > div * {
-	font-size: 14px;
+.badge > .content > p {
+	width: 170%;
 	text-align: center;
-}
-@media screen and (max-width: 576px) {
-	.badges > div > div > .badge > div > p {
-		font-size: 14px;
-	}
-}
-.badges[data-type="startup"] > div > div > .badge > div > p,
-.badges[data-type="partner"] > div > div > .badge > div > p,
-.badges[data-type="startup"] > div > div > .badge > div > div,
-.badges[data-type="partner"] > div > div > .badge > div > div {
-	color: var(--perfect-black-color);
-}
-.badges[data-type="startup"] > div > div > [class="separator"] {
-	background-color: var(--sunred-color);
-}
-.badges[data-type="partner"] > div > div > [class="separator"] {
-	background-color: var(--grassgreen-color);
+	font-size: 16px;
 }
 @media screen and (max-width: 1200px) {
-	.badges > div > div > [class="separator"] {
-		display: none;
+	.badge > .content > h6,
+	.badge > .content > p {
+		width: 100%;
+		left: inherit;
 	}
 }
-.badges > div > div > * + * {
-	margin: 0px 0px 0px 16px;
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badge For Startup ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges[data-type="startup"] div[class="separator"] {
+	background-color: var(--sunred-color);
 }
-@media screen and (max-width: 992px) {
-	.badges > div > div > * + * {
-		margin: 0px;
-	}
-	.badges > div > div > [class*="badge"] {
-		margin: 0px 0px 250px 0px;
-	}
-	.badges[data-type="startup"] > div > div > [class*="badge"] {
-		margin: 0px 0px 166px 0px;
-	}
-	
-	.badges[data-type="partner"] > div > div > [class*="badge"] {
-		margin: 0px 0px 186px 0px;
-	}
+.badges[data-type="startup"] .badge > i {
+	color: var(--sunred-color);
 }
-@media screen and (max-width: 576px) {
-	.badges > div > div > [class*="badge"] {
-		margin: 0px 0px 170px 0px;
-	}
+.badges[data-type="startup"] > h3,
+.badges[data-type="startup"] .badge > .content > h6,
+.badges[data-type="startup"] .badge > .content > p {
+	color: var(--perfect-black-color);
 }
-.badges > div > a {
-	margin: 80px 0px 0px 0px;
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badge For Partner ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges[data-type="partner"] div[class="separator"] {
+	background-color: var(--grassgreen-color);
 }
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Startups ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.startups {
-	background-color: var(--background-main-color);
+.badges[data-type="partner"] .badge > i {
+	color: var(--grassgreen-color);
 }
-.startups > div {
+.badges[data-type="partner"] > h3,
+.badges[data-type="partner"] .badge > .content > h6,
+.badges[data-type="partner"] .badge > .content > p {
+	color: var(--perfect-black-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Questions ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.questions {
 	display: flex;
 	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
 	width: 100%;
-	height: 100%;
 	padding: 80px;
 }
 @media screen and (max-width: 576px) {
-	.startups > div {
+	.questions {
 		padding: 16px;
 	}
 }
-.startups > div > h4 {
-	margin: 0px auto 40px auto;
+.questions::before,
+.questions::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.questions > h5 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
 	text-align: center;
 }
-@media screen and (max-width: 576px) {
-	.startups > div > h4 {
-		font-size: 32px;
-	}
+.questions > [data-carousel] {
+	overflow: hidden;
 }
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Companies ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.companies {
-	width: 100%;
-	height: max-content;
-}
-.companies[data-type="corporation"] {
-	background-color: var(--lightblue-color);
-}
-.companies[data-type="partner"] {
-	background-color: var(--lightgreen-color);
-}
-.companies > div {
-	display: flex;
-	flex-direction: column;
-	padding: 80px;
-	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.companies > div {
-		padding: 16px;
-		border-radius: 0px 0px 50px 0px;
-	}
-}
-.companies > div > h2 {
-	margin: 0px auto;
-	font-family: "Nunito Sans";
-	font-size: 48px;
-	font-weight: bold;
-	text-align: center;
-}
-@media screen and (max-width: 576px) {
-	.companies > div > h2 {
-		font-size: 38px;
-	}
-}
-.companies > div > div {
-	margin: 0px auto;
-}
-.companies > div > div:last-of-type {
-	margin: 0px auto;
-}
-.companies > div > h3 {
-	margin: 8px auto 40px auto;
-	font-size: 21px;
-	font-weight: normal;
-	text-align: center;
-}
-.companies > div > a {
-	width: fit-content;
-	margin: 0px auto;
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Questions ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-	padding: 0px 80px 116px 80px;
-	background-color: var(--background-sub-color);
-}
-@media screen and (max-width: 576px) {
-	.questions {
-		padding: 0px 40px 116px 40px;
-	}
-}
-.questions > h2 {
-	margin: 80px auto 32px auto;
-	font-family: "Nunito Sans";
-	font-size: 48px;
-	font-weight: bold;
-	text-align: center;
-}
-@media screen and (max-width: 576px) {
-	.questions > h2 {
-		font-size: 38px;
-	}
-}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Questions For Startup ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .questions[data-type="startup"] button[class*="active"] {
 	color: var(--sunred-color);
 	border-color: var(--lightred-color);
 	background-color: var(--lightred-color);
 }
+.questions[data-type="startup"] div[class*="active"] {
+	background-color: var(--lightred-color);
+}
+.questions[data-type="startup"] div[class*="active"] > button,
+.questions[data-type="startup"] div[class*="active"] > button > i {
+	color: var(--sunred-color);
+}
+.questions[data-type="startup"] div[class*="active"] > div {
+	color: var(--perfect-black-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Questions For Corporation ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .questions[data-type="corporation"] button[class*="active"] {
 	color: var(--pureblue-color);
 	border-color: var(--lightblue-color);
 	background-color: var(--lightblue-color);
 }
+.questions[data-type="corporation"] div[class*="active"] {
+	background-color: var(--lightblue-color);
+}
+.questions[data-type="corporation"] div[class*="active"] > button,
+.questions[data-type="corporation"] div[class*="active"] > button > i {
+	color: var(--pureblue-color);
+}
+.questions[data-type="corporation"] div[class*="active"] > div {
+	color: var(--perfect-black-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Questions For Partner ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .questions[data-type="partner"] button[class*="active"] {
 	color: var(--grassgreen-color);
 	border-color: var(--lightgreen-color);
 	background-color: var(--lightgreen-color);
 }
-.questions > p {
-	margin: 0px auto;
-}
-@media screen and (max-width: 576px) {
-	.questions > p {
-		text-align: center;
-	}
-}
-.questions > p > a {
-	text-decoration: underline;
-	
-}
-.questions > p > a:hover {
-	color: var(--logo-blue-color);
-}
-.questions [data-carousel] {
-	margin: 48px 0px 32px 0px;
-	overflow: hidden;
-}
-.questions [data-carousel] [class*="active"] *,
-.questions[data-type="opportunity"] > [data-carousel] [class*="active"] > [class*="content"] > [class="formattedContent"] {
-	color: var(--perfect-white-color);
-}
-.questions[data-type="startup"] [data-carousel] [class*="active"] {
-	background-color: var(--lightred-color);
-}
-.questions[data-type="startup"] [data-carousel] [class*="active"] > button,
-.questions[data-type="startup"] [data-carousel] [class*="active"] > button > i {
-	color: var(--sunred-color);
-}
-.questions[data-type="startup"] [data-carousel] [class*="active"] > div {
-	color: var(--perfect-black-color);
-}
-.questions[data-type="corporation"] [data-carousel] [class*="active"] {
-	background-color: var(--lightblue-color);
-}
-.questions[data-type="corporation"] [data-carousel] [class*="active"] > button,
-.questions[data-type="corporation"] [data-carousel] [class*="active"] > button > i {
-	color: var(--pureblue-color);
-}
-.questions[data-type="corporation"] [data-carousel] [class*="active"] > div {
-	color: var(--perfect-black-color);
-}
-.questions[data-type="partner"] [data-carousel] [class*="active"] {
+.questions[data-type="partner"] div[class*="active"] {
 	background-color: var(--lightgreen-color);
 }
-.questions[data-type="partner"] [data-carousel] [class*="active"] > button,
-.questions[data-type="partner"] [data-carousel] [class*="active"] > button > i {
+.questions[data-type="partner"] div[class*="active"] > button,
+.questions[data-type="partner"] div[class*="active"] > button > i {
 	color: var(--grassgreen-color);
 }
-.questions[data-type="partner"] [data-carousel] [class*="active"] > div {
+.questions[data-type="partner"] div[class*="active"] > div {
 	color: var(--perfect-black-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Questions For Opportunity ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.questions[data-type="opportunity"] button[class*="active"] {
+	color: var(--perfect-black-color);
+	border-color: var(--light-grey-color);
+	background-color: var(--light-grey-color);
+}
+.questions[data-type="opportunity"] div[class*="active"] {
+	background-color: var(--light-grey-color);
+}
+.questions[data-type="opportunity"] div[class*="active"] > button,
+.questions[data-type="opportunity"] div[class*="active"] > button > i {
+	color: var(--perfect-black-color);
+}
+.questions[data-type="opportunity"] div[class*="active"] > div {
+	color: var(--perfect-black-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Actions ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.actions {
+	display: flex;
+	align-items: center;
+	grid-gap: 16px;
+	gap: 16px;
+}
+.actions[data-justify="left"] {
+	justify-content: flex-start;
+}
+.actions[data-justify="center"] {
+	justify-content: center;
+}
+.actions[data-justify="right"] {
+	justify-content: flex-end;
 }

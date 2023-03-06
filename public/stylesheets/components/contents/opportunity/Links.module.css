@@ -4,31 +4,29 @@
 .container {
     display: flex;
     flex-direction: column;
+    grid-gap: 32px;
+    gap: 32px;
     width: 100%;
-    margin: 32px 0px;
 }
-.container > div:not([class*="Carousel"]) {
+.container > h3 {
+    font-size: 24px;
+    font-weight: 800;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Links ( Actions ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.actions {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0px 0px 32px 0px;
-}
-.container > div > a + a {
-    margin: 0px 0px 0px 16px;
+    grid-gap: 16px;
+    gap: 16px;
 }
 @media screen and (max-width: 992px) {
-    .container > div:not([class*="Carousel"]) {
+    .actions {
         flex-direction: column;
     }
-    .container > div > a {
+    .actions > a {
         width: 100%;
     }
-    .container > div > a + a {
-        margin: 16px 0px 0px 0px;
-    }
-}
-.container > h3 {
-    margin: 32px 0px 16px 16px;
-    font-size: 24px;
-    font-weight: 800;
 }

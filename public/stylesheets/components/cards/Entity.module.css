@@ -1,69 +1,107 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Client ( Card ) */
+/* Entity ( Card ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.client,
+.startup,
+.corporation,
 .partner {
     display: flex;
-    width: calc((100% / 2) - 8px);
-    max-height: 218px;
-    margin: 0px 8px 0px 0px;
+    flex: 1;
+    position: relative;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    
-}
-.client:nth-of-type(2n),
-.partner:nth-of-type(2n) {
-    margin: 0px 0px 0px 8px;
-}
-.client:nth-of-type(1n + 2) + *:not([class="lockedContent"]),
-.partner:nth-of-type(1n + 2) + *:not([class="lockedContent"]) {
-    margin-top: 16px;
 }
 @media screen and (max-width: 1200px) {
-    .client,
+    .startup,
+    .corporation,
     .partner {
         width: 100%;
     }
-    .client + .client,
-    .partner + .partner {
-        margin: 16px 0px 0px 0px;
-    }
+}
+div[class="list"] > .startup,
+div[class="list"] > .corporation,
+div[class="list"] > .partner {
+    grid-gap: 0px;
+    gap: 0px;
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Client ( Marker ) */
+/* Entity ( Marker ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .marker {
-    min-width: 8px;
-    width: 8px;
-    max-width: 8px;
-    border-radius: 10px 0px 0px 10px;
+    min-width: 15px;
+    width: 15px;
+    max-width: 15px;
+    border-radius: 15px 0px 0px 15px;
 }
-.client > .marker {
+.startup > .marker {
+    background-color: var(--logo-orange-color);
+}
+.corporation > .marker {
     background-color: var(--logo-blue-color);
 }
 .partner > .marker {
     background-color: var(--logo-green-color);
 }
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Client ( Content ) */
+/* Entity ( Content ) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 .content {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 16px 16px 16px 8px;
+    grid-gap: 16px;
+    gap: 16px;
+    padding: 16px;
 }
-.content > * + * {
-    margin: 8px 0px 0px 0px;
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Entity ( Head ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.head {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
 }
-.content > .identity {
+div[class="list"] .head {
+    flex-direction: row;
+    align-items: center;
+}
+@media screen and (max-width: 992px) {
+    div[class="list"] .head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Entity ( Identity ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.identity {
     display: flex;
     align-items: center;
-    padding: 0px 0px 0px 8px;
+    grid-gap: 16px;
+    gap: 16px;
 }
-.content > .identity > img {
+div[class*="grid"] .identity {
+    flex-direction: column;
+    align-items: flex-start;
+}
+@media screen and (max-width: 992px) {
+    div[class="list"] .identity {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Entity ( Branding ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.branding {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
+}
+.branding > img {
     width: 48px;
     height: 48px;
     border: var(--border);
@@ -71,15 +109,24 @@
     border-radius: 24px;
     box-shadow: var(--box-shadow);
 }
-.client > .content > .identity > img {
+.startup .branding > img {
+    border-color: var(--logo-orange-color);
+}
+.corporation .branding > img {
     border-color: var(--logo-blue-color);
 }
-.partner > .content > .identity > img {
+.partner .branding > img {
     border-color: var(--logo-green-color);
 }
-.content > .identity > .name {
-    margin: 0px 0px 0px 16px;
+.branding > .name {
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Entity ( Description ) */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+.description {
+    display: flex;
+    align-items: center;
 }

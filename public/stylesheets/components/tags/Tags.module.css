@@ -4,13 +4,12 @@
 .tags {
     display: flex;
     flex-wrap: wrap;
-    flex: 1;
     grid-gap: 8px;
     gap: 8px;
     position: relative;
 }
 .tags[class*="locked"] {
-    padding: 0px 0px 8px 8px;
+    padding: 8px;
 }
 .tags > .tag {
     display: flex;
@@ -27,7 +26,6 @@
 .tags > .tag > p {
     margin: 0px;
     color: var(--logo-blue-color);
-    text-transform: capitalize;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

@@ -1,0 +1,97 @@
+{
+    "HowToGetStarted": [
+        {
+            "picture": "/assets/landings/startups/step_1.png", "title": "Je m'inscris",
+            "text": "[Je crée le profil de ma startup=/onboarding] gratuitement en 5min. Je complète mon profil pour optimiser mon référencement dans l'annuaire de startups"
+        },
+        {
+            "picture": "/assets/landings/startups/step_2.png", "title": "J'entre en relation",
+            "text": "Grâce à [l'annuaire des entreprises=/directories/corporations], je peux contacter les prospects qui m'intéressent. Avec [l'annuaire des opportunités=/directories/opportunities], je candidate aux appels à projets qui correspondent à ma startup"
+        },
+        {
+            "picture": "/assets/landings/startups/step_3.png", "title": "Je développe mon réseau",
+            "text": "Je peux suivre des entreprises et partenaires pour être informé de leurs actualités. Je simplifie et centralise mes échanges grâce à la messagerie interne et sécurisée"
+        }
+    ],
+    "HowToCreateOpportunity": [
+        {
+            "picture": "/assets/landings/opportunities/step_1.png", "title": "Publication",
+            "text": "Je créé mon opportunité (critères d'éligibilités, solutions recherchées, etc.) et le formulaire de candidature associé"
+        },
+        {
+            "picture": "/assets/landings/opportunities/step_2.png", "title": "Évaluation",
+            "text": "Je reçois et évalue des candidatures de startups (notations, commentaires, etc.) et partage avec mes collaborateurs"
+        },
+        {
+            "picture": "/assets/landings/opportunities/step_3.png", "title": "Prise de contacts",
+            "text": "Je contacte les startups retenues via messagerie sécurisée. Je simplifie le suivi de mes projets en interne et avec mes partenaires externes"
+        }
+    ],
+    "CorporationHowTo": [
+        {
+            "picture": "/assets/landings/corporations/step_1.png", "title": "Je m'inscris",
+            "list": [
+                "[Je complète les informations essentielles=/onboarding] pour demander une démo",
+                "L'équipe Forinov me propose un rendez-vous de démo",
+                "Je choisis l'offre qui correspond à mes besoins (nombre d'utilisateurs, d'opportunités, etc.)"
+            ]
+        },
+        {
+            "picture": "/assets/landings/corporations/step_2.png", "title": "Je découvre",
+            "list": [
+                "Forinov m'accompagne dans les premières étapes (compléter mon profil, prise en main, etc.)",
+                "J'invite mes collaborateurs à me rejoindre"
+            ]
+        },
+        {
+            "picture": "/assets/landings/corporations/step_3.png", "title": "Je me lance",
+            "list": [
+                "Je trouve les startups qui m'intéressent et les ajoute aux dossiers de mon portefeuille",
+                "Je gère et centralise toutes mes relations (messages, documents, RDVs, etc.)",
+                "Je simplifie le suivi de mes démarches et projets (suivi du dealflow, dashboard, etc.)"
+            ]
+        },
+        {
+            "picture": "/assets/landings/corporations/step_4.png", "title": "Je développe",
+            "list": [
+                "Je lance des opportunités sur Forinov (appels à projets, appels à candidatures, programmes d'accompagnements)",
+                "J'évalue et sélectionne les startups pertinentes (système d'évaluation simplifié)",
+                "Je peux faire appel aux services Forinov pour sourcer des startups à l'international"
+            ]
+        }
+    ],
+    "PartnerHowTo": [
+        {
+            "picture": "/assets/landings/partners/step_1.png", "title": "Je m'inscris",
+            "list": [
+                "[Je complète les informations essentielles=/onboarding] de ma structure",
+                "Je fais ma demande d'inscription auprès de Forinov",
+                "Je définis mes besoins auprès des équipes Forinov afin de sélectionner l'offre qui correspond le plus à mes besoins (incubateur, investisseur, etc.)"
+            ]
+        },
+        {
+            "picture": "/assets/landings/partners/step_2.png", "title": "Je découvre",
+            "list": [
+                "Forinov m'accompagne dans les premières étapes (compléter mon profil, prise en main, etc.)",
+                "J'invite mes collaborateurs à me rejoindre",
+                "Je définis mes besoins (mettre en avant mes startups, gérer mon réseau, sourcer des startups, etc.)"
+            ]
+        },
+        {
+            "picture": "/assets/landings/partners/step_3.png", "title": "Je me lance",
+            "list": [
+                "Je trouve les startups qui m'intéressent et les ajoute aux dossiers de mon portefeuille",
+                "Je gère et centralise toutes mes relations (messages, documents, RDVs, etc.)",
+                "Je simplifie le suivi de mes démarches et projets (suivi du dealflow, dashboard, etc.)"
+            ]
+        },
+        {
+            "picture": "/assets/landings/partners/step_4.png", "title": "Je développe",
+            "list": [
+                "Je lance des opportunités sur Forinov (appels à projets, appels à candidatures, programmes d'accompagnements)",
+                "J'évalue et sélectionne les startups pertinentes (système d'évaluation simplifié)",
+                "Je peux faire appel aux services Forinov pour sourcer des startups à l'international"
+            ]
+        }
+    ]
+}

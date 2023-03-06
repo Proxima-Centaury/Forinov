@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { scrollTo } from "../../scripts/utilities";
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -38,9 +38,11 @@ const menus = {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Menu */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileMenu = ({ type, states }: any) => {
+const ProfileMenu = (pageProps: any) => {
+    const [ menu, setMenu ] = useState(menus.startup);
+    const { states, router }: any = pageProps;
     const { translations }: any = states;
-    const [ menu, setMenu ] = useState(menus[type as keyof Object]);
+    const { type }: any = router.query;
     const scrollToHandler = (event: any) => {
         event.preventDefault();
         const allLinks = document.querySelectorAll("." + ProfileStyles.menu + " a");
@@ -55,12 +57,19 @@ const ProfileMenu = ({ type, states }: any) => {
         window.addEventListener("scroll", scrollMenuDisplayHandler);
         return () => window.removeEventListener("scroll", scrollMenuDisplayHandler);
     }, []);
+    useEffect(() => {
+        let correctMenu = menus.startup as any;
+        if(type.match(/(startup)/)) { correctMenu = menus.startup };
+        if(type.match(/(corporation|entreprise)/)) { correctMenu = menus.corporation };
+        if(type.match(/(partner|partenaire)/)) { correctMenu = menus.partner };
+        setMenu(correctMenu);
+    }, [ type ]);
     return <div className={ ProfileStyles.menu }>
         <p className={ ProfileStyles.label }>Menu</p>
         <ul>
-            { [ ...menu as Array<any> ].map(({ url, classList, text }: any, key: number) => <li key={ key }>
+            { (menu && menu.length > 0) ? menu.map(({ url, classList, text }: any, key: number) => <li key={ key }>
                 <a href={ url } className={ classList } onClick={ scrollToHandler }>{ translations[text] }</a>
-            </li>) }
+            </li>) : null }
         </ul>
     </div>;
 };

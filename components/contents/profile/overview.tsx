@@ -14,18 +14,19 @@ import OverviewStyles from "../../../public/stylesheets/components/contents/prof
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Overview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileOverview = ({ type, profile, states }: any) => {
+const ProfileOverview = (pageProps: any) => {
+    const { profile, states, router }: any = pageProps;
     const { translations }: any = states;
-    const parentProps = { type, profile, states };
+    const { type }: any = router.query;
     const address = ((profile.ADDRESS.STREET) ? profile.ADDRESS.STREET.trim() + ", " : "") +
     ((profile.ADDRESS.ZIP) ? profile.ADDRESS.ZIP.trim() + ", " : "") +
     ((profile.ADDRESS.TOWN) ? profile.ADDRESS.TOWN.trim() + ", " : "") + profile.ADDRESS.ISO;
     return <div className={ OverviewStyles.overview }>
         <h4>{ translations["En bref"] }</h4>
         <div className="separator"></div>
-        { (type === "startup") ? <Startup { ...parentProps }/> : null }
-        { (type === "corporation") ? <Corporation { ...parentProps }/> : null }
-        { (type === "partner") ? <Partner { ...parentProps }/> : null }
+        { (type.match(/(startup)/)) ? <Startup { ...pageProps }/> : null }
+        { (type.match(/(corporation|entreprise)/)) ? <Corporation { ...pageProps }/> : null }
+        { (type.match(/(partner|partenaire)/)) ? <Partner { ...pageProps }/> : null }
         <div className="separator"></div>
         { (profile.IMMAT) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Numéro d'immatriculation"] }</p>
@@ -50,7 +51,7 @@ const ProfileOverview = ({ type, profile, states }: any) => {
                 <i className="fa-solid fa-thumbtack"/>
                 <span>{ translations["Non renseigné"] + "." }</span>
             </div> }
-            <div className={ OverviewStyles.networks }>
+            { (profile.FACEBOOK || profile.TWITTER || profile.LINKEDIN || profile.CRUNCHBASE) ? <div className={ OverviewStyles.networks }>
                 { (profile.FACEBOOK) ? <a href={ profile.FACEBOOK } target="_blank" rel="noreferrer">
                     <i className="fa-brands fa-facebook-f"/>
                 </a> : null }
@@ -61,14 +62,15 @@ const ProfileOverview = ({ type, profile, states }: any) => {
                     <i className="fa-brands fa-linkedin"/>
                 </a> : null }
                 { (profile.CRUNCHBASE) ? <a href={ profile.CRUNCHBASE } target="_blank" rel="noreferrer">cb</a> : null }
-            </div>
+            </div> : null }
         </div>
     </div>;
 };
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startup Overview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Startup = ({ profile, states }: any) => {
+const Startup = (pageProps: any) => {
+    const { profile, states }: any = pageProps;
     const { lock, translations }: any = states;
     return <>
         { (profile.TECHNO.length > 0) ? <div className={ OverviewStyles.details }>
@@ -97,7 +99,8 @@ const Startup = ({ profile, states }: any) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Corporation Overview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Corporation = ({ profile, states }: any) => {
+const Corporation = (pageProps: any) => {
+    const { profile, states }: any = pageProps;
     const { translations }: any = states;
     return <>
         { (profile.HEADQUARTER) ? <div className={ OverviewStyles.details }>
@@ -135,7 +138,8 @@ const Corporation = ({ profile, states }: any) => {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partner Overview */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Partner = ({ profile, states }: any) => {
+const Partner = (pageProps: any) => {
+    const { profile, states }: any = pageProps;
     const { lock, translations }: any = states;
     return <>
         { (profile.CREATIONDATE && !isNaN(new Date(profile.CREATIONDATE).getTime())) ? <div className={ OverviewStyles.details }>
