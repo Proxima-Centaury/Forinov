@@ -15,7 +15,6 @@ import Button from "../components/buttons/button";
 /* Styles */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import NavbarStyles from "../public/stylesheets/layout/Navbar.module.css";
-import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -29,7 +28,6 @@ const Navbar = (pageProps: NavbarInterface) => {
     const languageSelectDefaultValue = [ ...selectifyTheOptions(locales, "locales") as Array<any> ]?.filter((option: any) => option.VALUE === locale)[0];
     const languageSelectValues = [ "Single", locales, setLocale, languageSelectDefaultValue, "locales" ];
     const languageSelectObject = buildProperties(selectProps, languageSelectValues);
-    const navigationButtonClass = ButtonStyles.navigationButton + ((menuState) ? " " + ButtonStyles.active : "");
     return <nav className={ NavbarStyles.navbar }>
         <div className={ NavbarStyles.logo }>
             <Link href="/">
@@ -42,10 +40,10 @@ const Navbar = (pageProps: NavbarInterface) => {
         </ul>
         <div className={ NavbarStyles.actions }>
             <Select { ...languageSelectObject as SelectInterface }/>
-            <Button { ...buildButtonProps(ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-user", "/login") as ButtonInterface }/>
-            <Button { ...buildButtonProps(ButtonStyles.callToAction, undefined, undefined, "/onboarding", undefined, translations["M'inscrire"]) as ButtonInterface }/>
+            <Button { ...buildButtonProps(translations, "navbarLogin") as ButtonInterface }/>
+            <Button { ...buildButtonProps(translations, "navbarSignup") as ButtonInterface }/>
         </div>
-        <Button { ...buildButtonProps(navigationButtonClass, undefined, undefined, undefined, () => setMenuState(!menuState), translations["Bouton du menu de navigation"]) as ButtonInterface }/>
+        <Button { ...buildButtonProps(translations, "navbarMenu", () => setMenuState(!menuState)) as ButtonInterface } active={ menuState }/>
     </nav>;
 };
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -76,11 +74,12 @@ const NavbarMenu = (pageProps: any) => {
         };
     };
     if(navbar) {
-        return navbar.map(({ text, nesting, nest }: any, key: KeyType) => <li key={ key }>
-            <button onClick={ showSubMenu }>{ translations[text] }</button>
+        return navbar.map(({ text, url, nesting, nest }: any, key: KeyType) => <li key={ key }>
+            { (!url) ? <button onClick={ showSubMenu }>{ translations[text] }</button> : null }
+            { (url) ? <Button { ...buildButtonProps(translations, "navbarMenuLink") as ButtonInterface } url={ url } text={ translations[text] }/> : null }
             { (nesting) ? <ul data-menu="nest">
                 { nest.map(({ url, text }: any, key: KeyType) => <li key={ key }>
-                    <Button { ...buildButtonProps(undefined, undefined, undefined, url, undefined, translations[text] + ((text.match(/(Comment|How)/)) ? " ?" : "")) as ButtonInterface }/>
+                    <Button { ...buildButtonProps(translations, "navbarMenuLink") as ButtonInterface } url={ url } text={ translations[text] + ((text.match(/(Comment|How)/)) ? " ?" : "") }/>
                 </li>) }
             </ul> : null }
         </li>);

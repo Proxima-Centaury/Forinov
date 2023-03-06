@@ -1,24 +1,24 @@
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { HomeInterface } from "../typescript/interfaces";
+import { HomeInterface, ButtonInterface } from "../typescript/interfaces";
+import { buildButtonProps } from "../scripts/utilities";
 import api from "../scripts/api";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
+import Button from "../components/buttons/button";
 import Carousel from "../components/carousels/carousel";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import HomeStyles from "../public/stylesheets/pages/Home.module.css";
-import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startups Home */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StartupsHome = (pageProps: HomeInterface) => {
 	const { opportunities, logos, states, accordionsConfigurations, router }: any = pageProps;
 	const { metadatas, translations }: any = states;
@@ -34,7 +34,7 @@ const StartupsHome = (pageProps: HomeInterface) => {
 					<h1>{ translations["Développe ton business"] }</h1>
 					<p className={ HomeStyles.paragraph }>{ translations["Il n'a jamais été aussi simple pour les startups de trouver des clients, des opportunités (appels à projets, appels à candidatures, etc.) et de développer leurs réseaux"] + " !" }</p>
 					<div className={ HomeStyles.presentationLinks }>
-						<Link className={ ButtonStyles.callToAction } href="/onboarding">{ translations["Créer mon profil gratuitement"] }</Link>
+						<Button { ...buildButtonProps(translations, "homeSignup") as ButtonInterface } text={ translations["Créer mon profil gratuitement"] }/>
 					</div>
 				</div>
 				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
@@ -44,14 +44,14 @@ const StartupsHome = (pageProps: HomeInterface) => {
 				<p>{ translations["S'inscrire sur Forinov c'est simple et rapide"] }</p>
 				<Carousel { ...pageProps } component="HowToGetStarted"/>
 			</div>
-			<div className={ HomeStyles.opportunity } data-type="startup">
+			{ (opportunities.length > 0) ? <div className={ HomeStyles.opportunity } data-type="startup">
 				<h4>{ translations["Les dernières opportunités"] + " :" }</h4>
 				<Carousel { ...pageProps } component="LatestOpportunities" data={ opportunities }/>
 				<div className={ HomeStyles.actions } data-justify="left">
-					<Link className={ ButtonStyles.callToAction } href="/directories/opportunities">{ translations["Découvrir toutes les opportunités"] }</Link>
-					<Link className={ ButtonStyles.callToActionAlternative } href="/opportunities">{ translations["Qu'est-ce qu'une opportunité"] + " ?" }</Link>
+					<Button { ...buildButtonProps(translations, "homeFindOpportunities") as ButtonInterface } text={ translations["Découvrir toutes les opportunités"] }/>
+					<Button { ...buildButtonProps(translations, "homeOppportunities") as ButtonInterface } text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
 				</div>
-			</div>
+			</div> : null }
 			<div className={ HomeStyles.badges } data-type="startup">
 				<h3>{ translations["Inscrire ma startup sur Forinov"] }</h3>
 				<div className={ HomeStyles.badgesList }>
@@ -60,7 +60,7 @@ const StartupsHome = (pageProps: HomeInterface) => {
 						<i className="fa-light fa-chart-network"/>
 						<div className={ HomeStyles.content }>
 							<h6>{ translations["Découvre"] }</h6>
-							<p>{ translations["Les appels à candidatures, programmes d'accompagnement, concours dans"] } <Link href="/directories/opportunities/categories" className={ ButtonStyles.pureLink }>{ translations["L'annuaire d'opportunités"].toLowerCase() }</Link>.</p>
+							<p>{ translations["Les appels à candidatures, programmes d'accompagnement, concours dans"] } <Button { ...buildButtonProps(translations, "homeOppportunitiesCategories") as ButtonInterface }/>.</p>
 						</div>
 					</div>
 					<div className="separator"></div>
@@ -82,28 +82,28 @@ const StartupsHome = (pageProps: HomeInterface) => {
 					<div className="separator"></div>
 				</div>
 			</div>
-			<div className={ HomeStyles.companies } data-type="startup">
+			{ (logos.length > 0) ? <div className={ HomeStyles.companies } data-type="startup">
 				<h4>{ translations["Ils nous font confiance pour vous trouver"] + " !" }</h4>
 				<Carousel { ...pageProps } component="CompaniesLogos" data={ logos }/>
 				<h4>{ translations["Et oui, Forinov c'est gratuit pour les startups"] }</h4>
 				<p>{ translations["De l'inscription à la concrétisation, en passant par la prise de contact"] }</p>
 				<div className={ HomeStyles.actions } data-justify="center">
-					<Link className={ ButtonStyles.callToAction } href="/onboarding">{ translations["J'en profite dès maintenant"] }</Link>
+					<Button { ...buildButtonProps(translations, "homeSignup") as ButtonInterface } text={ translations["J'en profite dès maintenant"] }/>
 				</div>
-			</div>
+			</div> :  null }
 			<div className={ HomeStyles.questions } data-type="startup">
 				<h5>{ translations["Les réponses à vos questions"] }</h5>
 				<Carousel { ...pageProps } component="StartupAccordions" data={ Object.values(landings.startup) }/>
 				<div className={ HomeStyles.actions } data-justify="center">
-					<p>{ translations["Vous avez des questions"] + " ? " }<Link className={ ButtonStyles.pureLink } href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
+					<p>{ translations["Vous avez des questions"] + " ? " }<Button { ...buildButtonProps(translations, "homeContact") as ButtonInterface }/>.</p>
 				</div>
 			</div>
 		</div>
 	</>;
 };
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Properties */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { res, locale, locales, defaultLocale } = context;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
@@ -116,8 +116,8 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 		}
 	};
 };
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 export default StartupsHome;
 export { getServerSideProps };

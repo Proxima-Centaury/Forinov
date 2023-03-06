@@ -13,7 +13,6 @@ import Button from "../components/buttons/button";
 /* Styles */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ServerErrorStyles from "../public/stylesheets/pages/ServerError.module.css";
-import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Error */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -30,7 +29,7 @@ const ServerError = (pageProps: ServerErrorInterface) => {
                 <div className={ ServerErrorStyles.serverError }>
                     <h1>500</h1>
                     <p>{ "Oops ! " + translations["Une erreur serveur est survenue"] + " !" }</p>
-                    <Button { ...buildButtonProps(ButtonStyles.classicLink, undefined, undefined, undefined, router.back, translations["Retournez à la page précédente"]) as ButtonInterface }/>
+                    <Button { ...buildButtonProps(translations, "500Back", router.back) as ButtonInterface }/>
                 </div>
             </div>
         </div>

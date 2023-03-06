@@ -55,7 +55,13 @@ const Button = ({ type, faIcon, faIconClass, url, action, text, count, disabled 
             <i className="fa-light fa-xmark"/>
         </button>;
     } else if(!url && type.match(ButtonStyles.navigationButton)) {
-        return <button className={ type + ((disabled) ? " disabled" : "") } onClick={ action } aria-label={ aria as string }>
+        const classList = () => {
+            if(active) {
+                return type + " " + ButtonStyles.active + ((disabled) ? " disabled" : "");
+            };
+            return type + ((disabled) ? " disabled" : "");
+        };
+        return <button className={ classList() } onClick={ action } aria-label={ aria as string }>
             <span></span>
             <span></span>
             <span></span>
