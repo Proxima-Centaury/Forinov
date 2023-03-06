@@ -8,7 +8,7 @@
     height: 100%;
     margin: 16px;
     position: relative;
-    border-radius: 40px;
+    border-radius: 15px;
     box-shadow: var(--box-shadow);
     overflow: hidden;
 }
