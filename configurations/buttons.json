@@ -1,0 +1,10 @@
+{
+    "404Back": {
+        "type": "classicLink",
+        "text": "Retournez à la page précédente"
+    },
+    "500Back": {
+        "type": "classicLink",
+        "text": "Retournez à la page précédente"
+    }
+}
