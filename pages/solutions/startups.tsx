@@ -55,14 +55,14 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                             href={'/'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
-                            <span>{translations["J'inscris ma startup"]}</span>
+                            <span>{translations["Je découvre les opportunités"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
                             href={'/'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
-                            <span>{translations["J'inscris ma startup"]}</span>
+                            <span>{translations["J'accède à l'annuaire des membres"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                     </div>
@@ -76,46 +76,46 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                 </div>
                 <div className={SolutionStyles.banner}>
                     <div className="container">
-                        <h1 className={SolutionStyles.bannerTitle}>Titre</h1>
+                    <h1 className={SolutionStyles.bannerTitle}>{translations["Pourquoi rejoindre Forinov ?"]}</h1>
                         <div className={SolutionStyles.bannerBlockWrapper}>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Gagner en visibilité"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Référencer et promouvoir mes solutions grâce à un profil clair et complet. Être identifié et contacté par des entreprises à la recherche de startups innovantes. Partager mon actualité auprès d’une communauté d’acteurs innovants."]}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Candidater à des opportunités concrètes"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Postuler aux appels à candidatures d’entreprises et partenaires et être alerté des nouvelles opportunités. Découvrir directement les besoins des entreprises. Centraliser et simplifier le suivi de mes candidatures."]}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Accéder aux bons contacts"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Identifier et contacter directement les collaborateurs clés des entreprises (directions innovations, responsables métiers…). Simplifier mes échanges grâce à une plateforme collaborative. Centraliser le suivi de mes relations."]}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className={SolutionStyles.banner2}>
                     <div className="container">
-                        <h1 className={SolutionStyles.bannerTitle2}>Titre</h1>
+                        <h1 className={SolutionStyles.bannerTitle2}>{translations["Comment faire décoller mon business ?"]}</h1>
                         <div className={SolutionStyles.bannerBlockWrapper}>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle2}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph2}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle2}>1.</h3>
+                                <p className={SolutionStyles.bannerParagraph2}>{translations["Je crée mon profil « startup » gratuitement et en quelques clics."]}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle2}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph2}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle2}>2.</h3>
+                                <p className={SolutionStyles.bannerParagraph2}>{translations["J’accède à la communauté et aux annuaires d’opportunités, d’entreprises et de partenaires."]}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle2}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph2}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle2}>3.</h3>
+                                <p className={SolutionStyles.bannerParagraph2}>{translations["Je mets en avant mes solutions et partage mon actualité pour améliorer mon référencement."]}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className={SolutionStyles.banner + ' ' + SolutionStyles.bannerWithImg} style={{ position: 'relative' }}>
                     <div className="container" >
-                        <h2 className={SolutionStyles.bannerUnderlineTitle}>DÉCOUVREZ NOTRE COMMUNAUTÉ DE STARTUPS</h2>
-                        <h1 className={SolutionStyles.bannerTitle}>L&apos;innovation à déjà un nom, <br /><span>title</span>.</h1>
+                        <h2 className={SolutionStyles.bannerUnderlineTitle}>{ translations["DÉCOUVREZ NOTRE COMMUNAUTÉ DE STARTUPS"]}</h2>
+                        <h1 className={SolutionStyles.bannerTitle}>{translations["L’innovation a déjà un nom"]}, <br /><span>title</span>.</h1>
                         <Image
                             src="/assets/landings/solutions-su-seating.png"
                             alt="Man seating and working on a laptop"
@@ -138,41 +138,41 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                 </div>
                 <div className={SolutionStyles.banner3}>
                     <div className="container">
-                        <h1 className={SolutionStyles.bannerTitle}>Titre</h1>
+                        <h1 className={SolutionStyles.bannerTitle}>{ translations["Les réponses à vos questions"]}</h1>
                         <div className={SolutionStyles.bannerBlockWrapper}>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Forinov, est-ce vraiment gratuit pour les startups ?"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Oui ! Car nous cherchons à créer la première communauté des acteurs de l’innovation. Impossible sans les startups : inscris donc les différents membres de ton équipe pour ne rater aucune opportunité ! Prochainement, des options premium seront disponibles pour encore plus de mise en visibilité auprès des entreprises et de nouvelles fonctionnalités exclusives !"]}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Quel est l’intérêt de passer par Forinov plutôt qu’un autre canal ?"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Forinov, est-ce vraiment gratuit pour les startups ?"]}</p>
                             </div>
                         </div>
                         <div className={SolutionStyles.bannerBlockWrapper}>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Comment me faire repérer par les entreprises ?"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Pour mettre en avant ton profil, mets le à jour régulièrement, publie des nouvelles, ajoute tes entreprises cibles à ta wishlist et suis leurs profils… elles en seront informées ! Pense aussi à préciser tes différents produits et services : ton profil sera plus attractif et notre algorithme de matching fera le reste !"]}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{ translations["Comment puis-je postuler à un appel à projets ?"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{ translations["Retrouve toutes les opportunités en cours dans l’onglet « Opportunités ». Avec ton profil Forinov, tu seras informé.e directement des appels à projets qui matchent avec ton profil. Pour postuler réponds au questionnaire associé à l’appel, et gagne un temps fou grâce aux nombreuses informations pré-remplies à partir de ton profil !"]}</p>
                             </div>
                         </div>
                         <div className={SolutionStyles.bannerBlockWrapper}>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Qui sont les personnes que je peux contacter sur Forinov ?"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Sur Forinov, tu peux retrouver des collaborateurs de grands groupes, de PME mais aussi des contacts clés d’incubateurs, accélérateurs ou structures d’investissement. Du côté des entreprises, il n’y a pas que les responsables innovation inscrits mais aussi les responsables métiers (RH, finance, digital, achat…) : tes clients potentiels sont donc nombreux !"]}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>Sous-titre</h3>
-                                <p className={SolutionStyles.bannerParagraph}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fuga omnis temporibus nulla a consequuntur at quaerat consectetur magnam, aliquid nesciunt, et incidunt tenetur laboriosam esse fugit, eaque voluptates officiis doloribus aut commodi facere vel ipsum! Qui earum fuga veniam?</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Mon profil est-il celui d’une startup ou d’une entreprise ?"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Sur Forinov, nous connectons des startups, des entreprises et des partenaires type incubateurs, accélérateurs. Nous entendons le mot « startups » au sens large du terme ! Toute jeune entreprise porteuse d’une solution innovante est la bienvenue pour répondre aux besoins des grands groupes et PME à la recherche de solutions comme les vôtres !"]}</p>
                             </div>
                         </div>
-                        <h1 className={SolutionStyles.banner3Redirect}>Vous avez des questions ? <Link
+                        <h1 className={SolutionStyles.banner3Redirect}>{translations["Vous avez des questions ? "]}<Link
                             href="/contact"
                         >
-                            N&apos;hésitez pas à nous contacter
+                            {translations["N'hésitez pas à nous contacter"]}
                         </Link></h1>
                     </div>
                 </div>
