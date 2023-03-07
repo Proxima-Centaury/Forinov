@@ -296,14 +296,14 @@ body {
     grid-gap: 16px;
     gap: 16px;
 }
-/* .list > a {
+.list > a > div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     grid-gap: 8px;
     gap: 8px;
 }
-.list > a > [class*="count"] {
+.list > a > div > [class*="count"] {
     margin: 0px 0px 0px auto;
     position: inherit;
     top: inherit;
@@ -311,23 +311,23 @@ body {
     order: 5;
     z-index: inherit;
 }
-.list > a > img {
+.list > a > div > img {
     width: 48px;
     height: 48px;
 }
-.list > a > i {
+.list > a > div > i {
     font-size: 48px;
 }
-.list > a > h4 {
+.list > a > div > h4 {
     font-size: 16px;
     flex: 1;
 }
-.list > a > [class*="tags"] {
+.list > a > div > [class*="tags"] {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
     flex: 1 !important;
-} */
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Disabled */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
