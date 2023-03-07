@@ -22,6 +22,11 @@
                 "parameters": [ "TYPE", "PID", "app", "authkey", "lang" ],
                 "modified": "20-12-2022"
             },
+            "getLanding": {
+                "query": "LANDING",
+                "parameters": [ "app", "authkey", "lang" ],
+                "modified": "27-02-2023"
+            },
             "getLandingOpportunities": {
                 "query": "LANDING_OPPORTUNITES",
                 "parameters": [ "app", "authkey", "lang" ],

@@ -3,6 +3,7 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
 import { HomeInterface } from "../typescript/interfaces";
+import { formatNameForUrl } from "../scripts/utilities";
 import api from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -21,7 +22,7 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Home */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = (pageProps: HomeInterface) => {
-	const { startups, opportunities, states, router }: any = pageProps;
+	const { landing, startups, opportunities, states, router }: any = pageProps;
 	const { translations, metadatas }: any = states;
 	return <>
 		<Head>
@@ -140,6 +141,18 @@ const Home = (pageProps: HomeInterface) => {
 					<Link className={ ButtonStyles.callToAction } href="/directories/startups">{ translations["Accéder à l'annuaire des startups"] }</Link>
 				</div>
 			</div>
+			{ (landing.CATEGORIES.length > 0) ? <div className={ HomeStyles.startups } data-type="home">
+				<h4>{ translations["Trouvez votre pépite parmi"] + " " + landing.COUNTERS.STARTUPS + " " + translations["Startups réparties en"].toLowerCase() + " " + landing.COUNTERS.STARTUPSCATEGORIES + " " + translations["Catégories"].toLowerCase() }</h4>
+				<div className={ HomeStyles.startupsCategories }>
+					{ landing.CATEGORIES.map((category: any, key: KeyType) => {
+						const url = "/directories/startups/categories/" + formatNameForUrl(category.NAME) + "_"  + category.ID;
+						return <Link key={ key } className={ ButtonStyles.callToActionNegative } href={ url }>{ category.NAME }</Link>
+					}) }
+				</div>
+				<div className={ HomeStyles.actions } data-justify="center">
+					<Link className={ ButtonStyles.callToAction } href="/directories/startups">{ translations["Accéder à l'annuaire des startups"] }</Link>
+				</div>
+			</div> : null }
 			<div className={ HomeStyles.opportunity } data-type="home">
 				<h4>{ translations["Les dernières opportunités"] + " :" }</h4>
 				<Carousel { ...pageProps } component="LatestOpportunities" data={ opportunities }/>
@@ -161,6 +174,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	return {
 		props: {
 			locale, locales, defaultLocale,
+			landing: await api.getLanding("next", "Landing", language),
 			opportunities: await api.getLandingOpportunities("next", "Landing", language),
 			startups: await api.getLandingStartups("next", "Landing", language)
 		}
