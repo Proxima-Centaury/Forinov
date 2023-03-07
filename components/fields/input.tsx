@@ -31,7 +31,6 @@ const Input = ({ label, type, name, placeholder, version, action, defaultValue }
         onInput: getValue,
         defaultValue: defaultValue
     };
-    console.log(inputProps)
     return <div className={ InputStyles[type] }>
         <input { ...inputProps }/>
         { (label) ? <label htmlFor={ name + "FieldId" }>{ label }</label> : null }
