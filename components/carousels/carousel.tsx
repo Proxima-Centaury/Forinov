@@ -288,15 +288,13 @@ const InfiniteScrollHorizontal = ({ component, data }: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Accordions Horizontal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const AccordionsHorizontal = ({ states, component, data }: any) => {
+const AccordionsHorizontal = (pageProps: any) => {
+    const { states, component, data }: any = pageProps;
 	const { translations }: any = states;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const buttonProps = [ "type", "action", "text" ];
-    const questionsButtons = [
-        translations["Général"],
-        translations["La communauté Forinov"]
-    ];
+    const questionsButtons = [ translations["Général"] ];
     return <div className={ CarouselStyles.carousel } data-direction="bidirectional">
         <div className={ CarouselStyles.actions }>
             { questionsButtons.map((button: any, key: number) => {
