@@ -16,21 +16,21 @@
                     { "url": "", "text": "Startups", "nesting": true, "nest": [
                         { "url": "/startups", "text": "Comment ça marche" },
                         { "url": "/solutions/startups", "text": "Solutions de startups" },
-                        { "url": "/directories/startups/categories", "text": "Annuaire de startups" }
+                        { "url": "/directories/startups", "text": "Annuaire de startups" }
                     ] },
                     { "url": "", "text": "Entreprises", "nesting": true, "nest": [
                         { "url": "/corporations", "text": "Comment ça marche" },
                         { "url": "/solutions/corporations", "text": "Solutions d'entreprises" },
-                        { "url": "/directories/corporations/categories", "text": "Annuaire d'entreprises" }
+                        { "url": "/directories/corporations", "text": "Annuaire d'entreprises" }
                     ] },
                     { "url": "", "text": "Partenaires", "nesting": true, "nest": [
                         { "url": "/partners", "text": "Comment ça marche" },
                         { "url": "/solutions/partners", "text": "Solutions de partenaires" },
-                        { "url": "/directories/partners/categories", "text": "Annuaire de partenaires" }
+                        { "url": "/directories/partners", "text": "Annuaire de partenaires" }
                     ] },
                     { "url": "", "text": "Opportunités", "nesting": true, "nest": [
                         { "url": "/opportunities", "text": "Comment ça marche" },
-                        { "url": "/directories/opportunities/categories", "text": "Toutes les opportunités" },
+                        { "url": "/directories/opportunities", "text": "Toutes les opportunités" },
                         { "url": "/directories/opportunities/categories/callforproposals_1", "text": "Appels à candidatures" },
                         { "url": "/directories/opportunities/categories/programs_2", "text": "Programmes d'accompagnement" },
                         { "url": "/directories/opportunities/categories/challenges_and_contests", "text": "Challenges et concours" },
@@ -59,9 +59,9 @@
                         { "url": "/blog", "text": "Blog" }
                     ] },
                     { "url": "", "text": "Communauté", "nesting": true, "nest": [
-                        { "url": "/directories/startups/categories", "text": "Annuaire de startups" },
-                        { "url": "/directories/corporations/categories", "text": "Annuaire d'entreprises" },
-                        { "url": "/directories/partners/categories", "text": "Annuaire de partenaires" },
+                        { "url": "/directories/startups", "text": "Annuaire de startups" },
+                        { "url": "/directories/corporations", "text": "Annuaire d'entreprises" },
+                        { "url": "/directories/partners", "text": "Annuaire de partenaires" },
                         { "url": "/directories/opportunities/categories/callforproposals_1", "text": "Appels à candidatures" },
                         { "url": "/directories/opportunities/categories/programs_2", "text": "Programmes d'accompagnement" },
                         { "url": "/directories/opportunities/categories/challenges_and_contests", "text": "Challenges et concours" },
