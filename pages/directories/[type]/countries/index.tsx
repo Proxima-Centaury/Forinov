@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { DirectoryInterface } from "../../../../typescript/interfaces";
-import { match } from "../../../../scripts/utilities";
+import { formatNameForUrl, checkMatch } from "../../../../scripts/utilities";
 import api from "../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -19,9 +19,9 @@ import CategoryCard from "../../../../components/cards/category";
 import DirectoryStyles from "../../../../public/stylesheets/pages/Directory.module.css";
 import ButtonStyles from "../../../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Directory By Countries */
+/* Directory Countries */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const DirectoryByCountries = (pageProps: DirectoryInterface) => {
+const DirectoryCountries = (pageProps: DirectoryInterface) => {
     const { filters, states, router }: any = pageProps;
     const { translations }: any = states;
     const { type } = router.query;
@@ -31,7 +31,9 @@ const DirectoryByCountries = (pageProps: DirectoryInterface) => {
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
         <IdenfiticationBanner { ...pageProps }/>
         { (filters.COUNTRIES) ? <div className={ display }>
-            { filters.COUNTRIES.map((filter: any, key: KeyType) => (!search || (search && match(filter.NAME, search))) ? <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/> : null) }
+            { filters.COUNTRIES.map((filter: any, key: KeyType) => (!search || (search && checkMatch(filter.NAME, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link> : null) }
         </div> : null}
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
@@ -57,5 +59,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default DirectoryByCountries;
+export default DirectoryCountries;
 export { getServerSideProps };

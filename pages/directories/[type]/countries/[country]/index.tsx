@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { DirectoryInterface } from "../../../../../typescript/interfaces";
-import { formatType, match } from "../../../../../scripts/utilities";
+import { formatNameForUrl, formatType, checkMatch } from "../../../../../scripts/utilities";
 import api from "../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -19,9 +19,9 @@ import EntityCard from "../../../../../components/cards/entity";
 import DirectoryStyles from "../../../../../public/stylesheets/pages/Directory.module.css";
 import ButtonStyles from "../../../../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Directory By Country */
+/* Directory Country */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const DirectoryByCountry = (pageProps: DirectoryInterface) => {
+const DirectoryCountry = (pageProps: DirectoryInterface) => {
     const { companies, states, router }: any = pageProps;
     const { translations }: any = states;
     const { type } = router.query;
@@ -31,7 +31,9 @@ const DirectoryByCountry = (pageProps: DirectoryInterface) => {
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
         <IdenfiticationBanner { ...pageProps }/>
         { (companies.length > 0) ? <div className={ display }>
-            { companies.map((company: any, key: KeyType) => (!search || (search && match(company.NAME, search))) ? <EntityCard key={ key } { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/> : null) }
+            { companies.map((company: any, key: KeyType) => (!search || (search && checkMatch(company.NAME, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID }>
+                <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
+            </Link> : null) }
         </div> : null}
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
@@ -68,5 +70,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default DirectoryByCountry;
+export default DirectoryCountry;
 export { getServerSideProps };

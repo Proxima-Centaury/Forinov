@@ -1,12 +1,11 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { formatNameForUrl, structureTags } from "../../scripts/utilities";
+import { structureTags } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/image";
-import Link from "next/link";
 import Tags from "../tags/tags";
 import Format from "../texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -17,9 +16,9 @@ import EntityStyles from "../../public/stylesheets/components/cards/Entity.modul
 /* Entity Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const EntityCard = (pageProps: any) => {
-    const { entity, type, index, details, maxVisibleByDefault, states, router }: any = pageProps;
-    const { RGB }: any = states;
-    return <Link href={ router.asPath + "/" + formatNameForUrl(entity.NAME) + "_" + entity.ID } className={ EntityStyles[type] + ((index > maxVisibleByDefault) ? " hidden" : "")} data-rgb={ (RGB) ? "enabled" : "disabled" }>
+    const { entity, type, index, details, maxVisibleByDefault, states }: any = pageProps;
+    const { translations, RGB }: any = states;
+    return <div className={ EntityStyles[type] + ((index > maxVisibleByDefault) ? " hidden" : "")} data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ EntityStyles.marker }></div>
         <div className={ EntityStyles.content }>
             <div className={ EntityStyles.head }>
@@ -33,10 +32,10 @@ const EntityCard = (pageProps: any) => {
                 { (entity.TECHNOLOGIES) ? <Tags tags={ entity.TECHNOLOGIES } limit={ 2 }/> : null }
             </div>
             { (details) ? <div className={ EntityStyles.description }>
-                <Format content={ entity.DESCRIPTION }/>
+                <Format content={ entity.DESCRIPTION || translations["Non renseigné"] }/>
             </div> : null }
         </div>
-    </Link>;
+    </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */

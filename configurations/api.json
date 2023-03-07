@@ -22,6 +22,11 @@
                 "parameters": [ "TYPE", "PID", "app", "authkey", "lang" ],
                 "modified": "20-12-2022"
             },
+            "getLanding": {
+                "query": "LANDING",
+                "parameters": [ "app", "authkey", "lang" ],
+                "modified": "27-02-2023"
+            },
             "getLandingOpportunities": {
                 "query": "LANDING_OPPORTUNITES",
                 "parameters": [ "app", "authkey", "lang" ],
@@ -46,6 +51,26 @@
                 "query": "V5_GET_PUBLIC_COMMONS",
                 "parameters": [ "app", "authkey", "lang" ],
                 "modified": "15-02-2023"
+            },
+            "getStartups": {
+                "query": "SEARCH_FULLSU",
+                "parameters": [ "app", "authkey", "lang" ],
+                "modified": "12-02-2023"
+            },
+            "getCorporations": {
+                "query": "V5_SEARCHCORPO",
+                "parameters": [ "app", "authkey", "lang" ],
+                "modified": "15-02-2023"
+            },
+            "getPartners": {
+                "query": "V5_SEARCHINCUB",
+                "parameters": [ "app", "authkey", "lang" ],
+                "modified": "15-02-2023"
+            },
+            "getOpportunities": {
+                "query": "LANDING_FULLOPPORTUNITES",
+                "parameters": [ "app", "authkey", "lang" ],
+                "modified": "27-02-2023"
             },
             "getFilteredStartupsByCategory": {
                 "query": "SEARCH_FULLSU",

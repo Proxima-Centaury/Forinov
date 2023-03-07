@@ -7,7 +7,6 @@
     display: flex;
     flex: 1;
     position: relative;
-    cursor: pointer;
     border-radius: 15px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
