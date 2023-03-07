@@ -3,8 +3,8 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentation {
 	display: flex;
-	grid-gap: 24px;
-	gap: 24px;
+	grid-gap: 40px;
+	gap: 40px;
 	width: 100%;
 	padding: 80px;
 }
@@ -188,8 +188,8 @@
 .onboarding {
 	display: flex;
 	flex-direction: column;
-	grid-gap: 24px;
-	gap: 24px;
+	grid-gap: 40px;
+	gap: 40px;
 	width: 100%;
 	padding: 80px;
 }
@@ -240,8 +240,8 @@
 .types {
 	display: flex;
 	justify-content: center;
-	grid-gap: 32px;
-	gap: 32px;
+	grid-gap: 40px;
+	gap: 40px;
 }
 @media screen and (max-width: 768px) {
 	.types {
@@ -255,8 +255,8 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	grid-gap: 32px;
-	gap: 32px;
+	grid-gap: 40px;
+	gap: 40px;
 	padding: 16px;
 	border-radius: 15px;
 	background-color: var(--background-sub-color);
@@ -317,8 +317,8 @@
 .sourcing {
 	display: flex;
 	flex-direction: column;
-	grid-gap: 24px;
-	gap: 24px;
+	grid-gap: 40px;
+	gap: 40px;
 	width: 100%;
 	padding: 80px;
 }
@@ -451,8 +451,8 @@
 .opportunity {
 	display: flex;
 	flex-direction: column;
-	grid-gap: 24px;
-	gap: 24px;
+	grid-gap: 40px;
+	gap: 40px;
 	width: 100%;
 	padding: 80px;
 }
@@ -513,8 +513,8 @@
 .register {
 	display: flex;
 	flex-direction: column;
-	grid-gap: 24px;
-	gap: 24px;
+	grid-gap: 40px;
+	gap: 40px;
 	width: 100%;
 	padding: 80px;
 }
@@ -595,8 +595,8 @@
 .startups {
 	display: flex;
 	flex-direction: column;
-	grid-gap: 24px;
-	gap: 24px;
+	grid-gap: 40px;
+	gap: 40px;
 	width: 100%;
 	padding: 80px;
 }
@@ -642,8 +642,8 @@
 .companies {
 	display: flex;
 	flex-direction: column;
-	grid-gap: 24px;
-	gap: 24px;
+	grid-gap: 40px;
+	gap: 40px;
 	width: 100%;
 	padding: 80px;
 }
@@ -724,8 +724,8 @@
 .badges {
 	display: flex;
 	flex-direction: column;
-	grid-gap: 24px;
-	gap: 24px;
+	grid-gap: 40px;
+	gap: 40px;
 	width: 100%;
 	padding: 80px;
 }
@@ -904,8 +904,8 @@
 .questions {
 	display: flex;
 	flex-direction: column;
-	grid-gap: 24px;
-	gap: 24px;
+	grid-gap: 40px;
+	gap: 40px;
 	width: 100%;
 	padding: 80px;
 }
