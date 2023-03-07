@@ -4,6 +4,7 @@
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { DirectoryInterface } from "../../../typescript/interfaces";
+import { match } from "../../../scripts/utilities";
 import api from "../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -24,19 +25,20 @@ const Directory = (pageProps: DirectoryInterface) => {
     const { locale, states, router }: any = pageProps;
     const { translations }: any = states;
     const { type } = router.query;
+    const [ search, setSearch ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
     const filters = [
-        { ID: 0, NAME: translations["Catégories"], ROUTE: "/categories" },
-        { ID: 0, NAME: translations["Pays"], ROUTE: (locale === "en-US") ? "/countries" : "/pays" },
+        { ID: 0, NAME: translations["Catégories"], URL: "/categories" },
+        { ID: 0, NAME: translations["Pays"], URL: (locale === "en-US") ? "/countries" : "/pays" },
     ];
     return <div id="directory" className="container">
-        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay }/>
+        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
         <IdenfiticationBanner { ...pageProps }/>
         <div className={ display }>
-            { filters.map((filter: any, key: number) => <Link key={ key } href={ router.asPath + filter.ROUTE } className={ CategoryStyles.category }>
+            { filters.map((filter: any, key: number) => (!search || (search && match(filter.NAME, search))) ? <Link key={ key } href={ router.asPath + filter.URL } className={ CategoryStyles.category }>
                 <i className="fa-light fa-circle-star"/>
                 <h4 className={ CategoryStyles.name }>{ filter.NAME }</h4>
-            </Link>) }
+            </Link> : null) }
         </div>
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>

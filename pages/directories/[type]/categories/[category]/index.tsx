@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { DirectoryInterface } from "../../../../../typescript/interfaces";
-import { formatType } from "../../../../../scripts/utilities";
+import { formatType, match } from "../../../../../scripts/utilities";
 import api from "../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -26,15 +26,16 @@ const DirectoryByCategory = (pageProps: DirectoryInterface) => {
     const { result, states, router }: any = pageProps;
     const { translations }: any = states;
     const { type } = router.query;
+    const [ search, setSearch ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
     return <div id="directory" className="container">
-        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay }/>
+        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
         <IdenfiticationBanner { ...pageProps }/>
         { (!type.match(/(opport)/) && result.length > 0) ? <div className={ display }>
-            { result.map((company: any, key: KeyType) => <EntityCard key={ key } { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>) }
+            { result.map((company: any, key: KeyType) => (!search || (search && match(company.NAME, search))) ? <EntityCard key={ key } { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/> : null) }
         </div> : null}
         { (type.match(/(opport)/) && result.length > 0) ? <div className={ display }>
-            { result.map((opportunity: any, key: KeyType) => <OpportunityCard key={ key } { ...pageProps } opportunity={ opportunity } index={ key + 1 }/>) }
+            { result.map((opportunity: any, key: KeyType) => (!search || (search && match(opportunity.TITLE, search))) ? <OpportunityCard key={ key } { ...pageProps } opportunity={ opportunity } index={ key + 1 }/> : null) }
         </div> : null}
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
