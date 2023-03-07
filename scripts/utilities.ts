@@ -30,6 +30,7 @@ import config from "../configurations/config.json";
 * @method removeEventListeners : {@link Utilities.removeEventListeners};
 * @method structureTags : {@link Utilities.structureTags};
 * @method formatType : {@link Utilities.formatType};
+* @method match : {@link Utilities.formatType};
 * @returns
 * - ```void``` ( nothing ).
 * ---
@@ -542,6 +543,27 @@ class Utilities {
         type = (type.match(/(partenaire)/)) ? "partner" : type;
         return type;
     };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function match
+    * @param { String } [ string ] Should be a ```string```.
+    * @param { String } [ match ] Should be a ```string```.
+    * @returns { Boolean }
+    * - ```true``` if the match is contained in the string.
+    * - ```false``` if string or match parameter missing or wrong or there's no match.
+    * ---
+    * @note This method is used to return a boolean by testing the string according to its supposed match.
+    * @note The {@link string} parameter should be a string.
+    * @note The {@link match} parameter should be a string.
+    */
+    match = (string: String, match: String): Boolean => {
+        if(!string || string.trim().length <= 0 || !match || match.trim().length <= 0) {
+            return false;
+        };
+        const regexep = new RegExp(match as any, "i");
+        const result = (string.match(regexep)) ? true : false;
+        return result;
+    };
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Instance */
@@ -569,6 +591,7 @@ const bindEventListeners = utilities.bindEventListeners;
 const removeEventListeners = utilities.removeEventListeners;
 const structureTags = utilities.structureTags;
 const formatType = utilities.formatType;
+const match = utilities.match;
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -592,5 +615,6 @@ export {
     bindEventListeners,
     removeEventListeners,
     structureTags,
-    formatType
+    formatType,
+    match
 };

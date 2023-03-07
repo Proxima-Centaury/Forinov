@@ -18,7 +18,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Filters */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Filters = (pageProps: any) => {
-    const { title, display, setDisplay, states }: any = pageProps;
+    const { title, display, setDisplay, setSearch, states }: any = pageProps;
     const { translations }: any = states;
     /* --------------------------- */
     /* Properties */
@@ -59,7 +59,8 @@ const Filters = (pageProps: any) => {
     const filterTheCards = (event: any) => {
         event.preventDefault();
         const form = event.target;
-        console.log(form);
+        const search = form.search.value;
+        return setSearch(search);
     };
     return <div className={ FiltersStyles.container }>
         { (title) ? <div className={ FiltersStyles.header }>
