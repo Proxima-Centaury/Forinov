@@ -383,6 +383,8 @@
 	"Bouton d'affichage en liste": "List view button",
 	"Catégories": "Categories",
 	"Pays": "Countries",
+	"Rechercher dans l'annuaire": "",
+	"Bouton de recherche dans l'annuaire": "",
 	"annuaire_opport_selectors": [
 		"Tous",
 		"Appels à candidature",
