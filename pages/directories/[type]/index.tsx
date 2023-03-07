@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { DirectoryInterface } from "../../../typescript/interfaces";
-import { match } from "../../../scripts/utilities";
+import { checkMatch } from "../../../scripts/utilities";
 import api from "../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -12,32 +12,32 @@ import api from "../../../scripts/api";
 import Link from "next/link";
 import Filters from "../../../components/filters/filters";
 import IdenfiticationBanner from "../../../components/banners/identification";
+import CategoryCard from "../../../components/cards/category";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import DirectoryStyles from "../../../public/stylesheets/pages/Directory.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
-import CategoryStyles from "../../../public/stylesheets/components/cards/Category.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Directory */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Directory = (pageProps: DirectoryInterface) => {
-    const { locale, states, router }: any = pageProps;
+    const { states, router }: any = pageProps;
     const { translations }: any = states;
     const { type } = router.query;
     const [ search, setSearch ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
     const filters = [
+        // { ID: 0, NAME: translations["Toutes"], URL: "/all" },
         { ID: 0, NAME: translations["Catégories"], URL: "/categories" },
-        { ID: 0, NAME: translations["Pays"], URL: (locale === "en-US") ? "/countries" : "/pays" },
+        { ID: 0, NAME: translations["Pays"], URL: "/countries" },
     ];
     return <div id="directory" className="container">
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
         <IdenfiticationBanner { ...pageProps }/>
         <div className={ display }>
-            { filters.map((filter: any, key: number) => (!search || (search && match(filter.NAME, search))) ? <Link key={ key } href={ router.asPath + filter.URL } className={ CategoryStyles.category }>
-                <i className="fa-light fa-circle-star"/>
-                <h4 className={ CategoryStyles.name }>{ filter.NAME }</h4>
+            { filters.map((filter: any, key: number) => (!search || (search && checkMatch(filter.NAME, search))) ? <Link key={ key } href={ router.asPath + filter.URL }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link> : null) }
         </div>
         <div className={ DirectoryStyles.signup }>

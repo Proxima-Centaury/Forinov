@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { DirectoryInterface } from "../../../../typescript/interfaces";
-import { match } from "../../../../scripts/utilities";
+import { checkMatch } from "../../../../scripts/utilities";
 import api from "../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -31,7 +31,7 @@ const DirectoryByCountries = (pageProps: DirectoryInterface) => {
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
         <IdenfiticationBanner { ...pageProps }/>
         { (filters.COUNTRIES) ? <div className={ display }>
-            { filters.COUNTRIES.map((filter: any, key: KeyType) => (!search || (search && match(filter.NAME, search))) ? <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/> : null) }
+            { filters.COUNTRIES.map((filter: any, key: KeyType) => (!search || (search && checkMatch(filter.NAME, search))) ? <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/> : null) }
         </div> : null}
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>

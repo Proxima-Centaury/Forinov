@@ -382,8 +382,9 @@
 	"Bouton d'affichage en liste": "Bouton d'affichage en liste",
 	"Catégories": "Catégories",
 	"Pays": "Pays",
-	"Rechercher dans l'annuaire": "Rechercher dans l'annuaire",
+	"Rechercher dans l'annuaire des": "Rechercher dans l'annuaire des",
 	"Bouton de recherche dans l'annuaire": "Bouton de recherche dans l'annuaire",
+	"Toutes": "Toutes",
 	"annuaire_opport_selectors": [
 		"Tous",
 		"Appels à candidature",

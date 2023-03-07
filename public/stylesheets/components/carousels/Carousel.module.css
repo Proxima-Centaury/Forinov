@@ -40,12 +40,12 @@
     display: flex;
 	justify-content: center;
 	align-items: center;
-	flex: 1;
 }
 .itemFullWidth {
 	grid-gap: 16px;
 	gap: 16px;
 	min-width: 100%;
+	flex: 1;
 }
 @media screen and (max-width: 576px) {
 	.item {
