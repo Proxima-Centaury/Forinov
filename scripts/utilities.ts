@@ -30,7 +30,7 @@ import config from "../configurations/config.json";
 * @method removeEventListeners : {@link Utilities.removeEventListeners};
 * @method structureTags : {@link Utilities.structureTags};
 * @method formatType : {@link Utilities.formatType};
-* @method match : {@link Utilities.formatType};
+* @method checkMatch : {@link Utilities.checkMatch};
 * @returns
 * - ```void``` ( nothing ).
 * ---
@@ -461,8 +461,8 @@ class Utilities {
         if(!name) {
             return false;
         };
-        name = name.toLowerCase().replaceAll(/\s+/g, "").trim();
-        const characters = [ "/", "&" ];
+        name = name.toLowerCase().trim();
+        const characters = [ "/", "&", " - ", " ", "_", " _ " ];
         characters.forEach((character) => name = name.replaceAll(character, "-"));
         return name;
     };
@@ -545,7 +545,7 @@ class Utilities {
     };
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
-    * @function match
+    * @function checkMatch
     * @param { String } [ string ] Should be a ```string```.
     * @param { String } [ match ] Should be a ```string```.
     * @returns { Boolean }
@@ -556,7 +556,7 @@ class Utilities {
     * @note The {@link string} parameter should be a string.
     * @note The {@link match} parameter should be a string.
     */
-    match = (string: String, match: String): Boolean => {
+    checkMatch = (string: String, match: String): Boolean => {
         if(!string || string.trim().length <= 0 || !match || match.trim().length <= 0) {
             return false;
         };
@@ -591,7 +591,7 @@ const bindEventListeners = utilities.bindEventListeners;
 const removeEventListeners = utilities.removeEventListeners;
 const structureTags = utilities.structureTags;
 const formatType = utilities.formatType;
-const match = utilities.match;
+const checkMatch = utilities.checkMatch;
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -616,5 +616,5 @@ export {
     removeEventListeners,
     structureTags,
     formatType,
-    match
+    checkMatch
 };

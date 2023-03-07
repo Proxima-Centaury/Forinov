@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { DirectoryInterface } from "../../../../typescript/interfaces";
-import { match } from "../../../../scripts/utilities";
+import { formatNameForUrl, checkMatch } from "../../../../scripts/utilities";
 import api from "../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -19,9 +19,9 @@ import CategoryCard from "../../../../components/cards/category";
 import DirectoryStyles from "../../../../public/stylesheets/pages/Directory.module.css";
 import ButtonStyles from "../../../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Directory By Categories */
+/* Directory Categories */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const DirectoryByCategories = (pageProps: DirectoryInterface) => {
+const DirectoryCategories = (pageProps: DirectoryInterface) => {
     const { filters, states, router }: any = pageProps;
     const { translations }: any = states;
     const { type } = router.query;
@@ -31,16 +31,24 @@ const DirectoryByCategories = (pageProps: DirectoryInterface) => {
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
         <IdenfiticationBanner { ...pageProps }/>
         { (type.match(/(startup)/)) ? <div className={ display }>
-            { filters.CATEGORIES.map((filter: any, key: KeyType) => (!search || (search && match(filter.NAME, search))) ? <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/> : null) }
+            { filters.CATEGORIES.map((filter: any, key: KeyType) => (!search || (search && checkMatch(filter.NAME, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link> : null) }
         </div> : null}
         { (type.match(/(corporation|entreprise)/)) ? <div className={ display }>
-            { filters.SECTORS.map((filter: any, key: KeyType) => (!search || (search && match(filter.NAME, search))) ? <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/> : null) }
+            { filters.SECTORS.map((filter: any, key: KeyType) => (!search || (search && checkMatch(filter.NAME, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link> : null) }
         </div> : null}
         { (type.match(/(partner|partenaire)/)) ? <div className={ display }>
-            { filters.PARTNERS_TYPES.map((filter: any, key: KeyType) => (!search || (search && match(filter.NAME, search))) ? <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/> : null) }
+            { filters.PARTNERS_TYPES.map((filter: any, key: KeyType) => (!search || (search && checkMatch(filter.NAME, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link> : null) }
         </div> : null}
         { (type.match(/(opport)/)) ? <div className={ display }>
-            { filters.OPPORTUNITIES.map((filter: any, key: KeyType) => (!search || (search && match(filter.NAME, search))) ? <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/> : null) }
+            { filters.OPPORTUNITIES.map((filter: any, key: KeyType) => (!search || (search && checkMatch(filter.NAME, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link> : null) }
         </div> : null}
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
@@ -66,5 +74,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default DirectoryByCategories;
+export default DirectoryCategories;
 export { getServerSideProps };

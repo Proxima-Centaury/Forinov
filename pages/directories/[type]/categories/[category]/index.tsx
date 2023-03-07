@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { DirectoryInterface } from "../../../../../typescript/interfaces";
-import { formatType, match } from "../../../../../scripts/utilities";
+import { formatNameForUrl, formatType, checkMatch } from "../../../../../scripts/utilities";
 import api from "../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -19,10 +19,11 @@ import OpportunityCard from "../../../../../components/cards/opportunity";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import DirectoryStyles from "../../../../../public/stylesheets/pages/Directory.module.css";
 import ButtonStyles from "../../../../../public/stylesheets/components/buttons/Button.module.css";
+import { COOKIE_NAME_PRERENDER_BYPASS } from "next/dist/server/api-utils";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Directory By Category */
+/* Directory Category */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const DirectoryByCategory = (pageProps: DirectoryInterface) => {
+const DirectoryCategory = (pageProps: DirectoryInterface) => {
     const { result, states, router }: any = pageProps;
     const { translations }: any = states;
     const { type } = router.query;
@@ -32,10 +33,14 @@ const DirectoryByCategory = (pageProps: DirectoryInterface) => {
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
         <IdenfiticationBanner { ...pageProps }/>
         { (!type.match(/(opport)/) && result.length > 0) ? <div className={ display }>
-            { result.map((company: any, key: KeyType) => (!search || (search && match(company.NAME, search))) ? <EntityCard key={ key } { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/> : null) }
+            { result.map((company: any, key: KeyType) => (!search || (search && checkMatch(company.NAME, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID }>
+                <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
+            </Link> : null) }
         </div> : null}
         { (type.match(/(opport)/) && result.length > 0) ? <div className={ display }>
-            { result.map((opportunity: any, key: KeyType) => (!search || (search && match(opportunity.TITLE, search))) ? <OpportunityCard key={ key } { ...pageProps } opportunity={ opportunity } index={ key + 1 }/> : null) }
+            { result.map((opportunity: any, key: KeyType) => (!search || (search && checkMatch(opportunity.TITLE, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID }>
+                <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ key + 1 }/>
+            </Link> : null) }
         </div> : null}
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
@@ -74,5 +79,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default DirectoryByCategory;
+export default DirectoryCategory;
 export { getServerSideProps };
