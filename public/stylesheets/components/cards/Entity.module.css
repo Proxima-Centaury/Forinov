@@ -11,6 +11,7 @@
     border-radius: 15px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
+    z-index: 1;
 }
 @media screen and (max-width: 1200px) {
     .startup,
@@ -53,6 +54,8 @@ div[class="list"] > .partner {
     grid-gap: 16px;
     gap: 16px;
     padding: 16px;
+    border-radius: 0px 15px 15px 0px;
+    background-color: var(--background-sub-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Entity ( Head ) */
