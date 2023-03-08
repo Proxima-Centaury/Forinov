@@ -18,8 +18,9 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Filters */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Filters = (pageProps: any) => {
-    const { title, display, setDisplay, setSearch, states }: any = pageProps;
+    const { title, display, setDisplay, setSearch, states, router }: any = pageProps;
     const { translations }: any = states;
+    const { type }: any = router.query;
     /* --------------------------- */
     /* Properties */
     /* --------------------------- */
@@ -64,6 +65,10 @@ const Filters = (pageProps: any) => {
     };
     return <div className={ FiltersStyles.container }>
         { (title) ? <div className={ FiltersStyles.header }>
+            { (type.match(/(startup)/)) ? <i className="fa-light fa-rocket-launch"/> : null }
+            { (type.match(/(corporation|entreprise)/)) ? <i className="fa-light fa-buildings"/> : null }
+            { (type.match(/(partner|partenaire)/)) ? <i className="fa-light fa-handshake-simple"/> : null }
+            { (type.match(/(opport)/)) ? <i className="fa-light fa-circle-star"/> : null }
             <h1>{ title }</h1>
             <div className={ FiltersStyles.displays }>
                 <Button { ...gridButtonObject as ButtonInterface }/>
