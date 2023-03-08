@@ -302,6 +302,7 @@ body {
     justify-content: flex-start;
     grid-gap: 8px;
     gap: 8px;
+    min-height: inherit;
 }
 .list > a > div > [class*="count"] {
     margin: 0px 0px 0px auto;
