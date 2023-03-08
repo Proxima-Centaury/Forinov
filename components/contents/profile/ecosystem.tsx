@@ -32,7 +32,7 @@ const ProfileEcosystem = (pageProps: any) => {
     /* --------------------------- */
     /* More Or Less Button */
     /* --------------------------- */
-    const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], (type.match(/(startup)/)) ? profile.CLIENTS.length - 4 : profile.PARTNERS.length - 4 ];
+    const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], (type.match(/(startup)/)) ? profile.CLIENTS.length - 4 : 0 ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
     return <div id="ecosystem" className={ EcosystemStyles.ecosystem }>
         <h3>{ (type.match(/(startup)/)) ? translations["Marché et écosystème"] : translations["Écosystème et partenaires"] }</h3>
