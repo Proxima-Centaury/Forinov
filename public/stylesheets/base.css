@@ -218,8 +218,8 @@ body {
     flex: 1;
     max-width: 100%;
     width: 100%;
-    grid-gap: 32px;
-    gap: 32px;
+    grid-gap: 40px;
+    gap: 40px;
     margin: 0px auto;
     padding: 16px;
 }
@@ -302,6 +302,7 @@ body {
     justify-content: flex-start;
     grid-gap: 8px;
     gap: 8px;
+    min-height: inherit;
 }
 .list > a > div > [class*="count"] {
     margin: 0px 0px 0px auto;

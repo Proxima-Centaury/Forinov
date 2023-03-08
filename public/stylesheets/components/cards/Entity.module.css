@@ -6,10 +6,12 @@
 .partner {
     display: flex;
     flex: 1;
+    min-height: 320px;
     position: relative;
     border-radius: 15px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
+    z-index: 1;
 }
 @media screen and (max-width: 1200px) {
     .startup,
@@ -52,6 +54,8 @@ div[class="list"] > .partner {
     grid-gap: 16px;
     gap: 16px;
     padding: 16px;
+    border-radius: 0px 15px 15px 0px;
+    background-color: var(--background-sub-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Entity ( Head ) */
@@ -59,8 +63,8 @@ div[class="list"] > .partner {
 .head {
     display: flex;
     flex-direction: column;
-    grid-gap: 16px;
-    gap: 16px;
+    grid-gap: 8px;
+    gap: 8px;
 }
 div[class="list"] .head {
     flex-direction: row;
@@ -72,14 +76,20 @@ div[class="list"] .head {
         align-items: flex-start;
     }
 }
+.head > div[class*="tags"] {
+    padding: 0px 0px 0px calc(48px + 16px);
+}
+div[class="list"] .head > div[class*="tags"] {
+    padding: 0px;
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Entity ( Identity ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .identity {
     display: flex;
     align-items: center;
-    grid-gap: 16px;
-    gap: 16px;
+    grid-gap: 8px;
+    gap: 8px;
 }
 div[class*="grid"] .identity {
     flex-direction: column;
@@ -90,6 +100,12 @@ div[class*="grid"] .identity {
         flex-direction: column;
         align-items: flex-start;
     }
+}
+.identity > div[class*="tags"] {
+    padding: 0px 0px 0px calc(48px + 16px);
+}
+div[class="list"] .identity > div[class*="tags"] {
+    padding: 0px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Entity ( Branding ) */
@@ -128,4 +144,25 @@ div[class*="grid"] .identity {
 .description {
     display: flex;
     align-items: center;
+    padding: 0px 0px 0px calc(48px + 16px);
+}
+@media screen and (max-width: 992px) {
+    div[class="list"] .description {
+        padding: 0px;
+    }
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Entity ( Follow ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.follow {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 8px;
+    gap: 8px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+.follow > p {
+    color: var(--logo-blue-color);
 }
