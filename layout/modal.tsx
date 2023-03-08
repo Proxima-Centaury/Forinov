@@ -13,6 +13,7 @@ import RegisterModal from "../components/modals/profile/register";
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
+import ContactModal from "../components/modals/contact";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Modal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -43,6 +44,11 @@ const ModalPicker = ({ modal, closeModal, translations }: any) => {
                 <RegisterModal  { ...modalProps }/>
                 <Button { ...closeModalButtonObject as ButtonInterface }/>
             </div>;
+        case "contact":
+            return <div className="modal firstType" data-modal="contact">
+            <ContactModal  { ...modalProps }/>
+            <Button { ...closeModalButtonObject as ButtonInterface }/>
+        </div>;
         default:
             return <div></div>;
     };
