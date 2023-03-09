@@ -39,10 +39,10 @@ const ContactModal = ({ translations }: any) => {
                             fontSize: "1.25rem",
                             fontWeight: 700,
                         }}
-                    >Contacter Forinov</h1>
+                    >{translations["Contacter Forinov"]}</h1>
                     <p style={{
                         opacity: 0.5,
-                    }}>Nos équipes vous répondront dans les meilleurs délais !</p>
+                    }}>{translations["Nos équipes vous répondront dans les meilleurs délais !"]}</p>
                 </div>
                 <Input
                     label={translations["Société"]}
