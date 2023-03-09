@@ -1,68 +1,52 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { GetServerSideProps } from "next";
-import { useState } from "react";
-import { DirectoryInterface } from "../../../typescript/interfaces";
-import { checkMatch } from "../../../scripts/utilities";
-import api from "../../../scripts/api";
+import { useEffect, useState } from "react";
+import { ButtonInterface } from "../../typescript/interfaces";
+import { buildProperties, checkMatch } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Link from "next/link";
-import Filters from "../../../components/filters/filters";
-import IdenfiticationBanner from "../../../components/banners/identification";
-import CategoryCard from "../../../components/cards/category";
+import Button from "../buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import DirectoryStyles from "../../../public/stylesheets/pages/Directory.module.css";
-import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
+import DropdownStyles from "../../public/stylesheets/components/dropdowns/Dropdown.module.css";
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Directory Type */
+/* Directory Search By Dropdown */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const DirectoryType = (pageProps: DirectoryInterface) => {
+const DirectorySearchByDropdown = (pageProps: any) => {
     const { states, router }: any = pageProps;
     const { translations }: any = states;
-    const { type } = router.query;
-    const [ search, setSearch ] = useState(null);
-    const [ display, setDisplay ] = useState("grid threeColumns");
+    const { type }: any = router.query;
+    const [ open, setOpen ] = useState(false);
+    const buttonProps = [ "type", "faIcon", "faIconClass", "action" ];
+    const dropdownButtonAction = () => setOpen(!open);
+    const dropdownButtonValues = [ ButtonStyles.mask, true, "fa-light fa-chevron-down", dropdownButtonAction ];
+    const dropdownButtonObject = buildProperties(buttonProps, dropdownButtonValues);
     const filters = [
         // { ID: 0, NAME: translations["Toutes"], URL: "/all" },
         { ID: 0, NAME: translations["Catégories"], URL: "/directories/" + type + "/categories" },
         { ID: 0, NAME: translations["Pays"], URL: "/directories/" + type + "/countries" },
     ];
-    return <div id="directory" className="container">
-        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
-        <IdenfiticationBanner { ...pageProps }/>
-        <div className={ display }>
-            { filters.map((filter: any, key: number) => (!search || (search && checkMatch(filter.NAME, search))) ? <Link key={ key } href={ filter.URL }>
-                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
-            </Link> : null) }
+    const activeFilter = () => filters.map((link: any) => (checkMatch(router.asPath, link.URL)) ? link.NAME : null).filter((link: any) => link !== null)[0];
+    return <div className={ DropdownStyles.container } data-open={ open }>
+        <div className={ DropdownStyles.display }>
+            <p>{ translations["Recherche par"] + " : " }<span>{ activeFilter() }</span></p>
+            <Button { ...dropdownButtonObject as ButtonInterface }/>
         </div>
-        <div className={ DirectoryStyles.signup }>
-            <i className="fa-light fa-eyes"/>
-            <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
-            <Link href="/onboarding" className={ ButtonStyles.callToActionNegative }>{ translations["Je m'inscris"] }</Link>
-        </div>
+        { (filters.length > 0) ? <div className={ DropdownStyles.list + ((open) ? " " + DropdownStyles.open : "") }>
+            { filters.map((link: any, key: number) => {
+                const buttonProps = [ "type", "url", "text", "active" ];
+                const dropdownLinkValues = [ ButtonStyles.dropdownLink, link.URL, link.NAME, checkMatch(router.asPath, link.URL) ];
+                const dropdownLinkObject = buildProperties(buttonProps, dropdownLinkValues);
+                return <Button key={ key } { ...dropdownLinkObject as ButtonInterface }/>;
+            }) }
+        </div> : null }
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Server Side Props */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const getServerSideProps: GetServerSideProps = async (context) => {
-    const { res, locale, locales, defaultLocale } = context;
-    const language = locale?.substring(0, 2);
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-    return {
-        props: {
-            locale, locales, defaultLocale,
-            filters: await api.getPublicCommons("next", "Landing", language)
-        }
-    };
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default DirectoryType;
-export { getServerSideProps };
+export default DirectorySearchByDropdown;
