@@ -29,7 +29,7 @@ const DirectoryCategory = (pageProps: DirectoryInterface) => {
     const [ search, setSearch ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
     return <div id="directory" className="container">
-        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch } dropdown="DirectoriesSearchBy"/>
+        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
         <IdenfiticationBanner { ...pageProps }/>
         { (!type.match(/(opport)/) && result.length > 0) ? <div className={ display }>
             { result.map((company: any, key: KeyType) => (!search || (search && checkMatch(company.NAME, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID }>
