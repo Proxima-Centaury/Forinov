@@ -29,7 +29,7 @@ const DirectoryCategory = (pageProps: DirectoryInterface) => {
     const [ search, setSearch ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
     return <div id="directory" className="container">
-        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
+        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch } dropdown="DirectoriesSearchBy"/>
         <IdenfiticationBanner { ...pageProps }/>
         { (!type.match(/(opport)/) && result.length > 0) ? <div className={ display }>
             { result.map((company: any, key: KeyType) => (!search || (search && checkMatch(company.NAME, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID }>
@@ -54,9 +54,9 @@ const DirectoryCategory = (pageProps: DirectoryInterface) => {
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, query, locale, locales, defaultLocale } = context;
     let { type, category }: any = query;
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     category = category?.substring(category.indexOf("_") + 1, category.length);
     const language = locale?.substring(0, 2);
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const research = async () => {
         if(type.match(/(startup)/)) {
             return await api.getFilteredStartupsByCategory(category, "next", "Sorbonne", language);

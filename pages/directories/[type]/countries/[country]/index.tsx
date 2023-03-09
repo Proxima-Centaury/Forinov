@@ -28,7 +28,7 @@ const DirectoryCountry = (pageProps: DirectoryInterface) => {
     const [ search, setSearch ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
     return <div id="directory" className="container">
-        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
+        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch } dropdown="DirectoriesSearchBy"/>
         <IdenfiticationBanner { ...pageProps }/>
         { (companies.length > 0) ? <div className={ display }>
             { companies.map((company: any, key: KeyType) => (!search || (search && checkMatch(company.NAME, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID }>
@@ -48,9 +48,9 @@ const DirectoryCountry = (pageProps: DirectoryInterface) => {
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, query, locale, locales, defaultLocale } = context;
     let { type, country }: any = query;
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     country = country?.substring(country.indexOf("_") + 1, country.length);
     const language = locale?.substring(0, 2);
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const companies = async () => {
         if(type.match(/(startup)/)) {
             return await api.getFilteredStartupsByCountry(country, "next", "Sorbonne", language);

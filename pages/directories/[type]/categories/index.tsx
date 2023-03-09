@@ -28,7 +28,7 @@ const DirectoryCategories = (pageProps: DirectoryInterface) => {
     const [ search, setSearch ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
     return <div id="directory" className="container">
-        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
+        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch } dropdown="DirectoriesSearchBy"/>
         <IdenfiticationBanner { ...pageProps }/>
         { (type.match(/(startup)/)) ? <div className={ display }>
             { filters.CATEGORIES.map((filter: any, key: KeyType) => (!search || (search && checkMatch(filter.NAME, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
@@ -62,8 +62,8 @@ const DirectoryCategories = (pageProps: DirectoryInterface) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, locale, locales, defaultLocale } = context;
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const language = locale?.substring(0, 2);
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     return {
         props: {
             locale, locales, defaultLocale,
