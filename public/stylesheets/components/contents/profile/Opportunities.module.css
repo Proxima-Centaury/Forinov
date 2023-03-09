@@ -1,9 +1,11 @@
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Opportunities ( Container ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .opportunities {
     display: flex;
     flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
     width: 100%;
 }
 .opportunities > h3 {
@@ -14,10 +16,8 @@
 .opportunities > button {
     display: flex;
     align-items: center;
-    margin: 16px 0px 8px 0px;
-}
-.opportunities > button > * + * {
-    margin: 0px 0px 0px 16px;
+    grid-gap: 16px;
+    gap: 16px;
 }
 .opportunities > button > .dot {
     min-width: 8px;
@@ -26,43 +26,21 @@
     height: 8px;
     border-radius: 10px;
 }
-.opportunities > button[data-status="Online"] > .dot {
+.opportunities > button[data-state="Online"] > .dot {
     background-color: var(--success-color);
 }
-.opportunities > button[data-status="Draft"] > .dot {
+.opportunities > button[data-state="Draft"] > .dot {
     background-color: var(--warning-color);
 }
-.opportunities > button[data-status="Finished"] > .dot {
+.opportunities > button[data-state="Finished"] > .dot {
     background-color: var(--error-color);
 }
-.opportunities > button[data-status] > span {
+.opportunities > button[data-state] > span {
     font-family: "Nunito Sans";
     font-weight: 800;
     font-size: 24px;
     white-space: nowrap;
 }
-.opportunities > button[data-status] > i[class*="expanded"] {
+.opportunities > button[data-state] > i[class*="expanded"] {
     transform: rotate(90deg);
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Opportunities ( List ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-.list {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 0px;
-    margin: 8px 0px 0px 0px;
-    position: relative;
-    overflow: hidden;
-}
-.list[class*="expanded"] {
-    height: max-content;
-    overflow: inherit;
-}
-.list > button {
-    margin: 16px 0px 16px auto;
-}
-.list > button:last-of-type {
-    margin: 16px 0px 0px auto;
 }

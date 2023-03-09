@@ -1,39 +1,45 @@
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
-import { getTranslations, getMetadataTranslations, scrollTo } from "../scripts/utilities";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { getTranslations, getMetadatasTranslations, scrollTo } from "../scripts/utilities";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import Navbar from "../layout/navbar";
+import AuthNavbar from "../layout/authNavbar";
 import Transition from "../layout/transition";
 import Modal from "../layout/modal";
 import Footer from "../layout/footer";
 import Devtools from "../components/devtools/devtools";
 import { GlobalContext } from "../components/context/globalContext";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import config from "../config.json";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import baseConfigurations from "../configurations/config.json";
+import apiConfigurations from "../configurations/api.json";
+import resourcesConfigurations from "../configurations/resources.json";
+import layoutConfigurations from "../configurations/layout.json";
+import carouselsConfigurations from "../configurations/carousels.json";
+import accordionsConfigurations from "../configurations/accordions.json";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import "../public/stylesheets/base.css";
 import "../public/stylesheets/components/annuaire_searchbar.css";
 import "../public/stylesheets/pages/annuaire_su.css";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* App */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const App = ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
     const [ locale, setLocale ] = useState(pageProps.locale);
     const [ locales, setLocales ] = useState(pageProps.locales);
-    const [ metadatas, setMetadatas ] = useState(getMetadataTranslations(locale));
+    const [ metadatas, setMetadatas ] = useState(getMetadatasTranslations(locale));
     const [ translations, setTranslations ] = useState(getTranslations(locale));
     const [ session, setSession ] = useState(false);
     const [ theme, setTheme ] = useState(getCookie("forinov_theme_preference") || "light");
@@ -41,23 +47,26 @@ const App = ({ Component, pageProps }: AppProps) => {
     const [ modal, setModal ] = useState(null);
     const [ RGB, setRGB ] = useState(false);
     const [ production, setProduction ] = useState((process.env.NODE_ENV === "development") ? false : true);
-    useEffect(() => setMetadatas(getMetadataTranslations(locale)), [ locale ]);
-    useEffect(() => setTranslations(getTranslations(locale)), [ locale ]);
     useEffect(() => {
-        let refresh = null;
+        setMetadatas(getMetadatasTranslations(locale));
+        setTranslations(getTranslations(locale));
+    }, [ locale ]);
+    useEffect(() => {
         if(router.pathname !== "/404" && locale !== getCookie("NEXT_LOCALE")) {
             setCookie("NEXT_LOCALE", locale);
-            refresh = router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() }) as any;
+            router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
         };
-        return () => refresh = undefined;
     });
     useEffect(() => setLock(!session), [ session ]);
     useEffect(() => {
-        setCookie("forinov_theme_preference", theme as String);
-        const body = document.body;
-        body.setAttribute("data-theme", theme as string);
+        let applyTheme = () => {
+            setCookie("forinov_theme_preference", theme);
+            const body = document.body;
+            return body.setAttribute("data-theme", theme as string);
+        }; applyTheme();
+        return () => { applyTheme = () => false };
     }, [ theme ]);
-    useEffect(() => { scrollTo(0, 0) }, [ router.route ]);
+    useEffect(() => scrollTo(0, 0) as any, [ router.route ]);
     pageProps.states = {};
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;
@@ -80,15 +89,21 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.stateSetters["setModal"] = setModal;
     pageProps.stateSetters["setRGB"] = setRGB;
     pageProps.stateSetters["setProduction"] = setProduction;
-    pageProps.config = config;
+    pageProps.baseConfigurations = baseConfigurations;
+    pageProps.apiConfigurations = apiConfigurations;
+    pageProps.resourcesConfigurations = resourcesConfigurations;
+    pageProps.layoutConfigurations = layoutConfigurations;
+    pageProps.carouselsConfigurations = carouselsConfigurations;
+    pageProps.accordionsConfigurations = accordionsConfigurations;
+    pageProps.router = router;
     return <>
         <Head>
             <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <title>Forinov</title>
-            <link rel="icon" href="/assets/logo.png"/>
+            <link rel="icon" href={ router.basePath + "/assets/logo.png" }/>
         </Head>
-        { (!session) ? <Navbar { ...pageProps }/> : null }
+        { (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/> }
         <Transition>
             <GlobalContext>
                 <Component { ...pageProps }/>
@@ -99,7 +114,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         { (!production) ? <Devtools { ...pageProps }/> : null }
     </>;
 };
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 export default App;

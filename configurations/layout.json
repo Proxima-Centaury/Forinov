@@ -1,0 +1,75 @@
+{
+    "navigations": {
+        "signed": {
+            "layout": {
+                "leftbar": [
+    
+                ],
+                "rightbar": [
+    
+                ]
+            }
+        },
+        "unsigned": {
+            "layout": {
+                "navbar": [
+                    { "url": "", "text": "Startups", "nesting": true, "nest": [
+                        { "url": "/startups", "text": "Comment ça marche" },
+                        { "url": "/solutions/startups", "text": "Solutions de startups" },
+                        { "url": "/directories/startups", "text": "Annuaire de startups" }
+                    ] },
+                    { "url": "", "text": "Entreprises", "nesting": true, "nest": [
+                        { "url": "/corporations", "text": "Comment ça marche" },
+                        { "url": "/solutions/corporations", "text": "Solutions d'entreprises" },
+                        { "url": "/directories/corporations", "text": "Annuaire d'entreprises" }
+                    ] },
+                    { "url": "", "text": "Partenaires", "nesting": true, "nest": [
+                        { "url": "/partners", "text": "Comment ça marche" },
+                        { "url": "/solutions/partners", "text": "Solutions de partenaires" },
+                        { "url": "/directories/partners", "text": "Annuaire de partenaires" }
+                    ] },
+                    { "url": "", "text": "Opportunités", "nesting": true, "nest": [
+                        { "url": "/opportunities", "text": "Comment ça marche" },
+                        { "url": "/directories/opportunities", "text": "Toutes les opportunités" },
+                        { "url": "/directories/opportunities/categories/callforproposals_1", "text": "Appels à candidatures" },
+                        { "url": "/directories/opportunities/categories/programs_2", "text": "Programmes d'accompagnement" },
+                        { "url": "/directories/opportunities/categories/challenges_and_contests", "text": "Challenges et concours" },
+                        { "url": "/directories/opportunities/categories/events", "text": "Évènements" },
+                        { "url": "/directories/opportunities/categories/exclusive_offers", "text": "Offres exclusives" }
+                    ] },
+                    { "url": "/about", "text": "À propos", "nesting": false, "nest": [] }
+                ]
+            }
+        },
+        "common": {
+            "layout": {
+                "footer": [
+                    { "url": "", "text": "Nos offres", "nesting": true, "nest": [
+                        { "url": "/solutions/startups", "text": "Solutions de startups" },
+                        { "url": "/solutions/corporations", "text": "Solutions entreprises" },
+                        { "url": "/solutions/partners", "text": "Solutions partenaires" }
+                    ] },
+                    { "url": "", "text": "Forinov", "nesting": true, "nest": [
+                        { "url": "/about", "text": "Qui sommes-nous ?" },
+                        { "url": "/contact", "text": "Contacts et recrutement" },
+                        { "url": "https://fr.forinov.com/files/CGU%20v5.pdf", "text": "CGU" },
+                        { "url": "https://fr.forinov.com/legales/CGV_FORINOV_V4.pdf", "text": "CGV" },
+                        { "url": "https://fr.forinov.com/legales/Informations_legales.pdf", "text": "Mentions légales" },
+                        { "url": "https://fr.forinov.com/files/202112%20-%20Protection_des_données_personnelles.pdf", "text": "Protection des données" },
+                        { "url": "/blog", "text": "Blog" }
+                    ] },
+                    { "url": "", "text": "Communauté", "nesting": true, "nest": [
+                        { "url": "/directories/startups", "text": "Annuaire de startups" },
+                        { "url": "/directories/corporations", "text": "Annuaire d'entreprises" },
+                        { "url": "/directories/partners", "text": "Annuaire de partenaires" },
+                        { "url": "/directories/opportunities/categories/callforproposals_1", "text": "Appels à candidatures" },
+                        { "url": "/directories/opportunities/categories/programs_2", "text": "Programmes d'accompagnement" },
+                        { "url": "/directories/opportunities/categories/challenges_and_contests", "text": "Challenges et concours" },
+                        { "url": "/directories/opportunities/categories/events", "text": "Évènements" },
+                        { "url": "/directories/opportunities/categories/exclusive_offers", "text": "Offres exclusives" }
+                    ] }
+                ]
+            }
+        }
+    }
+}

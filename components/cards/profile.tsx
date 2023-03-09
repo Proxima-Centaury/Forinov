@@ -1,44 +1,49 @@
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { useState, useEffect } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
 import { buildProperties, structureTags } from "../../scripts/utilities";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/image";
 import Tags from "../tags/tags";
 import Format from "../texts/format";
 import Button from "../buttons/button";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ProfileStyles from "../../public/stylesheets/components/cards/Profile.module.css";
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileCard = ({ type, profile, states, page }: any) => {
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const ProfileCard = (pageProps: any) => {
+    const [ profileType, setProfileType ] = useState("");
+    const { profile, definedType, page, states, router }: any = pageProps;
     const { session, lock, translations, RGB }: any = states;
+    const { type }: any = router.query;
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const pdfButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-light fa-cloud-arrow-down", "", () => false, "PDF", 0 ];
     const pdfButtonObject = buildProperties(buttonProps, pdfButtonValues);
+    useEffect(() => (!type) ? setProfileType(definedType) : setProfileType(type), [ type, definedType ]);
     return <div className={ ProfileStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ ProfileStyles.banner }>
             <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3840" height="2160" priority/>
-            { (type === "startup" && page !== "landing") ? <StartupActions translations={ translations }/> : null }
-            { (type === "corporation" && page !== "landing") ? <CorporationActions translations={ translations }/> : null }
-            { (type === "partner" && page !== "landing") ? <PartnerActions translations={ translations }/> : null }
+            { (profileType.match(/(startup)/) && page !== "landing") ? <StartupActions translations={ translations }/> : null }
+            { (profileType.match(/(corporation|entreprise)/) && page !== "landing") ? <CorporationActions translations={ translations }/> : null }
+            { (profileType.match(/(partner|partenaire)/) && page !== "landing") ? <PartnerActions translations={ translations }/> : null }
         </div>
         <div className={ ProfileStyles.body }>
             <div className={ ProfileStyles.picture }>
                 <Image src={ profile.LOGO } alt="Company background." width="120" height="120"/>
-                { (type !== "startup" && (!session || (session && profile.PDF))) ? <Button { ...pdfButtonObject as ButtonInterface }/> : null }
+                { (type !== "startup" && (!session || (session && profile.PDF)) && page !== "landing") ? <Button { ...pdfButtonObject as ButtonInterface }/> : null }
             </div>
             <div className={ ProfileStyles.content }>
                 <h3>{ profile.NAME }</h3>
-                <div className={ ProfileStyles.informations }>
-                    { (profile.ADDRESS) ? <div>
+                { ((profile.ADDRESS && (profile.ADDRESS.TOWN || profile.ADDRESS.ISO)) || profile.WEBSITE) ? <div className={ ProfileStyles.informations }>
+                    { (profile.ADDRESS.TOWN || profile.ADDRESS.ISO) ? <div>
                         <i className="fa-solid fa-location-dot"/>
                         <p>{ ((profile.ADDRESS.TOWN) ? profile.ADDRESS.TOWN + ", " : "") + ((profile.ADDRESS.ISO) ? profile.ADDRESS.ISO : "") }</p>
                     </div> : null }
@@ -46,14 +51,12 @@ const ProfileCard = ({ type, profile, states, page }: any) => {
                         <i className="fa-solid fa-link"/>
                         <a href={ "https://" + profile.WEBSITE } target="blank">{ translations["Site internet"] }</a>
                     </div> : null }
-                </div>
-                <div className={ ProfileStyles.description }>
-                    <Format content={ profile.COMMENT }/>
-                </div>
+                </div> : null }
+                { (profile.COMMENT) ? <Format content={ profile.COMMENT }/> : null }
                 { (profile.CATEGORY.length > 0) ? <Tags tags={ profile.CATEGORY } main={ true }/> : null }
-                { (profile.TAGS) ? <Tags tags={ structureTags(profile.TAGS) }/> : null }
-                { (type === "startup" && page !== "landing") ? <div className="separator"></div> : null }
-                { (type === "startup" && page !== "landing") ? <div className={ ProfileStyles.stats }>
+                { (profile.TAGS) ? <Tags tags={ structureTags(profile.TAGS) } limit={ 2 }/> : null }
+                { (profileType.match(/(startup)/) && page !== "landing") ? <div className="separator"></div> : null }
+                { (profileType.match(/(startup)/) && page !== "landing") ? <div className={ ProfileStyles.stats }>
                     { (profile.CREATIONDATE) ? <div>
                         <p className={ ProfileStyles.label }>{ translations["Date de création"] }</p>
                         <div>
@@ -83,13 +86,13 @@ const ProfileCard = ({ type, profile, states, page }: any) => {
             </div>
         </div>
         { (profile.STATE === "WO") ? <div className={ ProfileStyles.note }>
-            <p>{ translations["Ce compte n'est pas officiel. S'il s'agit de votre startup, n'hésitez pas à récupérer les accès."] }</p>
+            <p>{ translations["Ce compte n'est pas officiel. S'il s'agit de votre compte, n'hésitez pas à récupérer les accès."] }</p>
         </div> : null }
     </div>;
 };
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card ( Startup Actions ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StartupActions = ({ translations }: any) => {
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const followButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-folder-open", "", () => false, "", 0 ];
@@ -110,9 +113,9 @@ const StartupActions = ({ translations }: any) => {
         <Button { ...parametersButtonObject as ButtonInterface }/>
     </div>;
 };
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card ( Corporation Actions ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CorporationActions = ({ translations }: any) => {
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const wishlistButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-heart-circle-plus", "", () => false, "", 0 ];
@@ -130,9 +133,9 @@ const CorporationActions = ({ translations }: any) => {
         </div>
     </div>;
 };
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card ( Partner Actions ) */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnerActions = ({ translations }: any) => {
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
     const wishlistButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-heart-circle-plus", "", () => false, "", 0 ];
@@ -150,7 +153,7 @@ const PartnerActions = ({ translations }: any) => {
         </div>
     </div>;
 };
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 export default ProfileCard;

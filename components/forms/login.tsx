@@ -1,33 +1,35 @@
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Link from "next/link";
-import { ButtonInterface, InputInterface, LoginInterface } from "../../typescript/interfaces";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { ButtonInterface, InputInterface } from "../../typescript/interfaces";
 import { buildProperties } from "../../scripts/utilities";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
 import Input from "../fields/input";
 import Button from "../buttons/button";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Separator from "../separators/separator";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import FormStyles from "../../public/stylesheets/components/Form.module.css";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Login Form */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const LoginForm = ({ states }: LoginInterface) => {
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const LoginForm = (pageProps: any) => {
+    const { states }: any = pageProps;
     const { translations }: any = states;
-    const inputProps = [ "label", "type", "name", "placeholder", "version", "action", "defaultValue" ];
-    const emailInputValues = [ translations["Adresse email"] + " *", "email", "email", "", 1, undefined, undefined ];
+    const inputProps = [ "label", "type", "name", "action" ];
+    const emailInputValues = [ translations["Adresse email"] + " *", "email", "email", undefined ];
     const emailInputObject = buildProperties(inputProps, emailInputValues);
-    const passwordInputValues = [ translations["Mot de passe"] + " *", "password", "password", "", 1, undefined, undefined ];
+    const passwordInputValues = [ translations["Mot de passe"] + " *", "password", "password", undefined ];
     const passwordInputObject = buildProperties(inputProps, passwordInputValues);
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const loginButtonValues = [ ButtonStyles.callToAction, false, "", "", () => false, translations["Me connecter"], 0 ];
+    const buttonProps = [ "type", "faIcon", "faIconClass", "action", "text" ];
+    const loginButtonValues = [ ButtonStyles.callToAction, false, "", undefined, translations["Me connecter"] ];
     const loginButtonObject = buildProperties(buttonProps, loginButtonValues);
-    const googleButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-brands fa-google", "", () => false, translations["Me connecter avec"] + " Google", 0 ];
+    const googleButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-brands fa-google", undefined, translations["Me connecter avec"] + " Google" ];
     const googleButtonObject = buildProperties(buttonProps, googleButtonValues);
     return <form className={ FormStyles.form }>
         <div className={ FormStyles.row }>
@@ -45,17 +47,15 @@ const LoginForm = ({ states }: LoginInterface) => {
             <Link href="/onboarding" className={ ButtonStyles.callToActionAlternative }>{ translations["Créer mon compte"] }</Link>
         </div>
         <div className={ FormStyles.row }>
-            <Link href="/password/recover">{ translations["J'ai oublié mon mot de passe"] + " !" }</Link>
+            <Link href="/password/recover" className={ ButtonStyles.pureLink }>{ translations["J'ai oublié mon mot de passe"] + " !" }</Link>
         </div>
-        <div className="separatorOr">
-            <span>{ translations["Ou"] }</span>
-        </div>
+        <Separator { ...pageProps } type="or"/>
         <div className={ FormStyles.row }>
             <Button { ...googleButtonObject as ButtonInterface }/>
         </div>
     </form>;
 };
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 export default LoginForm;

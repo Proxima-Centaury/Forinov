@@ -1,65 +1,67 @@
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { useState } from "react";
 import { ButtonInterface } from "../../../typescript/interfaces";
 import { seeMoreOrLess, buildProperties } from "../../../scripts/utilities";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
 import EntityCard from "../../cards/entity";
 import Tags from "../../tags/tags";
 import Button from "../../buttons/button";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import EcosystemStyles from "../../../public/stylesheets/components/contents/profile/Ecosystem.module.css";
 import EntityStyles from "../../../public/stylesheets/components/cards/Entity.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Ecosystem */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileEcosystem = ({ type, profile, states }: any) => {
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const ProfileEcosystem = (pageProps: any) => {
+    const { profile, states, router }: any = pageProps;
     const { lock, translations }: any = states;
-    const { CLIENTS } = profile;
-    const { WISHLIST } = profile;
-    const clients = CLIENTS || [];
-    const wishlist = WISHLIST || [];
-    const [ maxVisibleCardsByDefault, setMaxVisibleCardsByDefault ] = useState(4);
-    const handleView = (event: any) => seeMoreOrLess(event, translations, "." + EntityStyles.client, clients, maxVisibleCardsByDefault);
+    const { type }: any = router.query;
+    const handleView = (event: any) => seeMoreOrLess(event, translations, "." + EntityStyles.client, profile.CLIENTS, 4);
+    /* --------------------------- */
+    /* Properties */
+    /* --------------------------- */
     const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], clients.length - maxVisibleCardsByDefault ];
+    /* --------------------------- */
+    /* More Or Less Button */
+    /* --------------------------- */
+    const moreOrLessButtonValues = [ ButtonStyles.moreOrLess, false, "", "", handleView, translations["Voir plus"], (type.match(/(startup)/)) ? profile.CLIENTS.length - 4 : 0 ];
     const moreOrLessButtonObject = buildProperties(buttonProps, moreOrLessButtonValues);
     return <div id="ecosystem" className={ EcosystemStyles.ecosystem }>
-        <h3>{ (type === "startup") ? translations["Marché et écosystème"] : translations["Écosystème et partenaires"] }</h3>
-        { (type === "startup") ? <div className={ EcosystemStyles.content }>
-            <p className={ EcosystemStyles.label }>{ translations["Nos références clients"] + " (" + clients.length + ")" }</p>
+        <h3>{ (type.match(/(startup)/)) ? translations["Marché et écosystème"] : translations["Écosystème et partenaires"] }</h3>
+        { (type.match(/(startup)/)) ? <div className={ EcosystemStyles.content }>
+            <p className={ EcosystemStyles.label }>{ translations["Nos références clients"] + " (" + profile.CLIENTS.length + ")" }</p>
             <div className={ EcosystemStyles.list + ((lock) ? " locked" : "") } data-type="list">
-                { (clients.length > 0) ? clients.map((client: any, key: KeyType) => {
-                    const entity = client;
-                    const type = "client";
-                    const index = key + 1;
-                    const maxVisibleByDefault = maxVisibleCardsByDefault;
-                    const cardProps = { entity, type, index, maxVisibleByDefault };
-                    return <EntityCard key={ key } { ...cardProps }/>;
+                { (profile.CLIENTS.length > 0) ? profile.CLIENTS.map((client: any, key: KeyType) => {
+                    const url = "/";
+                    return <Link key={ key } href={ url }>
+                        <EntityCard { ...pageProps } entity={ client } index={ key + 1 } maxVisibleByDefault={ 4 }/>
+                    </Link>;
                 }) : null }
                 { (lock) ? <div className="lockedContent">
                     <i className="fa-solid fa-lock"/>
                     <p>{ translations["Consultez les clients de cette startup"] }</p>
                 </div> : null }
             </div>
-            { (clients.length > maxVisibleCardsByDefault) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
+            { (profile.CLIENTS.length > 4) ? <Button { ...moreOrLessButtonObject as ButtonInterface }/> : null }
             <div className={ EcosystemStyles.wishlist }>
                 <p className={ EcosystemStyles.label }>
                     <i className="fa-solid fa-heart-circle-plus"/>
                     { translations["Notre wishlist : ceux dont nous rêvons"] }
                 </p>
-                { (wishlist) ? <Tags tags={ wishlist } alternative={ true } lock={ lock } count={ false }/> : null }
+                { (profile.WISHLIST) ? <Tags tags={ profile.WISHLIST } alternative={ true } lock={ lock } count={ false }/> : null }
             </div>
         </div> : null }
     </div>;
 };
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 export default ProfileEcosystem;
