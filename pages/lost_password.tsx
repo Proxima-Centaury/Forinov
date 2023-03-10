@@ -5,7 +5,7 @@ import LostPasswordStyles from "../public/stylesheets/pages/LostPassword.module.
 import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
 import Image from 'next/image';
 import Input from '../components/fields/input';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
@@ -18,8 +18,25 @@ export default function LostPassword(pageProps: HomeInterface) {
         script.src = "https://www.google.com/recaptcha/api.js";
         script.async = true;
         document.body.appendChild(script);
+        const script2 = document.createElement("script");
+        script2.innerHTML = "var onloadCallback = function() {console.log('grecaptcha is ready!');};";
+        document.body.appendChild(script2);
     })
-    
+
+    const [recaptcha, setRecaptcha] = useState(null);
+    const onloadCallback = () => {
+        setRecaptcha(window.grecaptcha.render("recaptcha", {
+            sitekey: "6LfaUKoUAAAAAFsLxbSyLznUs6BSHeTglvZ8EzOO",
+            callback: verifyCallback,
+            "expired-callback": expiredCallback
+        }));
+    }
+    const verifyCallback = (response: any) => {
+        console.log(response);
+    }
+    const expiredCallback = () => {
+        console.log("expired");
+    }
     return (
         <div className={LostPasswordStyles.wrapper}>
             <div className={LostPasswordStyles.formContainer}>
