@@ -8,18 +8,38 @@ import Input from "../fields/input";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 import Select from '../fields/select';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Register Modal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ContactModal = ({ translations }: any) => {
-
+const ContactModal = ({ translations, theme }: any) => {    
     useEffect(() => {
         const script = document.createElement("script");
-        script.src = "https://www.google.com/recaptcha/api.js";
+        script.src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit";
         script.async = true;
+        script.defer = true;
         document.body.appendChild(script);
+
+        const script2 = document.createElement("script");
+        script2.innerHTML = "var onloadCallback = function() {console.log('grecaptcha is ready!');};";
+        document.body.appendChild(script2);
     })
+
+    const [recaptcha, setRecaptcha] = useState(null);
+    const onloadCallback = () => {
+        setRecaptcha(window.grecaptcha.render("recaptcha", {
+            sitekey: "6LfaUKoUAAAAAFsLxbSyLznUs6BSHeTglvZ8EzOO",
+            callback: verifyCallback,
+            "expired-callback": expiredCallback
+        }));
+    }
+    const verifyCallback = (response: any) => {
+        console.log(response);
+    }
+    const expiredCallback = () => {
+        console.log("expired");
+    }
+
 
         return <>
             <div
@@ -39,10 +59,10 @@ const ContactModal = ({ translations }: any) => {
                             fontSize: "1.25rem",
                             fontWeight: 700,
                         }}
-                    >Contacter Forinov</h1>
+                    >{translations["Contacter Forinov"]}</h1>
                     <p style={{
                         opacity: 0.5,
-                    }}>Nos équipes vous répondront dans les meilleurs délais !</p>
+                    }}>{translations["Nos équipes vous répondront dans les meilleurs délais !"]}</p>
                 </div>
                 <Input
                     label={translations["Société"]}
@@ -102,7 +122,9 @@ const ContactModal = ({ translations }: any) => {
                     resize: "none",
                     width: "100%",
                 }}></textarea>
-                <div className="g-recaptcha" data-sitekey="6LfaUKoUAAAAAFsLxbSyLznUs6BSHeTglvZ8EzOO"></div>
+                <div className="g-recaptcha" data-sitekey="6LfaUKoUAAAAAFsLxbSyLznUs6BSHeTglvZ8EzOO"
+                    data-theme={theme}
+                ></div>
                 <button className={ButtonStyles.callToAction}>
                     {translations["Envoyer"]}
                 </button>
