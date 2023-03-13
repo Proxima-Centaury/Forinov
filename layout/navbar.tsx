@@ -33,7 +33,7 @@ const Navbar = (pageProps: NavbarInterface) => {
     const navigationButtonClass = ButtonStyles.navigationButton + ((menuState) ? " " + ButtonStyles.active : "");
     const navigationButtonAction = (event: any) => preventSubmit(event, () => setMenuState(!menuState));
     const navigationButtonValues = [ navigationButtonClass, navigationButtonAction, translations["Bouton du menu de navigation"] ];
-    const navigationButtonObject = buildProperties(buttonProps, navigationButtonValues)
+    const navigationButtonObject = buildProperties(buttonProps, navigationButtonValues);
     const parentProps = { navbar, translations };
     return <nav className={ NavbarStyles.navbar }>
         <div className={ NavbarStyles.logo }>
