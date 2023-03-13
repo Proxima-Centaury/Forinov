@@ -29,12 +29,15 @@ const Navbar = (pageProps: NavbarInterface) => {
     const languageSelectDefaultValue = [ ...selectifyTheOptions(locales, "locales") as Array<any> ]?.filter((option: any) => option.VALUE === locale)[0];
     const languageSelectValues = [ "Single", locales, setLocale, languageSelectDefaultValue, "locales" ];
     const languageSelectObject = buildProperties(selectProps, languageSelectValues);
-    const buttonProps = [ "type", "action", "aria" ];
+    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "aria" ];
     const navigationButtonClass = ButtonStyles.navigationButton + ((menuState) ? " " + ButtonStyles.active : "");
     const navigationButtonAction = (event: any) => preventSubmit(event, () => setMenuState(!menuState));
-    const navigationButtonValues = [ navigationButtonClass, navigationButtonAction, translations["Bouton du menu de navigation"] ];
-    const navigationButtonObject = buildProperties(buttonProps, navigationButtonValues)
-    const parentProps = { navbar, translations };
+    const navigationButtonValues = [ navigationButtonClass, false, undefined, undefined, navigationButtonAction, undefined, translations["Bouton du menu de navigation"] ];
+    const navigationButtonObject = buildProperties(buttonProps, navigationButtonValues);
+    const loginButtonValues = [ ButtonStyles.default, true, "fa-light fa-user", "/login", undefined, undefined, undefined ];
+    const loginButtonObject = buildProperties(buttonProps, loginButtonValues);
+    const signupButtonValues = [ ButtonStyles.callToAction, false, undefined, "/onboarding", undefined, translations["M'inscrire"], undefined ];
+    const signupButtonObject = buildProperties(buttonProps, signupButtonValues);
     return <nav className={ NavbarStyles.navbar }>
         <div className={ NavbarStyles.logo }>
             <Link href="/">
@@ -43,12 +46,12 @@ const Navbar = (pageProps: NavbarInterface) => {
             </Link>
         </div>
         <ul className={ NavbarStyles.links + ((menuState) ? " " + NavbarStyles.show : "") }>
-            <NavbarMenu { ...parentProps }/>
+            <NavbarMenu { ...pageProps } navbar={  navbar }/>
         </ul>
         <div className={ NavbarStyles.actions }>
             <Select { ...languageSelectObject as SelectInterface }/>
-            <Link href="/login"><i className="fa-light fa-user"/></Link>
-            <Link href="/onboarding" className={ ButtonStyles.callToAction }>{ translations["M'inscrire"] }</Link>
+            <Button { ...loginButtonObject as ButtonInterface }/>
+            <Button { ...signupButtonObject as ButtonInterface }/>
         </div>
         <Button { ...navigationButtonObject as ButtonInterface }/>
     </nav>;
@@ -56,7 +59,9 @@ const Navbar = (pageProps: NavbarInterface) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Navbar ( Menu ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const NavbarMenu = ({ navbar, translations }: any) => {
+const NavbarMenu = (pageProps: any) => {
+    const { navbar, states }: any = pageProps;
+    const { translations }: any = states;
     const showSubMenu = (event: MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
         const target = event.target as HTMLButtonElement;
