@@ -11,6 +11,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Carousel from "../components/carousels/carousel";
+import Button from "../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -34,7 +35,7 @@ const StartupsHome = (pageProps: HomeInterface) => {
 					<h1>{ translations["Développe ton business"] }</h1>
 					<p className={ HomeStyles.paragraph }>{ translations["Il n'a jamais été aussi simple pour les startups de trouver des clients, des opportunités (appels à projets, appels à candidatures, etc.) et de développer leurs réseaux"] + " !" }</p>
 					<div className={ HomeStyles.presentationLinks }>
-						<Link className={ ButtonStyles.callToAction } href="/onboarding">{ translations["Créer mon profil gratuitement"] }</Link>
+						<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Créer mon profil gratuitement"] }/>
 					</div>
 				</div>
 				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
@@ -48,8 +49,8 @@ const StartupsHome = (pageProps: HomeInterface) => {
 				<h4>{ translations["Les dernières opportunités"] + " :" }</h4>
 				<Carousel { ...pageProps } component="LatestOpportunities" data={ opportunities }/>
 				<div className={ HomeStyles.actions } data-justify="left">
-					<Link className={ ButtonStyles.callToAction } href="/directories/opportunities">{ translations["Découvrir toutes les opportunités"] }</Link>
-					<Link className={ ButtonStyles.callToActionAlternative } href="/opportunities">{ translations["Qu'est-ce qu'une opportunité"] + " ?" }</Link>
+					<Button button={ ButtonStyles.callToAction } href="/directories/opportunities/categories" text={ translations["Découvrir toutes les opportunités"] }/>
+					<Button button={ ButtonStyles.callToActionAlternative } href="/opportunities" text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
 				</div>
 			</div>
 			<div className={ HomeStyles.badges } data-type="startup">
@@ -88,14 +89,14 @@ const StartupsHome = (pageProps: HomeInterface) => {
 				<h4>{ translations["Et oui, Forinov c'est gratuit pour les startups"] }</h4>
 				<p>{ translations["De l'inscription à la concrétisation, en passant par la prise de contact"] }</p>
 				<div className={ HomeStyles.actions } data-justify="center">
-					<Link className={ ButtonStyles.callToAction } href="/onboarding">{ translations["J'en profite dès maintenant"] }</Link>
+					<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["J'en profite dès maintenant"] }/>
 				</div>
 			</div>
 			<div className={ HomeStyles.questions } data-type="startup">
 				<h5>{ translations["Les réponses à vos questions"] }</h5>
 				<Carousel { ...pageProps } component="StartupAccordions" data={ Object.values(landings.startup) }/>
 				<div className={ HomeStyles.actions } data-justify="center">
-					<p>{ translations["Vous avez des questions"] + " ? " }<Link className={ ButtonStyles.pureLink } href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
+					<p>{ translations["Vous avez des questions"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/contact" text={ translations["N'hésitez pas à nous contacter"] }/>.</p>
 				</div>
 			</div>
 		</div>
