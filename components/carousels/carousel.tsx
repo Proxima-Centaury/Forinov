@@ -47,9 +47,12 @@ class Transition {
     handleTransitionWithSteps = (event: any, name: String) => {
         const target = event.target.closest("button");
         const container = target.parentElement;
-        const buttons = (container) ? Array.from(container.children).map((button) => button as HTMLElement) : [];
+        const buttons = (container) ? [ ...container.querySelectorAll("button") ] : [];
         if(buttons.length > 0) {
-            buttons.forEach((button) => button.classList.remove(ButtonStyles.active));
+            buttons.forEach((button, key) => {
+                button.setAttribute("data-index", key);
+                button.classList.remove(ButtonStyles.active);
+            });
         };
         target.classList.add(ButtonStyles.active);
         const carousel = document.querySelector("[data-carousel='" + name + "']") as HTMLElement;
@@ -117,7 +120,6 @@ const StepsCarousel = (pageProps: any) => {
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const steps: Array<any> = carouselsConfigurations[component];
-	const buttonProps = [ "type", "action", "text" ];
     useEffect(() => {
         let handleStepButtonsTitle = () => {
             const stepButtons = document.querySelectorAll("." + CarouselStyles.steps + "[data-carousel='" + component + "Steps'] button") || [];
@@ -136,11 +138,9 @@ const StepsCarousel = (pageProps: any) => {
     return <div className={ CarouselStyles.carousel } data-direction="bidirectional">
         <div className={ CarouselStyles.steps } data-carousel={ component + "Steps" }>
             { steps.map((button: any, key: number) => {
-                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, component), button.title ];
-                const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
                 return <Fragment key={ key }>
                     <div className="separator"></div>
-                    <Button { ...stepButtonObject as ButtonInterface } index={ key }/>
+                    <Button button={ ButtonStyles.callToActionStep } action={ (event: MouseEvent) => transitionHandler(event, component) } text={ button.title }/>
                 </Fragment>;
             }) }
             <div className="separator"></div>
