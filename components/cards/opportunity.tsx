@@ -42,7 +42,9 @@ const OpportunityCard = (pageProps: any) => {
                         <p>{ (opportunity.PRIVACY) ? opportunityPrivacy : translations["Confidentialité non-définie"] }</p>
                     </div>
                 </div>
-                <h3>{ (opportunity.TITLE) ? uppercaseFirst(opportunity.TITLE) : translations["Nom non-défini"] }</h3>
+                <div className={ OpportunityStyles.title } data-type="tooltip" data-tooltip={ opportunity.TITLE }>
+                    <h3>{ (opportunity.TITLE) ? uppercaseFirst(opportunity.TITLE) : translations["Nom non-défini"] }</h3>
+                </div>
                 { (opportunity.TYPE) ? <div className={ OpportunityStyles.type } data-opportunity-type={ opportunity.TYPE[0].ID || "" }>
                     <Tags tags={ opportunity.TYPE } main={ true }/>
                 </div> : null }
