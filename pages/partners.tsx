@@ -9,8 +9,8 @@ import api from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import Carousel from "../components/carousels/carousel";
+import Button from "../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -34,7 +34,7 @@ const PartnersHome = (pageProps: HomeInterface) => {
 					<h1>{ translations["Développez votre réseau"] }</h1>
 					<p className={ HomeStyles.paragraph }>{ translations["Partagez vos appels à candidatures, contactez les meilleures startups et partenaires ! Faites vous connaitre au sein de l'écosystème. Forinov est la solution qui fait grandir votre réseau"] + " !" }</p>
 					<div className={ HomeStyles.presentationLinks }>
-						<Link className={ ButtonStyles.callToAction } href="/onboarding">{ translations["Rejoindre la communauté"] }</Link>
+						<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Rejoindre la communauté"] }/>
 					</div>
 				</div>
 				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
@@ -49,8 +49,8 @@ const PartnersHome = (pageProps: HomeInterface) => {
 				<h4>{ translations["Rejoignez l'écosystème Forinov plus de 1200 startups vous attendent"] + " !" }</h4>
 				<p>{ translations["Adaptez votre forfait à vos besoins"] + " !" }</p>
 				<div className={ HomeStyles.actions } data-justify="center">
-					<Link className={ ButtonStyles.callToAction } href="/onboarding">{ translations["Rejoindre l'écosystème Forinov"] }</Link>
-					<Link className={ ButtonStyles.callToActionAlternative } href="/onboarding">{ translations["Découvrir les offres"] }</Link>
+					<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Rejoindre l'écosystème Forinov"] }/>
+					<Button button={ ButtonStyles.callToActionAlternative } href="/onboarding" text={ translations["Découvrir les offres"] }/>
 				</div>
 			</div>
 			<div className={ HomeStyles.badges } data-type="partner">
@@ -83,21 +83,21 @@ const PartnersHome = (pageProps: HomeInterface) => {
 					<div className="separator"></div>
 				</div>
 				<div className={ HomeStyles.actions } data-justify="center">
-					<Link className={ ButtonStyles.callToAction } href="/">{ translations["Je lance mon opportunité"] }</Link>
+					<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Je lance mon opportunité"] }/>
 				</div>
 			</div>
 			<div className={ HomeStyles.startups } data-type="partner">
 				<h4>{ translations["Nos startups à la une"] + " :" }</h4>
 				<Carousel { ...pageProps } component="LatestStartups" data={ startups }/>
 				<div className={ HomeStyles.actions } data-justify="left">
-					<Link className={ ButtonStyles.callToAction } href="/">{ translations["Accéder à l'annuaire des startups"] }</Link>
+					<Button button={ ButtonStyles.callToAction } href="/directories/startups/categories" text={ translations["Accéder à l'annuaire des startups"] }/>
 				</div>
 			</div>
 			<div className={ HomeStyles.questions } data-type="partner">
 				<h5>{ translations["Les réponses à vos questions"] }</h5>
 				<Carousel { ...pageProps } component="PartnerAccordions" data={ Object.values(landings.partner) }/>
 				<div className={ HomeStyles.actions } data-justify="center">
-					<p>{ translations["Vous avez des questions"] + " ? " }<Link className={ ButtonStyles.pureLink } href="/contact">{ translations["N'hésitez pas à nous contacter"] }</Link>.</p>
+					<p>{ translations["Vous avez des questions"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/contact" text={ translations["N'hésitez pas à nous contacter"] }/>.</p>
 				</div>
 			</div>
 		</div>

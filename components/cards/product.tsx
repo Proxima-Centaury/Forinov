@@ -9,8 +9,8 @@ import ProductStyles from "../../public/stylesheets/components/cards/Product.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Product Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProductCard = ({ product, index, maxVisibleByDefault = 4, translations }: any) => {
-    return <div className={ ProductStyles.product + ((index > maxVisibleByDefault) ? " hidden" : "")}>
+const ProductCard = ({ product, translations }: any) => {
+    return <div className={ ProductStyles.product }>
         <div className={ ProductStyles.banner }>
             <p>{ translations["Voir"] }</p>
             { (product.PICTURE) ? <Image src={ product.PICTURE } alt={ "Image du produit " + product.NAME } width="1440" height="720"/> : null}

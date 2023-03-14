@@ -44,19 +44,20 @@
 .recoverBanner > .actions {
     display: flex;
     align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
 }
-.identificationBanner > .actions > * + *,
-.recoverBanner > .actions > * + * {
-    margin: 0px 0px 0px 16px;
-}
-.identificationBanner > .actions > a:not([class*="callToAction"]) {
+.identificationBanner > .actions > a:not([class*="callToAction"]) > span,
+.identificationBanner > .actions > a:not([class*="callToAction"]):hover > span {
     color: var(--perfect-white-color);
     text-decoration: underline;
 }
-.recoverBanner > .actions > button {
+.recoverBanner > .actions > a > span {
     color: var(--text-main-color);
 }
-.recoverBanner > .actions > button:hover {
-    color: var(--perfect-black-color);
+.recoverBanner > .actions > a:hover {
     background-color: var(--warning-color);
+}
+.recoverBanner > .actions > a:hover > span {
+    color: var(--perfect-black-color);
 }

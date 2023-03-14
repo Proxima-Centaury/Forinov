@@ -1,9 +1,7 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useState } from "react";
-import { ButtonInterface } from "../../typescript/interfaces";
-import { buildProperties, preventSubmit } from "../../scripts/utilities";
+import { MouseEventHandler, useState, useEffect } from "react";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -19,32 +17,41 @@ const Devtools = ({ states, stateSetters }: any) => {
     const { session, theme, translations, RGB }: any = states;
     const { setSession, setTheme, setRGB }: any = stateSetters;
     const [ hidden, setHidden ] = useState(false);
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count", "disabled" ];
-    const loginButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-power-off", "", () => setSession(!session), "", 0 ];
-    const loginButtonObject = buildProperties(buttonProps, loginButtonValues);
-    const themeButtonIcon = (theme === "light") ? "fa-light fa-moon" : "fa-light fa-sun";
-    const themeButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, themeButtonIcon, "", () => (theme === "light") ? setTheme("dark") : setTheme("light"), "", 0 ];
-    const themeButtonObject = buildProperties(buttonProps, themeButtonValues);
-    const issuesButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-triangle-exclamation", "", () => false, "", 0, true ];
-    const issuesButtonObject = buildProperties(buttonProps, issuesButtonValues);
-    const RGBButtonIcon = (RGB) ? "fa-light fa-lightbulb" : "fa-light fa-lightbulb-on";
-    const RGBButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, RGBButtonIcon, "", () => setRGB(!RGB), "", 0 ];
-    const RGBButtonObject = buildProperties(buttonProps, RGBButtonValues);
+    const [ themeSwitcherIcon, setThemeSwitcherIcon ] = useState("fa-light fa-moon");
+    const [ RGBSwitcherIcon, setRGBSwitcherIcon ] = useState("fa-light fa-lightbulb");
+    const switchSessionState: MouseEventHandler = (event) => {
+        event.preventDefault();
+        setSession(!session);
+    };
+    const switchThemeState: MouseEventHandler = (event) => {
+        event.preventDefault();
+        (theme === "light") ? setTheme("dark") : setTheme("light")
+    };
+    const switchRGBState: MouseEventHandler = (event) => {
+        event.preventDefault();
+        setRGB(!RGB);
+    };
+    const switchHiddenState: MouseEventHandler = (event) => {
+        event.preventDefault();
+        setHidden(!hidden)
+    };
+    useEffect(() => (theme === "light") ? setThemeSwitcherIcon("fa-light fa-moon") : setThemeSwitcherIcon("fa-light fa-sun"), [ theme ]);
+    useEffect(() => (RGB) ? setRGBSwitcherIcon("fa-light fa-lightbulb") : setRGBSwitcherIcon("fa-light fa-lightbulb-on"), [ RGB ]);
     return <div className={ (hidden) ? "closed" : "" } data-type="devtools">
         <p>Devtools</p>
         <div data-type="tooltip" data-tooltip={ translations["Simuler la connexion"] }>
-            <Button { ...loginButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchSessionState } icon="fa-light fa-power-off"/>
         </div>
         <div data-type="tooltip" data-tooltip={ translations["Changer de theme"] }>
-            <Button { ...themeButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchThemeState } icon={ themeSwitcherIcon }/>
         </div>
         <div data-type="tooltip" data-tooltip={ translations["Voir les erreurs sur la page"] }>
-            <Button { ...issuesButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon="fa-light fa-triangle-exclamation" disabled={ true }/>
         </div>
         <div data-type="tooltip" data-tooltip={ translations["Activer l'éclairage RGB"] }>
-            <Button { ...RGBButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon={ RGBSwitcherIcon }/>
         </div>
-        <button title={ translations["Afficher les devtools"] } onClick={ (event) => preventSubmit(event as any, () => setHidden(!hidden)) }>
+        <button title={ translations["Afficher les devtools"] } onClick={ switchHiddenState }>
             <i className="fa-light fa-chevron-down"/>
         </button>
     </div>;

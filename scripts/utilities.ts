@@ -12,25 +12,26 @@ import config from "../configurations/config.json";
 /**
 * This is a ```class```.
 * @class Utilities
-* @method beautifyTheLogs : {@link Utilities.beautifyTheLogs}
-* @method selectifyTheOptions : {@link Utilities.selectifyTheOptions}
-* @method setCookie : {@link Utilities.setCookie}
-* @method getCookie : {@link Utilities.getCookie}
-* @method getTranslations : {@link Utilities.getTranslations}
-* @method getMetadatasTranslations : {@link Utilities.getMetadatasTranslations}
-* @method preventSubmit : {@link Utilities.preventSubmit}
-* @method buildProperties : {@link Utilities.buildProperties};
-* @method scrollTo : {@link Utilities.scrollTo};
-* @method seeMoreOrLess : {@link Utilities.seeMoreOrLess};
-* @method redirectTo : {@link Utilities.redirectTo};
-* @method uppercaseFirst : {@link Utilities.uppercaseFirst};
-* @method remainingTime : {@link Utilities.remainingTime};
-* @method formatNameForUrl : {@link Utilities.formatNameForUrl};
-* @method bindEventListener : {@link Utilities.bindEventListeners};
-* @method removeEventListeners : {@link Utilities.removeEventListeners};
-* @method structureTags : {@link Utilities.structureTags};
-* @method formatType : {@link Utilities.formatType};
-* @method checkMatch : {@link Utilities.checkMatch};
+* @method beautifyTheLogs : {@link Utilities.beautifyTheLogs} OK
+* @method selectifyTheOptions : {@link Utilities.selectifyTheOptions} NEEDS DELETE
+* @method setCookie : {@link Utilities.setCookie} NEEDS DELETE
+* @method getCookie : {@link Utilities.getCookie} NEEDS DELETE
+* @method getTranslations : {@link Utilities.getTranslations}  OK
+* @method getMetadatasTranslations : {@link Utilities.getMetadatasTranslations} OK
+* @method preventSubmit : {@link Utilities.preventSubmit} NEEDS DELETE
+* @method buildProperties : {@link Utilities.buildProperties} NEEDS DELETE
+* @method scrollTo : {@link Utilities.scrollTo} OK
+* @method seeMoreOrLess : {@link Utilities.seeMoreOrLess} NEEDS UPDATE
+* @method redirectTo : {@link Utilities.redirectTo} OK
+* @method uppercaseFirst : {@link Utilities.uppercaseFirst} OK
+* @method remainingTime : {@link Utilities.remainingTime} OK
+* @method formatNameForUrl : {@link Utilities.formatNameForUrl} OK
+* @method bindEventListener : {@link Utilities.bindEventListeners} OK
+* @method removeEventListeners : {@link Utilities.removeEventListeners} OK
+* @method structureTags : {@link Utilities.structureTags} OK
+* @method formatType : {@link Utilities.formatType} NEEDS UPDATE
+* @method checkMatch : {@link Utilities.checkMatch} OK
+* @method preciseTarget : {@link Utilities.preciseTarget} OK
 * @returns
 * - ```void``` ( nothing ).
 * ---
@@ -564,6 +565,21 @@ class Utilities {
         const result = (string.match(regexep)) ? true : false;
         return result;
     };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function preciseTarget
+    * @param { MouseEvent } [ event ] Should be a ```mouseevent```.
+    * @returns { HTMLElement }
+    * - ```htmlelement``` in case the target is an element inside of the CTA.
+    * ---
+    * @note This method is used to return a precise target as an HTMLElement.
+    * @note The {@link event} parameter should be a mouse event.
+    */
+    preciseTarget = (event: MouseEvent): HTMLElement => {
+        const target = event.target as HTMLButtonElement;
+        const preciseTarget = target.closest("button") || target.closest("a");
+        return preciseTarget as HTMLElement;
+    };
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Instance */
@@ -592,6 +608,7 @@ const removeEventListeners = utilities.removeEventListeners;
 const structureTags = utilities.structureTags;
 const formatType = utilities.formatType;
 const checkMatch = utilities.checkMatch;
+const preciseTarget = utilities.preciseTarget;
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -616,5 +633,6 @@ export {
     removeEventListeners,
     structureTags,
     formatType,
-    checkMatch
+    checkMatch,
+    preciseTarget
 };
