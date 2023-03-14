@@ -396,7 +396,10 @@
 		border-radius: 50px 0px 0px 50px;
 	}
 }
-.sourcing[data-type="corporation"] *:not([class*="callToAction"], i) {
+.sourcing[data-type="corporation"] h3,
+.sourcing[data-type="corporation"] h4,
+.sourcing[data-type="corporation"] p,
+.sourcing[data-type="corporation"] div {
 	color: var(--perfect-black-color);
 }
 .sourcing[data-type="corporation"] button {
