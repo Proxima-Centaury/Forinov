@@ -206,11 +206,6 @@ const ClassicHorizontal = (pageProps: any) => {
     const { component, data }: any = pageProps;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithArrows;
-    const buttonProps = [ "type", "faIcon", "faIconClass", "action" ];
-    const leftButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-left", (event: MouseEvent) => transitionHandler(event, "left") ];
-    const leftButtonObject = buildProperties(buttonProps, leftButtonValues);
-    const rightButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-right", (event: MouseEvent) => transitionHandler(event, "right") ];
-    const rightButtonObject = buildProperties(buttonProps, rightButtonValues);
     const scrollHandler = (event: any) => {
         if(window.innerWidth > 576) {
             event.preventDefault();
@@ -252,8 +247,8 @@ const ClassicHorizontal = (pageProps: any) => {
     };
     return <div className={ CarouselStyles.carousel } data-carousel={ component }>
         <div className={ CarouselStyles.arrows }>
-            <Button { ...leftButtonObject as ButtonInterface }/>
-            <Button { ...rightButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: MouseEvent) => transitionHandler(event, "left") } icon="fa-light fa-arrow-left"/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: MouseEvent) => transitionHandler(event, "right") } icon="fa-light fa-arrow-right"/>
         </div>
         <div className={ CarouselStyles.container }>
             <Items/>
