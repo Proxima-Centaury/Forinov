@@ -45,21 +45,21 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                     </p>
                     <div className={SolutionStyles.heroLinks}>
                         <Link
-                            href={'/'}
+                            href={'/onboarding'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["J'inscris ma startup"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
-                            href={'/'}
+                            href={'/directories/opportunities/categorie'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["Je découvre les opportunités"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
-                            href={'/'}
+                            href={'/directories/partners/categorie'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["J'accède à l'annuaire des membres"]}</span>

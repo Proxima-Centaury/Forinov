@@ -46,21 +46,21 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                     </p>
                     <div className={SolutionStyles.heroLinks}>
                         <Link
-                            href={'/'}
+                            href={'/onboarding'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["Je rejoins la communauté"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
-                            href={'/'}
+                            href={'/solution/corporations'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["Je découvre les offres Pro / Entreprise"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
-                            href={'/'}
+                            href={'/directories/corporations/categorie'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["J'accède à l'annuaire des membres"]}</span>
