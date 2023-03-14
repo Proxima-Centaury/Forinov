@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, Key } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
 import { buildProperties, formatNameForUrl, bindEventListeners, removeEventListeners } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -19,6 +19,7 @@ import Format from "../texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import CarouselStyles from "../../public/stylesheets/components/carousels/Carousel.module.css";
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
+import ArticleCard from "../cards/article";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Commons */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -107,6 +108,8 @@ const Carousel = (pageProps: any) => {
             return <StepsCarousel { ...pageProps }/>;
         case "PartnerHowTo":
             return <StepsCarousel { ...pageProps }/>;
+        case "ForinovBlog":
+            return <ClassicHorizontal { ...pageProps }/>;
         default :
             return <Fragment></Fragment>;
     };
@@ -137,7 +140,7 @@ const StepsCarousel = (pageProps: any) => {
     });
     return <div className={ CarouselStyles.carousel } data-direction="bidirectional">
         <div className={ CarouselStyles.steps } data-carousel={ component + "Steps" }>
-            { steps.map((button: any, key: number) => {
+            { steps.map((button, key) => {
                 return <Fragment key={ key }>
                     <div className="separator"></div>
                     <Button button={ ButtonStyles.callToActionStep } action={ (event: MouseEvent) => transitionHandler(event, component) } text={ button.title } active={ key === 0 }/>
@@ -146,12 +149,12 @@ const StepsCarousel = (pageProps: any) => {
             <div className="separator"></div>
         </div>
         <div className={ CarouselStyles.container } data-carousel={ component }>
-            { steps.map((step: any, key: number) => {
+            { steps.map((step, key) => {
                 return <div key={ key } className={ CarouselStyles.itemFullWidth } data-index={ key }>
                     <div className={ CarouselStyles.stepContent }>
                         <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
                         <ul>
-                            { step.list.map((item: String, key: KeyType) => <li key={ key }>
+                            { step.list.map((item: String, key: Key) => <li key={ key }>
                                 <div><i className="fa-light fa-arrow-right"/><Format { ...pageProps } content={ translations[item as keyof Object] }/></div>
                             </li>) }
                         </ul>
@@ -173,7 +176,7 @@ const CustomVertical = (pageProps: any) => {
     const steps: Array<any> = carouselsConfigurations[component];
     return <div className={ CarouselStyles.carousel } data-direction="vertical">
         <div className={ CarouselStyles.container } data-carousel={ component }>
-            { steps.map((step: any, key: number) => <div key={ key } className={ CarouselStyles.itemFullWidth } data-index={ key }>
+            { steps.map((step, key) => <div key={ key } className={ CarouselStyles.itemFullWidth } data-index={ key }>
                 { (key % 2 === 1) ? <div className={ CarouselStyles.verticalContent }>
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
                     <Format { ...pageProps } content={ translations[step.text] }/>
@@ -224,17 +227,23 @@ const ClassicHorizontal = (pageProps: any) => {
     const Items = () => {
         switch(component) {
             case "LatestStartups":
-                return data.map((startup: any, key: KeyType) => {
+                return data.map((startup: any, key: Key) => {
                     const url = "/directories/startups/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
                     return <Link key={ key } className={ CarouselStyles.item } href={ url }>
                         <ProfileCard { ...pageProps } profile={ startup } definedType="startup" page="landing"/>
                     </Link>;
                 });
             case "LatestOpportunities":
-                return data.map((opportunity: any, key: KeyType) => {
+                return data.map((opportunity: any, key: Key) => {
                     const url = "/directories/opportunities/categories/" + formatNameForUrl(opportunity.TYPE[0].NAME) + "_" + opportunity.TYPE[0].ID + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID;
                     return <Link key={ key } className={ CarouselStyles.item } href={ url }>
-                        <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ key + 1 }/>
+                        <OpportunityCard { ...pageProps } opportunity={ opportunity }/>
+                    </Link>;
+                });
+            case "ForinovBlog":
+                return data.map((article: any, key: Key) => {
+                    return <Link key={ key } className={ CarouselStyles.item } href={ article.URL }>
+                        <ArticleCard { ...pageProps } article={ article }/>
                     </Link>;
                 });
             default:
@@ -259,10 +268,10 @@ const InfiniteScrollHorizontal = (pageProps: any) => {
     const Items = () => {
         switch(component) {
             case "CompaniesLogos":
-                return data.map(({ id, type, name, logo }: any, key: KeyType) => {
+                return data.map(({ id, type, name, logo }: any, key: Key) => {
                     type = (type.match(/(entreprise)/i)) ? "corporation" : type;
                     type = (type.match(/(partenaire)/i)) ? "partner" : type;
-                    if(parseInt(key) < 14) {
+                    if(key < 14) {
                         const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
                         return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
                             <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
@@ -293,10 +302,10 @@ const AccordionsHorizontal = (pageProps: any) => {
     const questionsButtons = [ translations["Général"] ];
     return <div className={ CarouselStyles.carousel } data-direction="bidirectional">
         <div className={ CarouselStyles.actions }>
-            { questionsButtons.map((button: any, key: number) => <Button button={ ButtonStyles.callToActionStep } action={ (event: MouseEvent) => transitionHandler(event, component) } text={ button } active={ key === 0 }/>) }
+            { questionsButtons.map((button, key) => <Button key={ key } button={ ButtonStyles.callToActionStep } action={ (event: MouseEvent) => transitionHandler(event, component) } text={ button } active={ key === 0 }/>) }
         </div>
         <div className={ CarouselStyles.container } data-carousel={ component }>
-            { (data) ? data.map((accordion: any, key: KeyType) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
+            { (data) ? data.map((accordion: any, key: Key) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
                 <Accordion { ...pageProps } data={ accordion } translations={ translations }/>
             </div>) : null }
         </div>
