@@ -54,9 +54,9 @@ const DirectoryCategory = (pageProps: DirectoryInterface) => {
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, query, locale, locales, defaultLocale } = context;
     let { type, category }: any = query;
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     category = category?.substring(category.indexOf("_") + 1, category.length);
     const language = locale?.substring(0, 2);
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const research = async () => {
         if(type.match(/(startup)/)) {
             return await api.getFilteredStartupsByCategory(category, "next", "Sorbonne", language);

@@ -1,42 +1,37 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useState } from "react";
-import { ButtonInterface } from "../../typescript/interfaces";
-import { seeMoreOrLess, buildProperties } from "../../scripts/utilities";
+import { uppercaseFirst } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/image";
-import Button from "../buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import MemberStyles from "../../public/stylesheets/components/cards/Member.module.css";
-import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
+import ArticleStyles from "../../public/stylesheets/components/cards/Article.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Member Card */
+/* Article Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const MemberCard = ({ member, translations }: any) => {
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const messageButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-message", "", () => false, translations["Voir plus"], 0 ];
-    const messageButtonObject = buildProperties(buttonProps, messageButtonValues);
-    return <div className={ MemberStyles.member }>
-        <div className={ MemberStyles.main }>
-            { (member.PICTURE) ? <Image src={ member.PICTURE } alt={ "Image de profil de " + member.FIRSTNAME + " " + member.LASTNAME } width="80" height="80"/> : null }
-            { (!member.PICTURE) ? <i className="fa-light fa-user"/> : null }
-            <div className={ MemberStyles.identity }>
-                <p className={ MemberStyles.fullname }>{ member.FIRSTNAME + member.LASTNAME }</p>
-                <p className={ MemberStyles.job }>{ member.ENTITY }</p>
-            </div>
-            <Button { ...messageButtonObject as ButtonInterface }/>
+const ArticleCard = (pageProps: any) => {
+    const { article, states }: any = pageProps;
+    const { translations, RGB }: any = states;
+    const articleClass = ArticleStyles.article;
+    const articleBackgroundAlt = "Image de fond de l'article " + article.NAME + ".";
+    return <div className={ articleClass } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+        <div className={ ArticleStyles.background }>
+            { (article.PICTURE) ? <Image src={ article.PICTURE } alt={ articleBackgroundAlt } width="3840" height="2160"/> : null }
         </div>
-        <div className={ MemberStyles.details }>
-            
+        <div className={ ArticleStyles.content }>
+            <div className={ ArticleStyles.container }>
+                <div className={ ArticleStyles.title } data-type="tooltip" data-tooltip={ article.TITLE }>
+                    <h3>{ (article.NAME) ? uppercaseFirst(article.NAME) : translations["Nom non-défini"] }</h3>
+                </div>
+            </div>
         </div>
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default MemberCard;
+export default ArticleCard;

@@ -8,7 +8,7 @@ import { buildProperties } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Input from "../fields/input";
 import Button from "../buttons/button";
-import Dropdown from "../dropdowns/dropdown";
+import DirectorySearchBy from "../dropdowns/directorySearchBy";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -18,44 +18,23 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Filters */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Filters = (pageProps: any) => {
-    const { title, display, setDisplay, setSearch, states }: any = pageProps;
+    const { title, display, setDisplay, setSearch, filters, states, router }: any = pageProps;
     const { translations }: any = states;
-    /* --------------------------- */
-    /* Properties */
-    /* --------------------------- */
-    const buttonProps = [ "type", "faIcon", "faIconClass", "action", "aria", "active" ];
+    const { type }: any = router.query;
     const inputProps = [ "type", "name", "placeholder" ];
-    /* --------------------------- */
-    /* Grid Display Button */
-    /* --------------------------- */
-    const gridButtonAction = () => setDisplay("grid threeColumns");
-    const gridButtonClass = ButtonStyles.callToActionAlternativeSquaredIcon;
-    const gridButtonActive = (display === "grid threeColumns") ? true : false;
-    const gridButtonValues = [ gridButtonClass, true, "fa-light fa-grid-2", gridButtonAction, translations["Bouton d'affichage en grille"], gridButtonActive ];
-    const gridButtonObject = buildProperties(buttonProps, gridButtonValues);
-    /* --------------------------- */
-    /* List Display Button */
-    /* --------------------------- */
-    const listButtonAction = () => setDisplay("list");
-    const listButtonClass = ButtonStyles.callToActionAlternativeSquaredIcon;
-    const listButtonActive = (display === "list") ? true : false;
-    const listButtonValues = [ listButtonClass, true, "fa-light fa-list", listButtonAction, translations["Bouton d'affichage en liste"], listButtonActive ];
-    const listButtonObject = buildProperties(buttonProps, listButtonValues);
-    /* --------------------------- */
-    /* Search Button */
-    /* --------------------------- */
-    const searchButtonAction = () => false;
-    const searchButtonClass = ButtonStyles.callToActionRoundedIcon;
-    const searchButtonValues = [ searchButtonClass, true, "fa-light fa-search", searchButtonAction, translations["Bouton de recherche dans l'annuaire"] ];
-    const searchButtonObject = buildProperties(buttonProps, searchButtonValues);
-    /* --------------------------- */
-    /* Search Input */
-    /* --------------------------- */
     const searchInputValues = [ "search", "search", translations["Rechercher dans l'annuaire des"] + " " + title ];
     const searchInputObject = buildProperties(inputProps, searchInputValues);
-    /* --------------------------- */
-    /* Filter Function */
-    /* --------------------------- */
+    const buttonProps = [ "type", "faIcon", "faIconClass", "action", "aria", "active" ];
+    const gridButtonAction = () => setDisplay("grid threeColumns");
+    const gridButtonActive = (display === "grid threeColumns") ? true : false;
+    const gridButtonValues = [ ButtonStyles.callToActionAlternativeSquaredIcon, true, "fa-light fa-grid-2", gridButtonAction, translations["Bouton d'affichage en grille"], gridButtonActive ];
+    const gridButtonObject = buildProperties(buttonProps, gridButtonValues);
+    const listButtonAction = () => setDisplay("list");
+    const listButtonActive = (display === "list") ? true : false;
+    const listButtonValues = [ ButtonStyles.callToActionAlternativeSquaredIcon, true, "fa-light fa-list", listButtonAction, translations["Bouton d'affichage en liste"], listButtonActive ];
+    const listButtonObject = buildProperties(buttonProps, listButtonValues);
+    const searchButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-search", undefined, translations["Bouton de recherche dans l'annuaire"] ];
+    const searchButtonObject = buildProperties(buttonProps, searchButtonValues);
     const filterTheCards = (event: any) => {
         event.preventDefault();
         const form = event.target;
@@ -64,6 +43,10 @@ const Filters = (pageProps: any) => {
     };
     return <div className={ FiltersStyles.container }>
         { (title) ? <div className={ FiltersStyles.header }>
+            { (type.match(/(startup)/)) ? <i className="fa-light fa-rocket-launch"/> : null }
+            { (type.match(/(corporation|entreprise)/)) ? <i className="fa-light fa-buildings"/> : null }
+            { (type.match(/(partner|partenaire)/)) ? <i className="fa-light fa-handshake-simple"/> : null }
+            { (type.match(/(opport)/)) ? <i className="fa-light fa-circle-star"/> : null }
             <h1>{ title }</h1>
             <div className={ FiltersStyles.displays }>
                 <Button { ...gridButtonObject as ButtonInterface }/>
@@ -81,7 +64,7 @@ const Filters = (pageProps: any) => {
             </form>
         </div>
         <div className={ FiltersStyles.filters }>
-            <Dropdown/>
+            <DirectorySearchBy { ...pageProps } list={ filters || [] }/>
         </div>
     </div>;
 };

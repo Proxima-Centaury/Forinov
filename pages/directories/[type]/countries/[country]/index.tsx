@@ -48,9 +48,9 @@ const DirectoryCountry = (pageProps: DirectoryInterface) => {
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, query, locale, locales, defaultLocale } = context;
     let { type, country }: any = query;
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     country = country?.substring(country.indexOf("_") + 1, country.length);
     const language = locale?.substring(0, 2);
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const companies = async () => {
         if(type.match(/(startup)/)) {
             return await api.getFilteredStartupsByCountry(country, "next", "Sorbonne", language);

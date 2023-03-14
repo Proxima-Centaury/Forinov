@@ -54,7 +54,7 @@ const ProfileCard = (pageProps: any) => {
                 </div> : null }
                 { (profile.COMMENT) ? <Format content={ profile.COMMENT }/> : null }
                 { (profile.CATEGORY.length > 0) ? <Tags tags={ profile.CATEGORY } main={ true }/> : null }
-                { (profile.TAGS) ? <Tags tags={ structureTags(profile.TAGS) }/> : null }
+                { (profile.TAGS) ? <Tags tags={ structureTags(profile.TAGS) } limit={ 2 }/> : null }
                 { (profileType.match(/(startup)/) && page !== "landing") ? <div className="separator"></div> : null }
                 { (profileType.match(/(startup)/) && page !== "landing") ? <div className={ ProfileStyles.stats }>
                     { (profile.CREATIONDATE) ? <div>

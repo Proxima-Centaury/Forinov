@@ -29,14 +29,14 @@ const DirectoryType = (pageProps: DirectoryInterface) => {
     const [ display, setDisplay ] = useState("grid threeColumns");
     const filters = [
         // { ID: 0, NAME: translations["Toutes"], URL: "/all" },
-        { ID: 0, NAME: translations["Catégories"], URL: "/categories" },
-        { ID: 0, NAME: translations["Pays"], URL: "/countries" },
+        { ID: 0, NAME: translations["Catégories"], URL: "/directories/" + type + "/categories" },
+        { ID: 0, NAME: translations["Pays"], URL: "/directories/" + type + "/countries" },
     ];
     return <div id="directory" className="container">
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
         <IdenfiticationBanner { ...pageProps }/>
         <div className={ display }>
-            { filters.map((filter: any, key: number) => (!search || (search && checkMatch(filter.NAME, search))) ? <Link key={ key } href={ router.asPath + filter.URL }>
+            { filters.map((filter: any, key: number) => (!search || (search && checkMatch(filter.NAME, search))) ? <Link key={ key } href={ filter.URL }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link> : null) }
         </div>

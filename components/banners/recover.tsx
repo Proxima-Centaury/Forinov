@@ -2,8 +2,6 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Button from "../buttons/button";
-import { ButtonInterface } from "../../typescript/interfaces";
-import { buildProperties } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -14,13 +12,10 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const RecoverBanner = ({ states }: any) => {
     const { translations }: any = states;
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const recoverButtonValues = [ ButtonStyles.callToActionNegative, false, "", "", () => false, translations["Récupérer les accès"], 0 ];
-    const recoverButtonObject = buildProperties(buttonProps, recoverButtonValues);
     return <div className={ BannerStyles.recoverBanner }>
         <p>{ translations["Ce compte a été créé par nos équipes, s'il s'agit de votre compte, n'hésitez pas à :"] }</p>
         <div className={ BannerStyles.actions }>
-            <Button { ...recoverButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionNegative } href="/password/recover" text={ translations["Récupérer les accès"] }/>
         </div>
     </div>;
 };

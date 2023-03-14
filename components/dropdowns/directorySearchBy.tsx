@@ -1,42 +1,47 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useState } from "react";
+import { Key, MouseEventHandler, useState } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
-import { seeMoreOrLess, buildProperties } from "../../scripts/utilities";
+import { buildProperties, checkMatch } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Image from "next/image";
 import Button from "../buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import MemberStyles from "../../public/stylesheets/components/cards/Member.module.css";
+import DropdownStyles from "../../public/stylesheets/components/dropdowns/Dropdown.module.css";
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Member Card */
+/* Directory Search By Dropdown */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const MemberCard = ({ member, translations }: any) => {
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const messageButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-message", "", () => false, translations["Voir plus"], 0 ];
-    const messageButtonObject = buildProperties(buttonProps, messageButtonValues);
-    return <div className={ MemberStyles.member }>
-        <div className={ MemberStyles.main }>
-            { (member.PICTURE) ? <Image src={ member.PICTURE } alt={ "Image de profil de " + member.FIRSTNAME + " " + member.LASTNAME } width="80" height="80"/> : null }
-            { (!member.PICTURE) ? <i className="fa-light fa-user"/> : null }
-            <div className={ MemberStyles.identity }>
-                <p className={ MemberStyles.fullname }>{ member.FIRSTNAME + member.LASTNAME }</p>
-                <p className={ MemberStyles.job }>{ member.ENTITY }</p>
-            </div>
-            <Button { ...messageButtonObject as ButtonInterface }/>
+const DirectorySearchByDropdown = (pageProps: any) => {
+    const { states, router }: any = pageProps;
+    const { translations }: any = states;
+    const { type }: any = router.query;
+    const [ open, setOpen ] = useState(false);
+    const dropdownButtonAction: MouseEventHandler = (event) => {
+        event.preventDefault();
+        setOpen(!open);
+    };
+    const filters = [
+        // { ID: 0, NAME: translations["Toutes"], URL: "/all" },
+        { ID: 0, NAME: translations["Catégories"], URL: "/directories/" + type + "/categories" },
+        { ID: 0, NAME: translations["Pays"], URL: "/directories/" + type + "/countries" },
+    ];
+    const activeFilter = () => filters.map((link: any) => (checkMatch(router.asPath, link.URL)) ? link.NAME : null).filter((link: any) => link !== null)[0];
+    return <div className={ DropdownStyles.container } data-open={ open }>
+        <div className={ DropdownStyles.display }>
+            <p>{ translations["Recherche par"] + " : " }<span>{ activeFilter() }</span></p>
+            <Button button={ ButtonStyles.mask } action={ dropdownButtonAction } icon="fa-light fa-chevron-down"/>
         </div>
-        <div className={ MemberStyles.details }>
-            
-        </div>
+        { (filters.length > 0) ? <div className={ DropdownStyles.list + ((open) ? " " + DropdownStyles.open : "") }>
+            { filters.map((link: any, key: Key) => <Button  key={ key } button={ ButtonStyles.dropdownLink } href={ link.URL } text={ link.NAME } active={ checkMatch(router.asPath, link.URL) }/>) }
+        </div> : null }
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default MemberCard;
+export default DirectorySearchByDropdown;
