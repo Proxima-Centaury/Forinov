@@ -2,8 +2,6 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { MouseEventHandler, useState, useEffect } from "react";
-import { ButtonInterface } from "../../typescript/interfaces";
-import { buildProperties, preventSubmit } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -33,6 +31,10 @@ const Devtools = ({ states, stateSetters }: any) => {
         event.preventDefault();
         setRGB(!RGB);
     };
+    const switchHiddenState: MouseEventHandler = (event) => {
+        event.preventDefault();
+        setHidden(!hidden)
+    };
     useEffect(() => (theme === "light") ? setThemeSwitcherIcon("fa-light fa-moon") : setThemeSwitcherIcon("fa-light fa-sun"), [ theme ]);
     useEffect(() => (RGB) ? setRGBSwitcherIcon("fa-light fa-lightbulb") : setRGBSwitcherIcon("fa-light fa-lightbulb-on"), [ RGB ]);
     return <div className={ (hidden) ? "closed" : "" } data-type="devtools">
@@ -49,7 +51,7 @@ const Devtools = ({ states, stateSetters }: any) => {
         <div data-type="tooltip" data-tooltip={ translations["Activer l'éclairage RGB"] }>
             <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon={ RGBSwitcherIcon }/>
         </div>
-        <button title={ translations["Afficher les devtools"] } onClick={ (event) => preventSubmit(event as any, () => setHidden(!hidden)) }>
+        <button title={ translations["Afficher les devtools"] } onClick={ switchHiddenState }>
             <i className="fa-light fa-chevron-down"/>
         </button>
     </div>;
