@@ -9,7 +9,6 @@ import api from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import Carousel from "../components/carousels/carousel";
 import Button from "../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -61,7 +60,7 @@ const StartupsHome = (pageProps: HomeInterface) => {
 						<i className="fa-light fa-chart-network"/>
 						<div className={ HomeStyles.content }>
 							<h6>{ translations["Découvre"] }</h6>
-							<p>{ translations["Les appels à candidatures, programmes d'accompagnement, concours dans"] } <Link href="/directories/opportunities/categories" className={ ButtonStyles.pureLink }>{ translations["L'annuaire d'opportunités"].toLowerCase() }</Link>.</p>
+							<p>{ translations["Les appels à candidatures, programmes d'accompagnement, concours dans"] } <Button button={ ButtonStyles.classicLink } href="/directories/opportunities/categories" text={ translations["L'annuaire d'opportunités"].toLowerCase() }/>.</p>
 						</div>
 					</div>
 					<div className="separator"></div>
