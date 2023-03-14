@@ -140,7 +140,7 @@ const StepsCarousel = (pageProps: any) => {
             { steps.map((button: any, key: number) => {
                 return <Fragment key={ key }>
                     <div className="separator"></div>
-                    <Button button={ ButtonStyles.callToActionStep } action={ (event: MouseEvent) => transitionHandler(event, component) } text={ button.title }/>
+                    <Button button={ ButtonStyles.callToActionStep } action={ (event: MouseEvent) => transitionHandler(event, component) } text={ button.title } active={ key === 0 }/>
                 </Fragment>;
             }) }
             <div className="separator"></div>
