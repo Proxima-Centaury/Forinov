@@ -20,6 +20,11 @@
         width: 100%;
     }
 }
+.startup:hover,
+.corporation:hover,
+.partner:hover {
+    transform: translate3d(0px, -8px, 0px);
+}
 div[class="list"] > .startup,
 div[class="list"] > .corporation,
 div[class="list"] > .partner {
