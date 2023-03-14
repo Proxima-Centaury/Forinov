@@ -30,7 +30,7 @@ const Navbar = (pageProps: NavbarInterface): JSX.Element => {
     // const languageSelectValues = [ "Single", locales, setLocale, languageSelectDefaultValue, "locales" ];
     // const languageSelectObject = buildProperties(selectProps, languageSelectValues);
     // TODO Remove select props builder and do the same as the Button component
-    const switchState: MouseEventHandler = (event) => {
+    const switchMenuState: MouseEventHandler = (event) => {
         event.preventDefault();
         setMenuState(!menuState);
     };
@@ -49,7 +49,7 @@ const Navbar = (pageProps: NavbarInterface): JSX.Element => {
             <Button button={ ButtonStyles.default } href="/login" icon="fa-light fa-user"/>
             <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["M'inscrire"] }/>
         </div>
-        <Button button={ ButtonStyles.navigationButton } action={ switchState } active={ menuState }/>
+        <Button button={ ButtonStyles.navigationButton } action={ switchMenuState } active={ menuState }/>
     </nav>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
