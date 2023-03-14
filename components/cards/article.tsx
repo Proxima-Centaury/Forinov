@@ -14,11 +14,11 @@ import ArticleStyles from "../../public/stylesheets/components/cards/Article.mod
 /* Article Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ArticleCard = (pageProps: any) => {
-    const { article, index, maxVisibleByDefault, states }: any = pageProps;
+    const { article, states }: any = pageProps;
     const { translations, RGB }: any = states;
-    const articleClass = ArticleStyles.article + ((index > maxVisibleByDefault) ? " hidden" : "");
+    const articleClass = ArticleStyles.article;
     const articleBackgroundAlt = "Image de fond de l'article " + article.NAME + ".";
-    return <div className={ articleClass } data-index={ index - 1 } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+    return <div className={ articleClass } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ ArticleStyles.background }>
             { (article.PICTURE) ? <Image src={ article.PICTURE } alt={ articleBackgroundAlt } width="3840" height="2160"/> : null }
         </div>

@@ -15,9 +15,9 @@ import FolderStyles from "../../public/stylesheets/components/cards/Folder.modul
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Folder Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const FolderCard = ({ folder, index, maxVisibleByDefault = 2 }: any) => {
+const FolderCard = ({ folder }: any) => {
     const route = useRouter();
-    return <Link href={ route.asPath + "/folders/" + formatNameForUrl(folder.name) + "_" + folder.id } className={ FolderStyles.folder + ((index > maxVisibleByDefault) ? " hidden" : "") }>
+    return <Link href={ route.asPath + "/folders/" + formatNameForUrl(folder.name) + "_" + folder.id } className={ FolderStyles.folder }>
         <div className={ FolderStyles.content }>
             <div className={ FolderStyles.geometry }></div>
             { (folder.startups.length > 0 && folder.startups.length <= 3) ? <div className={ FolderStyles.startups }>

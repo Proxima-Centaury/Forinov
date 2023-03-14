@@ -19,7 +19,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Entity Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const EntityCard = (pageProps: any) => {
-    const { entity, type, index, details, maxVisibleByDefault, states, stateSetters }: any = pageProps;
+    const { entity, type, details, states, stateSetters }: any = pageProps;
     const { session, translations, RGB }: any = states;
     const { setModal }: any = stateSetters;
     /* --------------------------- */
@@ -36,7 +36,7 @@ const EntityCard = (pageProps: any) => {
     const followButtonClass = ButtonStyles.callToActionAlternativeRoundedIcon;
     const followButtonValues = [ followButtonClass, true, "fa-light fa-folder-plus", followButtonAction ];
     const followButtonObject = buildProperties(buttonProps, followButtonValues);
-    return <div className={ EntityStyles[type] + ((index > maxVisibleByDefault) ? " hidden" : "")} data-rgb={ (RGB) ? "enabled" : "disabled" }>
+    return <div className={ EntityStyles[type] } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ EntityStyles.marker }></div>
         <div className={ EntityStyles.content }>
             <div className={ EntityStyles.head }>
