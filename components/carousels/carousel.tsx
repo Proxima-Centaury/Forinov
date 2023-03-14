@@ -290,15 +290,10 @@ const AccordionsHorizontal = (pageProps: any) => {
 	const { translations }: any = states;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
-    const buttonProps = [ "type", "action", "text" ];
     const questionsButtons = [ translations["Général"] ];
     return <div className={ CarouselStyles.carousel } data-direction="bidirectional">
         <div className={ CarouselStyles.actions }>
-            { questionsButtons.map((button: any, key: number) => {
-                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, component), button ];
-                const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
-                return <Button key={ key } { ...stepButtonObject as ButtonInterface } index={ key }/>;
-            }) }
+            { questionsButtons.map((button: any, key: number) => <Button button={ ButtonStyles.callToActionStep } action={ (event: MouseEvent) => transitionHandler(event, component) } text={ button } active={ key === 0 }/>) }
         </div>
         <div className={ CarouselStyles.container } data-carousel={ component }>
             { (data) ? data.map((accordion: any, key: KeyType) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
