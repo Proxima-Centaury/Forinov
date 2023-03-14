@@ -591,9 +591,10 @@
 	background-color: var(--lightgreen-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Startups ) */
+/* Home ( Startups & Structures ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.startups {
+.startups,
+.structures {
 	display: flex;
 	flex-direction: column;
 	grid-gap: 40px;
@@ -602,7 +603,8 @@
 	padding: 80px;
 }
 @media screen and (max-width: 576px) {
-	.startups {
+	.startups,
+	.structures {
 		padding: 16px;
 	}
 }
@@ -616,13 +618,20 @@
 	content: "";
 	z-index: -1;
 }
-.startups > h4 {
+.startups > h4,
+.structures > h4 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
 	text-align: center;
 }
-.startups > .startupsCategories {
+.structures > p {
+	font-family: "Nunito Sans";
+	font-size: 21px;
+	text-align: center;
+}
+.startups > .startupsCategories,
+.structures > .structuresCategories {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;

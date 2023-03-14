@@ -2,6 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
+import { Key } from "react";
 import { HomeInterface } from "../typescript/interfaces";
 import { formatNameForUrl } from "../scripts/utilities";
 import api from "../scripts/api";
@@ -24,6 +25,7 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 const Home = (pageProps: HomeInterface) => {
 	const { landing, startups, opportunities, states, router }: any = pageProps;
 	const { translations, metadatas }: any = states;
+	const structures: Array<String> = [ "Startup", "Grand groupe", "ETI", "PME", "Incubateur", "Accélérateur", "Pépinière", "Fond d'investissement", "Business angel", "Structure d'investissement" ];
 	return <>
 		<Head>
 			<title>{ metadatas[router.route].title }</title>
@@ -144,7 +146,7 @@ const Home = (pageProps: HomeInterface) => {
 			{ (landing.CATEGORIES.length > 0) ? <div className={ HomeStyles.startups } data-type="home">
 				<h4>{ translations["Trouvez votre pépite parmi"] + " " + landing.COUNTERS.STARTUPS + " " + translations["Startups réparties en"].toLowerCase() + " " + landing.COUNTERS.STARTUPSCATEGORIES + " " + translations["Catégories"].toLowerCase() }</h4>
 				<div className={ HomeStyles.startupsCategories }>
-					{ landing.CATEGORIES.map((category: any, key: KeyType) => {
+					{ landing.CATEGORIES.map((category: any, key: Key) => {
 						const url = "/directories/startups/categories/" + formatNameForUrl(category.NAME) + "_"  + category.ID;
 						return <Button key={ key } button={ ButtonStyles.callToActionNegative } href={ url } text={ category.NAME }/>;
 					}) }
@@ -161,6 +163,16 @@ const Home = (pageProps: HomeInterface) => {
 					<Button button={ ButtonStyles.callToActionAlternative } href="/opportunities" text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
 				</div>
 			</div>
+			{ (structures.length > 0) ? <div className={ HomeStyles.structures } data-type="home">
+				<h4>{ translations["Tous les acteurs de l'innovation sont sur Forinov, qu'attendez-vous pour les rejoindre"] + " ?" }</h4>
+				<p>{ translations["Je représente ou travail pour un/une"] + "..." }</p>
+				<div className={ HomeStyles.structuresCategories }>
+					{ structures.map((structure: any, key: Key) => {
+						const url = "/onboarding";
+						return <Button key={ key } button={ ButtonStyles.callToActionNegative } href={ url } text={ structure }/>;
+					}) }
+				</div>
+			</div> : null }
 		</div>
 	</>;
 };
