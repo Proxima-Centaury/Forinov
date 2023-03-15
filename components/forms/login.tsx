@@ -1,12 +1,11 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { ButtonInterface, InputInterface } from "../../typescript/interfaces";
+import { InputInterface } from "../../typescript/interfaces";
 import { buildProperties } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Link from "next/link";
 import Input from "../fields/input";
 import Button from "../buttons/button";
 import Separator from "../separators/separator";
@@ -26,11 +25,6 @@ const LoginForm = (pageProps: any) => {
     const emailInputObject = buildProperties(inputProps, emailInputValues);
     const passwordInputValues = [ translations["Mot de passe"] + " *", "password", "password", undefined ];
     const passwordInputObject = buildProperties(inputProps, passwordInputValues);
-    const buttonProps = [ "type", "faIcon", "faIconClass", "action", "text" ];
-    const loginButtonValues = [ ButtonStyles.callToAction, false, "", undefined, translations["Me connecter"] ];
-    const loginButtonObject = buildProperties(buttonProps, loginButtonValues);
-    const googleButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-brands fa-google", undefined, translations["Me connecter avec"] + " Google" ];
-    const googleButtonObject = buildProperties(buttonProps, googleButtonValues);
     return <form className={ FormStyles.form }>
         <div className={ FormStyles.row }>
             <div className={ FormStyles.column }>
@@ -41,17 +35,17 @@ const LoginForm = (pageProps: any) => {
             </div>
         </div>
         <div className={ FormStyles.row }>
-            <Button { ...loginButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToAction } text={ translations["Me connecter"] }/>
         </div>
         <div className={ FormStyles.row }>
-            <Link href="/onboarding" className={ ButtonStyles.callToActionAlternative }>{ translations["Créer mon compte"] }</Link>
+            <Button button={ ButtonStyles.callToActionAlternative } href="/onboarding" text={ translations["Créer mon compte"] }/>
         </div>
         <div className={ FormStyles.row }>
-            <Link href="/password/recover" className={ ButtonStyles.pureLink }>{ translations["J'ai oublié mon mot de passe"] + " !" }</Link>
+            <Button button={ ButtonStyles.classicLink } href="/recover" text={ translations["J'ai oublié mon mot de passe"] + " !" }/>
         </div>
         <Separator { ...pageProps } type="or"/>
         <div className={ FormStyles.row }>
-            <Button { ...googleButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionAlternative } icon="fa-brands fa-google" text={ translations["Me connecter avec"] + " Google" }/>
         </div>
     </form>;
 };
