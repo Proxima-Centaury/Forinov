@@ -43,21 +43,21 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
                     </p>
                     <div className={SolutionStyles.heroLinks}>
                         <Link
-                            href={'/'}
+                            href={'/onboarding'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["M'inscrire sur Forinov"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
-                            href={'/'}
+                            href={'/solutions/partners'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["Demander une démonstration gratuite"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
-                            href={'/'}
+                            href={'/directories/partners/categorie'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["J'accède à l'annuaire des membres"]}</span>
