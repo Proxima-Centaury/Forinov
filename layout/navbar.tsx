@@ -2,8 +2,8 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { Fragment, Key, MouseEventHandler, useState } from "react";
-import { NavbarInterface, NavbarMenuInterface, SelectInterface } from "../typescript/interfaces";
-import { selectifyTheOptions, buildProperties, preciseTarget } from "../scripts/utilities";
+import { NavbarInterface, NavbarMenuInterface } from "../typescript/interfaces";
+import { selectifyTheOptions, preciseTarget } from "../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -25,11 +25,7 @@ const Navbar = (pageProps: NavbarInterface): JSX.Element => {
     const { setLocale }: any = stateSetters;
     const { navbar } = layoutConfigurations.navigations.unsigned.layout;
     const [ menuState, setMenuState ] = useState(false);
-    // const selectProps = [ "type", "options", "action", "defaultValue", "source" ];
-    // const languageSelectDefaultValue = [ ...selectifyTheOptions(locales, "locales") as Array<any> ]?.filter((option: any) => option.VALUE === locale)[0];
-    // const languageSelectValues = [ "Single", locales, setLocale, languageSelectDefaultValue, "locales" ];
-    // const languageSelectObject = buildProperties(selectProps, languageSelectValues);
-    // TODO Remove select props builder and do the same as the Button component
+    const languageSelectDefaultValue = [ ...selectifyTheOptions(locales, "locales") as Array<any> ]?.filter((option: any) => option.VALUE === locale)[0];
     const switchMenuState: MouseEventHandler = (event) => {
         event.preventDefault();
         setMenuState(!menuState);
@@ -45,7 +41,7 @@ const Navbar = (pageProps: NavbarInterface): JSX.Element => {
             <NavbarMenu { ...pageProps } navbar={ navbar }/>
         </ul>
         <div className={ NavbarStyles.actions }>
-            {/* <Select { ...languageSelectObject as SelectInterface }/> */}
+            <Select type="Single" options={ locales } action={ setLocale } defaultValue={ languageSelectDefaultValue } source="locales"/>
             <Button button={ ButtonStyles.default } href="/login" icon="fa-light fa-user"/>
             <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["M'inscrire"] }/>
         </div>
