@@ -1,12 +1,9 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Imports */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useRouter } from "next/router";
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
 import Carousel from "../../carousels/carousel";
+import Button from "../../buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -25,23 +22,11 @@ const OpportunityLinks = (pageProps: any) => {
     const mailToBody = "&body=Lien vers l'opportunité : " + opportunityUrl;
     return <div className={ LinksStyles.container }>
         <div className={ LinksStyles.actions }>
-            <Link className={ ButtonStyles.callToActionStep } href={ "mailto:" + mailToSubject + mailToBody + "." }>
-                <i className="fa-light fa-chart-network"/>
-                <p>{ translations["Partager"] }</p>
-            </Link>
-            { (opportunity.ICS) ? <Link className={ ButtonStyles.callToActionStep } href={ opportunity.ICS }>
-                <i className="fa-light fa-calendar"/>
-                <p>{ translations["Ajouter à mon calendrier"] }</p>
-            </Link> : null }
-            <Link className={ ButtonStyles.callToActionStep } href="/directories/opportunities">
-                <i className="fa-light fa-star"/>
-                <p>{ translations["Voir toutes les opportunités"] }</p>
-            </Link>
+            <Button button={ ButtonStyles.callToActionStep } href={ "mailto:" + mailToSubject + mailToBody + "." } icon="fa-light fa-chart-network" text={ translations["Partager"] }/>
+            { (opportunity.ICS) ? <Button button={ ButtonStyles.callToActionStep } href={ opportunity.ICS } icon="fa-light fa-calendar" text={ translations["Ajouter à mon calendrier"] }/> : null }
+            <Button button={ ButtonStyles.callToActionStep } href="/directories/opportunities/categories" icon="fa-light fa-star" text={ translations["Voir toutes les opportunités"] }/>
         </div>
-        <Link className={ ButtonStyles.callToActionWide } href="/login">
-            <i className="fa-light fa-file-signature"/>
-            <p>{ translations["Postuler"] }</p>
-        </Link>
+        <Button button={ ButtonStyles.callToActionWide } href="/login" icon="fa-light fa-file-signature" text={ translations["Postuler"] }/>
         <h3>{ translations["Autres opportunités de"] + " " + opportunity.OWNERNAME }</h3>
         <Carousel states={ states } component="LatestOpportunities" data={ opportunity.MOREOPPORTUNITIES }/>
     </div>;
