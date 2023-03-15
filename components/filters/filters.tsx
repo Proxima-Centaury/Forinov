@@ -1,6 +1,7 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { MouseEventHandler } from "react";
 import { ButtonInterface, InputInterface } from "../../typescript/interfaces";
 import { buildProperties } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -24,17 +25,8 @@ const Filters = (pageProps: any) => {
     const inputProps = [ "type", "name", "placeholder" ];
     const searchInputValues = [ "search", "search", translations["Rechercher dans l'annuaire des"] + " " + title ];
     const searchInputObject = buildProperties(inputProps, searchInputValues);
-    const buttonProps = [ "type", "faIcon", "faIconClass", "action", "aria", "active" ];
-    const gridButtonAction = () => setDisplay("grid threeColumns");
-    const gridButtonActive = (display === "grid threeColumns") ? true : false;
-    const gridButtonValues = [ ButtonStyles.callToActionAlternativeSquaredIcon, true, "fa-light fa-grid-2", gridButtonAction, translations["Bouton d'affichage en grille"], gridButtonActive ];
-    const gridButtonObject = buildProperties(buttonProps, gridButtonValues);
-    const listButtonAction = () => setDisplay("list");
-    const listButtonActive = (display === "list") ? true : false;
-    const listButtonValues = [ ButtonStyles.callToActionAlternativeSquaredIcon, true, "fa-light fa-list", listButtonAction, translations["Bouton d'affichage en liste"], listButtonActive ];
-    const listButtonObject = buildProperties(buttonProps, listButtonValues);
-    const searchButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-search", undefined, translations["Bouton de recherche dans l'annuaire"] ];
-    const searchButtonObject = buildProperties(buttonProps, searchButtonValues);
+    const gridButtonAction: MouseEventHandler = () => setDisplay("grid threeColumns");
+    const listButtonAction: MouseEventHandler = () => setDisplay("list");
     const filterTheCards = (event: any) => {
         event.preventDefault();
         const form = event.target;
@@ -49,8 +41,8 @@ const Filters = (pageProps: any) => {
             { (type.match(/(opport)/)) ? <i className="fa-light fa-circle-star"/> : null }
             <h1>{ title }</h1>
             <div className={ FiltersStyles.displays }>
-                <Button { ...gridButtonObject as ButtonInterface }/>
-                <Button { ...listButtonObject as ButtonInterface }/>
+                <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ gridButtonAction } icon="fa-light fa-grid-2" active={ display === "grid threeColumns" }/>
+                <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ listButtonAction } icon="fa-light fa-list" active={ display !== "grid threeColumns" }/>
             </div>
         </div> : null }
         { (title) ? <div className="separator"/> : null }
@@ -60,7 +52,7 @@ const Filters = (pageProps: any) => {
         <div className={ FiltersStyles.search }>
             <form onSubmit={ filterTheCards }>
                 <Input { ...searchInputObject as InputInterface }/>
-                <Button { ...searchButtonObject as ButtonInterface }/>
+                <Button button={ ButtonStyles.callToActionRoundedIcon } action={ listButtonAction } icon="fa-light fa-search"/>
             </form>
         </div>
         <div className={ FiltersStyles.filters }>
