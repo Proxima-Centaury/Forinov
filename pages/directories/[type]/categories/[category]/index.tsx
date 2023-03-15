@@ -14,6 +14,7 @@ import Filters from "../../../../../components/filters/filters";
 import IdenfiticationBanner from "../../../../../components/banners/identification";
 import EntityCard from "../../../../../components/cards/entity";
 import OpportunityCard from "../../../../../components/cards/opportunity";
+import Button from "../../../../../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -44,7 +45,7 @@ const DirectoryCategory = (pageProps: DirectoryInterface) => {
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
             <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
-            <Link href="/onboarding" className={ ButtonStyles.callToActionNegative }>{ translations["Je m'inscris"] }</Link>
+            <Button button={ ButtonStyles.callToActionNegative } href="/onboarding" text={ translations["Je m'inscris"] }/>
         </div>
     </div>;
 };

@@ -1,8 +1,9 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { MouseEventHandler } from "react";
 import { ButtonInterface } from "../../typescript/interfaces";
-import { structureTags, buildProperties } from "../../scripts/utilities";
+import { structureTags } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -22,20 +23,10 @@ const EntityCard = (pageProps: any) => {
     const { entity, type, details, states, stateSetters }: any = pageProps;
     const { session, translations, RGB }: any = states;
     const { setModal }: any = stateSetters;
-    /* --------------------------- */
-    /* Properties */
-    /* --------------------------- */
-    const buttonProps = [ "type", "faIcon", "faIconClass", "action", "text" ];
-    /* --------------------------- */
-    /* Follow Button */
-    /* --------------------------- */
-    const followButtonAction = (event: any) => {
+    const followButtonAction: MouseEventHandler = (event: any) => {
         event.preventDefault();
-        return (session) ? false : setModal("register")
+        (session) ? false : setModal("register");
     };
-    const followButtonClass = ButtonStyles.callToActionAlternativeRoundedIcon;
-    const followButtonValues = [ followButtonClass, true, "fa-light fa-folder-plus", followButtonAction ];
-    const followButtonObject = buildProperties(buttonProps, followButtonValues);
     return <div className={ EntityStyles[type] } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ EntityStyles.marker }></div>
         <div className={ EntityStyles.content }>
@@ -54,7 +45,7 @@ const EntityCard = (pageProps: any) => {
             </div> : null }
         </div>
         <div className={ EntityStyles.follow }>
-            <Button { ...followButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionAlternativeRoundedIcon } action={ followButtonAction } icon="fa-light fa-folder-plus"/>
             <p>{ translations["Suivre"] }</p>
         </div>
     </div>;
