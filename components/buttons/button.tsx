@@ -24,6 +24,10 @@ const Button = (buttonProps: ButtonInterface): JSX.Element => {
             <span></span>
             <span></span>
         </button>;
+    } else if(button === ButtonStyles.closeModal) {
+        return <button className={ classList } onClick={ actionTrigger }>
+            <i className="fa-light fa-xmark"/>
+        </button>
     } else if(href) {
         return <Link className={ classList } href={ (href) ? href.toString() : "/" }>
             { (icon) ? <i className={ icon.toString() }/> : null }

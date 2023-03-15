@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import { ButtonInterface } from "../typescript/interfaces";
 import { buildProperties } from "../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -21,8 +21,8 @@ const Modal = ({ states, stateSetters }: any) => {
     const { modal, translations, theme }: any = states;
     const { setModal }: any = stateSetters;
     const [ modalState, setModalState ]  = useState(false);
-    const closeModal = () => {
-        return setModal(null);
+    const closeModal: MouseEventHandler = () => {
+        setModal(null);
     };
     useEffect(() => (modal) ? setModalState(true) : setModalState(false), [ modal ]);
     const modalProps = { modal: modal, closeModal: closeModal, translations: translations, theme: theme };
@@ -42,7 +42,7 @@ const ModalPicker = ({ modal, closeModal, translations, theme }: any) => {
         case "register":
             return <div className="modal firstType" data-modal="register">
                 <RegisterModal  { ...modalProps }/>
-                <Button { ...closeModalButtonObject as ButtonInterface }/>
+                <Button button={ ButtonStyles.closeModal } action={ closeModal }/>
             </div>;
         case "contact":
             return <div className="modal firstType" data-modal="contact">
