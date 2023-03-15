@@ -102,6 +102,7 @@ interface InputInterface {
 interface SelectInterface {
     options?: Array<Object>,
     action?: Function,
+    placeholder?: String,
     defaultValue?: any,
     defaultValues?: Array<any>,
     source?: String
