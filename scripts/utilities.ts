@@ -142,8 +142,8 @@ class Utilities {
                 const optionText = (source) ? locales[option as keyof Object] : option;
                 (option.length > 0) ? selectifiedOptions.push({ ID: key, NAME: optionText, VALUE: option }) : null;
             } else {
-                const optionAsObject: any = option;
-                if(!option.hasProperty("ID")) {
+                const optionAsObject = option;
+                if(!option?.ID) {
                     optionAsObject.ID = key;
                 };
                 selectifiedOptions.push(optionAsObject);
@@ -542,6 +542,7 @@ class Utilities {
         type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
         type = (type.match(/(entreprise)/)) ? "corporation" : type;
         type = (type.match(/(partenaire)/)) ? "partner" : type;
+        type = (type.match(/(opportu)/)) ? "opportunity" : type;
         return type;
     };
     /**

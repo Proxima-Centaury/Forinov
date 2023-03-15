@@ -41,7 +41,7 @@ const Navbar = (pageProps: NavbarInterface): JSX.Element => {
             <NavbarMenu { ...pageProps } navbar={ navbar }/>
         </ul>
         <div className={ NavbarStyles.actions }>
-            <Select type="Single" options={ locales } action={ setLocale } defaultValue={ languageSelectDefaultValue } source="locales"/>
+            <Select options={ locales } action={ setLocale } defaultValue={ languageSelectDefaultValue } source="locales"/>
             <Button button={ ButtonStyles.default } href="/login" icon="fa-light fa-user"/>
             <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["M'inscrire"] }/>
         </div>
