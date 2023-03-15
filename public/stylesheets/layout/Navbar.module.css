@@ -238,6 +238,9 @@
         pointer-events: all;
     }
 }
+.navbar > .actions > [class*="selectField"] {
+    min-width: 80px;
+}
 .navbar > .actions > a {
     display: flex;
     justify-content: center;

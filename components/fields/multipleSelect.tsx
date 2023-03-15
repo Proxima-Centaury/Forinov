@@ -9,19 +9,19 @@ import { selectifyTheOptions } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import SelectStyles from "../../public/stylesheets/components/fields/Select.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Select */
+/* Multiple Select */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Select = (selectProps: SelectInterface) => {
-    const { options, action, defaultValue, source } = selectProps;
+const MultipleSelect = (selectProps: SelectInterface) => {
+    const { options, action, defaultValues, source } = selectProps;
     const [ selectState, setSelectState ] = useState(false);
     const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
     return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") }>
         <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
             <i className="fa-solid fa-caret-right"></i>
         </button>
-        <p>{ (defaultValue) ? defaultValue?.NAME : "" }</p>
+        {/* <p>{ (defaultValue) ? defaultValue?.NAME : "" }</p> */}
         <div className={ SelectStyles.options }>
-            { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => <Option key={ key } option={ option } action={ action } selected={ option.VALUE === defaultValue.VALUE }/>) : null }
+            { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => <Option key={ key } option={ option } action={ action } selected={ false }/>) : null }
         </div>
     </div>;
 };
@@ -43,4 +43,4 @@ const Option = (optionProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default Select;
+export default MultipleSelect;
