@@ -12,15 +12,16 @@ export default function Folder(pageProps: any) {
     return (
         <section className={"container"}>
             {/* FOLDERS */}
-            <div className="grid twoColumns">
-            {/* {products.map((product: any) => {
+            <div className="grid threeColumns">
+            {products.map((product: any) => {
                     return (
                         <ProductCard
                             key={product.id}
                             product={product}
+                            translations={translations}
                         />
                     )
-                })} */}
+                })}
             </div>
         </section>
     )
@@ -33,7 +34,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const language = locale?.substring(0, 2);
 
-    const products = await api.getProducts("entreprise", "5", "next", "Landing", language);
+    const products = await api.getProducts("entreprise", "5", "next", "Sorbonne", language);
     console.log(products);
     
 
