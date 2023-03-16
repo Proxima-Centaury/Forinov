@@ -20,7 +20,6 @@ import apiConfigurations from "../configurations/api.json";
 */
 class API {
     endpoint: String = apiConfigurations.api.endpoint;
-    language: String = "";
     constructor() {
         const queryProps = Object.entries(apiConfigurations.api.calls);
         queryProps.map((query: Array<any>) => {
@@ -42,7 +41,7 @@ class API {
                 const url = this.endpoint + "?" + buildParameters();
                 const promise = await fetch(url);
                 const response = await promise.json();
-                console.error("[ " + chalk.blueBright("CALL") + " ]\n" + url);
+                console.log("[ " + chalk.blueBright("CALL") + " ]\n" + url);
                 switch(query[0]) {
                     case "getPublicCommons":
                         return response[0];
@@ -63,6 +62,32 @@ class API {
                 };
             }, writable: false });
         });
+    };
+    async searchEngine(type: String, filters: any, language: String) {
+        var results = null;
+        var url: String = "";
+        switch(type) {
+            case "startup":
+                url = this.endpoint + "?q=SEARCH_FULLSU";
+                break;
+            case "corporation":
+                url = this.endpoint + "?q=V5_SEARCHCORPO";
+                break;
+            case "partner":
+                url = this.endpoint + "?q=V5_SEARCHINCUB";
+                break;
+            case "opportunity":
+                url = this.endpoint + "?q=LANDING_FULLOPPORTUNITES";
+                break;
+            default:
+                break;
+        };
+        const buildUrl = Object.keys(filters).map((filter) => ((filter === "keywords" && filters[filter].length >= 2) || (filter !== "keywords" &&filters[filter])) ? "&" + filter.toUpperCase() + "=" + filters[filter] : null).join("");
+        url += buildUrl + "&app=next&authkey=Sorbonne&lang=" + language;
+        console.log("[ " + chalk.blueBright("CALL") + " ]\n" + url);
+        const call = (url) ? await fetch(url.toString()) : null;
+        results = (call) ? call.json() : null;
+        return results;
     };
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
