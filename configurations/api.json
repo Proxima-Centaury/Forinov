@@ -20,7 +20,7 @@
             "getFolders": {
                 "query": "V5_GET_FOLDERS",
                 "parameters": [ "TYPE", "PID", "app", "authkey", "lang" ],
-                "modified": "20-12-2022"
+                "modified": "16-03-2023"
             },
             "getLanding": {
                 "query": "LANDING",

@@ -55,8 +55,6 @@ class API {
                         return Object.values(response[0].PRODUCTS);
                     case "getActivity":
                         return Object.values(response[0].EVENTS);
-                    case "getFolders":
-                        return response.folders;
                     default :
                         return response;
                 };
