@@ -2,9 +2,9 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { useState } from "react";
+import { useState, Fragment, useEffect } from "react";
 import { DirectoryInterface } from "../../../typescript/interfaces";
-import { checkMatch } from "../../../scripts/utilities";
+import { formatType, formatNameForUrl } from "../../../scripts/utilities";
 import api from "../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -13,6 +13,8 @@ import Link from "next/link";
 import Filters from "../../../components/filters/filters";
 import IdenfiticationBanner from "../../../components/banners/identification";
 import CategoryCard from "../../../components/cards/category";
+import EntityCard from "../../../components/cards/entity";
+import OpportunityCard from "../../../components/cards/opportunity";
 import Button from "../../../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -20,33 +22,93 @@ import Button from "../../../components/buttons/button";
 import DirectoryStyles from "../../../public/stylesheets/pages/Directory.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Directory Type */
+/* Directory Categories */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const DirectoryType = (pageProps: DirectoryInterface) => {
+const DirectoryCategories = (pageProps: DirectoryInterface) => {
     const { states, router }: any = pageProps;
+    const { locale }: any = states;
+    const { type } = router.query;
+    const [ search, setSearch ] = useState({ keywords: "", categories: "", sectors: "", technologies: "", jobs: "", businessmodel: "" });
+    const [ results, setResults ] = useState(null);
+    const [ selects, setSelects ] = useState(null);
+    const [ display, setDisplay ] = useState("grid threeColumns");
+    useEffect(() => {
+        const fetchResults = async () => {
+            const results = await api.searchEngine(formatType(type), search, locale?.substring(0, 2));
+            const formattedResults = results.slice(0, results.length - 1);
+            const selects = results[results.length - 1];
+            setResults(formattedResults);
+            setSelects(selects);
+        };
+        if(search.keywords.length >= 2 || search.categories.length >= 2 || search.sectors.length >= 2 || search.technologies.length >= 2 || search.jobs.length >= 2 || search.businessmodel.length >= 2) {
+            fetchResults();
+        } else {
+            setResults(null);
+            setSelects(null);
+        };
+    }, [ search ]);
+    useEffect(() => {
+        setSearch({ keywords: "", categories: "", sectors: "", technologies: "", jobs: "", businessmodel: "" });
+        setResults(null);
+        setSelects(null);
+    }, [ type ]);
+    return <div id="directory" className="container">
+        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } dynamicFilters={ selects }/>
+        <IdenfiticationBanner { ...pageProps }/>
+        { (results) ? <Results { ...pageProps } display={ display } results={ results }/> : <Categories { ...pageProps } display={ display } search={ search }/> }
+    </div>;
+};
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Categories */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Categories = (pageProps: any) => {
+    const { filters, display, states, router }: any = pageProps;
     const { translations }: any = states;
     const { type } = router.query;
-    const [ search, setSearch ] = useState(null);
-    const [ display, setDisplay ] = useState("grid threeColumns");
-    const filters = [
-        // { ID: 0, NAME: translations["Toutes"], URL: "/all" },
-        { ID: 0, NAME: translations["Catégories"], URL: "/directories/" + type + "/categories" },
-        { ID: 0, NAME: translations["Pays"], URL: "/directories/" + type + "/countries" },
-    ];
-    return <div id="directory" className="container">
-        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
-        <IdenfiticationBanner { ...pageProps }/>
-        <div className={ display }>
-            { filters.map((filter: any, key: number) => (!search || (search && checkMatch(filter.NAME, search))) ? <Link key={ key } href={ filter.URL }>
-                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
-            </Link> : null) }
-        </div>
+    return <Fragment>
+        { (type.match(/(startup)/)) ? <div className={ display }>
+            { filters.CATEGORIES.map((filter: any, key: KeyType) => <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/>) }
+        </div> : null}
+        { (type.match(/(corporation|entreprise)/)) ? <div className={ display }>
+            { filters.SECTORS.map((filter: any, key: KeyType) => <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/>) }
+        </div> : null}
+        { (type.match(/(partner|partenaire)/)) ? <div className={ display }>
+            { filters.PARTNERS_TYPES.map((filter: any, key: KeyType) => <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/>) }
+        </div> : null}
+        { (type.match(/(opport)/)) ? <div className={ display }>
+            { filters.OPPORTUNITIES.map((filter: any, key: KeyType) => <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/>) }
+        </div> : null}
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
             <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
             <Button button={ ButtonStyles.callToActionNegative } href="/onboarding" text={ translations["Je m'inscris"] }/>
         </div>
-    </div>;
+    </Fragment>;
+};
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Results */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Results = (pageProps: any) => {
+    const { display, results, states, router }: any = pageProps;
+    const { translations }: any = states;
+    const { type } = router.query;
+    return <Fragment>
+        { (!type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
+            { results.map((company: any, key: KeyType) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID }>
+                <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
+            </Link>) }
+        </div> : null}
+        { (type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
+            { results.map((opportunity: any, key: KeyType) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID }>
+                <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ key + 1 }/>
+            </Link>) }
+        </div> : null}
+        <div className={ DirectoryStyles.signup }>
+            <i className="fa-light fa-eyes"/>
+            <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
+            <Button button={ ButtonStyles.callToActionNegative } href="/onboarding" text={ translations["Je m'inscris"] }/>
+        </div>
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Props */
@@ -65,5 +127,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default DirectoryType;
+export default DirectoryCategories;
 export { getServerSideProps };

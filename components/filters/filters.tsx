@@ -1,15 +1,15 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { MouseEventHandler } from "react";
-import { ButtonInterface, InputInterface } from "../../typescript/interfaces";
-import { buildProperties } from "../../scripts/utilities";
+import { Key, MouseEventHandler, useEffect, useState } from "react";
+import { InputInterface } from "../../typescript/interfaces";
+import { buildProperties, uppercaseFirst } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Input from "../fields/input";
 import Button from "../buttons/button";
-import DirectorySearchBy from "../dropdowns/directorySearchBy";
+import MultipleSelect from "../fields/multipleSelect";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -19,20 +19,41 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Filters */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Filters = (pageProps: any) => {
-    const { title, display, setDisplay, setSearch, filters, states, router }: any = pageProps;
+    const { title, display, setDisplay, search, setSearch, filters, dynamicFilters, states, router }: any = pageProps;
     const { translations }: any = states;
     const { type }: any = router.query;
-    const inputProps = [ "type", "name", "placeholder" ];
-    const searchInputValues = [ "search", "search", translations["Rechercher dans l'annuaire des"] + " " + title ];
+    const [ dynamicFiltersToArray, setDynamicFiltersToArray ]: Array<any> = useState([]);
+    const setKeywords = (event: any) => {
+        event.preventDefault();
+        const target = event.target;
+        const keywords = target.value;
+        return setSearch({ ...search, keywords: keywords });
+    };
+    const setCategories = (event: any, values: Array<any>) => {
+        event.preventDefault();
+        const categories = values.map((option) => option.ID).join("-");
+        return setSearch({ ...search, categories: categories });
+    };
+    const setDynamicFilters = (event: any, values: Array<any>, dynamic: String) => {
+        event.preventDefault();
+        const dynamicValues = values.map((option) => option.ID).join("-");
+        switch(dynamic) {
+            case "Sectors":
+                return setSearch({ ...search, sectors: dynamicValues });
+            case "Technologies":
+                return setSearch({ ...search, technologies: dynamicValues });
+            case "Jobs":
+                return setSearch({ ...search, jobs: dynamicValues });
+            case "Business model":
+                return setSearch({ ...search, businessModel: dynamicValues });
+        }
+    };
+    const inputProps = [ "type", "name", "placeholder", "action" ];
+    const searchInputValues = [ "search", "search", translations["Rechercher dans l'annuaire des"] + " " + title, setKeywords ];
     const searchInputObject = buildProperties(inputProps, searchInputValues);
     const gridButtonAction: MouseEventHandler = () => setDisplay("grid threeColumns");
     const listButtonAction: MouseEventHandler = () => setDisplay("list");
-    const filterTheCards = (event: any) => {
-        event.preventDefault();
-        const form = event.target;
-        const search = form.search.value;
-        return setSearch(search);
-    };
+    useEffect(() => { setDynamicFiltersToArray((dynamicFilters) ? Object.entries(dynamicFilters) : []) }, [ dynamicFilters ])
     return <div className={ FiltersStyles.container }>
         { (title) ? <div className={ FiltersStyles.header }>
             { (type.match(/(startup)/)) ? <i className="fa-light fa-rocket-launch"/> : null }
@@ -50,13 +71,16 @@ const Filters = (pageProps: any) => {
             
         </div>
         <div className={ FiltersStyles.search }>
-            <form onSubmit={ filterTheCards }>
+            <form>
                 <Input { ...searchInputObject as InputInterface }/>
                 <Button button={ ButtonStyles.callToActionRoundedIcon } action={ listButtonAction } icon="fa-light fa-search"/>
             </form>
         </div>
-        <div className={ FiltersStyles.filters }>
-            <DirectorySearchBy { ...pageProps } list={ filters || [] }/>
+        <div className={ FiltersStyles.filters + " grid fourColumns" }>
+            <MultipleSelect options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] } defaultValues={ search.categories.split("-") }/>
+            { (dynamicFiltersToArray.length > 0) ? dynamicFiltersToArray.map((filter: any, key: Key) => {
+                return <MultipleSelect key={ key } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(filter[0]).toString() } defaultValues={ search.categories.split("-") } dynamic={ true }/>;
+            }) : null }
         </div>
     </div>;
 };
