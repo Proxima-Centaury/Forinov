@@ -9,12 +9,11 @@
     position: relative;
     border-bottom: var(--border);
     background-color: var(--background-sub-color);
-    z-index: 1;
 }
 .selectField > p {
     padding: 0px 32px 0px 16px;
     pointer-events: none;
-    z-index: 2;
+    z-index: 1;
 }
 .selectField > .placeholder {
     color: var(--border-color);
@@ -68,6 +67,7 @@
     box-shadow: var(--box-shadow);
     overflow-x: hidden;
     overflow-y: auto;
+    z-index: 2;
 }
 .selectField.show > .options {
     opacity: 1;

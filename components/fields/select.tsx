@@ -12,14 +12,14 @@ import SelectStyles from "../../public/stylesheets/components/fields/Select.modu
 /* Select */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Select = (selectProps: SelectInterface) => {
-    const { options, action, defaultValue, source } = selectProps;
+    const { options, action, placeholder, defaultValue, source } = selectProps;
     const [ selectState, setSelectState ] = useState(false);
     const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
     return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") }>
         <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
             <i className="fa-solid fa-caret-right"></i>
         </button>
-        <p>{ (defaultValue) ? defaultValue?.NAME : "" }</p>
+        <p>{ (placeholder && !defaultValue) ? placeholder : (defaultValue) ? defaultValue?.NAME : "" }</p>
         <div className={ SelectStyles.options }>
             { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => <Option key={ key } option={ option } action={ action } selected={ option.VALUE === defaultValue.VALUE }/>) : null }
         </div>
@@ -30,14 +30,14 @@ const Select = (selectProps: SelectInterface) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Option = (optionProps: any) => {
     const { option, action, selected }: any = optionProps;
-    const props = {
+    const additionalProps = {
         className: SelectStyles.option + " " + ((selected) ? SelectStyles.selected : ""),
         "data-id": option.ID,
         "data-value": option.VALUE,
         onClick: () => (action) ? action(option.VALUE) : undefined
     };
-    return <button { ...props }>
-        <p>{ option.NAME }</p>
+    return <button { ...additionalProps }>
+        <span>{ option.NAME }</span>
     </button>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
