@@ -77,7 +77,7 @@ const Filters = (pageProps: any) => {
             </form>
         </div>
         <div className={ FiltersStyles.filters + " grid fourColumns" }>
-            <MultipleSelect options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] } defaultValues={ search.categories.split("-") }/>
+            { (filters) ? <MultipleSelect options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] } defaultValues={ search.categories.split("-") }/> : null }
             { (dynamicFiltersToArray.length > 0) ? dynamicFiltersToArray.map((filter: any, key: Key) => {
                 return <MultipleSelect key={ key } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(filter[0]).toString() } defaultValues={ search.categories.split("-") } dynamic={ true }/>;
             }) : null }
