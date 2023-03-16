@@ -2,26 +2,25 @@ import { GetServerSideProps } from "next";
 
 import api from "../scripts/api";
 
-import FolderCard from "../components/cards/folder";
+import ProductCard from "../components/cards/product";
 
 export default function Folder(pageProps: any) {
-    const { folders, states, stateSetters } = pageProps;
+    const { products, states, stateSetters } = pageProps;
     const { translations } = states;
-    console.log(folders);
 
 
     return (
         <section className={"container"}>
             {/* FOLDERS */}
             <div className="grid twoColumns">
-                {folders.map((folder: any) => {
+            {/* {products.map((product: any) => {
                     return (
-                        <FolderCard
-                            key={folder.id}
-                            folder={folder}
+                        <ProductCard
+                            key={product.id}
+                            product={product}
                         />
                     )
-                })}
+                })} */}
             </div>
         </section>
     )
@@ -34,11 +33,13 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const language = locale?.substring(0, 2);
 
-    const folders = await api.getFolders("entreprise", "5", "next", "Landing", language);
+    const products = await api.getProducts("entreprise", "5", "next", "Landing", language);
+    console.log(products);
+    
 
     return {
         props: {
-            locale, locales, defaultLocale, folders
+            locale, locales, defaultLocale, products
         }
     };
 };

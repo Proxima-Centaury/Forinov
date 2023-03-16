@@ -65,7 +65,7 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
                         </Link>
                     </div>
                     <Image
-                        src="/assets/landings/solutions-partners.png"
+                        src={router.basePath + "/assets/landings/solutions-partners.png"}
                         alt="Picture of the author"
                         width={500}
                         height={500}
@@ -168,7 +168,7 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
                         <h2 className={SolutionStyles.bannerUnderlineTitle}>{translations["DÉCOUVREZ NOTRE COMMUNAUTÉ DE STARTUPS"]}</h2>
                         <h1 className={SolutionStyles.bannerTitle}>{translations["L’innovation a déjà un nom"]},<br /><span>title</span>.</h1>
                         <Image
-                            src="/assets/landings/solutions-partners-seating.png"
+                            src={router.basePath + "/assets/landings/solutions-partners-seating.png"}
                             alt="Man seating and working on a laptop"
                             width={500}
                             height={500}

@@ -18,6 +18,7 @@ import HomeStyles from "../../public/stylesheets/pages/Home.module.css";
 import SolutionStyles from "../../public/stylesheets/pages/solutions/Solutions.module.css"
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 import { useRouter } from "next/router";
+import Button from "../../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startup Solutions */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -67,7 +68,7 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                         </Link>
                     </div>
                     <Image
-                        src="/assets/landings/solutions-su.png"
+                        src={router.basePath + "/assets/landings/solutions-su.png"}
                         alt="Picture of the author"
                         width={500}
                         height={500}
@@ -76,7 +77,7 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                 </div>
                 <div className={SolutionStyles.banner}>
                     <div className="container">
-                    <h1 className={SolutionStyles.bannerTitle}>{translations["Pourquoi rejoindre Forinov ?"]}</h1>
+                        <h1 className={SolutionStyles.bannerTitle}>{translations["Pourquoi rejoindre Forinov ?"]}</h1>
                         <div className={SolutionStyles.bannerBlockWrapper}>
                             <div className={SolutionStyles.bannerBlock}>
                                 <h3 className={SolutionStyles.bannerSubtitle}>{translations["Gagner en visibilité"]}</h3>
@@ -114,10 +115,10 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                 </div>
                 <div className={SolutionStyles.banner + ' ' + SolutionStyles.bannerWithImg} style={{ position: 'relative' }}>
                     <div className="container" >
-                        <h2 className={SolutionStyles.bannerUnderlineTitle}>{ translations["DÉCOUVREZ NOTRE COMMUNAUTÉ DE STARTUPS"]}</h2>
+                        <h2 className={SolutionStyles.bannerUnderlineTitle}>{translations["DÉCOUVREZ NOTRE COMMUNAUTÉ DE STARTUPS"]}</h2>
                         <h1 className={SolutionStyles.bannerTitle}>{translations["L’innovation a déjà un nom"]}, <br /><span>title</span>.</h1>
                         <Image
-                            src="/assets/landings/solutions-su-seating.png"
+                            src={router.basePath + "/assets/landings/solutions-su-seating.png"}
                             alt="Man seating and working on a laptop"
                             width={500}
                             height={500}
@@ -126,19 +127,17 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                         </Image>
                     </div>
                 </div>
-                <div className={HomeStyles.opportunity} data-type="corporation">
-                    <div style={{ background: "var(--background-sub-color)", paddingTop: '15rem' }}>
-                        <h4>{translations["Les dernières opportunités"] + " :"}</h4>
-                        <Carousel {...pageProps} component={"LatestOpportunities"} data={opportunities} />
-                        <div className={HomeStyles.actions} data-justify="left">
-                            <Link href="/directories/opportunities" className={ButtonStyles.callToAction}>{translations["Découvrir toutes les opportunités"]}</Link>
-                            <Link href="/opportunities" className={ButtonStyles.callToActionAlternative}>{translations["Qu'est-ce qu'une opportunité"] + " ?"}</Link>
-                        </div>
+                <div className={HomeStyles.opportunity} data-type="startup" style={{paddingTop: "15rem"}}>
+                    <h4>{translations["Les dernières opportunités"] + " :"}</h4>
+                    <Carousel {...pageProps} component="LatestOpportunities" data={opportunities} />
+                    <div className={HomeStyles.actions} data-justify="left">
+                        <Button button={ButtonStyles.callToAction} href="/directories/opportunities/categories" text={translations["Découvrir toutes les opportunités"]} />
+                        <Button button={ButtonStyles.callToActionAlternative} href="/opportunities" text={translations["Qu'est-ce qu'une opportunité"] + " ?"} />
                     </div>
                 </div>
                 <div className={SolutionStyles.banner3}>
                     <div className="container">
-                        <h1 className={SolutionStyles.bannerTitle}>{ translations["Les réponses à vos questions"]}</h1>
+                        <h1 className={SolutionStyles.bannerTitle}>{translations["Les réponses à vos questions"]}</h1>
                         <div className={SolutionStyles.bannerBlockWrapper}>
                             <div className={SolutionStyles.bannerBlock}>
                                 <h3 className={SolutionStyles.bannerSubtitle}>{translations["Forinov, est-ce vraiment gratuit pour les startups ?"]}</h3>
@@ -155,8 +154,8 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                                 <p className={SolutionStyles.bannerParagraph}>{translations["Pour mettre en avant ton profil, mets le à jour régulièrement, publie des nouvelles, ajoute tes entreprises cibles à ta wishlist et suis leurs profils… elles en seront informées ! Pense aussi à préciser tes différents produits et services : ton profil sera plus attractif et notre algorithme de matching fera le reste !"]}</p>
                             </div>
                             <div className={SolutionStyles.bannerBlock}>
-                                <h3 className={SolutionStyles.bannerSubtitle}>{ translations["Comment puis-je postuler à un appel à projets ?"]}</h3>
-                                <p className={SolutionStyles.bannerParagraph}>{ translations["Retrouve toutes les opportunités en cours dans l’onglet « Opportunités ». Avec ton profil Forinov, tu seras informé.e directement des appels à projets qui matchent avec ton profil. Pour postuler réponds au questionnaire associé à l’appel, et gagne un temps fou grâce aux nombreuses informations pré-remplies à partir de ton profil !"]}</p>
+                                <h3 className={SolutionStyles.bannerSubtitle}>{translations["Comment puis-je postuler à un appel à projets ?"]}</h3>
+                                <p className={SolutionStyles.bannerParagraph}>{translations["Retrouve toutes les opportunités en cours dans l’onglet « Opportunités ». Avec ton profil Forinov, tu seras informé.e directement des appels à projets qui matchent avec ton profil. Pour postuler réponds au questionnaire associé à l’appel, et gagne un temps fou grâce aux nombreuses informations pré-remplies à partir de ton profil !"]}</p>
                             </div>
                         </div>
                         <div className={SolutionStyles.bannerBlockWrapper}>
