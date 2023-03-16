@@ -63,10 +63,10 @@ export default function Folder(pageProps: any) {
                         </button>
                         <ul className={SearchbarStyles.selectList} id="filter1List" style={{ display: 'none' }}>
                             {/* map through filters */}
-                            <button className='annuaire__searchbar-select-list-item' id={categorie.ID}>
-                      <span className="annuaire__searchbar-select-list-name">{categorie.NAME}</span>
-                      <span className="annuaire__searchbar-select-list-count">{nbPerCategory[categorie.NAME]}</span>
-                      <div className='annuaire__searchbar-select-list-pastille'></div>
+                            <button className='annuaire__searchbar-select-list-item' id="id">
+                                <span className="annuaire__searchbar-select-list-name">Name</span>
+                      <span className="annuaire__searchbar-select-list-count">500</span>
+                      <div className='annuaire__searchbar-select-list-pastille'>10</div>
                     </button>
                         </ul>
                     </div>
