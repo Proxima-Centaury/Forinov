@@ -2,27 +2,19 @@ import { GetServerSideProps } from "next";
 
 import api from "../scripts/api";
 
-import ProductCard from "../components/cards/product";
+import ProductStyles from "../public/stylesheets/pages/Product.module.css";
 
 export default function Folder(pageProps: any) {
     const { products, states, stateSetters } = pageProps;
     const { translations } = states;
 
+    const product = products[0];
+    console.log(product);
+    
 
     return (
         <section className={"container"}>
-            {/* FOLDERS */}
-            <div className="grid threeColumns">
-            {products.map((product: any) => {
-                    return (
-                        <ProductCard
-                            key={product.id}
-                            product={product}
-                            translations={translations}
-                        />
-                    )
-                })}
-            </div>
+            
         </section>
     )
 }
