@@ -2,40 +2,82 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { Key } from "react";
-import { FoldersInterface } from "../../../../../typescript/interfaces";
-import { formatNameForUrl } from "../../../../../scripts/utilities";
-import api from "../../../../../scripts/api";
+import { useEffect, useState, Key } from "react";
+import { FoldersInterface } from "../../../../../../typescript/interfaces";
+import { formatNameForUrl } from "../../../../../../scripts/utilities";
+import api from "../../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
-import FolderCard from "../../../../../components/cards/folder";
-import Button from "../../../../../components/buttons/button";
+import EntityCard from '../../../../../../components/cards/entity';
+import FolderCard from "../../../../../../components/cards/folder";
+import Button from "../../../../../../components/buttons/button";
+import Format from "../../../../../../components/texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import FoldersStyles from "../../../../../public/stylesheets/pages/Folders.module.css";
-import ButtonStyles from "../../../../../public/stylesheets/components/buttons/Button.module.css";
+import FolderStyles from "../../../../../../public/stylesheets/pages/Folder.module.css";
+import ButtonStyles from "../../../../../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Folders */
+/* Folder */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Folders = (pageProps: FoldersInterface) => {
-    const { profile, folders, states, router }: any = pageProps;
-    const { translations }: any = states;
+const Folder = (pageProps: FoldersInterface) => {
+    const { folders, states, stateSetters, router } = pageProps;
+    const { translations } = states;
+    let { folder } = router.query;
+    folder = folder?.substring(folder.indexOf("_") + 1, folder.length);
+    const [ selectedFolder, setSelectedFolder ]: any = useState(null);
+    useEffect(() => {
+        if(folders.length > 0 && folders.find((check: any) => check.ID === folder)) {
+            setSelectedFolder(folders.find((check: any) => check.ID === folder));
+        };
+    }), [ folders ];
     return <div id="folders" className="container">
-        <Button button={ ButtonStyles.classicLink } href={ router.asPath.substring(0, router.asPath.lastIndexOf("/")) } icon="fa-light fa-arrow-left" text={ translations["Retourner au profil"] + " ." }/>
-        <div className={ FoldersStyles.title }>
-            <h1>{ translations["Dossiers de startups"] }</h1>
-            <p>{ folders.length + " " + translations["Dossiers"].toLowerCase() }</p>
+        <Button button={ ButtonStyles.classicLink } href={ router.asPath.substring(0, router.asPath.lastIndexOf("/")) } icon="fa-light fa-arrow-left" text={ translations["Retourner aux dossiers du profil"] + " ." }/>
+        <div className={ FolderStyles.title }>
+            { (selectedFolder) ? <h1>{ selectedFolder.NAME }</h1> : null }
+            { (selectedFolder) ? <p>{ selectedFolder.STARTUPS.length + " " + translations["Startups"].toLowerCase() }</p> : null }
+        </div>
+        <div className={ FolderStyles.description }>
+            { (selectedFolder) ? <Format content={ selectedFolder.DESCRIPTION }/> : null }
         </div>
         <div className="grid twoColumns">
-            { (folders) ? folders.map((folder: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID }>
-                <FolderCard folder={ folder }/>
+            { (selectedFolder && selectedFolder.STARTUPS) ? selectedFolder.STARTUPS.map((startup: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID }>
+                <EntityCard { ...pageProps } entity={ startup } type="startup" details/>
             </Link>) : null }
         </div>
     </div>;
-};
+    return (
+        <section className={"container " + FolderStyles.wrapper}>
+            <div className={FolderStyles.headers}>
+                <h1 className={FolderStyles.title}>Radar Luxe 2022</h1>
+                <p className={FolderStyles.subtitle}>4 startups</p>
+            </div>
+            <span className={FolderStyles.highlitedText}>Le Radar Luxe 2022 est un dossier de presse qui présente les 4 startups sélectionnées par le jury du concours Radar Luxe 2022. Il est disponible en téléchargement ci-dessous.</span>
+            <button className={ButtonStyles.callToActionWide}>
+                <i className="fa-solid fa-plus"></i>
+                <span>{translations["Créer un dossier de startups"]}</span>
+            </button>
+            {/*  
+                CARDS
+            */}
+
+            {
+                folder.map((item: any, index: number) => {
+                    console.log(item);
+
+                    return (<>
+                        <h1>{item.name}</h1>
+                        <div className="grid twoColumns">{index === 0 && item.startups.map((startup: any) => {
+                            return <EntityCard key={'startup-' + startup.id} entity={startup} type="startup" details={true} states={states} stateSetters={stateSetters} />
+                        })}</div>
+                    </>)
+                })
+            }
+        </section>
+    )
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Rendering */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -71,5 +113,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default Folders;
+export default Folder;
 export { getServerSideProps };

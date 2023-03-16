@@ -204,9 +204,9 @@ const Partner = (pageProps: any) => {
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, query, locale, locales, defaultLocale } = context;
     let { type, profile }: any = query;
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     profile = profile?.substring(profile.indexOf("_") + 1, profile.length);
     const language = locale?.substring(0, 2);
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     if(!type.match(/(opport)/)) {
         if(type) {
             type = String(type);
