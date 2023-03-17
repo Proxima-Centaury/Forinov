@@ -71,24 +71,8 @@ export default function LostPassword(pageProps: HomeInterface) {
                         Un Token de modification vous sera envoyé par email, valide uniquement quelques heures
                     </h6>
                 </div>
-                <Input
-                    type="text"
-                    label={translations["Nom Prénom"]}
-                    placeholder={""}
-                    name="name"
-                    version={2}
-                    action={() => { }}
-                    defaultValue={""}
-                ></Input>
-                <Input
-                    type="email"
-                    label={translations["Adresse e-mail"]}
-                    placeholder={""}
-                    name="email"
-                    version={2}
-                    action={() => { }}
-                    defaultValue={""}
-                ></Input>
+                <Input type="text" label={translations["Nom Prénom"]} name="name"/>
+                <Input type="email" label={translations["Adresse e-mail"]} name="email"/>
 
                 <div className="g-recaptcha" data-sitekey="6LfaUKoUAAAAAFsLxbSyLznUs6BSHeTglvZ8EzOO"></div>
                 <button className={ButtonStyles.callToAction}>
