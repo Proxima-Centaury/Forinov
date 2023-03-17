@@ -55,7 +55,6 @@ const Directory = (pageProps: DirectoryInterface) => {
         setResults(null);
         setSelects(null);
     }, [ type, category ]);
-    console.log(search);
     return <div id="directory" className="container">
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
         <IdenfiticationBanner { ...pageProps }/>
@@ -81,22 +80,22 @@ const Categories = (pageProps: any) => {
     const { type } = router.query;
     return <Fragment>
         { (type.match(/(startup)/)) ? <div className={ display }>
-            { filters.CATEGORIES.map((filter: any, key: Key) => <Link key={ key } href={ router.asPath + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+            { filters.CATEGORIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
         { (type.match(/(corporation|entreprise)/)) ? <div className={ display }>
-            { filters.SECTORS.map((filter: any, key: Key) => <Link key={ key } href={ router.asPath + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+            { filters.SECTORS.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
         { (type.match(/(partner|partenaire)/)) ? <div className={ display }>
-            { filters.PARTNERS_TYPES.map((filter: any, key: Key) => <Link key={ key } href={ router.asPath + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+            { filters.PARTNERS_TYPES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
         { (type.match(/(opport)/)) ? <div className={ display }>
-            { filters.OPPORTUNITIES.map((filter: any, key: Key) => <Link key={ key } href={ router.asPath + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+            { filters.OPPORTUNITIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}

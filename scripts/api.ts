@@ -82,7 +82,6 @@ class API {
         };
         const buildUrl = Object.keys(filters).map((filter) => ((filter === "keywords" && filters[filter].length >= 2) || (filter !== "keywords" &&filters[filter])) ? "&" + filter.toUpperCase() + "=" + filters[filter] : null).join("");
         url += buildUrl + "&app=next&authkey=Sorbonne&lang=" + language;
-        console.log("[ " + chalk.blueBright("CALL") + " ]\n" + url);
         const call = (url) ? await fetch(url.toString()) : null;
         results = (call) ? call.json() : null;
         return results;
