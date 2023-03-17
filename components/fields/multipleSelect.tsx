@@ -20,8 +20,7 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
             <i className="fa-solid fa-caret-right"></i>
         </button>
-        {/* <p>{ (defaultValue) ? defaultValue?.NAME : "" }</p> */}
-        { (placeholder) ? <p className={ SelectStyles.placeholder }>{ placeholder + " : " }<span>{ selectedOptions.length }</span></p> : null }
+        { (placeholder) ? <p className={ SelectStyles.placeholder }>{ placeholder + " : " }{ (selectedOptions.length <= 0) ? null : <span>{ selectedOptions.length }</span> }</p> : null }
         <div className={ SelectStyles.options }>
             { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => {
                 const isDynamic = (dynamic) ? true : false;
@@ -40,18 +39,16 @@ const Option = (optionProps: any) => {
             selectedOptions.push(option);
             ownAction(selectedOptions);
             if(dynamic) {
-                action(event, selectedOptions, dynamic);
-            } else {
-                action(event, selectedOptions);
+                return action(event, selectedOptions, dynamic);
             };
+            return action(event, selectedOptions);
         } else {
             const filtered = selectedOptions.filter((selectedOption: any) => selectedOption.ID !== option.ID);
             ownAction(filtered);
             if(dynamic) {
-                action(event, filtered, dynamic);
-            } else {
-                action(event, filtered);
+                return action(event, filtered, dynamic);
             };
+            return action(event, filtered);
         };
     };
     const additionalProps = {
