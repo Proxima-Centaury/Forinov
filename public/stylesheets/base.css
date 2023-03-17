@@ -235,7 +235,7 @@ body {
 #directory.containerFull {
     grid-gap: 40px;
     gap: 40px;
-    padding: 0px 16px;
+    padding: 16px;
 }
 @media screen and (min-width: 576px) {
     .container {

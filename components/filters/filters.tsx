@@ -7,6 +7,7 @@ import { buildProperties, uppercaseFirst } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Link from "next/link";
 import Input from "../fields/input";
 import Button from "../buttons/button";
 import MultipleSelect from "../fields/multipleSelect";
@@ -21,7 +22,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 const Filters = (pageProps: any) => {
     const { title, display, setDisplay, search, setSearch, setInformations, filters, dynamicFilters, states, router }: any = pageProps;
     const { translations }: any = states;
-    const { type }: any = router.query;
+    const { ui, type }: any = router.query;
     const [ dynamicInformations, setDynamicInformations ]: Array<any> = useState(null);
     const [ dynamicFiltersToArray, setDynamicFiltersToArray ]: Array<any> = useState([]);
     const setKeywords = (event: any) => {
@@ -69,7 +70,18 @@ const Filters = (pageProps: any) => {
         </div> : null }
         { (title) ? <div className="separator"/> : null }
         <div className={ FiltersStyles.links }>
-            
+            { (ui && ui == "false") ? <Link className={ ButtonStyles.classicLink } href="/account_mystartup.php" target="_parent">
+                <i className="fa-light fa-folder-open"/>
+                <span>Portefeuille</span>
+            </Link> : null }
+            { (ui && ui == "false") ? <Link className={ ButtonStyles.classicLink } href="/account_mystartup_ecosystem.php" target="_parent">
+                <i className="fa-light fa-globe"/>
+                <span>Portefeuille</span>
+            </Link> : null }
+            { (ui && ui == "false") ? <Link className={ ButtonStyles.classicLink } href="/account_parametres_statut.php" target="_parent">
+                <i className="fa-light fa-file"/>
+                <span>Portefeuille</span>
+            </Link> : null }
         </div>
         <div className={ FiltersStyles.search }>
             <form>
