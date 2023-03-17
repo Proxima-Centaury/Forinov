@@ -24,7 +24,6 @@ const Folders = (pageProps: FoldersInterface) => {
     const { profile, folders, states, router }: any = pageProps;
     const { translations }: any = states;
     return <div id="folders" className="container">
-        <Button button={ ButtonStyles.classicLink } href={ router.asPath.substring(0, router.asPath.lastIndexOf("/")) } icon="fa-light fa-arrow-left" text={ translations["Retourner au profil"] + " ." }/>
         <div className={ FoldersStyles.title }>
             <h1>{ translations["Dossiers de startups"] }</h1>
             <p>{ folders.length + " " + translations["Dossiers"].toLowerCase() }</p>
@@ -34,6 +33,7 @@ const Folders = (pageProps: FoldersInterface) => {
                 <FolderCard folder={ folder }/>
             </Link>) : null }
         </div>
+        <Button button={ ButtonStyles.classicLink } href={ router.asPath.substring(0, router.asPath.lastIndexOf("/")) } icon="fa-light fa-arrow-left" text={ translations["Retourner au profil"] }/>
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

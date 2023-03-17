@@ -56,8 +56,7 @@ const Directory = (pageProps: DirectoryInterface) => {
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } dynamicFilters={ selects }/>
         <IdenfiticationBanner { ...pageProps }/>
         { (results) ? <Results { ...pageProps } display={ display } results={ results }/> : null }
-        { (!results) ? ((router.asPath.match(/(categories)/)) ? <Categories { ...pageProps } display={ display } search={ search }/> : null) : null }
-        { (!results) ? ((router.asPath.match(/(countries)/)) ? <Countries { ...pageProps } display={ display } search={ search }/> : null) : null }
+        { (!results) ? ((router.asPath.match(/(\/countries)/)) ? <Countries { ...pageProps } display={ display } search={ search }/> : <Categories { ...pageProps } display={ display } search={ search }/>) : null }
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
