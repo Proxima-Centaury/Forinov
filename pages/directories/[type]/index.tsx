@@ -22,9 +22,9 @@ import Button from "../../../components/buttons/button";
 import DirectoryStyles from "../../../public/stylesheets/pages/Directory.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Directory Categories */
+/* Directory */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const DirectoryCategories = (pageProps: DirectoryInterface) => {
+const Directory = (pageProps: DirectoryInterface) => {
     const { states, router }: any = pageProps;
     const { locale }: any = states;
     const { type } = router.query;
@@ -55,7 +55,8 @@ const DirectoryCategories = (pageProps: DirectoryInterface) => {
     return <div id="directory" className="container">
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } dynamicFilters={ selects }/>
         <IdenfiticationBanner { ...pageProps }/>
-        { (results) ? <Results { ...pageProps } display={ display } results={ results }/> : <Categories { ...pageProps } display={ display } search={ search }/> }
+        { (results) ? <Results { ...pageProps } display={ display } results={ results }/> : null }
+        { (!results) ? ((router.asPath.match(/(\/countries)/)) ? <Countries { ...pageProps } display={ display } search={ search }/> : <Categories { ...pageProps } display={ display } search={ search }/>) : null }
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -67,16 +68,43 @@ const Categories = (pageProps: any) => {
     const { type } = router.query;
     return <Fragment>
         { (type.match(/(startup)/)) ? <div className={ display }>
-            { filters.CATEGORIES.map((filter: any, key: KeyType) => <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/>) }
+            { filters.CATEGORIES.map((filter: any, key: KeyType) => <Link key={ key } href={ router.asPath + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link>) }
         </div> : null}
         { (type.match(/(corporation|entreprise)/)) ? <div className={ display }>
-            { filters.SECTORS.map((filter: any, key: KeyType) => <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/>) }
+            { filters.SECTORS.map((filter: any, key: KeyType) => <Link key={ key } href={ router.asPath + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link>) }
         </div> : null}
         { (type.match(/(partner|partenaire)/)) ? <div className={ display }>
-            { filters.PARTNERS_TYPES.map((filter: any, key: KeyType) => <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/>) }
+            { filters.PARTNERS_TYPES.map((filter: any, key: KeyType) => <Link key={ key } href={ router.asPath + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link>) }
         </div> : null}
         { (type.match(/(opport)/)) ? <div className={ display }>
-            { filters.OPPORTUNITIES.map((filter: any, key: KeyType) => <CategoryCard key={ key } { ...pageProps } category={ filter } display={ display }/>) }
+            { filters.OPPORTUNITIES.map((filter: any, key: KeyType) => <Link key={ key } href={ router.asPath + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link>) }
+        </div> : null}
+        <div className={ DirectoryStyles.signup }>
+            <i className="fa-light fa-eyes"/>
+            <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
+            <Button button={ ButtonStyles.callToActionNegative } href="/onboarding" text={ translations["Je m'inscris"] }/>
+        </div>
+    </Fragment>;
+};
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Countries */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Countries = (pageProps: any) => {
+    const { filters, display, states, router }: any = pageProps;
+    const { translations }: any = states;
+    return <Fragment>
+        { (filters.COUNTRIES) ? <div className={ display }>
+            { filters.COUNTRIES.map((filter: any, key: KeyType) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link>) }
         </div> : null}
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
@@ -127,5 +155,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default DirectoryCategories;
+export default Directory;
 export { getServerSideProps };

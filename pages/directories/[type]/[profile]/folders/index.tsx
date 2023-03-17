@@ -2,29 +2,38 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
+import { Key } from "react";
 import { FoldersInterface } from "../../../../../typescript/interfaces";
+import { formatNameForUrl } from "../../../../../scripts/utilities";
 import api from "../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
-import Filters from "../../../../../components/filters/filters";
+import FolderCard from "../../../../../components/cards/folder";
+import Button from "../../../../../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import FoldersStyles from "../../../../../public/stylesheets/pages/Folders.module.css";
 import ButtonStyles from "../../../../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Folders */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Folders = (pageProps: FoldersInterface) => {
-    const { states, router }: any = pageProps;
+    const { profile, folders, states, router }: any = pageProps;
     const { translations }: any = states;
     return <div id="folders" className="container">
-        <Link href={ router.asPath.replace(/(\/folders|\/dossiers)/, "") } className={ ButtonStyles.classicLink }>
-            <i className="fa-light fa-arrow-left"/>
-            <p>{ translations["Retourner au profil"] + "." }</p>
-        </Link>
-        <Filters { ...pageProps }/>
+        <div className={ FoldersStyles.title }>
+            <h1>{ translations["Dossiers de startups"] }</h1>
+            <p>{ folders.length + " " + translations["Dossiers"].toLowerCase() }</p>
+        </div>
+        <div className="grid twoColumns">
+            { (folders) ? folders.map((folder: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID }>
+                <FolderCard folder={ folder }/>
+            </Link>) : null }
+        </div>
+        <Button button={ ButtonStyles.classicLink } href={ router.asPath.substring(0, router.asPath.lastIndexOf("/")) } icon="fa-light fa-arrow-left" text={ translations["Retourner au profil"] }/>
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -32,18 +41,18 @@ const Folders = (pageProps: FoldersInterface) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, query, locale, locales, defaultLocale } = context;
-    let { id, type }: any = query;
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-    id = id?.substring(id.indexOf("_") + 1, id.length);
+    let { profile, type }: any = query;
+    profile = profile?.substring(profile.indexOf("_") + 1, profile.length);
     const language = "&lang=" + locale?.substring(0, 2);
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     if(type) {
         type = String(type);
         type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
         type = (type.match(/(corporation)/)) ? "entreprise" : type;
         type = (type.match(/(partner)/)) ? "partenaire" : type;
     };
-    const profile = await api.getProfile(type, id, "next", "Sorbonne", language);
-    if(!profile || (profile && Object.keys(profile).length === 0)) {
+    const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);
+    if(!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {
         return {
             redirect: {
                 destination: "/" + locale + "/404",
@@ -54,8 +63,8 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             locale, locales, defaultLocale,
-            profile: profile,
-            folders: await api.getFolders(type, id, "next", "Sorbonne", language)
+            profile: foundProfile,
+            folders: await api.getFolders(type, profile, "next", "Sorbonne", language)
         }
     };
 };
