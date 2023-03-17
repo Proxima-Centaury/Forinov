@@ -28,7 +28,7 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 const Directory = (pageProps: DirectoryInterface) => {
     const { states, router }: any = pageProps;
     const { locale, translations }: any = states;
-    let { type, category } = router.query;
+    let { ui, type, category } = router.query;
     category = category?.substring(category.indexOf("_") + 1, category.length);
     const [ search, setSearch ] = useState({ keywords: "", categories: (category) ? category : "", page: 1 });
     const [ results, setResults ] = useState(null);
@@ -55,9 +55,9 @@ const Directory = (pageProps: DirectoryInterface) => {
         setResults(null);
         setSelects(null);
     }, [ type, category ]);
-    return <div id="directory" className="container">
+    return <div id="directory" className={ (ui && ui == "false") ? "containerFull" : "container" }>
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
-        <IdenfiticationBanner { ...pageProps }/>
+        { (ui && ui == "false") ? null : <IdenfiticationBanner { ...pageProps }/> }
         { (informations && informations.RESULTSMESSAGE) ? <div className={ DirectoryStyles.message }>
             <i className="fa-light fa-chevron-right"/>
             <p>{ informations.RESULTSMESSAGE }</p>
@@ -65,11 +65,11 @@ const Directory = (pageProps: DirectoryInterface) => {
         { (results) ? <Results { ...pageProps } display={ display } results={ results }/> : null }
         { (!results) ? ((router.asPath.match(/(\/countries)/)) ? <Countries { ...pageProps } display={ display } search={ search }/> : <Categories { ...pageProps } display={ display } search={ search }/>) : null }
         { (informations && informations.PAGES > 0) ? <Pagination { ...pageProps } pages={ informations.PAGES } search={ search } action={ setSearch }/> : null }
-        <div className={ DirectoryStyles.signup }>
+        { (ui && ui == "false") ? null : <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
             <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
             <Button button={ ButtonStyles.callToActionNegative } href="/onboarding" text={ translations["Je m'inscris"] }/>
-        </div>
+        </div> }
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -77,25 +77,25 @@ const Directory = (pageProps: DirectoryInterface) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Categories = (pageProps: any) => {
     const { filters, display, router }: any = pageProps;
-    const { type } = router.query;
+    const { ui, type } = router.query;
     return <Fragment>
         { (type.match(/(startup)/)) ? <div className={ display }>
-            { filters.CATEGORIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+            { filters.CATEGORIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
         { (type.match(/(corporation|entreprise)/)) ? <div className={ display }>
-            { filters.SECTORS.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+            { filters.SECTORS.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
         { (type.match(/(partner|partenaire)/)) ? <div className={ display }>
-            { filters.PARTNERS_TYPES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+            { filters.PARTNERS_TYPES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
         { (type.match(/(opport)/)) ? <div className={ display }>
-            { filters.OPPORTUNITIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+            { filters.OPPORTUNITIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
@@ -106,9 +106,10 @@ const Categories = (pageProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Countries = (pageProps: any) => {
     const { filters, display, router }: any = pageProps;
+    const { ui } = router.query;
     return <Fragment>
         { (filters.COUNTRIES) ? <div className={ display }>
-            { filters.COUNTRIES.map((filter: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
+            { filters.COUNTRIES.map((filter: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
@@ -119,15 +120,15 @@ const Countries = (pageProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Results = (pageProps: any) => {
     const { display, results, router }: any = pageProps;
-    const { type } = router.query;
+    const { ui, type } = router.query;
     return <Fragment>
         { (!type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
-            { results.map((company: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID }>
+            { results.map((company: any, key: Key) => <Link key={ key } href={ (ui && ui == "false") ? company.URL : router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID } target={ (ui && ui == "false") ? "_parent" : undefined }>
                 <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
             </Link>) }
         </div> : null}
         { (type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
-            { results.map((opportunity: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID }>
+            { results.map((opportunity: any, key: Key) => <Link key={ key } href={ (ui && ui == "false") ? opportunity.URL : router.asPath + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID } target={ (ui && ui == "false") ? "_parent" : undefined }>
                 <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ parseInt(key.toString()) + 1 }/>
             </Link>) }
         </div> : null}

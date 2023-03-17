@@ -232,6 +232,10 @@ body {
     gap: inherit;
     padding: 0px;
 }
+#directory.containerFull {
+    grid-gap: 40px;
+    gap: 40px;
+}
 @media screen and (min-width: 576px) {
     .container {
         max-width: 576px;
