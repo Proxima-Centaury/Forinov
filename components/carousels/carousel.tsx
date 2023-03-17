@@ -246,9 +246,9 @@ const ClassicHorizontal = (pageProps: any) => {
             case "StartupsFolders":
                 return data.map((folder: any, key: Key) => {
                     const url =  router.asPath.substring(0, router.asPath.lastIndexOf("/")) + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID;
-                    return <Link key={ key } className={ CarouselStyles.item } href={ url }>
+                    return (!router.asPath.includes(formatNameForUrl(folder.NAME) + "_" + folder.ID)) ? <Link key={ key } className={ CarouselStyles.item } href={ url }>
                         <FolderCard { ...pageProps } folder={ folder }/>
-                    </Link>;
+                    </Link> : null;
                 });
             default:
                 return <div></div>;
