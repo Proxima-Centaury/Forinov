@@ -103,15 +103,15 @@ const App = ({ Component, pageProps }: AppProps) => {
             <title>Forinov</title>
             <link rel="icon" href={ router.basePath + "/assets/logo.png" }/>
         </Head>
-        { (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/> }
+        { (router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/> }
         <Transition>
             <GlobalContext>
                 <Component { ...pageProps }/>
             </GlobalContext>
-            <Footer { ...pageProps }/>
+            { (router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/> }
         </Transition>
         <Modal { ...pageProps }/>
-        { (!production) ? <Devtools { ...pageProps }/> : null }
+        { (router.query.ui && router.query.ui == "false") ? null : (!production) ? <Devtools { ...pageProps }/> : null }
     </>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
