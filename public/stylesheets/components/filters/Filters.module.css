@@ -48,6 +48,18 @@
 .links {
     display: flex;
     align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
+}
+.links > a > i,
+.links > a > span {
+    color: var(--perfect-black-color);
+}
+.links > a:hover {
+    border-color: var(--perfect-black-color);
+}
+.links > a:hover > span {
+    font-weight: bold;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Filters ( Search ) */
