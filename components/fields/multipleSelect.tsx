@@ -21,7 +21,7 @@ const MultipleSelect = (selectProps: SelectInterface) => {
     useEffect(() => {
         const foundOption = options?.find((option: any) => option.ID == category);
         const optionSEO = [];
-        (foundOption) ? optionSEO.push(foundOption) : null;
+        (!dynamic && foundOption) ? optionSEO.push(foundOption) : null;
         setSelectedOptions(optionSEO);
     }, [ category ]);
     return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") }>
