@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useState, Key, MouseEventHandler } from "react";
+import { useState, Key, MouseEventHandler, useEffect } from "react";
 import { SelectInterface } from "../../typescript/interfaces";
 import { selectifyTheOptions } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -16,8 +16,14 @@ const MultipleSelect = (selectProps: SelectInterface) => {
     let { category } = router.query;
     category = category?.substring(category.indexOf("_") + 1, category.length);
     const [ selectState, setSelectState ] = useState(false);
-    const [ selectedOptions, setSelectedOptions ] = useState((!dynamic && category && options?.find((option: any) => option.ID == category)) ? [ options?.find((option: any) => option.ID === category) ] : []);
+    const [ selectedOptions, setSelectedOptions ]: any = useState([]);
     const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
+    useEffect(() => {
+        const foundOption = options?.find((option: any) => option.ID == category);
+        const optionSEO = [];
+        (foundOption) ? optionSEO.push(foundOption) : null;
+        setSelectedOptions(optionSEO);
+    }, [ category ]);
     return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") }>
         <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
             <i className="fa-solid fa-caret-right"></i>
