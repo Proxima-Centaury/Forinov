@@ -55,35 +55,6 @@ const Folder = (pageProps: FoldersInterface) => {
             <Carousel { ...pageProps } component="StartupsFolders" data={ folders }/>
         </div>
     </div>;
-    return (
-        <section className={"container " + FolderStyles.wrapper}>
-            <div className={FolderStyles.headers}>
-                <h1 className={FolderStyles.title}>Radar Luxe 2022</h1>
-                <p className={FolderStyles.subtitle}>4 startups</p>
-            </div>
-            <span className={FolderStyles.highlitedText}>Le Radar Luxe 2022 est un dossier de presse qui présente les 4 startups sélectionnées par le jury du concours Radar Luxe 2022. Il est disponible en téléchargement ci-dessous.</span>
-            <button className={ButtonStyles.callToActionWide}>
-                <i className="fa-solid fa-plus"></i>
-                <span>{translations["Créer un dossier de startups"]}</span>
-            </button>
-            {/*  
-                CARDS
-            */}
-
-            {
-                folder.map((item: any, index: number) => {
-                    console.log(item);
-
-                    return (<>
-                        <h1>{item.name}</h1>
-                        <div className="grid twoColumns">{index === 0 && item.startups.map((startup: any) => {
-                            return <EntityCard key={'startup-' + startup.id} entity={startup} type="startup" details={true} states={states} stateSetters={stateSetters} />
-                        })}</div>
-                    </>)
-                })
-            }
-        </section>
-    )
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Rendering */
