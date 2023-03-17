@@ -6,7 +6,7 @@ import { FormEventHandler, MouseEventHandler } from "react";
 /* Base Interface */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 interface BaseInterface {
-    locales: Array<String>,
+    locales?: Array<String>,
     states?: any,
     stateSetters?: any,
     baseConfigurations?: any,
