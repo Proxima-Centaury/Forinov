@@ -1,4 +1,9 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Imports */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { MouseEventHandler } from "react";
+import { preciseTarget, scrollTo } from "../../scripts/utilities";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Button from "../buttons/button";
@@ -11,11 +16,17 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Pagination */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Pagination = (pageProps: any) => {
-	const { pages } = pageProps;
+	const { pages, search, action } = pageProps;
+	const nextPage: MouseEventHandler = (event) => {
+		const target = preciseTarget(event as any);
+		const selectedPage = target.querySelector("span")?.innerText;
+		action({ ...search, page: selectedPage });
+		scrollTo(0, 500);
+	};
 	const showPagination = () => {
 		const buttons = [];
 		for(let page = 1; page <= pages; page++) {
-			buttons.push(<Button key={ page } button={ ButtonStyles.callToActionRoundedIcon } action={ () => true } text={ page.toString() }/>);
+			buttons.push(<Button key={ page } button={ ButtonStyles.callToActionRoundedIcon } action={ nextPage } text={ page.toString() }/>);
 		};
 		return buttons;
 	};

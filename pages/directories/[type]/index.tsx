@@ -29,7 +29,7 @@ const Directory = (pageProps: DirectoryInterface) => {
     const { states, router }: any = pageProps;
     const { locale, translations }: any = states;
     const { type } = router.query;
-    const [ search, setSearch ] = useState({ keywords: "", categories: "" });
+    const [ search, setSearch ] = useState({ keywords: "", categories: "", page: 1 });
     const [ results, setResults ] = useState(null);
     const [ selects, setSelects ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
@@ -50,10 +50,11 @@ const Directory = (pageProps: DirectoryInterface) => {
         };
     }, [ search ]);
     useEffect(() => {
-        setSearch({ keywords: "", categories: "" });
+        setSearch({ keywords: "", categories: "", page: 1 });
         setResults(null);
         setSelects(null);
     }, [ type ]);
+    console.log(search);
     return <div id="directory" className="container">
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
         <IdenfiticationBanner { ...pageProps }/>
@@ -63,7 +64,7 @@ const Directory = (pageProps: DirectoryInterface) => {
         </div> : null }
         { (results) ? <Results { ...pageProps } display={ display } results={ results }/> : null }
         { (!results) ? ((router.asPath.match(/(\/countries)/)) ? <Countries { ...pageProps } display={ display } search={ search }/> : <Categories { ...pageProps } display={ display } search={ search }/>) : null }
-        { (informations && informations.PAGES > 0) ? <Pagination { ...pageProps } pages={ informations.PAGES }/> : null }
+        { (informations && informations.PAGES > 0) ? <Pagination { ...pageProps } pages={ informations.PAGES } search={ search } action={ setSearch }/> : null }
         <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
             <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>

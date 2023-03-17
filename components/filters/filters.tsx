@@ -28,7 +28,7 @@ const Filters = (pageProps: any) => {
         event.preventDefault();
         const target = event.target;
         const keywords = target.value;
-        return setSearch({ ...search, keywords: keywords });
+        return setSearch({ ...search, keywords: keywords, page: 1 });
     };
     const setCategories = (event: any, values: Array<any>) => {
         event.preventDefault();
@@ -41,7 +41,7 @@ const Filters = (pageProps: any) => {
         const propName = dynamic.replaceAll(" ", "").toLowerCase();
         const newSearch = search;
         newSearch[propName as keyof Object] = dynamicValues;
-        return setSearch({ ...newSearch });
+        return setSearch({ ...newSearch, page: 1 });
     };
     const inputProps = [ "type", "name", "placeholder", "action" ];
     const searchInputValues = [ "search", "search", translations["Rechercher dans l'annuaire des"] + " " + title, setKeywords ];
