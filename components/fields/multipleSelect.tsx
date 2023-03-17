@@ -12,15 +12,17 @@ import SelectStyles from "../../public/stylesheets/components/fields/Select.modu
 /* Multiple Select */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const MultipleSelect = (selectProps: SelectInterface) => {
-    const { options, action, placeholder, source, dynamic } = selectProps;
+    const { options, action, placeholder, source, dynamic, router } = selectProps;
+    let { category } = router.query;
+    category = category?.substring(category.indexOf("_") + 1, category.length);
     const [ selectState, setSelectState ] = useState(false);
-    const [ selectedOptions, setSelectedOptions ] = useState([]);
+    const [ selectedOptions, setSelectedOptions ] = useState((!dynamic && category && options?.find((option: any) => option.ID == category)) ? [ options?.find((option: any) => option.ID === category) ] : []);
     const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
     return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") }>
         <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
             <i className="fa-solid fa-caret-right"></i>
         </button>
-        { (placeholder) ? <p className={ SelectStyles.placeholder }>{ placeholder + " : " }{ (selectedOptions.length <= 0) ? null : <span>{ selectedOptions.length }</span> }</p> : null }
+        { (placeholder) ? <p className={ SelectStyles.placeholder }>{ placeholder + " : " }{ (selectedOptions?.length <= 0) ? null : <span>{ selectedOptions?.length }</span> }</p> : null }
         <div className={ SelectStyles.options }>
             { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => {
                 const isDynamic = (dynamic) ? true : false;

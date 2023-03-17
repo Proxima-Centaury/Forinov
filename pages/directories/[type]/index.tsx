@@ -28,8 +28,9 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 const Directory = (pageProps: DirectoryInterface) => {
     const { states, router }: any = pageProps;
     const { locale, translations }: any = states;
-    const { type } = router.query;
-    const [ search, setSearch ] = useState({ keywords: "", categories: "", page: 1 });
+    let { type, category } = router.query;
+    category = category?.substring(category.indexOf("_") + 1, category.length);
+    const [ search, setSearch ] = useState({ keywords: "", categories: (category) ? category : "", page: 1 });
     const [ results, setResults ] = useState(null);
     const [ selects, setSelects ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
@@ -42,7 +43,7 @@ const Directory = (pageProps: DirectoryInterface) => {
             setResults(formattedResults);
             setSelects(selects);
         };
-        if(search.keywords.length >= 2 || search.categories.length >= 2) {
+        if(search.keywords.length >= 2 || search.categories.length >= 1) {
             fetchResults();
         } else {
             setResults(null);
@@ -50,10 +51,10 @@ const Directory = (pageProps: DirectoryInterface) => {
         };
     }, [ search ]);
     useEffect(() => {
-        setSearch({ keywords: "", categories: "", page: 1 });
+        setSearch({ keywords: "", categories: (category) ? category : "", page: 1 });
         setResults(null);
         setSelects(null);
-    }, [ type ]);
+    }, [ type, category ]);
     console.log(search);
     return <div id="directory" className="container">
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
