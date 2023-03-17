@@ -78,13 +78,13 @@ const Filters = (pageProps: any) => {
             </form>
         </div>
         <div className={ FiltersStyles.filters + " grid fourColumns" }>
-            { (filters) ? <MultipleSelect options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] } defaultValues={ search.categories.split("-") }/> : null }
+            { (filters) ? <MultipleSelect { ...pageProps } options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] } defaultValues={ search.categories.split("-") }/> : null }
             { (dynamicFiltersToArray.length > 0) ? dynamicFiltersToArray.map((filter: any, key: Key) => {
                 var placeholder = filter[0];
                 (filter[0].match(/(sector)/i)) ? placeholder = translations["Secteurs cible"] : null;
                 (filter[0].match(/(techno)/i)) ? placeholder = translations["Technologies"] : null;
                 (filter[0].match(/(jobs)/i)) ? placeholder = translations["Métiers cible"] : null;
-                return <MultipleSelect key={ key } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(placeholder).toString() } defaultValues={ search.categories.split("-") } dynamic={ true }/>;
+                return <MultipleSelect key={ key } { ...pageProps } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(placeholder).toString() } defaultValues={ search.categories.split("-") } dynamic={ true }/>;
             }) : null }
         </div>
     </div>;
