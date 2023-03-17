@@ -1,0 +1,58 @@
+.imageWrapper {
+    width: 100%;
+    height: 300px;
+    background-color: var(--background-sub-color);
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.spacer {
+    width: 100%;
+    height: 1px;
+    background-color: var(--inverted-color);
+}
+
+.table {
+    border: 1px solid var(--inverted-color);
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.row span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.row:nth-child(odd) {
+    background-color: var(--background-sub-color);
+}
+
+.link {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--logo-blue-color);
+    text-decoration: underline;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
