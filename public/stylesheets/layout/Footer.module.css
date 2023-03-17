@@ -29,6 +29,7 @@
 .section > img {
     width: 50px;
     height: 50px;
+    object-fit: contain;
 }
 .section > p:first-of-type {
     color: var(--text-inactive-color);
