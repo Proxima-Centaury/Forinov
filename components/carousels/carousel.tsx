@@ -2,8 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { Fragment, useEffect, Key } from "react";
-import { ButtonInterface } from "../../typescript/interfaces";
-import { buildProperties, formatNameForUrl, bindEventListeners, removeEventListeners } from "../../scripts/utilities";
+import { formatNameForUrl, bindEventListeners, removeEventListeners } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -12,6 +11,7 @@ import Image from "next/image";
 import Button from "../../components/buttons/button";
 import OpportunityCard from "../cards/opportunity";
 import ProfileCard from "../cards/profile";
+import FolderCard from "../cards/folder";
 import Accordion from "../accordions/accordion";
 import Format from "../texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -110,6 +110,8 @@ const Carousel = (pageProps: any) => {
             return <StepsCarousel { ...pageProps }/>;
         case "ForinovBlog":
             return <ClassicHorizontal { ...pageProps }/>;
+        case "StartupsFolders":
+            return <ClassicHorizontal { ...pageProps }/>;
         default :
             return <Fragment></Fragment>;
     };
@@ -203,7 +205,7 @@ const CustomVertical = (pageProps: any) => {
 /* Classic Horizontal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ClassicHorizontal = (pageProps: any) => {
-    const { component, data }: any = pageProps;
+    const { component, data, router }: any = pageProps;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithArrows;
     const scrollHandler = (event: any) => {
@@ -239,6 +241,13 @@ const ClassicHorizontal = (pageProps: any) => {
                 return data.map((article: any, key: Key) => {
                     return <Link key={ key } className={ CarouselStyles.item } href={ article.URL }>
                         <ArticleCard { ...pageProps } article={ article }/>
+                    </Link>;
+                });
+            case "StartupsFolders":
+                return data.map((folder: any, key: Key) => {
+                    const url =  router.asPath.substring(0, router.asPath.lastIndexOf("/")) + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID;
+                    return <Link key={ key } className={ CarouselStyles.item } href={ url }>
+                        <FolderCard { ...pageProps } folder={ folder }/>
                     </Link>;
                 });
             default:

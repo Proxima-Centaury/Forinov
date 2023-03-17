@@ -11,9 +11,9 @@ import api from "../../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
 import EntityCard from '../../../../../../components/cards/entity';
-import FolderCard from "../../../../../../components/cards/folder";
 import Button from "../../../../../../components/buttons/button";
 import Format from "../../../../../../components/texts/format";
+import Carousel from "../../../../../../components/carousels/carousel";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -23,7 +23,7 @@ import ButtonStyles from "../../../../../../public/stylesheets/components/button
 /* Folder */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Folder = (pageProps: FoldersInterface) => {
-    const { folders, states, stateSetters, router } = pageProps;
+    const { profile, folders, states, stateSetters, router } = pageProps;
     const { translations } = states;
     let { folder } = router.query;
     folder = folder?.substring(folder.indexOf("_") + 1, folder.length);
@@ -34,7 +34,6 @@ const Folder = (pageProps: FoldersInterface) => {
         };
     }), [ folders ];
     return <div id="folders" className="container">
-        <Button button={ ButtonStyles.classicLink } href={ router.asPath.substring(0, router.asPath.lastIndexOf("/")) } icon="fa-light fa-arrow-left" text={ translations["Retourner aux dossiers du profil"] + " ." }/>
         <div className={ FolderStyles.title }>
             { (selectedFolder) ? <h1>{ selectedFolder.NAME }</h1> : null }
             { (selectedFolder) ? <p>{ selectedFolder.STARTUPS.length + " " + translations["Startups"].toLowerCase() }</p> : null }
@@ -43,9 +42,17 @@ const Folder = (pageProps: FoldersInterface) => {
             { (selectedFolder) ? <Format content={ selectedFolder.DESCRIPTION }/> : null }
         </div>
         <div className="grid twoColumns">
-            { (selectedFolder && selectedFolder.STARTUPS) ? selectedFolder.STARTUPS.map((startup: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID }>
-                <EntityCard { ...pageProps } entity={ startup } type="startup" details/>
-            </Link>) : null }
+            { (selectedFolder && selectedFolder.STARTUPS) ? selectedFolder.STARTUPS.map((startup: any, key: Key) => {
+                const url = "/directories/startups/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
+                return <Link key={ key } href={ url }>
+                    <EntityCard { ...pageProps } entity={ startup } type="startup" details/>
+                </Link>;
+            }) : null }
+        </div>
+        <Button button={ ButtonStyles.classicLink } href={ router.asPath.substring(0, router.asPath.lastIndexOf("/")) } icon="fa-light fa-arrow-left" text={ translations["Retourner aux dossiers du profil"] }/>
+        <div className={ FolderStyles.moreFolders }>
+            <p>{ translations["Les autres dossiers de startups public de"] + " " + profile.NAME }</p>
+            <Carousel { ...pageProps } component="StartupsFolders" data={ folders }/>
         </div>
     </div>;
     return (
