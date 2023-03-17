@@ -171,4 +171,5 @@ div[class="list"] .identity > div[class*="tags"] {
 }
 .follow > p {
     color: var(--logo-blue-color);
+    /* opacity: 0; */
 }
