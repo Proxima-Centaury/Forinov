@@ -110,9 +110,10 @@
     /* Text Colors */
     --text-main-color: var(--perfect-white-color);
     --text-inactive-color: var(--perfect-grey-color);
-    --separator-color: var(--light-grey-color);
+    /* Line Colors */
     --border-color: var(--light-grey-color);
     --border: 1px solid var(--border-color);
+    --separator-color: var(--border-color);
     /* Background Colors */
     --background-main-color: var(--lighter-black-color);
     --background-sub-color: var(--classic-black-color);
@@ -150,6 +151,9 @@
 *::before,
 *::after {
     transition: all 0.3s ease;
+}
+*::placeholder {
+    color: var(--border-color);
 }
 a {
     text-decoration: none;

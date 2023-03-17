@@ -19,9 +19,10 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Filters */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Filters = (pageProps: any) => {
-    const { title, display, setDisplay, search, setSearch, filters, dynamicFilters, states, router }: any = pageProps;
+    const { title, display, setDisplay, search, setSearch, setInformations, filters, dynamicFilters, states, router }: any = pageProps;
     const { translations }: any = states;
     const { type }: any = router.query;
+    const [ dynamicInformations, setDynamicInformations ]: Array<any> = useState(null);
     const [ dynamicFiltersToArray, setDynamicFiltersToArray ]: Array<any> = useState([]);
     const setKeywords = (event: any) => {
         event.preventDefault();
@@ -37,30 +38,30 @@ const Filters = (pageProps: any) => {
     const setDynamicFilters = (event: any, values: Array<any>, dynamic: String) => {
         event.preventDefault();
         const dynamicValues = values.map((option) => option.ID).join("-");
-        switch(dynamic) {
-            case "Sectors":
-                return setSearch({ ...search, sectors: dynamicValues });
-            case "Technologies":
-                return setSearch({ ...search, technologies: dynamicValues });
-            case "Jobs":
-                return setSearch({ ...search, jobs: dynamicValues });
-            case "Business model":
-                return setSearch({ ...search, businessModel: dynamicValues });
-        }
+        const propName = dynamic.replaceAll(" ", "").toLowerCase();
+        const newSearch = search;
+        newSearch[propName as keyof Object] = dynamicValues;
+        return setSearch({ ...newSearch });
     };
     const inputProps = [ "type", "name", "placeholder", "action" ];
     const searchInputValues = [ "search", "search", translations["Rechercher dans l'annuaire des"] + " " + title, setKeywords ];
     const searchInputObject = buildProperties(inputProps, searchInputValues);
     const gridButtonAction: MouseEventHandler = () => setDisplay("grid threeColumns");
     const listButtonAction: MouseEventHandler = () => setDisplay("list");
-    useEffect(() => { setDynamicFiltersToArray((dynamicFilters) ? Object.entries(dynamicFilters) : []) }, [ dynamicFilters ])
+    useEffect(() => {
+        const informations = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] === "INFORMATIONS")[0] : [];
+        const filters = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] !== "INFORMATIONS") : [];
+        setDynamicInformations(informations);
+        setDynamicFiltersToArray(filters);
+        setInformations(informations[1]);
+    }, [ dynamicFilters ]);
     return <div className={ FiltersStyles.container }>
         { (title) ? <div className={ FiltersStyles.header }>
             { (type.match(/(startup)/)) ? <i className="fa-light fa-rocket-launch"/> : null }
             { (type.match(/(corporation|entreprise)/)) ? <i className="fa-light fa-buildings"/> : null }
             { (type.match(/(partner|partenaire)/)) ? <i className="fa-light fa-handshake-simple"/> : null }
             { (type.match(/(opport)/)) ? <i className="fa-light fa-circle-star"/> : null }
-            <h1>{ title }</h1>
+            <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : 0) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1>
             <div className={ FiltersStyles.displays }>
                 <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ gridButtonAction } icon="fa-light fa-grid-2" active={ display === "grid threeColumns" }/>
                 <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ listButtonAction } icon="fa-light fa-list" active={ display !== "grid threeColumns" }/>
@@ -79,7 +80,11 @@ const Filters = (pageProps: any) => {
         <div className={ FiltersStyles.filters + " grid fourColumns" }>
             { (filters) ? <MultipleSelect options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] } defaultValues={ search.categories.split("-") }/> : null }
             { (dynamicFiltersToArray.length > 0) ? dynamicFiltersToArray.map((filter: any, key: Key) => {
-                return <MultipleSelect key={ key } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(filter[0]).toString() } defaultValues={ search.categories.split("-") } dynamic={ true }/>;
+                var placeholder = filter[0];
+                (filter[0].match(/(sector)/i)) ? placeholder = translations["Secteurs cible"] : null;
+                (filter[0].match(/(techno)/i)) ? placeholder = translations["Technologies"] : null;
+                (filter[0].match(/(jobs)/i)) ? placeholder = translations["Métiers cible"] : null;
+                return <MultipleSelect key={ key } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(placeholder).toString() } defaultValues={ search.categories.split("-") } dynamic={ true }/>;
             }) : null }
         </div>
     </div>;

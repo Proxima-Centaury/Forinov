@@ -19,7 +19,15 @@
     color: var(--border-color);
 }
 .selectField > .placeholder > span {
-    color: var(--logo-blue-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    color: var(--perfect-white-color);
+    font-size: 11px;
+    border-radius: 50px;
+    background-color:  var(--logo-blue-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Select ( Toggle Button ) */
@@ -94,6 +102,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+.option:hover > span {
+    color: var(--perfect-black-color);
 }
 .option.selected > span {
     color: var(--perfect-white-color);

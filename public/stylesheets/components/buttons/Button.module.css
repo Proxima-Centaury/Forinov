@@ -91,10 +91,12 @@
 .callToActionRoundedIcon:hover {
     background-color: var(--background-sub-color);
 }
-.callToActionRoundedIcon > i {
+.callToActionRoundedIcon > i,
+.callToActionRoundedIcon > span {
     color: var(--perfect-white-color);
 }
-.callToActionRoundedIcon:hover > i {
+.callToActionRoundedIcon:hover > i,
+.callToActionRoundedIcon:hover > span {
     color: var(--logo-blue-color);
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

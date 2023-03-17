@@ -15,6 +15,7 @@ import IdenfiticationBanner from "../../../components/banners/identification";
 import CategoryCard from "../../../components/cards/category";
 import EntityCard from "../../../components/cards/entity";
 import OpportunityCard from "../../../components/cards/opportunity";
+import Pagination from "../../../components/pagination/pagination";
 import Button from "../../../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -26,12 +27,13 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Directory = (pageProps: DirectoryInterface) => {
     const { states, router }: any = pageProps;
-    const { locale }: any = states;
+    const { locale, translations }: any = states;
     const { type } = router.query;
-    const [ search, setSearch ] = useState({ keywords: "", categories: "", sectors: "", technologies: "", jobs: "", businessmodel: "" });
+    const [ search, setSearch ] = useState({ keywords: "", categories: "" });
     const [ results, setResults ] = useState(null);
     const [ selects, setSelects ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
+    const [ informations, setInformations ]: any = useState(null);
     useEffect(() => {
         const fetchResults = async () => {
             const results = await api.searchEngine(formatType(type), search, locale?.substring(0, 2));
@@ -40,7 +42,7 @@ const Directory = (pageProps: DirectoryInterface) => {
             setResults(formattedResults);
             setSelects(selects);
         };
-        if(search.keywords.length >= 2 || search.categories.length >= 2 || search.sectors.length >= 2 || search.technologies.length >= 2 || search.jobs.length >= 2 || search.businessmodel.length >= 2) {
+        if(search.keywords.length >= 2 || search.categories.length >= 2) {
             fetchResults();
         } else {
             setResults(null);
@@ -48,23 +50,32 @@ const Directory = (pageProps: DirectoryInterface) => {
         };
     }, [ search ]);
     useEffect(() => {
-        setSearch({ keywords: "", categories: "", sectors: "", technologies: "", jobs: "", businessmodel: "" });
+        setSearch({ keywords: "", categories: "" });
         setResults(null);
         setSelects(null);
     }, [ type ]);
     return <div id="directory" className="container">
-        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } dynamicFilters={ selects }/>
+        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
         <IdenfiticationBanner { ...pageProps }/>
+        { (informations && informations.RESULTSMESSAGE) ? <div className={ DirectoryStyles.message }>
+            <i className="fa-light fa-chevron-right"/>
+            <p>{ informations.RESULTSMESSAGE }</p>
+        </div> : null }
         { (results) ? <Results { ...pageProps } display={ display } results={ results }/> : null }
         { (!results) ? ((router.asPath.match(/(\/countries)/)) ? <Countries { ...pageProps } display={ display } search={ search }/> : <Categories { ...pageProps } display={ display } search={ search }/>) : null }
+        { (informations && informations.PAGES > 0) ? <Pagination { ...pageProps } pages={ informations.PAGES }/> : null }
+        <div className={ DirectoryStyles.signup }>
+            <i className="fa-light fa-eyes"/>
+            <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
+            <Button button={ ButtonStyles.callToActionNegative } href="/onboarding" text={ translations["Je m'inscris"] }/>
+        </div>
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Categories */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Categories = (pageProps: any) => {
-    const { filters, display, states, router }: any = pageProps;
-    const { translations }: any = states;
+    const { filters, display, router }: any = pageProps;
     const { type } = router.query;
     return <Fragment>
         { (type.match(/(startup)/)) ? <div className={ display }>
@@ -87,38 +98,26 @@ const Categories = (pageProps: any) => {
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
-        <div className={ DirectoryStyles.signup }>
-            <i className="fa-light fa-eyes"/>
-            <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
-            <Button button={ ButtonStyles.callToActionNegative } href="/onboarding" text={ translations["Je m'inscris"] }/>
-        </div>
     </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Countries */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Countries = (pageProps: any) => {
-    const { filters, display, states, router }: any = pageProps;
-    const { translations }: any = states;
+    const { filters, display, router }: any = pageProps;
     return <Fragment>
         { (filters.COUNTRIES) ? <div className={ display }>
             { filters.COUNTRIES.map((filter: any, key: KeyType) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
-        <div className={ DirectoryStyles.signup }>
-            <i className="fa-light fa-eyes"/>
-            <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
-            <Button button={ ButtonStyles.callToActionNegative } href="/onboarding" text={ translations["Je m'inscris"] }/>
-        </div>
     </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Results */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Results = (pageProps: any) => {
-    const { display, results, states, router }: any = pageProps;
-    const { translations }: any = states;
+    const { display, results, router }: any = pageProps;
     const { type } = router.query;
     return <Fragment>
         { (!type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
@@ -131,11 +130,6 @@ const Results = (pageProps: any) => {
                 <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ key + 1 }/>
             </Link>) }
         </div> : null}
-        <div className={ DirectoryStyles.signup }>
-            <i className="fa-light fa-eyes"/>
-            <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
-            <Button button={ ButtonStyles.callToActionNegative } href="/onboarding" text={ translations["Je m'inscris"] }/>
-        </div>
     </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
