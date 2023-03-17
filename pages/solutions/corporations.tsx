@@ -46,21 +46,21 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                     </p>
                     <div className={SolutionStyles.heroLinks}>
                         <Link
-                            href={'/'}
+                            href={'/onboarding'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["Je rejoins la communauté"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
-                            href={'/'}
+                            href={'/solution/corporations'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["Je découvre les offres Pro / Entreprise"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
-                            href={'/'}
+                            href={'/directories/corporations/categorie'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["J'accède à l'annuaire des membres"]}</span>
@@ -68,7 +68,7 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                         </Link>
                     </div>
                     <Image
-                        src="/assets/landings/solutions-corpo-hero.png"
+                        src={router.basePath + "/assets/landings/solutions-corpo-hero.png"}
                         alt="Picture of the author"
                         width={500}
                         height={500}
@@ -161,7 +161,7 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                         <h3 className={SolutionStyles.bannerSubtitle2}>{translations['Aujourd’hui, la communauté Forinov c’est']}</h3>
                         <h2 className={SolutionStyles.bannerTitle2} style={{ width: "50%" }}>{startupsCount + translations[" startups et des centaines de partenaires qui n’attendent que vous"]}</h2>
                         <Image
-                            src="/assets/landings/solutions-corpo-seating.png"
+                            src={router.basePath + "/assets/landings/solutions-corpo-seating.png"}
                             alt="Seating"
                             width={1000}
                             height={500}

@@ -1,9 +1,9 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useEffect, useState } from "react";
+import { useState, Key } from "react";
 import { SelectInterface } from "../../typescript/interfaces";
-import { selectifyTheOptions, handleOutOfArea } from "../../scripts/utilities";
+import { selectifyTheOptions } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -11,47 +11,33 @@ import SelectStyles from "../../public/stylesheets/components/fields/Select.modu
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Select */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Select = ({ type, version, options, action, defaultValue, source }: SelectInterface) => {
-    const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
-    options = selectifiedOptions;
+const Select = (selectProps: SelectInterface) => {
+    const { options, action, placeholder, defaultValue, source } = selectProps;
     const [ selectState, setSelectState ] = useState(false);
-    useEffect(() => {
-        const closeOptions = () => setSelectState(false);
-        const selectSelector = "." + SelectStyles.selectField;
-        const selectToggleSelector = "." + SelectStyles.toggleButton;
-        window.addEventListener("click", (event) => handleOutOfArea(event, [ selectSelector, selectToggleSelector ], closeOptions))
-        return () => window.removeEventListener("click", handleOutOfArea);
-    }, []);
-    if(options) {
-        return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") }>
-            <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
-                <i className="fa-solid fa-caret-right"></i>
-            </button>
-            <p>{ defaultValue.NAME }</p>
-            <div className={ SelectStyles.options }>
-                { (options.length > 0) ? options.map((option: any,index: any) => {
-                    const optionAsObject: any = option;
-                    const optionProps = { ...optionAsObject, action: action, selected: optionAsObject.VALUE === defaultValue };
-                    return <Option { ...optionProps } key={ index + "-optionSelect" } />;
-                }) : null }
-            </div>
-        </div>;
-    };
-    return <></>;
+    const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
+    return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") }>
+        <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
+            <i className="fa-solid fa-caret-right"></i>
+        </button>
+        <p>{ (placeholder && !defaultValue) ? placeholder : (defaultValue) ? defaultValue?.NAME : "" }</p>
+        <div className={ SelectStyles.options }>
+            { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => <Option key={ key } option={ option } action={ action } selected={ option.VALUE === defaultValue.VALUE }/>) : null }
+        </div>
+    </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Select ( Option ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Option = (option: any) => {
-    const { ID, NAME, VALUE, action, selected }: any = option;
-    const props = {
+const Option = (optionProps: any) => {
+    const { option, action, selected }: any = optionProps;
+    const additionalProps = {
         className: SelectStyles.option + " " + ((selected) ? SelectStyles.selected : ""),
-        "data-id": ID,
-        "data-value": VALUE,
-        onClick: () => (action) ? action(VALUE) : undefined
+        "data-id": option.ID,
+        "data-value": option.VALUE,
+        onClick: () => (action) ? action(option.VALUE) : undefined
     };
-    return <button { ...props }>
-        <p>{ NAME }</p>
+    return <button { ...additionalProps }>
+        <span>{ option.NAME }</span>
     </button>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

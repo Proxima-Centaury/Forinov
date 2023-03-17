@@ -91,10 +91,12 @@
 .callToActionRoundedIcon:hover {
     background-color: var(--background-sub-color);
 }
-.callToActionRoundedIcon > i {
+.callToActionRoundedIcon > i,
+.callToActionRoundedIcon > span {
     color: var(--perfect-white-color);
 }
-.callToActionRoundedIcon:hover > i {
+.callToActionRoundedIcon:hover > i,
+.callToActionRoundedIcon:hover > span {
     color: var(--logo-blue-color);
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -418,8 +420,8 @@
 /* Button ( Classic Link ) */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .classicLink {
-    /* display: inline-flex;
-    align-items: center; */
+    display: inline-flex;
+    align-items: baseline;
     grid-gap: 8px;
     gap: 8px;
     width: max-content;
@@ -432,6 +434,7 @@
 .classicLink > i,
 .classicLink > span {
     color: var(--logo-blue-color);
+    line-break: auto;
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Dropdown Link ) */

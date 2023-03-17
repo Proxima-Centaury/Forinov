@@ -7,6 +7,7 @@
     display: flex;
     flex: 1;
     min-height: 320px;
+    height: 100%;
     position: relative;
     border-radius: 15px;
     background-color: var(--background-sub-color);
@@ -19,6 +20,11 @@
     .partner {
         width: 100%;
     }
+}
+.startup:hover,
+.corporation:hover,
+.partner:hover {
+    transform: translate3d(0px, -8px, 0px);
 }
 div[class="list"] > .startup,
 div[class="list"] > .corporation,
@@ -150,19 +156,4 @@ div[class="list"] .identity > div[class*="tags"] {
     div[class="list"] .description {
         padding: 0px;
     }
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Entity ( Follow ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.follow {
-    display: flex;
-    flex-direction: column;
-    grid-gap: 8px;
-    gap: 8px;
-    position: absolute;
-    top: 16px;
-    right: 16px;
-}
-.follow > p {
-    color: var(--logo-blue-color);
 }

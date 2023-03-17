@@ -1,14 +1,15 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { ButtonInterface, InputInterface } from "../../typescript/interfaces";
-import { buildProperties } from "../../scripts/utilities";
+import { Key, MouseEventHandler, useEffect, useState } from "react";
+import { InputInterface } from "../../typescript/interfaces";
+import { buildProperties, uppercaseFirst } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Input from "../fields/input";
 import Button from "../buttons/button";
-import DirectorySearchBy from "../dropdowns/directorySearchBy";
+import MultipleSelect from "../fields/multipleSelect";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -18,53 +19,84 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Filters */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Filters = (pageProps: any) => {
-    const { title, display, setDisplay, setSearch, filters, states, router }: any = pageProps;
+    const { title, display, setDisplay, search, setSearch, setInformations, filters, dynamicFilters, states, router }: any = pageProps;
     const { translations }: any = states;
-    const { type }: any = router.query;
-    const inputProps = [ "type", "name", "placeholder" ];
-    const searchInputValues = [ "search", "search", translations["Rechercher dans l'annuaire des"] + " " + title ];
-    const searchInputObject = buildProperties(inputProps, searchInputValues);
-    const buttonProps = [ "type", "faIcon", "faIconClass", "action", "aria", "active" ];
-    const gridButtonAction = () => setDisplay("grid threeColumns");
-    const gridButtonActive = (display === "grid threeColumns") ? true : false;
-    const gridButtonValues = [ ButtonStyles.callToActionAlternativeSquaredIcon, true, "fa-light fa-grid-2", gridButtonAction, translations["Bouton d'affichage en grille"], gridButtonActive ];
-    const gridButtonObject = buildProperties(buttonProps, gridButtonValues);
-    const listButtonAction = () => setDisplay("list");
-    const listButtonActive = (display === "list") ? true : false;
-    const listButtonValues = [ ButtonStyles.callToActionAlternativeSquaredIcon, true, "fa-light fa-list", listButtonAction, translations["Bouton d'affichage en liste"], listButtonActive ];
-    const listButtonObject = buildProperties(buttonProps, listButtonValues);
-    const searchButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-search", undefined, translations["Bouton de recherche dans l'annuaire"] ];
-    const searchButtonObject = buildProperties(buttonProps, searchButtonValues);
-    const filterTheCards = (event: any) => {
+    const { ui, type }: any = router.query;
+    const [ dynamicInformations, setDynamicInformations ]: Array<any> = useState(null);
+    const [ dynamicFiltersToArray, setDynamicFiltersToArray ]: Array<any> = useState([]);
+    const setKeywords = (event: any) => {
         event.preventDefault();
-        const form = event.target;
-        const search = form.search.value;
-        return setSearch(search);
+        const target = event.target;
+        const keywords = target.value;
+        return setSearch({ ...search, keywords: keywords, page: 1 });
     };
+    const setCategories = (event: any, values: Array<any>) => {
+        event.preventDefault();
+        const categories = values.map((option) => option.ID).join("-");
+        return setSearch({ ...search, categories: categories });
+    };
+    const setDynamicFilters = (event: any, values: Array<any>, dynamic: String) => {
+        event.preventDefault();
+        const dynamicValues = values.map((option) => option.ID).join("-");
+        const propName = dynamic.replaceAll(" ", "").toLowerCase();
+        const newSearch = search;
+        newSearch[propName as keyof Object] = dynamicValues;
+        return setSearch({ ...newSearch, page: 1 });
+    };
+    const inputProps = [ "type", "name", "placeholder", "action" ];
+    const searchInputValues = [ "search", "search", translations["Rechercher dans l'annuaire des"] + " " + title, setKeywords ];
+    const searchInputObject = buildProperties(inputProps, searchInputValues);
+    const gridButtonAction: MouseEventHandler = () => setDisplay("grid threeColumns");
+    const listButtonAction: MouseEventHandler = () => setDisplay("list");
+    useEffect(() => {
+        const informations = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] === "INFORMATIONS")[0] : [];
+        const filters = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] !== "INFORMATIONS") : [];
+        setDynamicInformations(informations);
+        setDynamicFiltersToArray(filters);
+        setInformations(informations[1]);
+    }, [ dynamicFilters ]);
     return <div className={ FiltersStyles.container }>
         { (title) ? <div className={ FiltersStyles.header }>
             { (type.match(/(startup)/)) ? <i className="fa-light fa-rocket-launch"/> : null }
             { (type.match(/(corporation|entreprise)/)) ? <i className="fa-light fa-buildings"/> : null }
             { (type.match(/(partner|partenaire)/)) ? <i className="fa-light fa-handshake-simple"/> : null }
             { (type.match(/(opport)/)) ? <i className="fa-light fa-circle-star"/> : null }
-            <h1>{ title }</h1>
+            <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.STARTUPS) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1>
             <div className={ FiltersStyles.displays }>
-                <Button { ...gridButtonObject as ButtonInterface }/>
-                <Button { ...listButtonObject as ButtonInterface }/>
+                <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ gridButtonAction } icon="fa-light fa-grid-2" active={ display === "grid threeColumns" }/>
+                <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ listButtonAction } icon="fa-light fa-list" active={ display !== "grid threeColumns" }/>
             </div>
         </div> : null }
         { (title) ? <div className="separator"/> : null }
         <div className={ FiltersStyles.links }>
-            
+            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href="/account_mystartup.php" target="_parent">
+                <i className="fa-light fa-folder-open"/>
+                <span>Portefeuille</span>
+            </a> : null }
+            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href="/account_mystartup_ecosystem.php" target="_parent">
+                <i className="fa-light fa-globe"/>
+                <span>Portefeuille</span>
+            </a> : null }
+            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href="/account_parametres_statut.php" target="_parent">
+                <i className="fa-light fa-file"/>
+                <span>Portefeuille</span>
+            </a> : null }
         </div>
         <div className={ FiltersStyles.search }>
-            <form onSubmit={ filterTheCards }>
+            <form>
                 <Input { ...searchInputObject as InputInterface }/>
-                <Button { ...searchButtonObject as ButtonInterface }/>
+                <Button button={ ButtonStyles.callToActionRoundedIcon } action={ listButtonAction } icon="fa-light fa-search"/>
             </form>
         </div>
-        <div className={ FiltersStyles.filters }>
-            <DirectorySearchBy { ...pageProps } list={ filters || [] }/>
+        <div className={ FiltersStyles.filters + " grid fourColumns" }>
+            { (filters) ? <MultipleSelect { ...pageProps } options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] } defaultValues={ search.categories.split("-") }/> : null }
+            { (dynamicFiltersToArray.length > 0) ? dynamicFiltersToArray.map((filter: any, key: Key) => {
+                var placeholder = filter[0];
+                (filter[0].match(/(sector)/i)) ? placeholder = translations["Secteurs cible"] : null;
+                (filter[0].match(/(techno)/i)) ? placeholder = translations["Technologies"] : null;
+                (filter[0].match(/(jobs)/i)) ? placeholder = translations["Métiers cible"] : null;
+                return <MultipleSelect key={ key } { ...pageProps } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(placeholder).toString() } defaultValues={ search.categories.split("-") } dynamic={ true }/>;
+            }) : null }
         </div>
     </div>;
 };

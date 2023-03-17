@@ -7,13 +7,27 @@
     justify-content: center;
     height: 40px;
     position: relative;
+    border-bottom: var(--border);
     background-color: var(--background-sub-color);
-    z-index: 1;
 }
 .selectField > p {
     padding: 0px 32px 0px 16px;
     pointer-events: none;
-    z-index: 2;
+    z-index: 1;
+}
+.selectField > .placeholder {
+    color: var(--border-color);
+}
+.selectField > .placeholder > span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    color: var(--perfect-white-color);
+    font-size: 11px;
+    border-radius: 50px;
+    background-color:  var(--logo-blue-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Select ( Toggle Button ) */
@@ -34,8 +48,7 @@
     align-items: center;
     margin: auto 16px auto auto;
     pointer-events: none;
-    color: var(--text-inactive-color);
-    
+    color: var(--border-color);
 }
 .selectField.show > .toggleButton > i {
     color: var(--logo-blue-color);
@@ -47,7 +60,10 @@
 .options {
     display: flex;
     flex-direction: column;
+    grid-gap: 8px;
+    gap: 8px;
     width: 100%;
+    max-height: 250px;
     padding: 8px;
     position: absolute;
     top: 100%;
@@ -57,7 +73,9 @@
     border-radius: 0px 0px 10px 10px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 2;
 }
 .selectField.show > .options {
     opacity: 1;
@@ -73,10 +91,6 @@
     height: 40px;
     padding: 8px;
     border-radius: 10px;
-    
-}
-.option + .option {
-    margin: 8px 0px 0px 0px;
 }
 .option:hover {
     background-color: var(--separator-color);
@@ -84,6 +98,14 @@
 .option.selected {
     background-color: var(--logo-blue-color);
 }
-.option.selected > p {
+.option > span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.option:hover > span {
+    color: var(--perfect-black-color);
+}
+.option.selected > span {
     color: var(--perfect-white-color);
 }

@@ -388,6 +388,16 @@
 	"Trouvez votre pépite parmi": "Trouvez votre pépite parmi",
 	"Startups réparties en": "Startups réparties en",
 	"Recherche par": "Recherche par",
+	"Tous les acteurs de l'innovation sont sur Forinov, qu'attendez-vous pour les rejoindre": "Tous les acteurs de l'innovation sont sur Forinov, qu'attendez-vous pour les rejoindre",
+	"Je représente ou travail pour un/une": "Je représente ou travail pour un/une",
+	"Le blog Forinov": "Le blog Forinov",
+	"Dossiers de startups": "Dossiers de startups",
+	"Dossiers": "Dossiers",
+	"Retourner aux dossiers du profil": "Retourner aux dossiers du profil",
+	"Les autres dossiers de startups public de": "Les autres dossiers de startups public de",
+	"Résultats": "Résultats",
+	"Secteurs cible": "Secteurs cible",
+	"Métiers cible": "Métiers cible",
 	"annuaire_opport_selectors": [
 		"Tous",
 		"Appels à candidature",
@@ -570,5 +580,10 @@
 	"Société": "Société",
 	"Téléphone": "Téléphone",
 	"Envoyer": "Envoyer",
-	"Sujet": "Sujet"
+	"Sujet": "Sujet",
+	"Contacter Forinov": "Contacter Forinov",
+	"Nos équipes vous répondront dans les meilleurs délais !": "Nos équipes vous répondront dans les meilleurs délais !",
+	"Adresse e-mail": "Adresse e-mail",
+	"Recevoir le Token": "Recevoir le Token",
+	"Créer un dossier de startups": "Créer un dossier de startups"
 }

@@ -46,3 +46,7 @@ production/
 
 # Temporary files
 tmp.*
+
+# Next coming features
+typescript/schemas/
+typescript/validator.ts

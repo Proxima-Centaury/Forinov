@@ -1,9 +1,8 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { Fragment, useEffect } from "react";
-import { ButtonInterface } from "../../typescript/interfaces";
-import { buildProperties, formatNameForUrl, bindEventListeners, removeEventListeners } from "../../scripts/utilities";
+import { Fragment, useEffect, Key } from "react";
+import { formatNameForUrl, bindEventListeners, removeEventListeners } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -12,6 +11,7 @@ import Image from "next/image";
 import Button from "../../components/buttons/button";
 import OpportunityCard from "../cards/opportunity";
 import ProfileCard from "../cards/profile";
+import FolderCard from "../cards/folder";
 import Accordion from "../accordions/accordion";
 import Format from "../texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -19,6 +19,7 @@ import Format from "../texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import CarouselStyles from "../../public/stylesheets/components/carousels/Carousel.module.css";
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
+import ArticleCard from "../cards/article";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Commons */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -47,9 +48,12 @@ class Transition {
     handleTransitionWithSteps = (event: any, name: String) => {
         const target = event.target.closest("button");
         const container = target.parentElement;
-        const buttons = (container) ? Array.from(container.children).map((button) => button as HTMLElement) : [];
+        const buttons = (container) ? [ ...container.querySelectorAll("button") ] : [];
         if(buttons.length > 0) {
-            buttons.forEach((button) => button.classList.remove(ButtonStyles.active));
+            buttons.forEach((button, key) => {
+                button.setAttribute("data-index", key);
+                button.classList.remove(ButtonStyles.active);
+            });
         };
         target.classList.add(ButtonStyles.active);
         const carousel = document.querySelector("[data-carousel='" + name + "']") as HTMLElement;
@@ -104,6 +108,10 @@ const Carousel = (pageProps: any) => {
             return <StepsCarousel { ...pageProps }/>;
         case "PartnerHowTo":
             return <StepsCarousel { ...pageProps }/>;
+        case "ForinovBlog":
+            return <ClassicHorizontal { ...pageProps }/>;
+        case "StartupsFolders":
+            return <ClassicHorizontal { ...pageProps }/>;
         default :
             return <Fragment></Fragment>;
     };
@@ -117,7 +125,6 @@ const StepsCarousel = (pageProps: any) => {
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const steps: Array<any> = carouselsConfigurations[component];
-	const buttonProps = [ "type", "action", "text" ];
     useEffect(() => {
         let handleStepButtonsTitle = () => {
             const stepButtons = document.querySelectorAll("." + CarouselStyles.steps + "[data-carousel='" + component + "Steps'] button") || [];
@@ -135,23 +142,21 @@ const StepsCarousel = (pageProps: any) => {
     });
     return <div className={ CarouselStyles.carousel } data-direction="bidirectional">
         <div className={ CarouselStyles.steps } data-carousel={ component + "Steps" }>
-            { steps.map((button: any, key: number) => {
-                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, component), button.title ];
-                const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
+            { steps.map((button, key) => {
                 return <Fragment key={ key }>
                     <div className="separator"></div>
-                    <Button { ...stepButtonObject as ButtonInterface } index={ key }/>
+                    <Button button={ ButtonStyles.callToActionStep } action={ (event: MouseEvent) => transitionHandler(event, component) } text={ button.title } active={ key === 0 }/>
                 </Fragment>;
             }) }
             <div className="separator"></div>
         </div>
         <div className={ CarouselStyles.container } data-carousel={ component }>
-            { steps.map((step: any, key: number) => {
+            { steps.map((step, key) => {
                 return <div key={ key } className={ CarouselStyles.itemFullWidth } data-index={ key }>
                     <div className={ CarouselStyles.stepContent }>
                         <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
                         <ul>
-                            { step.list.map((item: String, key: KeyType) => <li key={ key }>
+                            { step.list.map((item: String, key: Key) => <li key={ key }>
                                 <div><i className="fa-light fa-arrow-right"/><Format { ...pageProps } content={ translations[item as keyof Object] }/></div>
                             </li>) }
                         </ul>
@@ -173,7 +178,7 @@ const CustomVertical = (pageProps: any) => {
     const steps: Array<any> = carouselsConfigurations[component];
     return <div className={ CarouselStyles.carousel } data-direction="vertical">
         <div className={ CarouselStyles.container } data-carousel={ component }>
-            { steps.map((step: any, key: number) => <div key={ key } className={ CarouselStyles.itemFullWidth } data-index={ key }>
+            { steps.map((step, key) => <div key={ key } className={ CarouselStyles.itemFullWidth } data-index={ key }>
                 { (key % 2 === 1) ? <div className={ CarouselStyles.verticalContent }>
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
                     <Format { ...pageProps } content={ translations[step.text] }/>
@@ -200,14 +205,9 @@ const CustomVertical = (pageProps: any) => {
 /* Classic Horizontal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ClassicHorizontal = (pageProps: any) => {
-    const { component, data }: any = pageProps;
+    const { component, data, router }: any = pageProps;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithArrows;
-    const buttonProps = [ "type", "faIcon", "faIconClass", "action" ];
-    const leftButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-left", (event: MouseEvent) => transitionHandler(event, "left") ];
-    const leftButtonObject = buildProperties(buttonProps, leftButtonValues);
-    const rightButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-arrow-right", (event: MouseEvent) => transitionHandler(event, "right") ];
-    const rightButtonObject = buildProperties(buttonProps, rightButtonValues);
     const scrollHandler = (event: any) => {
         if(window.innerWidth > 576) {
             event.preventDefault();
@@ -224,18 +224,31 @@ const ClassicHorizontal = (pageProps: any) => {
     const Items = () => {
         switch(component) {
             case "LatestStartups":
-                return data.map((startup: any, key: KeyType) => {
+                return data.map((startup: any, key: Key) => {
                     const url = "/directories/startups/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
                     return <Link key={ key } className={ CarouselStyles.item } href={ url }>
                         <ProfileCard { ...pageProps } profile={ startup } definedType="startup" page="landing"/>
                     </Link>;
                 });
             case "LatestOpportunities":
-                return data.map((opportunity: any, key: KeyType) => {
+                return data.map((opportunity: any, key: Key) => {
                     const url = "/directories/opportunities/categories/" + formatNameForUrl(opportunity.TYPE[0].NAME) + "_" + opportunity.TYPE[0].ID + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID;
                     return <Link key={ key } className={ CarouselStyles.item } href={ url }>
-                        <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ key + 1 }/>
+                        <OpportunityCard { ...pageProps } opportunity={ opportunity }/>
                     </Link>;
+                });
+            case "ForinovBlog":
+                return data.map((article: any, key: Key) => {
+                    return <Link key={ key } className={ CarouselStyles.item } href={ article.URL }>
+                        <ArticleCard { ...pageProps } article={ article }/>
+                    </Link>;
+                });
+            case "StartupsFolders":
+                return data.map((folder: any, key: Key) => {
+                    const url =  router.asPath.substring(0, router.asPath.lastIndexOf("/")) + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID;
+                    return (!router.asPath.includes(formatNameForUrl(folder.NAME) + "_" + folder.ID)) ? <Link key={ key } className={ CarouselStyles.item } href={ url }>
+                        <FolderCard { ...pageProps } folder={ folder }/>
+                    </Link> : null;
                 });
             default:
                 return <div></div>;
@@ -243,8 +256,8 @@ const ClassicHorizontal = (pageProps: any) => {
     };
     return <div className={ CarouselStyles.carousel } data-carousel={ component }>
         <div className={ CarouselStyles.arrows }>
-            <Button { ...leftButtonObject as ButtonInterface }/>
-            <Button { ...rightButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: MouseEvent) => transitionHandler(event, "left") } icon="fa-light fa-arrow-left"/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: MouseEvent) => transitionHandler(event, "right") } icon="fa-light fa-arrow-right"/>
         </div>
         <div className={ CarouselStyles.container }>
             <Items/>
@@ -259,10 +272,10 @@ const InfiniteScrollHorizontal = (pageProps: any) => {
     const Items = () => {
         switch(component) {
             case "CompaniesLogos":
-                return data.map(({ id, type, name, logo }: any, key: KeyType) => {
+                return data.map(({ id, type, name, logo }: any, key: Key) => {
                     type = (type.match(/(entreprise)/i)) ? "corporation" : type;
                     type = (type.match(/(partenaire)/i)) ? "partner" : type;
-                    if(parseInt(key) < 14) {
+                    if(key < 14) {
                         const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
                         return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
                             <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
@@ -290,18 +303,13 @@ const AccordionsHorizontal = (pageProps: any) => {
 	const { translations }: any = states;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
-    const buttonProps = [ "type", "action", "text" ];
     const questionsButtons = [ translations["Général"] ];
     return <div className={ CarouselStyles.carousel } data-direction="bidirectional">
         <div className={ CarouselStyles.actions }>
-            { questionsButtons.map((button: any, key: number) => {
-                const stepButtonValues = [ ButtonStyles.callToActionStep, (event: MouseEvent) => transitionHandler(event, component), button ];
-                const stepButtonObject = buildProperties(buttonProps, stepButtonValues);
-                return <Button key={ key } { ...stepButtonObject as ButtonInterface } index={ key }/>;
-            }) }
+            { questionsButtons.map((button, key) => <Button key={ key } button={ ButtonStyles.callToActionStep } action={ (event: MouseEvent) => transitionHandler(event, component) } text={ button } active={ key === 0 }/>) }
         </div>
         <div className={ CarouselStyles.container } data-carousel={ component }>
-            { (data) ? data.map((accordion: any, key: KeyType) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
+            { (data) ? data.map((accordion: any, key: Key) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
                 <Accordion { ...pageProps } data={ accordion } translations={ translations }/>
             </div>) : null }
         </div>

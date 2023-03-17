@@ -10,7 +10,7 @@ import ActivityStyles from "../../public/stylesheets/components/cards/Activity.m
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Activity Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ActivityCard = ({ event, index, maxVisibleByDefault = 3 }: any) => {
+const ActivityCard = ({ event }: any) => {
     // const activityTimestamp = (date: string) => {
     //     const activityDate = new Date(date);
     //     const currentDate = new Date();
@@ -19,7 +19,7 @@ const ActivityCard = ({ event, index, maxVisibleByDefault = 3 }: any) => {
     //     return daysDifference;
     // };
     // activityTimestamp(event.DATE);
-    return <div className={ ActivityStyles.activity + ((index > maxVisibleByDefault) ? " hidden" : "") }>
+    return <div className={ ActivityStyles.activity }>
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content }>
             <Image src={ event.LOGO } alt={ "Logo de la structure " + event.NAME + "." } width="55" height="55"/>

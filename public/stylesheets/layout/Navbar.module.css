@@ -53,6 +53,7 @@
     width: 50px;
     min-height: 50px;
     height: 50px;
+    object-fit: contain;
 }
 .navbar > .logo > a > span {
     font-size: 26px;
@@ -124,15 +125,19 @@
     align-items: center;
     height: 100%;
     position: relative;
-    text-decoration: underline;
-    text-decoration-color: transparent;
     border-bottom: var(--border);
     border-width: 3px;
     border-color: transparent;
+    transition: border-color 0.3s ease;
 }
-.navbar > .links > li > a:hover,
-.navbar > .links > li > button:hover {
-    text-decoration-color: var(--text-main-color);
+.navbar > .links > li > a.active,
+.navbar > .links > li > button.active {
+    border-color: var(--logo-blue-color);
+}
+.navbar > .links > li > a.active > span,
+.navbar > .links > li > button.active > span {
+    font-weight: bold;
+    color: var(--logo-blue-color);
 }
 .navbar > .links > li > a:only-child:hover {
     border-color: var(--logo-blue-color);
@@ -183,6 +188,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     height: 45px;
     white-space: nowrap;
 }
@@ -232,6 +238,9 @@
         opacity: 1;
         pointer-events: all;
     }
+}
+.navbar > .actions > [class*="selectField"] {
+    min-width: 80px;
 }
 .navbar > .actions > a {
     display: flex;

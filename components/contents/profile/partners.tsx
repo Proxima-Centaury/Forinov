@@ -42,7 +42,6 @@ const ProfilePartners = (pageProps: any) => {
         const moreOrLess2ButtonObject = buildProperties(buttonProps, moreOrLess2ButtonValues);
         eventualFoldersMoreOfLessButtonProps = moreOrLess2ButtonObject;
     };
-    console.log(profile)
     return <Fragment>
         <div className={ PartnersStyles.partners }>
             <p className={ PartnersStyles.label }>{ translations["Nos partenaires"] + " (" + (profile.PARTNERS.length || 0) + ")" }</p>

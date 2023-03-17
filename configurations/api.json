@@ -20,7 +20,7 @@
             "getFolders": {
                 "query": "V5_GET_FOLDERS",
                 "parameters": [ "TYPE", "PID", "app", "authkey", "lang" ],
-                "modified": "20-12-2022"
+                "modified": "16-03-2023"
             },
             "getLanding": {
                 "query": "LANDING",
@@ -74,42 +74,42 @@
             },
             "getFilteredStartupsByCategory": {
                 "query": "SEARCH_FULLSU",
-                "parameters": [ "CATEGORY", "app", "authkey", "lang" ],
+                "parameters": [ "CATEGORIES", "app", "authkey", "lang" ],
                 "modified": "12-02-2023"
             },
             "getFilteredCorporationsByCategory": {
                 "query": "V5_SEARCHCORPO",
-                "parameters": [ "CATEGORY", "app", "authkey", "lang" ],
+                "parameters": [ "CATEGORIES", "app", "authkey", "lang" ],
                 "modified": "15-02-2023"
             },
             "getFilteredPartnersByCategory": {
                 "query": "V5_SEARCHINCUB",
-                "parameters": [ "CATEGORY", "app", "authkey", "lang" ],
+                "parameters": [ "CATEGORIES", "app", "authkey", "lang" ],
                 "modified": "15-02-2023"
             },
             "getFilteredOpportunitiesByCategory": {
                 "query": "LANDING_FULLOPPORTUNITES",
-                "parameters": [ "CATEGORY", "app", "authkey", "lang" ],
+                "parameters": [ "CATEGORIES", "app", "authkey", "lang" ],
                 "modified": "27-02-2023"
             },
             "getFilteredStartupsByCountry": {
                 "query": "SEARCH_FULLSU",
-                "parameters": [ "COUNTRY", "app", "authkey", "lang" ],
+                "parameters": [ "COUNTRIES", "app", "authkey", "lang" ],
                 "modified": "24-02-2023"
             },
             "getFilteredCorporationsByCountry": {
                 "query": "V5_SEARCHCORPO",
-                "parameters": [ "COUNTRY", "app", "authkey", "lang" ],
+                "parameters": [ "COUNTRIES", "app", "authkey", "lang" ],
                 "modified": "24-02-2023"
             },
             "getFilteredPartnersByCountry": {
                 "query": "V5_SEARCHINCUB",
-                "parameters": [ "COUNTRY", "app", "authkey", "lang" ],
+                "parameters": [ "COUNTRIES", "app", "authkey", "lang" ],
                 "modified": "24-02-2023"
             },
             "getFilteredOpportunitiesByCountry": {
                 "query": "LANDING_FULLOPPORTUNITES",
-                "parameters": [ "CATEGORY", "app", "authkey", "lang" ],
+                "parameters": [ "COUNTRIES", "app", "authkey", "lang" ],
                 "modified": ""
             }
         }

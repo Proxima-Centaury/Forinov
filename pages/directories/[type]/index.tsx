@@ -2,9 +2,9 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { useState } from "react";
+import { useState, Fragment, useEffect, Key } from "react";
 import { DirectoryInterface } from "../../../typescript/interfaces";
-import { checkMatch } from "../../../scripts/utilities";
+import { formatType, formatNameForUrl } from "../../../scripts/utilities";
 import api from "../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -13,39 +13,140 @@ import Link from "next/link";
 import Filters from "../../../components/filters/filters";
 import IdenfiticationBanner from "../../../components/banners/identification";
 import CategoryCard from "../../../components/cards/category";
+import EntityCard from "../../../components/cards/entity";
+import OpportunityCard from "../../../components/cards/opportunity";
+import Pagination from "../../../components/pagination/pagination";
+import Button from "../../../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import DirectoryStyles from "../../../public/stylesheets/pages/Directory.module.css";
 import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Directory Type */
+/* Directory */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const DirectoryType = (pageProps: DirectoryInterface) => {
+const Directory = (pageProps: DirectoryInterface) => {
     const { states, router }: any = pageProps;
-    const { translations }: any = states;
-    const { type } = router.query;
-    const [ search, setSearch ] = useState(null);
+    const { locale, translations }: any = states;
+    let { ui, type, category } = router.query;
+    category = category?.substring(category.indexOf("_") + 1, category.length);
+    const [ search, setSearch ] = useState({ keywords: "", categories: (category) ? category : "", page: 1 });
+    const [ results, setResults ] = useState(null);
+    const [ selects, setSelects ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
-    const filters = [
-        // { ID: 0, NAME: translations["Toutes"], URL: "/all" },
-        { ID: 0, NAME: translations["Catégories"], URL: "/directories/" + type + "/categories" },
-        { ID: 0, NAME: translations["Pays"], URL: "/directories/" + type + "/countries" },
-    ];
-    return <div id="directory" className="container">
-        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
-        <IdenfiticationBanner { ...pageProps }/>
-        <div className={ display }>
-            { filters.map((filter: any, key: number) => (!search || (search && checkMatch(filter.NAME, search))) ? <Link key={ key } href={ filter.URL }>
-                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
-            </Link> : null) }
-        </div>
-        <div className={ DirectoryStyles.signup }>
+    const [ informations, setInformations ]: any = useState(null);
+    useEffect(() => {
+        const fetchResults = async () => {
+            const results = await api.searchEngine(formatType(type), search, locale?.substring(0, 2));
+            const formattedResults = results.slice(0, results.length - 1);
+            const selects = results[results.length - 1];
+            setResults(formattedResults);
+            setSelects(selects);
+        };
+        if(search.keywords.length >= 2 || search.categories.length >= 1) {
+            fetchResults();
+        } else {
+            setResults(null);
+            setSelects(null);
+        };
+    }, [ search ]);
+    useEffect(() => {
+        setSearch({ keywords: "", categories: (category) ? category : "", page: 1 });
+        setResults(null);
+        setSelects(null);
+    }, [ type, category ]);
+    return <div id="directory" className={ (ui && ui == "false") ? "containerFull" : "container" }>
+        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
+        { (ui && ui == "false") ? null : <IdenfiticationBanner { ...pageProps }/> }
+        { (informations && informations.RESULTSMESSAGE) ? <div className={ DirectoryStyles.message }>
+            <i className="fa-light fa-chevron-right"/>
+            <p>{ informations.RESULTSMESSAGE }</p>
+        </div> : null }
+        { (results) ? <Results { ...pageProps } display={ display } results={ results }/> : null }
+        { (!results) ? ((router.asPath.match(/(\/countries)/)) ? <Countries { ...pageProps } display={ display } search={ search }/> : <Categories { ...pageProps } display={ display } search={ search }/>) : null }
+        { (informations && informations.PAGES > 0) ? <Pagination { ...pageProps } pages={ informations.PAGES } search={ search } action={ setSearch }/> : null }
+        { (ui && ui == "false") ? null : <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
             <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
-            <Link href="/onboarding" className={ ButtonStyles.callToActionNegative }>{ translations["Je m'inscris"] }</Link>
-        </div>
+            <Button button={ ButtonStyles.callToActionNegative } href="/onboarding" text={ translations["Je m'inscris"] }/>
+        </div> }
     </div>;
+};
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Categories */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Categories = (pageProps: any) => {
+    const { filters, display, router }: any = pageProps;
+    const { ui, type } = router.query;
+    return <Fragment>
+        { (type.match(/(startup)/)) ? <div className={ display }>
+            { filters.CATEGORIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link>) }
+        </div> : null}
+        { (type.match(/(corporation|entreprise)/)) ? <div className={ display }>
+            { filters.SECTORS.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link>) }
+        </div> : null}
+        { (type.match(/(partner|partenaire)/)) ? <div className={ display }>
+            { filters.PARTNERS_TYPES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link>) }
+        </div> : null}
+        { (type.match(/(opport)/)) ? <div className={ display }>
+            { filters.OPPORTUNITIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link>) }
+        </div> : null}
+    </Fragment>;
+};
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Countries */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Countries = (pageProps: any) => {
+    const { filters, display, router }: any = pageProps;
+    const { ui } = router.query;
+    return <Fragment>
+        { (filters.COUNTRIES) ? <div className={ display }>
+            { filters.COUNTRIES.map((filter: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
+                <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+            </Link>) }
+        </div> : null}
+    </Fragment>;
+};
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Results */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Results = (pageProps: any) => {
+    const { display, results, router }: any = pageProps;
+    const { ui, type } = router.query;
+    if(ui && ui == "false") {
+        return <Fragment>
+            { (!type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
+                { results.map((company: any, key: Key) => <a key={ key } href={ company.URL } target="_parent">
+                    <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
+                </a>) }
+            </div> : null}
+            { (type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
+                { results.map((opportunity: any, key: Key) => <a key={ key } href={ opportunity.URL } target="_parent">
+                    <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ parseInt(key.toString()) + 1 }/>
+                </a>) }
+            </div> : null}
+        </Fragment>;
+    };
+    return <Fragment>
+        { (!type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
+            { results.map((company: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID }>
+                <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
+            </Link>) }
+        </div> : null}
+        { (type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
+            { results.map((opportunity: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID }>
+                <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ parseInt(key.toString()) + 1 }/>
+            </Link>) }
+        </div> : null}
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Props */
@@ -64,5 +165,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default DirectoryType;
+export default Directory;
 export { getServerSideProps };

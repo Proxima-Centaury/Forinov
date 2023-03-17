@@ -8,11 +8,15 @@
     align-items: center;
     grid-gap: 16px;
     gap: 16px;
+    height: 100%;
     padding: 16px;
     position: relative;
     border-radius: 15px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
+}
+.category:hover {
+    transform: translate3d(0px, -8px, 0px);
 }
 .category > img {
     width: 80px;
@@ -52,5 +56,4 @@
     font-size: 24px;
     font-weight: 800;
     text-align: center;
-    text-transform: capitalize;
 }
