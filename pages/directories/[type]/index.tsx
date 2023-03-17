@@ -54,7 +54,6 @@ const Directory = (pageProps: DirectoryInterface) => {
         setResults(null);
         setSelects(null);
     }, [ type ]);
-    console.log(router);
     return <div id="directory" className="container">
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
         <IdenfiticationBanner { ...pageProps }/>
