@@ -121,14 +121,28 @@ const Countries = (pageProps: any) => {
 const Results = (pageProps: any) => {
     const { display, results, router }: any = pageProps;
     const { ui, type } = router.query;
+    if(ui && ui == "false") {
+        return <Fragment>
+            { (!type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
+                { results.map((company: any, key: Key) => <a key={ key } href={ company.URL } target="_parent">
+                    <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
+                </a>) }
+            </div> : null}
+            { (type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
+                { results.map((opportunity: any, key: Key) => <a key={ key } href={ opportunity.URL } target="_parent">
+                    <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ parseInt(key.toString()) + 1 }/>
+                </a>) }
+            </div> : null}
+        </Fragment>;
+    };
     return <Fragment>
         { (!type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
-            { results.map((company: any, key: Key) => <Link key={ key } href={ (ui && ui == "false") ? company.URL : router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID } target={ (ui && ui == "false") ? "_parent" : undefined }>
+            { results.map((company: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID }>
                 <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
             </Link>) }
         </div> : null}
         { (type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
-            { results.map((opportunity: any, key: Key) => <Link key={ key } href={ (ui && ui == "false") ? opportunity.URL : router.asPath + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID } target={ (ui && ui == "false") ? "_parent" : undefined }>
+            { results.map((opportunity: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID }>
                 <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ parseInt(key.toString()) + 1 }/>
             </Link>) }
         </div> : null}

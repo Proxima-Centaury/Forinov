@@ -21,7 +21,7 @@ const Pagination = (pageProps: any) => {
 		const target = preciseTarget(event as any);
 		const selectedPage = target.querySelector("span")?.innerText;
 		action({ ...search, page: selectedPage });
-		scrollTo(0, 500);
+		scrollTo(0, 0);
 	};
 	const showPagination = () => {
 		const buttons = [];
