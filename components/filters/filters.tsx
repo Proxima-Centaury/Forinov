@@ -69,15 +69,15 @@ const Filters = (pageProps: any) => {
         </div> : null }
         { (title) ? <div className="separator"/> : null }
         <div className={ FiltersStyles.links }>
-            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_mystartup.php" }>
+            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_mystartup.php" } target="_parent">
                 <i className="fa-light fa-folder-open"/>
                 <span>Portefeuille</span>
             </a> : null }
-            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_mystartup_ecosystem.php" }>
+            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_mystartup_ecosystem.php" } target="_parent">
                 <i className="fa-light fa-globe"/>
                 <span>Portefeuille</span>
             </a> : null }
-            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_parametres_statut.php" }>
+            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_parametres_statut.php" } target="_parent">
                 <i className="fa-light fa-file"/>
                 <span>Portefeuille</span>
             </a> : null }
