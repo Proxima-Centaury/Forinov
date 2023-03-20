@@ -9,7 +9,9 @@ import ProductStyles from "../../public/stylesheets/components/cards/Product.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Product Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProductCard = ({ product, translations }: any) => {
+const ProductCard = (productProps: any) => {
+    const { product, states } = productProps;
+    const { translations } = states;
     return <div className={ ProductStyles.product }>
         <div className={ ProductStyles.banner }>
             <p>{ translations["Voir"] }</p>
