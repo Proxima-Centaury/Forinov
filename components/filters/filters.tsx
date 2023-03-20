@@ -98,7 +98,7 @@ const Filters = (pageProps: any) => {
                 (filter[0].match(/(sector)/i)) ? placeholder = translations["Secteurs cible"] : null;
                 (filter[0].match(/(techno)/i)) ? placeholder = translations["Technologies"] : null;
                 (filter[0].match(/(jobs)/i)) ? placeholder = translations["Métiers cible"] : null;
-                return <MultipleSelect key={ key } { ...pageProps } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(placeholder).toString() } defaultValues={ search.categories.split("-") } dynamic={ true }/>;
+                return <MultipleSelect key={ key } { ...pageProps } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(placeholder).toString() } defaultValues={ search.categories.split("-") } dynamic/>;
             }) : null }
         </div>
     </div>;

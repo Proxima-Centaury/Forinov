@@ -17,7 +17,7 @@ import SelectStyles from "../../public/stylesheets/components/fields/Select.modu
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const MultipleSelect = (selectProps: SelectInterface) => {
     const selectReference = useRef(null);
-    const { options, action, placeholder, source, dynamic, states, router } = selectProps;
+    const { options, action, placeholder, source, defaultValues, dynamic, states, router } = selectProps;
     const { translations } = states;
     let { category } = router.query;
     category = category?.substring(category.indexOf("_") + 1, category.length);
@@ -54,6 +54,17 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         setSelectedOptions(optionSEO);
     }, [ category ]);
     useEffect(() => {
+        if(!dynamic && defaultValues && defaultValues.length > 0) {
+            defaultValues.map((option) => {
+                if(option) {
+                    if(options && options.filter((selectedOption: any) => selectedOption.ID === option.toString()).length > 0) {
+                        setSelectedOptions(options.filter((selectedOption: any) => selectedOption.ID === option.toString()));
+                    };
+                };
+            });
+        };
+    }, [ defaultValues ]);
+    useEffect(() => {
         bindEventListeners(document, [ "click" ], handleOutOfArea);
         return () => {
             removeEventListeners(document, [ "click" ], handleOutOfArea);
@@ -63,6 +74,7 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         icon: (selectedOptions.length > 0) ? "fa-light fa-xmark" : "fa-light fa-check",
         text: (selectedOptions.length > 0) ? translations["Tout désélectionner"] : translations["Tout sélectionner"]
     };
+    console.log(selectedOptions);
     return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") } ref={ selectReference }>
         <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
             <i className="fa-solid fa-caret-right"/>
