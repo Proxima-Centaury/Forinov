@@ -35,8 +35,6 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const language = locale?.substring(0, 2);
 
     const products = await api.getProducts("entreprise", "5", "next", "Sorbonne", language);
-    console.log(products);
-    
 
     return {
         props: {
