@@ -108,10 +108,12 @@
 .callToActionAlternativeRoundedIcon:hover {
     background-color: var(--logo-blue-color);
 }
-.callToActionAlternativeRoundedIcon > i {
+.callToActionAlternativeRoundedIcon > i,
+.callToActionAlternativeRoundedIcon > span {
     color: var(--logo-blue-color);
 }
-.callToActionAlternativeRoundedIcon:hover > i {
+.callToActionAlternativeRoundedIcon:hover > i,
+.callToActionAlternativeRoundedIcon:hover > span {
     color: var(--perfect-white-color);
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
