@@ -72,15 +72,15 @@
 .callToActionNegativeAlternativeSquaredIcon > i {
     font-size: 16px;
 }
-.callToActionRoundedIcon > i.fa-ellipsis,
-.callToActionAlternativeRoundedIcon > i.fa-ellipsis,
-.callToActionNegativeRoundedIcon > i.fa-ellipsis,
-.callToActionNegativeAlternativeRoundedIcon > i.fa-ellipsis,
-.callToActionSquaredIcon > i.fa-ellipsis,
-.callToActionAlternativeSquaredIcon > i.fa-ellipsis,
-.callToActionNegativeSquaredIcon > i.fa-ellipsis,
-.callToActionNegativeAlternativeSquaredIcon > i.fa-ellipsis {
-    font-size: 26px;
+.callToActionRoundedIcon > i[class*="ellipsis"],
+.callToActionAlternativeRoundedIcon > i[class*="ellipsis"],
+.callToActionNegativeRoundedIcon > i[class*="ellipsis"],
+.callToActionNegativeAlternativeRoundedIcon > i[class*="ellipsis"],
+.callToActionSquaredIcon > i[class*="ellipsis"],
+.callToActionAlternativeSquaredIcon > i[class*="ellipsis"],
+.callToActionNegativeSquaredIcon > i[class*="ellipsis"],
+.callToActionNegativeAlternativeSquaredIcon > i[class*="ellipsis"] {
+    font-size: 24px;
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Call To Action Rounded Icon ) */
@@ -108,10 +108,12 @@
 .callToActionAlternativeRoundedIcon:hover {
     background-color: var(--logo-blue-color);
 }
-.callToActionAlternativeRoundedIcon > i {
+.callToActionAlternativeRoundedIcon > i,
+.callToActionAlternativeRoundedIcon > span {
     color: var(--logo-blue-color);
 }
-.callToActionAlternativeRoundedIcon:hover > i {
+.callToActionAlternativeRoundedIcon:hover > i,
+.callToActionAlternativeRoundedIcon:hover > span {
     color: var(--perfect-white-color);
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

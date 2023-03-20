@@ -20,8 +20,8 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Filters = (pageProps: any) => {
     const { title, display, setDisplay, search, setSearch, setInformations, filters, dynamicFilters, states, router }: any = pageProps;
-    const { translations }: any = states;
-    const { ui, type }: any = router.query;
+    const { session, translations }: any = states;
+    const { ui, domain, type, user }: any = router.query;
     const [ dynamicInformations, setDynamicInformations ]: Array<any> = useState(null);
     const [ dynamicFiltersToArray, setDynamicFiltersToArray ]: Array<any> = useState([]);
     const setKeywords = (event: any) => {
@@ -65,21 +65,24 @@ const Filters = (pageProps: any) => {
             <div className={ FiltersStyles.displays }>
                 <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ gridButtonAction } icon="fa-light fa-grid-2" active={ display === "grid threeColumns" }/>
                 <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ listButtonAction } icon="fa-light fa-list" active={ display !== "grid threeColumns" }/>
+                { (ui && ui == "false") ? <a className={ ButtonStyles.callToActionAlternativeSquaredIcon } href={ domain + "/account_startup_map.php" } target="_parent">
+                    <i className="fa-light fa-map-location-dot"/>
+                </a> : null }
             </div>
         </div> : null }
         { (title) ? <div className="separator"/> : null }
         <div className={ FiltersStyles.links }>
-            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href="/account_mystartup.php" target="_parent">
+            { ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_mystartup.php" } target="_parent">
                 <i className="fa-light fa-folder-open"/>
                 <span>Portefeuille</span>
             </a> : null }
-            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href="/account_mystartup_ecosystem.php" target="_parent">
+            { ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_mystartup_ecosystem.php" } target="_parent">
                 <i className="fa-light fa-globe"/>
-                <span>Portefeuille</span>
+                <span>Écosystème</span>
             </a> : null }
-            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href="/account_parametres_statut.php" target="_parent">
+            { ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_parametres_statut.php" } target="_parent">
                 <i className="fa-light fa-file"/>
-                <span>Portefeuille</span>
+                <span>Paramètres relation</span>
             </a> : null }
         </div>
         <div className={ FiltersStyles.search }>

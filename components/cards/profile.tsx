@@ -24,9 +24,6 @@ const ProfileCard = (pageProps: any) => {
     const { profile, definedType, page, states, router }: any = pageProps;
     const { session, lock, translations, RGB }: any = states;
     const { type }: any = router.query;
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const pdfButtonValues = [ ButtonStyles.callToActionAlternative, true, "fa-light fa-cloud-arrow-down", "", () => false, "PDF", 0 ];
-    const pdfButtonObject = buildProperties(buttonProps, pdfButtonValues);
     useEffect(() => (!type) ? setProfileType(definedType) : setProfileType(type), [ type, definedType ]);
     return <div className={ ProfileStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ ProfileStyles.banner }>
@@ -38,7 +35,7 @@ const ProfileCard = (pageProps: any) => {
         <div className={ ProfileStyles.body }>
             <div className={ ProfileStyles.picture }>
                 <Image src={ profile.LOGO } alt="Company background." width="120" height="120"/>
-                { (type !== "startup" && (!session || (session && profile.PDF)) && page !== "landing") ? <Button { ...pdfButtonObject as ButtonInterface }/> : null }
+                { (type !== "startup" && (!session || (session && profile.PDF)) && page !== "landing") ? <Button button={ ButtonStyles.callToActionAlternative } href={ profile.PDF } icon="fa-light fa-cloud-arrow-down" text="PDF"/> : null }
             </div>
             <div className={ ProfileStyles.content }>
                 <h3>{ profile.NAME }</h3>
@@ -94,41 +91,29 @@ const ProfileCard = (pageProps: any) => {
 /* Profile Card ( Startup Actions ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StartupActions = ({ translations }: any) => {
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const followButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-folder-open", "", () => false, "", 0 ];
-    const followButtonObject = buildProperties(buttonProps, followButtonValues);
-    const contactButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-message", "", () => false, "", 0 ];
-    const contactButtonObject = buildProperties(buttonProps, contactButtonValues);
-    const parametersButtonValues = [ ButtonStyles.callToActionAlternativeRoundedIcon, true, "fa-solid fa-ellipsis", "", () => false, "", 0 ];
-    const parametersButtonObject = buildProperties(buttonProps, parametersButtonValues);
     return <div className={ ProfileStyles.actions }>
         <div>
-            <Button { ...followButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } icon="fa-light fa-folder-open"/>
             <p>{ translations["Suivre"] }</p>
         </div>
         <div>
-            <Button { ...contactButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } icon="fa-light fa-message"/>
             <p>{ translations["Contacter"] }</p>
         </div>
-        <Button { ...parametersButtonObject as ButtonInterface }/>
+        <Button button={ ButtonStyles.callToActionAlternativeRoundedIcon } icon="fa-light fa-ellipsis"/>
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card ( Corporation Actions ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CorporationActions = ({ translations }: any) => {
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const wishlistButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-heart-circle-plus", "", () => false, "", 0 ];
-    const wishlistButtonObject = buildProperties(buttonProps, wishlistButtonValues);
-    const followButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-folder-open", "", () => false, "", 0 ];
-    const followButtonObject = buildProperties(buttonProps, followButtonValues);
     return <div className={ ProfileStyles.actions }>
         <div data-type="tooltip" data-tooltip={ translations["Ajouter à ma liste de souhaits"] }>
-            <Button { ...wishlistButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } icon="fa-light fa-heart-circle-plus"/>
             <p>Wishlist</p>
         </div>
         <div>
-            <Button { ...followButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } icon="fa-light fa-folder-open"/>
             <p>{ translations["Suivre"] }</p>
         </div>
     </div>;
@@ -137,18 +122,13 @@ const CorporationActions = ({ translations }: any) => {
 /* Profile Card ( Partner Actions ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnerActions = ({ translations }: any) => {
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const wishlistButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-heart-circle-plus", "", () => false, "", 0 ];
-    const wishlistButtonObject = buildProperties(buttonProps, wishlistButtonValues);
-    const followButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-folder-open", "", () => false, "", 0 ];
-    const followButtonObject = buildProperties(buttonProps, followButtonValues);
     return <div className={ ProfileStyles.actions }>
         <div data-type="tooltip" data-tooltip={ translations["Ajouter à ma liste de souhaits"] }>
-            <Button { ...wishlistButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } icon="fa-light fa-heart-circle-plus"/>
             <p>Wishlist</p>
         </div>
         <div>
-            <Button { ...followButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } icon="fa-light fa-folder-open"/>
             <p>{ translations["Suivre"] }</p>
         </div>
     </div>;
