@@ -52,15 +52,17 @@ const App = ({ Component, pageProps }: AppProps) => {
         setTranslations(getTranslations(locale));
     }, [ locale ]);
     useEffect(() => {
-        if(router.pathname !== "/404" && locale !== getCookie("NEXT_LOCALE")) {
-            setCookie("NEXT_LOCALE", locale);
-            router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
+        if(!router.query.ui) {
+            if(router.pathname !== "/404" && locale !== getCookie("NEXT_LOCALE")) {
+                setCookie("NEXT_LOCALE", locale, { sameSite: "strict" });
+                router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
+            };
         };
     });
     useEffect(() => setLock(!session), [ session ]);
     useEffect(() => {
         let applyTheme = () => {
-            setCookie("forinov_theme_preference", theme);
+            setCookie("forinov_theme_preference", theme, { sameSite: "strict" });
             const body = document.body;
             return body.setAttribute("data-theme", theme as string);
         }; applyTheme();
