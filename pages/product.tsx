@@ -40,36 +40,36 @@ export default function Folder(pageProps: any) {
                 className={ProductStyles.table}
             >
                 <div className={ProductStyles.row}>
-                    <span>Maturité</span>
+                    <span>{translations["Maturité"]}</span>
                     <span>{product.MATURITY[0]}</span>
                 </div>
                 <div className={ProductStyles.row}>
-                    <span>Modèle économique</span>
+                    <span>{ translations["Modèle économique"]}</span>
                     <span>{economicModel}</span>
                 </div>
                 <div className={ProductStyles.row}>
-                    <span>Ordre de prix</span>
+                    <span>{ translations["Ordre de prix"]}</span>
                     <span>{product.PRICE} €</span>
                 </div>
                 <div className={ProductStyles.row}>
-                    <span>Clients actuels</span>
+                    <span>{translations["Clients actuels"]}</span>
                     <span>{product.CLIENTS}</span>
                 </div>
                 <div className={ProductStyles.row}>
-                    <span>Model</span>
+                    <span>{translations["Modèle"]}</span>
                     <span>{businessModel}</span>
                 </div>
                 <div className={ProductStyles.row}>
-                    <span>Technologies</span>
+                    <span>{ translations["Technologies"]}</span>
                     <span>{technologies}</span>
                 </div>
                 <div className={ProductStyles.row}>
-                    <span>Entr. Cibles</span>
+                    <span>{translations["Entreprises Cible"] }</span>
                     <span>{targetCompanies}</span>
                 </div>
 
                 <div className={ProductStyles.row}>
-                    <span>Sect. Cibles</span>
+                    <span>{translations["Secteurs Cible"]}</span>
                     <span>{targetSectors}</span>
                 </div>
             </div>
@@ -78,7 +78,7 @@ export default function Folder(pageProps: any) {
                     href={product.LINK}
                     className={ProductStyles.link}
                 >
-                    Voir la vidéo de présentation
+                    {translations["Voir la vidéo de présentation"]}
                 </Link>
                 <Link
                     href={'/login'}
@@ -87,7 +87,7 @@ export default function Folder(pageProps: any) {
                         color: "var(--perfect-white-color)"
                     }}
                 >
-                    Faire une demande
+                    {translations["Faire une demande"]}
                 </Link>
             </div>
         </section>
