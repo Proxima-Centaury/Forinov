@@ -19,10 +19,9 @@
 .menu > ul {
     display: flex;
     flex-direction: column;
+    grid-gap: 8px;
+    gap: 8px;
     margin: 0px 0px 0px 16px
-}
-.menu > ul > * + * {
-    margin: 8px 0px 0px 0px;
 }
 .menu > ul > li > a {
     position: relative;

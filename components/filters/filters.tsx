@@ -21,7 +21,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 const Filters = (pageProps: any) => {
     const { title, display, setDisplay, search, setSearch, setInformations, filters, dynamicFilters, states, router }: any = pageProps;
     const { translations }: any = states;
-    const { ui, type }: any = router.query;
+    const { ui, domain, type }: any = router.query;
     const [ dynamicInformations, setDynamicInformations ]: Array<any> = useState(null);
     const [ dynamicFiltersToArray, setDynamicFiltersToArray ]: Array<any> = useState([]);
     const setKeywords = (event: any) => {
@@ -69,15 +69,15 @@ const Filters = (pageProps: any) => {
         </div> : null }
         { (title) ? <div className="separator"/> : null }
         <div className={ FiltersStyles.links }>
-            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href="/account_mystartup.php" target="_parent">
+            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_mystartup.php" }>
                 <i className="fa-light fa-folder-open"/>
                 <span>Portefeuille</span>
             </a> : null }
-            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href="/account_mystartup_ecosystem.php" target="_parent">
+            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_mystartup_ecosystem.php" }>
                 <i className="fa-light fa-globe"/>
                 <span>Portefeuille</span>
             </a> : null }
-            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href="/account_parametres_statut.php" target="_parent">
+            { (ui && ui == "false") ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_parametres_statut.php" }>
                 <i className="fa-light fa-file"/>
                 <span>Portefeuille</span>
             </a> : null }
