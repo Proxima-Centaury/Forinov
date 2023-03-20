@@ -1,35 +1,34 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Imports */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { uppercaseFirst } from "../../scripts/utilities";
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/image";
+import Format from "../texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import ArticleStyles from "../../public/stylesheets/components/cards/Article.module.css";
+import TestimonialStyles from "../../public/stylesheets/components/cards/Testimonial.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Article Card */
+/* Testimonial Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ArticleCard = (pageProps: any) => {
-    const { article, states }: any = pageProps;
+const TestimonialCard = (pageProps: any) => {
+    const { testimonial, states }: any = pageProps;
     const { translations, RGB }: any = states;
-    return <div className={ ArticleStyles.article } data-rgb={ (RGB) ? "enabled" : "disabled" }>
-        <div className={ ArticleStyles.background }>
-            { (article.PICTURE) ? <Image src={ article.PICTURE } alt={ "Image de fond de l'article " + article.NAME + "." } width="3840" height="2160"/> : null }
+    return <div className={ TestimonialStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+        <div className={ TestimonialStyles.pictures }>
+            <Image className={ TestimonialStyles.main } src={ testimonial.PICTURE } alt={ translations["Photo de"] + " " + testimonial.NAME + "."} width="260" height="260"/>
+            <Image className={ TestimonialStyles.sub } src={ testimonial.LOGO } alt={ translations["Logo de"] + " " + testimonial.COMPANY + "."} width="150" height="150"/>
         </div>
-        <div className={ ArticleStyles.content }>
-            <div className={ ArticleStyles.container }>
-                <div className={ ArticleStyles.title } data-type="tooltip" data-tooltip={ article.TITLE }>
-                    <h3>{ (article.NAME) ? uppercaseFirst(article.NAME) : translations["Nom non-défini"] }</h3>
-                </div>
-            </div>
+        <div className={ TestimonialStyles.identity }>
+            <h4>{ testimonial.NAME }</h4>
+            <h5>{ testimonial.JOBNAME }</h5>
+            <h5>{ testimonial.COMPANY }</h5>
+        </div>
+        <div className={ TestimonialStyles.testimonial }>
+            <Format content={ testimonial.TESTIMONIAL }/>
         </div>
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default ArticleCard;
+export default TestimonialCard;

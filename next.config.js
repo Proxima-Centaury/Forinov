@@ -11,7 +11,7 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     images: {
-        domains: [ "www.forinov.fr", "dev.forinov.fr" ],
+        domains: [ "www.forinov.fr", "www.forinov.com", "dev.forinov.fr", "dev.forinov.com" ],
     },
     i18n: {
         defaultLocale: "fr-FR",

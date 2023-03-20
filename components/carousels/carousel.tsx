@@ -12,6 +12,7 @@ import Button from "../../components/buttons/button";
 import OpportunityCard from "../cards/opportunity";
 import ProfileCard from "../cards/profile";
 import FolderCard from "../cards/folder";
+import TestimonialCard from "../cards/testimonial";
 import Accordion from "../accordions/accordion";
 import Format from "../texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -108,6 +109,8 @@ const Carousel = (pageProps: any) => {
             return <StepsCarousel { ...pageProps }/>;
         case "PartnerHowTo":
             return <StepsCarousel { ...pageProps }/>;
+        case "Testimonials":
+            return <ClassicHorizontal { ...pageProps }/>;
         case "ForinovBlog":
             return <ClassicHorizontal { ...pageProps }/>;
         case "StartupsFolders":
@@ -250,6 +253,12 @@ const ClassicHorizontal = (pageProps: any) => {
                         <FolderCard { ...pageProps } folder={ folder }/>
                     </Link> : null;
                 });
+            case "Testimonials":
+                const importation = require("../../configurations/testimonials.json");
+                const { testimonials } = importation;
+                return testimonials.map((testimonial: any, key: Key) => <div key={ key } className={ CarouselStyles.item }>
+                    <TestimonialCard { ...pageProps } testimonial={ testimonial }/>
+                </div>);
             default:
                 return <div></div>;
         };
