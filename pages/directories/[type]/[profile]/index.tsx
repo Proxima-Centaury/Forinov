@@ -143,14 +143,11 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
 const Startup = (pageProps: any) => {
     const { products, states }: any = pageProps;
     const { translations }: any = states;
-    const buttonProps = [ "type", "faIcon", "faIconClass", "text" ];
-    const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", translations["Voir le pitch deck"] ];
-    const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
     return <>
         <ProfileOffer { ...pageProps }/>
         <ProfileTargets { ...pageProps }/>
         { (products) ? <ProfileProducts { ...pageProps }/> : null }
-        <Button {...pitchDeckButtonObject as ButtonInterface}/>
+        <Button button={ ButtonStyles.callToActionWide } icon="fa-light fa-person-chalkboard" text={ translations["Voir le pitch deck"] }/>
         <ProfileEcosystem { ...pageProps }/>
         <ProfilePartners { ...pageProps }/>
         <ProfileTeam { ...pageProps }/>
@@ -164,14 +161,11 @@ const Startup = (pageProps: any) => {
 const Corporation = (pageProps: any) => {
     const { states }: any = pageProps;
     const { translations }: any = states;
-    const buttonProps = [ "type", "faIcon", "faIconClass", "text" ];
-    const pitchDeckButtonValues = [ ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", translations["Voir le pitch deck"] ];
-    const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
     return <>
         <ProfileTeam { ...pageProps }/>
         <ProfileOpportunities { ...pageProps }/>
         <ProfileGoals { ...pageProps }/>
-        <Button {...pitchDeckButtonObject as ButtonInterface}/>
+        <Button button={ ButtonStyles.callToActionWide } icon="fa-light fa-person-chalkboard" text={ translations["Voir le pitch deck"] }/>
         <ProfileEcosystem { ...pageProps }/>
         <ProfilePartners { ...pageProps }/>
         <ProfileActivities { ...pageProps }/>
@@ -184,14 +178,11 @@ const Corporation = (pageProps: any) => {
 const Partner = (pageProps: any) => {
     const { states }: any = pageProps;
     const { translations }: any = states;
-    const buttonProps = [ "type", "faIcon", "faIconClass", "text" ];
-    const pitchDeckButtonValues = [ButtonStyles.callToActionWide, true, "fa-solid fa-person-chalkboard", translations["Voir le pitch deck"] ];
-    const pitchDeckButtonObject = buildProperties(buttonProps, pitchDeckButtonValues);
     return <>
         <ProfileTeam { ...pageProps }/>
         <ProfileOpportunities { ...pageProps }/>
         <ProfileGoals { ...pageProps }/>
-        <Button {...pitchDeckButtonObject as ButtonInterface}/>
+        <Button button={ ButtonStyles.callToActionWide } icon="fa-light fa-person-chalkboard" text={ translations["Voir le pitch deck"] }/>
         <ProfileEcosystem { ...pageProps }/>
         <ProfilePartners { ...pageProps }/>
         <ProfileActivities { ...pageProps }/>

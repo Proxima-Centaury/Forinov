@@ -226,39 +226,6 @@ class Utilities {
     };
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
-    * @function handleOutOfArea
-    * @param { MouseEvent } [ event ] Should be an ```event```.
-    * @param { Array<String> } [ targets ] Should be an ```array``` of ```strings```.
-    * @param { Function } [ action ] Should be a ```function```.
-    * @returns { Function|Boolean }
-    * - ```function```.
-    * ---
-    * @note This method triggers an action if the user clicks outside of the target.
-    * @note The {@link event} parameter should be the user's triggered event.
-    * @note The {@link targets} parameter should be an array of selectors.
-    * @note The selectors should be the ones triggering an action.
-    * @example
-    * handleOutOfArea(event, [ ".navbar", ".menuButton" ], closeMenu);
-    * // This will close the navbar's menu if a click is triggered outside of the navbar or the menu button's range.
-    * @note The {@link action} parameter should be the callback to be triggered.
-    */
-    handleOutOfArea = (event?: MouseEvent, targets?: Array<String>, action?: Function): Function|Boolean => {
-        if(!event || !targets || !action) {
-            return false;
-        };
-        let flag = false;
-        const eventTarget = event.target as Element;
-        if(eventTarget) {
-            targets.map((target) => (!eventTarget.closest(target as string)) ? flag = true : null);
-            if(flag) {
-                return action();
-            };
-            return false;
-        };
-        return false;
-    };
-    /**
-    * This is a ```method``` ( ```function``` inside ```class``` ).
     * @function preventSubmit
     * @param { MouseEvent } [ event ] Should be an ```event```.
     * @param { Function } [ callback ] Should be a ```function```.
@@ -470,7 +437,7 @@ class Utilities {
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
     * @function bindEventListeners
-    * @param { HTMLElement } [ element ] Should be an ```html element```.
+    * @param { Document|HTMLElement } [ element ] Should be an ```html element```.
     * @param { Array<string> } [ listeners ] Should be an ```array``` of ```strings```.
     * @param { Function } [ callback ] Should be a ```function```.
     * @returns { void|Boolean }
@@ -480,16 +447,16 @@ class Utilities {
     * @note This method is used to return the passed string trimed with all letters lowercased and spaces removed.
     * @note The {@link string} parameter should be a string.
     */
-    bindEventListeners(element: HTMLElement, listeners: Array<string>, callback: Function): void|Boolean {
+    bindEventListeners(element: Document|HTMLElement, listeners: Array<string>, callback: Function): void|Boolean {
         if(!element || !listeners || !callback) {
             return false;
         };
-        listeners.map((listener) => element.addEventListener(listener as any, callback as any));
+        listeners.map((listener) => element.addEventListener(listener as any, callback as any, true));
     };
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
     * @function removeEventListeners
-    * @param { HTMLElement } [ element ] Should be an ```html element```.
+    * @param { Document|HTMLElement } [ element ] Should be an ```html element```.
     * @param { Array<String> } [ listeners ] Should be an ```array``` of ```strings```.
     * @param { Function } [ callback ] Should be a ```function```.
     * @returns { void|Boolean }
@@ -499,7 +466,7 @@ class Utilities {
     * @note This method is used to return the passed string trimed with all letters lowercased and spaces removed.
     * @note The {@link string} parameter should be a string.
     */
-    removeEventListeners(element: HTMLElement, listeners: Array<String>, callback: Function): void|Boolean {
+    removeEventListeners(element: Document|HTMLElement, listeners: Array<String>, callback: Function): void|Boolean {
         if(!element || !listeners || !callback) {
             return false;
         };
@@ -595,7 +562,6 @@ const selectifyTheOptions = utilities.selectifyTheOptions;
 // const getCookie = utilities.getCookie;
 const getTranslations = utilities.getTranslations;
 const getMetadatasTranslations = utilities.getMetadatasTranslations;
-const handleOutOfArea = utilities.handleOutOfArea;
 const preventSubmit = utilities.preventSubmit;
 const buildProperties = utilities.buildProperties;
 const scrollTo = utilities.scrollTo;
@@ -621,7 +587,6 @@ export {
     // getCookie,
     getTranslations,
     getMetadatasTranslations,
-    handleOutOfArea,
     preventSubmit,
     buildProperties,
     scrollTo,

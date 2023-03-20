@@ -84,42 +84,10 @@ const ContactModal = ({ translations, theme }: any) => {
                     opacity: 0.5,
                 }}>{translations["Nos équipes vous répondront dans les meilleurs délais !"]}</p>
             </div>
-            <Input
-                label={translations["Société"]}
-                type="text"
-                name="company"
-                version={1}
-                action={() => { }}
-                defaultValue=""
-                placeholder=""
-            ></Input>
-            <Input
-                label={translations["Nom Prénom"]}
-                type="text"
-                name="name"
-                version={1}
-                action={() => { }}
-                defaultValue=""
-                placeholder=""
-            ></Input>
-            <Input
-                label={"Email"}
-                type="text"
-                name="email"
-                version={1}
-                action={() => { }}
-                defaultValue=""
-                placeholder=""
-            ></Input>
-            <Input
-                label={translations["Téléphone"]}
-                type="text"
-                name="phone"
-                version={1}
-                action={() => { }}
-                defaultValue=""
-                placeholder=""
-            ></Input>
+            <Input label={translations["Société"]} type="text" name="company"/>
+            <Input label={translations["Nom Prénom"]} type="text" name="name"/>
+            <Input label={"Email"} type="text" name="email"/>
+            <Input label={translations["Téléphone"]} type="text" name="phone"/>
 
             <div
                 style={{
