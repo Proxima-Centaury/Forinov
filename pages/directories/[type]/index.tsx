@@ -55,7 +55,6 @@ const Directory = (pageProps: DirectoryInterface) => {
         setResults(null);
         setSelects(null);
     }, [ type, category ]);
-    console.log(search);
     return <div id="directory" className={ (ui && ui == "false") ? "containerFull" : "container" }>
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
         { (ui && ui == "false") ? null : <IdenfiticationBanner { ...pageProps }/> }

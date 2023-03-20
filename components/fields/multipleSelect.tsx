@@ -74,7 +74,6 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         icon: (selectedOptions.length > 0) ? "fa-light fa-xmark" : "fa-light fa-check",
         text: (selectedOptions.length > 0) ? translations["Tout désélectionner"] : translations["Tout sélectionner"]
     };
-    console.log(selectedOptions);
     return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") } ref={ selectReference }>
         <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
             <i className="fa-solid fa-caret-right"/>
