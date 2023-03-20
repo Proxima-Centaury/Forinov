@@ -66,7 +66,7 @@ const Pagination = (pageProps: any) => {
 		<div className={ PaginationStyles.actions }>
 			<Button button={ ButtonStyles.callToAction } action={ previousPage } icon="fa-light fa-arrow-left" text={ translations["Précédent"] }/>
 			{ showPagination() }
-			{ (currentPage >= 4) ? <div className={ PaginationStyles.typePage }>
+			{ (currentPage >= 4 || pages >= 8 ) ? <div className={ PaginationStyles.typePage }>
 				{ (showPageInput) ? <div className={ PaginationStyles.custom }>
 					<Input type="text" name="page" action={ setPage }/>
 				</div> : null }
