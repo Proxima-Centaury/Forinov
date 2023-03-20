@@ -17,7 +17,7 @@ import SelectStyles from "../../public/stylesheets/components/fields/Select.modu
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const MultipleSelect = (selectProps: SelectInterface) => {
     const selectReference = useRef(null);
-    const { options, action, placeholder, source, defaultValues, dynamic, states, router } = selectProps;
+    const { options, action, placeholder, source, defaultValues, dynamic, search, states, router } = selectProps;
     const { translations } = states;
     let { category } = router.query;
     category = category?.substring(category.indexOf("_") + 1, category.length);
@@ -54,16 +54,18 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         setSelectedOptions(optionSEO);
     }, [ category ]);
     useEffect(() => {
-        if(!dynamic && defaultValues && defaultValues.length > 0) {
-            defaultValues.map((option) => {
-                if(option) {
-                    if(options && options.filter((selectedOption: any) => selectedOption.ID === option.toString()).length > 0) {
-                        setSelectedOptions(options.filter((selectedOption: any) => selectedOption.ID === option.toString()));
+        if(selectedOptions.length <= 0) {
+            if(!dynamic && search.categories && search.categories.split("-").length > 0) {
+                search.categories.split("-").map((option: any) => {
+                    if(option) {
+                        if(options && options.filter((selectedOption: any) => selectedOption.ID === option.toString()).length > 0) {
+                            setSelectedOptions(options.filter((selectedOption: any) => selectedOption.ID === option.toString()));
+                        };
                     };
-                };
-            });
+                });
+            };
         };
-    }, [ defaultValues ]);
+    }, [ search.categories ]);
     useEffect(() => {
         bindEventListeners(document, [ "click" ], handleOutOfArea);
         return () => {
