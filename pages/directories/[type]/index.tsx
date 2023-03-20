@@ -63,7 +63,7 @@ const Directory = (pageProps: DirectoryInterface) => {
             <p>{ informations.RESULTSMESSAGE }</p>
         </div> : null }
         { (results) ? <Results { ...pageProps } display={ display } results={ results }/> : null }
-        { (!results) ? ((router.asPath.match(/(\/countries)/)) ? <Countries { ...pageProps } display={ display } search={ search }/> : <Categories { ...pageProps } display={ display } search={ search }/>) : null }
+        { (!results) ? ((router.asPath.match(/(\/countries)/)) ? <Countries { ...pageProps } display={ display } search={ search }/> : <Categories { ...pageProps } display={ display } search={ search } setSearch={ setSearch }/>) : null }
         { (informations && informations.PAGES > 0) ? <Pagination { ...pageProps } pages={ informations.PAGES } search={ search } action={ setSearch }/> : null }
         { (ui && ui == "false") ? null : <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
@@ -76,26 +76,54 @@ const Directory = (pageProps: DirectoryInterface) => {
 /* Categories */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Categories = (pageProps: any) => {
-    const { filters, display, router }: any = pageProps;
+    const { filters, display, search, setSearch, router }: any = pageProps;
     const { ui, type } = router.query;
+    const setCategory = (event: any, value: String) => {
+        event.preventDefault();
+        return setSearch({ ...search, categories: value.toString() });
+    };
+    if(ui && ui == "false") {
+        return <Fragment>
+            { (type.match(/(startup)/)) ? <div className={ display }>
+                { filters.CATEGORIES.map((filter: any, key: Key) => <button key={ key } onClick={ (event: any) => setCategory(event, filter.ID) }>
+                    <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+                </button>) }
+            </div> : null}
+            { (type.match(/(corporation|entreprise)/)) ? <div className={ display }>
+                { filters.SECTORS.map((filter: any, key: Key) => <button key={ key } onClick={ (event: any) => setCategory(event, filter.ID) }>
+                    <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+                </button>) }
+            </div> : null}
+            { (type.match(/(partner|partenaire)/)) ? <div className={ display }>
+                { filters.PARTNERS_TYPES.map((filter: any, key: Key) => <button key={ key } onClick={ (event: any) => setCategory(event, filter.ID) }>
+                    <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+                </button>) }
+            </div> : null}
+            { (type.match(/(opport)/)) ? <div className={ display }>
+                { filters.OPPORTUNITIES.map((filter: any, key: Key) => <button key={ key } onClick={ (event: any) => setCategory(event, filter.ID) }>
+                    <CategoryCard { ...pageProps } category={ filter } display={ display }/>
+                </button>) }
+            </div> : null}
+        </Fragment>;
+    };
     return <Fragment>
         { (type.match(/(startup)/)) ? <div className={ display }>
-            { filters.CATEGORIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
+            { filters.CATEGORIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
         { (type.match(/(corporation|entreprise)/)) ? <div className={ display }>
-            { filters.SECTORS.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
+            { filters.SECTORS.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
         { (type.match(/(partner|partenaire)/)) ? <div className={ display }>
-            { filters.PARTNERS_TYPES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
+            { filters.PARTNERS_TYPES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
         { (type.match(/(opport)/)) ? <div className={ display }>
-            { filters.OPPORTUNITIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID + ((ui && ui == "false") ? "?ui=false" : "") }>
+            { filters.OPPORTUNITIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}

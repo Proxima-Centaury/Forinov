@@ -17,7 +17,7 @@ import SelectStyles from "../../public/stylesheets/components/fields/Select.modu
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const MultipleSelect = (selectProps: SelectInterface) => {
     const selectReference = useRef(null);
-    const { options, action, placeholder, source, dynamic, states, router } = selectProps;
+    const { options, action, placeholder, source, defaultValues, dynamic, states, router } = selectProps;
     const { translations } = states;
     let { category } = router.query;
     category = category?.substring(category.indexOf("_") + 1, category.length);
@@ -53,6 +53,17 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         (!dynamic && foundOption) ? optionSEO.push(foundOption) : null;
         setSelectedOptions(optionSEO);
     }, [ category ]);
+    useEffect(() => {
+        if(!dynamic && defaultValues && defaultValues.length > 0) {
+            defaultValues.map((option) => {
+                if(option) {
+                    if(options && options.filter((selectedOption: any) => selectedOption.ID === option.toString()).length > 0) {
+                        setSelectedOptions(options.filter((selectedOption: any) => selectedOption.ID === option.toString()));
+                    };
+                };
+            });
+        };
+    }, [ defaultValues ]);
     useEffect(() => {
         bindEventListeners(document, [ "click" ], handleOutOfArea);
         return () => {
