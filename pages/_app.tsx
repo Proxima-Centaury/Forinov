@@ -52,9 +52,11 @@ const App = ({ Component, pageProps }: AppProps) => {
         setTranslations(getTranslations(locale));
     }, [ locale ]);
     useEffect(() => {
-        if(router.pathname !== "/404" && locale !== getCookie("NEXT_LOCALE")) {
-            setCookie("NEXT_LOCALE", locale, { sameSite: "strict" });
-            router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
+        if(!router.query.ui) {
+            if(router.pathname !== "/404" && locale !== getCookie("NEXT_LOCALE")) {
+                setCookie("NEXT_LOCALE", locale, { sameSite: "strict" });
+                router.push("/" + locale + router.asPath, "/" + locale + router.asPath, { locale: locale.toString() });
+            };
         };
     });
     useEffect(() => setLock(!session), [ session ]);
