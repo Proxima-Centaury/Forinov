@@ -53,7 +53,6 @@ const Pagination = (pageProps: any) => {
 		scrollTo(0, 0);
 		setShowPageInput(false);
 	}, [ currentPage ]);
-	console.log(currentPage)
 	const showPagination = () => {
 		const buttons = [];
 		for(let page = 1; page <= pages; page++) {
