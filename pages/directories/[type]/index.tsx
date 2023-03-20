@@ -124,12 +124,12 @@ const Results = (pageProps: any) => {
     if(ui && ui == "false") {
         return <Fragment>
             { (!type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
-                { results.map((company: any, key: Key) => <a key={ key } href={ company.URL }>
+                { results.map((company: any, key: Key) => <a key={ key } href={ company.URL } target="_parent">
                     <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
                 </a>) }
             </div> : null}
             { (type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
-                { results.map((opportunity: any, key: Key) => <a key={ key } href={ opportunity.URL }>
+                { results.map((opportunity: any, key: Key) => <a key={ key } href={ opportunity.URL } target="_parent">
                     <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ parseInt(key.toString()) + 1 }/>
                 </a>) }
             </div> : null}
