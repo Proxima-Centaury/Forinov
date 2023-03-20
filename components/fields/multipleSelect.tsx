@@ -41,7 +41,6 @@ const MultipleSelect = (selectProps: SelectInterface) => {
     };
     const handleOutOfArea: MouseEventHandler = (event) => {
         if(selectReference && selectReference.current) {
-            console.log(selectReference);
             const current = selectReference.current as HTMLElement;
             if(!current.contains(event.target as HTMLElement)) {
                 setSelectState(false);
