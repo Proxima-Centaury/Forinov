@@ -402,6 +402,8 @@
 	"Précédent": "Previous",
 	"Suivant": "Next",
 	"Pages trouvées": "Pages found",
+	"Tout sélectionner": "Select all",
+	"Tout désélectionner": "Clear selection",
 	"annuaire_opport_selectors": [
 		"Tous",
 		"Appels à candidature",

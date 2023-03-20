@@ -42,8 +42,10 @@ const Pagination = (pageProps: any) => {
         event.preventDefault();
         const target = event.target as HTMLInputElement;
         const page = target.value || null;
-		if(page && parseInt(page) > 1) {
+		if(page && parseInt(page) > 1 && parseInt(page) <= pages) {
 			setCurrentPage(parseInt(page));
+		} else {
+			setCurrentPage(1);
 		};
 	};
 	useEffect(() => {
@@ -51,7 +53,6 @@ const Pagination = (pageProps: any) => {
 		scrollTo(0, 0);
 		setShowPageInput(false);
 	}, [ currentPage ]);
-	console.log(currentPage)
 	const showPagination = () => {
 		const buttons = [];
 		for(let page = 1; page <= pages; page++) {
@@ -65,12 +66,12 @@ const Pagination = (pageProps: any) => {
 		<div className={ PaginationStyles.actions }>
 			<Button button={ ButtonStyles.callToAction } action={ previousPage } icon="fa-light fa-arrow-left" text={ translations["Précédent"] }/>
 			{ showPagination() }
-			<div className={ PaginationStyles.typePage }>
+			{ (currentPage >= 4) ? <div className={ PaginationStyles.typePage }>
 				{ (showPageInput) ? <div className={ PaginationStyles.custom }>
 					<Input type="text" name="page" action={ setPage }/>
 				</div> : null }
 				<Button button={ ButtonStyles.callToActionAlternativeRoundedIcon } action={ () => setShowPageInput(!showPageInput) } icon="fa-light fa-ellipsis"/>
-			</div>
+			</div> : null }
 			<Button button={ (pages === currentPage) ? ButtonStyles.callToActionRoundedIcon : ButtonStyles.callToActionAlternativeRoundedIcon } action={ selectPage } text={ pages.toString() }/>
 			<Button button={ ButtonStyles.callToAction } action={ nextPage } icon="fa-light fa-arrow-right" text={ translations["Suivant"] }/>
 		</div>

@@ -24,8 +24,29 @@
     gap: 8px;
     flex: 1;
 }
+.actions > button:first-child,
+.actions > button:last-child {
+    min-width: 150px;
+    width: 150px;
+    max-width: 150px;
+}
 .actions > button:last-child {
     flex-direction: row-reverse;
+}
+@media screen and (max-width: 768px) {
+    .actions > button:first-child,
+    .actions > button:last-child {
+        min-width: 40px;
+        width: 40px;
+        max-width: 40px;
+        min-height: 40px;
+        height: 40px;
+        max-height: 40px;
+    }
+    .actions > button:first-child > span,
+    .actions > button:last-child > span {
+        display: none;
+    }
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Pagination ( Type Page ) */
