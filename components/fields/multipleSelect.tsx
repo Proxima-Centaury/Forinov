@@ -1,9 +1,9 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useState, Key, MouseEventHandler, useEffect } from "react";
+import { useState, Key, MouseEventHandler, useEffect, useRef } from "react";
 import { SelectInterface } from "../../typescript/interfaces";
-import { selectifyTheOptions } from "../../scripts/utilities";
+import { bindEventListeners, removeEventListeners, selectifyTheOptions } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Component */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -16,6 +16,7 @@ import SelectStyles from "../../public/stylesheets/components/fields/Select.modu
 /* Multiple Select */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const MultipleSelect = (selectProps: SelectInterface) => {
+    const selectReference = useRef(null);
     const { options, action, placeholder, source, dynamic, states, router } = selectProps;
     const { translations } = states;
     let { category } = router.query;
@@ -38,19 +39,34 @@ const MultipleSelect = (selectProps: SelectInterface) => {
             return (action) ? action(event, selectifiedOptions) : null;
         };
     };
+    const handleOutOfArea: MouseEventHandler = (event) => {
+        if(selectReference && selectReference.current) {
+            console.log(selectReference);
+            const current = selectReference.current as HTMLElement;
+            if(!current.contains(event.target as HTMLElement)) {
+                setSelectState(false);
+            };
+        };
+    };
     useEffect(() => {
         const foundOption = options?.find((option: any) => option.ID == category);
         const optionSEO = [];
         (!dynamic && foundOption) ? optionSEO.push(foundOption) : null;
         setSelectedOptions(optionSEO);
     }, [ category ]);
+    useEffect(() => {
+        bindEventListeners(document, [ "click" ], handleOutOfArea);
+        return () => {
+            removeEventListeners(document, [ "click" ], handleOutOfArea);
+        };
+    }, []);
     const additionalProps = {
         icon: (selectedOptions.length > 0) ? "fa-light fa-xmark" : "fa-light fa-check",
         text: (selectedOptions.length > 0) ? translations["Tout désélectionner"] : translations["Tout sélectionner"]
     };
-    return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") }>
+    return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") } ref={ selectReference }>
         <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
-            <i className="fa-solid fa-caret-right"></i>
+            <i className="fa-solid fa-caret-right"/>
         </button>
         { (placeholder) ? <p className={ SelectStyles.placeholder }>{ placeholder + " : " }{ (selectedOptions?.length <= 0) ? null : <span>{ selectedOptions?.length }</span> }</p> : null }
         <div className={ SelectStyles.options }>
