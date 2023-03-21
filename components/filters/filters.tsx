@@ -93,13 +93,7 @@ const Filters = (pageProps: any) => {
         </div>
         <div className={ FiltersStyles.filters + " grid fourColumns" }>
             { (filters) ? <MultipleSelect { ...pageProps } options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
-            { (dynamicFiltersToArray.length > 0) ? dynamicFiltersToArray.map((filter: any, key: Key) => {
-                var placeholder = filter[0];
-                (filter[0].match(/(sector)/i)) ? placeholder = translations["Secteurs cibles"] : null;
-                (filter[0].match(/(techno)/i)) ? placeholder = translations["Technologies"] : null;
-                (filter[0].match(/(jobs)/i)) ? placeholder = translations["Métiers cibles"] : null;
-                return <MultipleSelect key={ key } { ...pageProps } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(placeholder).toString() } dynamic/>;
-            }) : null }
+            { (dynamicFiltersToArray.length > 0) ? dynamicFiltersToArray.map((filter: any, key: Key) => <MultipleSelect key={ key } { ...pageProps } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(filter[0]).toString() } dynamic/>) : null }
         </div>
     </div>;
 };
