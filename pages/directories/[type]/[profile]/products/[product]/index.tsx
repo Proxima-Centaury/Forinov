@@ -29,7 +29,7 @@ const Product = (pageProps: ProductsInterface) => {
         if(products.length > 0 && products.find((check: any) => check.ID === product)) {
             setSelectedProduct(products.find((check: any) => check.ID === product));
         };
-    }), [ products ];
+    }, [ products, product ]);
     return <div id="product" className="container">
         { (selectedProduct) ? <div className={ProductStyles.imageWrapper}>
             { (selectedProduct.PICTURE) ? <Image src={ selectedProduct.PICTURE } alt={ selectedProduct.NAME }/> : null }

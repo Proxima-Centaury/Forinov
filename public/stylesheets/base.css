@@ -333,9 +333,10 @@ body {
     order: 5;
     z-index: inherit;
 }
-.list > a > div > img {
+.list > a > div > [class*="icon"] {
     width: 48px;
     height: 48px;
+    padding: 8px;
 }
 .list > a > div > i {
     font-size: 48px;
