@@ -3,7 +3,7 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { useState, Key, MouseEventHandler, useEffect, useRef } from "react";
 import { SelectInterface } from "../../typescript/interfaces";
-import { bindEventListeners, removeEventListeners, selectifyTheOptions } from "../../scripts/utilities";
+import { bindEventListeners, removeEventListeners, selectifyTheOptions, uppercaseFirst } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Component */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -17,7 +17,7 @@ import SelectStyles from "../../public/stylesheets/components/fields/Select.modu
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const MultipleSelect = (selectProps: SelectInterface) => {
     const selectReference = useRef(null);
-    const { options, action, placeholder, source, defaultValues, dynamic, search, states, router } = selectProps;
+    const { options, action, placeholder, source, dynamic, search, states, router } = selectProps;
     const { translations } = states;
     let { category } = router.query;
     category = category?.substring(category.indexOf("_") + 1, category.length);
@@ -48,7 +48,7 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         };
     };
     useEffect(() => {
-        const foundOption = options?.find((option: any) => option.ID == category);
+        const foundOption = (Array.isArray(options) && options.length > 0) ? options?.find((option: any) => option.ID == category) : null;
         const optionSEO = [];
         (!dynamic && foundOption) ? optionSEO.push(foundOption) : null;
         setSelectedOptions(optionSEO);
@@ -112,7 +112,7 @@ const Option = (optionProps: any) => {
             return (action) ? action(event, filtered) : null;
         };
     };
-    return <Button button={ SelectStyles.option + " " + ((selectedOptions && selectedOptions.filter((selected: any) => selected.ID == option.ID).length > 0) ? SelectStyles.selected : "") } action={ selectOption } text={ option.NAME }/>;
+    return <Button button={ SelectStyles.option + " " + ((selectedOptions && selectedOptions.filter((selected: any) => selected.ID == option.ID).length > 0) ? SelectStyles.selected : "") } action={ selectOption } text={ uppercaseFirst(option.NAME).toString() }/>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
