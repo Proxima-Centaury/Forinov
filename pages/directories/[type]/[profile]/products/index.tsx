@@ -2,60 +2,40 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { useEffect, useState, Key } from "react";
-import { FoldersInterface } from "../../../../../../typescript/interfaces";
-import { formatNameForUrl } from "../../../../../../scripts/utilities";
-import api from "../../../../../../scripts/api";
+import { Key } from "react";
+import { ProductsInterface } from "../../../../../typescript/interfaces";
+import { formatNameForUrl } from "../../../../../scripts/utilities";
+import api from "../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
-import EntityCard from '../../../../../../components/cards/entity';
-import Button from "../../../../../../components/buttons/button";
-import Format from "../../../../../../components/texts/format";
-import Carousel from "../../../../../../components/carousels/carousel";
+import ProductCard from "../../../../../components/cards/product";
+import Button from "../../../../../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import FolderStyles from "../../../../../../public/stylesheets/pages/Folder.module.css";
-import ButtonStyles from "../../../../../../public/stylesheets/components/buttons/Button.module.css";
+import ProductsStyles from "../../../../../public/stylesheets/pages/Products.module.css";
+import ButtonStyles from "../../../../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Folder */
+/* Products */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Folder = (pageProps: FoldersInterface) => {
-    const { profile, folders, states, router } = pageProps;
+const Products = (pageProps: ProductsInterface) => {
+    const { products, states, router } = pageProps;
     const { translations } = states;
-    let { folder } = router.query;
-    folder = folder?.substring(folder.indexOf("_") + 1, folder.length);
-    const [ selectedFolder, setSelectedFolder ]: any = useState(null);
-    useEffect(() => {
-        if(folders.length > 0 && folders.find((check: any) => check.ID === folder)) {
-            setSelectedFolder(folders.find((check: any) => check.ID === folder));
-        };
-    }, [ folders, folder ]);
-    return <div id="folder" className="container">
-        <div className={ FolderStyles.title }>
-            { (selectedFolder) ? <h1>{ selectedFolder.NAME }</h1> : null }
-            { (selectedFolder) ? <p>{ selectedFolder.STARTUPS.length + " " + translations["Startups"].toLowerCase() }</p> : null }
-        </div>
-        <div className={ FolderStyles.description }>
-            { (selectedFolder) ? <Format content={ selectedFolder.DESCRIPTION }/> : null }
+    return <div id="products" className="container">
+        <div className={ ProductsStyles.title }>
+            <h1>{ translations["Offres et produits"] }</h1>
+            <p>{ products.length + " " + translations["Offres et/ou produits"].toLowerCase() }</p>
         </div>
         <div className="grid twoColumns">
-            { (selectedFolder && selectedFolder.STARTUPS) ? selectedFolder.STARTUPS.map((startup: any, key: Key) => {
-                const url = "/directories/startups/categories/" + formatNameForUrl(startup.CATEGORY[0]?.NAME) + "_" + startup.CATEGORY[0]?.ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
-                return <Link key={ key } href={ url }>
-                    <EntityCard { ...pageProps } entity={ startup } type="startup" details/>
-                </Link>;
-            }) : null }
+            { (products) ? products.map((product: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(product.NAME) + "_" + product.ID }>
+                <ProductCard { ...pageProps } product={ product }/>
+            </Link>) : null }
         </div>
-        <Button button={ ButtonStyles.classicLink } href={ router.asPath.substring(0, router.asPath.lastIndexOf("/")) } icon="fa-light fa-arrow-left" text={ translations["Retourner aux dossiers du profil"] }/>
-        <div className={ FolderStyles.moreFolders }>
-            <p>{ translations["Les autres dossiers de startups public de"] + " " + profile.NAME }</p>
-            <Carousel { ...pageProps } component="StartupsFolders" data={ folders }/>
-        </div>
+        <Button button={ ButtonStyles.classicLink } href={ router.asPath.substring(0, router.asPath.lastIndexOf("/")) } icon="fa-light fa-arrow-left" text={ translations["Retourner au profil"] }/>
     </div>;
-}
+};
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Rendering */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -84,12 +64,12 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         props: {
             locale, locales, defaultLocale,
             profile: foundProfile,
-            folders: await api.getFolders(type, profile, "next", "Sorbonne", language)
+            products: await api.getProducts(type, profile, "next", "Sorbonne", language)
         }
     };
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default Folder;
+export default Products;
 export { getServerSideProps };

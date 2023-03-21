@@ -1,29 +1,79 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Components */
+/* Testimonial ( Card ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Image from "next/image";
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
+    width: 100%;
+    padding: 16px;
+    border-radius: 15px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+}
+.card:hover {
+    transform: translate3d(0px, -8px, 0px);
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Styles */
+/* Testimonial ( Pictures ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import ProductStyles from "../../public/stylesheets/components/cards/Product.module.css";
+.pictures {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+}
+.pictures > .main {
+    min-width: 260px;
+    width: 260px;
+    max-width: 260px;
+    min-height: 260px;
+    height: 260px;
+    max-height: 260px;
+}
+.pictures > .sub {
+    min-width: 100px;
+    width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    height: 100px;
+    max-height: 100px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    border: var(--border);
+    border-width: 2px;
+    border-color: var(--logo-blue-color);
+}
+.pictures > img {
+    border-radius: 100%;
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Product Card */
+/* Testimonial ( Identity ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProductCard = (productProps: any) => {
-    const { product, states } = productProps;
-    const { translations } = states;
-    return <div className={ ProductStyles.product }>
-        <div className={ ProductStyles.banner }>
-            <p>{ translations["Voir"] }</p>
-            { (product.PICTURE) ? <Image src={ product.PICTURE } alt={ "Image du produit " + product.NAME } width="1440" height="720"/> : null}
-        </div>
-        <div className={ ProductStyles.content }>
-            <p className={ ProductStyles.type }>{ Object.values(product.BUSINESSMODEL).join(" | ") }</p>
-            <p className={ ProductStyles.name }>{ product.NAME }</p>
-        </div>
-    </div>;
-};
+.identity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+.identity > h4 {
+    font-family: "Nunito Sans";
+    font-size: 32px;
+    font-weight: bold;
+}
+.identity > h5 {
+    font-family: "Nunito Sans";
+    font-size: 24px;
+    font-weight: 300;
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Exports */
+/* Testimonial ( Testimonial ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default ProductCard;
+.testimonial {
+    display: flex;
+    flex: 1;
+}

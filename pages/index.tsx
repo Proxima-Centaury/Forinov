@@ -83,7 +83,7 @@ const Home = (pageProps: HomeInterface) => {
 						</div>
 						<div className={ HomeStyles.footer }>
 							<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Créer mon compte"] }/>
-							<Button button={ ButtonStyles.classicLink } href="/startups" text={ translations["En savoir plus"] }/>
+							<Button button={ ButtonStyles.classicLink } href="/corporations" text={ translations["En savoir plus"] }/>
 						</div>
 					</div>
 					<div className={ HomeStyles.type } data-type="partner">
@@ -101,7 +101,7 @@ const Home = (pageProps: HomeInterface) => {
 						</div>
 						<div className={ HomeStyles.footer }>
 							<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Créer mon compte"] }/>
-							<Button button={ ButtonStyles.classicLink } href="/startups" text={ translations["En savoir plus"] }/>
+							<Button button={ ButtonStyles.classicLink } href="/partners" text={ translations["En savoir plus"] }/>
 						</div>
 					</div>
 				</div>
@@ -175,18 +175,11 @@ const Home = (pageProps: HomeInterface) => {
 			</div> : null }
 			<div className={ HomeStyles.testimonials } data-type="home">
 				<h4>{ translations["Ils nous font confiance"] }</h4>
-				{/* <Carousel { ...pageProps } component="LatestStartups" data={ startups }/>
-				<div className={ HomeStyles.actions } data-justify="left">
-					<Button button={ ButtonStyles.callToAction } href="/directories/startups/categories" text={ translations["Accéder à l'annuaire des startups"] }/>
-				</div> */}
+				<Carousel { ...pageProps } component="Testimonials"/>
 			</div>
 			<div className={ HomeStyles.blog } data-type="home">
 				<h4>{ translations["Le blog Forinov"] }</h4>
 				<Carousel { ...pageProps } component="ForinovBlog" data={ landing.BLOG }/>
-				{/* <Carousel { ...pageProps } component="LatestStartups" data={ startups }/>
-				<div className={ HomeStyles.actions } data-justify="left">
-					<Button button={ ButtonStyles.callToAction } href="/directories/startups/categories" text={ translations["Accéder à l'annuaire des startups"] }/>
-				</div> */}
 			</div>
 		</div>
 	</>;

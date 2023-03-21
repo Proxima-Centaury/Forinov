@@ -2,60 +2,98 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { useEffect, useState, Key } from "react";
-import { FoldersInterface } from "../../../../../../typescript/interfaces";
-import { formatNameForUrl } from "../../../../../../scripts/utilities";
+import { useEffect, useState } from "react";
+import { ProductsInterface } from "../../../../../../typescript/interfaces";
 import api from "../../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Image from 'next/image';
 import Link from "next/link";
-import EntityCard from '../../../../../../components/cards/entity';
-import Button from "../../../../../../components/buttons/button";
-import Format from "../../../../../../components/texts/format";
-import Carousel from "../../../../../../components/carousels/carousel";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import FolderStyles from "../../../../../../public/stylesheets/pages/Folder.module.css";
+import ProductStyles from "../../../../../../public/stylesheets/pages/Product.module.css";
 import ButtonStyles from "../../../../../../public/stylesheets/components/buttons/Button.module.css";
+import Tags from "../../../../../../components/tags/tags";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Folder */
+/* Product */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Folder = (pageProps: FoldersInterface) => {
-    const { profile, folders, states, router } = pageProps;
+const Product = (pageProps: ProductsInterface) => {
+    const { profile, products, states, router } = pageProps;
     const { translations } = states;
-    let { folder } = router.query;
-    folder = folder?.substring(folder.indexOf("_") + 1, folder.length);
-    const [ selectedFolder, setSelectedFolder ]: any = useState(null);
+    let { product } = router.query;
+    product = product?.substring(product.indexOf("_") + 1, product.length);
+    const [ selectedProduct, setSelectedProduct ]: any = useState(null);
     useEffect(() => {
-        if(folders.length > 0 && folders.find((check: any) => check.ID === folder)) {
-            setSelectedFolder(folders.find((check: any) => check.ID === folder));
+        if(products.length > 0 && products.find((check: any) => check.ID === product)) {
+            setSelectedProduct(products.find((check: any) => check.ID === product));
         };
-    }, [ folders, folder ]);
-    return <div id="folder" className="container">
-        <div className={ FolderStyles.title }>
-            { (selectedFolder) ? <h1>{ selectedFolder.NAME }</h1> : null }
-            { (selectedFolder) ? <p>{ selectedFolder.STARTUPS.length + " " + translations["Startups"].toLowerCase() }</p> : null }
-        </div>
-        <div className={ FolderStyles.description }>
-            { (selectedFolder) ? <Format content={ selectedFolder.DESCRIPTION }/> : null }
-        </div>
-        <div className="grid twoColumns">
-            { (selectedFolder && selectedFolder.STARTUPS) ? selectedFolder.STARTUPS.map((startup: any, key: Key) => {
-                const url = "/directories/startups/categories/" + formatNameForUrl(startup.CATEGORY[0]?.NAME) + "_" + startup.CATEGORY[0]?.ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
-                return <Link key={ key } href={ url }>
-                    <EntityCard { ...pageProps } entity={ startup } type="startup" details/>
-                </Link>;
-            }) : null }
-        </div>
-        <Button button={ ButtonStyles.classicLink } href={ router.asPath.substring(0, router.asPath.lastIndexOf("/")) } icon="fa-light fa-arrow-left" text={ translations["Retourner aux dossiers du profil"] }/>
-        <div className={ FolderStyles.moreFolders }>
-            <p>{ translations["Les autres dossiers de startups public de"] + " " + profile.NAME }</p>
-            <Carousel { ...pageProps } component="StartupsFolders" data={ folders }/>
-        </div>
+    }, [ products, product ]);
+    return <div id="product" className="container">
+        { (selectedProduct) ? <div className={ProductStyles.imageWrapper}>
+            { (selectedProduct.PICTURE) ? <Image src={ selectedProduct.PICTURE } alt={ selectedProduct.NAME }/> : null }
+        </div> : null }
+        { (selectedProduct) ? <div>
+            <h1 className={ProductStyles.name}>{selectedProduct.NAME}</h1>
+            <div className={ProductStyles.spacer}></div>
+        </div> : null }
+        { (selectedProduct) ? <div>
+            <p>{selectedProduct.DESCRIPTION}</p>
+        </div> : null }
+        { (selectedProduct) ? <div className={ProductStyles.table}>
+            <div className={ProductStyles.row}>
+                <span>{translations["Maturité"]}</span>
+                <Tags tags={ selectedProduct.MATURITY }/>
+            </div>
+            <div className={ProductStyles.row}>
+                <span>{ translations["Modèle économique"]}</span>
+                <Tags tags={ selectedProduct.ECONOMICMODEL }/>
+            </div>
+            <div className={ProductStyles.row}>
+                <span>{ translations["Ordre de prix"]}</span>
+                <span>{selectedProduct.PRICE} €</span>
+            </div>
+            <div className={ProductStyles.row}>
+                <span>{translations["Clients actuels"]}</span>
+                <span>{selectedProduct.CLIENTS}</span>
+            </div>
+            <div className={ProductStyles.row}>
+                <span>{translations["Modèle"]}</span>
+                <Tags tags={ selectedProduct.BUSINESSMODEL }/>
+            </div>
+            <div className={ProductStyles.row}>
+                <span>{ translations["Technologies"]}</span>
+                <Tags tags={ selectedProduct.TECHNOLOGIES }/>
+            </div>
+            <div className={ProductStyles.row}>
+                <span>{translations["Entreprises Cible"] }</span>
+                <Tags tags={ selectedProduct.TARGETCOMPANIES }/>
+            </div>
+            <div className={ProductStyles.row}>
+                <span>{translations["Secteurs Cible"]}</span>
+                <Tags tags={ selectedProduct.TARGETSECTORS }/>
+            </div>
+        </div> : null }
+        { (selectedProduct) ? <div className={ProductStyles.actions}>
+            <Link
+                href={selectedProduct.LINK}
+                className={ProductStyles.link}
+            >
+                {translations["Voir la vidéo de présentation"]}
+            </Link>
+            <Link
+                href={'/login'}
+                className={ButtonStyles.callToAction}
+                style={{
+                    color: "var(--perfect-white-color)"
+                }}
+            >
+                {translations["Faire une demande"]}
+            </Link>
+        </div> : null }
     </div>;
-}
+};
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Rendering */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -84,12 +122,12 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         props: {
             locale, locales, defaultLocale,
             profile: foundProfile,
-            folders: await api.getFolders(type, profile, "next", "Sorbonne", language)
+            products: await api.getProducts(type, profile, "next", "Sorbonne", language)
         }
     };
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default Folder;
+export default Product;
 export { getServerSideProps };

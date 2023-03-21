@@ -21,7 +21,7 @@ import ButtonStyles from "../../../../../public/stylesheets/components/buttons/B
 /* Folders */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Folders = (pageProps: FoldersInterface) => {
-    const { profile, folders, states, router }: any = pageProps;
+    const { folders, states, router }: any = pageProps;
     const { translations }: any = states;
     return <div id="folders" className="container">
         <div className={ FoldersStyles.title }>

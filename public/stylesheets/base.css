@@ -58,6 +58,8 @@
     --background-sub-color: var(--perfect-white-color);
     --background-private-color: var(--lighter-black-color);
     --background-information-color: var(--light-grey-color);
+    /* Inverted color */
+    --inverted-color: var(--perfect-black-color);
     /* Other Variables */
     --shadow-color: #00000030;
     --darker-shadow-color: #00000050;
@@ -119,6 +121,8 @@
     --background-sub-color: var(--classic-black-color);
     --background-private-color: var(--lighter-black-color);
     --background-information-color: var(--perfect-grey-color);
+    /* Inverted color */
+    --inverted-color: var(--perfect-white-color);
     /* Other Variables */
     --shadow-color: #00000070;
     --darker-shadow-color: #00000090;
@@ -329,9 +333,10 @@ body {
     order: 5;
     z-index: inherit;
 }
-.list > a > div > img {
+.list > a > div > [class*="icon"] {
     width: 48px;
     height: 48px;
+    padding: 8px;
 }
 .list > a > div > i {
     font-size: 48px;
