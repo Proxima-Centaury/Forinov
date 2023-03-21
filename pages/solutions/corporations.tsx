@@ -13,7 +13,9 @@ import Link from "next/link";
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import SolutionStyles from "../../public/stylesheets/pages/solutions/Solutions.module.css"
+import HomeStyles from "../../public/stylesheets/pages/Home.module.css"
 import { useRouter } from "next/router";
+import Carousel from "../../components/carousels/carousel";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Corporation Solutions */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -231,35 +233,10 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                         </div>
                     </div>
                 </div>
-                <div className='container' style={{ padding: "5rem 0" }}>
-                    <h1 className={SolutionStyles.bannerTitle2} style={{ marginBottom: "2rem" }}>{translations['Ils nous font confiance']}</h1>
-                    <div className={SolutionStyles.trusters}>
-                        <div className={SolutionStyles.trusterItem}>
-                            <div className={SolutionStyles.trusterAvatar}>
-                                {/* image */}
-                                <div className={SolutionStyles.trusterCompany}></div>
-                            </div>
-
-                            <h1 className={SolutionStyles.trusterName}>Gilles Favre</h1>
-                            <h2 className={SolutionStyles.trusterJob}>{translations['Responsable innovation']}<br />
-                                {translations['Groupe Crédit Mutuel-CIC']}</h2>
-                            <p className={SolutionStyles.trusterTalk}>{translations['Nous partageons le même constat que les équipes de Forinov : il est urgent de faciliter les relations entre les grandes entreprises et les startups. C’est pourquoi nous avons décidé de leur faire confiance et de les accompagner dès la sortie de leur plateforme. Aujourd’hui Forinov nous permet de centraliser le flux de sollicitations de startups, de découvrir de nouvelles solutions et de suivre, de manière collaborative, nos différents portefeuilles de startups, ce qui est essentiel pour un groupe mutualiste comme le nôtre !']}</p>
-                        </div>
-
-                        <div className={SolutionStyles.trusterItem}>
-                            <div className={SolutionStyles.trusterAvatar}>
-                                {/* image */}
-                                <div className={SolutionStyles.trusterCompany}></div>
-                            </div>
-
-                            <h1 className={SolutionStyles.trusterName}>Grégory Fournier
-                            </h1>
-                            <h2 className={SolutionStyles.trusterJob}>{ translations['Délégué général']}<br />
-                                {translations['Réseau Les Premières']}</h2>
-                            <p className={SolutionStyles.trusterTalk}>{translations['Rejoindre Forinov va contribuer au développement de nos entrepreneur·es. C’est un atout précieux pour nos incubées ! En plus d’optimiser le suivi de notre accompagnement avec l’ensemble de nos membres, Forinov permet d’apporter plus de visibilité au sein de l’écosystème entrepreneurial et un accès privilégié aux opportunités (appels à projets...).']}</p>
-                        </div>
-                    </div>
-                </div>
+                <div className={ HomeStyles.testimonials } data-type="home">
+				<h4>{ translations["Ils nous font confiance"] }</h4>
+				<Carousel { ...pageProps } component="Testimonials"/>
+			</div>
                 <div className={SolutionStyles.banner3}>
                     <div className="container">
                         <h1 className={SolutionStyles.bannerTitle}>{translations['Les réponses à vos questions']}</h1>
