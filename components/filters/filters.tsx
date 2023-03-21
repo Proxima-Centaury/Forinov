@@ -52,7 +52,7 @@ const Filters = (pageProps: any) => {
         const informations = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] === "INFORMATIONS")[0] : [];
         const filters = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] !== "INFORMATIONS") : [];
         (type.match(/(startup)/)) ? setDynamicInformations(informations) : null;
-        (type.match(/(startup)/)) ? setDynamicFiltersToArray(filters) : null;
+        (type.match(/(startup)/)) ? setDynamicFiltersToArray(filters) : setDynamicFiltersToArray([]);
         (informations) ? setInformations(informations[1]) : null;
     }, [ dynamicFilters ]);
     return <div className={ FiltersStyles.container }>
