@@ -59,9 +59,9 @@
                         { "url": "/blog", "text": "Blog" }
                     ] },
                     { "url": "", "text": "Communauté", "nesting": true, "nest": [
-                        { "url": "/directories/startups", "text": "Annuaire de startups" },
-                        { "url": "/directories/corporations", "text": "Annuaire d'entreprises" },
-                        { "url": "/directories/partners", "text": "Annuaire de partenaires" },
+                        { "url": "/directories/startups/categories", "text": "Annuaire de startups" },
+                        { "url": "/directories/corporations/categories", "text": "Annuaire d'entreprises" },
+                        { "url": "/directories/partners/categories", "text": "Annuaire de partenaires" },
                         { "url": "/directories/opportunities/categories/callforproposals_1", "text": "Appels à candidatures" },
                         { "url": "/directories/opportunities/categories/programs_2", "text": "Programmes d'accompagnement" },
                         { "url": "/directories/opportunities/categories/challenges_and_contests", "text": "Challenges et concours" },
