@@ -51,9 +51,9 @@ const Filters = (pageProps: any) => {
     useEffect(() => {
         const informations = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] === "INFORMATIONS")[0] : [];
         const filters = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] !== "INFORMATIONS") : [];
-        setDynamicInformations(informations);
-        setDynamicFiltersToArray(filters);
-        setInformations(informations[1]);
+        (type.match(/(startup)/)) ? setDynamicInformations(informations) : null;
+        (type.match(/(startup)/)) ? setDynamicFiltersToArray(filters) : null;
+        (informations) ? setInformations(informations[1]) : null;
     }, [ dynamicFilters ]);
     return <div className={ FiltersStyles.container }>
         { (title) ? <div className={ FiltersStyles.header }>
@@ -92,14 +92,11 @@ const Filters = (pageProps: any) => {
             </form>
         </div>
         <div className={ FiltersStyles.filters + " grid fourColumns" }>
-            { (filters) ? <MultipleSelect { ...pageProps } options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
-            { (dynamicFiltersToArray.length > 0) ? dynamicFiltersToArray.map((filter: any, key: Key) => {
-                var placeholder = filter[0];
-                (filter[0].match(/(sector)/i)) ? placeholder = translations["Secteurs cibles"] : null;
-                (filter[0].match(/(techno)/i)) ? placeholder = translations["Technologies"] : null;
-                (filter[0].match(/(jobs)/i)) ? placeholder = translations["Métiers cibles"] : null;
-                return <MultipleSelect key={ key } { ...pageProps } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(placeholder).toString() } dynamic/>;
-            }) : null }
+            { (filters && type.match(/(startup)/)) ? <MultipleSelect { ...pageProps } options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
+            { (filters && type.match(/(corporation|entreprise)/)) ? <MultipleSelect { ...pageProps } options={ filters.SECTORS } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
+            { (filters && type.match(/(partner|partenaire)/)) ? <MultipleSelect { ...pageProps } options={ filters.PARTNERS_TYPES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
+            { (filters && type.match(/(opport)/)) ? <MultipleSelect { ...pageProps } options={ filters.OPPORTUNITIES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
+            { (dynamicFiltersToArray.length > 0) ? dynamicFiltersToArray.map((filter: any, key: Key) => <MultipleSelect key={ key } { ...pageProps } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(filter[0]).toString() } dynamic/>) : null }
         </div>
     </div>;
 };

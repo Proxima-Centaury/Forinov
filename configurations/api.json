@@ -1,6 +1,6 @@
 {
     "api": {
-        "endpoint": "https://dev.forinov.fr/remote/back/api.php",
+        "endpoint": "https://www.forinov.fr/remote/back/api.php",
         "calls": {
             "getProfile": {
                 "query": "V5_GET_PROFILE",
@@ -52,65 +52,15 @@
                 "parameters": [ "app", "authkey", "lang" ],
                 "modified": "15-02-2023"
             },
-            "getStartups": {
-                "query": "SEARCH_FULLSU",
-                "parameters": [ "app", "authkey", "lang" ],
-                "modified": "12-02-2023"
-            },
-            "getCorporations": {
-                "query": "V5_SEARCHCORPO",
-                "parameters": [ "app", "authkey", "lang" ],
-                "modified": "15-02-2023"
-            },
-            "getPartners": {
-                "query": "V5_SEARCHINCUB",
-                "parameters": [ "app", "authkey", "lang" ],
-                "modified": "15-02-2023"
+            "getSearchEngine": {
+                "query": "SEARCH_FULL",
+                "parameters": [ "TYPE", "app", "authkey", "lang" ],
+                "modified": "21-03-2023"
             },
             "getOpportunities": {
                 "query": "LANDING_FULLOPPORTUNITES",
                 "parameters": [ "app", "authkey", "lang" ],
                 "modified": "27-02-2023"
-            },
-            "getFilteredStartupsByCategory": {
-                "query": "SEARCH_FULLSU",
-                "parameters": [ "CATEGORIES", "app", "authkey", "lang" ],
-                "modified": "12-02-2023"
-            },
-            "getFilteredCorporationsByCategory": {
-                "query": "V5_SEARCHCORPO",
-                "parameters": [ "CATEGORIES", "app", "authkey", "lang" ],
-                "modified": "15-02-2023"
-            },
-            "getFilteredPartnersByCategory": {
-                "query": "V5_SEARCHINCUB",
-                "parameters": [ "CATEGORIES", "app", "authkey", "lang" ],
-                "modified": "15-02-2023"
-            },
-            "getFilteredOpportunitiesByCategory": {
-                "query": "LANDING_FULLOPPORTUNITES",
-                "parameters": [ "CATEGORIES", "app", "authkey", "lang" ],
-                "modified": "27-02-2023"
-            },
-            "getFilteredStartupsByCountry": {
-                "query": "SEARCH_FULLSU",
-                "parameters": [ "COUNTRIES", "app", "authkey", "lang" ],
-                "modified": "24-02-2023"
-            },
-            "getFilteredCorporationsByCountry": {
-                "query": "V5_SEARCHCORPO",
-                "parameters": [ "COUNTRIES", "app", "authkey", "lang" ],
-                "modified": "24-02-2023"
-            },
-            "getFilteredPartnersByCountry": {
-                "query": "V5_SEARCHINCUB",
-                "parameters": [ "COUNTRIES", "app", "authkey", "lang" ],
-                "modified": "24-02-2023"
-            },
-            "getFilteredOpportunitiesByCountry": {
-                "query": "LANDING_FULLOPPORTUNITES",
-                "parameters": [ "COUNTRIES", "app", "authkey", "lang" ],
-                "modified": ""
             }
         }
     }

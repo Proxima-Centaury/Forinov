@@ -32,7 +32,7 @@ const Folder = (pageProps: FoldersInterface) => {
         if(folders.length > 0 && folders.find((check: any) => check.ID === folder)) {
             setSelectedFolder(folders.find((check: any) => check.ID === folder));
         };
-    }), [ folders ];
+    }, [ folders, folder ]);
     return <div id="folder" className="container">
         <div className={ FolderStyles.title }>
             { (selectedFolder) ? <h1>{ selectedFolder.NAME }</h1> : null }

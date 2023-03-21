@@ -1,4 +1,8 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Imports */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { uppercaseFirst } from "../../scripts/utilities";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/image";
@@ -14,12 +18,14 @@ const CategoryCard = (pageProps: any) => {
     const { category, display, states, router }: any = pageProps;
     const { RGB }: any = states;
     const source = (category.CODE) ? router.basePath + "/assets/flags/" + category.CODE.toLowerCase() + ".png" : category.LOGO;
-    return <div className={ CategoryStyles.category } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+    return <div className={ CategoryStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         { (category.COUNT) ? <div className={ CategoryStyles.count }>
             <p>{ category.COUNT }</p>
         </div> : null }
-        { (category.LOGO || category.CODE) ? <Image src={ source } alt={ category.ID } width="80" height="80"/> : <i className="fa-light fa-circle-star"/> }
-        <h4 className={ CategoryStyles.name }>{ category.NAME }</h4>
+        <div className={ CategoryStyles.icon }>
+            { (category.LOGO || category.CODE) ? <Image src={ source } alt={ category.ID } width="80" height="80"/> : <i className="fa-light fa-circle-star"/> }
+        </div>
+        <h4 className={ CategoryStyles.name }>{ uppercaseFirst(category.NAME).toString() }</h4>
         { (category.SSCAT && category.SSCAT.length > 0) ? <Tags tags={ category.SSCAT } limit={ (display === "list") ? 1 : undefined }/> : null }
     </div>;
 };
