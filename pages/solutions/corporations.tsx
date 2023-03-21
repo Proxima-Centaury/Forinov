@@ -14,6 +14,9 @@ import Link from "next/link";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import SolutionStyles from "../../public/stylesheets/pages/solutions/Solutions.module.css"
 import HomeStyles from "../../public/stylesheets/pages/Home.module.css"
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css"
+
+
 import { useRouter } from "next/router";
 import Carousel from "../../components/carousels/carousel";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -122,7 +125,8 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                             <p className={SolutionStyles.cardDesc}>{translations["Vous cherchez à trouver des prestataires et fournisseurs toujours plus innovants. Vous êtes la tête chercheuse des solutions de demain."]}</p>
                         </div>
                     </div>
-                    <button className="callToAction" style={{ margin: '2rem auto' }}>{translations["Je m'inscris"]}</button>
+                    <Link
+                        href={'/onboarding'} className={ButtonStyles.callToAction} style={{ margin: '2rem auto' }}>{translations["Je m'inscris"]}</Link>
                 </div>
                 <div className={SolutionStyles.banner2}>
                     <div className="container">
@@ -174,7 +178,7 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                     </div>
                     <div className={SolutionStyles.banner} style={{ width: "100%", paddingTop: '10rem', borderBottomRightRadius: 0 }}>
                         <div className="container">
-                            <h1 className={SolutionStyles.bannerTitle}>{ translations["Choisissez l’offre la plus adaptée pour vous et votre entreprise"]}</h1>
+                            <h1 className={SolutionStyles.bannerTitle}>{translations["Choisissez l’offre la plus adaptée pour vous et votre entreprise"]}</h1>
                             <div className={SolutionStyles.cardWrapper}>
                                 <div className={SolutionStyles.solutionsCards}>
                                     {/* 1st card */}
@@ -233,10 +237,10 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                         </div>
                     </div>
                 </div>
-                <div className={ HomeStyles.testimonials } data-type="home">
-				<h4>{ translations["Ils nous font confiance"] }</h4>
-				<Carousel { ...pageProps } component="Testimonials"/>
-			</div>
+                <div className={HomeStyles.testimonials} data-type="home">
+                    <h4>{translations["Ils nous font confiance"]}</h4>
+                    <Carousel {...pageProps} component="Testimonials" />
+                </div>
                 <div className={SolutionStyles.banner3}>
                     <div className="container">
                         <h1 className={SolutionStyles.bannerTitle}>{translations['Les réponses à vos questions']}</h1>
