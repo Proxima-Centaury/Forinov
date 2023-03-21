@@ -49,7 +49,7 @@ const Directory = (pageProps: DirectoryInterface) => {
             setResults(null);
             setSelects(null);
         };
-    }, [ search ]);
+    }, [ type, search, locale ]);
     useEffect(() => {
         setSearch({ keywords: "", categories: (category) ? category : "", page: 1 });
         setResults(null);
@@ -152,12 +152,12 @@ const Results = (pageProps: any) => {
     if(ui && ui == "false") {
         return <Fragment>
             { (!type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
-                { results.map((company: any, key: Key) => <a key={ key } href={ company.URL } target="_blank">
+                { results.map((company: any, key: Key) => <a key={ key } href={ company.URL } target="_blank" rel="noreferrer">
                     <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
                 </a>) }
             </div> : null}
             { (type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
-                { results.map((opportunity: any, key: Key) => <a key={ key } href={ opportunity.URL } target="_blank">
+                { results.map((opportunity: any, key: Key) => <a key={ key } href={ opportunity.URL } target="_blank" rel="noreferrer">
                     <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ parseInt(key.toString()) + 1 }/>
                 </a>) }
             </div> : null}

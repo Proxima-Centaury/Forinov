@@ -28,16 +28,16 @@
         "description": "Comment créer votre appel à candidatures / appel à projets / concours / challenges / évènements sur Forinov. Trouver des startups pertinentes, contactez les startups les plus intéressantes de notre annuaire de startups France, et suivez les via votre porte-feuille de startups. Toutes les réponses à vos questions sont sur Forinov."
     },
     "/login": {
-        "title": "",
-        "description": ""
+        "title": "Accéder à tout Forinov",
+        "description": "Identifiez-vous sur la plateforme Forinov afin d'accéder à tout un panel d'outils permettant d'améliorer votre visibilité en tant que startup, entreprise (PME, ETI, Grand Groupe, etc.) ou partenaire (incubateur, accélérateur, etc.) !"
     },
     "/connexion": {
-        "title": "",
-        "description": ""
+        "title": "Accéder à tout Forinov",
+        "description": "Identifiez-vous sur la plateforme Forinov afin d'accéder à tout un panel d'outils permettant d'améliorer votre visibilité en tant que startup, entreprise (PME, ETI, Grand Groupe, etc.) ou partenaire (incubateur, accélérateur, etc.) !"
     },
     "/onboarding": {
-        "title": "",
-        "description": ""
+        "title": "Onboarding au sein de Forinov",
+        "description": "Rejoignez Forinov afin d'améliorer votre visibilité en tant que startup, entreprise (PME, ETI, Grand Groupe, etc.) ou partenaire (incubateur, accélérateur, etc.) ! En vous inscrivant, vous bénéficierez d'outils permettant la mise en relation entre structures, la possibilité de participer à des évènements ou a des opportunités proposées par nos membres et bien plus !"
     },
     "/solutions/startups" : {
         "title": "Forinov, créez votre profil startup gratuitement",
