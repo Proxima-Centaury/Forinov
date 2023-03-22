@@ -2,8 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { Key, MouseEventHandler, useEffect, useState } from "react";
-import { InputInterface } from "../../typescript/interfaces";
-import { buildProperties, uppercaseFirst } from "../../scripts/utilities";
+import { uppercaseFirst } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -19,11 +18,12 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Filters */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Filters = (pageProps: any) => {
-    const { title, display, setDisplay, search, setSearch, setInformations, filters, dynamicFilters, states, router }: any = pageProps;
-    const { session, translations }: any = states;
-    const { ui, domain, type, user }: any = router.query;
+    const { title, display, setDisplay, search, setSearch, setInformations, filters, dynamicFilters, states, router } = pageProps;
+    const { session, translations } = states;
+    const { ui, domain, type, category, user } = router.query;
     const [ dynamicInformations, setDynamicInformations ]: Array<any> = useState(null);
     const [ dynamicFiltersToArray, setDynamicFiltersToArray ]: Array<any> = useState([]);
+    const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
     const setKeywords = (event: any) => {
         event.preventDefault();
         const target = event.target;
@@ -33,7 +33,7 @@ const Filters = (pageProps: any) => {
     const setCategories = (event: any, values: Array<any>) => {
         event.preventDefault();
         const categories = values.map((option) => option.ID).join("-");
-        return setSearch({ ...search, categories: categories });
+        return (categories.length <= 0) ? setSearch({ keywords: "", categories: (categoryId) ? categoryId : "", page: 1 }) : setSearch({ ...search, categories: categories });
     };
     const setDynamicFilters = (event: any, values: Array<any>, dynamic: String) => {
         event.preventDefault();
@@ -43,9 +43,6 @@ const Filters = (pageProps: any) => {
         newSearch[propName as keyof Object] = dynamicValues;
         return setSearch({ ...newSearch, page: 1 });
     };
-    const inputProps = [ "type", "name", "placeholder", "action" ];
-    const searchInputValues = [ "search", "search", translations["Rechercher dans l'annuaire des"] + " " + title, setKeywords ];
-    const searchInputObject = buildProperties(inputProps, searchInputValues);
     const gridButtonAction: MouseEventHandler = () => setDisplay("grid threeColumns");
     const listButtonAction: MouseEventHandler = () => setDisplay("list");
     useEffect(() => {
@@ -87,7 +84,7 @@ const Filters = (pageProps: any) => {
         </div>
         <div className={ FiltersStyles.search }>
             <form>
-                <Input { ...searchInputObject as InputInterface }/>
+                <Input type="search" name="search" placeholder={ translations["Rechercher dans l'annuaire des"] + " " + title } action={ setKeywords }/>
                 <Button button={ ButtonStyles.callToActionRoundedIcon } action={ listButtonAction } icon="fa-light fa-search"/>
             </form>
         </div>
