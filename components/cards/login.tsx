@@ -11,9 +11,9 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Login Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const LoginCard = (pageProps: any) => {
-    const { states }: any = pageProps;
-    const { translations }: any = states;
+const LoginCard = (loginProps: any) => {
+    const { states } = loginProps;
+    const { translations } = states;
     return <>
         <div className={ LoginStyles.card }>
             <div className={ LoginStyles.head }>
@@ -21,7 +21,7 @@ const LoginCard = (pageProps: any) => {
                 <p>{ translations["Pas encore membre Forinov"] + " ?" } <Button button={ ButtonStyles.classicLink } href="/onboarding" text={ translations["Inscrivez-vous"] }/> !</p>
             </div>
             <div className={ LoginStyles.body }>
-                <LoginForm { ...pageProps }/>
+                <LoginForm { ...loginProps }/>
             </div>
             <div className={ LoginStyles.footer }>
                 <p>{ translations["Une question, un problème"] + " ?" } <Button button={ ButtonStyles.classicLink } href="/contact" text={ translations["Contactez-nous"] }/> !</p>

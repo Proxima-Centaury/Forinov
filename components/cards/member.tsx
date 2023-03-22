@@ -1,10 +1,4 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Imports */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useState } from "react";
-import { ButtonInterface } from "../../typescript/interfaces";
-import { seeMoreOrLess, buildProperties } from "../../scripts/utilities";
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/image";
@@ -17,23 +11,22 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Member Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const MemberCard = ({ member, translations }: any) => {
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const messageButtonValues = [ ButtonStyles.callToActionRoundedIcon, true, "fa-light fa-message", "", () => false, translations["Voir plus"], 0 ];
-    const messageButtonObject = buildProperties(buttonProps, messageButtonValues);
-    return <div className={ MemberStyles.member }>
+const MemberCard = (memberProps: any) => {
+    const { member, states } = memberProps;
+    const { RGB } = states;
+    return <div className={ MemberStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ MemberStyles.main }>
             { (member.PICTURE) ? <Image src={ member.PICTURE } alt={ "Image de profil de " + member.FIRSTNAME + " " + member.LASTNAME } width="80" height="80"/> : null }
             { (!member.PICTURE) ? <i className="fa-light fa-user"/> : null }
             <div className={ MemberStyles.identity }>
-                <p className={ MemberStyles.fullname }>{ member.FIRSTNAME + member.LASTNAME }</p>
-                <p className={ MemberStyles.job }>{ member.ENTITY }</p>
+                { (member.FIRSTNAME || member.LASTNAME) ? <p className={ MemberStyles.fullname }>{ member.FIRSTNAME + member.LASTNAME }</p> : null }
+                { (member.ENTITY) ? <p className={ MemberStyles.job }>{ member.ENTITY }</p> : null }
             </div>
-            <Button { ...messageButtonObject as ButtonInterface }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } icon="fa-light fa-message"/>
         </div>
-        <div className={ MemberStyles.details }>
+        { (member.DESCRIPTION) ? <div className={ MemberStyles.details }>
             
-        </div>
+        </div> : null }
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

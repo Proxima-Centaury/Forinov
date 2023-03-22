@@ -15,9 +15,9 @@ import EntityStyles from "../../public/stylesheets/components/cards/Entity.modul
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Entity Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const EntityCard = (pageProps: any) => {
-    const { entity, type, details, states }: any = pageProps;
-    const { translations, RGB }: any = states;
+const EntityCard = (entityProps: any) => {
+    const { entity, type, details, states } = entityProps;
+    const { translations, RGB } = states;
     return <div className={ EntityStyles[type] } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ EntityStyles.marker }></div>
         <div className={ EntityStyles.content }>

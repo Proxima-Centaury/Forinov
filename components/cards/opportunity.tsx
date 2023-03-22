@@ -15,13 +15,12 @@ import OpportunityStyles from "../../public/stylesheets/components/cards/Opportu
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Opportunity Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const OpportunityCard = (pageProps: any) => {
-    const { opportunity, states }: any = pageProps;
-    const { translations, RGB }: any = states;
-    const opportunityClass = OpportunityStyles.opportunity;
+const OpportunityCard = (opportunityProps: any) => {
+    const { opportunity, states } = opportunityProps;
+    const { translations, RGB } = states;
     const opportunityBackgroundAlt = "Image de fond de l'opportunité " + opportunity.TITLE + ".";
     const opportunityPrivacy = (opportunity.PRIVACY.match(/(ext)/)) ? translations["Externe"] : uppercaseFirst(opportunity.PRIVACY);
-    return <div className={ opportunityClass } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+    return <div className={ OpportunityStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ OpportunityStyles.background } data-opportunity-type={ opportunity.TYPE[0].ID || "" }>
             { (opportunity.BACKGROUND) ? <Image src={ opportunity.BACKGROUND } alt={ opportunityBackgroundAlt } width="3840" height="2160"/> : null }
             { (opportunity.LANGUAGE === "en") ? <div className={ OpportunityStyles.informations }>

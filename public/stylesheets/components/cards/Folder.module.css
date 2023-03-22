@@ -27,7 +27,7 @@
     border-radius: 0px 10px 10px 10px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-    
+    z-index: 1;
 }
 .folder:hover > .content {
     box-shadow: var(--darker-box-shadow);

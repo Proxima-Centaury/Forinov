@@ -2,8 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { useState, useEffect } from "react";
-import { ButtonInterface } from "../../typescript/interfaces";
-import { buildProperties, structureTags } from "../../scripts/utilities";
+import { structureTags } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -19,11 +18,11 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileCard = (pageProps: any) => {
+const ProfileCard = (profileProps: any) => {
+    const { profile, definedType, page, states, router } = profileProps;
+    const { session, lock, translations, RGB } = states;
+    const { type } = router.query;
     const [ profileType, setProfileType ] = useState("");
-    const { profile, definedType, page, states, router }: any = pageProps;
-    const { session, lock, translations, RGB }: any = states;
-    const { type }: any = router.query;
     useEffect(() => (!type) ? setProfileType(definedType) : setProfileType(type), [ type, definedType ]);
     return <div className={ ProfileStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
         <div className={ ProfileStyles.banner }>
