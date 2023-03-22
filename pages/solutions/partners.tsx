@@ -13,6 +13,8 @@ import Link from "next/link";
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import SolutionStyles from "../../public/stylesheets/pages/solutions/Solutions.module.css"
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css"
+
 import { useRouter } from "next/router";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partner Solutions */
@@ -117,7 +119,9 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
                             <p className={SolutionStyles.cardDesc}>{translations["Vous souhaitez connecter vos porteurs de projets à leurs futurs clients pour les aider à se développer !"]}</p>
                         </div>
                     </div>
-                    <button className="callToAction" style={{ margin: '2rem auto' }}>{translations["Je m'inscris"]}</button>
+                    <Link
+                        href={'/onboarding'}
+                        className={ButtonStyles.callToAction} style={{ margin: '2rem auto' }}>{translations["Je m'inscris"]}</Link>
                 </div>
                 <div className={SolutionStyles.banner2}>
                     <div className="container">
