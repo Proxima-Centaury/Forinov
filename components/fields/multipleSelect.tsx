@@ -19,10 +19,10 @@ const MultipleSelect = (selectProps: SelectInterface) => {
     const selectReference = useRef(null);
     const { options, action, placeholder, source, dynamic, search, states, router } = selectProps;
     const { translations } = states;
-    let { category } = router.query;
-    category = category?.substring(category.indexOf("_") + 1, category.length);
+    const { category } = router.query;
     const [ selectState, setSelectState ] = useState(false);
-    const [ selectedOptions, setSelectedOptions ]: any = useState([]);
+    const [ selectedOptions, setSelectedOptions ] = useState([]);
+    const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
     const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
     const selectAllHandler: MouseEventHandler = (event) => {
         if(selectedOptions.length > 0) {
@@ -32,7 +32,7 @@ const MultipleSelect = (selectProps: SelectInterface) => {
             };
             return (action) ? action(event, []) : null;
         } else {
-            setSelectedOptions(selectifiedOptions);
+            setSelectedOptions(selectifiedOptions as any);
             if(dynamic) {
                 return (action) ? action(event, selectifiedOptions, placeholder) : null;
             };
@@ -43,23 +43,23 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         if(selectReference && selectReference.current) {
             const current = selectReference.current as HTMLElement;
             if(!current.contains(event.target as HTMLElement)) {
-                setSelectState(false);
+                return setSelectState(false);
             };
         };
     };
     useEffect(() => {
-        const foundOption = (Array.isArray(options) && options.length > 0) ? options?.find((option: any) => option.ID == category) : null;
+        const foundOption = (Array.isArray(options) && options.length > 0) ? options?.find((option: any) => option.ID == categoryId) : null;
         const optionSEO = [];
         (!dynamic && foundOption) ? optionSEO.push(foundOption) : null;
-        setSelectedOptions(optionSEO);
-    }, [ category ]);
+        setSelectedOptions(optionSEO as any);
+    }, [ categoryId ]);
     useEffect(() => {
         if(selectedOptions.length <= 0) {
             if(!dynamic && search.categories && search.categories.split("-").length > 0) {
                 search.categories.split("-").map((option: any) => {
                     if(option) {
                         if(options && options.filter((selectedOption: any) => selectedOption.ID === option.toString()).length > 0) {
-                            setSelectedOptions(options.filter((selectedOption: any) => selectedOption.ID === option.toString()));
+                            setSelectedOptions(options.filter((selectedOption: any) => selectedOption.ID === option.toString()) as any);
                         };
                     };
                 });
