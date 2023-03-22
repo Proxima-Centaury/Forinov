@@ -26,15 +26,15 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* Directory */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Directory = (pageProps: DirectoryInterface) => {
-    const { states, router }: any = pageProps;
-    const { locale, translations }: any = states;
-    let { ui, type, category } = router.query;
-    category = category?.substring(category.indexOf("_") + 1, category.length);
+    const { states, router } = pageProps;
+    const { locale, translations } = states;
+    const { ui, type, category } = router.query;
     const [ search, setSearch ] = useState({ keywords: "", categories: (category) ? category : "", page: 1 });
-    const [ results, setResults ] = useState(null);
+    const [ results, setResults ] = useState(null || []);
     const [ selects, setSelects ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
     const [ informations, setInformations ]: any = useState(null);
+    const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
     useEffect(() => {
         const fetchResults = async () => {
             const results = await api.searchEngine(formatType(type), search, locale?.substring(0, 2));
@@ -46,13 +46,13 @@ const Directory = (pageProps: DirectoryInterface) => {
         if(search.keywords.length >= 2 || search.categories.length >= 1) {
             fetchResults();
         } else {
-            setResults(null);
+            setResults([]);
             setSelects(null);
         };
     }, [ type, search, locale ]);
     useEffect(() => {
-        setSearch({ keywords: "", categories: (category) ? category : "", page: 1 });
-        setResults(null);
+        setSearch({ keywords: "", categories: (categoryId) ? categoryId : "", page: 1 });
+        setResults([]);
         setSelects(null);
     }, [ type, category ]);
     return <div id="directory" className={ (ui && ui == "false") ? "containerFull" : "container" }>
@@ -63,7 +63,8 @@ const Directory = (pageProps: DirectoryInterface) => {
             <p>{ informations.RESULTSMESSAGE }</p>
         </div> : null }
         { (results) ? <Results { ...pageProps } display={ display } results={ results }/> : null }
-        { (!results) ? ((router.asPath.match(/(\/countries)/)) ? <Countries { ...pageProps } display={ display } search={ search }/> : <Categories { ...pageProps } display={ display } search={ search } setSearch={ setSearch }/>) : null }
+        { (!results || (Array.isArray(results) && results.length <= 0)) && router.asPath.match(/(\/countries)/) ? <Countries { ...pageProps } display={ display } search={ search }/> : null }
+        { (!results || (Array.isArray(results) && results.length <= 0)) && !router.asPath.match(/(\/countries)/) ? <Categories { ...pageProps } display={ display } search={ search } setSearch={ setSearch }/> : null }
         { (informations && informations.PAGES > 0) ? <Pagination { ...pageProps } pages={ informations.PAGES } search={ search } action={ setSearch }/> : null }
         { (ui && ui == "false") ? null : <div className={ DirectoryStyles.signup }>
             <i className="fa-light fa-eyes"/>
