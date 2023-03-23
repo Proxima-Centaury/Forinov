@@ -16,7 +16,7 @@ import OpportunityStyles from "../../public/stylesheets/components/cards/Opportu
 /* Opportunity Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const OpportunityCard = (opportunityProps: any) => {
-    const { opportunity, states } = opportunityProps;
+    const { opportunity, details, states } = opportunityProps;
     const { translations } = states;
     return <div className={ OpportunityStyles.card }>
         <div className={ OpportunityStyles.background } data-opportunity-type={ opportunity.TYPE[0].ID || "" }>
@@ -50,7 +50,7 @@ const OpportunityCard = (opportunityProps: any) => {
                     <i className="fa-light fa-calendar"/>
                     <p>{ remainingTime(opportunity.REMAINING, null, null, translations) }</p>
                 </div> : null }
-                <Format content={ opportunity.DESCRIPTION }/>
+                { (details) ? <Format content={ opportunity.DESCRIPTION }/> : null }
             </div>
         </div>
     </div>;

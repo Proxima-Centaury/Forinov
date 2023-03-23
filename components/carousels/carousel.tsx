@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { Fragment, useEffect, Key } from "react";
+import { Fragment, useEffect, Key, useRef } from "react";
 import { formatNameForUrl, bindEventListeners, removeEventListeners } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -25,11 +25,15 @@ import ArticleCard from "../cards/article";
 /* Commons */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 class Transition {
-    transform: number;
-    transformArrows: number;
+    transform;
+    transformArrows;
     constructor() {
         this.transform = 0;
         this.transformArrows = 0;
+    };
+    resetTransform = () => {
+        this.transform = 0;
+        return true;
     };
     handleTransition = (event: any, preciseTarget: any) => {
         const itemWidth = 420;
@@ -122,9 +126,9 @@ const Carousel = (pageProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Steps Carousel */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const StepsCarousel = (pageProps: any) => {
-    const { states, component, carouselsConfigurations, router }: any = pageProps;
-	const { translations }: any = states;
+const StepsCarousel = (carouselProps: any) => {
+    const { states, component, carouselsConfigurations, router } = carouselProps;
+	const { translations } = states;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const steps: Array<any> = carouselsConfigurations[component];
@@ -148,19 +152,19 @@ const StepsCarousel = (pageProps: any) => {
             { steps.map((button, key) => {
                 return <Fragment key={ key }>
                     <div className="separator"></div>
-                    <Button button={ ButtonStyles.callToActionStep } action={ (event: MouseEvent) => transitionHandler(event, component) } text={ button.title } active={ key === 0 }/>
+                    <Button button={ ButtonStyles.callToActionStep } action={ (event: any) => transitionHandler(event, component) } text={ button.title } active={ key === 0 }/>
                 </Fragment>;
             }) }
             <div className="separator"></div>
         </div>
         <div className={ CarouselStyles.container } data-carousel={ component }>
             { steps.map((step, key) => {
-                return <div key={ key } className={ CarouselStyles.itemFullWidth } data-index={ key }>
+                return <div key={ key } className={ CarouselStyles.itemFullWidth }>
                     <div className={ CarouselStyles.stepContent }>
                         <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
                         <ul>
                             { step.list.map((item: String, key: Key) => <li key={ key }>
-                                <div><i className="fa-light fa-arrow-right"/><Format { ...pageProps } content={ translations[item as keyof Object] }/></div>
+                                <div><i className="fa-light fa-arrow-right"/><Format { ...carouselProps } content={ translations[item as keyof Object] }/></div>
                             </li>) }
                         </ul>
                     </div>
@@ -175,16 +179,16 @@ const StepsCarousel = (pageProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Custom Vertical */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const CustomVertical = (pageProps: any) => {
-    const { states, carouselsConfigurations, router, component }: any = pageProps;
-	const { translations }: any = states;
+const CustomVertical = (carouselProps: any) => {
+    const { states, carouselsConfigurations, router, component } = carouselProps;
+	const { translations } = states;
     const steps: Array<any> = carouselsConfigurations[component];
     return <div className={ CarouselStyles.carousel } data-direction="vertical">
         <div className={ CarouselStyles.container } data-carousel={ component }>
-            { steps.map((step, key) => <div key={ key } className={ CarouselStyles.itemFullWidth } data-index={ key }>
+            { steps.map((step, key) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
                 { (key % 2 === 1) ? <div className={ CarouselStyles.verticalContent }>
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
-                    <Format { ...pageProps } content={ translations[step.text] }/>
+                    <Format { ...carouselProps } content={ translations[step.text] }/>
                 </div> : <div className={ CarouselStyles.verticalPicture }>
                     <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                 </div> }
@@ -198,7 +202,7 @@ const CustomVertical = (pageProps: any) => {
                     <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                 </div> : <div className={ CarouselStyles.verticalContent }>
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
-                    <Format { ...pageProps } content={ translations[step.text] }/>
+                    <Format { ...carouselProps } content={ translations[step.text] }/>
                 </div> }
             </div>) }
         </div>
@@ -207,22 +211,18 @@ const CustomVertical = (pageProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Classic Horizontal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ClassicHorizontal = (pageProps: any) => {
-    const { component, data, router }: any = pageProps;
+const ClassicHorizontal = (carouselProps: any) => {
+    const carouselReference = useRef(null);
+    const { component, data, router } = carouselProps;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithArrows;
     const scrollHandler = (event: any) => {
-        if(window.innerWidth > 576) {
-            event.preventDefault();
-        };
-        const target = event.target;
-        const preciseTarget = target.closest("." + CarouselStyles.carousel);
-        return transitionInstance.handleTransition(event, preciseTarget);
+        (window.innerWidth > 576) ? event.preventDefault() : null;
+        return transitionInstance.handleTransition(event, carouselReference.current);
     };
     useEffect(() => {
-        let carousel = document.querySelector("[data-carousel='" + component + "']." + CarouselStyles.carousel);
-        (carousel) ? bindEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) : null;
-        return () => removeEventListeners(carousel as HTMLElement, [ "wheel" ], scrollHandler) as any;
+        (carouselReference.current) ? bindEventListeners(carouselReference.current as HTMLElement, [ "wheel" ], scrollHandler) : null;
+        return () => (carouselReference.current) ? removeEventListeners(carouselReference.current as HTMLElement, [ "wheel" ], scrollHandler) as any : null;
     });
     const Items = () => {
         switch(component) {
@@ -230,43 +230,43 @@ const ClassicHorizontal = (pageProps: any) => {
                 return data.map((startup: any, key: Key) => {
                     const url = "/directories/startups/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
                     return <Link key={ key } className={ CarouselStyles.item } href={ url }>
-                        <ProfileCard { ...pageProps } profile={ startup } definedType="startup" page="landing"/>
+                        <ProfileCard { ...carouselProps } profile={ startup } definedType="startup" page="landing"/>
                     </Link>;
                 });
             case "LatestOpportunities":
                 return data.map((opportunity: any, key: Key) => {
                     const url = "/directories/opportunities/categories/" + formatNameForUrl(opportunity.TYPE[0].NAME) + "_" + opportunity.TYPE[0].ID + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID;
                     return <Link key={ key } className={ CarouselStyles.item } href={ url }>
-                        <OpportunityCard { ...pageProps } opportunity={ opportunity }/>
+                        <OpportunityCard { ...carouselProps } opportunity={ opportunity }/>
                     </Link>;
                 });
             case "ForinovBlog":
                 return data.map((article: any, key: Key) => {
                     return <Link key={ key } className={ CarouselStyles.item } href={ article.URL }>
-                        <ArticleCard { ...pageProps } article={ article }/>
+                        <ArticleCard { ...carouselProps } article={ article }/>
                     </Link>;
                 });
             case "StartupsFolders":
                 return data.map((folder: any, key: Key) => {
                     const url =  router.asPath.substring(0, router.asPath.lastIndexOf("/")) + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID;
                     return (!router.asPath.includes(formatNameForUrl(folder.NAME) + "_" + folder.ID)) ? <Link key={ key } className={ CarouselStyles.item } href={ url }>
-                        <FolderCard { ...pageProps } folder={ folder }/>
+                        <FolderCard { ...carouselProps } folder={ folder }/>
                     </Link> : null;
                 });
             case "Testimonials":
                 const importation = require("../../configurations/testimonials.json");
                 const { testimonials } = importation;
                 return testimonials.map((testimonial: any, key: Key) => <div key={ key } className={ CarouselStyles.item }>
-                    <TestimonialCard { ...pageProps } testimonial={ testimonial }/>
+                    <TestimonialCard { ...carouselProps } testimonial={ testimonial }/>
                 </div>);
             default:
                 return <div></div>;
         };
     };
-    return <div className={ CarouselStyles.carousel } data-carousel={ component }>
+    return <div className={ CarouselStyles.carousel } ref={ carouselReference }>
         <div className={ CarouselStyles.arrows }>
-            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: MouseEvent) => transitionHandler(event, "left") } icon="fa-light fa-arrow-left"/>
-            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: MouseEvent) => transitionHandler(event, "right") } icon="fa-light fa-arrow-right"/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: any) => transitionHandler(event, "left") } icon="fa-light fa-arrow-left"/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: any) => transitionHandler(event, "right") } icon="fa-light fa-arrow-right"/>
         </div>
         <div className={ CarouselStyles.container }>
             <Items/>
@@ -276,8 +276,8 @@ const ClassicHorizontal = (pageProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Infinite Scroll Horizontal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const InfiniteScrollHorizontal = (pageProps: any) => {
-    const { component, data }: any = pageProps;
+const InfiniteScrollHorizontal = (carouselProps: any) => {
+    const { component, data } = carouselProps;
     const Items = () => {
         switch(component) {
             case "CompaniesLogos":
@@ -307,19 +307,19 @@ const InfiniteScrollHorizontal = (pageProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Accordions Horizontal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const AccordionsHorizontal = (pageProps: any) => {
-    const { component, data, states }: any = pageProps;
-	const { translations }: any = states;
+const AccordionsHorizontal = (carouselProps: any) => {
+    const { component, data, states } = carouselProps;
+	const { translations } = states;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const questionsButtons = [ translations["Général"] ];
     return <div className={ CarouselStyles.carousel } data-direction="bidirectional">
         <div className={ CarouselStyles.actions }>
-            { questionsButtons.map((button, key) => <Button key={ key } button={ ButtonStyles.callToActionStep } action={ (event: MouseEvent) => transitionHandler(event, component) } text={ button } active={ key === 0 }/>) }
+            { questionsButtons.map((button, key) => <Button key={ key } button={ ButtonStyles.callToActionStep } action={ (event: any) => transitionHandler(event, component) } text={ button } active={ key === 0 }/>) }
         </div>
         <div className={ CarouselStyles.container } data-carousel={ component }>
             { (data) ? data.map((accordion: any, key: Key) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
-                <Accordion { ...pageProps } data={ accordion } translations={ translations }/>
+                <Accordion { ...carouselProps } data={ accordion } translations={ translations }/>
             </div>) : null }
         </div>
     </div>;
