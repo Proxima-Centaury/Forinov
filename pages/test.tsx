@@ -1,9 +1,16 @@
-import { GetStaticProps } from "next";
+import { GetStaticProps, GetServerSideProps } from 'next';
 import { Fragment } from "react";
 
 import SeeMore from "../components/pagination/SeeMore";
 
+import api from "../scripts/api";
+
 const Test = (pageProps: any) => {
+
+    const { states, opportunities } = pageProps;
+    const { translations } = states;
+    console.log('TEST PAGE LIST: ', opportunities);
+    
 
     //list of 60 random titles
     const list = [  
@@ -64,15 +71,24 @@ const Test = (pageProps: any) => {
     
     
     return <section className="container">
-        {"Longueur liste: " + list.length}
         <SeeMore
-            list={list}
+            list={opportunities}
             max={10}
+            translations={translations}
+            type="opportunities"
         />
     </section>;
 };
+const getServerSideProps: GetServerSideProps = async (context) => {
+	const { res, locale, locales, defaultLocale } = context;
 
-const getStaticProps: GetStaticProps = async (context) => ({ props: { ...context } });
+    return {
+        props: {
+			locale, locales, defaultLocale,
+            opportunities: await api.getOpportunities()
+        },
+    };
+}
 
 export default Test;
-export { getStaticProps };
+export { getServerSideProps };

@@ -2,13 +2,17 @@ import ButtonStyles from '../../public/stylesheets/components/buttons/Button.mod
 import { useState } from 'react'
 
 const SeeMore = (props: any) => {
-    const { list, max } = props;
+    const { list, max, translations, type } = props;
 
     const [iterations, setIterations] = useState(1);
 
     const [isSeeMore, setIsSeeMore] = useState(true);
     const [isSeeLess, setIsSeeLess] = useState(false);
 
+    console.log('list', list);
+    console.log('type', type);
+    
+    
 
     const checkButtons = (iterations: number) => {
         if (iterations === 1) {
@@ -41,40 +45,31 @@ const SeeMore = (props: any) => {
         checkButtons(iterations - 1)
     }
 
+
+
     return (
-        <><div className="grid twoColumns">
-            {list.slice(0, (max * iterations)).map((item: any, index: number) => (
-                <div key={index}
-                    style={{
-                        width: '100%',
-                        height: '100px',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        backgroundColor: `hsl(${Math.floor(Math.random() * 360)}, 100%, 90%)`,
-                        color: '#0D0D0D',
-                        borderRadius: '1rem',
-                        fontWeight: 'bold',
-                    }}
-                >
-                    {item}
-                </div>
-            ))}
-        </div>
-            <div className="grid twoColumns">
+        <>
+            {
+                //render the list of items based on the type of list
+            }
+            <div className="grid twoColumns"
+                style={{
+                    justifyContent: 'center',
+            }}
+            >
                 {isSeeLess && <button className={ButtonStyles.callToAction}
                     onClick={() => {
                         seeLessHandler()
                     }}
                 >
-                    See Less
+                    {translations['Voir moins']}
                 </button>}
                 {isSeeMore && <button className={ButtonStyles.callToAction}
                     onClick={() => {
                         seeMoreHandler()
                     }}
                 >
-                    See More
+                    {translations['Voir plus']}
                 </button>}
             </div>
         </>
