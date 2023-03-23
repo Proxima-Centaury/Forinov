@@ -14,16 +14,16 @@ import CategoryStyles from "../../public/stylesheets/components/cards/Category.m
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Category Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const CategoryCard = (pageProps: any) => {
-    const { category, display, states, router }: any = pageProps;
-    const { RGB }: any = states;
-    const source = (category.CODE) ? router.basePath + "/assets/flags/" + category.CODE.toLowerCase() + ".png" : category.LOGO;
-    return <div className={ CategoryStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+const CategoryCard = (categoryProps: any) => {
+    const { category, display, router } = categoryProps;
+    return <div className={ CategoryStyles.card }>
         { (category.COUNT) ? <div className={ CategoryStyles.count }>
             <p>{ category.COUNT }</p>
         </div> : null }
         <div className={ CategoryStyles.icon }>
-            { (category.LOGO || category.CODE) ? <Image src={ source } alt={ category.ID } width="80" height="80"/> : <i className="fa-light fa-circle-star"/> }
+            { (category.LOGO) ? <Image src={ category.LOGO } alt="" width="80" height="80"/> : null }
+            { (category.CODE) ? <Image src={ router.basePath + "/assets/flags/" + category.CODE.toLowerCase() + ".png" } alt="" width="80" height="80"/> : null }
+            { (!category.LOGO && !category.CODE) ? <i className="fa-light fa-circle-star"/> : null }
         </div>
         <h4 className={ CategoryStyles.name }>{ uppercaseFirst(category.NAME).toString() }</h4>
         { (category.SSCAT && category.SSCAT.length > 0) ? <Tags tags={ category.SSCAT } limit={ (display === "list") ? 1 : undefined }/> : null }

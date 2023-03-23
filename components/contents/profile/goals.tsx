@@ -10,11 +10,11 @@ import GoalsStyles from "../../../public/stylesheets/components/contents/profile
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Profile Goals */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ProfileGoals = ({ type, profile, products, activities, states, stateSetters }: any) => {
-    const { lock, translations }: any = states;
+const ProfileGoals = (goalsProps: any) => {
+    const { type, profile, products, states } = goalsProps;
+    const { lock, translations } = states;
     const partnerships = (type !== "partner") ? profile.PARTNER_SEARCH || [] : [];
     const domains = profile.STARTUP_SEARCH || [];
-    const parentProps = { type, profile, products, activities, states, stateSetters };
     return <div id="goals" className={ GoalsStyles.goals }>
         <h3>{ translations["Objectifs et offres"] }</h3>
         { (type !== "partner") ? <div className={ GoalsStyles.content }>
@@ -25,7 +25,7 @@ const ProfileGoals = ({ type, profile, products, activities, states, stateSetter
             <p className={ GoalsStyles.label }>{ translations["Intérêts par les startups dans les domaines"] }</p>
             { (domains.length > 0) ? <Tags tags={ domains } lock={ lock }/> : <p>{ translations["Non renseigné"] + "." }</p> }
         </div>
-        { (products) ? <ProfileProducts { ...parentProps }/> : null }
+        { (products) ? <ProfileProducts { ...goalsProps }/> : null }
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

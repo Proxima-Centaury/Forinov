@@ -40,9 +40,9 @@ import ButtonStyles from "../../../../public/stylesheets/components/buttons/Butt
 /* Directory Profile */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const DirectoryProfile = (pageProps: ProfileInterface) => {
-    const { profile, opportunity, states, stateSetters, router }: any = pageProps;
-    const { session, lock, metadatas }: any = states;
-    const { setModal }: any = stateSetters;
+    const { profile, opportunity, states, stateSetters, router } = pageProps;
+    const { session, lock, metadatas } = states;
+    const { setModal } = stateSetters;
     const { type } = router.query;
     useEffect(() => {
         if(profile && !opportunity) {
@@ -140,53 +140,53 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startup Profile Content */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Startup = (pageProps: any) => {
-    const { products, states }: any = pageProps;
-    const { translations }: any = states;
+const Startup = (startupProps: any) => {
+    const { products, states } = startupProps;
+    const { translations } = states;
     return <>
-        <ProfileOffer { ...pageProps }/>
-        <ProfileTargets { ...pageProps }/>
-        { (products) ? <ProfileProducts { ...pageProps }/> : null }
+        <ProfileOffer { ...startupProps }/>
+        <ProfileTargets { ...startupProps }/>
+        { (products) ? <ProfileProducts { ...startupProps }/> : null }
         <Button button={ ButtonStyles.callToActionWide } icon="fa-light fa-person-chalkboard" text={ translations["Voir le pitch deck"] }/>
-        <ProfileEcosystem { ...pageProps }/>
-        <ProfilePartners { ...pageProps }/>
-        <ProfileTeam { ...pageProps }/>
-        <ProfileActivities { ...pageProps }/>
-        <ProfileSocials { ...pageProps }/>
+        <ProfileEcosystem { ...startupProps }/>
+        <ProfilePartners { ...startupProps }/>
+        <ProfileTeam { ...startupProps }/>
+        <ProfileActivities { ...startupProps }/>
+        <ProfileSocials { ...startupProps }/>
     </>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Corporation Profile Content */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Corporation = (pageProps: any) => {
-    const { states }: any = pageProps;
-    const { translations }: any = states;
+const Corporation = (corporationProps: any) => {
+    const { states } = corporationProps;
+    const { translations } = states;
     return <>
-        <ProfileTeam { ...pageProps }/>
-        <ProfileOpportunities { ...pageProps }/>
-        <ProfileGoals { ...pageProps }/>
+        <ProfileTeam { ...corporationProps }/>
+        <ProfileOpportunities { ...corporationProps }/>
+        <ProfileGoals { ...corporationProps }/>
         <Button button={ ButtonStyles.callToActionWide } icon="fa-light fa-person-chalkboard" text={ translations["Voir le pitch deck"] }/>
-        <ProfileEcosystem { ...pageProps }/>
-        <ProfilePartners { ...pageProps }/>
-        <ProfileActivities { ...pageProps }/>
-        <ProfileSocials { ...pageProps }/>
+        <ProfileEcosystem { ...corporationProps }/>
+        <ProfilePartners { ...corporationProps }/>
+        <ProfileActivities { ...corporationProps }/>
+        <ProfileSocials { ...corporationProps }/>
     </>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partner Profile Content */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Partner = (pageProps: any) => {
-    const { states }: any = pageProps;
-    const { translations }: any = states;
+const Partner = (partnerProps: any) => {
+    const { states } = partnerProps;
+    const { translations } = states;
     return <>
-        <ProfileTeam { ...pageProps }/>
-        <ProfileOpportunities { ...pageProps }/>
-        <ProfileGoals { ...pageProps }/>
+        <ProfileTeam { ...partnerProps }/>
+        <ProfileOpportunities { ...partnerProps }/>
+        <ProfileGoals { ...partnerProps }/>
         <Button button={ ButtonStyles.callToActionWide } icon="fa-light fa-person-chalkboard" text={ translations["Voir le pitch deck"] }/>
-        <ProfileEcosystem { ...pageProps }/>
-        <ProfilePartners { ...pageProps }/>
-        <ProfileActivities { ...pageProps }/>
-        <ProfileSocials { ...pageProps }/>
+        <ProfileEcosystem { ...partnerProps }/>
+        <ProfilePartners { ...partnerProps }/>
+        <ProfileActivities { ...partnerProps }/>
+        <ProfileSocials { ...partnerProps }/>
     </>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
