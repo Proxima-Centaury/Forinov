@@ -20,7 +20,7 @@ const FolderCard = (folderProps: any) => {
         const otherStartups = startups.slice(shift as number, startups.length).map((startup: any) => startup[1] || startup.NAME);
         return otherStartups.join("\n");
     };
-    return <div className={ FolderStyles.folder }>
+    return <div className={ FolderStyles.card }>
         <div className={ FolderStyles.content }>
             <div className={ FolderStyles.geometry }></div>
             { (folder.STARTUPS.length > 0 && folder.STARTUPS.length <= 3) ? <div className={ FolderStyles.startups }>

@@ -17,12 +17,10 @@ import OpportunityStyles from "../../public/stylesheets/components/cards/Opportu
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const OpportunityCard = (opportunityProps: any) => {
     const { opportunity, states } = opportunityProps;
-    const { translations, RGB } = states;
-    const opportunityBackgroundAlt = "Image de fond de l'opportunité " + opportunity.TITLE + ".";
-    const opportunityPrivacy = (opportunity.PRIVACY.match(/(ext)/)) ? translations["Externe"] : uppercaseFirst(opportunity.PRIVACY);
-    return <div className={ OpportunityStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+    const { translations } = states;
+    return <div className={ OpportunityStyles.card }>
         <div className={ OpportunityStyles.background } data-opportunity-type={ opportunity.TYPE[0].ID || "" }>
-            { (opportunity.BACKGROUND) ? <Image src={ opportunity.BACKGROUND } alt={ opportunityBackgroundAlt } width="3840" height="2160"/> : null }
+            { (opportunity.BACKGROUND) ? <Image src={ opportunity.BACKGROUND } alt={ "Image de fond de l'opportunité " + opportunity.TITLE + "." } width="3840" height="2160"/> : null }
             { (opportunity.LANGUAGE === "en") ? <div className={ OpportunityStyles.informations }>
                 <p>{ translations["Anglais"] }</p>
             </div> : null }
@@ -38,7 +36,7 @@ const OpportunityCard = (opportunityProps: any) => {
                     </div> : null }
                     <div className={ OpportunityStyles.privacy }>
                         <i className="fa-light fa-eye"/>
-                        <p>{ (opportunity.PRIVACY) ? opportunityPrivacy : translations["Confidentialité non-définie"] }</p>
+                        <p>{ (opportunity.PRIVACY) ? (opportunity.PRIVACY.match(/(ext)/)) ? translations["Externe"] : uppercaseFirst(opportunity.PRIVACY) : translations["Confidentialité non-définie"] }</p>
                     </div>
                 </div>
                 <div className={ OpportunityStyles.title } data-type="tooltip" data-tooltip={ opportunity.TITLE }>
@@ -52,7 +50,7 @@ const OpportunityCard = (opportunityProps: any) => {
                     <i className="fa-light fa-calendar"/>
                     <p>{ remainingTime(opportunity.REMAINING, null, null, translations) }</p>
                 </div> : null }
-                <p>{ opportunity.DESCRIPTION }</p>
+                <Format content={ opportunity.DESCRIPTION }/>
             </div>
         </div>
     </div>;

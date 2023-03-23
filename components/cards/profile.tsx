@@ -20,11 +20,11 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileCard = (profileProps: any) => {
     const { profile, definedType, page, states, router } = profileProps;
-    const { session, lock, translations, RGB } = states;
+    const { session, lock, translations } = states;
     const { type } = router.query;
     const [ profileType, setProfileType ] = useState("");
     useEffect(() => (!type) ? setProfileType(definedType) : setProfileType(type), [ type, definedType ]);
-    return <div className={ ProfileStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+    return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
             <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3840" height="2160" priority/>
             { (profileType.match(/(startup)/) && page !== "landing") ? <StartupActions translations={ translations }/> : null }

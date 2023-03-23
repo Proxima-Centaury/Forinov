@@ -11,9 +11,9 @@ import TestimonialStyles from "../../public/stylesheets/components/cards/Testimo
 /* Testimonial Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const TestimonialCard = (pageProps: any) => {
-    const { testimonial, states }: any = pageProps;
-    const { translations, RGB }: any = states;
-    return <div className={ TestimonialStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+    const { testimonial, states } = pageProps;
+    const { translations } = states;
+    return <div className={ TestimonialStyles.card }>
         <div className={ TestimonialStyles.pictures }>
             <Image className={ TestimonialStyles.main } src={ testimonial.PICTURE } alt={ translations["Photo de"] + " " + testimonial.NAME + "."} width="260" height="260"/>
             <Image className={ TestimonialStyles.sub } src={ testimonial.LOGO } alt={ translations["Logo de"] + " " + testimonial.COMPANY + "."} width="150" height="150"/>

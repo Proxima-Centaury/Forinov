@@ -11,8 +11,7 @@ import ActivityStyles from "../../public/stylesheets/components/cards/Activity.m
 /* Activity Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ActivityCard = (activityProps: any) => {
-    const { event, states } = activityProps;
-    const { RGB } = states;
+    const { event } = activityProps;
     const activityTimestamp = (date: string) => {
         const activityDate = new Date(date);
         const currentDate = new Date();
@@ -20,11 +19,10 @@ const ActivityCard = (activityProps: any) => {
         const daysDifference = Math.round(timeDifference / (1000 * 3600 * 24));
         return daysDifference;
     };
-    activityTimestamp(event.DATE);
-    return <div className={ ActivityStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+    return <div className={ ActivityStyles.card }>
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content }>
-            <Image src={ event.LOGO } alt={ "Logo de la structure " + event.NAME + "." } width="55" height="55"/>
+            <Image src={ event.LOGO } alt="" width="55" height="55"/>
             <p className={ ActivityStyles.user }>{ event.NAME }</p>
             <Format content={ event.CONTENT }/>
             <p className={ ActivityStyles.time }>{ activityTimestamp(event.DATE) + "d" }</p>

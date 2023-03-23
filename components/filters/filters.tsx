@@ -48,7 +48,7 @@ const Filters = (pageProps: any) => {
     useEffect(() => {
         const informations = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] === "INFORMATIONS")[0] : [];
         const filters = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] !== "INFORMATIONS") : [];
-        (type.match(/(startup)/)) ? setDynamicInformations(informations) : null;
+        setDynamicInformations(informations);
         (type.match(/(startup)/)) ? setDynamicFiltersToArray(filters) : setDynamicFiltersToArray([]);
         (informations) ? setInformations(informations[1]) : null;
     }, [ dynamicFilters ]);
@@ -58,7 +58,10 @@ const Filters = (pageProps: any) => {
             { (type.match(/(corporation|entreprise)/)) ? <i className="fa-light fa-buildings"/> : null }
             { (type.match(/(partner|partenaire)/)) ? <i className="fa-light fa-handshake-simple"/> : null }
             { (type.match(/(opport)/)) ? <i className="fa-light fa-circle-star"/> : null }
-            <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.STARTUPS) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1>
+            { (type.match(/(startup)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.STARTUPS) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
+            { (type.match(/(corporation|entreprise)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.CORPORATES) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
+            { (type.match(/(partner|partenaire)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.PARTNERS) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
+            { (type.match(/(opport)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.OPPORTUNITIES_COUNT) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
             <div className={ FiltersStyles.displays }>
                 <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ gridButtonAction } icon="fa-light fa-grid-2" active={ display === "grid threeColumns" }/>
                 <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ listButtonAction } icon="fa-light fa-list" active={ display !== "grid threeColumns" }/>

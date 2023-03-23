@@ -11,8 +11,8 @@ import ProductStyles from "../../public/stylesheets/components/cards/Product.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProductCard = (productProps: any) => {
     const { product, states } = productProps;
-    const { translations, RGB } = states;
-    return <div className={ ProductStyles.card } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+    const { translations } = states;
+    return <div className={ ProductStyles.card }>
         <div className={ ProductStyles.banner }>
             <p>{ translations["Voir"] }</p>
             { (product.PICTURE) ? <Image src={ product.PICTURE } alt={ "Image du produit " + product.NAME } width="1440" height="720"/> : null}

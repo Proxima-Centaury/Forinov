@@ -15,10 +15,10 @@ import ArticleStyles from "../../public/stylesheets/components/cards/Article.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ArticleCard = (articleProps: any) => {
     const { article, states } = articleProps;
-    const { translations, RGB } = states;
-    return <div className={ ArticleStyles.article } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+    const { translations } = states;
+    return <div className={ ArticleStyles.card }>
         <div className={ ArticleStyles.background }>
-            { (article.PICTURE) ? <Image src={ article.PICTURE } alt={ "Image de fond de l'article " + article.NAME + "." } width="3840" height="2160"/> : null }
+            { (article.PICTURE) ? <Image src={ article.PICTURE } alt="" width="3840" height="2160"/> : null }
         </div>
         <div className={ ArticleStyles.content }>
             <div className={ ArticleStyles.container }>
