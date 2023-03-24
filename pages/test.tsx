@@ -1,6 +1,4 @@
-import { GetStaticProps, GetServerSideProps } from 'next';
-import { Fragment } from "react";
-
+import { GetServerSideProps } from 'next';
 import SeeMore from "../components/pagination/SeeMore";
 
 import api from "../scripts/api";
@@ -8,12 +6,10 @@ import api from "../scripts/api";
 const Test = (pageProps: any) => {
 
     const { states, opportunities } = pageProps;
-    const { translations } = states;
-    console.log('TEST PAGE LIST: ', opportunities);
-    
+
 
     //list of 60 random titles
-    const list = [  
+    const list = [
         "The Shawshank Redemption",
         "The Godfather",
         "The Godfather: Part II",
@@ -68,24 +64,30 @@ const Test = (pageProps: any) => {
         "Forrest Gump",
         "Inception"
     ]
-    
-    
+
+
     return <section className="container">
         <SeeMore
             list={opportunities}
-            max={10}
-            translations={translations}
+            max={2}
             type="opportunities"
+            states={states}
         />
     </section>;
 };
 const getServerSideProps: GetServerSideProps = async (context) => {
-	const { res, locale, locales, defaultLocale } = context;
+    const { res, locale, locales, defaultLocale } = context;
+    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+    const language = locale?.substring(0, 2);
+
+    // const products = await api.getProducts("entreprise", "5", "next", "Sorbonne", language);
+
+    const opportunities = await api.getSearchEngine("opportunite", "next", "Sorbonne", language);
 
     return {
         props: {
-			locale, locales, defaultLocale,
-            opportunities: await api.getOpportunities()
+            locale, locales, defaultLocale, opportunities
+            // products
         },
     };
 }
