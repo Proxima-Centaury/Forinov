@@ -2,8 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { Key, MouseEventHandler, useEffect, useState } from "react";
-import { InputInterface } from "../../typescript/interfaces";
-import { buildProperties, uppercaseFirst } from "../../scripts/utilities";
+import { uppercaseFirst } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -19,11 +18,12 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Filters */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Filters = (pageProps: any) => {
-    const { title, display, setDisplay, search, setSearch, setInformations, filters, dynamicFilters, states, router }: any = pageProps;
-    const { session, translations }: any = states;
-    const { ui, domain, type, user }: any = router.query;
+    const { title, display, setDisplay, search, setSearch, setInformations, filters, dynamicFilters, states, router } = pageProps;
+    const { session, translations } = states;
+    const { ui, domain, type, category, user } = router.query;
     const [ dynamicInformations, setDynamicInformations ]: Array<any> = useState(null);
     const [ dynamicFiltersToArray, setDynamicFiltersToArray ]: Array<any> = useState([]);
+    const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
     const setKeywords = (event: any) => {
         event.preventDefault();
         const target = event.target;
@@ -33,7 +33,7 @@ const Filters = (pageProps: any) => {
     const setCategories = (event: any, values: Array<any>) => {
         event.preventDefault();
         const categories = values.map((option) => option.ID).join("-");
-        return setSearch({ ...search, categories: categories });
+        return (categories.length <= 0) ? setSearch({ keywords: "", categories: (categoryId) ? categoryId : "", page: 1 }) : setSearch({ ...search, categories: categories });
     };
     const setDynamicFilters = (event: any, values: Array<any>, dynamic: String) => {
         event.preventDefault();
@@ -43,16 +43,13 @@ const Filters = (pageProps: any) => {
         newSearch[propName as keyof Object] = dynamicValues;
         return setSearch({ ...newSearch, page: 1 });
     };
-    const inputProps = [ "type", "name", "placeholder", "action" ];
-    const searchInputValues = [ "search", "search", translations["Rechercher dans l'annuaire des"] + " " + title, setKeywords ];
-    const searchInputObject = buildProperties(inputProps, searchInputValues);
     const gridButtonAction: MouseEventHandler = () => setDisplay("grid threeColumns");
     const listButtonAction: MouseEventHandler = () => setDisplay("list");
     useEffect(() => {
         const informations = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] === "INFORMATIONS")[0] : [];
         const filters = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] !== "INFORMATIONS") : [];
-        (type.match(/(startup)/)) ? setDynamicInformations(informations) : null;
-        (type.match(/(startup)/)) ? setDynamicFiltersToArray(filters) : null;
+        setDynamicInformations(informations);
+        (type.match(/(startup)/)) ? setDynamicFiltersToArray(filters) : setDynamicFiltersToArray([]);
         (informations) ? setInformations(informations[1]) : null;
     }, [ dynamicFilters ]);
     return <div className={ FiltersStyles.container }>
@@ -61,7 +58,10 @@ const Filters = (pageProps: any) => {
             { (type.match(/(corporation|entreprise)/)) ? <i className="fa-light fa-buildings"/> : null }
             { (type.match(/(partner|partenaire)/)) ? <i className="fa-light fa-handshake-simple"/> : null }
             { (type.match(/(opport)/)) ? <i className="fa-light fa-circle-star"/> : null }
-            <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.STARTUPS) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1>
+            { (type.match(/(startup)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.STARTUPS) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
+            { (type.match(/(corporation|entreprise)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.CORPORATES) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
+            { (type.match(/(partner|partenaire)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.PARTNERS) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
+            { (type.match(/(opport)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.OPPORTUNITIES_COUNT) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
             <div className={ FiltersStyles.displays }>
                 <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ gridButtonAction } icon="fa-light fa-grid-2" active={ display === "grid threeColumns" }/>
                 <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ listButtonAction } icon="fa-light fa-list" active={ display !== "grid threeColumns" }/>
@@ -87,7 +87,7 @@ const Filters = (pageProps: any) => {
         </div>
         <div className={ FiltersStyles.search }>
             <form>
-                <Input { ...searchInputObject as InputInterface }/>
+                <Input type="search" name="search" placeholder={ translations["Rechercher dans l'annuaire des"] + " " + title } action={ setKeywords }/>
                 <Button button={ ButtonStyles.callToActionRoundedIcon } action={ listButtonAction } icon="fa-light fa-search"/>
             </form>
         </div>

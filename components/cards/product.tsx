@@ -12,13 +12,13 @@ import ProductStyles from "../../public/stylesheets/components/cards/Product.mod
 const ProductCard = (productProps: any) => {
     const { product, states } = productProps;
     const { translations } = states;
-    return <div className={ ProductStyles.product }>
+    return <div className={ ProductStyles.card }>
         <div className={ ProductStyles.banner }>
             <p>{ translations["Voir"] }</p>
             { (product.PICTURE) ? <Image src={ product.PICTURE } alt={ "Image du produit " + product.NAME } width="1440" height="720"/> : null}
         </div>
         <div className={ ProductStyles.content }>
-            <p className={ ProductStyles.type }>{ Object.values(product.BUSINESSMODEL).join(" | ") }</p>
+            <p className={ ProductStyles.type }>{ product.ECONOMICMODEL.map((model: any) => model.NAME).join(" | ") }</p>
             <p className={ ProductStyles.name }>{ product.NAME }</p>
         </div>
     </div>;

@@ -18,44 +18,39 @@
 .content {
     display: flex;
     flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
     padding: 16px;
     border-radius: 10px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
 }
-.content > .label,
-.content > .wishlist > .label {
-    margin: 0px 0px 8px 0px;
+.content > div[class*="grid"] > a {
+    max-height: 200px;
+}
+.content > div[class*="grid"] > a > * {
+    min-height: inherit;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Ecosystem ( Label ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.label {
+    display: flex;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
     font-weight: bold;
     font-size: 16px;
 }
-.content > .wishlist > .label {
-    margin: 16px 0px 8px 0px;
-}
-.content > .wishlist > .label > i {
-    margin: 0px 8px 0px 0px;
+.label > i {
     color: var(--error-color);
 }
-.content > p:not(.label) {
-    margin: 0px;
-}
-.content > button {
-    width: fit-content;
-    margin: 16px 0px 0px auto;
-}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Ecosystem ( List ) */
+/* Ecosystem ( Wishlist ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.list {
+.wishlist {
     display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    margin: 8px 0px 0px 0px;
-    position: relative;
-}
-@media screen and (max-width: 1200px) {
-    .list {
-        flex-wrap: nowrap;
-        flex-direction: column;
-    }
+    flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
 }

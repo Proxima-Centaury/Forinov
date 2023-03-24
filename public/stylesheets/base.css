@@ -433,6 +433,7 @@ body {
     position: absolute;
     top: 0px;
     left: 0px;
+    backdrop-filter: blur(10px);
     background-color: var(--filter-color);
     z-index: 1;
 }

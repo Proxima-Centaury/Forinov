@@ -13,16 +13,16 @@ import ArticleStyles from "../../public/stylesheets/components/cards/Article.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Article Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ArticleCard = (pageProps: any) => {
-    const { article, states }: any = pageProps;
-    const { translations, RGB }: any = states;
-    return <div className={ ArticleStyles.article } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+const ArticleCard = (articleProps: any) => {
+    const { article, states } = articleProps;
+    const { translations } = states;
+    return <div className={ ArticleStyles.card }>
         <div className={ ArticleStyles.background }>
-            { (article.PICTURE) ? <Image src={ article.PICTURE } alt={ "Image de fond de l'article " + article.NAME + "." } width="3840" height="2160"/> : null }
+            { (article.PICTURE) ? <Image src={ article.PICTURE } alt="" width="3840" height="2160"/> : null }
         </div>
         <div className={ ArticleStyles.content }>
             <div className={ ArticleStyles.container }>
-                <div className={ ArticleStyles.title } data-type="tooltip" data-tooltip={ article.TITLE }>
+                <div className={ ArticleStyles.title } data-type="tooltip" data-tooltip={ article.NAME }>
                     <h3>{ (article.NAME) ? uppercaseFirst(article.NAME) : translations["Nom non-défini"] }</h3>
                 </div>
             </div>

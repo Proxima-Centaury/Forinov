@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Format */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Format = (pageProps: any) => {
-    const { content, disableLinks, router }: any = pageProps;
+const Format = (formatProps: any) => {
+    const { content, disableLinks, router } = formatProps;
     const [ newContent, setNewContent ] = useState(undefined);
     const handleRouting = (event: any) => {
         event.preventDefault();
@@ -42,7 +42,7 @@ const Format = (pageProps: any) => {
         const nextLinks = document.querySelectorAll("a[data-next-link]");
         (nextLinks.length > 0) ? nextLinks.forEach((link: any) => link.onclick = handleRouting) : null;
     });
-    return <div className="formattedContent" dangerouslySetInnerHTML={ { __html: (newContent || content) + "." } }/>;
+    return <div className="formattedContent" dangerouslySetInnerHTML={ { __html: newContent || content } }/>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
