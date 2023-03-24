@@ -412,7 +412,7 @@ body {
     top: 0px;
     left: 0px;
     content: "";
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
     border-radius: 10px;
 }
 .locked.gradient::after {
@@ -433,7 +433,7 @@ body {
     position: absolute;
     top: 0px;
     left: 0px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
     background-color: var(--filter-color);
     z-index: 1;
 }
