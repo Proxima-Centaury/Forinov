@@ -13,6 +13,7 @@ import OpportunityCard from "../cards/opportunity";
 import ProfileCard from "../cards/profile";
 import FolderCard from "../cards/folder";
 import TestimonialCard from "../cards/testimonial";
+import ArticleCard from "../cards/article";
 import Accordion from "../accordions/accordion";
 import Format from "../texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -20,7 +21,6 @@ import Format from "../texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import CarouselStyles from "../../public/stylesheets/components/carousels/Carousel.module.css";
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
-import ArticleCard from "../cards/article";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Commons */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -88,37 +88,37 @@ class Transition {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Carousel = (pageProps: any) => {
-    const { component }: any = pageProps;
+const Carousel = (carouselProps: any) => {
+    const { component }: any = carouselProps;
     switch(component) {
         case "LatestStartups":
-            return <ClassicHorizontal { ...pageProps }/>;
+            return <ClassicHorizontal { ...carouselProps }/>;
         case "LatestOpportunities":
-            return <ClassicHorizontal { ...pageProps }/>;
+            return <ClassicHorizontal { ...carouselProps }/>;
         case "CompaniesLogos":
-            return <InfiniteScrollHorizontal { ...pageProps }/>;
+            return <InfiniteScrollHorizontal { ...carouselProps }/>;
         case "HowToGetStarted":
-            return <CustomVertical { ...pageProps }/>;
+            return <CustomVertical { ...carouselProps }/>;
         case "HowToCreateOpportunity":
-            return <CustomVertical { ...pageProps }/>;
+            return <CustomVertical { ...carouselProps }/>;
         case "StartupAccordions":
-            return <AccordionsHorizontal { ...pageProps }/>;
+            return <AccordionsHorizontal { ...carouselProps }/>;
         case "CorporationAccordions":
-            return <AccordionsHorizontal { ...pageProps }/>;
+            return <AccordionsHorizontal { ...carouselProps }/>;
         case "PartnerAccordions":
-            return <AccordionsHorizontal { ...pageProps }/>;
+            return <AccordionsHorizontal { ...carouselProps }/>;
         case "OpportunityAccordions":
-            return <AccordionsHorizontal { ...pageProps }/>;
+            return <AccordionsHorizontal { ...carouselProps }/>;
         case "CorporationHowTo":
-            return <StepsCarousel { ...pageProps }/>;
+            return <StepsCarousel { ...carouselProps }/>;
         case "PartnerHowTo":
-            return <StepsCarousel { ...pageProps }/>;
+            return <StepsCarousel { ...carouselProps }/>;
         case "Testimonials":
-            return <ClassicHorizontal { ...pageProps }/>;
+            return <ClassicHorizontal { ...carouselProps }/>;
         case "ForinovBlog":
-            return <ClassicHorizontal { ...pageProps }/>;
+            return <ClassicHorizontal { ...carouselProps }/>;
         case "StartupsFolders":
-            return <ClassicHorizontal { ...pageProps }/>;
+            return <ClassicHorizontal { ...carouselProps }/>;
         default :
             return <Fragment></Fragment>;
     };

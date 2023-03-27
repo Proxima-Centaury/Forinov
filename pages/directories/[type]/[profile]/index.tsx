@@ -106,7 +106,7 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
             <Head>
                 { metadata }
             </Head>
-            <div id="profile" className="container">
+            <div id="profile" className="container" data-profile={ type.substring(0, type.length - 1) }>
                 { (!session) ? <IdenfiticationBanner { ...pageProps }/> : null }
                 { (profile.STATE === "WO") ? <RecoverBanner { ...pageProps }/> : null} 
                 <ProfileCard { ...pageProps }/>
@@ -192,9 +192,9 @@ const Partner = (partnerProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Properties */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const getServerSideProps: GetServerSideProps = async (context) => {
+const getServerSideProps: GetServerSideProps = async (context: any) => {
     const { res, query, locale, locales, defaultLocale } = context;
-    let { type, profile }: any = query;
+    let { type, profile } = query;
     profile = profile?.substring(profile.indexOf("_") + 1, profile.length);
     const language = locale?.substring(0, 2);
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");

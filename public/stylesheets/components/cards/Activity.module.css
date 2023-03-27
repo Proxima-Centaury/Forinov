@@ -18,6 +18,15 @@
     border-radius: 15px 0px 0px 15px;
     background-color: var(--logo-orange-color);
 }
+[data-profile="startup"] .marker {
+    background-color: var(--logo-orange-color);
+}
+[data-profile="corporation"] .marker {
+    background-color: var(--logo-blue-color);
+}
+[data-profile="partner"] .marker {
+    background-color: var(--logo-green-color);
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Activity ( Content ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -47,6 +56,8 @@
 .content > .user {
     display: flex;
     align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
     font-weight: 900;
     font-family: "Nunito Sans";
     font-size: 21px;
