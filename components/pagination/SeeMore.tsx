@@ -1,13 +1,19 @@
 import ButtonStyles from '../../public/stylesheets/components/buttons/Button.module.css'
 import { useState } from 'react'
+import ProductCard from '../cards/product';
+import OpportunityCard from '../cards/opportunity';
 
 const SeeMore = (props: any) => {
-    const { list, max } = props;
+    const { list, max, type, states } = props;
+
+    const { translations } = states;
+
 
     const [iterations, setIterations] = useState(1);
 
     const [isSeeMore, setIsSeeMore] = useState(true);
     const [isSeeLess, setIsSeeLess] = useState(false);
+
 
 
     const checkButtons = (iterations: number) => {
@@ -41,40 +47,50 @@ const SeeMore = (props: any) => {
         checkButtons(iterations - 1)
     }
 
+
+
     return (
-        <><div className="grid twoColumns">
-            {list.slice(0, (max * iterations)).map((item: any, index: number) => (
-                <div key={index}
-                    style={{
-                        width: '100%',
-                        height: '100px',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        backgroundColor: `hsl(${Math.floor(Math.random() * 360)}, 100%, 90%)`,
-                        color: '#0D0D0D',
-                        borderRadius: '1rem',
-                        fontWeight: 'bold',
-                    }}
-                >
-                    {item}
-                </div>
-            ))}
-        </div>
-            <div className="grid twoColumns">
+        <>
+            <div className='grid twoColumns'>
+                {
+                    type === 'products' ?
+                        list.slice(0, iterations * max).map((product: any, index: number) => {
+                            return <ProductCard
+                                key={index}
+                                product={product}
+                                states={states}
+                            />
+                        })
+                        :
+                        type === 'opportunities' ?
+                            list.slice(0, iterations * max).map((opportunity: any, index: number) => {
+                                return <OpportunityCard
+                                    key={index}
+                                    opportunity={opportunity}
+                                    states={states}
+                                />
+                            }) :
+                            <h1>ahahah</h1>
+                }
+            </div>
+            <div className="grid twoColumns"
+                style={{
+                    justifyContent: 'center',
+                }}
+            >
                 {isSeeLess && <button className={ButtonStyles.callToAction}
                     onClick={() => {
                         seeLessHandler()
                     }}
                 >
-                    See Less
+                    {translations['Voir moins']}
                 </button>}
                 {isSeeMore && <button className={ButtonStyles.callToAction}
                     onClick={() => {
                         seeMoreHandler()
                     }}
                 >
-                    See More
+                    {translations['Voir plus']}
                 </button>}
             </div>
         </>
