@@ -4,10 +4,11 @@
 .goals {
     display: flex;
     flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
     width: 100%;
 }
 .goals > h3 {
-    margin: 0px 0px 16px 16px;
     font-size: 24px;
     font-weight: 800;
 }
@@ -17,14 +18,12 @@
 .content {
     display: flex;
     flex-direction: column;
-    margin: 0px 0px 16px 0px;
+    grid-gap: 16px;
+    gap: 16px;
     padding: 16px;
     border-radius: 10px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-}
-.content > p:last-of-type {
-    margin: 8px 0px 0px 0px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Goals ( Label ) */

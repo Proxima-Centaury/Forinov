@@ -18,7 +18,6 @@ import EntityStyles from "../../public/stylesheets/components/cards/Entity.modul
 const EntityCard = (entityProps: any) => {
     const { entity, type, details, states } = entityProps;
     const { translations } = states;
-    console.log(entity);
     // TODO :
     // - Some datas seems to be missing or incorrect
     // - Gotta make sure everything is properly done
@@ -31,9 +30,9 @@ const EntityCard = (entityProps: any) => {
                         <Image src={ entity.LOGO } alt="" width="55" height="55"/>
                         <p className={ EntityStyles.name }>{ entity.NAME }</p>
                     </div>
-                    { (type.match(/(startup)/)) ? ((entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
-                    { (type.match(/(corporation|entreprise)/)) ? ((entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
-                    { (type.match(/(partner|partenaire)/)) ? ((entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
+                    { (type.match(/(startup)/)) ? ((entity.CATEGORY && entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
+                    { (type.match(/(corporation|entreprise)/)) ? ((entity.CATEGORY && entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
+                    { (type.match(/(partner|partenaire)/)) ? ((entity.CATEGORY && entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
                 </div>
                 { (type.match(/(startup)/) && entity.TECHNOLOGIES.length > 0) ? <Tags tags={ entity.TECHNOLOGIES } limit={ 2 }/> : null }
                 { (type.match(/(startup)/) && entity.TECHNOLOGIES.length <= 0) ? <Tags tags={ structureTags(translations["Non définies"]) } limit={ 2 }/> : null }
