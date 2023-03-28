@@ -66,8 +66,8 @@
 .navbar > .links {
     display: flex;
     align-items: center;
-    grid-gap: 16px;
-    gap: 16px;
+    grid-gap: 24px;
+    gap: 24px;
     height: 100%;
     z-index: 1;
 }
