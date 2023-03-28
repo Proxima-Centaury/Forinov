@@ -397,15 +397,15 @@ const InfiniteScrollHorizontal = (carouselProps: any) => {
 /* Accordions Horizontal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const AccordionsHorizontal = (carouselProps: any) => {
-    const { component, data, states } = carouselProps;
+    const { component, data, noActions, states } = carouselProps;
 	const { translations } = states;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const questionsButtons = [ translations["Général"] ];
     return <div className={ CarouselStyles.carousel } data-direction="bidirectional">
-        <div className={ CarouselStyles.actions }>
+        { (noActions) ? null : <div className={ CarouselStyles.actions }>
             { questionsButtons.map((button, key) => <Button key={ key } button={ ButtonStyles.callToActionStep } action={ (event: any) => transitionHandler(event, component) } text={ button } active={ key === 0 }/>) }
-        </div>
+        </div> }
         <div className={ CarouselStyles.container } data-carousel={ component }>
             { (data) ? data.map((accordion: any, key: Key) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
                 <Accordion { ...carouselProps } data={ accordion } translations={ translations }/>
