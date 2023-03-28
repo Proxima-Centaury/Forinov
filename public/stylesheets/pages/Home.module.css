@@ -10,7 +10,7 @@
 }
 @media screen and (max-width: 576px) {
 	.presentation {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .presentation::before,
@@ -23,16 +23,14 @@
 	content: "";
 	z-index: -1;
 }
-.presentation > img,
-.presentation > .jumbotron > img {
+.presentation > img {
 	width: 650px;
 	height: 500px;
 	margin: auto;
 	object-fit: contain;
 }
 @media screen and (max-width: 992px) {
-	.presentation > img,
-	.presentation > .jumbotron > img {
+	.presentation > img {
 		display: none;
 	}
 }
@@ -128,6 +126,17 @@
 	grid-gap: 40px;
 	gap: 40px;
 }
+.jumbotron > img {
+	width: 650px;
+	height: 500px;
+	margin: auto;
+	object-fit: contain;
+}
+@media screen and (max-width: 992px) {
+	.presentation > .jumbotron > img {
+		display: none;
+	}
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Content ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -218,7 +227,7 @@
 }
 @media screen and (max-width: 576px) {
 	.onboarding {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .onboarding::before,
@@ -353,7 +362,7 @@
 }
 @media screen and (max-width: 576px) {
 	.sourcing {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .sourcing::before,
@@ -490,7 +499,7 @@
 }
 @media screen and (max-width: 576px) {
 	.opportunity {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .opportunity::before,
@@ -552,7 +561,7 @@
 }
 @media screen and (max-width: 576px) {
 	.register {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .register::before,
@@ -636,7 +645,7 @@
 @media screen and (max-width: 576px) {
 	.startups,
 	.structures {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .startups::before,
@@ -740,7 +749,7 @@
 }
 @media screen and (max-width: 576px) {
 	.companies {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .companies::before,
@@ -822,7 +831,7 @@
 }
 @media screen and (max-width: 576px) {
 	.badges {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .badges::before,
@@ -1033,7 +1042,7 @@
 }
 @media screen and (max-width: 576px) {
 	.testimonials {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .testimonials::before,
@@ -1081,7 +1090,7 @@
 }
 @media screen and (max-width: 576px) {
 	.blog {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .blog::before,
@@ -1112,6 +1121,11 @@
 	gap: 40px;
 	width: 100%;
 	padding: 80px;
+}
+@media screen and (max-width: 576px) {
+	.typing {
+		padding: 32px;
+	}
 }
 .typing::before,
 .typing::after {
@@ -1167,7 +1181,7 @@
 }
 @media screen and (max-width: 576px) {
 	.questions {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .questions::before,
