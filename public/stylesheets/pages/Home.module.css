@@ -1144,7 +1144,7 @@
 .typing > .animation {
 	text-align: center;
 }
-.typing > .animation > h4,
+.typing > .animation > .typed,
 .typing > .animation > span {
 	display: inline;
 	font-size: 40px;
