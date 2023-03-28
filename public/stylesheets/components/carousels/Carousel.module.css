@@ -4,6 +4,7 @@
 .carousel {
     display: flex;
 	width: 100%;
+	cursor: grab;
 }
 .carousel[data-direction="vertical"] {
 	flex-direction: column;
@@ -20,7 +21,9 @@
     display: flex;
 	grid-gap: 16px;
 	gap: 16px;
-	width: 100%;
+	width: max-content;
+	pointer-events: none;
+	transition: none;
 	z-index: 1;
 }
 .carousel[data-direction="vertical"] > .container {

@@ -24,7 +24,9 @@
     /* Light & Dark Colors */
     --perfect-white-color: #FFFFFF;
     --darker-white-color: #F8F7F6;
+    --lighter-grey-color: #E7E7E7;
     --light-grey-color: #CFD0D1;
+    /* --iron-grey-color: #B7B7B9; */
     --perfect-grey-color: #808080;
     --lighter-black-color: #242526;
     --classic-black-color: #141516;
@@ -87,6 +89,7 @@
     --perfect-white-color: #FFFFFF;
     --darker-white-color: #F8F7F6;
     --light-grey-color: #CFD0D1;
+    /* --iron-grey-color: #B7B7B9; */
     --perfect-grey-color: #808080;
     --lighter-black-color: #242526;
     --classic-black-color: #141516;
