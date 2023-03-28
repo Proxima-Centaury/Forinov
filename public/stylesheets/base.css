@@ -122,7 +122,7 @@
     /* Background Colors */
     --background-main-color: var(--lighter-black-color);
     --background-sub-color: var(--classic-black-color);
-    --background-private-color: var(--lighter-black-color);
+    --background-private-color: var(--classic-black-color);
     --background-information-color: var(--perfect-grey-color);
     /* Inverted color */
     --inverted-color: var(--perfect-white-color);

@@ -40,11 +40,13 @@
 .carousel[data-direction="vertical"] > .container {
 	flex-direction: column;
 	min-height: inherit;
+	pointer-events: all;
 	overflow: inherit;
 }
 .carousel[data-direction="bidirectional"] > .container {
 	grid-gap: 80px;
 	gap: 80px;
+	pointer-events: all;
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Item ) */
