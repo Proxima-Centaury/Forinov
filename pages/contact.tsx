@@ -12,7 +12,7 @@ import Modal from '../layout/modal';
 export default function Contact(pageProps: any) {
     const { startups, logos, states, accordionsConfigurations, router }: any = pageProps;
     const { metadatas, translations }: any = states;
-    const { landings }: any = accordionsConfigurations;
+    const { contact }: any = accordionsConfigurations;
 
     const { stateSetters }: any = pageProps
     const { setModal }: any = stateSetters;
@@ -24,7 +24,7 @@ export default function Contact(pageProps: any) {
         }}>
             <div className={HomeStyles.questions} data-type="contact">
                 <h5>{translations["Les réponses à vos questions"]}</h5>
-                <Carousel {...pageProps} component="StartupAccordions" data={Object.values(landings.contact)} />
+                <Carousel {...pageProps} component="StartupAccordions" data={Object.values(contact)} />
             </div>
             <div style={{
                 width: "100%",

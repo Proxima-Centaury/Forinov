@@ -22,8 +22,8 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 const Navbar = (pageProps: NavbarInterface): JSX.Element => {
     const menuReference = useRef(null);
     const { states, stateSetters, layoutConfigurations, router } = pageProps;
-    const { locale, locales, translations }: any = states;
-    const { setLocale }: any = stateSetters;
+    const { locale, locales, translations } = states;
+    const { setLocale } = stateSetters;
     const { navbar } = layoutConfigurations.navigations.unsigned.layout;
     const [ menuState, setMenuState ] = useState(false);
     const languageSelectDefaultValue = [ ...selectifyTheOptions(locales, "locales") as Array<any> ]?.filter((option: any) => option.VALUE === locale)[0];

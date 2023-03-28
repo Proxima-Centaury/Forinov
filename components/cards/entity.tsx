@@ -31,7 +31,7 @@ const EntityCard = (entityProps: any) => {
                         <p className={ EntityStyles.name }>{ entity.NAME }</p>
                     </div>
                     { (type.match(/(startup)/)) ? ((entity.CATEGORY && entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
-                    { (type.match(/(corporation|entreprise)/)) ? ((entity.CATEGORY && entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
+                    { (type.match(/(corporate|entreprise)/)) ? ((entity.CATEGORY && entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
                     { (type.match(/(partner|partenaire)/)) ? ((entity.CATEGORY && entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
                 </div>
                 { (type.match(/(startup)/) && entity.TECHNOLOGIES.length > 0) ? <Tags tags={ entity.TECHNOLOGIES } limit={ 2 }/> : null }

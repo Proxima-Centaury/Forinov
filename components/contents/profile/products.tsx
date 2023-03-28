@@ -26,7 +26,7 @@ const ProfileProducts = (productsProps: any) => {
                 <ProductCard { ...productsProps } product={ product }/>
             </Link>) : <div className="placeholder" style={ { gridColumn: "span 2" } }>
                 { (type.match(/(startup)/)) ? <p>{ translations["Aucun produit à afficher"] + "." }</p> : null }
-                { (type.match(/(corporation|entreprise)/)) ? <p>{ translations["Aucune offre à afficher"] + "." }</p> : null }
+                { (type.match(/(corporate|entreprise)/)) ? <p>{ translations["Aucune offre à afficher"] + "." }</p> : null }
                 { (type.match(/(partner|partenaire)/)) ? <p>{ translations["Aucune offre à afficher"] + "." }</p> : null }
             </div> }
         </div>

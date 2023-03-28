@@ -21,7 +21,7 @@
 [data-profile="startup"] .marker {
     background-color: var(--logo-orange-color);
 }
-[data-profile="corporation"] .marker {
+[data-profile="corporate"] .marker {
     background-color: var(--logo-blue-color);
 }
 [data-profile="partner"] .marker {
@@ -69,7 +69,7 @@
 [data-profile="startup"] .content > .user > i {
     color: var(--logo-orange-color);
 }
-[data-profile="corporation"] .content > .user > i {
+[data-profile="corporate"] .content > .user > i {
     color: var(--logo-blue-color);
 }
 [data-profile="partner"] .content > .user > i {

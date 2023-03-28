@@ -17,9 +17,9 @@ import Button from "../components/buttons/button";
 import HomeStyles from "../public/stylesheets/pages/Home.module.css";
 import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Corporations Home */
+/* Corporates Home */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const CorporationsHome = (pageProps: HomeInterface) => {
+const CorporatesHome = (pageProps: HomeInterface) => {
 	const { opportunities, logos, states, accordionsConfigurations, router }: any = pageProps;
 	const { metadatas, translations }: any = states;
 	const { landings }: any = accordionsConfigurations;
@@ -29,7 +29,7 @@ const CorporationsHome = (pageProps: HomeInterface) => {
 			<meta name="description" content={ metadatas[router.route].description }/>
 		</Head>
 		<div className="containerFull">
-			<div className={ HomeStyles.presentation } data-type="corporation">
+			<div className={ HomeStyles.presentation } data-type="corporate">
 				<div className={ HomeStyles.presentationContent }>
 					<h1>{ translations["Innover plus simplement"] }</h1>
 					<p className={ HomeStyles.paragraph }>{ translations["Lancez vos appels à candidatures, trouvez les meilleures solutions, développez et gérez votre réseau de startups et de partenaires en quelques clics"] + "." }</p>
@@ -39,11 +39,11 @@ const CorporationsHome = (pageProps: HomeInterface) => {
 				</div>
 				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
 			</div>
-			<div className={ HomeStyles.register } data-type="corporation">
+			<div className={ HomeStyles.register } data-type="corporate">
 				<h3>{ translations["Et comment ça marche"] + " ?" }</h3>
-				<Carousel { ...pageProps } component="CorporationHowTo"/>
+				<Carousel { ...pageProps } component="CorporateHowTo"/>
 			</div>
-			<div className={ HomeStyles.companies } data-type="corporation">
+			<div className={ HomeStyles.companies } data-type="corporate">
 				<h4>{ translations["Ils nous font confiance"] }</h4>
 				<Carousel { ...pageProps } component="CompaniesLogos" data={ logos }/>
 				<h4>{ translations["Des milliers de startups, d'entreprises et de partenaires vous attendent sur Forinov"] + " !" }</h4>
@@ -53,7 +53,7 @@ const CorporationsHome = (pageProps: HomeInterface) => {
 					<Button button={ ButtonStyles.callToActionAlternative } href="/onboarding" text={ translations["Découvrir les offres"] }/>
 				</div>
 			</div>
-			<div className={ HomeStyles.sourcing } data-type="corporation">
+			<div className={ HomeStyles.sourcing } data-type="corporate">
 				<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
 				<p>{ translations["Publiez appels à projets, appels à candidatures et challenges en quelques clics"] }</p>
 				<Carousel { ...pageProps } component="HowToCreateOpportunity"/>
@@ -61,7 +61,7 @@ const CorporationsHome = (pageProps: HomeInterface) => {
 					<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Je publie mon opportunité"] }/>
 				</div>
 			</div>
-			<div className={ HomeStyles.opportunity } data-type="corporation">
+			<div className={ HomeStyles.opportunity } data-type="corporate">
 				<h4>{ translations["Les dernières opportunités"] + " :" }</h4>
 				<Carousel { ...pageProps } component="LatestOpportunities" data={ opportunities }/>
 				<div className={ HomeStyles.actions } data-justify="left">
@@ -69,9 +69,9 @@ const CorporationsHome = (pageProps: HomeInterface) => {
 					<Button button={ ButtonStyles.callToActionAlternative } href="/opportunities" text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
 				</div>
 			</div>
-			<div className={ HomeStyles.questions } data-type="corporation">
+			<div className={ HomeStyles.questions } data-type="corporate">
 				<h5>{ translations["Les réponses à vos questions"] }</h5>
-				<Carousel { ...pageProps } component="CorporationAccordions" data={ Object.values(landings.corporation) }/>
+				<Carousel { ...pageProps } component="CorporateAccordions" data={ Object.values(landings.corporate) }/>
 				<div className={ HomeStyles.actions } data-justify="center">
 					<p>{ translations["Vous avez des questions"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/contact" text={ translations["N'hésitez pas à nous contacter"] }/>.</p>
 				</div>
@@ -97,5 +97,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default CorporationsHome;
+export default CorporatesHome;
 export { getServerSideProps };

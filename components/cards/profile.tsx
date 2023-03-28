@@ -28,7 +28,7 @@ const ProfileCard = (profileProps: any) => {
         <div className={ ProfileStyles.banner }>
             <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3840" height="2160" priority/>
             { (profileType.match(/(startup)/) && page !== "landing") ? <StartupActions translations={ translations }/> : null }
-            { (profileType.match(/(corporation|entreprise)/) && page !== "landing") ? <CorporationActions translations={ translations }/> : null }
+            { (profileType.match(/(corporate|entreprise)/) && page !== "landing") ? <CorporateActions translations={ translations }/> : null }
             { (profileType.match(/(partner|partenaire)/) && page !== "landing") ? <PartnerActions translations={ translations }/> : null }
         </div>
         <div className={ ProfileStyles.body }>
@@ -103,9 +103,9 @@ const StartupActions = ({ translations }: any) => {
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Profile Card ( Corporation Actions ) */
+/* Profile Card ( Corporate Actions ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const CorporationActions = ({ translations }: any) => {
+const CorporateActions = ({ translations }: any) => {
     return <div className={ ProfileStyles.actions }>
         <div data-type="tooltip" data-tooltip={ translations["Ajouter à ma liste de souhaits"] }>
             <Button button={ ButtonStyles.callToActionRoundedIcon } icon="fa-light fa-heart-circle-plus"/>

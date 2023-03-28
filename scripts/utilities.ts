@@ -507,7 +507,7 @@ class Utilities {
         };
         type = String(type);
         type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-        type = (type.match(/(entreprise)/)) ? "corporation" : type;
+        type = (type.match(/(entreprise)/)) ? "corporate" : type;
         type = (type.match(/(partenaire)/)) ? "partner" : type;
         type = (type.match(/(opportu)/)) ? "opportunity" : type;
         return type;

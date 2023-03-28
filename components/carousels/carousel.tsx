@@ -103,13 +103,13 @@ const Carousel = (carouselProps: any) => {
             return <CustomVertical { ...carouselProps }/>;
         case "StartupAccordions":
             return <AccordionsHorizontal { ...carouselProps }/>;
-        case "CorporationAccordions":
+        case "CorporateAccordions":
             return <AccordionsHorizontal { ...carouselProps }/>;
         case "PartnerAccordions":
             return <AccordionsHorizontal { ...carouselProps }/>;
         case "OpportunityAccordions":
             return <AccordionsHorizontal { ...carouselProps }/>;
-        case "CorporationHowTo":
+        case "CorporateHowTo":
             return <StepsCarousel { ...carouselProps }/>;
         case "PartnerHowTo":
             return <StepsCarousel { ...carouselProps }/>;
@@ -371,7 +371,7 @@ const InfiniteScrollHorizontal = (carouselProps: any) => {
         switch(component) {
             case "CompaniesLogos":
                 return data.map(({ id, type, name, logo }: any, key: Key) => {
-                    type = (type.match(/(entreprise)/i)) ? "corporation" : type;
+                    type = (type.match(/(entreprise)/i)) ? "corporate" : type;
                     type = (type.match(/(partenaire)/i)) ? "partner" : type;
                     if(key < 14) {
                         const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;

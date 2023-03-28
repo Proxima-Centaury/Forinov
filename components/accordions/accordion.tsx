@@ -9,7 +9,8 @@ import AccordionStyles from "../../public/stylesheets/components/accordions/Acco
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Accordion */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Accordion = ({ data, translations }: any) => {
+const Accordion = (accordionProps: any) => {
+	const { data, translations } = accordionProps;
 	const expandContent = (event: any) => {
 		const target = event.target as Element;
 		const preciseTarget = target.closest("button");

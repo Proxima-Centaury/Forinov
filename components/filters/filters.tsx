@@ -55,11 +55,11 @@ const Filters = (pageProps: any) => {
     return <div className={ FiltersStyles.container }>
         { (title) ? <div className={ FiltersStyles.header }>
             { (type.match(/(startup)/)) ? <i className="fa-light fa-rocket-launch"/> : null }
-            { (type.match(/(corporation|entreprise)/)) ? <i className="fa-light fa-buildings"/> : null }
+            { (type.match(/(corporate|entreprise)/)) ? <i className="fa-light fa-buildings"/> : null }
             { (type.match(/(partner|partenaire)/)) ? <i className="fa-light fa-handshake-simple"/> : null }
             { (type.match(/(opport)/)) ? <i className="fa-light fa-circle-star"/> : null }
             { (type.match(/(startup)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.STARTUPS) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
-            { (type.match(/(corporation|entreprise)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.CORPORATES) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
+            { (type.match(/(corporate|entreprise)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.CORPORATES) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
             { (type.match(/(partner|partenaire)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.PARTNERS) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
             { (type.match(/(opport)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.OPPORTUNITIES_COUNT) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
             <div className={ FiltersStyles.displays }>
@@ -93,7 +93,7 @@ const Filters = (pageProps: any) => {
         </div>
         <div className={ FiltersStyles.filters + " grid fourColumns" }>
             { (filters && type.match(/(startup)/)) ? <MultipleSelect { ...pageProps } options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
-            { (filters && type.match(/(corporation|entreprise)/)) ? <MultipleSelect { ...pageProps } options={ filters.SECTORS } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
+            { (filters && type.match(/(corporate|entreprise)/)) ? <MultipleSelect { ...pageProps } options={ filters.SECTORS } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
             { (filters && type.match(/(partner|partenaire)/)) ? <MultipleSelect { ...pageProps } options={ filters.PARTNERS_TYPES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
             { (filters && type.match(/(opport)/)) ? <MultipleSelect { ...pageProps } options={ filters.OPPORTUNITIES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
             { (dynamicFiltersToArray.length > 0) ? dynamicFiltersToArray.map((filter: any, key: Key) => <MultipleSelect key={ key } { ...pageProps } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(filter[0]).toString() } dynamic/>) : null }
