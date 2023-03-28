@@ -226,53 +226,68 @@ const ClassicHorizontal = (carouselProps: any) => {
     //     return () => (carouselReference.current) ? removeEventListeners(carouselReference.current as HTMLElement, [ "wheel" ], scrollHandler) as any : null;
     // });
     const mouseEnterHandler = () => {
-        const carousel = (carouselReference.current) ? carouselReference.current as HTMLElement : null;
-        if(carousel) {
-            carousel.style.cursor = "grab";
+        if(window.innerWidth > 576) {
+            const carousel = (carouselReference.current) ? carouselReference.current as HTMLElement : null;
+            if(carousel) {
+                carousel.style.cursor = "grab";
+            };
         };
+        return false;
     };
     const mouseDownHandler = (event: any) => {
         event.preventDefault();
-        const carousel = (carouselReference.current) ? carouselReference.current as HTMLElement : null;
-        const innerCarousel = (carousel) ? carousel.querySelector("." + CarouselStyles.container) as HTMLElement : null;
-        if(carousel && innerCarousel) {
-            const outer = carousel.getBoundingClientRect();
-            const inner = innerCarousel.getBoundingClientRect();
-            setPressed(true);
-            setStartPosition(event.offsetX - innerCarousel.offsetLeft);
-            setLimit((inner.width - outer.width) * -1);
-            carousel.style.cursor = "grabbing";
+        if(window.innerWidth > 576) {
+            const carousel = (carouselReference.current) ? carouselReference.current as HTMLElement : null;
+            const innerCarousel = (carousel) ? carousel.querySelector("." + CarouselStyles.container) as HTMLElement : null;
+            if(carousel && innerCarousel) {
+                const outer = carousel.getBoundingClientRect();
+                const inner = innerCarousel.getBoundingClientRect();
+                setPressed(true);
+                setStartPosition(event.offsetX - innerCarousel.offsetLeft);
+                setLimit((inner.width - outer.width) * -1);
+                carousel.style.cursor = "grabbing";
+            };
         };
+        return false;
     };
     const mouseMoveHandler = (event: any) => {
         event.preventDefault();
-        if(!pressed) {
-            return false;
+        if(window.innerWidth > 576) {
+            if(!pressed) {
+                return false;
+            };
+            if(position > 0) {
+                return setPosition(0);
+            };
+            return ((event.offsetX - startPosition) > 0) ? setPosition(0) : setPosition(event.offsetX - startPosition);
         };
-        if(position > 0) {
-            return setPosition(0);
-        };
-        return ((event.offsetX - startPosition) > 0) ? setPosition(0) : setPosition(event.offsetX - startPosition);
+        return false;
     };
     const mouseUpHandler = () => {
-        const carousel = (carouselReference.current) ? carouselReference.current as HTMLElement : null;
-        if(carousel) {
-            setPressed(false);
-            carousel.style.cursor = "grab";
-            if(position > 0) {
-                return setPosition(0);
+        if(window.innerWidth > 576) {
+            const carousel = (carouselReference.current) ? carouselReference.current as HTMLElement : null;
+            if(carousel) {
+                setPressed(false);
+                carousel.style.cursor = "grab";
+                if(position > 0) {
+                    return setPosition(0);
+                };
             };
         };
+        return false;
     };
     const mouseLeaveHandler = () => {
-        const carousel = (carouselReference.current) ? carouselReference.current as HTMLElement : null;
-        if(carousel) {
-            setPressed(false);
-            carousel.style.cursor = "default";
-            if(position > 0) {
-                return setPosition(0);
+        if(window.innerWidth > 576) {
+            const carousel = (carouselReference.current) ? carouselReference.current as HTMLElement : null;
+            if(carousel) {
+                setPressed(false);
+                carousel.style.cursor = "default";
+                if(position > 0) {
+                    return setPosition(0);
+                };
             };
         };
+        return false;
     };
     useEffect(() => {
         const carousel = (carouselReference.current) ? carouselReference.current as HTMLElement : null;

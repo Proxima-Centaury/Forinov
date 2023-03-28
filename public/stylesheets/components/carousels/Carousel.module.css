@@ -6,6 +6,11 @@
 	width: 100%;
 	cursor: grab;
 }
+@media screen and (max-width: 576px) {
+	.carousel {
+		cursor: default;
+	}
+}
 .carousel[data-direction="vertical"] {
 	flex-direction: column;
 }
@@ -25,6 +30,12 @@
 	pointer-events: none;
 	transition: none;
 	z-index: 1;
+}
+@media screen and (max-width: 576px) {
+	.container {
+		width: 100%;
+		transition: all 0.3s ease;
+	}
 }
 .carousel[data-direction="vertical"] > .container {
 	flex-direction: column;
