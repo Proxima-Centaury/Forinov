@@ -2,15 +2,15 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { Key, useEffect, useRef } from "react";
+import { Key, useRef } from "react";
 import { HomeInterface } from "../typescript/interfaces";
 import { formatNameForUrl } from "../scripts/utilities";
-import Typed from "typed.js";
 import api from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
+import Script from "next/script";
 import Image from "next/image";
 import Carousel from "../components/carousels/carousel";
 import Format from "../components/texts/format";
@@ -28,18 +28,6 @@ const Home = (pageProps: HomeInterface) => {
 	const { landing, startups, opportunities, states, router }: any = pageProps;
 	const { translations, metadatas }: any = states;
 	const structures: Array<String> = [ "Startup", "Grand groupe", "ETI", "PME", "Incubateur", "Accélérateur", "Pépinière", "Fond d'investissement", "Business angel", "Structure d'investissement" ];
-	useEffect(() => {
-		const typed = new Typed(typing.current, {
-			strings: [
-				translations["Plus de 1500 startups innovantes à l'international"] + ".",
-				translations["Des centaines d'entreprises à la recherche de solutions"] + ".",
-				translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"] + "."
-			],
-			typeSpeed: 50,
-			loop: true
-		});
-		return () => typed.destroy();
-	}, []);
 	return <>
 		<Head>
 			<title>{ metadatas[router.route].title }</title>
@@ -182,8 +170,19 @@ const Home = (pageProps: HomeInterface) => {
 			<div className={ HomeStyles.typing } data-type="home">
 				<p>{ translations["Forinov aujourd'hui"] }</p>
 				<div className={ HomeStyles.animation }>
-					<h4 ref={ typing }/>
+					<h4 className={ HomeStyles.typed }/>
 				</div>
+				<Script>{`
+					const typed = new Typed(".${ HomeStyles.typed }", {
+						strings: [
+							"${ translations["Plus de 1500 startups innovantes à l'international"] + "." }",
+							"${ translations["Des centaines d'entreprises à la recherche de solutions"] + "." }",
+							"${ translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"] + "." }"
+						],
+						typeSpeed: 50,
+						loop: true
+					});
+				`}</Script>
 			</div>
 			{ (structures.length > 0) ? <div className={ HomeStyles.structures } data-type="home">
 				<h4>{ translations["Tous les acteurs de l'innovation sont sur Forinov, qu'attendez-vous pour les rejoindre"] + " ?" }</h4>
