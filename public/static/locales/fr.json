@@ -427,6 +427,7 @@
 	"Il existe trois types de comptes et donc trois annuaires distincts : [startups=/directories/startups/categories], [entreprises=/directories/corporates/categories] et [partenaires=/directories/partners/categories] (incubateurs, investisseurs, etc.). Sur chaque profil, vous aurez la possibilité de contacter les membres actifs. Par exemple sur le profil d'un grand groupe, vous pourrez y trouver les responsable des relations et partenariats startups, le directeur marketing ou encore innovation et RSE. En résumé toutes les personnes qui sont à la recherche de solutions innovantes et habilitées à signer avec des startups": "Il existe trois types de comptes et donc trois annuaires distincts : [startups=/directories/startups/categories], [entreprises=/directories/corporates/categories] et [partenaires=/directories/partners/categories] (incubateurs, investisseurs, etc.). Sur chaque profil, vous aurez la possibilité de contacter les membres actifs. Par exemple sur le profil d'un grand groupe, vous pourrez y trouver les responsable des relations et partenariats startups, le directeur marketing ou encore innovation et RSE. En résumé toutes les personnes qui sont à la recherche de solutions innovantes et habilitées à signer avec des startups",
 	"Vous ne trouvez pas la réponse à votre question": "Vous ne trouvez pas la réponse à votre question",
 	"Accédez à la FAQ": "Accédez à la FAQ",
+	"Blog": "Blog",
 	"annuaire_opport_selectors": [
 		"Tous",
 		"Appels à candidature",
