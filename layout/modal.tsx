@@ -2,8 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { MouseEventHandler, useEffect, useState } from "react";
-import { ButtonInterface } from "../typescript/interfaces";
-import { buildProperties } from "../scripts/utilities";
+import { preciseTarget } from "../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -13,42 +12,45 @@ import RegisterModal from "../components/modals/profile/register";
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
+import SelectStyles from "../public/stylesheets/components/fields/Select.module.css";
 import ContactModal from "../components/modals/contact";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Modal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Modal = ({ states, stateSetters }: any) => {
-    const { modal, translations, theme }: any = states;
-    const { setModal }: any = stateSetters;
+const Modal = (modalProps: any) => {
+    const { states, stateSetters } = modalProps;
+    const { modal } = states;
+    const { setModal } = stateSetters;
     const [ modalState, setModalState ]  = useState(false);
-    const closeModal: MouseEventHandler = () => {
-        setModal(null);
+    const closeModal: MouseEventHandler = (event) => {
+        const target = event.target as HTMLElement;
+        const button = preciseTarget(event as any);
+        if(target.classList.contains("modalLayout") || (button && button.getAttribute("class") === ButtonStyles.closeModal)) {
+            setModal(null);
+        };
     };
     useEffect(() => (modal) ? setModalState(true) : setModalState(false), [ modal ]);
-    const modalProps = { modal: modal, closeModal: closeModal, translations: translations, theme: theme };
-    return <div className={ "modalLayout" + ((modalState) ? " open" : "") }>
-        <ModalPicker { ...modalProps }/>
+    return <div className={ "modalLayout" + ((modalState) ? " open" : "") } onClick={ closeModal }>
+        <ModalPicker { ...modalProps } action={ closeModal }/>
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Modal Picker */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ModalPicker = ({ modal, closeModal, translations, theme }: any) => {
-    const buttonProps = [ "type", "faIcon", "faIconClass", "url", "action", "text", "count" ];
-    const closeModalButtonValues = [ ButtonStyles.closeModal, false, "", "", closeModal, "", 0 ];
-    const closeModalButtonObject = buildProperties(buttonProps, closeModalButtonValues);
-    const modalProps = { translations: translations, theme: theme };
+const ModalPicker = (modalProps: any) => {
+    const { action, states } = modalProps;
+    const { modal } = states;
     switch(modal) {
         case "register":
             return <div className="modal firstType" data-modal="register">
-                <RegisterModal  { ...modalProps }/>
-                <Button button={ ButtonStyles.closeModal } action={ closeModal }/>
+                <RegisterModal { ...modalProps }/>
+                <Button button={ ButtonStyles.closeModal } action={ action }/>
             </div>;
         case "contact":
-            return <div className="modal firstType" data-modal="contact">
-            <ContactModal  { ...modalProps }/>
-            <Button { ...closeModalButtonObject as ButtonInterface }/>
-        </div>;
+            return <div className="modal secondType" data-modal="contact">
+                <ContactModal { ...modalProps }/>
+                <Button button={ ButtonStyles.closeModal } action={ action }/>
+            </div>;
         default:
             return <div></div>;
     };

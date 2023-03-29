@@ -20,9 +20,9 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Partners Home */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnersHome = (pageProps: HomeInterface) => {
-	const { startups, logos, states, accordionsConfigurations, router }: any = pageProps;
-	const { metadatas, translations }: any = states;
-	const { landings }: any = accordionsConfigurations;
+	const { startups, logos, states, accordionsConfigurations, router } = pageProps;
+	const { metadatas, translations } = states;
+	const { landings } = accordionsConfigurations;
 	return <>
 		<Head>
 			<title>{ metadatas[router.route].title }</title>

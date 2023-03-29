@@ -2,7 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { Key, useRef } from "react";
+import { Fragment, Key } from "react";
 import { HomeInterface } from "../typescript/interfaces";
 import { formatNameForUrl } from "../scripts/utilities";
 import api from "../scripts/api";
@@ -24,16 +24,15 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Home */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = (pageProps: HomeInterface) => {
-	const typing = useRef(null);
-	const { landing, startups, opportunities, states, router }: any = pageProps;
-	const { translations, metadatas }: any = states;
+	const { landing, startups, opportunities, states, router } = pageProps;
+	const { translations, metadatas } = states;
 	const structures: Array<String> = [ "Startup", "Grand groupe", "ETI", "PME", "Incubateur", "Accélérateur", "Pépinière", "Fond d'investissement", "Business angel", "Structure d'investissement" ];
-	return <>
+	return <Fragment>
 		<Head>
 			<title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
 		</Head>
-		<div className="containerFull">
+		<div id="home" className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="home">
 				<h1>{ translations["Rejoignez le plus grand réseau social des acteurs de l'innovation"] }</h1>
 				<div className={ HomeStyles.jumbotron }>
@@ -203,7 +202,7 @@ const Home = (pageProps: HomeInterface) => {
 				<Carousel { ...pageProps } component="ForinovBlog" data={ landing.BLOG }/>
 			</div>
 		</div>
-	</>;
+	</Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Props */

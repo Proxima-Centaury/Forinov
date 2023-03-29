@@ -56,7 +56,8 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
                         "." + BannerStyles.identificationBanner,
                         "." + BannerStyles.recoverBanner,
                         "." + NavbarStyles.navbar,
-                        "[data-type='devtools']"
+                        "[data-type='devtools']",
+                        ".modalLayout"
                     ];
                     if(!target.closest(selectors.join(", "))) {
                         if(lock) {

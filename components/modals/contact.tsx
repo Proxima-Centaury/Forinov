@@ -1,18 +1,25 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { Fragment, useEffect, useState } from "react";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Link from "next/link";
 import Input from "../fields/input";
+import Select from "../fields/select";
+import Separator from "../separators/separator";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
-import Select from '../fields/select';
-import { useEffect, useState } from 'react';
+import ContactForm from "../forms/contact";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Register Modal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const ContactModal = ({ translations, theme }: any) => {
+const ContactModal = (modalProps: any) => {
+    const { states } = modalProps;
+    const { translations, theme } = states;
     useEffect(() => {
         const script = document.createElement("script");
         script.src = "https://www.google.com/recaptcha/api.js";
@@ -59,65 +66,14 @@ const ContactModal = ({ translations, theme }: any) => {
         }
         expiredReCaptcha();
     }, [])
-
-
-    return <>
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "flex-start",
-                padding: "5rem",
-                gap: "2rem",
-            }}
-        >
-            <div>
-
-                <h1
-                    style={{
-                        fontSize: "1.25rem",
-                        fontWeight: 700,
-                    }}
-                >{translations["Contacter Forinov"]}</h1>
-                <p style={{
-                    opacity: 0.5,
-                }}>{translations["Nos équipes vous répondront dans les meilleurs délais !"]}</p>
-            </div>
-            <Input label={translations["Société"]} type="text" name="company"/>
-            <Input label={translations["Nom Prénom"]} type="text" name="name"/>
-            <Input label={"Email"} type="text" name="email"/>
-            <Input label={translations["Téléphone"]} type="text" name="phone"/>
-
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <select name="" id=""
-                    defaultValue={translations["Sujet"]}
-                >
-                    <option value="">{translations["Sujet"]}</option>
-                    <option value="">Option 2</option>
-                    <option value="">Option 3</option>
-                </select>
-            </div>
-            <textarea name="" id="" cols={30} rows={10} placeholder="Message.." style={{
-                border: "var(--border)",
-                padding: "1rem",
-                resize: "none",
-                width: "100%",
-            }}></textarea>
-            <div className="g-recaptcha" data-sitekey="6LfaUKoUAAAAAFsLxbSyLznUs6BSHeTglvZ8EzOO"
-                data-theme={theme}
-            ></div>
-            <button className={ButtonStyles.callToAction}>
-                {translations["Envoyer"]}
-            </button>
+    return <Fragment>
+        <div className="header">
+            <h6>{ translations["Contacter Forinov"] }</h6>
+            <p>{ translations["Nos équipes vous répondront dans les meilleurs délais !"] }</p>
         </div>
-    </>;
+        <Separator { ...modalProps }/>
+        <ContactForm { ...modalProps }/>
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */

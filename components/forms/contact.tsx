@@ -1,48 +1,76 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { GetStaticProps } from "next";
-import { Fragment } from "react";
-import { ContactInterface } from "../typescript/interfaces";
+import { InputInterface } from "../../typescript/interfaces";
+import { buildProperties } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Carousel from "../components/carousels/carousel";
-import Button from "../components/buttons/button";
+import Input from "../fields/input";
+import Select from "../fields/select";
+import Button from "../buttons/button";
+import Separator from "../separators/separator";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import HomeStyles from "../public/stylesheets/pages/Home.module.css";
-import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
+import FormStyles from "../../public/stylesheets/components/Form.module.css";
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Contact */
+/* Contact Form */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Contact = (pageProps: ContactInterface) => {
-    const { states, stateSetters, accordionsConfigurations } = pageProps;
+const ContactForm = (pageProps: any) => {
+    const { states } = pageProps;
     const { translations } = states;
-    const { setModal } = stateSetters;
-    const { contact } = accordionsConfigurations;
-    return <Fragment>
-        <div id="contact" className="container">
-            <div className={ HomeStyles.questions } data-type="opportunity">
-                <h5>{ translations["Les réponses à vos questions"] }</h5>
-                <Carousel { ...pageProps } component="StartupAccordions" data={ Object.values(contact) } noActions/>
-                <div className={ HomeStyles.actions } data-justify="center">
-                    <p>{ translations["Vous ne trouvez pas la réponse à votre question"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/questions" text={ translations["Accédez à la FAQ"] }/>.</p>
-                </div>
+    return <form className={ FormStyles.form }>
+        <div className={ FormStyles.row }>
+            <div className={ FormStyles.column }>
+                <Input label={ translations["Société"] } type="text" name="company"/>
             </div>
-            <div className={ HomeStyles.actions } data-justify="center">
-                <Button button={ ButtonStyles.callToAction } action={ () => setModal("contact") } text={ translations["Nous contacter"] }/>
+            <div className={ FormStyles.column }>
+                <Input label={ translations["Nom Prénom"] } type="text" name="name"/>
             </div>
         </div>
-    </Fragment>;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Static Props */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const getStaticProps: GetStaticProps = async (context) => ({ props: { ...context } });
+        <div className={ FormStyles.row }>
+            <div className={ FormStyles.column }>
+                <Input label={ translations["Adresse email"] } type="text" name="email"/>
+            </div>
+            <div className={ FormStyles.column }>
+                <Input label={ translations["Téléphone"] } type="text" name="phone"/>
+            </div>
+        </div>
+        {/* <div
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+            }}
+        >
+            <select name="" id=""
+                defaultValue={translations["Sujet"]}
+            >
+                <option value="">{translations["Sujet"]}</option>
+                <option value="">Option 2</option>
+                <option value="">Option 3</option>
+            </select>
+        </div> */}
+        <div className={ FormStyles.row }>
+            <Select placeholder={ translations["Sujet"] }/>
+        </div>
+        <div className={ FormStyles.row }>
+            <textarea name="" id="" cols={30} rows={10} placeholder="Message.." style={{
+                border: "var(--border)",
+                padding: "1rem",
+                resize: "none",
+                width: "100%",
+            }}></textarea>
+        </div>
+        <div className={ FormStyles.row }>
+            <Button button={ ButtonStyles.callToAction } text={ translations["Envoyer"] }/>
+        </div>
+        <div className="g-recaptcha" data-sitekey="6LfaUKoUAAAAAFsLxbSyLznUs6BSHeTglvZ8EzOO"/>
+    </form>;
+};
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default Contact;
-export { getStaticProps };
+export default ContactForm;

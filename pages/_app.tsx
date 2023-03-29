@@ -30,8 +30,6 @@ import accordionsConfigurations from "../configurations/accordions.json";
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import "../public/stylesheets/base.css";
-import "../public/stylesheets/components/annuaire_searchbar.css";
-import "../public/stylesheets/pages/annuaire_su.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* App */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -66,9 +64,11 @@ const App = ({ Component, pageProps }: AppProps) => {
             const body = document.body;
             return body.setAttribute("data-theme", theme as string);
         }; applyTheme();
-        return () => { applyTheme = () => false };
+        return () => { applyTheme = undefined as any; };
     }, [ theme ]);
-    useEffect(() => scrollTo(0, 0) as any, [ router.route ]);
+    useEffect(() => {
+        scrollTo(0, 0);
+    }, [ router.route ]);
     pageProps.states = {};
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;

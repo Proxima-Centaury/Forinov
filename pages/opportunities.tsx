@@ -9,7 +9,6 @@ import api from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import Carousel from "../components/carousels/carousel";
 import Button from "../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -21,9 +20,9 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Home */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = (pageProps: HomeInterface) => {
-	const { logos, states, accordionsConfigurations, router }: any = pageProps;
-	const { metadatas, translations }: any = states;
-	const { landings }: any = accordionsConfigurations;
+	const { logos, states, accordionsConfigurations, router } = pageProps;
+	const { metadatas, translations } = states;
+	const { landings } = accordionsConfigurations;
 	return <>
 		<Head>
 			<title>{ metadatas[router.route].title }</title>
