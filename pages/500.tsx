@@ -2,6 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetStaticProps } from "next";
+import { Fragment } from "react";
 import { ServerErrorInterface } from "../typescript/interfaces";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -15,9 +16,9 @@ import ServerErrorStyles from "../public/stylesheets/pages/ServerError.module.cs
 /* Server Error */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ServerError = (pageProps: ServerErrorInterface) => {
-    const { states, router }: any = pageProps;
-    const { metadatas, translations }: any = states;
-    return <>
+    const { states, router } = pageProps;
+    const { metadatas, translations } = states;
+    return <Fragment>
         <Head>
             <title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
@@ -29,7 +30,7 @@ const ServerError = (pageProps: ServerErrorInterface) => {
                 <button onClick={ () => router.back() }>{ translations["Retournez à la page précédente"] + "." }</button>
             </div>
         </div>
-    </>;
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Static Props */

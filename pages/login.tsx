@@ -2,7 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetStaticProps } from "next";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { LoginInterface } from "../typescript/interfaces";
 import { redirectTo } from "../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -14,18 +14,18 @@ import LoginCard from "../components/cards/login";
 /* Login */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Login = (pageProps: LoginInterface) => {
-    const { states, router }: any = pageProps;
-    const { locale, session, metadatas }: any = states;
+    const { states, router } = pageProps;
+    const { locale, session, metadatas } = states;
     useEffect(() => { (session) ? redirectTo("/", router, locale) : null });
-    return <>
+    return <Fragment>
         <Head>
             <title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
         </Head>
-        <div className="container">
+        <div id="login" className="container">
             <LoginCard { ...pageProps }/>
         </div>
-    </>;
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Static Props */

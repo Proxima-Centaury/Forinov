@@ -103,13 +103,13 @@ const Carousel = (carouselProps: any) => {
             return <CustomVertical { ...carouselProps }/>;
         case "StartupAccordions":
             return <AccordionsHorizontal { ...carouselProps }/>;
-        case "CorporationAccordions":
+        case "CorporateAccordions":
             return <AccordionsHorizontal { ...carouselProps }/>;
         case "PartnerAccordions":
             return <AccordionsHorizontal { ...carouselProps }/>;
         case "OpportunityAccordions":
             return <AccordionsHorizontal { ...carouselProps }/>;
-        case "CorporationHowTo":
+        case "CorporateHowTo":
             return <StepsCarousel { ...carouselProps }/>;
         case "PartnerHowTo":
             return <StepsCarousel { ...carouselProps }/>;
@@ -371,7 +371,7 @@ const InfiniteScrollHorizontal = (carouselProps: any) => {
         switch(component) {
             case "CompaniesLogos":
                 return data.map(({ id, type, name, logo }: any, key: Key) => {
-                    type = (type.match(/(entreprise)/i)) ? "corporation" : type;
+                    type = (type.match(/(entreprise)/i)) ? "corporate" : type;
                     type = (type.match(/(partenaire)/i)) ? "partner" : type;
                     if(key < 14) {
                         const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
@@ -397,15 +397,15 @@ const InfiniteScrollHorizontal = (carouselProps: any) => {
 /* Accordions Horizontal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const AccordionsHorizontal = (carouselProps: any) => {
-    const { component, data, states } = carouselProps;
+    const { component, data, noActions, states } = carouselProps;
 	const { translations } = states;
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const questionsButtons = [ translations["Général"] ];
     return <div className={ CarouselStyles.carousel } data-direction="bidirectional">
-        <div className={ CarouselStyles.actions }>
+        { (noActions) ? null : <div className={ CarouselStyles.actions }>
             { questionsButtons.map((button, key) => <Button key={ key } button={ ButtonStyles.callToActionStep } action={ (event: any) => transitionHandler(event, component) } text={ button } active={ key === 0 }/>) }
-        </div>
+        </div> }
         <div className={ CarouselStyles.container } data-carousel={ component }>
             { (data) ? data.map((accordion: any, key: Key) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
                 <Accordion { ...carouselProps } data={ accordion } translations={ translations }/>

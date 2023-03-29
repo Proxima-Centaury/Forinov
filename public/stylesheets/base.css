@@ -497,6 +497,8 @@ body {
 .modal {
     display: flex;
     flex-direction: column;
+    grid-gap: 24px;
+    gap: 24px;
     position: relative;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
@@ -504,6 +506,26 @@ body {
 }
 .modal.firstType {
     border-radius: 15px;
+}
+.modal.secondType {
+    padding: 16px;
+    border-radius: 15px;
+}
+.modal > .header {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 8px;
+    gap: 8px;
+    padding: 0px calc(70px - 16px) 0px 0px;
+}
+.modal > .header > h6 {
+    color: var(--logo-blue-color);
+    font-family: "Nunito Sans";
+    font-size: 24px;
+    font-weight: 800;
+}
+.modal > .header > p {
+    color: var(--text-inactive-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Modal ( Register ) */
@@ -526,11 +548,17 @@ body {
     font-weight: 800;
 }
 .modal[data-modal="register"] > div:first-of-type {
-    padding: 24px calc((24px + 16px) + 30px) 24px 24px;
+    padding: 24px calc((24px + 16px) + 30px) 8px 24px;
 }
 .modal[data-modal="register"] > div:last-of-type {
     padding: 24px 24px 24px calc((24px + 16px) + 35px);
     background-color: var(--logo-blue-color);
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Modal ( Contact ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.modal[data-modal="contact"] {
+    max-width: 892px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Custom Tool Tips */

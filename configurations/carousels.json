@@ -6,7 +6,7 @@
         },
         {
             "picture": "/assets/landings/startups/step_2.png", "title": "J'entre en relation",
-            "text": "Grâce à [l'annuaire des entreprises=/directories/corporations], je peux contacter les prospects qui m'intéressent. Avec [l'annuaire des opportunités=/directories/opportunities], je candidate aux appels à projets qui correspondent à ma startup"
+            "text": "Grâce à [l'annuaire des entreprises=/directories/corporates], je peux contacter les prospects qui m'intéressent. Avec [l'annuaire des opportunités=/directories/opportunities], je candidate aux appels à projets qui correspondent à ma startup"
         },
         {
             "picture": "/assets/landings/startups/step_3.png", "title": "Je développe mon réseau",
@@ -27,9 +27,9 @@
             "text": "Je contacte les startups retenues via messagerie sécurisée. Je simplifie le suivi de mes projets en interne et avec mes partenaires externes"
         }
     ],
-    "CorporationHowTo": [
+    "CorporateHowTo": [
         {
-            "picture": "/assets/landings/corporations/step_1.png", "title": "Je m'inscris",
+            "picture": "/assets/landings/corporates/step_1.png", "title": "Je m'inscris",
             "list": [
                 "[Je complète les informations essentielles=/onboarding] pour demander une démo",
                 "L'équipe Forinov me propose un rendez-vous de démo",
@@ -37,14 +37,14 @@
             ]
         },
         {
-            "picture": "/assets/landings/corporations/step_2.png", "title": "Je découvre",
+            "picture": "/assets/landings/corporates/step_2.png", "title": "Je découvre",
             "list": [
                 "Forinov m'accompagne dans les premières étapes (compléter mon profil, prise en main, etc.)",
                 "J'invite mes collaborateurs à me rejoindre"
             ]
         },
         {
-            "picture": "/assets/landings/corporations/step_3.png", "title": "Je me lance",
+            "picture": "/assets/landings/corporates/step_3.png", "title": "Je me lance",
             "list": [
                 "Je trouve les startups qui m'intéressent et les ajoute aux dossiers de mon portefeuille",
                 "Je gère et centralise toutes mes relations (messages, documents, RDVs, etc.)",
@@ -52,7 +52,7 @@
             ]
         },
         {
-            "picture": "/assets/landings/corporations/step_4.png", "title": "Je développe",
+            "picture": "/assets/landings/corporates/step_4.png", "title": "Je développe",
             "list": [
                 "Je lance des opportunités sur Forinov (appels à projets, appels à candidatures, programmes d'accompagnements)",
                 "J'évalue et sélectionne les startups pertinentes (système d'évaluation simplifié)",

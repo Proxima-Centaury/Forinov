@@ -68,9 +68,8 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    color: var(--text-inactive-color);
+    color: var(--separator-color);
     cursor: pointer;
-    
 }
 .text > input:focus + label,
 .text > input.filled + label,

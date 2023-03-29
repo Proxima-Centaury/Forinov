@@ -15,8 +15,8 @@
 		"title": "Forinov for your startup, how does it work ?",
 		"description": "Forinov for your startup, how does it work? Register your startup on Forinov, respond to calls for applications, list your startup in the directory of French startups on Forinov. Integrate your startup into our database of startups. You have questions ? All the answers are on Forinov."
 	},
-	"/corporations": {
-		"title": "Forinov for your corporation, how does it work ?",
+	"/corporates": {
+		"title": "Forinov for your corporate, how does it work ?",
 		"description": "How to register your company on Forinov ? How to create an opportunity ? With Forinov, discover the best open innovation startups, create opportunities, manage your collaborations."
 	},
 	"/partners": {
@@ -43,7 +43,7 @@
 		"title": "Forinov, create your startup profile for free",
 		"description": "Forinov, connects the best startups with companies looking for solutions, allows them to apply for opportunities (calls for projects, calls for applications, partner programs...) and simplifies customer relationships. More than a prospecting solution, it is a business network!"
 	},
-	"/solutions/corporations": {
+	"/solutions/corporates": {
 		"title": "Forinov, the most complete solution for open innovation",
 		"description": "More than a social network for Open Innovation, Forinov is the best open innovation solution for companies looking to innovate: startups and partners’ directories, monitoring solution, qualification and sourcing of startups, management of calls for projects and portfolio monitoring..."
 	},
@@ -59,7 +59,7 @@
 		"title": "Forinov's startup directory - tech and innovative startups",
 		"description": "Forinov, start-ups directory. Thanks to the search engine by categories, technologies or sectors of activity, find the best startups classified by field. More than a mapping or a database of startups, join the largest network of startups and their qualified profiles, data updated in real time by the teams (fundraising, staff ... and key indicators ...)"
 	}, 
-    "/directories/corporations" : {
+    "/directories/corporates" : {
         "title": "Forinov company directory - member companies of Forinov, the Open Innovation social network",
         "description" : "Forinov, directory of companies present on Forinov, the social network of Open innovation. Find, by sector of activity, SMEs, ETIs, and large international groups looking for collaborations with startups. Contact the innovation teams and respond to their needs: calls for projects, programs, calls for applications from startups"
     }, 
@@ -77,7 +77,7 @@
         "description1" : "Discover the complete Profile of the startup ",
         "description2" : ", member of Forinov in the category : "
     },
-    "/annuaires/corporations/[id]" : {
+    "/annuaires/corporates/[id]" : {
         "title1": "",
         "title2": " profile on Forinov : ",
         "title3": " company",

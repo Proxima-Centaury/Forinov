@@ -25,7 +25,7 @@ const ProfileOverview = (pageProps: any) => {
         <h4>{ translations["En bref"] }</h4>
         <div className="separator"></div>
         { (type.match(/(startup)/)) ? <Startup { ...pageProps }/> : null }
-        { (type.match(/(corporation|entreprise)/)) ? <Corporation { ...pageProps }/> : null }
+        { (type.match(/(corporate|entreprise)/)) ? <Corporate { ...pageProps }/> : null }
         { (type.match(/(partner|partenaire)/)) ? <Partner { ...pageProps }/> : null }
         <div className="separator"></div>
         { (profile.IMMAT) ? <div className={ OverviewStyles.details }>
@@ -97,15 +97,15 @@ const Startup = (pageProps: any) => {
     </>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Corporation Overview */
+/* Corporate Overview */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Corporation = (pageProps: any) => {
+const Corporate = (pageProps: any) => {
     const { profile, states }: any = pageProps;
     const { translations }: any = states;
     return <>
         { (profile.HEADQUARTER) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Maison mère"] }</p>
-            <Link href={ "/directories/corporations/" + formatNameForUrl(profile.HEADQUARTER_NAME || profile.NAME) + "_" + profile.HEADQUARTER[0].Entreprise }>
+            <Link href={ "/directories/corporates/" + formatNameForUrl(profile.HEADQUARTER_NAME || profile.NAME) + "_" + profile.HEADQUARTER[0].Entreprise }>
                 <Tags tags={ Object.entries({ NAME: profile.HEADQUARTER_NAME || profile.NAME }) }/>
             </Link>
         </div> : <div className={ OverviewStyles.details }>

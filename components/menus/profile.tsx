@@ -18,7 +18,7 @@ const menus = {
         { url: "#newsfeed", classList: "", text: "Fil d'actualité" },
         { url: "#socialsfeed", classList: "", text: "Réseaux sociaux" }
     ],
-    corporation: [
+    corporate: [
         { url: "#team", classList: ProfileStyles.active, text: "Équipe" },
         { url: "#opportunities", classList: "", text: "Opportunités" },
         { url: "#goals", classList: "", text: "Objectifs et offres" },
@@ -60,7 +60,7 @@ const ProfileMenu = (pageProps: any) => {
     useEffect(() => {
         let correctMenu = menus.startup as any;
         if(type.match(/(startup)/)) { correctMenu = menus.startup };
-        if(type.match(/(corporation|entreprise)/)) { correctMenu = menus.corporation };
+        if(type.match(/(corporate|entreprise)/)) { correctMenu = menus.corporate };
         if(type.match(/(partner|partenaire)/)) { correctMenu = menus.partner };
         setMenu(correctMenu);
     }, [ type ]);

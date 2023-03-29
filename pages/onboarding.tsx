@@ -9,7 +9,6 @@ import { redirectTo } from "../scripts/utilities";
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
-import Link from "next/link";
 import Button from "../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -20,15 +19,15 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Onboarding */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Onboarding = (pageProps: OnboardingInterface) => {
-    const { states, router }: any = pageProps;
-    const { locale, session, metadatas, translations }: any = states;
+    const { states, router } = pageProps;
+    const { locale, session, metadatas, translations } = states;
     useEffect(() => { (session) ? redirectTo("/", router, locale) : null });
     return <>
         <Head>
             <title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
         </Head>
-        <div className="containerFull">
+        <div id="onboarding" className="containerFull">
             <div className={ IframeStyles.registerFrame }>
                 <p>{ translations["Si vous souhaitez vous inscrire"] },<br/>{ translations["Rendez-vous"].toLowerCase() } <Button button={ ButtonStyles.classicLink } href="https://onboarding.forinov.net" text={ translations["Ici"].toLowerCase() }/> !</p>
                 <iframe src="https://onboarding.forinov.net"/>

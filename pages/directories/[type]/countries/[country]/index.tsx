@@ -55,8 +55,8 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const companies = async () => {
         if(type.match(/(startup)/)) {
             return await api.getFilteredStartupsByCountry(country, "next", "Sorbonne", language);
-        } else if(type.match(/(corporation|entreprise)/)) {
-            return await api.getFilteredCorporationsByCountry(country, "next", "Sorbonne", language);
+        } else if(type.match(/(corporate|entreprise)/)) {
+            return await api.getFilteredCorporatesByCountry(country, "next", "Sorbonne", language);
         } else if(type.match(/(partner|partenaire)/)) {
             return await api.getFilteredPartnersByCountry(country, "next", "Sorbonne", language);
         };

@@ -56,7 +56,8 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
                         "." + BannerStyles.identificationBanner,
                         "." + BannerStyles.recoverBanner,
                         "." + NavbarStyles.navbar,
-                        "[data-type='devtools']"
+                        "[data-type='devtools']",
+                        ".modalLayout"
                     ];
                     if(!target.closest(selectors.join(", "))) {
                         if(lock) {
@@ -79,16 +80,16 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
                 {metadatas["/annuaires/startups/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/startups/[id]"].title2 + " " + profile.CATEGORY[0].NAME}
             </title>
                 <meta name="description" content={metadatas["/annuaires/startups/[id]"].description1 + profile.NAME + metadatas["/annuaires/startups/[id]"].description2 + profile.CATEGORY[0].NAME + ", " + metadataComment + ", " + profileTagsString}/></>
-        } else if (type === "corporation") {
+        } else if (type === "corporate") {
             metadata =
                 <><title>
-                    {metadatas["/annuaires/corporations/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/corporations/[id]"].title2 + " " + profile.CATEGORY[0] + metadatas["/annuaires/corporations/[id]"].title3}
+                    {metadatas["/annuaires/corporates/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/corporates/[id]"].title2 + " " + profile.CATEGORY[0] + metadatas["/annuaires/corporates/[id]"].title3}
                 </title>
-                    <meta name="description" content={metadatas["/annuaires/corporations/[id]"].description1 + profile.NAME +
-                        metadatas["/annuaires/corporations/[id]"].description2 + profile.NAME +
-                        metadatas["/annuaires/corporations/[id]"].description3 + profile.NAME +
-                        metadatas["/annuaires/corporations/[id]"].description4 + profile.NAME +
-                        metadatas["/annuaires/corporations/[id]"].description5 + profile.NAME
+                    <meta name="description" content={metadatas["/annuaires/corporates/[id]"].description1 + profile.NAME +
+                        metadatas["/annuaires/corporates/[id]"].description2 + profile.NAME +
+                        metadatas["/annuaires/corporates/[id]"].description3 + profile.NAME +
+                        metadatas["/annuaires/corporates/[id]"].description4 + profile.NAME +
+                        metadatas["/annuaires/corporates/[id]"].description5 + profile.NAME
                     }
                 /></>
         } else if (type === "partner") { 
@@ -119,7 +120,7 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
                     </div>
                     <div className={ ProfileStyles.content }>
                         { (type.match(/(startup)/)) ? <Startup { ...pageProps }/> : null }
-                        { (type.match(/(corporation|entreprise)/)) ? <Corporation { ...pageProps }/> : null }
+                        { (type.match(/(corporate|entreprise)/)) ? <Corporate { ...pageProps }/> : null }
                         { (type.match(/(partner|partenaire)/)) ? <Partner { ...pageProps }/> : null }
                     </div>
                 </div>
@@ -156,20 +157,20 @@ const Startup = (startupProps: any) => {
     </>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Corporation Profile Content */
+/* Corporate Profile Content */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Corporation = (corporationProps: any) => {
-    const { states } = corporationProps;
+const Corporate = (corporateProps: any) => {
+    const { states } = corporateProps;
     const { translations } = states;
     return <>
-        <ProfileTeam { ...corporationProps }/>
-        <ProfileOpportunities { ...corporationProps }/>
-        <ProfileGoals { ...corporationProps }/>
+        <ProfileTeam { ...corporateProps }/>
+        <ProfileOpportunities { ...corporateProps }/>
+        <ProfileGoals { ...corporateProps }/>
         <Button button={ ButtonStyles.callToActionWide } icon="fa-light fa-person-chalkboard" text={ translations["Voir le pitch deck"] }/>
-        <ProfileEcosystem { ...corporationProps }/>
-        <ProfilePartners { ...corporationProps }/>
-        <ProfileActivities { ...corporationProps }/>
-        <ProfileSocials { ...corporationProps }/>
+        <ProfileEcosystem { ...corporateProps }/>
+        <ProfilePartners { ...corporateProps }/>
+        <ProfileActivities { ...corporateProps }/>
+        <ProfileSocials { ...corporateProps }/>
     </>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -190,7 +191,7 @@ const Partner = (partnerProps: any) => {
     </>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Server Side Properties */
+/* Server Side Props */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context: any) => {
     const { res, query, locale, locales, defaultLocale } = context;
@@ -202,7 +203,7 @@ const getServerSideProps: GetServerSideProps = async (context: any) => {
         if(type) {
             type = String(type);
             type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-            type = (type.match(/(corporation)/)) ? "entreprise" : type;
+            type = (type.match(/(corporate)/)) ? "entreprise" : type;
             type = (type.match(/(partner)/)) ? "partenaire" : type;
         };
         const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);

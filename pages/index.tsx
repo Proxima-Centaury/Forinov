@@ -2,7 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { Key, useRef } from "react";
+import { Fragment, Key } from "react";
 import { HomeInterface } from "../typescript/interfaces";
 import { formatNameForUrl } from "../scripts/utilities";
 import api from "../scripts/api";
@@ -24,16 +24,15 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Home */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = (pageProps: HomeInterface) => {
-	const typing = useRef(null);
-	const { landing, startups, opportunities, states, router }: any = pageProps;
-	const { translations, metadatas }: any = states;
+	const { landing, startups, opportunities, states, router } = pageProps;
+	const { translations, metadatas } = states;
 	const structures: Array<String> = [ "Startup", "Grand groupe", "ETI", "PME", "Incubateur", "Accélérateur", "Pépinière", "Fond d'investissement", "Business angel", "Structure d'investissement" ];
-	return <>
+	return <Fragment>
 		<Head>
 			<title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
 		</Head>
-		<div className="containerFull">
+		<div id="home" className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="home">
 				<h1>{ translations["Rejoignez le plus grand réseau social des acteurs de l'innovation"] }</h1>
 				<div className={ HomeStyles.jumbotron }>
@@ -42,7 +41,7 @@ const Home = (pageProps: HomeInterface) => {
 						<p className={ HomeStyles.paragraph }>{ translations["Découvrez et contactez les meilleures startups sur Forinov pour transformer vos bonnes idées en projets concrets"] + " !" }</p>
 						<div className={ HomeStyles.presentationLinks }>
 							<Button button={ ButtonStyles.oldHome } href="/directories/startups/categories" icon="fa-light fa-arrow-right" text={ translations["Trouvez des startups"] }/>
-							<Button button={ ButtonStyles.oldHome } href="/directories/corporations/categories" icon="fa-light fa-arrow-right" text={ translations["Découvrez les entreprises membres"] }/>
+							<Button button={ ButtonStyles.oldHome } href="/directories/corporates/categories" icon="fa-light fa-arrow-right" text={ translations["Découvrez les entreprises membres"] }/>
 							<Button button={ ButtonStyles.oldHome } href="/directories/partners/categories" icon="fa-light fa-arrow-right" text={ translations["Découvrez les partenaires"] }/>
 							<Button button={ ButtonStyles.oldHome } href="/directories/opportunities/categories" icon="fa-light fa-arrow-right" text={ translations["Postulez aux opportunités en cours"] }/>
 						</div>
@@ -72,7 +71,7 @@ const Home = (pageProps: HomeInterface) => {
 							<Button button={ ButtonStyles.classicLink } href="/startups" text={ translations["En savoir plus"] }/>
 						</div>
 					</div>
-					<div className={ HomeStyles.type } data-type="corporation">
+					<div className={ HomeStyles.type } data-type="corporate">
 						<div className={ HomeStyles.head }>
 							<i className="fa-light fa-buildings"/>
 							<div>
@@ -87,7 +86,7 @@ const Home = (pageProps: HomeInterface) => {
 						</div>
 						<div className={ HomeStyles.footer }>
 							<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Créer mon compte"] }/>
-							<Button button={ ButtonStyles.classicLink } href="/corporations" text={ translations["En savoir plus"] }/>
+							<Button button={ ButtonStyles.classicLink } href="/corporates" text={ translations["En savoir plus"] }/>
 						</div>
 					</div>
 					<div className={ HomeStyles.type } data-type="partner">
@@ -172,8 +171,8 @@ const Home = (pageProps: HomeInterface) => {
 				<div className={ HomeStyles.animation }>
 					<h4 className={ HomeStyles.typed }/>
 				</div>
-				<Script>{`
-					const typed = new Typed(".${ HomeStyles.typed }", {
+				<Script strategy="afterInteractive">{`
+					typed = new Typed(".${ HomeStyles.typed }", {
 						strings: [
 							"${ translations["Plus de 1500 startups innovantes à l'international"] + "." }",
 							"${ translations["Des centaines d'entreprises à la recherche de solutions"] + "." }",
@@ -203,10 +202,10 @@ const Home = (pageProps: HomeInterface) => {
 				<Carousel { ...pageProps } component="ForinovBlog" data={ landing.BLOG }/>
 			</div>
 		</div>
-	</>;
+	</Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Server Side Properties */
+/* Server Side Props */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { res, locale, locales, defaultLocale } = context;
