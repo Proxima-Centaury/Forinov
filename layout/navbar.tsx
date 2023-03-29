@@ -99,7 +99,7 @@ const NavbarMenuItem = (navbarProps: NavbarMenuInterface): JSX.Element => {
         { (!item?.url) ? <Button button={ ButtonStyles.default } action={ switchItemState } text={ (item?.text) ? translations[item?.text as keyof Object] : "" }/> : null }
         <ul className={ ((itemState) ? " " + NavbarStyles.show : "") } data-menu="nest">
             { (item?.nest) ? item?.nest.map(({ url, text }: any, key: Key) => <li key={ key }>
-                <Button button={ ButtonStyles.default } href={ url } text={ translations[text] + ((text.match(/(Comment|How)/)) ? " ?" : "") }/>
+                <Button button={ ButtonStyles.default + ((router.asPath === url) ? " " + NavbarStyles.active : "") } href={ url } text={ translations[text] + ((text.match(/(Comment|How)/)) ? " ?" : "") }/>
             </li>) : null }
         </ul>
     </Fragment>;
