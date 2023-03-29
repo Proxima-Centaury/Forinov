@@ -30,8 +30,8 @@ const ContactModal = (modalProps: any) => {
     //get grecaptcha from localstorage
     const fromStorage = (key: string) => {
         const stored = localStorage.getItem(key);
-        return stored ? JSON.parse(stored) : null;
-    }
+        return (stored) ? stored : null;
+    };
 
     //delete grecaptcha from localstorage
     const deleteStored = (key: string) => {
