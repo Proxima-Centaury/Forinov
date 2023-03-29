@@ -239,7 +239,7 @@ const ClassicHorizontal = (carouselProps: any) => {
         if(window.innerWidth > 576) {
             const carousel = (carouselReference.current) ? carouselReference.current as HTMLElement : null;
             const innerCarousel = (carousel) ? carousel.querySelector("." + CarouselStyles.container) as HTMLElement : null;
-            if(carousel && innerCarousel) {
+            if(carousel && innerCarousel && carousel?.offsetWidth < innerCarousel?.offsetWidth) {
                 const outer = carousel.getBoundingClientRect();
                 const inner = innerCarousel.getBoundingClientRect();
                 setPressed(true);
@@ -252,7 +252,9 @@ const ClassicHorizontal = (carouselProps: any) => {
     };
     const mouseMoveHandler = (event: any) => {
         event.preventDefault();
-        if(window.innerWidth > 576) {
+        const carousel = (carouselReference.current) ? carouselReference.current as HTMLElement : null;
+        const innerCarousel = (carousel) ? carousel.querySelector("." + CarouselStyles.container) as HTMLElement : null;
+        if(window.innerWidth > 576 && (carousel && innerCarousel && carousel?.offsetWidth < innerCarousel?.offsetWidth)) {
             if(!pressed) {
                 return false;
             };
