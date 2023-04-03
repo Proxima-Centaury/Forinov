@@ -66,7 +66,6 @@ const Pagination = (pageProps: any) => {
 	useEffect(() => {
 		setCurrentPage(search.page);
 	}, [ search.page ]);
-	console.log(search)
 	return <div className={ PaginationStyles.container }>
 		<div className={ PaginationStyles.actions }>
 			<Button button={ ButtonStyles.callToAction } action={ previousPage } icon="fa-light fa-arrow-left" text={ translations["Précédent"] }/>
