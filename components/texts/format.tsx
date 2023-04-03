@@ -25,7 +25,7 @@ const Format = (formatProps: any) => {
                 matches.map((link: String) => {
                     link = link.replaceAll(/(\[|\])/g, "");
                     const linkData = link.split("=");
-                    links.push("<a href=" + (linkData[1] || "/") + " data-next-link>" + linkData[0] + "</a>");
+                    links.push("<a href='" + router.basePath + (linkData[1] || "/") + "' data-next-link>" + linkData[0] + "</a>");
                 });
             };
             if(matches && matches.length > 0 && links.length > 0) {
