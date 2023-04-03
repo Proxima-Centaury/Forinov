@@ -6,7 +6,7 @@
         },
         {
             "picture": "/assets/landings/startups/step_2.png", "title": "J'entre en relation",
-            "text": "Grâce à [l'annuaire des entreprises=/directories/corporates], je peux contacter les prospects qui m'intéressent. Avec [l'annuaire des opportunités=/directories/opportunities], je candidate aux appels à projets qui correspondent à ma startup"
+            "text": "Grâce à [l'annuaire des entreprises=/directories/corporates/categories], je peux contacter les prospects qui m'intéressent. Avec [l'annuaire des opportunités=/directories/opportunities/categories], je candidate aux appels à projets qui correspondent à ma startup"
         },
         {
             "picture": "/assets/landings/startups/step_3.png", "title": "Je développe mon réseau",
