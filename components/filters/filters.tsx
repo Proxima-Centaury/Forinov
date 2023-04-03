@@ -33,7 +33,7 @@ const Filters = (pageProps: any) => {
     const setCategories = (event: any, values: Array<any>) => {
         event.preventDefault();
         const categories = values.map((option) => option.ID).join("-");
-        return (categories.length <= 0) ? setSearch({ keywords: "", categories: (categoryId) ? categoryId : "", page: 1 }) : setSearch({ ...search, categories: categories });
+        return (categories.length <= 0) ? setSearch({ keywords: "", categories: (categoryId) ? categoryId : "", page: 1 }) : setSearch({ ...search, categories: categories, page: 1 });
     };
     const setDynamicFilters = (event: any, values: Array<any>, dynamic: String) => {
         event.preventDefault();
