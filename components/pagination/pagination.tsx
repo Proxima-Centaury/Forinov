@@ -48,25 +48,30 @@ const Pagination = (pageProps: any) => {
 			setCurrentPage(1);
 		};
 	};
-	useEffect(() => {
-		action({ ...search, page: currentPage });
-		scrollTo(0, 0);
-		setShowPageInput(false);
-	}, [ currentPage ]);
 	const showPagination = () => {
 		const buttons = [];
 		for(let page = 1; page <= pages; page++) {
-			if((page >= currentPage - 2 && page < currentPage) || (page >= currentPage && page <= currentPage + 2 && page <= pages - 1)) {
+			let count = (currentPage === 1 || currentPage === pages) ? 2 : 1;
+			if((page >= currentPage - count && page < currentPage) || (page >= currentPage && page <= currentPage + count && page <= pages - 1)) {
 				buttons.push(<Button key={ page } button={ (page === currentPage) ? ButtonStyles.callToActionRoundedIcon : ButtonStyles.callToActionAlternativeRoundedIcon } action={ selectPage } text={ page.toString() }/>);
 			};
 		};
 		return buttons;
 	};
+	useEffect(() => {
+		action({ ...search, page: currentPage });
+		scrollTo(0, 0);
+		setShowPageInput(false);
+	}, [ currentPage ]);
+	useEffect(() => {
+		setCurrentPage(search.page);
+	}, [ search.page ]);
+	console.log(search)
 	return <div className={ PaginationStyles.container }>
 		<div className={ PaginationStyles.actions }>
 			<Button button={ ButtonStyles.callToAction } action={ previousPage } icon="fa-light fa-arrow-left" text={ translations["Précédent"] }/>
 			{ showPagination() }
-			{ (currentPage >= 4 || pages >= 8 ) ? <div className={ PaginationStyles.typePage }>
+			{ (pages >= 5 ) ? <div className={ PaginationStyles.typePage }>
 				{ (showPageInput) ? <div className={ PaginationStyles.custom }>
 					<Input type="text" name="page" action={ setPage }/>
 				</div> : null }
