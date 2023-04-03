@@ -24,7 +24,7 @@ const Document = () => {
             <Main/>
             <NextScript/>
             <script src="https://kit.fontawesome.com/d095430534.js" crossOrigin="anonymous" async></script>
-            <script src="https://unpkg.com/typed.js@2.0.14/dist/typed.umd.js"></script>
+            <script src="https://unpkg.com/typed.js@2.0.14/dist/typed.umd.js" defer></script>
         </body>
     </Html>;
 };
