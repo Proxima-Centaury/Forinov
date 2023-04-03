@@ -94,12 +94,10 @@ export default function LostPassword(pageProps: HomeInterface) {
 }
 
 const getServerSideProps: GetServerSideProps = async (context) => {
-    const { res, locale, locales, defaultLocale } = context;
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-    const language = locale?.substring(0, 2);
     return {
-        props: {
-            locale, locales, defaultLocale,
+        redirect: {
+            destination: "https://www.forinov.fr/lostpassword.php",
+            permanent: false
         }
     };
 };

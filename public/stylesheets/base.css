@@ -229,8 +229,8 @@ body {
     flex: 1;
     max-width: 100%;
     width: 100%;
-    grid-gap: 40px;
-    gap: 40px;
+    grid-gap: 32px;
+    gap: 32px;
     margin: 0px auto;
     padding: 16px;
 }
@@ -819,17 +819,32 @@ body {
 [data-opportunity-type="1"] {
     background-color: var(--project-color);
 }
+[data-opportunity-type="1"] * {
+    color: var(--perfect-white-color);
+}
 [data-opportunity-type="2"] {
     background-color: var(--program-color);
+}
+[data-opportunity-type="2"] * {
+    color: var(--perfect-black-color);
 }
 [data-opportunity-type="3"] {
     background-color: var(--challenge-color);
 }
+[data-opportunity-type="3"] * {
+    color: var(--perfect-black-color);
+}
 [data-opportunity-type="4"] {
     background-color: var(--event-color);
 }
+[data-opportunity-type="4"] * {
+    color: var(--perfect-white-color);
+}
 [data-opportunity-type="5"] {
     background-color: var(--offer-color);
+}
+[data-opportunity-type="5"] * {
+    color: var(--perfect-black-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Carousels ) */
