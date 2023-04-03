@@ -171,7 +171,7 @@ const Home = (pageProps: HomeInterface) => {
 				<div className={ HomeStyles.animation }>
 					<h4 className={ HomeStyles.typed }/>
 				</div>
-				<Script strategy="afterInteractive">{`
+				<Script id="typedScript" strategy="afterInteractive">{`
 					typed = new Typed(".${ HomeStyles.typed }", {
 						strings: [
 							"${ translations["Plus de 1500 startups innovantes à l'international"] + "." }",

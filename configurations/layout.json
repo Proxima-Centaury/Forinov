@@ -37,7 +37,8 @@
                         { "url": "/directories/opportunities/categories/events", "text": "Évènements" },
                         { "url": "/directories/opportunities/categories/exclusive_offers", "text": "Offres exclusives" }
                     ] },
-                    { "url": "/about", "text": "À propos", "nesting": false, "nest": [] }
+                    { "url": "/about", "text": "À propos", "nesting": false, "nest": [] },
+                    { "url": "/deals", "text": "Deals", "nesting": false, "nest": [] }
                 ]
             }
         },
@@ -66,7 +67,8 @@
                         { "url": "/directories/opportunities/categories/programs_2", "text": "Programmes d'accompagnement" },
                         { "url": "/directories/opportunities/categories/challenges_and_contests", "text": "Challenges et concours" },
                         { "url": "/directories/opportunities/categories/events", "text": "Évènements" },
-                        { "url": "/directories/opportunities/categories/exclusive_offers", "text": "Offres exclusives" }
+                        { "url": "/directories/opportunities/categories/exclusive_offers", "text": "Offres exclusives" },
+                        { "url": "/deals", "text": "Deals" }
                     ] }
                 ]
             }

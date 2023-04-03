@@ -36,8 +36,13 @@
     width: max-content;
 }
 .default:hover > i,
-.default:hover > span {
+.default:hover > span,
+.default.active > i,
+.default.active > span {
     color: var(--logo-blue-color);
+}
+.default.active > span {
+    font-weight: bold;
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Mask ) */
