@@ -24,7 +24,9 @@
     /* Light & Dark Colors */
     --perfect-white-color: #FFFFFF;
     --darker-white-color: #F8F7F6;
+    --lighter-grey-color: #E7E7E7;
     --light-grey-color: #CFD0D1;
+    /* --iron-grey-color: #B7B7B9; */
     --perfect-grey-color: #808080;
     --lighter-black-color: #242526;
     --classic-black-color: #141516;
@@ -87,6 +89,7 @@
     --perfect-white-color: #FFFFFF;
     --darker-white-color: #F8F7F6;
     --light-grey-color: #CFD0D1;
+    /* --iron-grey-color: #B7B7B9; */
     --perfect-grey-color: #808080;
     --lighter-black-color: #242526;
     --classic-black-color: #141516;
@@ -119,7 +122,7 @@
     /* Background Colors */
     --background-main-color: var(--lighter-black-color);
     --background-sub-color: var(--classic-black-color);
-    --background-private-color: var(--lighter-black-color);
+    --background-private-color: var(--classic-black-color);
     --background-information-color: var(--perfect-grey-color);
     /* Inverted color */
     --inverted-color: var(--perfect-white-color);
@@ -226,8 +229,8 @@ body {
     flex: 1;
     max-width: 100%;
     width: 100%;
-    grid-gap: 40px;
-    gap: 40px;
+    grid-gap: 32px;
+    gap: 32px;
     margin: 0px auto;
     padding: 16px;
 }
@@ -271,41 +274,41 @@ body {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .grid {
     display: grid;
-    grid-template-columns: repeat(1, minmax(auto, 1fr));
+    grid-template-columns: repeat(1, minmax(0%, 1fr));
     grid-gap: 16px;
     gap: 16px;
 }
 .twoColumns {
-    grid-template-columns: repeat(2, minmax(auto, 1fr));
+    grid-template-columns: repeat(2, minmax(0%, 1fr));
 }
 .threeColumns {
-    grid-template-columns: repeat(3, minmax(auto, 1fr));
+    grid-template-columns: repeat(3, minmax(0%, 1fr));
 }
 .fourColumns {
-    grid-template-columns: repeat(4, minmax(auto, 1fr));
+    grid-template-columns: repeat(4, minmax(0%, 1fr));
 }
 @media screen and (max-width: 1200px) {
     .twoColumns {
-        grid-template-columns: repeat(1, minmax(auto, 1fr));
+        grid-template-columns: repeat(1, minmax(0%, 1fr));
     }
     .threeColumns {
-        grid-template-columns: repeat(2, minmax(auto, 1fr));
+        grid-template-columns: repeat(2, minmax(0%, 1fr));
     }
     .fourColumns {
-        grid-template-columns: repeat(3, minmax(auto, 1fr));
+        grid-template-columns: repeat(3, minmax(0%, 1fr));
     }
 }
 @media screen and (max-width: 768px) {
     .threeColumns {
-        grid-template-columns: repeat(1, minmax(auto, 1fr));
+        grid-template-columns: repeat(1, minmax(0%, 1fr));
     }
     .fourColumns {
-        grid-template-columns: repeat(2, minmax(auto, 1fr));
+        grid-template-columns: repeat(2, minmax(0%, 1fr));
     }
 }
 @media screen and (max-width: 576px) {
     .fourColumns {
-        grid-template-columns: repeat(1, minmax(auto, 1fr));
+        grid-template-columns: repeat(1, minmax(0%, 1fr));
     }
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -412,7 +415,7 @@ body {
     top: 0px;
     left: 0px;
     content: "";
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
     border-radius: 10px;
 }
 .locked.gradient::after {
@@ -433,7 +436,7 @@ body {
     position: absolute;
     top: 0px;
     left: 0px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
     background-color: var(--filter-color);
     z-index: 1;
 }
@@ -494,6 +497,8 @@ body {
 .modal {
     display: flex;
     flex-direction: column;
+    grid-gap: 24px;
+    gap: 24px;
     position: relative;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
@@ -501,6 +506,26 @@ body {
 }
 .modal.firstType {
     border-radius: 15px;
+}
+.modal.secondType {
+    padding: 16px;
+    border-radius: 15px;
+}
+.modal > .header {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 8px;
+    gap: 8px;
+    padding: 0px calc(70px - 16px) 0px 0px;
+}
+.modal > .header > h6 {
+    color: var(--logo-blue-color);
+    font-family: "Nunito Sans";
+    font-size: 24px;
+    font-weight: 800;
+}
+.modal > .header > p {
+    color: var(--text-inactive-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Modal ( Register ) */
@@ -523,11 +548,17 @@ body {
     font-weight: 800;
 }
 .modal[data-modal="register"] > div:first-of-type {
-    padding: 24px calc((24px + 16px) + 30px) 24px 24px;
+    padding: 24px calc((24px + 16px) + 30px) 8px 24px;
 }
 .modal[data-modal="register"] > div:last-of-type {
     padding: 24px 24px 24px calc((24px + 16px) + 35px);
     background-color: var(--logo-blue-color);
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Modal ( Contact ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.modal[data-modal="contact"] {
+    max-width: 892px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Custom Tool Tips */
@@ -788,17 +819,32 @@ body {
 [data-opportunity-type="1"] {
     background-color: var(--project-color);
 }
+[data-opportunity-type="1"] * {
+    color: var(--perfect-white-color);
+}
 [data-opportunity-type="2"] {
     background-color: var(--program-color);
+}
+[data-opportunity-type="2"] * {
+    color: var(--perfect-black-color);
 }
 [data-opportunity-type="3"] {
     background-color: var(--challenge-color);
 }
+[data-opportunity-type="3"] * {
+    color: var(--perfect-black-color);
+}
 [data-opportunity-type="4"] {
     background-color: var(--event-color);
 }
+[data-opportunity-type="4"] * {
+    color: var(--perfect-white-color);
+}
 [data-opportunity-type="5"] {
     background-color: var(--offer-color);
+}
+[data-opportunity-type="5"] * {
+    color: var(--perfect-black-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Carousels ) */

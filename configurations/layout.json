@@ -19,9 +19,9 @@
                         { "url": "/directories/startups", "text": "Annuaire de startups" }
                     ] },
                     { "url": "", "text": "Entreprises", "nesting": true, "nest": [
-                        { "url": "/corporations", "text": "Comment ça marche" },
-                        { "url": "/solutions/corporations", "text": "Solutions d'entreprises" },
-                        { "url": "/directories/corporations", "text": "Annuaire d'entreprises" }
+                        { "url": "/corporates", "text": "Comment ça marche" },
+                        { "url": "/solutions/corporates", "text": "Solutions d'entreprises" },
+                        { "url": "/directories/corporates", "text": "Annuaire d'entreprises" }
                     ] },
                     { "url": "", "text": "Partenaires", "nesting": true, "nest": [
                         { "url": "/partners", "text": "Comment ça marche" },
@@ -37,7 +37,8 @@
                         { "url": "/directories/opportunities/categories/events", "text": "Évènements" },
                         { "url": "/directories/opportunities/categories/exclusive_offers", "text": "Offres exclusives" }
                     ] },
-                    { "url": "/about", "text": "À propos", "nesting": false, "nest": [] }
+                    { "url": "/about", "text": "À propos", "nesting": false, "nest": [] },
+                    { "url": "/deals", "text": "Deals", "nesting": false, "nest": [] }
                 ]
             }
         },
@@ -46,7 +47,7 @@
                 "footer": [
                     { "url": "", "text": "Nos offres", "nesting": true, "nest": [
                         { "url": "/solutions/startups", "text": "Solutions de startups" },
-                        { "url": "/solutions/corporations", "text": "Solutions entreprises" },
+                        { "url": "/solutions/corporates", "text": "Solutions entreprises" },
                         { "url": "/solutions/partners", "text": "Solutions partenaires" }
                     ] },
                     { "url": "", "text": "Forinov", "nesting": true, "nest": [
@@ -60,13 +61,14 @@
                     ] },
                     { "url": "", "text": "Communauté", "nesting": true, "nest": [
                         { "url": "/directories/startups/categories", "text": "Annuaire de startups" },
-                        { "url": "/directories/corporations/categories", "text": "Annuaire d'entreprises" },
+                        { "url": "/directories/corporates/categories", "text": "Annuaire d'entreprises" },
                         { "url": "/directories/partners/categories", "text": "Annuaire de partenaires" },
                         { "url": "/directories/opportunities/categories/callforproposals_1", "text": "Appels à candidatures" },
                         { "url": "/directories/opportunities/categories/programs_2", "text": "Programmes d'accompagnement" },
                         { "url": "/directories/opportunities/categories/challenges_and_contests", "text": "Challenges et concours" },
                         { "url": "/directories/opportunities/categories/events", "text": "Évènements" },
-                        { "url": "/directories/opportunities/categories/exclusive_offers", "text": "Offres exclusives" }
+                        { "url": "/directories/opportunities/categories/exclusive_offers", "text": "Offres exclusives" },
+                        { "url": "/deals", "text": "Deals" }
                     ] }
                 ]
             }

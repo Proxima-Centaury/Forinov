@@ -12,41 +12,19 @@
 				},
 				{
 					"button": "Qui sont les personnes que je peux contacter sur Forinov",
-					"content": "Il existe trois types de comptes et donc trois annuaires distincts : [startups=/directories/startups], [entreprises=/directories/corporations] et [partenaires=/directories/partners] (incubateurs, investisseurs, etc.). Sur chaque profil, vous aurez la possibilité de contacter les membres actifs. Par exemple sur le profil d'un grand groupe, vous pourrez y trouver les responsable des relations et partenariats startups, le directeur marketing ou encore innovation et RSE. En résumé toutes les personnes qui sont à la recherche de solutions innovantes et habilitées à signer avec des startups"
+					"content": "Il existe trois types de comptes et donc trois annuaires distincts : [startups=/directories/startups], [entreprises=/directories/corporates] et [partenaires=/directories/partners] (incubateurs, investisseurs, etc.). Sur chaque profil, vous aurez la possibilité de contacter les membres actifs. Par exemple sur le profil d'un grand groupe, vous pourrez y trouver les responsable des relations et partenariats startups, le directeur marketing ou encore innovation et RSE. En résumé toutes les personnes qui sont à la recherche de solutions innovantes et habilitées à signer avec des startups"
 				},
 				{
 					"button": "Comment me faire repérer et suivre par les entreprises",
-					"content": "Compléter votre profil au maximum vous permet d'être mieux référencé dans [l'annuaire de startups=/directories/startups] et dans le moteur de recommandations. Vous pouvez aussi directement rechercher dans [l'annuaire des entreprises=/directories/corporations], les suivre et contacter leurs collaborateurs. BONUS TIPS : Pensez à compléter votre \"Wishlist\" d'entreprises, vous apparaitrez directement dans leurs suggestions de startups"
+					"content": "Compléter votre profil au maximum vous permet d'être mieux référencé dans [l'annuaire de startups=/directories/startups] et dans le moteur de recommandations. Vous pouvez aussi directement rechercher dans [l'annuaire des entreprises=/directories/corporates], les suivre et contacter leurs collaborateurs. BONUS TIPS : Pensez à compléter votre \"Wishlist\" d'entreprises, vous apparaitrez directement dans leurs suggestions de startups"
 				},
 				{
 					"button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
 					"content": "Nous avons créé Forinov pour simplifier les relations et les collaborations entre startups, entreprises et partenaires. Forinov réunit les décisionnaires et porteurs de projets sur une même plateforme et permet de faire se rencontrer le besoin d'innovation avec l'offre. Sur Forinov, vous accédez et contactez les bonnes personnes, vous êtes alertés des besoins publiés par les entreprises et pouvez y répondre directement. L'objectif est de faire gagner du temps à chacun et d'éviter la prospection via email ou Linkedin qui nécessite trop d'énergie et de \"spams\" pour peu de résultats"
 				}
-			],
-			"community": [
-				{
-					"button": "Comment me faire repérer par les entreprises",
-					"content": ""
-				},
-				{
-					"button": "Forinov, est-ce vraiment gratuit pour les startups",
-					"content": ""
-				},
-				{
-					"button": "Mon profil est-il celui d'une startup ou d'une entreprise",
-					"content": ""
-				},
-				{
-					"button": "Qui sont les personnes que je peux contacter sur Forinov",
-					"content": ""
-				},
-				{
-					"button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
-					"content": ""
-				}
 			]
 		},
-		"corporation": {
+		"corporate": {
 			"general": [
 				{
 					"button": "Comment Forinov peut m'aider à m'informer et innover",
@@ -67,28 +45,6 @@
 				{
 					"button": "Quels sont les tarifs pour mon entreprise",
 					"content": "Les taris dépendent du nombre d'utilisateurs et du nombre d'opportunités que vous souhaitez publier. Nos tarifs entreprises commencent à 300 euros par mois, soit 3600 euros par an. N'hésitez à [nous contacter=/contact] pour demander une démo et nos tarifs, adaptés à votre besoin"
-				}
-			],
-			"community": [
-				{
-					"button": "Quels sont les outils mis à disposition sur Forinov pour mon entreprise",
-					"content": ""
-				},
-				{
-					"button": "Forinov, est-ce vraiment gratuit pour les startups",
-					"content": ""
-				},
-				{
-					"button": "Toutes les informations sont-elles publiques",
-					"content": ""
-				},
-				{
-					"button": "Quel est le coût d'inscription sur Forinov pour mon entreprise",
-					"content": ""
-				},
-				{
-					"button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
-					"content": ""
 				}
 			]
 		},
@@ -114,28 +70,6 @@
 					"button": "Comment inviter et mettre en avant mes startups sur Forinov",
 					"content": "Après votre [inscription=/onboarding] sur la plateforme, il sera possible d'inviter des startups à vous rejoindre via invitation par email ou la plateforme. Une fois membres vous pourrez les suivre et les mettre en avant sur votre profil, par exemple dans un dossier \"nos pépites du moment\", \"nos alumni\" ou encore \"nos participations\". Une belle vitrine à jour de vos starupts ! En plus de la visibilité et de la possibilité d'échanger simplement avec vous (groupes de dicussions, etc.), vos startups auront accès à toutes les [opportunités=/directories/opportunities] en cours et à nos membres. De quoi faire décoller leur business"
 				}
-			],
-			"community": [
-				{
-					"button": "Pourquoi passer par Forinov pour vos opportunités",
-					"content": ""
-				},
-				{
-					"button": "Forinov, est-ce vraiment gratuit pour les startups",
-					"content": ""
-				},
-				{
-					"button": "Quelle valeur ajoutée pour mes startups",
-					"content": ""
-				},
-				{
-					"button": "Comment mettre en avant mes startups sur Forinov",
-					"content": ""
-				},
-				{
-					"button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
-					"content": ""
-				}
 			]
 		},
 		"opportunity": {
@@ -160,75 +94,31 @@
 					"button": "Comment candidater à une opportunité",
 					"content": "Les startups déjà membres bénéficient d'un parcours simplifié avec l'auto remplissage de 17 champs à partir de leur profil, ce qui leur permet de gagner du temps et de se concentrer sur les réponses à vos questions spécifiques.<br><br>Les startups encore non inscrites peuvent directement candidater grâce à un parcours simplifié unique pour créer leur profil et postuler en même temps.<br><br>Une fois leur candidature envoyée, elles peuvent suivre le statut de leur dossier (en attente, accepté, etc.), vous contacter et bien entendu mettre à jour leur profils pour vous tenir informés de leurs actualités"
 				}
-			],
-			"community": [
-				{
-					"button": "Qu'est-ce qu'une opportunité",
-					"content": ""
-				},
-				{
-					"button": "Forinov, est-ce vraiment gratuit pour les startups",
-					"content": ""
-				},
-				{
-					"button": "Mon profil est-il celui d'une startup ou d'une entreprise",
-					"content": ""
-				},
-				{
-					"button": "Qui sont les personnes que je peux contacter sur Forinov",
-					"content": ""
-				},
-				{
-					"button": "Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal",
-					"content": ""
-				}
-			]
-		},
-		"contact": {
-			"general": [
-				{
-					"button": "Comment contacter Forinov",
-					"content": "Vous pouvez nous contacter par mail à l'adresse"
-				},
-				{
-					"button": "Comment contacter Forinov",
-					"content": "Vous pouvez nous contacter par mail à l'adresse"
-				},
-				{
-					"button": "Comment contacter Forinov",
-					"content": "Vous pouvez nous contacter par mail à l'adresse"
-				},
-				{
-					"button": "Comment contacter Forinov",
-					"content": "Vous pouvez nous contacter par mail à l'adresse"
-				},
-				{
-					"button": "Comment contacter Forinov",
-					"content": "Vous pouvez nous contacter par mail à l'adresse"
-				}
-			],
-            "community": [
-				{
-					"button": "Comment contacter Forinov",
-					"content": "Vous pouvez nous contacter par mail à l'adresse"
-				},
-				{
-					"button": "Comment contacter Forinov",
-					"content": "Vous pouvez nous contacter par mail à l'adresse"
-				},
-				{
-					"button": "Comment contacter Forinov",
-					"content": "Vous pouvez nous contacter par mail à l'adresse"
-				},
-				{
-					"button": "Comment contacter Forinov",
-					"content": "Vous pouvez nous contacter par mail à l'adresse"
-				},
-				{
-					"button": "Comment contacter Forinov",
-					"content": "Vous pouvez nous contacter par mail à l'adresse"
-				}
 			]
 		}
+	},
+	"contact": {
+		"general": [
+			{
+				"button": "Qu'est-ce que Forinov",
+				"content": "Forinov est le réseau des acteurs de l'innovation. La plateforme simplifie les mises en relation et collaborations entre startups, entreprises et partenaires. Elle réunit les décisionnaires et porteurs de projets et permet de faire se rencontrer le besoin d'innovation de nos membres \"entreprises\" (PME, ETI, Grands groupes) avec l'offre d'entreprises innovantes, nos membres \"startups\". Sur Forinov, vous accédez et contactez les bonnes personnes, vous êtes alertés des besoins publiés par les entreprises et pouvez y répondre directement. L'objectif est de faire gagner du temps à chacun et d'éviter la prospection via email ou Linkedin qui nécessite trop d'énergie et de \"spams\" pour peu de résultats"
+			},
+			{
+				"button": "Mon profil est-il celui d'une startup ou d'une entreprise",
+				"content": "Lors de [l'inscription=/onboarding], vous devrez choisir entre startups ou entreprise (PME, ETI ou grand Groupe). Le profil startup est gratuit et permet de référencer vos solutions, de contacter des entreprises et répondre aux [opportunités (appels à projets, etc.)=/directories/opportunities/categories]. Le profil entreprise sert à identifier, suivre et partager un portefeuille de startups entre collaborateurs, à lancer des appels à candidatures et assurer toute la gestion de son réseau de startups et de partenaires. Ce profil plus avancé est payant en fonction du nombre d'utilisateurs et d'appels à candidatures souhaités"
+			},
+			{
+				"button": "Forinov, est-ce vraiment gratuit pour les startups",
+				"content": "Forinov, c'est gratuit pour les startups. Que ce soit pour référencer votre startup, contacter des membres ou répondre aux [appels à candidatures=/directories/opportunities/categories/category_1]"
+			},
+			{
+				"button": "Quels sont les tarifs pour des abonnements entreprise (PME, ETI, Grands groupes)",
+				"content": "Les taris dépendent du nombre d'utilisateurs et du nombre d'opportunités que vous souhaitez publier. Nos tarifs entreprises commencent à 300 euros par mois, soit 3600 euros par an. N'hésitez pas à [nous contacter=/contact] pour demander une démo et nos tarifs, adaptés à votre besoin"
+			},
+			{
+				"button": "Qui sont les personnes que je peux contacter sur Forinov",
+				"content": "Il existe trois types de comptes et donc trois annuaires distincts : [startups=/directories/startups/categories], [entreprises=/directories/corporates/categories] et [partenaires=/directories/partners/categories] (incubateurs, investisseurs, etc.). Sur chaque profil, vous aurez la possibilité de contacter les membres actifs. Par exemple sur le profil d'un grand groupe, vous pourrez y trouver les responsable des relations et partenariats startups, le directeur marketing ou encore innovation et RSE. En résumé toutes les personnes qui sont à la recherche de solutions innovantes et habilitées à signer avec des startups"
+			}
+		]
 	}
 }

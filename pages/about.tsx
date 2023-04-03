@@ -17,8 +17,8 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* About */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const About = (pageProps: HomeInterface) => {
-    const { states, router }: any = pageProps;
-    const { translations }: any = states;
+    const { states, router } = pageProps;
+    const { translations } = states;
     return <div className="containerFull" style={ { background: "var(--background-sub-color)" } }>
         <div className={ "container " + AboutStyles.heroContainer }>
             <h1 className={ AboutStyles.heroTitle }>{ translations["Notre histoire et nos missions chez Forinov"] }</h1>

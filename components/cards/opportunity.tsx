@@ -24,6 +24,8 @@ const OpportunityCard = (opportunityProps: any) => {
             { (opportunity.LANGUAGE === "en") ? <div className={ OpportunityStyles.informations }>
                 <p>{ translations["Anglais"] }</p>
             </div> : null }
+            { (opportunity.OFFER) ? <h5>{ opportunity.OFFER }</h5> : null }
+            { (opportunity.CATCH) ? <p>{ opportunity.CATCH }</p> : null }
         </div>
         <div className={ OpportunityStyles.content }>
             { (opportunity.OWNERLOGO) ? <div className={ OpportunityStyles.rightContainer }>
@@ -49,6 +51,10 @@ const OpportunityCard = (opportunityProps: any) => {
                 { (opportunity.REMAINING) ? <div className={ OpportunityStyles.remainingTime }>
                     <i className="fa-light fa-calendar"/>
                     <p>{ remainingTime(opportunity.REMAINING, null, null, translations) }</p>
+                </div> : null }
+                { (opportunity.FORINOV) ? <div className={ OpportunityStyles.forinovOnly }>
+                    <i className="fa-solid fa-users"/>
+                    <p>Membres Forinov uniquement</p>
                 </div> : null }
                 { (details) ? <Format content={ opportunity.DESCRIPTION }/> : null }
             </div>

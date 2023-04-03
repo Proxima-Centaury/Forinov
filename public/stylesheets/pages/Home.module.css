@@ -10,7 +10,7 @@
 }
 @media screen and (max-width: 576px) {
 	.presentation {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .presentation::before,
@@ -24,7 +24,7 @@
 	z-index: -1;
 }
 .presentation > img {
-	width: 500px;
+	width: 650px;
 	height: 500px;
 	margin: auto;
 	object-fit: contain;
@@ -37,12 +37,21 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation For Home ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentation[data-type="home"] {
+	flex-direction: column;
+}
+.presentation[data-type="home"] > h1 {
+	font-size: 56px;
+	font-family: "Nunito Sans";
+	font-weight: 300;
+	color: var(--logo-blue-color);
+}
 .presentation[data-type="home"]::before {
-	background-color: var(--background-sub-color);
+	background-color: var(--background-main-color);
 }
 .presentation[data-type="home"]::after {
 	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-main-color);
+	background-color: var(--background-sub-color);
 }
 @media screen and (max-width: 576px) {
 	.presentation[data-type="home"]::after {
@@ -65,17 +74,17 @@
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation For Corporation ) */
+/* Home ( Presentation For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="corporation"]::before {
+.presentation[data-type="corporate"]::before {
 	background-color: var(--background-main-color);
 }
-.presentation[data-type="corporation"]::after {
+.presentation[data-type="corporate"]::after {
 	border-radius: 0px 0px 0px 100px;
 	background-color: var(--lightblue-color);
 }
 @media screen and (max-width: 576px) {
-	.presentation[data-type="corporation"]::after {
+	.presentation[data-type="corporate"]::after {
 		border-radius: 0px 0px 0px 50px;
 	}
 }
@@ -110,6 +119,25 @@
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Jumbotron ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.jumbotron {
+	display: flex;
+	grid-gap: 40px;
+	gap: 40px;
+}
+.jumbotron > img {
+	width: 650px;
+	height: 500px;
+	margin: auto;
+	object-fit: contain;
+}
+@media screen and (max-width: 992px) {
+	.presentation > .jumbotron > img {
+		display: none;
+	}
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Content ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentationContent {
@@ -136,9 +164,12 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Content For Home ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="home"] > .presentationContent > h1,
-.presentation[data-type="home"] > .presentationContent > p {
+.presentation[data-type="home"] > .jumbotron > .presentationContent > p {
 	color: var(--text-main-color);
+}
+.presentation[data-type="home"] > .jumbotron > .presentationContent > p {
+	font-size: 14px;
+	font-family: "Open Sans";
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Content For Startup ) */
@@ -148,10 +179,10 @@
 	color: var(--sunred-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation Content For Corporation ) */
+/* Home ( Presentation Content For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="corporation"] > .presentationContent > h1,
-.presentation[data-type="corporation"] > .presentationContent > p {
+.presentation[data-type="corporate"] > .presentationContent > h1,
+.presentation[data-type="corporate"] > .presentationContent > p {
 	color: var(--pureblue-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -196,7 +227,7 @@
 }
 @media screen and (max-width: 576px) {
 	.onboarding {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .onboarding::before,
@@ -224,15 +255,15 @@
 /* Home ( Onboarding For Home ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .onboarding[data-type="home"]::before {
-	background-color: var(--background-main-color);
+	background-color: var(--background-sub-color);
 }
 .onboarding[data-type="home"]::after {
-	border-radius: 100px 0px 0px 100px;
-	background-color: var(--background-sub-color);
+	border-radius: 100px 0px 0px 0px;
+	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
 	.onboarding[data-type="home"]::after {
-		border-radius: 50px 0px 0px 50px;
+		border-radius: 50px 0px 0px 0px;
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -258,10 +289,16 @@
 	flex: 1;
 	grid-gap: 40px;
 	gap: 40px;
+	max-width: 300px;
 	padding: 16px;
 	border-radius: 15px;
 	background-color: var(--background-sub-color);
 	box-shadow: var(--box-shadow);
+}
+@media screen and (max-width: 768px) {
+	.type {
+		max-width: inherit;
+	}
 }
 .type > .head {
 	display: flex;
@@ -275,7 +312,7 @@
 .type[data-type="startup"] > .head > i {
 	color: var(--logo-orange-color);
 }
-.type[data-type="corporation"] > .head > i {
+.type[data-type="corporate"] > .head > i {
 	color: var(--logo-blue-color);
 }
 .type[data-type="partner"] > .head > i {
@@ -288,7 +325,7 @@
 .type[data-type="startup"] > .head > div > h5 {
 	color: var(--logo-orange-color);
 }
-.type[data-type="corporation"] > .head > div > h5 {
+.type[data-type="corporate"] > .head > div > h5 {
 	color: var(--logo-blue-color);
 }
 .type[data-type="partner"] > .head > div > h5 {
@@ -325,7 +362,7 @@
 }
 @media screen and (max-width: 576px) {
 	.sourcing {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .sourcing::before,
@@ -382,41 +419,41 @@
 	background-color: var(--sunred-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Sourcing For Corporation ) */
+/* Home ( Sourcing For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.sourcing[data-type="corporation"]::before {
+.sourcing[data-type="corporate"]::before {
 	background-color: var(--background-main-color);
 }
-.sourcing[data-type="corporation"]::after {
+.sourcing[data-type="corporate"]::after {
 	border-radius: 100px 0px 0px 100px;
 	background-color: var(--lightblue-color);
 }
 @media screen and (max-width: 576px) {
-	.sourcing[data-type="corporation"]::after {
+	.sourcing[data-type="corporate"]::after {
 		border-radius: 50px 0px 0px 50px;
 	}
 }
-.sourcing[data-type="corporation"] h3,
-.sourcing[data-type="corporation"] h4,
-.sourcing[data-type="corporation"] p,
-.sourcing[data-type="corporation"] div {
+.sourcing[data-type="corporate"] h3,
+.sourcing[data-type="corporate"] h4,
+.sourcing[data-type="corporate"] p,
+.sourcing[data-type="corporate"] div {
 	color: var(--perfect-black-color);
 }
-.sourcing[data-type="corporation"] button {
+.sourcing[data-type="corporate"] button {
 	border: var(--border);
 	border-color: var(--pureblue-color);
 	background-color: var(--lightblue-color);
 }
-.sourcing[data-type="corporation"] button > i {
+.sourcing[data-type="corporate"] button > i {
 	color: var(--pureblue-color);
 }
-.sourcing[data-type="corporation"] button[class="active"] {
+.sourcing[data-type="corporate"] button[class="active"] {
 	background-color: var(--pureblue-color);
 }
-.sourcing[data-type="corporation"] button[class="active"] > i {
+.sourcing[data-type="corporate"] button[class="active"] > i {
 	color: var(--perfect-white-color);
 }
-.sourcing[data-type="corporation"] div[class="separatorVertical"] {
+.sourcing[data-type="corporate"] div[class="separatorVertical"] {
 	background-color: var(--pureblue-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -462,7 +499,7 @@
 }
 @media screen and (max-width: 576px) {
 	.opportunity {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .opportunity::before,
@@ -497,17 +534,17 @@
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Opportunity For Corporation ) */
+/* Home ( Opportunity For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.opportunity[data-type="corporation"]::before {
+.opportunity[data-type="corporate"]::before {
 	background-color: var(--lightblue-color);
 }
-.opportunity[data-type="corporation"]::after {
+.opportunity[data-type="corporate"]::after {
 	border-radius: 0px 100px 0px 0px;
 	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
-	.opportunity[data-type="corporation"]::after {
+	.opportunity[data-type="corporate"]::after {
 		border-radius: 0px 50px 0px 0px;
 	}
 }
@@ -524,7 +561,7 @@
 }
 @media screen and (max-width: 576px) {
 	.register {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .register::before,
@@ -544,26 +581,26 @@
 	text-align: center;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Register For Corporation ) */
+/* Home ( Register For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.register[data-type="corporation"]::before {
+.register[data-type="corporate"]::before {
 	background-color: var(--lightblue-color);
 }
-.register[data-type="corporation"]::after {
+.register[data-type="corporate"]::after {
 	border-radius: 0px 100px 0px 0px;
 	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
-	.register[data-type="corporation"]::after {
+	.register[data-type="corporate"]::after {
 		border-radius: 0px 50px 0px 0px;
 	}
 }
-.register[data-type="corporation"] [class*="steps"] > button[class*="active"] {
+.register[data-type="corporate"] [class*="steps"] > button[class*="active"] {
 	color: var(--perfect-white-color);
 	border-color: var(--pureblue-color);
 	background-color: var(--pureblue-color);
 }
-.register[data-type="corporation"] [class*="steps"] > button:hover {
+.register[data-type="corporate"] [class*="steps"] > button:hover {
 	color: var(--pureblue-color);
 	border-color: var(--lightblue-color);
 	background-color: var(--lightblue-color);
@@ -608,7 +645,7 @@
 @media screen and (max-width: 576px) {
 	.startups,
 	.structures {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .startups::before,
@@ -644,6 +681,18 @@
 	gap: 16px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Startups For Home ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.startups[data-type="home"] > h4 {
+	font-family: "Nunito Sans";
+	font-size: 42px;
+	font-weight: bold;
+	text-align: left;
+}
+.startups[data-type="home"] > .startupsCategories {
+	justify-content: flex-start;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Startups For Partner ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .startups[data-type="partner"]::before {
@@ -673,6 +722,20 @@
 		border-radius: 0px 0px 50px 0px;
 	}
 }
+.structures[data-type="home"] > h4 {
+	font-family: "Nunito Sans";
+	font-size: 42px;
+	font-weight: bold;
+	text-align: left;
+}
+.structures[data-type="home"] > p {
+	font-family: "Nunito Sans";
+	font-size: 21px;
+	text-align: left;
+}
+.structures[data-type="home"] > .structuresCategories {
+	justify-content: flex-start;
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Companies ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -686,7 +749,7 @@
 }
 @media screen and (max-width: 576px) {
 	.companies {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .companies::before,
@@ -726,17 +789,17 @@
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Companies For Corporation ) */
+/* Home ( Companies For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.companies[data-type="corporation"]::before {
+.companies[data-type="corporate"]::before {
 	background-color: var(--lightblue-color);
 }
-.companies[data-type="corporation"]::after {
+.companies[data-type="corporate"]::after {
 	border-radius: 0px 0px 100px 0px;
 	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
-	.companies[data-type="corporation"]::after {
+	.companies[data-type="corporate"]::after {
 		border-radius: 0px 0px 50px 0px;
 	}
 }
@@ -768,7 +831,7 @@
 }
 @media screen and (max-width: 576px) {
 	.badges {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .badges::before,
@@ -791,15 +854,15 @@
 /* Home ( Badges For Home ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .badges[data-type="home"]::before {
-	background-color: var(--background-sub-color);
+	background-color: var(--background-main-color);
 }
 .badges[data-type="home"]::after {
-	border-radius: 0px 100px 0px 0px;
-	background-color: var(--background-main-color);
+	border-radius: 0px 100px 0px 100px;
+	background-color: var(--background-private-color);
 }
 @media screen and (max-width: 576px) {
 	.badges[data-type="home"]::after {
-		border-radius: 0px 50px 0px 0px;
+		border-radius: 0px 50px 0px 50px;
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -907,6 +970,38 @@
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badge For Home ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges[data-type="home"] .badge {
+	padding: 0px 8px;
+}
+.badges[data-type="home"] div[class="separator"],
+.badges[data-type="home"] .badge > i {
+	display: none;
+}
+.badges[data-type="home"] > h3,
+.badges[data-type="home"] .badge > .content > h6,
+.badges[data-type="home"] .badge > .content > p {
+	width: inherit;
+	color: var(--perfect-white-color);
+	font-family: "Nunito Sans";
+	text-align: left;
+}
+.badges[data-type="home"] > h3 {
+	font-size: 45px;
+	font-weight: bold;
+}
+.badges[data-type="home"] .badge > .content {
+	align-items: flex-start;
+}
+.badges[data-type="home"] .badge > .content > h6 {
+	font-size: 24px;
+	font-weight: 800;
+}
+.badges[data-type="home"] .badge > .content > p {
+	font-size: 14px;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Badge For Startup ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .badges[data-type="startup"] div[class="separator"] {
@@ -947,7 +1042,7 @@
 }
 @media screen and (max-width: 576px) {
 	.testimonials {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .testimonials::before,
@@ -995,7 +1090,7 @@
 }
 @media screen and (max-width: 576px) {
 	.blog {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .blog::before,
@@ -1015,6 +1110,65 @@
 	text-align: center;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Typing ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.typing {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: 80px;
+}
+@media screen and (max-width: 576px) {
+	.typing {
+		padding: 32px;
+	}
+}
+.typing::before,
+.typing::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.typing > p {
+	font-size: 20px;
+	color: var(--perfect-white-color);
+}
+.typing > .animation {
+	text-align: center;
+}
+.typing > .animation > .typed,
+.typing > .animation > span {
+	display: inline;
+	font-size: 40px;
+	font-family: "Nunito Sans";
+	font-weight: bold;
+	color: var(--perfect-white-color);
+	text-align: center;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Typing For Home ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.typing[data-type="home"]::before {
+	background-color: var(--background-main-color);
+}
+.typing[data-type="home"]::after {
+	border-radius: 0px 100px 0px 100px;
+	background-color: var(--background-private-color);
+}
+@media screen and (max-width: 576px) {
+	.typing[data-type="home"]::after {
+		border-radius: 0px 50px 0px 50px;
+	}
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Questions ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .questions {
@@ -1027,7 +1181,7 @@
 }
 @media screen and (max-width: 576px) {
 	.questions {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .questions::before,
@@ -1070,23 +1224,23 @@
 	color: var(--perfect-black-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Questions For Corporation ) */
+/* Home ( Questions For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions[data-type="corporation"] button[class*="active"] {
+.questions[data-type="corporate"] button[class*="active"] {
 	border-color: var(--lightblue-color);
 	background-color: var(--lightblue-color);
 }
-.questions[data-type="corporation"] button[class*="active"] > span {
+.questions[data-type="corporate"] button[class*="active"] > span {
 	color: var(--pureblue-color);
 }
-.questions[data-type="corporation"] div[class*="active"] {
+.questions[data-type="corporate"] div[class*="active"] {
 	background-color: var(--lightblue-color);
 }
-.questions[data-type="corporation"] div[class*="active"] > button,
-.questions[data-type="corporation"] div[class*="active"] > button > i {
+.questions[data-type="corporate"] div[class*="active"] > button,
+.questions[data-type="corporate"] div[class*="active"] > button > i {
 	color: var(--pureblue-color);
 }
-.questions[data-type="corporation"] div[class*="active"] > div {
+.questions[data-type="corporate"] div[class*="active"] > div {
 	color: var(--perfect-black-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

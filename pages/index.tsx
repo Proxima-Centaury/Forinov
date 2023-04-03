@@ -2,7 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { Key } from "react";
+import { Fragment, Key } from "react";
 import { HomeInterface } from "../typescript/interfaces";
 import { formatNameForUrl } from "../scripts/utilities";
 import api from "../scripts/api";
@@ -10,6 +10,7 @@ import api from "../scripts/api";
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
+import Script from "next/script";
 import Image from "next/image";
 import Carousel from "../components/carousels/carousel";
 import Format from "../components/texts/format";
@@ -23,28 +24,30 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Home */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = (pageProps: HomeInterface) => {
-	const { landing, startups, opportunities, states, router }: any = pageProps;
-	const { translations, metadatas }: any = states;
+	const { landing, startups, opportunities, states, router } = pageProps;
+	const { translations, metadatas } = states;
 	const structures: Array<String> = [ "Startup", "Grand groupe", "ETI", "PME", "Incubateur", "Accélérateur", "Pépinière", "Fond d'investissement", "Business angel", "Structure d'investissement" ];
-	return <>
+	return <Fragment>
 		<Head>
 			<title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
 		</Head>
-		<div className="containerFull">
+		<div id="home" className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="home">
-				<div className={ HomeStyles.presentationContent }>
-					<h1>{ translations["Rejoignez le plus grand réseau social des acteurs de l'innovation"] }</h1>
-					<p className={ HomeStyles.paragraph }>{ translations["Forinov est la plateforme qui connecte startups, entreprises et partenaires pour matcher le besoin avec l'offre d'innovation"] + "." }</p>
-					<p className={ HomeStyles.paragraph }>{ translations["Découvrez et contactez les meilleures startups sur Forinov pour transformer vos bonnes idées en projets concrets"] + " !" }</p>
-					<div className={ HomeStyles.presentationLinks }>
-						<Button button={ ButtonStyles.callToAction } href="/directories/startups/categories" text={ translations["Trouvez des startups"] }/>
-						<Button button={ ButtonStyles.callToAction } href="/directories/corporations/categories" text={ translations["Découvrez les entreprises membres"] }/>
-						<Button button={ ButtonStyles.callToAction } href="/directories/partners/categories" text={ translations["Découvrez les partenaires"] }/>
-						<Button button={ ButtonStyles.callToAction } href="/directories/opportunities/categories" text={ translations["Postulez aux opportunités en cours"] }/>
+				<h1>{ translations["Rejoignez le plus grand réseau social des acteurs de l'innovation"] }</h1>
+				<div className={ HomeStyles.jumbotron }>
+					<div className={ HomeStyles.presentationContent }>
+						<p className={ HomeStyles.paragraph }>{ translations["Forinov est la plateforme qui connecte startups, entreprises et partenaires pour matcher le besoin avec l'offre d'innovation"] + "." }</p>
+						<p className={ HomeStyles.paragraph }>{ translations["Découvrez et contactez les meilleures startups sur Forinov pour transformer vos bonnes idées en projets concrets"] + " !" }</p>
+						<div className={ HomeStyles.presentationLinks }>
+							<Button button={ ButtonStyles.oldHome } href="/directories/startups/categories" icon="fa-light fa-arrow-right" text={ translations["Trouvez des startups"] }/>
+							<Button button={ ButtonStyles.oldHome } href="/directories/corporates/categories" icon="fa-light fa-arrow-right" text={ translations["Découvrez les entreprises membres"] }/>
+							<Button button={ ButtonStyles.oldHome } href="/directories/partners/categories" icon="fa-light fa-arrow-right" text={ translations["Découvrez les partenaires"] }/>
+							<Button button={ ButtonStyles.oldHome } href="/directories/opportunities/categories" icon="fa-light fa-arrow-right" text={ translations["Postulez aux opportunités en cours"] }/>
+						</div>
 					</div>
+					<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
 				</div>
-				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
 			</div>
 			<div className={ HomeStyles.onboarding } data-type="home">
 				<h3>{ translations["Pourquoi rejoindre Forinov"] + " ?" }</h3>
@@ -68,7 +71,7 @@ const Home = (pageProps: HomeInterface) => {
 							<Button button={ ButtonStyles.classicLink } href="/startups" text={ translations["En savoir plus"] }/>
 						</div>
 					</div>
-					<div className={ HomeStyles.type } data-type="corporation">
+					<div className={ HomeStyles.type } data-type="corporate">
 						<div className={ HomeStyles.head }>
 							<i className="fa-light fa-buildings"/>
 							<div>
@@ -83,7 +86,7 @@ const Home = (pageProps: HomeInterface) => {
 						</div>
 						<div className={ HomeStyles.footer }>
 							<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Créer mon compte"] }/>
-							<Button button={ ButtonStyles.classicLink } href="/corporations" text={ translations["En savoir plus"] }/>
+							<Button button={ ButtonStyles.classicLink } href="/corporates" text={ translations["En savoir plus"] }/>
 						</div>
 					</div>
 					<div className={ HomeStyles.type } data-type="partner">
@@ -148,7 +151,7 @@ const Home = (pageProps: HomeInterface) => {
 				<div className={ HomeStyles.startupsCategories }>
 					{ landing.CATEGORIES.map((category: any, key: Key) => {
 						const url = "/directories/startups/categories/" + formatNameForUrl(category.NAME) + "_"  + category.ID;
-						return <Button key={ key } button={ ButtonStyles.callToActionNegative } href={ url } text={ category.NAME }/>;
+						return <Button key={ key } button={ ButtonStyles.callToActionOldGrey } href={ url } text={ category.NAME }/>;
 					}) }
 				</div>
 				<div className={ HomeStyles.actions } data-justify="center">
@@ -163,13 +166,30 @@ const Home = (pageProps: HomeInterface) => {
 					<Button button={ ButtonStyles.callToActionAlternative } href="/opportunities" text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
 				</div>
 			</div>
+			<div className={ HomeStyles.typing } data-type="home">
+				<p>{ translations["Forinov aujourd'hui"] }</p>
+				<div className={ HomeStyles.animation }>
+					<h4 className={ HomeStyles.typed }/>
+				</div>
+				<Script id="typedScript" strategy="afterInteractive">{`
+					typed = new Typed(".${ HomeStyles.typed }", {
+						strings: [
+							"${ translations["Plus de 1500 startups innovantes à l'international"] + "." }",
+							"${ translations["Des centaines d'entreprises à la recherche de solutions"] + "." }",
+							"${ translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"] + "." }"
+						],
+						typeSpeed: 50,
+						loop: true
+					});
+				`}</Script>
+			</div>
 			{ (structures.length > 0) ? <div className={ HomeStyles.structures } data-type="home">
 				<h4>{ translations["Tous les acteurs de l'innovation sont sur Forinov, qu'attendez-vous pour les rejoindre"] + " ?" }</h4>
 				<p>{ translations["Je représente ou travail pour un/une"] + "..." }</p>
 				<div className={ HomeStyles.structuresCategories }>
 					{ structures.map((structure: any, key: Key) => {
 						const url = "/onboarding";
-						return <Button key={ key } button={ ButtonStyles.callToActionNegative } href={ url } text={ structure }/>;
+						return <Button key={ key } button={ ButtonStyles.callToActionOldGrey } href={ url } text={ structure }/>;
 					}) }
 				</div>
 			</div> : null }
@@ -182,10 +202,10 @@ const Home = (pageProps: HomeInterface) => {
 				<Carousel { ...pageProps } component="ForinovBlog" data={ landing.BLOG }/>
 			</div>
 		</div>
-	</>;
+	</Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Server Side Properties */
+/* Server Side Props */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { res, locale, locales, defaultLocale } = context;

@@ -12,24 +12,23 @@
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
 }
-.partners > p:not(.label) {
-    margin: 0px;
+.partners > div[class="grid twoColumns"] > a {
+    max-height: 200px;
 }
-.partners > button {
-    margin: 16px 0px auto auto;
+.partners > div[class="grid twoColumns"] > a > * {
+    min-height: inherit;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partners ( Label ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .label {
-    margin: 0px 0px 8px 0px;
+    display: flex;
+    align-items: baseline;
+    grid-gap: 8px;
+    gap: 8px;
     font-weight: bold;
     font-size: 16px;
 }
-.label:only-of-type {
-    margin: 0px;
-}
 .label > i {
-    margin: 0px 8px 0px 0px;
     color: var(--error-color);
 }

@@ -2,6 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
+import { Fragment } from "react";
 import { HomeInterface } from "../typescript/interfaces";
 import api from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -20,15 +21,15 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Startups Home */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StartupsHome = (pageProps: HomeInterface) => {
-	const { opportunities, logos, states, accordionsConfigurations, router }: any = pageProps;
-	const { metadatas, translations }: any = states;
-	const { landings }: any = accordionsConfigurations;
-	return <>
+	const { opportunities, logos, states, accordionsConfigurations, router } = pageProps;
+	const { metadatas, translations } = states;
+	const { landings } = accordionsConfigurations;
+	return <Fragment>
 		<Head>
 			<title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
 		</Head>
-		<div className="containerFull">
+		<div id="startups" className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="startup">
 				<div className={ HomeStyles.presentationContent }>
 					<h1>{ translations["Développe ton business"] }</h1>
@@ -99,10 +100,10 @@ const StartupsHome = (pageProps: HomeInterface) => {
 				</div>
 			</div>
 		</div>
-	</>;
+	</Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Server Side Properties */
+/* Server Side Props */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { res, locale, locales, defaultLocale } = context;

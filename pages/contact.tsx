@@ -1,61 +1,48 @@
-import { GetServerSideProps } from 'next';
-import { useState } from 'react'
-
-
-import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
-import HomeStyles from "../public/stylesheets/pages/Home.module.css";
-import Input from '../components/fields/input';
-
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Imports */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { GetStaticProps } from "next";
+import { Fragment } from "react";
+import { ContactInterface } from "../typescript/interfaces";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Carousel from "../components/carousels/carousel";
-import Modal from '../layout/modal';
-
-export default function Contact(pageProps: any) {
-    const { startups, logos, states, accordionsConfigurations, router }: any = pageProps;
-    const { metadatas, translations }: any = states;
-    const { landings }: any = accordionsConfigurations;
-
-    const { stateSetters }: any = pageProps
-    const { setModal }: any = stateSetters;
-    
-
-    return (<>
-        <main style={{
-            paddingBottom: "2rem",
-        }}>
-            <div className={HomeStyles.questions} data-type="contact">
-                <h5>{translations["Les réponses à vos questions"]}</h5>
-                <Carousel {...pageProps} component="StartupAccordions" data={Object.values(landings.contact)} />
+import Button from "../components/buttons/button";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Styles */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import HomeStyles from "../public/stylesheets/pages/Home.module.css";
+import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Contact */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Contact = (pageProps: ContactInterface) => {
+    const { states, stateSetters, accordionsConfigurations } = pageProps;
+    const { translations } = states;
+    const { setModal } = stateSetters;
+    const { contact } = accordionsConfigurations;
+    return <Fragment>
+        <div id="contact" className="container">
+            <div className={ HomeStyles.questions } data-type="opportunity">
+                <h5>{ translations["Les réponses à vos questions"] }</h5>
+                <Carousel { ...pageProps } component="StartupAccordions" data={ Object.values(contact) } noActions/>
+                <div className={ HomeStyles.actions } data-justify="center">
+                    <p>{ translations["Vous ne trouvez pas la réponse à votre question"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/questions" text={ translations["Accédez à la FAQ"] }/>.</p>
+                </div>
             </div>
-            <div style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-            }}>
-                <button className={ButtonStyles.callToAction}
-                    onClick={() => {
-                        setModal("contact");
-                    }}
-                >
-                    Nous contacter
-                </button>
+            <div className={ HomeStyles.actions } data-justify="center">
+                <Button button={ ButtonStyles.callToAction } action={ () => setModal("contact") } text={ translations["Nous contacter"] }/>
             </div>
-        </main>
-    </>
-    )
+        </div>
+    </Fragment>;
 }
-
-const getServerSideProps: GetServerSideProps = async (context) => {
-    const { res, locale, locales, defaultLocale } = context;
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-    const language = locale?.substring(0, 2);
-    return {
-        props: {
-            locale, locales, defaultLocale,
-        }
-    };
-};
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Static Props */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const getStaticProps: GetStaticProps = async (context) => ({ props: { ...context } });
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export { getServerSideProps };
+export default Contact;
+export { getStaticProps };

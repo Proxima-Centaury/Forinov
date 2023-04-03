@@ -90,7 +90,7 @@ const Categories = (pageProps: any) => {
                     <CategoryCard { ...pageProps } category={ filter } display={ display }/>
                 </button>) }
             </div> : null}
-            { (type.match(/(corporation|entreprise)/)) ? <div className={ display }>
+            { (type.match(/(corporate|entreprise)/)) ? <div className={ display }>
                 { filters.SECTORS.map((filter: any, key: Key) => <button key={ key } onClick={ (event: any) => setCategory(event, filter.ID) }>
                     <CategoryCard { ...pageProps } category={ filter } display={ display }/>
                 </button>) }
@@ -113,7 +113,7 @@ const Categories = (pageProps: any) => {
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
-        { (type.match(/(corporation|entreprise)/)) ? <div className={ display }>
+        { (type.match(/(corporate|entreprise)/)) ? <div className={ display }>
             { filters.SECTORS.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }

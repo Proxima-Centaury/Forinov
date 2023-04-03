@@ -14,8 +14,8 @@ const ProfileActivities = ({ type, profile, states }: any) => {
     const { translations }: any = states;
     return <div id="socialsfeed" className={ ActivitiesStyles.activities } data-profile={ type }>
         <h3>{ translations["Réseaux sociaux"] }</h3>
-        <div className={ ActivitiesStyles.list } data-type="list">
-            { (profile.TWITTER) ? <TwitterFeed profile={ profile }/> : <div className={ ActivityStyles.activity }>
+        <div className="list">
+            { (profile.TWITTER) ? <TwitterFeed profile={ profile }/> : <div className={ ActivityStyles.card }>
                 <div className={ ActivityStyles.marker }></div>
                 <div className={ ActivityStyles.content }>
                     <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
@@ -23,7 +23,7 @@ const ProfileActivities = ({ type, profile, states }: any) => {
                     <p>{ translations["Aucun profil renseigné"] + "." }</p>
                 </div>
             </div> }
-            { (profile.FACEBOOK) ? <FacebookFeed profile={ profile }/> : <div className={ ActivityStyles.activity }>
+            { (profile.FACEBOOK) ? <FacebookFeed profile={ profile }/> : <div className={ ActivityStyles.card }>
                 <div className={ ActivityStyles.marker }></div>
                 <div className={ ActivityStyles.content }>
                     <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
@@ -38,7 +38,7 @@ const ProfileActivities = ({ type, profile, states }: any) => {
 /* Profile Activity ( Twitter Feed ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const TwitterFeed = ({ profile }: any) => {
-    return <div className={ ActivityStyles.activity }>
+    return <div className={ ActivityStyles.card }>
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content }>
             <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
@@ -58,7 +58,7 @@ const FacebookFeed = ({ profile }: any) => {
         allowFullScreen: true,
         allow: "autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
     };
-    return <div className={ ActivityStyles.activity }>
+    return <div className={ ActivityStyles.card }>
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content } style={ { minHeight: "400px" } }>
             <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>

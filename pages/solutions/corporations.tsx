@@ -20,9 +20,9 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 import { useRouter } from "next/router";
 import Carousel from "../../components/carousels/carousel";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Corporation Solutions */
+/* Corporate Solutions */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const CorporationSolutions = (pageProps: HomeInterface) => {
+const CorporateSolutions = (pageProps: HomeInterface) => {
     const { locales, states, stateSetters, config, opportunities, landingData }: any = pageProps;
 
     const router = useRouter();
@@ -58,14 +58,14 @@ const CorporationSolutions = (pageProps: HomeInterface) => {
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
-                            href={'/solution/corporations'}
+                            href={'/solution/corporates'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["Je découvre les offres Pro / Entreprise"]}</span>
                             <i className='fa-solid fa-arrow-right'></i>
                         </Link>
                         <Link
-                            href={'/directories/corporations/categorie'}
+                            href={'/directories/corporates/categorie'}
                             className={SolutionStyles.heroLink + ' lift'}
                         >
                             <span>{translations["J'accède à l'annuaire des membres"]}</span>
@@ -306,5 +306,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default CorporationSolutions;
+export default CorporateSolutions;
 export { getServerSideProps };
