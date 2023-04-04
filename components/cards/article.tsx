@@ -6,10 +6,12 @@ import { uppercaseFirst } from "../../scripts/utilities";
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/image";
+import Button from "../buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ArticleStyles from "../../public/stylesheets/components/cards/Article.module.css";
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Article Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -17,8 +19,9 @@ const ArticleCard = (articleProps: any) => {
     const { article, states } = articleProps;
     const { translations } = states;
     return <div className={ ArticleStyles.card }>
-        <div className={ ArticleStyles.background }>
+        <div className={ ArticleStyles.banner }>
             { (article.PICTURE) ? <Image src={ article.PICTURE } alt="" width="3840" height="2160"/> : null }
+            <Button button={ ButtonStyles.callToActionNegative } href={ article.URL } icon="fa-light fa-eye" text={ translations["Voir plus"] }/>
         </div>
         <div className={ ArticleStyles.content }>
             <div className={ ArticleStyles.container }>
