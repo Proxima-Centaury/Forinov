@@ -338,7 +338,7 @@ const Items = (itemProps: any) => {
             return data.map((opportunity: any, key: Key) => {
                 const url = "/directories/opportunities/categories/" + formatNameForUrl(opportunity.TYPE[0].NAME) + "_" + opportunity.TYPE[0].ID + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID;
                 return <div key={ key } className={ CarouselStyles.item }>
-                    <OpportunityCard { ...itemProps } opportunity={ opportunity }/>
+                    <OpportunityCard { ...itemProps } opportunity={ opportunity } opportunityLink={ url } carouselItem/>
                 </div>;
             });
         case "ForinovBlog":

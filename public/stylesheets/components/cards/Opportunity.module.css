@@ -12,9 +12,9 @@
     transform: translate3d(0px, -8px, 0px);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Opportunity ( Background ) */
+/* Opportunity ( Banner ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.background {
+.banner {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,12 +28,12 @@
     border-radius: 15px 15px 0px 0px;
     overflow: hidden;
 }
-.background > img {
+.banner > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.background > .informations {
+.banner > .informations {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,12 +42,18 @@
     margin: auto 0px 0px 0px;
     background-color: var(--background-private-color);
 }
-.background > .informations > p {
+.banner > .informations > p {
     color: var(--perfect-white-color);
 }
-.background > h5 {
+.banner > h5 {
     font-size: 24px;
     font-family: "Nunito Sans";
+}
+.banner > a {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    pointer-events: all;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Opportunity ( Content ) */
