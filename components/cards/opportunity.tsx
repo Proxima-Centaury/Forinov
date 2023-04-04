@@ -7,25 +7,28 @@ import { uppercaseFirst, remainingTime } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/image";
 import Tags from "../tags/tags";
+import Button from "../buttons/button";
 import Format from "../texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import OpportunityStyles from "../../public/stylesheets/components/cards/Opportunity.module.css";
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Opportunity Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const OpportunityCard = (opportunityProps: any) => {
-    const { opportunity, details, states } = opportunityProps;
+    const { opportunity, opportunityLink, carouselItem, details, states } = opportunityProps;
     const { translations } = states;
     return <div className={ OpportunityStyles.card }>
-        <div className={ OpportunityStyles.background } data-opportunity-type={ opportunity.TYPE[0].ID || "" }>
+        <div className={ OpportunityStyles.banner } data-opportunity-type={ opportunity.TYPE[0].ID || "" }>
             { (opportunity.BACKGROUND) ? <Image src={ opportunity.BACKGROUND } alt={ "Image de fond de l'opportunité " + opportunity.TITLE + "." } width="3840" height="2160"/> : null }
             { (opportunity.LANGUAGE === "en") ? <div className={ OpportunityStyles.informations }>
                 <p>{ translations["Anglais"] }</p>
             </div> : null }
             { (opportunity.OFFER) ? <h5>{ opportunity.OFFER }</h5> : null }
             { (opportunity.CATCH) ? <p>{ opportunity.CATCH }</p> : null }
+            { (opportunityLink && carouselItem) ? <Button button={ ButtonStyles.callToActionNegative } href={ opportunityLink } icon="fa-light fa-eye" text={ translations["Voir plus"] }/> : null }
         </div>
         <div className={ OpportunityStyles.content }>
             { (opportunity.OWNERLOGO) ? <div className={ OpportunityStyles.rightContainer }>
