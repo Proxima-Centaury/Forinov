@@ -1,6 +1,6 @@
 .card {
     padding: 24px;
-    border-radius: 1rem;
+    border-radius: 16px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
 }
@@ -39,9 +39,9 @@
 
 .spacer {
     width: 100%;
-    height: 3px;
+    height: 2px;
     border-radius: 1.5px;
-    opacity: 0.3;
+    opacity: 0.5;
     background-color: var(--inverted-color);
     margin: 32px 0;
 }
@@ -96,4 +96,74 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.offer {
+    font-weight: 800;
+    font-size: 24px;
+}
+
+.rightContent {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.callToSignWrapper {
+    background-color: var(--lighter-grey-color);
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: column;
+}
+
+.callToSign {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: var(--logo-orange-color);
+}
+
+.callToSign > span {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--perfect-white-color);
+}
+
+.ForinovBanner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--logo-blue-color);
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.ForinovBanner > span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--perfect-white-color);
+}
+
+.ForinovBanner > a {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--logo-blue-color);
+    width: 100%;
+    margin: 8px;
+    padding: 16px;
+    background-color: var(--perfect-white-color);
+    text-decoration: underline;
+    border-radius: 4px;
+}
+
+.rightSpacer {
+    width: 50%;
+    height: 2px;
+    border-radius: 1.5px;
+    opacity: 0.3;
+    background-color: var(--inverted-color);
+    margin: 16px 0;
 }

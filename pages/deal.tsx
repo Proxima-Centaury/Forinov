@@ -24,7 +24,12 @@ const deal = {
     criterias: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam illo sequi mollitia aliquam rem laudantium. Omnis aliquid dolores placeat, autem, ipsa dolorem repudiandae numquam beatae exercitationem minus aut, quis excepturi."
 }
 
-const Deal = () => {
+const Deal = (pageProps: any) => {
+
+    const { states } = pageProps;
+    const { translations } = states;
+    
+
     return (
         <section className={'container'}>
             <div className={DealStyles.card + ' grid twoColumns'}>
@@ -42,20 +47,20 @@ const Deal = () => {
 
                     <div className={DealStyles.dealDetails}>
 
-                        {deal.isExclusive && <><div className={DealStyles.spacer}></div><span>Cette offre est reservée aux membres Forinov <i className='fa-solid fa-lock'></i></span></>}
+                        {deal.isExclusive && <><div className={DealStyles.spacer}></div><span>{translations["Cette offre est reservée aux membres Forinov"]}  <i className='fa-solid fa-lock'></i></span></>}
                         <div className={DealStyles.spacer}></div>
                         <div className={DealStyles.timeDetails}>
                             <span>
-                                Expire le : {deal.expiresAt}
+                                {translations["Expire le"]} {" : "} {deal.expiresAt}
                             </span>
                             <span>
-                                temps restant : {deal.remainingTime} jour(s)
+                            {translations["Restant"]} : {deal.remainingTime} jour(s)
                             </span>
                             <span>
-                                Localisation: {deal.localisation}
+                            {translations["Localisation"]}  : {deal.localisation}
                             </span>
                             <Link href={deal.url}>
-                                Site web
+                            {translations["Site web"]} 
                             </Link>
                         </div>
                         <div className={DealStyles.spacer}></div>
@@ -64,7 +69,7 @@ const Deal = () => {
                         </div>
 
                         <div className={DealStyles.spacer}></div>
-                        <span><span style={{ fontWeight: 700 }}>Critères d&apos;éligibilité : </span>{deal.criterias}</span>
+                        <span><span style={{ fontWeight: 700 }}>{translations["Critères d'éligibilité"]} : </span>{deal.criterias}</span>
 
                         <div className={DealStyles.spacer}></div>
                         <div className={DealStyles.dealOffer}>
@@ -86,20 +91,36 @@ const Deal = () => {
 
                         <div className={DealStyles.links}>
                             <Link href={'/'}>
-                                Consulter le profil Forinov de {deal.authorName}
+                            {translations["Consulter le profil Forinov de"]} {deal.authorName}
                             </Link>
                             <Link href={'/'}>
-                                Consulter le site web de {deal.authorName}
+                            {translations["Consulter le site web de"]} {deal.authorName}
                             </Link>
                         </div>
 
                         <div className={DealStyles.toOffer}>
-                            <button className={ButtonStyles.callToAction}>J&apos;en profite</button>
+                            <button className={ButtonStyles.callToAction}>{translations["J'en profite"]}</button>
                         </div>
                     </div>
                 </div>
-                <div>
-                    {/* Right Side */}
+                <div className={DealStyles.rightContent}>
+                    <div className={DealStyles.callToSignWrapper}>
+                        <h1 className={DealStyles.offer}>{deal.dealOffer}</h1>
+                        {deal.isExclusive && <><span>{translations["Cette offre est reservée aux membres Forinov"]}  <i className='fa-solid fa-lock'></i></span></>}
+
+                        <div className={DealStyles.rightSpacer}></div>
+                        <div className={DealStyles.callToSign}>
+                            <span>{translations["Inscrivez-vous gratuitement sur Forinov et profitez de l'offre"]}</span>
+                        </div>
+                        <Link href={'/'}><i className='fa-solid fa-share'></i>{translations["Partager l'offre"]}</Link>
+                    </div>
+
+                    <div className={DealStyles.ForinovBanner}>
+                        {/* <Image /> logo */}
+                        <span>{translations["La plateforme des acteurs de l'innovation"]}</span>
+                        <div className={DealStyles.rightSpacer}></div>
+                        <Link href={'/'}>{translations["Inscrivez vous gratuitement pour profiter de toute la plateforme"]}</Link>
+                    </div>
                 </div>
             </div>
         </section>
