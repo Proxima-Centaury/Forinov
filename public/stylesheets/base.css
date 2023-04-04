@@ -395,7 +395,7 @@ body {
     width: 40px;
     height: 40px;
     position: absolute;
-    color: var(--text-inactive-color);
+    color: var(--separator-color);
     text-transform: uppercase;
     border-radius: 100px;
     background-color: var(--background-sub-color);

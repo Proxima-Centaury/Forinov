@@ -102,6 +102,6 @@
 .email > button > i,
 .password > button > i,
 .number > button > i {
-    color: var(--text-inactive-color);
+    color: var(--separator-color);
     pointer-events: none;
 }
