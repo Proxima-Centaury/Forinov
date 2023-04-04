@@ -2,7 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { ProfileInterface } from "../../../../typescript/interfaces";
 import api from "../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -71,37 +71,28 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
         };
     });
     if(profile && !opportunity) {
-        const profileTagsString = profile.TAGS.split(",").slice(0, 3).join(", ")
-        const metadataComment = profile.COMMENT.substring(0, 20)
-        let metadata: JSX.Element = <></>
-        if (type === "startup") {
-            metadata = <><title>
-                {metadatas["/annuaires/startups/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/startups/[id]"].title2 + " " + profile.CATEGORY[0].NAME}
-            </title>
-                <meta name="description" content={metadatas["/annuaires/startups/[id]"].description1 + profile.NAME + metadatas["/annuaires/startups/[id]"].description2 + profile.CATEGORY[0].NAME + ", " + metadataComment + ", " + profileTagsString}/></>
-        } else if (type === "corporate") {
-            metadata =
-                <><title>
-                    {metadatas["/annuaires/corporates/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/corporates/[id]"].title2 + " " + profile.CATEGORY[0] + metadatas["/annuaires/corporates/[id]"].title3}
-                </title>
-                    <meta name="description" content={metadatas["/annuaires/corporates/[id]"].description1 + profile.NAME +
-                        metadatas["/annuaires/corporates/[id]"].description2 + profile.NAME +
-                        metadatas["/annuaires/corporates/[id]"].description3 + profile.NAME +
-                        metadatas["/annuaires/corporates/[id]"].description4 + profile.NAME +
-                        metadatas["/annuaires/corporates/[id]"].description5 + profile.NAME
-                    }
-                /></>
-        } else if (type === "partner") { 
-            <><title>
-                    {metadatas["/annuaires/partners/[id]"].title1 + profile.NAME + metadatas["/annuaires/partners/[id]"].title2 + profile.CATEGORY[0]}
-                </title>
-                    <meta name="description" content={metadatas["/annuaires/partners/[id]"].description1 + profile.NAME +
-                        metadatas["/annuaires/partners/[id]"].description2 + profile.NAME +
-                        metadatas["/annuaires/partners/[id]"].description3 + profile.NAME +
-                        metadatas["/annuaires/partners/[id]"].description4
-                    }
-                /></>
-        }
+        const profileTagsString = profile.TAGS.split(",").slice(0, 3).join(", ");
+        const metadataComment = profile.COMMENT.substring(0, 200) + "...";
+        let metadata: JSX.Element = <></>;
+        if(type.match(/(startup)/)) {
+            metadata = <Fragment>
+                <title>{ metadatas["/annuaires/startups/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/startups/[id]"].title2 + " " + profile.CATEGORY[0].NAME }</title>
+                <meta name="description" content={ metadatas["/annuaires/startups/[id]"].description1 + profile.NAME + metadatas["/annuaires/startups/[id]"].description2 + profile.CATEGORY[0].NAME + ", " + metadataComment + ", " + profileTagsString} />
+            </Fragment>;
+        } else if(type.match(/(corporate|entreprise)/)) {
+            const descriptions = [ metadatas["/annuaires/corporates/[id]"].description1, metadatas["/annuaires/corporates/[id]"].description2, metadatas["/annuaires/corporates/[id]"].description3, metadatas["/annuaires/corporates/[id]"].description4, metadatas["/annuaires/corporates/[id]"].description5 ];
+            metadata = <Fragment>
+                <title>{ metadatas["/annuaires/corporates/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/corporates/[id]"].title2 + " " + profile.CATEGORY[0] + metadatas["/annuaires/corporates/[id]"].title3 }</title>
+                <meta name="description" content={ descriptions.join(profile.NAME) }/>
+            </Fragment>;
+        } else if(type.match(/(partner|partenaire)/)) {
+            const categories = profile.CATEGORY.map((category: any) => category.NAME).join(" / ");
+            const descriptions = [ metadatas["/annuaires/partners/[id]"].description1, metadatas["/annuaires/partners/[id]"].description2, metadatas["/annuaires/partners/[id]"].description3, metadatas["/annuaires/partners/[id]"].description4 ];
+            metadata = <Fragment>
+                <title>{ metadatas["/annuaires/partners/[id]"].title1 + profile.NAME + metadatas["/annuaires/partners/[id]"].title2 + " " + categories }</title>
+                <meta name="description" content={ descriptions.join(profile.NAME) }/>
+            </Fragment>;
+        };
         return <>
             <Head>
                 { metadata }
