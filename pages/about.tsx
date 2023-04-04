@@ -2,12 +2,13 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetStaticProps } from "next";
+import { Fragment } from "react";
 import { HomeInterface } from "../typescript/interfaces";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/image";
-import { Fragment } from "react";
+import Button from "../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -22,7 +23,7 @@ const About = (pageProps: HomeInterface) => {
     return <div className="containerFull" style={ { background: "var(--background-sub-color)" } }>
         <div className={ "container " + AboutStyles.heroContainer }>
             <h1 className={ AboutStyles.heroTitle }>{ translations["Notre histoire et nos missions chez Forinov"] }</h1>
-            <button className={ ButtonStyles.callToAction }>{ translations["Rejoindre Forinov"] }</button>
+            <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Rejoindre Forinov"] }/>
             <Image className={ AboutStyles.heroImg } src={ router.basePath + "/assets/landings/hero-about-img.svg" } alt="Picture of the author" width={500} height={500}/>
         </div>
         <div className={ AboutStyles.banner} >
@@ -45,7 +46,7 @@ const About = (pageProps: HomeInterface) => {
             <div className={ "container " + AboutStyles.bannerText2 }>
                 <h1 className={ AboutStyles.title }>{ translations["Toi aussi tu es passionné·e d’innovation ?"] }</h1>
                 <p className={ AboutStyles.paragraph }>{ translations["Nous recherchons des talents"] }</p>
-                <button className={ ButtonStyles.callToAction }>{ translations["Nous contacter"] }</button>
+                <Button button={ ButtonStyles.callToAction } href="/contact" text={ translations["Nous contacter"] }/>
             </div>
         </div>
     </div>;
