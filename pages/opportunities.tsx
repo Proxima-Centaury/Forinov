@@ -37,7 +37,7 @@ const Home = (pageProps: HomeInterface) => {
 						<Button button={ ButtonStyles.callToAction } href="/" text={ translations["Voir la vidéo de présentation"] }/>
 					</div>
 				</div>
-				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
+				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="" width="3840" height="2160" priority/>
 			</div>
 			<div className={ HomeStyles.sourcing } data-type="opportunity">
 				<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>

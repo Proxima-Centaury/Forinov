@@ -27,25 +27,21 @@ const StartupSolutions = (pageProps: HomeInterface) => {
     const { metadatas, translations } = states;
     return <Fragment>
         <Head>
-            <title>{metadatas[router.route].title}</title>
-            <style>
-                {`
-                    :root {
-                        --page-color: var(--logo-orange-color);
-                    }
-                `}
-            </style>
+            <title>{ metadatas[router.route].title }</title>
+			<meta name="description" content={ metadatas[router.route].description }/>
         </Head>
-        <section className="containerFull" style={ { background: "var(--background-sub-color)" } }>
-            <div className={ "container " + SolutionStyles.heroContainer }>
+        <div className="containerFull" style={ { background: "var(--background-sub-color)" } }>
+            <div className={ HomeStyles.presentation }>
                 <h1 className={ SolutionStyles.heroTitle }>{ translations["Les meilleures startups sont sur Forinov, inscrivez-vous gratuitement"] }</h1>
-                <p className={ SolutionStyles.heroDesc }>{ translations["Vous proposez une solution innovante ? Vous cherchez des clients B2B ? Rejoignez Forinov pour booster votre visibilité et entrer en relation simplement avec des entreprises qui ont besoin de vos solutions pour innover !"] }</p>
-                <div className={ SolutionStyles.heroLinks }>
-                    <Button button={ ButtonStyles.oldHome } href="/onboarding" icon="fa-solid fa-arrow-right" text={ translations["J'inscris ma startup"] }/>
-                    <Button button={ ButtonStyles.oldHome } href="/directories/opportunities/categories" icon="fa-solid fa-arrow-right" text={ translations["Je découvre les opportunités"] }/>
-                    <Button button={ ButtonStyles.oldHome } href="/directories/startups/categories" icon="fa-solid fa-arrow-right" text={ translations["J'accède à l'annuaire des membres"] }/>
+				<div className={ HomeStyles.jumbotron }>
+                    <p className={ SolutionStyles.heroDesc }>{ translations["Vous proposez une solution innovante ? Vous cherchez des clients B2B ? Rejoignez Forinov pour booster votre visibilité et entrer en relation simplement avec des entreprises qui ont besoin de vos solutions pour innover !"] }</p>
+                    <div className={ SolutionStyles.heroLinks }>
+                        <Button button={ ButtonStyles.oldHome } href="/onboarding" icon="fa-solid fa-arrow-right" text={ translations["J'inscris ma startup"] }/>
+                        <Button button={ ButtonStyles.oldHome } href="/directories/opportunities/categories" icon="fa-solid fa-arrow-right" text={ translations["Je découvre les opportunités"] }/>
+                        <Button button={ ButtonStyles.oldHome } href="/directories/startups/categories" icon="fa-solid fa-arrow-right" text={ translations["J'accède à l'annuaire des membres"] }/>
+                    </div>
+                    <Image className={ SolutionStyles.heroImg } src={ router.basePath + "/assets/landings/solutions-su.png" } alt="" width="500" height="500"/>
                 </div>
-                <Image className={ SolutionStyles.heroImg } src={ router.basePath + "/assets/landings/solutions-su.png" } alt="Picture of the author" width={500} height={500}/>
             </div>
             <div className={ SolutionStyles.banner }>
                 <div className="container">
@@ -91,9 +87,9 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                     <h1 className={ SolutionStyles.bannerTitle }>{ translations["L’innovation a déjà un nom"] }, <br /><span>title</span>.</h1>
                     <Image
                         src={router.basePath + "/assets/landings/solutions-su-seating.png"}
-                        alt="Man seating and working on a laptop"
-                        width={500}
-                        height={500}
+                        alt=""
+                        width="500"
+                        height="500"
                         className={SolutionStyles.bannerImgSeating}
                     >
                     </Image>
@@ -147,7 +143,7 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                     </Link></h1>
                 </div>
             </div>
-        </section>
+        </div>
     </Fragment>
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

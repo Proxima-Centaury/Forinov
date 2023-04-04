@@ -30,7 +30,7 @@ const About = (pageProps: HomeInterface) => {
             <div className={ "container " + AboutStyles.heroContainer }>
                 <h1 className={ AboutStyles.heroTitle }>{ translations["Notre histoire et nos missions chez Forinov"] }</h1>
                 <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Rejoindre Forinov"] }/>
-                <Image className={ AboutStyles.heroImg } src={ router.basePath + "/assets/landings/hero-about-img.svg" } alt="Picture of the author" width={500} height={500}/>
+                <Image className={ AboutStyles.heroImg } src={ router.basePath + "/assets/landings/hero-about-img.svg" } alt="" width="500" height="500"/>
             </div>
             <div className={ AboutStyles.banner} >
                 <div className={ "container " + AboutStyles.bannerText }>
@@ -46,7 +46,7 @@ const About = (pageProps: HomeInterface) => {
                         <br/>
                     </Fragment>) }
                 </p>
-                <Image className={ AboutStyles.descriptionImg } src={ router.basePath + "/assets/landings/about-2.svg" } alt="Picture of the author" width={ 500 } height={ 500 }/>
+                <Image className={ AboutStyles.descriptionImg } src={ router.basePath + "/assets/landings/about-2.svg" } alt="" width="500" height="500"/>
             </div>
             <div className={ "container " + AboutStyles.banner2 }>
                 <div className={ "container " + AboutStyles.bannerText2 }>

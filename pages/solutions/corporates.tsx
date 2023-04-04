@@ -51,9 +51,9 @@ const CorporateSolutions = (pageProps: HomeInterface) => {
                 </div>
                 <Image
                     src={router.basePath + "/assets/landings/solutions-corpo-hero.png"}
-                    alt="Picture of the author"
-                    width={500}
-                    height={500}
+                    alt=""
+                    width="500"
+                    height="500"
                     className={SolutionStyles.heroImg}
                 ></Image>
             </div>
@@ -146,9 +146,9 @@ const CorporateSolutions = (pageProps: HomeInterface) => {
                     <h2 className={SolutionStyles.bannerTitle2} style={{ width: "50%" }}>{startupsCount + translations[" startups et des centaines de partenaires qui n’attendent que vous"]}</h2>
                     <Image
                         src={router.basePath + "/assets/landings/solutions-corpo-seating.png"}
-                        alt="Seating"
-                        width={1000}
-                        height={500}
+                        alt=""
+                        width="1000"
+                        height="500"
                         className={SolutionStyles.bannerImgSeatingCorpo}
                     >
 

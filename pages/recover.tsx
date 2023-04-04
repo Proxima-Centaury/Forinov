@@ -87,7 +87,7 @@ const Recover = (pageProps: HomeInterface) => {
         <div className={LostPasswordStyles.image}>
             <Image
                 src={router.basePath + "/assets/lost_password.jpeg"}
-                alt="Lost password"
+                alt=""
                 fill
                 style={{
                     objectFit: "cover",

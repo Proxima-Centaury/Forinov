@@ -46,7 +46,7 @@ const Home = (pageProps: HomeInterface) => {
 							<Button button={ ButtonStyles.oldHome } href="/directories/opportunities/categories" icon="fa-light fa-arrow-right" text={ translations["Postulez aux opportunités en cours"] }/>
 						</div>
 					</div>
-					<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
+					<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="" width="3840" height="2160" priority/>
 				</div>
 			</div>
 			<div className={ HomeStyles.onboarding } data-type="home">
