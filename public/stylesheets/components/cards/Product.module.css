@@ -4,6 +4,7 @@
 .card {
     display: flex;
     flex-direction: column;
+    height: 100%;
     position: relative;
     border-radius: 15px;
     background-color: var(--background-sub-color);

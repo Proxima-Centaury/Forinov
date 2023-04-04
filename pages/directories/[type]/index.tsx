@@ -9,6 +9,7 @@ import api from "../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Head from "next/head";
 import Link from "next/link";
 import Filters from "../../../components/filters/filters";
 import IdenfiticationBanner from "../../../components/banners/identification";
@@ -27,7 +28,7 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Directory = (pageProps: DirectoryInterface) => {
     const { states, router } = pageProps;
-    const { locale, translations } = states;
+    const { locale, translations, metadatas } = states;
     const { ui, type, category } = router.query;
     const [ search, setSearch ] = useState({ keywords: "", categories: (category) ? category : "", page: 1 });
     const [ results, setResults ] = useState(null || []);
@@ -54,24 +55,30 @@ const Directory = (pageProps: DirectoryInterface) => {
         setSearch({ keywords: "", categories: (categoryId) ? categoryId : "", page: 1 });
         setResults([]);
         setSelects(null);
-    }, [ type, category ]);
-    return <div id="directory" className={ (ui && ui == "false") ? "containerFull" : "container" }>
-        <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
-        { (ui && ui == "false") ? null : <IdenfiticationBanner { ...pageProps }/> }
-        { (informations && informations.RESULTSMESSAGE) ? <div className={ DirectoryStyles.message }>
-            <i className="fa-light fa-chevron-right"/>
-            <p>{ informations.RESULTSMESSAGE }</p>
-        </div> : null }
-        { (results) ? <Results { ...pageProps } display={ display } results={ results }/> : null }
-        { (!results || (Array.isArray(results) && results.length <= 0)) && router.asPath.match(/(\/countries)/) ? <Countries { ...pageProps } display={ display } search={ search }/> : null }
-        { (!results || (Array.isArray(results) && results.length <= 0)) && !router.asPath.match(/(\/countries)/) ? <Categories { ...pageProps } display={ display } search={ search } setSearch={ setSearch }/> : null }
-        { (informations && informations.PAGES > 0) ? <Pagination { ...pageProps } pages={ informations.PAGES } search={ search } action={ setSearch }/> : null }
-        { (ui && ui == "false") ? null : <div className={ DirectoryStyles.signup }>
-            <i className="fa-light fa-eyes"/>
-            <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
-            <Button button={ ButtonStyles.callToActionNegative } href="/onboarding" text={ translations["Je m'inscris"] }/>
-        </div> }
-    </div>;
+    }, [ type, categoryId ]);
+    return <Fragment>
+        <Head>
+			<title>{ (metadatas[router.asPath]) ? metadatas[router.asPath].title : "" }</title>
+			<meta name="description" content={ (metadatas[router.asPath]) ? metadatas[router.asPath].description : "" }/>
+		</Head>
+        <div id="directory" className={ (ui && ui == "false") ? "containerFull" : "container" }>
+            <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
+            { (ui && ui == "false") ? null : <IdenfiticationBanner { ...pageProps }/> }
+            { (informations && informations.RESULTSMESSAGE) ? <div className={ DirectoryStyles.message }>
+                <i className="fa-light fa-chevron-right"/>
+                <p>{ informations.RESULTSMESSAGE }</p>
+            </div> : null }
+            { (results) ? <Results { ...pageProps } display={ display } results={ results }/> : null }
+            { (!results || (Array.isArray(results) && results.length <= 0)) && router.asPath.match(/(\/countries)/) ? <Countries { ...pageProps } display={ display } search={ search }/> : null }
+            { (!results || (Array.isArray(results) && results.length <= 0)) && !router.asPath.match(/(\/countries)/) ? <Categories { ...pageProps } display={ display } search={ search } setSearch={ setSearch }/> : null }
+            { (informations && informations.PAGES > 0) ? <Pagination { ...pageProps } pages={ informations.PAGES } search={ search } action={ setSearch }/> : null }
+            { (ui && ui == "false") ? null : <div className={ DirectoryStyles.signup }>
+                <i className="fa-light fa-eyes"/>
+                <p>{ translations["Rejoignez Forinov et profitez de l'ensemble des fonctionnalités de Forinov"] }</p>
+                <Button button={ ButtonStyles.callToActionNegative } href="/onboarding" text={ translations["Je m'inscris"] }/>
+            </div> }
+        </div>
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Categories */

@@ -310,7 +310,7 @@ const ClassicHorizontal = (carouselProps: any) => {
                 carousel.removeEventListener("mouseleave", mouseLeaveHandler);
             };
         };
-    }, [ pressed ]);
+    });
     return <div className={ CarouselStyles.carousel } ref={ carouselReference }>
         <div className={ CarouselStyles.arrows }>
             <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: any) => transitionHandler(event, "left") } icon="fa-light fa-arrow-left"/>

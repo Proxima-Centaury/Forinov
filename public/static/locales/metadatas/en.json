@@ -58,16 +58,32 @@
 	"/directories/startups": {
 		"title": "Forinov's startup directory - tech and innovative startups",
 		"description": "Forinov, start-ups directory. Thanks to the search engine by categories, technologies or sectors of activity, find the best startups classified by field. More than a mapping or a database of startups, join the largest network of startups and their qualified profiles, data updated in real time by the teams (fundraising, staff ... and key indicators ...)"
-	}, 
+	},
+    "/directories/startups/categories": {
+		"title": "Forinov's startup directory - tech and innovative startups",
+		"description": "Forinov, start-ups directory. Thanks to the search engine by categories, technologies or sectors of activity, find the best startups classified by field. More than a mapping or a database of startups, join the largest network of startups and their qualified profiles, data updated in real time by the teams (fundraising, staff ... and key indicators ...)"
+	},
     "/directories/corporates" : {
         "title": "Forinov company directory - member companies of Forinov, the Open Innovation social network",
         "description" : "Forinov, directory of companies present on Forinov, the social network of Open innovation. Find, by sector of activity, SMEs, ETIs, and large international groups looking for collaborations with startups. Contact the innovation teams and respond to their needs: calls for projects, programs, calls for applications from startups"
-    }, 
+    },
+    "/directories/corporates/categories" : {
+        "title": "Forinov company directory - member companies of Forinov, the Open Innovation social network",
+        "description" : "Forinov, directory of companies present on Forinov, the social network of Open innovation. Find, by sector of activity, SMEs, ETIs, and large international groups looking for collaborations with startups. Contact the innovation teams and respond to their needs: calls for projects, programs, calls for applications from startups"
+    },
     "/directories/partners" : {
         "title": "Partners’ Directory: incubators, gas pedals, investment funds",
         "description" : "Find the largest network of partners on Forinov. From their profiles, discover their services, their startup portfolios and connect directly with the best incubators, accelerators, investment funds, business angels networks and investors..."
-    }, 
+    },
+    "/directories/partners/categories" : {
+        "title": "Partners’ Directory: incubators, gas pedals, investment funds",
+        "description" : "Find the largest network of partners on Forinov. From their profiles, discover their services, their startup portfolios and connect directly with the best incubators, accelerators, investment funds, business angels networks and investors..."
+    },
     "/directories/opportunities" : {
+        "title": "Opportunities on Forinov: calls for projects, calls for applications, competitions and startup challenges...",
+        "description" : "Find the directory of opportunities on Forinov: calls for startup projects, calls for applications, calls for tenders, incubation and acceleration programs, networking events, challenges and competitions, startup meetups, startup networking events and many other unique opportunities just a click away."
+    },
+    "/directories/opportunities/categories" : {
         "title": "Opportunities on Forinov: calls for projects, calls for applications, competitions and startup challenges...",
         "description" : "Find the directory of opportunities on Forinov: calls for startup projects, calls for applications, calls for tenders, incubation and acceleration programs, networking events, challenges and competitions, startup meetups, startup networking events and many other unique opportunities just a click away."
     },
