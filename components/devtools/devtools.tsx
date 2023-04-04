@@ -46,10 +46,10 @@ const Devtools = ({ states, stateSetters }: any) => {
             <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchThemeState } icon={ themeSwitcherIcon }/>
         </div>
         <div data-type="tooltip" data-tooltip={ translations["Voir les erreurs sur la page"] }>
-            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon="fa-light fa-triangle-exclamation" disabled={ true }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon="fa-light fa-triangle-exclamation" disabled/>
         </div>
         <div data-type="tooltip" data-tooltip={ translations["Activer l'éclairage RGB"] }>
-            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon={ RGBSwitcherIcon }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon={ RGBSwitcherIcon } disabled/>
         </div>
         <button title={ translations["Afficher les devtools"] } onClick={ switchHiddenState }>
             <i className="fa-light fa-chevron-down"/>
