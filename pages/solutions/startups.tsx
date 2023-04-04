@@ -17,14 +17,14 @@ import Carousel from "../../components/carousels/carousel";
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import HomeStyles from "../../public/stylesheets/pages/Home.module.css";
-import SolutionStyles from "../../public/stylesheets/pages/solutions/Solutions.module.css"
+import SolutionStyles from "../../public/stylesheets/pages/Solutions.module.css";
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startup Solutions */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StartupSolutions = (pageProps: HomeInterface) => {
-    const { opportunities, states, router }: any = pageProps;
-    const { metadatas, translations }: any = states;
+    const { opportunities, states, router } = pageProps;
+    const { metadatas, translations } = states;
     return <Fragment>
         <Head>
             <title>{metadatas[router.route].title}</title>

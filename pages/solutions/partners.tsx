@@ -7,22 +7,21 @@ import { HomeInterface } from "../../typescript/interfaces";
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
-import Image from "next/image"
+import Image from "next/image";
 import Link from "next/link";
+import Button from "../../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import SolutionStyles from "../../public/stylesheets/pages/solutions/Solutions.module.css"
-import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css"
-
-import { useRouter } from "next/router";
+import HomeStyles from "../../public/stylesheets/pages/Home.module.css";
+import SolutionStyles from "../../public/stylesheets/pages/Solutions.module.css";
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partner Solutions */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnerSolutions = (pageProps: HomeInterface) => {
-    const { locales, states, stateSetters, config, opportunities }: any = pageProps;
-    const { metadatas, translations }: any = states;
-    const router = useRouter();
+    const { states, router } = pageProps;
+    const { metadatas, translations } = states;
     return (
         <>
             <Head>
@@ -44,27 +43,9 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
                         {translations["Incubateurs, accélérateurs, Business Angels…Cette communauté est faite pour vous ! A la clé : visibilité de vos offres et de vos startups, gestion de vos appels à candidatures, suivi de votre portefeuille et de votre réseau !"]}
                     </p>
                     <div className={SolutionStyles.heroLinks}>
-                        <Link
-                            href={'/onboarding'}
-                            className={SolutionStyles.heroLink + ' lift'}
-                        >
-                            <span>{translations["M'inscrire sur Forinov"]}</span>
-                            <i className='fa-solid fa-arrow-right'></i>
-                        </Link>
-                        <Link
-                            href={'/solutions/partners'}
-                            className={SolutionStyles.heroLink + ' lift'}
-                        >
-                            <span>{translations["Demander une démonstration gratuite"]}</span>
-                            <i className='fa-solid fa-arrow-right'></i>
-                        </Link>
-                        <Link
-                            href={'/directories/partners/categorie'}
-                            className={SolutionStyles.heroLink + ' lift'}
-                        >
-                            <span>{translations["J'accède à l'annuaire des membres"]}</span>
-                            <i className='fa-solid fa-arrow-right'></i>
-                        </Link>
+                        <Button button={ ButtonStyles.oldHome } href="/onboarding" icon="fa-solid fa-arrow-right" text={ translations["M'inscrire sur Forinov"] }/>
+                        <Button button={ ButtonStyles.oldHome } href="/contact" icon="fa-solid fa-arrow-right" text={ translations["Demander une démonstration gratuite"] }/>
+                        <Button button={ ButtonStyles.oldHome } href="/directories/partners/categories" icon="fa-solid fa-arrow-right" text={ translations["J'accède à l'annuaire des membres"] }/>
                     </div>
                     <Image
                         src={router.basePath + "/assets/landings/solutions-partners.png"}
@@ -119,39 +100,39 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
                             <p className={SolutionStyles.cardDesc}>{translations["Vous souhaitez connecter vos porteurs de projets à leurs futurs clients pour les aider à se développer !"]}</p>
                         </div>
                     </div>
-                    <Link
-                        href={'/onboarding'}
-                        className={ButtonStyles.callToAction} style={{ margin: '2rem auto' }}>{translations["Je m'inscris"]}</Link>
+                    <div className={ HomeStyles.actions } data-justify="center">
+                        <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Je m'inscris"] }/>
+                    </div>
                 </div>
                 <div className={SolutionStyles.banner2}>
                     <div className="container">
-                        <h1 className={SolutionStyles.bannerTitle2} style={{ marginBottom: "2rem" }}>Titre</h1>
+                        <h1 className={SolutionStyles.bannerTitle2} style={{ marginBottom: "2rem" }}>{ translations["Mieux gérer votre réseau de startups et de partenaires"] }</h1>
                         <div className={SolutionStyles.cardWrapper}>
                         <div className={SolutionStyles.listItem}>
                                 <h3 className={SolutionStyles.listItemTitle}>{translations["Un réseau social B2B"]}</h3>
                                 <ul>
-                                    <li>{translations["Annuaires de startups et partenaires."]}</li>
-                                    <li>{translations["Moteurs de recherche avancés."]}</li>
-                                    <li>{translations["Messagerie interne."]}</li>
-                                    <li>{translations["Fil d’actualités."]}</li>
+                                    <li><i className="fa-light fa-check"/>{translations["Annuaires de startups et partenaires."]}</li>
+                                    <li><i className="fa-light fa-check"/>{translations["Moteurs de recherche avancés."]}</li>
+                                    <li><i className="fa-light fa-check"/>{translations["Messagerie interne."]}</li>
+                                    <li><i className="fa-light fa-check"/>{translations["Fil d’actualités."]}</li>
                                 </ul>
                             </div>
                             <div className={SolutionStyles.listItem}>
                                 <h3 className={SolutionStyles.listItemTitle}>{translations["Une plateforme d’appels à projets"]}</h3>
                                 <ul>
-                                    <li>{translations["Éditeur d’appels à projets."]}</li>
-                                    <li>{translations["Formulaires personnalisés."]}</li>
-                                    <li>{translations["Gestion des dossiers de candidatures."]}</li>
-                                    <li>{translations["Algorithme de matching."]}</li>
+                                    <li><i className="fa-light fa-check"/>{translations["Éditeur d’appels à projets."]}</li>
+                                    <li><i className="fa-light fa-check"/>{translations["Formulaires personnalisés."]}</li>
+                                    <li><i className="fa-light fa-check"/>{translations["Gestion des dossiers de candidatures."]}</li>
+                                    <li><i className="fa-light fa-check"/>{translations["Algorithme de matching."]}</li>
                                 </ul>
                             </div>
                             <div className={SolutionStyles.listItem}>
                                 <h3 className={SolutionStyles.listItemTitle}>{translations["Un outil de gestion de portefeuilles"]}</h3>
                                 <ul>
-                                    <li>{translations["ÉSuivi de startups et partenaires."]}</li>
-                                    <li>{translations["Gestion de dossiers, Kanban..."]}</li>
-                                    <li>{translations["Suivi d’activités (RDV, tâches, documents...)."]}</li>
-                                    <li>{translations["Dashboards personnalisables."]}</li>
+                                    <li><i className="fa-light fa-check"/>{translations["Suivi de startups et partenaires."]}</li>
+                                    <li><i className="fa-light fa-check"/>{translations["Gestion de dossiers, Kanban..."]}</li>
+                                    <li><i className="fa-light fa-check"/>{translations["Suivi d’activités (RDV, tâches, documents...)."]}</li>
+                                    <li><i className="fa-light fa-check"/>{ translations["Dashboards personnalisables"] + "." }</li>
                                 </ul>
                             </div>
                         </div>

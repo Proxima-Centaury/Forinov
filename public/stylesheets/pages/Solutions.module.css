@@ -348,15 +348,17 @@
 }
 
 .listItem ul li {
-    list-style-image: url("/assets/list-style/check.svg");
-    list-style-position: inside;
+    display: flex;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
     margin-top: 2rem;
     align-items: center;
     font-size: 1.0625rem;
 }
 
-.listItem ul li::marker {
-    color: var(--page-color);
+.listItem ul li > i {
+    color: var(--logo-blue-color);
 }
 
 .greyBanner {
