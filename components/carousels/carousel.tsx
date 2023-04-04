@@ -331,7 +331,7 @@ const Items = (itemProps: any) => {
             return data.map((startup: any, key: Key) => {
                 const url = "/directories/startups/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
                 return <div key={ key } className={ CarouselStyles.item }>
-                    <ProfileCard { ...itemProps } profile={ startup } definedType="startup" page="landing"/>
+                    <ProfileCard { ...itemProps } profile={ startup } definedType="startup" profileLink={ url } carouselItem/>
                 </div>;
             });
         case "LatestOpportunities":

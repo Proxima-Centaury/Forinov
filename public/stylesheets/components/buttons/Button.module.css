@@ -260,9 +260,11 @@
 .callToActionNegative:hover {
     background-color: var(--logo-blue-color);
 }
+.callToActionNegative > i,
 .callToActionNegative > span {
     color: var(--logo-blue-color);
 }
+.callToActionNegative:hover > i,
 .callToActionNegative:hover > span {
     color: var(--perfect-white-color);
 }
