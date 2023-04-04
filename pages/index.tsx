@@ -2,8 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { Fragment, Key, useEffect, useRef } from "react";
-import Typed from "typed.js";
+import { Fragment, Key } from "react";
 import { HomeInterface } from "../typescript/interfaces";
 import { formatNameForUrl } from "../scripts/utilities";
 import api from "../scripts/api";
@@ -25,22 +24,9 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Home */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = (pageProps: HomeInterface) => {
-	const typedReference = useRef(null);
 	const { landing, startups, opportunities, states, router } = pageProps;
 	const { translations, metadatas } = states;
 	const structures: Array<String> = [ "Startup", "Grand groupe", "ETI", "PME", "Incubateur", "Accélérateur", "Pépinière", "Fond d'investissement", "Business angel", "Structure d'investissement" ];
-	useEffect(() => {
-		const typed = new Typed(typedReference.current, {
-			strings: [
-				translations["Plus de 1500 startups innovantes à l'international"]  + ".",
-				translations["Des centaines d'entreprises à la recherche de solutions"]  + ".",
-				translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"]  + "."
-			],
-			typeSpeed: 50,
-			loop: true
-		});
-		return () => typed.destroy();
-	}, []);
 	return <Fragment>
 		<Head>
 			<title>{ metadatas[router.route].title }</title>
@@ -183,9 +169,9 @@ const Home = (pageProps: HomeInterface) => {
 			<div className={ HomeStyles.typing } data-type="home">
 				<p>{ translations["Forinov aujourd'hui"] }</p>
 				<div className={ HomeStyles.animation }>
-					<h4 className={ HomeStyles.typed } ref={ typedReference }/>
+					<h4 className={ HomeStyles.typed }/>
 				</div>
-				{/* <Script id="typedScript" strategy="afterInteractive">{`
+				<Script id="typedScript" strategy="afterInteractive">{`
 					typed = new Typed(".${ HomeStyles.typed }", {
 						strings: [
 							"${ translations["Plus de 1500 startups innovantes à l'international"] + "." }",
@@ -195,7 +181,7 @@ const Home = (pageProps: HomeInterface) => {
 						typeSpeed: 50,
 						loop: true
 					});
-				`}</Script> */}
+				`}</Script>
 			</div>
 			{ (structures.length > 0) ? <div className={ HomeStyles.structures } data-type="home">
 				<h4>{ translations["Tous les acteurs de l'innovation sont sur Forinov, qu'attendez-vous pour les rejoindre"] + " ?" }</h4>
