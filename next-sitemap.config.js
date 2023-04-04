@@ -3,7 +3,7 @@ module.exports = {
     sourceDir: "production",
     siteUrl: "https://interface.forinov.net",
     generateRobotsTxt: true,
-    exclude: [ "/server-sitemap-index.xml", "/en-US/*" ],
+    exclude: [ "/en-US/*" ],
     alternateRefs: [
         {
             href: "https://interface.forinov.net/fr-FR",
