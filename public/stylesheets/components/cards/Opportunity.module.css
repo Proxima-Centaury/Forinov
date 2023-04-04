@@ -89,6 +89,9 @@
     flex: 1;
     max-width: calc(100% - 64px - 18px);
 }
+.leftContainer:only-child {
+    max-width: none;
+}
 .leftContainer > .top {
     display: flex;
     justify-content: space-between;
