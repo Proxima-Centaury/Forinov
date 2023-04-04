@@ -37,7 +37,7 @@ const Format = (formatProps: any) => {
             };
             return setNewContent(content);
         };
-    }, [ content ]);
+    }, [ content, disableLinks, router?.basePath ]);
     useEffect(() => {
         const nextLinks = document.querySelectorAll("a[data-next-link]");
         (nextLinks.length > 0) ? nextLinks.forEach((link: any) => link.onclick = handleRouting) : null;

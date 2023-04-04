@@ -310,7 +310,7 @@ const ClassicHorizontal = (carouselProps: any) => {
                 carousel.removeEventListener("mouseleave", mouseLeaveHandler);
             };
         };
-    }, [ pressed ]);
+    });
     return <div className={ CarouselStyles.carousel } ref={ carouselReference }>
         <div className={ CarouselStyles.arrows }>
             <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: any) => transitionHandler(event, "left") } icon="fa-light fa-arrow-left"/>
@@ -331,14 +331,14 @@ const Items = (itemProps: any) => {
             return data.map((startup: any, key: Key) => {
                 const url = "/directories/startups/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
                 return <div key={ key } className={ CarouselStyles.item }>
-                    <ProfileCard { ...itemProps } profile={ startup } definedType="startup" page="landing"/>
+                    <ProfileCard { ...itemProps } profile={ startup } definedType="startup" profileLink={ url } carouselItem/>
                 </div>;
             });
         case "LatestOpportunities":
             return data.map((opportunity: any, key: Key) => {
                 const url = "/directories/opportunities/categories/" + formatNameForUrl(opportunity.TYPE[0].NAME) + "_" + opportunity.TYPE[0].ID + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID;
                 return <div key={ key } className={ CarouselStyles.item }>
-                    <OpportunityCard { ...itemProps } opportunity={ opportunity }/>
+                    <OpportunityCard { ...itemProps } opportunity={ opportunity } opportunityLink={ url } carouselItem/>
                 </div>;
             });
         case "ForinovBlog":

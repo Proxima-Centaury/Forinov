@@ -10,6 +10,7 @@ import Link from "next/link";
 import MemberCard from "../cards/member";
 import OpportunityCard from "../cards/opportunity";
 import EntityCard from "../cards/entity";
+import Button from "../buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -64,8 +65,8 @@ const SeeMore = (seeMoreProps: any) => {
             }) : null }
         </div>
         { (seeLess || (seeMore && list.length > max)) ? <div className="grid twoColumns">
-            { (seeLess) ? <button className={ ButtonStyles.callToAction } onClick={ seeLessHandler }>{ translations["Voir moins"] }</button> : null }
-            { (seeMore && list.length > max) ? <button className={ ButtonStyles.callToAction } onClick={ seeMoreHandler }>{ translations["Voir plus"] }</button> : null }
+            { (seeLess) ? <Button button={ ButtonStyles.callToAction } action={ seeLessHandler } text={ translations["Voir moins"] }/> : null }
+            { (seeMore && list.length > max) ? <Button button={ ButtonStyles.callToAction } action={ seeMoreHandler } text={ translations["Voir plus"] }/> : null }
         </div> : null }
     </Fragment>;
 };

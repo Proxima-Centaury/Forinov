@@ -1,17 +1,25 @@
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Imports */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
+import { useEffect, useState } from "react";
 import { HomeInterface } from "../typescript/interfaces";
-
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Image from "next/image";
+import Input from "../components/fields/input";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Styles */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import LostPasswordStyles from "../public/stylesheets/pages/LostPassword.module.css";
 import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
-import Image from 'next/image';
-import Input from '../components/fields/input';
-import { useEffect, useState } from 'react';
-
-
-
-export default function LostPassword(pageProps: HomeInterface) {
-    const { states, router }: any = pageProps;
-    const { metadatas, translations }: any = states;
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Recover */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Recover = (pageProps: HomeInterface) => {
+    const { states, router } = pageProps;
+    const { translations } = states;
 
     useEffect(() => {
         const script = document.createElement("script");
@@ -59,40 +67,38 @@ export default function LostPassword(pageProps: HomeInterface) {
                 .catch(err => console.log(err));
         }
         expiredReCaptcha();
-    }, [])
-
-
-    return (
-        <div className={LostPasswordStyles.wrapper}>
-            <div className={LostPasswordStyles.formContainer}>
-                <div>
-                    <h1 className={LostPasswordStyles.title}>Récupération du mot de passe</h1>
-                    <h6 className={LostPasswordStyles.subtitle}>
-                        Un Token de modification vous sera envoyé par email, valide uniquement quelques heures
-                    </h6>
-                </div>
-                <Input type="text" label={translations["Nom Prénom"]} name="name"/>
-                <Input type="email" label={translations["Adresse e-mail"]} name="email"/>
-
-                <div className="g-recaptcha" data-sitekey="6LfaUKoUAAAAAFsLxbSyLznUs6BSHeTglvZ8EzOO"></div>
-                <button className={ButtonStyles.callToAction}>
-                    {translations["Recevoir le Token"]}
-                </button>
+    })
+    return <div className={LostPasswordStyles.wrapper}>
+        <div className={LostPasswordStyles.formContainer}>
+            <div>
+                <h1 className={LostPasswordStyles.title}>Récupération du mot de passe</h1>
+                <h6 className={LostPasswordStyles.subtitle}>
+                    Un Token de modification vous sera envoyé par email, valide uniquement quelques heures
+                </h6>
             </div>
-            <div className={LostPasswordStyles.image}>
-                <Image
-                    src={router.basePath + "/assets/lost_password.jpeg"}
-                    alt="Lost password"
-                    fill
-                    style={{
-                        objectFit: "cover",
-                    }}
-                />
-            </div>
+            <Input type="text" label={translations["Nom Prénom"]} name="name"/>
+            <Input type="email" label={translations["Adresse e-mail"]} name="email"/>
+
+            <div className="g-recaptcha" data-sitekey="6LfaUKoUAAAAAFsLxbSyLznUs6BSHeTglvZ8EzOO"></div>
+            <button className={ButtonStyles.callToAction}>
+                {translations["Recevoir le Token"]}
+            </button>
         </div>
-    )
-}
-
+        <div className={LostPasswordStyles.image}>
+            <Image
+                src={router.basePath + "/assets/lost_password.jpeg"}
+                alt="Lost password"
+                fill
+                style={{
+                    objectFit: "cover",
+                }}
+            />
+        </div>
+    </div>;
+};
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Server Side Props */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         redirect: {
@@ -104,4 +110,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+export default Recover;
 export { getServerSideProps };
