@@ -26,8 +26,10 @@ const deal = {
 
 const Deal = (pageProps: any) => {
 
-    const { states } = pageProps;
+    const { states, router } = pageProps;
     const { translations } = states;
+
+    
     
 
     return (
@@ -116,7 +118,13 @@ const Deal = (pageProps: any) => {
                     </div>
 
                     <div className={DealStyles.ForinovBanner}>
-                        {/* <Image /> logo */}
+                        <Image
+                            src={router.basePath + '/assets/logo_full_white.png'}
+                            alt={'Forinov Logo'}
+                            width={100}
+                            height={50}
+                            className={DealStyles.logo}
+                        ></Image>
                         <span>{translations["La plateforme des acteurs de l'innovation"]}</span>
                         <div className={DealStyles.rightSpacer}></div>
                         <Link href={'/'}>{translations["Inscrivez vous gratuitement pour profiter de toute la plateforme"]}</Link>

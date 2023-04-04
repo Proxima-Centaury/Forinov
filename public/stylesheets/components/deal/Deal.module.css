@@ -167,3 +167,8 @@
     background-color: var(--inverted-color);
     margin: 16px 0;
 }
+
+.logo {
+    width: 256px;
+    height: auto;
+}
