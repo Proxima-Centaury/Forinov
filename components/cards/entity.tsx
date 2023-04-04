@@ -18,9 +18,6 @@ import EntityStyles from "../../public/stylesheets/components/cards/Entity.modul
 const EntityCard = (entityProps: any) => {
     const { entity, type, details, states } = entityProps;
     const { translations } = states;
-    // TODO :
-    // - Some datas seems to be missing or incorrect
-    // - Gotta make sure everything is properly done
     return <div className={ EntityStyles[type] }>
         <div className={ EntityStyles.marker }></div>
         <div className={ EntityStyles.content }>
@@ -35,10 +32,10 @@ const EntityCard = (entityProps: any) => {
                     { (type.match(/(partner|partenaire)/)) ? ((entity.CATEGORY && entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
                 </div>
                 { (type.match(/(startup)/) && entity.TECHNOLOGIES.length > 0) ? <Tags tags={ entity.TECHNOLOGIES } limit={ 2 }/> : null }
-                { (type.match(/(startup)/) && entity.TECHNOLOGIES.length <= 0) ? <Tags tags={ structureTags(translations["Non définies"]) } limit={ 2 }/> : null }
+                { (type.match(/(startup)/) && entity.TECHNOLOGIES.length <= 0) ? <Tags tags={ structureTags(translations["Non définies"] + ".") } limit={ 2 }/> : null }
             </div>
             { (details) ? <div className={ EntityStyles.description }>
-                <Format content={ entity.DESCRIPTION || translations["Non renseigné"] }/>
+                <Format content={ entity.DESCRIPTION || translations["Non renseigné"] + "." }/>
             </div> : null }
         </div>
     </div>;
