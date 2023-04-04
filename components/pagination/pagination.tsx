@@ -59,10 +59,12 @@ const Pagination = (pageProps: any) => {
 		return buttons;
 	};
 	useEffect(() => {
-		action({ ...search, page: currentPage });
+		if(action) {
+			action({ ...search, page: currentPage });
+		};
 		scrollTo(0, 0);
 		setShowPageInput(false);
-	}, [ currentPage ]);
+	}, [ action, currentPage ]);
 	useEffect(() => {
 		setCurrentPage(search.page);
 	}, [ search.page ]);

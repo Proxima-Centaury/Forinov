@@ -21,7 +21,7 @@ const Filters = (pageProps: any) => {
     const { title, display, setDisplay, search, setSearch, setInformations, filters, dynamicFilters, states, router } = pageProps;
     const { session, translations } = states;
     const { ui, domain, type, category, user } = router.query;
-    const [ dynamicInformations, setDynamicInformations ]: Array<any> = useState(null);
+    const [ dynamicInformations, setDynamicInformations ]: Array<any> = useState([]);
     const [ dynamicFiltersToArray, setDynamicFiltersToArray ]: Array<any> = useState([]);
     const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
     const setKeywords = (event: any) => {
@@ -50,8 +50,8 @@ const Filters = (pageProps: any) => {
         const filters = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] !== "INFORMATIONS") : [];
         setDynamicInformations(informations);
         (type.match(/(startup)/)) ? setDynamicFiltersToArray(filters) : setDynamicFiltersToArray([]);
-        (informations) ? setInformations(informations[1]) : null;
-    }, [ dynamicFilters ]);
+        (setInformations && informations) ? setInformations(informations[1]) : null;
+    }, [ dynamicFilters, setInformations, type ]);
     return <div className={ FiltersStyles.container }>
         { (title) ? <div className={ FiltersStyles.header }>
             { (type.match(/(startup)/)) ? <i className="fa-light fa-rocket-launch"/> : null }

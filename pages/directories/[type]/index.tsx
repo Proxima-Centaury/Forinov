@@ -55,7 +55,7 @@ const Directory = (pageProps: DirectoryInterface) => {
         setSearch({ keywords: "", categories: (categoryId) ? categoryId : "", page: 1 });
         setResults([]);
         setSelects(null);
-    }, [ type, category ]);
+    }, [ type, categoryId ]);
     return <Fragment>
         <Head>
 			<title>{ (metadatas[router.asPath]) ? metadatas[router.asPath].title : "" }</title>
