@@ -73,7 +73,7 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
     if(profile && !opportunity) {
         const profileTagsString = profile.TAGS.split(",").slice(0, 3).join(", ");
         const metadataComment = profile.COMMENT.substring(0, 200) + "...";
-        let metadata: JSX.Element = <></>;
+        let metadata: JSX.Element = <Fragment/>;
         if(type.match(/(startup)/)) {
             metadata = <Fragment>
                 <title>{ metadatas["/annuaires/startups/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/startups/[id]"].title2 + " " + profile.CATEGORY[0].NAME }</title>
@@ -93,7 +93,7 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
                 <meta name="description" content={ descriptions.join(profile.NAME) }/>
             </Fragment>;
         };
-        return <>
+        return <Fragment>
             <Head>
                 { metadata }
             </Head>
@@ -115,9 +115,9 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
                     </div>
                 </div>
             </div>
-        </>;
+        </Fragment>;
     };
-    return <>
+    return <Fragment>
         <Head>
             <title>{ opportunity.TITLE }</title>
             <meta name="description" content={ opportunity.DESCRIPTION }/>
@@ -126,7 +126,7 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
             <OpportunityPreview { ...pageProps }/>
             <OpportunityLinks { ...pageProps }/>
         </div>
-    </>;
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startup Profile Content */
@@ -134,7 +134,7 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
 const Startup = (startupProps: any) => {
     const { products, states } = startupProps;
     const { translations } = states;
-    return <>
+    return <Fragment>
         <ProfileOffer { ...startupProps }/>
         <ProfileTargets { ...startupProps }/>
         { (products) ? <ProfileProducts { ...startupProps }/> : null }
@@ -144,7 +144,7 @@ const Startup = (startupProps: any) => {
         <ProfileTeam { ...startupProps }/>
         <ProfileActivities { ...startupProps }/>
         <ProfileSocials { ...startupProps }/>
-    </>;
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Corporate Profile Content */
@@ -152,7 +152,7 @@ const Startup = (startupProps: any) => {
 const Corporate = (corporateProps: any) => {
     const { states } = corporateProps;
     const { translations } = states;
-    return <>
+    return <Fragment>
         <ProfileTeam { ...corporateProps }/>
         <ProfileOpportunities { ...corporateProps }/>
         <ProfileGoals { ...corporateProps }/>
@@ -161,7 +161,7 @@ const Corporate = (corporateProps: any) => {
         <ProfilePartners { ...corporateProps }/>
         <ProfileActivities { ...corporateProps }/>
         <ProfileSocials { ...corporateProps }/>
-    </>;
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partner Profile Content */
@@ -169,7 +169,7 @@ const Corporate = (corporateProps: any) => {
 const Partner = (partnerProps: any) => {
     const { states } = partnerProps;
     const { translations } = states;
-    return <>
+    return <Fragment>
         <ProfileTeam { ...partnerProps }/>
         <ProfileOpportunities { ...partnerProps }/>
         <ProfileGoals { ...partnerProps }/>
@@ -178,7 +178,7 @@ const Partner = (partnerProps: any) => {
         <ProfilePartners { ...partnerProps }/>
         <ProfileActivities { ...partnerProps }/>
         <ProfileSocials { ...partnerProps }/>
-    </>;
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Props */
