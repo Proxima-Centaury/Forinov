@@ -221,9 +221,11 @@
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .callToAction {
     background-color: var(--logo-blue-color);
+    color: var(--perfect-white-color);
 }
 .callToAction:hover {
     background-color: transparent;
+    color: var(--logo-blue-color);
 }
 .callToAction > i,
 .callToAction > span {
