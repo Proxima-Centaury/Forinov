@@ -55,6 +55,9 @@
     height: 50px;
     object-fit: contain;
 }
+[data-theme="matrix"] .navbar > .logo > a > img {
+    filter: sepia(1) hue-rotate(45deg) saturate(4);
+}
 .navbar > .logo > a > span {
     font-size: 26px;
     font-weight: bold;
