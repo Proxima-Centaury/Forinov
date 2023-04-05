@@ -35,7 +35,7 @@ const About = (pageProps: HomeInterface) => {
             <div className={ AboutStyles.banner} >
                 <div className={ "container " + AboutStyles.bannerText }>
                     <h1 className={ AboutStyles.title }>{ translations["« Notre mission chez Forinov ? »"] }</h1>
-                    <p className={ AboutStyles.paragraph }>{ translations["Mettre en relation des startups, entreprises et partenaires de l’innovation et leur apporter une solution simple et complète pour innover ensemble ! Rien que ça !"] }</p>
+                    <p className={ AboutStyles.paragraph }>{ translations["Mettre en relation des startups, entreprises et partenaires de l'innovation et leur apporter une solution simple et complète pour innover ensemble ! Rien que ça !"] }</p>
                 </div>
             </div>
             <div className={ "container " + AboutStyles.descriptionContainer }>
@@ -50,7 +50,7 @@ const About = (pageProps: HomeInterface) => {
             </div>
             <div className={ "container " + AboutStyles.banner2 }>
                 <div className={ "container " + AboutStyles.bannerText2 }>
-                    <h1 className={ AboutStyles.title }>{ translations["Toi aussi tu es passionné·e d’innovation ?"] }</h1>
+                    <h1 className={ AboutStyles.title }>{ translations["Toi aussi tu es passionné·e d'innovation ?"] }</h1>
                     <p className={ AboutStyles.paragraph }>{ translations["Nous recherchons des talents"] }</p>
                     <Button button={ ButtonStyles.callToAction } href="/contact" text={ translations["Nous contacter"] }/>
                 </div>

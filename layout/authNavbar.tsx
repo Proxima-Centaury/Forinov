@@ -113,12 +113,12 @@ function AuthNavbar(pageProps: any) {
 
 
                 {profileHovered && <div className={styles.profileModal}>
-                    <h3>{translations['Profil']}</h3>
+                    <h3>{translations["Profil"]}</h3>
                     <Link href="/"><p>{translations["Profil de mon entreprise"]}</p></Link>
                     <Link href="/"><p>{translations["Profil personnel"]}</p></Link>
 
                     <div className={styles.modalSpacer}></div>
-                    <h3>{translations['Paramètres']}</h3>
+                    <h3>{translations["Paramètres"]}</h3>
                     <Link href="/"><p>{translations["Général"]}</p></Link>
                     <Link href="/"><p>{translations["Langue"]}</p></Link>
                     <div className={styles.modalSpacer}></div>
@@ -187,7 +187,7 @@ function AuthNavbar(pageProps: any) {
                     style={{ justifyContent: isRightOpen ? "flex-start" : "center", left: isRightOpen ? "-1rem" : "0", width: isRightOpen ? "calc(100% + 1rem)" : "100%" }}
                     className={styles.link}>
                     <i className='fa-light fa-bell'></i>
-                    {isRightOpen && <p>{translations['Notifications']}</p>}
+                    {isRightOpen && <p>{translations["Notifications"]}</p>}
                 </Link>
 
                 <Link
@@ -195,7 +195,7 @@ function AuthNavbar(pageProps: any) {
                     style={{ justifyContent: isRightOpen ? "flex-start" : "center", left: isRightOpen ? "-1rem" : "0" }}
                     className={styles.link}>
                     <i className='fa-light fa-message'></i>
-                    {isRightOpen && <p>{translations['Messages']}</p>}
+                    {isRightOpen && <p>{translations["Messages"]}</p>}
                 </Link>
             </div>
 
