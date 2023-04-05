@@ -1,12 +1,12 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { Fragment, useEffect, useState } from "react";
 import { remainingTime, structureTags } from "../../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Image from "next/image";
-import { Fragment } from "react";
 import Format from "../../texts/format";
 import Tags from "../../tags/tags";
 import Attachments from "../../attachments/attachments";
@@ -19,15 +19,17 @@ import OpportunityStyles from "../../../public/stylesheets/components/cards/Oppo
 /* Opportunity Preview */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const OpportunityPreview = (pageProps: any) => {
-    const { opportunity, states }: any = pageProps;
-    const { translations, RGB }: any = states;
+    const { opportunity, states } = pageProps;
+    const { translations, RGB } = states;
+	const [ lightingState, setLightingState ] = useState("disabled");
     const backgroundAlt = translations["Bannière d'opportunité"] + ".";
     const countries = opportunity.COUNTRIES;
     const localisationsText = translations["Localisations"] + " : ";
     const countriesList = localisationsText + countries.join(", ");
     const countriesCount = localisationsText + countries.splice(0, 3).join(", ") + ", +" + countries.length;
-    return <div className={ PreviewStyles.opportunityPreview }>
-        <div className={ PreviewStyles.background } data-opportunity-type={ opportunity.TYPE[0].ID } data-rgb={ (RGB) ? "enabled" : "disabled" }>
+	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
+    return <div className={ PreviewStyles.opportunityPreview } data-rgb={ lightingState }>
+        <div className={ PreviewStyles.background } data-opportunity-type={ opportunity.TYPE[0].ID }>
             { (opportunity.BACKGROUND) ? <Image src={ opportunity.BACKGROUND } width="3840" height="2160" alt={ backgroundAlt }/> : null }
         </div>
         <div className={ PreviewStyles.identification }>
