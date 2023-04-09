@@ -31,6 +31,9 @@
     height: 50px;
     object-fit: contain;
 }
+[data-theme="matrix"] .section > img {
+    filter: sepia(1) hue-rotate(45deg) saturate(4);
+}
 .section > p:first-of-type {
     color: var(--text-inactive-color);
 }

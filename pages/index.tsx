@@ -2,7 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { Fragment, Key } from "react";
+import { Fragment, Key, useEffect, useState } from "react";
 import { HomeInterface } from "../typescript/interfaces";
 import { formatNameForUrl } from "../scripts/utilities";
 import api from "../scripts/api";
@@ -25,8 +25,10 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = (pageProps: HomeInterface) => {
 	const { landing, startups, opportunities, states, router } = pageProps;
-	const { translations, metadatas } = states;
+	const { translations, metadatas, RGB } = states;
+	const [ lightingState, setLightingState ] = useState("disabled");
 	const structures: Array<String> = [ "Startup", "Grand groupe", "ETI", "PME", "Incubateur", "Accélérateur", "Pépinière", "Fond d'investissement", "Business angel", "Structure d'investissement" ];
+	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
 	return <Fragment>
 		<Head>
 			<title>{ metadatas[router.route].title }</title>
@@ -46,14 +48,14 @@ const Home = (pageProps: HomeInterface) => {
 							<Button button={ ButtonStyles.oldHome } href="/directories/opportunities/categories" icon="fa-light fa-arrow-right" text={ translations["Postulez aux opportunités en cours"] }/>
 						</div>
 					</div>
-					<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
+					<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="" width="3840" height="2160" priority/>
 				</div>
 			</div>
 			<div className={ HomeStyles.onboarding } data-type="home">
 				<h3>{ translations["Pourquoi rejoindre Forinov"] + " ?" }</h3>
 				<p>{ translations["Des profils adaptés à vos besoins"] }</p>
 				<div className={ HomeStyles.types }>
-					<div className={ HomeStyles.type } data-type="startup">
+					<div className={ HomeStyles.type } data-type="startup" data-rgb={ lightingState }>
 						<div className={ HomeStyles.head }>
 							<i className="fa-light fa-rocket-launch"/>
 							<div>
@@ -71,7 +73,7 @@ const Home = (pageProps: HomeInterface) => {
 							<Button button={ ButtonStyles.classicLink } href="/startups" text={ translations["En savoir plus"] }/>
 						</div>
 					</div>
-					<div className={ HomeStyles.type } data-type="corporate">
+					<div className={ HomeStyles.type } data-type="corporate" data-rgb={ lightingState }>
 						<div className={ HomeStyles.head }>
 							<i className="fa-light fa-buildings"/>
 							<div>
@@ -89,7 +91,7 @@ const Home = (pageProps: HomeInterface) => {
 							<Button button={ ButtonStyles.classicLink } href="/corporates" text={ translations["En savoir plus"] }/>
 						</div>
 					</div>
-					<div className={ HomeStyles.type } data-type="partner">
+					<div className={ HomeStyles.type } data-type="partner" data-rgb={ lightingState }>
 						<div className={ HomeStyles.head }>
 							<i className="fa-light fa-handshake-simple"/>
 							<div>

@@ -38,7 +38,7 @@ const StartupsHome = (pageProps: HomeInterface) => {
 						<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Créer mon profil gratuitement"] }/>
 					</div>
 				</div>
-				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
+				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="" width="3840" height="2160" priority/>
 			</div>
 			<div className={ HomeStyles.sourcing } data-type="startup">
 				<h3>{ translations["Et comment ça marche"] + " ?" }</h3>

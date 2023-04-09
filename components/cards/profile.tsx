@@ -34,7 +34,7 @@ const ProfileCard = (profileProps: any) => {
         </div>
         <div className={ ProfileStyles.body }>
             <div className={ ProfileStyles.picture }>
-                <Image src={ profile.LOGO } alt="Company background." width="120" height="120"/>
+                <Image src={ profile.LOGO } alt="" width="120" height="120"/>
                 { (type !== "startup" && (!session || (session && profile.PDF)) && !carouselItem) ? <Button button={ ButtonStyles.callToActionAlternative } href={ profile.PDF } icon="fa-light fa-cloud-arrow-down" text="PDF"/> : null }
             </div>
             <div className={ ProfileStyles.content }>

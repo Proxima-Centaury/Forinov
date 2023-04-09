@@ -37,7 +37,7 @@ const CorporatesHome = (pageProps: HomeInterface) => {
 						<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Pré-inscription gratuite"] }/>
 					</div>
 				</div>
-				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="Illustration" width="3840" height="2160" priority/>
+				<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="" width="3840" height="2160" priority/>
 			</div>
 			<div className={ HomeStyles.register } data-type="corporate">
 				<h3>{ translations["Et comment ça marche"] + " ?" }</h3>

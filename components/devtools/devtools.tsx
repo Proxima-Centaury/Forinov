@@ -18,6 +18,7 @@ const Devtools = ({ states, stateSetters }: any) => {
     const { setSession, setTheme, setRGB }: any = stateSetters;
     const [ hidden, setHidden ] = useState(false);
     const [ themeSwitcherIcon, setThemeSwitcherIcon ] = useState("fa-light fa-moon");
+    const [ themeTopicSwitcherIcon, setThemeTopicSwitcherIcon ] = useState("fa-light fa-moon");
     const [ RGBSwitcherIcon, setRGBSwitcherIcon ] = useState("fa-light fa-lightbulb");
     const switchSessionState: MouseEventHandler = (event) => {
         event.preventDefault();
@@ -25,7 +26,11 @@ const Devtools = ({ states, stateSetters }: any) => {
     };
     const switchThemeState: MouseEventHandler = (event) => {
         event.preventDefault();
-        (theme === "light") ? setTheme("dark") : setTheme("light")
+        (theme === "light") ? setTheme("dark") : setTheme("light");
+    };
+    const switchThemeTopic: MouseEventHandler = (event) => {
+        event.preventDefault();
+        (theme !== "matrix") ? setTheme("matrix") : setTheme("dark");
     };
     const switchRGBState: MouseEventHandler = (event) => {
         event.preventDefault();
@@ -36,20 +41,24 @@ const Devtools = ({ states, stateSetters }: any) => {
         setHidden(!hidden)
     };
     useEffect(() => (theme === "light") ? setThemeSwitcherIcon("fa-light fa-moon") : setThemeSwitcherIcon("fa-light fa-sun"), [ theme ]);
+    useEffect(() => (theme !== "matrix") ? setThemeTopicSwitcherIcon("fa-light fa-phone-volume") : setThemeTopicSwitcherIcon("fa-light fa-phone-hangup"), [ theme ]);
     useEffect(() => (RGB) ? setRGBSwitcherIcon("fa-light fa-lightbulb") : setRGBSwitcherIcon("fa-light fa-lightbulb-on"), [ RGB ]);
     return <div className={ (hidden) ? "closed" : "" } data-type="devtools">
         <p>Devtools</p>
         <div data-type="tooltip" data-tooltip={ translations["Simuler la connexion"] }>
-            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchSessionState } icon="fa-light fa-power-off"/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchSessionState } icon="fa-light fa-power-off" light={ RGB }/>
         </div>
         <div data-type="tooltip" data-tooltip={ translations["Changer de theme"] }>
-            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchThemeState } icon={ themeSwitcherIcon }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchThemeState } icon={ themeSwitcherIcon } light={ RGB }/>
+        </div>
+        <div data-type="tooltip" data-tooltip={ translations["Plonger au sein de la matrice"] }>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchThemeTopic } icon={ themeTopicSwitcherIcon } light={ RGB }/>
         </div>
         <div data-type="tooltip" data-tooltip={ translations["Voir les erreurs sur la page"] }>
-            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon="fa-light fa-triangle-exclamation" disabled={ true }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon="fa-light fa-triangle-exclamation" disabled light={ RGB }/>
         </div>
         <div data-type="tooltip" data-tooltip={ translations["Activer l'éclairage RGB"] }>
-            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon={ RGBSwitcherIcon }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon={ RGBSwitcherIcon } light={ RGB }/>
         </div>
         <button title={ translations["Afficher les devtools"] } onClick={ switchHiddenState }>
             <i className="fa-light fa-chevron-down"/>

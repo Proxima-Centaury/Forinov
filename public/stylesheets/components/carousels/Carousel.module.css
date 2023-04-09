@@ -13,11 +13,13 @@
 }
 .carousel[data-direction="vertical"] {
 	flex-direction: column;
+	cursor: default;
 }
 .carousel[data-direction="bidirectional"] {
 	flex-direction: column;
 	grid-gap: 40px;
 	gap: 40px;
+	cursor: default;
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Container ) */

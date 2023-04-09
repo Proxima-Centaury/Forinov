@@ -128,10 +128,12 @@ const Carousel = (carouselProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StepsCarousel = (carouselProps: any) => {
     const { states, component, carouselsConfigurations, router } = carouselProps;
-	const { translations } = states;
+	const { translations, RGB } = states;
+	const [ lightingState, setLightingState ] = useState("disabled");
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const steps: Array<any> = carouselsConfigurations[component];
+	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     useEffect(() => {
         const handleStepButtonsTitle = () => {
             const stepButtons = document.querySelectorAll("." + CarouselStyles.steps + "[data-carousel='" + component + "Steps'] button") || [];
@@ -166,7 +168,7 @@ const StepsCarousel = (carouselProps: any) => {
                             </li>) }
                         </ul>
                     </div>
-                    <div className={ CarouselStyles.stepPicture }>
+                    <div className={ CarouselStyles.stepPicture } data-rgb={ lightingState }>
                         <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                     </div>
                 </div>;
@@ -179,15 +181,17 @@ const StepsCarousel = (carouselProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CustomVertical = (carouselProps: any) => {
     const { states, carouselsConfigurations, router, component } = carouselProps;
-	const { translations } = states;
+	const { translations, RGB } = states;
+	const [ lightingState, setLightingState ] = useState("disabled");
     const steps: Array<any> = carouselsConfigurations[component];
+	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     return <div className={ CarouselStyles.carousel } data-direction="vertical">
         <div className={ CarouselStyles.container } data-carousel={ component }>
             { steps.map((step, key) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
                 { (key % 2 === 1) ? <div className={ CarouselStyles.verticalContent }>
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
                     <Format { ...carouselProps } content={ translations[step.text] }/>
-                </div> : <div className={ CarouselStyles.verticalPicture }>
+                </div> : <div className={ CarouselStyles.verticalPicture } data-rgb={ lightingState }>
                     <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                 </div> }
                 <div className={ CarouselStyles.steps }>
@@ -196,7 +200,7 @@ const CustomVertical = (carouselProps: any) => {
                         <i className={ (key === steps.length - 1) ? "fa-light fa-check" : "fa-light fa-chevron-down" }/>
                     </button>
                 </div>
-                { (key % 2 === 1) ? <div className={ CarouselStyles.verticalPicture }>
+                { (key % 2 === 1) ? <div className={ CarouselStyles.verticalPicture } data-rgb={ lightingState }>
                     <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                 </div> : <div className={ CarouselStyles.verticalContent }>
                     <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
@@ -325,39 +329,42 @@ const ClassicHorizontal = (carouselProps: any) => {
 /* Classic Horizontal ( Items ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Items = (itemProps: any) => {
-    const { component, data, router } = itemProps;
+    const { component, data, states, router } = itemProps;
+    const { RGB } = states;
+	const [ lightingState, setLightingState ] = useState("disabled");
+	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     switch(component) {
         case "LatestStartups":
             return data.map((startup: any, key: Key) => {
                 const url = "/directories/startups/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
-                return <div key={ key } className={ CarouselStyles.item }>
+                return <div key={ key } className={ CarouselStyles.item } data-rgb={ lightingState }>
                     <ProfileCard { ...itemProps } profile={ startup } definedType="startup" profileLink={ url } carouselItem/>
                 </div>;
             });
         case "LatestOpportunities":
             return data.map((opportunity: any, key: Key) => {
                 const url = "/directories/opportunities/categories/" + formatNameForUrl(opportunity.TYPE[0].NAME) + "_" + opportunity.TYPE[0].ID + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID;
-                return <div key={ key } className={ CarouselStyles.item }>
+                return <div key={ key } className={ CarouselStyles.item } data-rgb={ lightingState }>
                     <OpportunityCard { ...itemProps } opportunity={ opportunity } opportunityLink={ url } carouselItem/>
                 </div>;
             });
         case "ForinovBlog":
             return data.map((article: any, key: Key) => {
-                return <div key={ key } className={ CarouselStyles.item }>
+                return <div key={ key } className={ CarouselStyles.item } data-rgb={ lightingState }>
                     <ArticleCard { ...itemProps } article={ article }/>
                 </div>;
             });
         case "StartupsFolders":
             return data.map((folder: any, key: Key) => {
                 const url =  router.asPath.substring(0, router.asPath.lastIndexOf("/")) + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID;
-                return <div key={ key } className={ CarouselStyles.item }>
+                return <div key={ key } className={ CarouselStyles.item } data-rgb={ lightingState }>
                     <FolderCard { ...itemProps } folder={ folder }/>
                 </div>;
             });
         case "Testimonials":
             const importation = require("../../configurations/testimonials.json");
             const { testimonials } = importation;
-            return testimonials.map((testimonial: any, key: Key) => <div key={ key } className={ CarouselStyles.item }>
+            return testimonials.map((testimonial: any, key: Key) => <div key={ key } className={ CarouselStyles.item } data-rgb={ lightingState }>
                 <TestimonialCard { ...itemProps } testimonial={ testimonial }/>
             </div>);
         default:
