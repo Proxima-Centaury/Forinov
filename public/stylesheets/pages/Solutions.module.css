@@ -30,7 +30,7 @@
 	z-index: -1;
 }
 .presentation::before {
-	background-color: var(--background-sub-color);
+	background-color: var(--background-main-color);
 }
 .presentation > div[class="container"] {
 	padding: 16px 16px 0px 16px;
@@ -101,6 +101,12 @@
 	grid-gap: 16px;
 	gap: 16px;
 	width: max-content;
+	margin: 0px 0px 56px 0px;
+}
+@media screen and (max-width: 992px) {
+	.presentationLinks {
+		margin: 0px;
+	}
 }
 @media screen and (max-width: 576px) {
 	.presentationLinks {
@@ -168,7 +174,7 @@
 /* Solutions ( Banner For Startup ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .banner[data-type="startup"]::before {
-	background-color: var(--background-sub-color);
+	background-color: var(--background-main-color);
 }
 .banner[data-type="startup"]::after {
 	background-color: var(--sunred-color);
@@ -177,7 +183,7 @@
 /* Solutions ( Banner For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .banner[data-type="corporate"]::before {
-	background-color: var(--background-sub-color);
+	background-color: var(--background-main-color);
 }
 .banner[data-type="corporate"]::after {
 	background-color: var(--logo-blue-color);
@@ -186,7 +192,7 @@
 /* Solutions ( Banner For Partner ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .banner[data-type="partner"]::before {
-	background-color: var(--background-sub-color);
+	background-color: var(--background-main-color);
 }
 .banner[data-type="partner"]::after {
 	background-color: var(--grassgreen-color);
@@ -215,7 +221,7 @@
 	top: 0px;
 	left: 0px;
 	content: "";
-	background-color: var(--background-sub-color);
+	background-color: var(--background-main-color);
 	z-index: -1;
 }
 .howTo > div[class="container"] > div[class*="grid"] > .step {
@@ -263,7 +269,7 @@
 	top: 0px;
 	left: 0px;
 	content: "";
-	background-color: var(--background-sub-color);
+	background-color: var(--background-main-color);
 	z-index: -1;
 }
 .types > div[class="container"] > h3 {
@@ -301,6 +307,7 @@
 	gap: 16px;
 	padding: 16px;
 	border-radius: 15px;
+	background-color: var(--background-sub-color);
 	box-shadow: var(--box-shadow);
 }
 .type > h5 {
@@ -370,533 +377,221 @@
 	color: var(--logo-blue-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Register For Corporate ) */
+/* Solutions ( Startups Count ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.register[data-type="corporate"]::before {
-	background-color: var(--lightblue-color);
-}
-.register[data-type="corporate"]::after {
-	border-radius: 0px 100px 0px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.register[data-type="corporate"]::after {
-		border-radius: 0px 50px 0px 0px;
-	}
-}
-.register[data-type="corporate"] [class*="steps"] > button[class*="active"] {
-	color: var(--perfect-white-color);
-	border-color: var(--pureblue-color);
-	background-color: var(--pureblue-color);
-}
-.register[data-type="corporate"] [class*="steps"] > button:hover {
-	color: var(--pureblue-color);
-	border-color: var(--lightblue-color);
-	background-color: var(--lightblue-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Register For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.register[data-type="partner"]::before {
-	background-color: var(--lightgreen-color);
-}
-.register[data-type="partner"]::after {
-	border-radius: 0px 100px 0px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.register[data-type="partner"]::after {
-		border-radius: 0px 50px 0px 0px;
-	}
-}
-.register[data-type="partner"] [class*="steps"] > button[class*="active"] {
-	color: var(--perfect-white-color);
-	border-color: var(--grassgreen-color);
-	background-color: var(--grassgreen-color);
-}
-.register[data-type="partner"] [class*="steps"] > button:hover {
-	color: var(--grassgreen-color);
-	border-color: var(--lightgreen-color);
-	background-color: var(--lightgreen-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Startups & Structures ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.startups,
-.structures {
+.startupsCount {
 	display: flex;
 	flex-direction: column;
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
-	.startups,
-	.structures {
-		padding: 32px;
+	.startupsCount {
+		padding: calc(32px - 16px);
 	}
 }
-.startups::before,
-.startups::after,
-.structures::before,
-.structures::after {
+.startupsCount::before,
+.startupsCount::after {
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	content: "";
+	background-color: var(--background-main-color);
 	z-index: -1;
 }
-.startups > h4,
-.structures > h4 {
+.startupsCount > div[class="container"] > p {
+	font-family: "Nunito Sans";
+	font-size: 24px;
+}
+.startupsCount > div[class="container"] > h3 {
+	padding: 0px 280px 0px 0px;
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
-	text-align: center;
-}
-.structures > p {
-	font-family: "Nunito Sans";
-	font-size: 21px;
-	text-align: center;
-}
-.startups > .startupsCategories,
-.structures > .structuresCategories {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	grid-gap: 16px;
-	gap: 16px;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Startups For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.startups[data-type="home"] > h4 {
-	font-family: "Nunito Sans";
-	font-size: 42px;
-	font-weight: bold;
-	text-align: left;
-}
-.startups[data-type="home"] > .startupsCategories {
-	justify-content: flex-start;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Startups For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.startups[data-type="partner"]::before {
-	background-color: var(--lightgreen-color);
-}
-.startups[data-type="partner"]::after {
-	border-radius: 0px 100px 0px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.startups[data-type="partner"]::after {
-		border-radius: 0px 50px 0px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Structures For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.structures[data-type="home"]::before {
-	background-color: var(--background-sub-color);
-}
-.structures[data-type="home"]::after {
-	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.structures[data-type="home"]::after {
-		border-radius: 0px 0px 50px 0px;
-	}
-}
-.structures[data-type="home"] > h4 {
-	font-family: "Nunito Sans";
-	font-size: 42px;
-	font-weight: bold;
-	text-align: left;
-}
-.structures[data-type="home"] > p {
-	font-family: "Nunito Sans";
-	font-size: 21px;
-	text-align: left;
-}
-.structures[data-type="home"] > .structuresCategories {
-	justify-content: flex-start;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Companies ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.companies {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: 80px;
-}
-@media screen and (max-width: 576px) {
-	.companies {
-		padding: 32px;
-	}
-}
-.companies::before,
-.companies::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.companies > h4 {
-	font-family: "Nunito Sans";
-	font-size: 48px;
-	font-weight: bold;
-	text-align: center;
-}
-.companies > p {
-	font-size: 21px;
-	font-weight: bold;
-	text-align: center;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Companies For Startup ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.companies[data-type="startup"]::before {
-	background-color: var(--lightred-color);
-}
-.companies[data-type="startup"]::after {
-	border-radius: 100px 0px 0px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.companies[data-type="startup"]::after {
-		border-radius: 50px 0px 0px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Companies For Corporate ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.companies[data-type="corporate"]::before {
-	background-color: var(--lightblue-color);
-}
-.companies[data-type="corporate"]::after {
-	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.companies[data-type="corporate"]::after {
-		border-radius: 0px 0px 50px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Companies For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.companies[data-type="partner"]::before {
-	background-color: var(--lightgreen-color);
-}
-.companies[data-type="partner"]::after {
-	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.companies[data-type="partner"]::after {
-		border-radius: 0px 0px 50px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Badges ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: 80px;
-}
-@media screen and (max-width: 576px) {
-	.badges {
-		padding: 32px;
-	}
-}
-.badges::before,
-.badges::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.badges > h3 {
-	font-family: "Nunito Sans";
-	font-size: 48px;
-	font-weight: 300;
-	text-align: center;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Badges For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges[data-type="home"]::before {
-	background-color: var(--background-main-color);
-}
-.badges[data-type="home"]::after {
-	border-radius: 0px 100px 0px 100px;
-	background-color: var(--background-private-color);
-}
-@media screen and (max-width: 576px) {
-	.badges[data-type="home"]::after {
-		border-radius: 0px 50px 0px 50px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Badges For Startup ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges[data-type="startup"]::before {
-	background-color: var(--background-main-color);
-}
-.badges[data-type="startup"]::after {
-	border-radius: 0px 100px 100px 0px;
-	background-color: var(--lightred-color);
-}
-@media screen and (max-width: 576px) {
-	.badges[data-type="startup"]::after {
-		border-radius: 0px 50px 50px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Badges For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges[data-type="partner"]::before {
-	background-color: var(--background-main-color);
-}
-.badges[data-type="partner"]::after {
-	border-radius: 100px 0px 0px 100px;
-	background-color: var(--lightgreen-color);
-}
-@media screen and (max-width: 576px) {
-	.badges[data-type="partner"]::after {
-		border-radius: 50px 0px 0px 50px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Badges List ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badgesList {
-	display: flex;
-	grid-gap: 16px;
-	gap: 16px;
 }
 @media screen and (max-width: 768px) {
-	.badgesList  {
-		flex-direction: column;
+	.startupsCount > div[class="container"] > h3 {
+		padding: 0px 0px 200px 0px;
 	}
 }
-.badgesList > div[class="separator"] {
-	margin: calc(128px / 2) 0px auto 0px;
+@media screen and (max-width: 576px) {
+	.startupsCount > div[class="container"] > h3 {
+		padding: 0px;
+	}
 }
-@media screen and (max-width: 1200px) {
-	.badgesList > div[class="separator"] {
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Plans ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.plans {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: calc(80px - 16px);
+}
+@media screen and (max-width: 576px) {
+	.plans {
+		padding: calc(32px - 16px);
+	}
+}
+.plans::before,
+.plans::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.plans > div[class="container"] {
+	overflow: inherit;
+}
+.plans > div[class="container"] > h3 {
+	padding: 0px 280px 0px 0px;
+	font-family: "Nunito Sans";
+	font-size: 45px;
+	font-weight: bold;
+	color: var(--perfect-white-color);
+}
+.plans > div[class="container"] > img {
+	width: 280px;
+	height: 480px;
+	position: absolute;
+	top: calc(-280px - 50px - 8.5px);
+	right: 0px;
+}
+.plans > div[class="container"] > div[class*="grid"] {
+	margin: 24px 0px 0px 0px;
+}
+@media screen and (max-width: 768px) {
+	.plans > div[class="container"] > h3 {
+		padding: 140px 0px 0px 0px;
+	}
+	.plans > div[class="container"] > img {
+		right: 50%;
+		transform: translateX(50%);
+	}
+	.plans > div[class="container"] > div[class*="grid"] {
+		grid-gap: 56px;
+		gap: 56px;
+		margin: 0px;
+	}
+}
+@media screen and (max-width: 576px) {
+	.plans > div[class="container"] > h3 {
+		padding: 0px;
+	}
+	.plans > div[class="container"] > img {
 		display: none;
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Badge ) */
+/* Solutions ( Plans For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badge {
+.plans[data-type="corporate"]::before {
+	background-color: var(--background-main-color);
+}
+.plans[data-type="corporate"]::after {
+	border-radius: 100px 0px 0px 0px;
+	background-color: var(--logo-blue-color);
+}
+@media screen and (max-width: 576px) {
+	.plans[data-type="corporate"]::after {
+		border-radius: 50px 0px 0px 0px;
+	}
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Plan ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.plan {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	grid-gap: 16px;
 	gap: 16px;
-	flex: 1;
+	height: 550px;
+	padding: 16px;
+	border: var(--border);
+	border-width: 2px;
+	border-color: var(--background-sub-color);
+	border-radius: 15px;
+	background-color: var(--background-sub-color);
 }
-.badge > i {
+.plan[data-rgb="enabled"] {
+	border: none;
+}
+.plan[class*="popular"] {
+	background-color: var(--challenge-color);
+}
+.plan > .tab {
+	display: flex;
+	align-items: center;
+	grid-gap: 8px;
+	gap: 8px;
+	padding: 8px 16px 24px 16px;
+	position: absolute;
+	bottom: calc(100% - 16px);
+	left: -2px;
+	border-radius: 15px 15px 0px 0px;
+	background-color: var(--background-main-color);
+	z-index: -1;
+}
+.plan > .tab > p {
+	font-weight: bold;
+}
+.plan > .tab > i,
+.plan > .tab > p {
+	color: var(--challenge-color);
+}
+.plan > .head {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 8px;
+	gap: 8px;
+}
+.plan > .head > h5 {
+	font-family: "Nunito Sans";
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	color: var(--logo-blue-color);
+}
+.plan[class*="popular"] > .head > h5 {
+	color: var(--perfect-black-color);
+}
+.plan > .head > h5 > p {
+	text-align: center;
+}
+.plan > .price {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	min-width: 128px;
-	width: 128px;
-	max-width: 128px;
-	min-height: 128px;
-	height: 128px;
-	max-height: 128px;
-	position: relative;
-	font-size: 60px;
-	border-radius: calc(128px / 2);
-	background-color: var(--background-sub-color);
-	box-shadow: var(--box-shadow);
+	flex: 1;
 }
-.badge > .content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	grid-gap: 16px;
-	gap: 16px;
-}
-.badge > .content > h6 {
-	width: 180%;
+.plan > .price > p {
 	font-family: "Nunito Sans";
 	font-size: 32px;
 	font-weight: bold;
 	text-align: center;
 }
-.badge > .content > p {
-	width: 180%;
-	text-align: center;
-	font-size: 16px;
-}
-@media screen and (max-width: 1200px) {
-	.badge > .content > h6,
-	.badge > .content > p {
-		width: 100%;
-		left: inherit;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Badge For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges[data-type="home"] .badge {
-	padding: 0px 8px;
-}
-.badges[data-type="home"] div[class="separator"],
-.badges[data-type="home"] .badge > i {
-	display: none;
-}
-.badges[data-type="home"] > h3,
-.badges[data-type="home"] .badge > .content > h6,
-.badges[data-type="home"] .badge > .content > p {
-	width: inherit;
-	color: var(--perfect-white-color);
-	font-family: "Nunito Sans";
-	text-align: left;
-}
-.badges[data-type="home"] > h3 {
-	font-size: 45px;
-	font-weight: bold;
-}
-.badges[data-type="home"] .badge > .content {
-	align-items: flex-start;
-}
-.badges[data-type="home"] .badge > .content > h6 {
-	font-size: 24px;
-	font-weight: 800;
-}
-.badges[data-type="home"] .badge > .content > p {
-	font-size: 14px;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Badge For Startup ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges[data-type="startup"] div[class="separator"] {
-	background-color: var(--sunred-color);
-}
-.badges[data-type="startup"] .badge > i {
-	color: var(--sunred-color);
-}
-.badges[data-type="startup"] > h3,
-.badges[data-type="startup"] .badge > .content > h6,
-.badges[data-type="startup"] .badge > .content > p {
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Badge For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges[data-type="partner"] div[class="separator"] {
-	background-color: var(--grassgreen-color);
-}
-.badges[data-type="partner"] .badge > i {
-	color: var(--grassgreen-color);
-}
-.badges[data-type="partner"] > h3,
-.badges[data-type="partner"] .badge > .content > h6,
-.badges[data-type="partner"] .badge > .content > p {
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Testimonials ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.testimonials {
+.plan > .advantages {
 	display: flex;
 	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: 80px;
+	grid-gap: 8px;
+	gap: 8px;
 }
-@media screen and (max-width: 576px) {
-	.testimonials {
-		padding: 32px;
-	}
-}
-.testimonials::before,
-.testimonials::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.testimonials > h4 {
-	font-family: "Nunito Sans";
-	font-size: 42px;
-	font-weight: bold;
-	text-align: center;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Badges For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.testimonials[data-type="home"]::before {
-	background-color: var(--background-main-color);
-}
-.testimonials[data-type="home"]::after {
-	border-radius: 100px 0px 0px 0px;
-	background-color: var(--background-sub-color);
-}
-@media screen and (max-width: 576px) {
-	.testimonials[data-type="home"]::after {
-		border-radius: 50px 0px 0px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Blog ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.blog {
+.plan > .advantages > .advantage {
 	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: 80px;
-	background-color: var(--background-sub-color);
-}
-@media screen and (max-width: 576px) {
-	.blog {
-		padding: 32px;
-	}
-}
-.blog::before,
-.blog::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.blog > h4 {
-	font-family: "Nunito Sans";
-	font-size: 42px;
-	font-weight: bold;
-	text-align: center;
+	align-items: center;
+	grid-gap: 8px;
+	gap: 8px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Solutions ( Typing ) */
@@ -909,11 +604,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.typing {
-		padding: 32px;
+		padding: calc(32px - 16px);
 	}
 }
 .typing::before,
@@ -926,167 +621,50 @@
 	content: "";
 	z-index: -1;
 }
-.typing > p {
+.typing::after {
+	border-radius: 100px 0px 100px 0px;
+}
+@media screen and (max-width: 576px) {
+	.typing::after {
+		border-radius: 50px 0px 50px 0px;
+	}
+}
+.typing > div[class="container"] > p {
 	font-size: 20px;
 	color: var(--perfect-white-color);
 }
-.typing > .animation {
-	text-align: center;
+.typing > div[class="container"] > .animation {
+	text-align: left;
 }
-.typing > .animation > .typed,
-.typing > .animation > span {
+.typing > div[class="container"] > .animation > h3,
+.typing > div[class="container"] > .animation > h3 > span {
 	display: inline;
 	font-size: 40px;
 	font-family: "Nunito Sans";
 	font-weight: bold;
 	color: var(--perfect-white-color);
-	text-align: center;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Typing For Home ) */
+/* Solutions ( Typing For Partner ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.typing[data-type="home"]::before {
+.typing[data-type="startup"]::before {
 	background-color: var(--background-main-color);
 }
-.typing[data-type="home"]::after {
-	border-radius: 0px 100px 0px 100px;
-	background-color: var(--background-private-color);
-}
-@media screen and (max-width: 576px) {
-	.typing[data-type="home"]::after {
-		border-radius: 0px 50px 0px 50px;
-	}
+.typing[data-type="startup"]::after {
+	background-color: var(--sunred-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Questions ) */
+/* Solutions ( Typing For Partner ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: 80px;
+.typing[data-type="partner"]::before {
+	background-color: var(--background-main-color);
 }
-@media screen and (max-width: 576px) {
-	.questions {
-		padding: 32px;
-	}
-}
-.questions::before,
-.questions::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.questions > h5 {
-	font-family: "Nunito Sans";
-	font-size: 42px;
-	font-weight: bold;
-	text-align: center;
-}
-.questions > [data-carousel] {
-	overflow: hidden;
+.typing[data-type="partner"]::after {
+	background-color: var(--grassgreen-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Questions For Startup ) */
+/* Solutions ( Testimonials ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions[data-type="startup"] button[class*="active"] {
-	border-color: var(--lightred-color);
-	background-color: var(--lightred-color);
-}
-.questions[data-type="startup"] button[class*="active"] > span {
-	color: var(--sunred-color);
-}
-.questions[data-type="startup"] div[class*="active"] {
-	background-color: var(--lightred-color);
-}
-.questions[data-type="startup"] div[class*="active"] > button,
-.questions[data-type="startup"] div[class*="active"] > button > i {
-	color: var(--sunred-color);
-}
-.questions[data-type="startup"] div[class*="active"] > div {
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Questions For Corporate ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions[data-type="corporate"] button[class*="active"] {
-	border-color: var(--lightblue-color);
-	background-color: var(--lightblue-color);
-}
-.questions[data-type="corporate"] button[class*="active"] > span {
-	color: var(--pureblue-color);
-}
-.questions[data-type="corporate"] div[class*="active"] {
-	background-color: var(--lightblue-color);
-}
-.questions[data-type="corporate"] div[class*="active"] > button,
-.questions[data-type="corporate"] div[class*="active"] > button > i {
-	color: var(--pureblue-color);
-}
-.questions[data-type="corporate"] div[class*="active"] > div {
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Questions For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions[data-type="partner"] button[class*="active"] {
-	border-color: var(--lightgreen-color);
-	background-color: var(--lightgreen-color);
-}
-.questions[data-type="partner"] button[class*="active"] > span {
-	color: var(--grassgreen-color);
-}
-.questions[data-type="partner"] div[class*="active"] {
-	background-color: var(--lightgreen-color);
-}
-.questions[data-type="partner"] div[class*="active"] > button,
-.questions[data-type="partner"] div[class*="active"] > button > i {
-	color: var(--grassgreen-color);
-}
-.questions[data-type="partner"] div[class*="active"] > div {
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Questions For Opportunity ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions[data-type="opportunity"] button[class*="active"] {
-	border-color: var(--light-grey-color);
-	background-color: var(--light-grey-color);
-}
-.questions[data-type="opportunity"] button[class*="active"] > span {
-	color: var(--perfect-black-color);
-}
-.questions[data-type="opportunity"] div[class*="active"] {
-	background-color: var(--light-grey-color);
-}
-.questions[data-type="opportunity"] div[class*="active"] > button,
-.questions[data-type="opportunity"] div[class*="active"] > button > i {
-	color: var(--perfect-black-color);
-}
-.questions[data-type="opportunity"] div[class*="active"] > div {
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Solutions ( Actions ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.actions {
-	display: flex;
-	align-items: center;
-	grid-gap: 16px;
-	gap: 16px;
-}
-.actions[data-justify="left"] {
-	justify-content: flex-start;
-}
-.actions[data-justify="center"] {
-	justify-content: center;
-}
-.actions[data-justify="right"] {
-	justify-content: flex-end;
+.testimonials {
+	background-color: var(--background-sub-color);
 }

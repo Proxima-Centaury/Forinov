@@ -6,7 +6,7 @@
         },
         {
             "picture": "/assets/landings/startups/step_2.png", "title": "J'entre en relation",
-            "text": "Grâce à [l'annuaire des entreprises=/directories/corporates/categories], je peux contacter les prospects qui m'intéressent. Avec [l'annuaire des opportunités=/directories/opportunities/categories], je candidate aux appels à projets qui correspondent à ma startup"
+            "text": "Grâce à [l'annuaire des entreprises=/directories/corporates/categories], je peux contacter les prospects qui m'intéressent. Avec [l'annuaire des opportunités=/directories/opportunities/categories], je candidate aux appels à candidatures qui correspondent à ma startup"
         },
         {
             "picture": "/assets/landings/startups/step_3.png", "title": "Je développe mon réseau",
@@ -54,7 +54,7 @@
         {
             "picture": "/assets/landings/corporates/step_4.png", "title": "Je développe",
             "list": [
-                "Je lance des opportunités sur Forinov (appels à projets, appels à candidatures, programmes d'accompagnements)",
+                "Je lance des opportunités sur Forinov (appels à candidatures, appels à candidatures, programmes d'accompagnements)",
                 "J'évalue et sélectionne les startups pertinentes (système d'évaluation simplifié)",
                 "Je peux faire appel aux services Forinov pour sourcer des startups à l'international"
             ]
@@ -88,7 +88,7 @@
         {
             "picture": "/assets/landings/partners/step_4.png", "title": "Je développe",
             "list": [
-                "Je lance des opportunités sur Forinov (appels à projets, appels à candidatures, programmes d'accompagnements)",
+                "Je lance des opportunités sur Forinov (appels à candidatures, appels à candidatures, programmes d'accompagnements)",
                 "J'évalue et sélectionne les startups pertinentes (système d'évaluation simplifié)",
                 "Je peux faire appel aux services Forinov pour sourcer des startups à l'international"
             ]

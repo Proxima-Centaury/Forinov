@@ -24,7 +24,7 @@ const TestimonialCard = (pageProps: any) => {
             <h5>{ testimonial.COMPANY }</h5>
         </div>
         <div className={ TestimonialStyles.testimonial }>
-            <Format content={ testimonial.TESTIMONIAL }/>
+            <Format content={ testimonial.TESTIMONIAL + "." }/>
         </div>
     </div>;
 };

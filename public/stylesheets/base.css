@@ -309,6 +309,7 @@ body {
     gap: 32px;
     margin: 0px auto;
     padding: 16px;
+    z-index: 1;
 }
 .containerFull {
     grid-gap: inherit;
@@ -444,6 +445,16 @@ body {
 }
 .wrapper > * {
     width: calc((100% / 3) - 16px);
+}
+@media screen and (max-width: 992px) {
+    .wrapper > * {
+        width: calc((100% / 2) - 16px);
+    }
+}
+@media screen and (max-width: 768px) {
+    .wrapper > * {
+        width: 100%;
+    }
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Disabled */
@@ -659,6 +670,7 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+    pointer-events: all;
 }
 [data-type="tooltip"]:before,
 [data-type="tooltip"]:after {

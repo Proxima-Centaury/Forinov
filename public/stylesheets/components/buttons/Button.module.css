@@ -258,6 +258,7 @@
     background-color: var(--background-sub-color);
 }
 .callToActionNegative:hover {
+    border-color: var(--logo-blue-color);
     background-color: var(--logo-blue-color);
 }
 .callToActionNegative > i,

@@ -164,7 +164,7 @@ const StepsCarousel = (carouselProps: any) => {
                         <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
                         <ul>
                             { step.list.map((item: String, key: Key) => <li key={ key }>
-                                <div><i className="fa-light fa-arrow-right"/><Format { ...carouselProps } content={ translations[item as keyof Object] }/></div>
+                                <div><i className="fa-light fa-arrow-right"/><Format { ...carouselProps } content={ translations[item as keyof Object] + "." }/></div>
                             </li>) }
                         </ul>
                     </div>
@@ -189,8 +189,8 @@ const CustomVertical = (carouselProps: any) => {
         <div className={ CarouselStyles.container } data-carousel={ component }>
             { steps.map((step, key) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
                 { (key % 2 === 1) ? <div className={ CarouselStyles.verticalContent }>
-                    <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
-                    <Format { ...carouselProps } content={ translations[step.text] }/>
+                    <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
+                    <Format { ...carouselProps } content={ translations[step.text] + "." }/>
                 </div> : <div className={ CarouselStyles.verticalPicture } data-rgb={ lightingState }>
                     <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                 </div> }
@@ -203,8 +203,8 @@ const CustomVertical = (carouselProps: any) => {
                 { (key % 2 === 1) ? <div className={ CarouselStyles.verticalPicture } data-rgb={ lightingState }>
                     <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
                 </div> : <div className={ CarouselStyles.verticalContent }>
-                    <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
-                    <Format { ...carouselProps } content={ translations[step.text] }/>
+                    <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
+                    <Format { ...carouselProps } content={ translations[step.text] + "." }/>
                 </div> }
             </div>) }
         </div>
