@@ -107,7 +107,7 @@ const PartnersHome = (pageProps: HomeInterface) => {
 			</div>
 			<div className={ HomeStyles.questions } data-type="partner">
 				<div className="container">
-					<h3>{ translations["Les réponses à vos questions"] }</h3>
+					<h3>{ translations["Les réponses à vos questions"] + " :" }</h3>
 					<Carousel { ...pageProps } component="PartnerAccordions" data={ Object.values(landings.partner) }/>
 					<div className={ HomeStyles.actions } data-justify="center">
 						<p>{ translations["Vous avez des questions"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/contact" text={ translations["N'hésitez pas à nous contacter"] }/>.</p>
