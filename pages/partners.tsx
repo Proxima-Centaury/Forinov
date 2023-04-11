@@ -30,7 +30,7 @@ const PartnersHome = (pageProps: HomeInterface) => {
 			<title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
 		</Head>
-		<div className="containerFull">
+		<div id="partners" className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="partner">
 				<div className="container">
 					<div className={ HomeStyles.presentationContent }>

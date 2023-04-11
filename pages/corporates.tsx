@@ -29,7 +29,7 @@ const CorporatesHome = (pageProps: HomeInterface) => {
 			<title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
 		</Head>
-		<div className="containerFull">
+		<div id="corporates" className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="corporate">
 				<div className="container">
 					<div className={ HomeStyles.presentationContent }>
