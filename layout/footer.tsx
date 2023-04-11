@@ -2,10 +2,10 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { FooterInterface } from "../typescript/interfaces";
+import { checkMatch } from "../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Link from "next/link";
 import Image from "next/image";
 import Button from "../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -22,11 +22,15 @@ const Footer = (pageProps: FooterInterface) => {
     const { footer }: any = layoutConfigurations.navigations.common.layout;
     return <footer className={ FooterStyles.footer + " grid fourColumns" }>
         <div className={ FooterStyles.section }>
-            <Image src={ router.basePath + "/assets/logo.png" } alt="Forinov logo" width="50" height="50"/>
+            <Image src={ router.basePath + "/assets/logo.png" } alt="" width="50" height="50"/>
             <p>{ translations["Forinov connecte startups, entreprises et partenaires pour matcher l'offre et le besoin d'innovation."] }</p>
             <div className={ FooterStyles.socials }>
-                <Button button={ ButtonStyles.default } href="https://twitter.com/Forinov1" icon="fa-brands fa-twitter"/>
-                <Button button={ ButtonStyles.default } href="https://www.linkedin.com/company/forinov" icon="fa-brands fa-linkedin"/>
+                <a className={ ButtonStyles.default } href="https://twitter.com/Forinov1" target="_blank">
+                    <i className="fa-brands fa-twitter"/>
+                </a>
+                <a className={ ButtonStyles.default } href="https://www.linkedin.com/company/forinov" target="_blank">
+                    <i className="fa-brands fa-linkedin"/>
+                </a>
             </div>
             <Button button={ ButtonStyles.classicLink } href="/contact" text={ translations["Aide et support"] }/>
             <p>© Forinov { new Date().getFullYear() }</p>
@@ -36,7 +40,7 @@ const Footer = (pageProps: FooterInterface) => {
                 <h6>{ translations[text] }</h6>
                 { (nesting) ? <ul>
                     { nest.map(({ url, text }: any, key: KeyType) => <li key={ key }>
-                        <Button button={ ButtonStyles.default } href={ url } text={ translations[text] }/>
+                        { (checkMatch(url, "https")) ? <a className={ ButtonStyles.default } href={ url }>{ translations[text] }</a> : <Button button={ ButtonStyles.default } href={ url } text={ translations[text] }/> }
                     </li>) }
                 </ul> : null }
             </div>;

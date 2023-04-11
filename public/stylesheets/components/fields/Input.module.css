@@ -68,9 +68,8 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    color: var(--text-inactive-color);
+    color: var(--separator-color);
     cursor: pointer;
-    
 }
 .text > input:focus + label,
 .text > input.filled + label,
@@ -103,6 +102,6 @@
 .email > button > i,
 .password > button > i,
 .number > button > i {
-    color: var(--text-inactive-color);
+    color: var(--separator-color);
     pointer-events: none;
 }

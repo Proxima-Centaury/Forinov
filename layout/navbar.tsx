@@ -22,8 +22,8 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 const Navbar = (pageProps: NavbarInterface): JSX.Element => {
     const menuReference = useRef(null);
     const { states, stateSetters, layoutConfigurations, router } = pageProps;
-    const { locale, locales, translations }: any = states;
-    const { setLocale }: any = stateSetters;
+    const { locale, locales, translations } = states;
+    const { setLocale } = stateSetters;
     const { navbar } = layoutConfigurations.navigations.unsigned.layout;
     const [ menuState, setMenuState ] = useState(false);
     const languageSelectDefaultValue = [ ...selectifyTheOptions(locales, "locales") as Array<any> ]?.filter((option: any) => option.VALUE === locale)[0];
@@ -99,7 +99,7 @@ const NavbarMenuItem = (navbarProps: NavbarMenuInterface): JSX.Element => {
         { (!item?.url) ? <Button button={ ButtonStyles.default } action={ switchItemState } text={ (item?.text) ? translations[item?.text as keyof Object] : "" }/> : null }
         <ul className={ ((itemState) ? " " + NavbarStyles.show : "") } data-menu="nest">
             { (item?.nest) ? item?.nest.map(({ url, text }: any, key: Key) => <li key={ key }>
-                <Button button={ ButtonStyles.default } href={ url } text={ translations[text] + ((text.match(/(Comment|How)/)) ? " ?" : "") }/>
+                <Button button={ ButtonStyles.default + ((router.asPath === url) ? " " + NavbarStyles.active : "") } href={ url } text={ translations[text] + ((text.match(/(Comment|How)/)) ? " ?" : "") }/>
             </li>) : null }
         </ul>
     </Fragment>;

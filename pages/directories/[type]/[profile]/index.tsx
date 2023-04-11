@@ -2,9 +2,8 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { useEffect } from "react";
-import { ProfileInterface, ButtonInterface } from "../../../../typescript/interfaces";
-import { buildProperties } from "../../../../scripts/utilities";
+import { Fragment, useEffect } from "react";
+import { ProfileInterface } from "../../../../typescript/interfaces";
 import api from "../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -40,9 +39,9 @@ import ButtonStyles from "../../../../public/stylesheets/components/buttons/Butt
 /* Directory Profile */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const DirectoryProfile = (pageProps: ProfileInterface) => {
-    const { profile, opportunity, states, stateSetters, router }: any = pageProps;
-    const { session, lock, metadatas }: any = states;
-    const { setModal }: any = stateSetters;
+    const { profile, opportunity, states, stateSetters, router } = pageProps;
+    const { session, lock, metadatas } = states;
+    const { setModal } = stateSetters;
     const { type } = router.query;
     useEffect(() => {
         if(profile && !opportunity) {
@@ -56,7 +55,8 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
                         "." + BannerStyles.identificationBanner,
                         "." + BannerStyles.recoverBanner,
                         "." + NavbarStyles.navbar,
-                        "[data-type='devtools']"
+                        "[data-type='devtools']",
+                        ".modalLayout"
                     ];
                     if(!target.closest(selectors.join(", "))) {
                         if(lock) {
@@ -71,42 +71,33 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
         };
     });
     if(profile && !opportunity) {
-        const profileTagsString = profile.TAGS.split(",").slice(0, 3).join(", ")
-        const metadataComment = profile.COMMENT.substring(0, 20)
-        let metadata: JSX.Element = <></>
-        if (type === "startup") {
-            metadata = <><title>
-                {metadatas["/annuaires/startups/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/startups/[id]"].title2 + " " + profile.CATEGORY[0].NAME}
-            </title>
-                <meta name="description" content={metadatas["/annuaires/startups/[id]"].description1 + profile.NAME + metadatas["/annuaires/startups/[id]"].description2 + profile.CATEGORY[0].NAME + ", " + metadataComment + ", " + profileTagsString}/></>
-        } else if (type === "corporation") {
-            metadata =
-                <><title>
-                    {metadatas["/annuaires/corporations/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/corporations/[id]"].title2 + " " + profile.CATEGORY[0] + metadatas["/annuaires/corporations/[id]"].title3}
-                </title>
-                    <meta name="description" content={metadatas["/annuaires/corporations/[id]"].description1 + profile.NAME +
-                        metadatas["/annuaires/corporations/[id]"].description2 + profile.NAME +
-                        metadatas["/annuaires/corporations/[id]"].description3 + profile.NAME +
-                        metadatas["/annuaires/corporations/[id]"].description4 + profile.NAME +
-                        metadatas["/annuaires/corporations/[id]"].description5 + profile.NAME
-                    }
-                /></>
-        } else if (type === "partner") { 
-            <><title>
-                    {metadatas["/annuaires/partners/[id]"].title1 + profile.NAME + metadatas["/annuaires/partners/[id]"].title2 + profile.CATEGORY[0]}
-                </title>
-                    <meta name="description" content={metadatas["/annuaires/partners/[id]"].description1 + profile.NAME +
-                        metadatas["/annuaires/partners/[id]"].description2 + profile.NAME +
-                        metadatas["/annuaires/partners/[id]"].description3 + profile.NAME +
-                        metadatas["/annuaires/partners/[id]"].description4
-                    }
-                /></>
-        }
-        return <>
+        const profileTagsString = profile.TAGS.split(",").slice(0, 3).join(", ");
+        const metadataComment = profile.COMMENT.substring(0, 200) + "...";
+        let metadata: JSX.Element = <Fragment/>;
+        if(type.match(/(startup)/)) {
+            metadata = <Fragment>
+                <title>{ metadatas["/annuaires/startups/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/startups/[id]"].title2 + " " + profile.CATEGORY[0].NAME }</title>
+                <meta name="description" content={ metadatas["/annuaires/startups/[id]"].description1 + profile.NAME + metadatas["/annuaires/startups/[id]"].description2 + profile.CATEGORY[0].NAME + ", " + metadataComment + ", " + profileTagsString} />
+            </Fragment>;
+        } else if(type.match(/(corporate|entreprise)/)) {
+            const descriptions = [ metadatas["/annuaires/corporates/[id]"].description1, metadatas["/annuaires/corporates/[id]"].description2, metadatas["/annuaires/corporates/[id]"].description3, metadatas["/annuaires/corporates/[id]"].description4, metadatas["/annuaires/corporates/[id]"].description5 ];
+            metadata = <Fragment>
+                <title>{ metadatas["/annuaires/corporates/[id]"].title1 + " " + profile.NAME + metadatas["/annuaires/corporates/[id]"].title2 + " " + profile.CATEGORY[0] + metadatas["/annuaires/corporates/[id]"].title3 }</title>
+                <meta name="description" content={ descriptions.join(profile.NAME) }/>
+            </Fragment>;
+        } else if(type.match(/(partner|partenaire)/)) {
+            const categories = profile.CATEGORY.map((category: any) => category.NAME).join(" / ");
+            const descriptions = [ metadatas["/annuaires/partners/[id]"].description1, metadatas["/annuaires/partners/[id]"].description2, metadatas["/annuaires/partners/[id]"].description3, metadatas["/annuaires/partners/[id]"].description4 ];
+            metadata = <Fragment>
+                <title>{ metadatas["/annuaires/partners/[id]"].title1 + profile.NAME + metadatas["/annuaires/partners/[id]"].title2 + " " + categories }</title>
+                <meta name="description" content={ descriptions.join(profile.NAME) }/>
+            </Fragment>;
+        };
+        return <Fragment>
             <Head>
                 { metadata }
             </Head>
-            <div id="profile" className="container">
+            <div id="profile" className="container" data-profile={ type.substring(0, type.length - 1) }>
                 { (!session) ? <IdenfiticationBanner { ...pageProps }/> : null }
                 { (profile.STATE === "WO") ? <RecoverBanner { ...pageProps }/> : null} 
                 <ProfileCard { ...pageProps }/>
@@ -119,14 +110,14 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
                     </div>
                     <div className={ ProfileStyles.content }>
                         { (type.match(/(startup)/)) ? <Startup { ...pageProps }/> : null }
-                        { (type.match(/(corporation|entreprise)/)) ? <Corporation { ...pageProps }/> : null }
+                        { (type.match(/(corporate|entreprise)/)) ? <Corporate { ...pageProps }/> : null }
                         { (type.match(/(partner|partenaire)/)) ? <Partner { ...pageProps }/> : null }
                     </div>
                 </div>
             </div>
-        </>;
+        </Fragment>;
     };
-    return <>
+    return <Fragment>
         <Head>
             <title>{ opportunity.TITLE }</title>
             <meta name="description" content={ opportunity.DESCRIPTION }/>
@@ -135,66 +126,66 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
             <OpportunityPreview { ...pageProps }/>
             <OpportunityLinks { ...pageProps }/>
         </div>
-    </>;
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startup Profile Content */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Startup = (pageProps: any) => {
-    const { products, states }: any = pageProps;
-    const { translations }: any = states;
-    return <>
-        <ProfileOffer { ...pageProps }/>
-        <ProfileTargets { ...pageProps }/>
-        { (products) ? <ProfileProducts { ...pageProps }/> : null }
+const Startup = (startupProps: any) => {
+    const { products, states } = startupProps;
+    const { translations } = states;
+    return <Fragment>
+        <ProfileOffer { ...startupProps }/>
+        <ProfileTargets { ...startupProps }/>
+        { (products) ? <ProfileProducts { ...startupProps }/> : null }
         <Button button={ ButtonStyles.callToActionWide } icon="fa-light fa-person-chalkboard" text={ translations["Voir le pitch deck"] }/>
-        <ProfileEcosystem { ...pageProps }/>
-        <ProfilePartners { ...pageProps }/>
-        <ProfileTeam { ...pageProps }/>
-        <ProfileActivities { ...pageProps }/>
-        <ProfileSocials { ...pageProps }/>
-    </>;
+        <ProfileEcosystem { ...startupProps }/>
+        <ProfilePartners { ...startupProps }/>
+        <ProfileTeam { ...startupProps }/>
+        <ProfileActivities { ...startupProps }/>
+        <ProfileSocials { ...startupProps }/>
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Corporation Profile Content */
+/* Corporate Profile Content */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Corporation = (pageProps: any) => {
-    const { states }: any = pageProps;
-    const { translations }: any = states;
-    return <>
-        <ProfileTeam { ...pageProps }/>
-        <ProfileOpportunities { ...pageProps }/>
-        <ProfileGoals { ...pageProps }/>
+const Corporate = (corporateProps: any) => {
+    const { states } = corporateProps;
+    const { translations } = states;
+    return <Fragment>
+        <ProfileTeam { ...corporateProps }/>
+        <ProfileOpportunities { ...corporateProps }/>
+        <ProfileGoals { ...corporateProps }/>
         <Button button={ ButtonStyles.callToActionWide } icon="fa-light fa-person-chalkboard" text={ translations["Voir le pitch deck"] }/>
-        <ProfileEcosystem { ...pageProps }/>
-        <ProfilePartners { ...pageProps }/>
-        <ProfileActivities { ...pageProps }/>
-        <ProfileSocials { ...pageProps }/>
-    </>;
+        <ProfileEcosystem { ...corporateProps }/>
+        <ProfilePartners { ...corporateProps }/>
+        <ProfileActivities { ...corporateProps }/>
+        <ProfileSocials { ...corporateProps }/>
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partner Profile Content */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Partner = (pageProps: any) => {
-    const { states }: any = pageProps;
-    const { translations }: any = states;
-    return <>
-        <ProfileTeam { ...pageProps }/>
-        <ProfileOpportunities { ...pageProps }/>
-        <ProfileGoals { ...pageProps }/>
+const Partner = (partnerProps: any) => {
+    const { states } = partnerProps;
+    const { translations } = states;
+    return <Fragment>
+        <ProfileTeam { ...partnerProps }/>
+        <ProfileOpportunities { ...partnerProps }/>
+        <ProfileGoals { ...partnerProps }/>
         <Button button={ ButtonStyles.callToActionWide } icon="fa-light fa-person-chalkboard" text={ translations["Voir le pitch deck"] }/>
-        <ProfileEcosystem { ...pageProps }/>
-        <ProfilePartners { ...pageProps }/>
-        <ProfileActivities { ...pageProps }/>
-        <ProfileSocials { ...pageProps }/>
-    </>;
+        <ProfileEcosystem { ...partnerProps }/>
+        <ProfilePartners { ...partnerProps }/>
+        <ProfileActivities { ...partnerProps }/>
+        <ProfileSocials { ...partnerProps }/>
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Server Side Properties */
+/* Server Side Props */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const getServerSideProps: GetServerSideProps = async (context) => {
+const getServerSideProps: GetServerSideProps = async (context: any) => {
     const { res, query, locale, locales, defaultLocale } = context;
-    let { type, profile }: any = query;
+    let { type, profile } = query;
     profile = profile?.substring(profile.indexOf("_") + 1, profile.length);
     const language = locale?.substring(0, 2);
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
@@ -202,7 +193,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         if(type) {
             type = String(type);
             type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-            type = (type.match(/(corporation)/)) ? "entreprise" : type;
+            type = (type.match(/(corporate)/)) ? "entreprise" : type;
             type = (type.match(/(partner)/)) ? "partenaire" : type;
         };
         const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);

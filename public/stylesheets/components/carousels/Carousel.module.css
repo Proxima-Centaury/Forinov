@@ -4,14 +4,22 @@
 .carousel {
     display: flex;
 	width: 100%;
+	cursor: grab;
+}
+@media screen and (max-width: 576px) {
+	.carousel {
+		cursor: default;
+	}
 }
 .carousel[data-direction="vertical"] {
 	flex-direction: column;
+	cursor: default;
 }
 .carousel[data-direction="bidirectional"] {
 	flex-direction: column;
 	grid-gap: 40px;
 	gap: 40px;
+	cursor: default;
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Container ) */
@@ -20,17 +28,31 @@
     display: flex;
 	grid-gap: 16px;
 	gap: 16px;
-	width: 100%;
+	width: max-content;
+	pointer-events: none;
+	transition: none;
 	z-index: 1;
+}
+@media screen and (max-width: 576px) {
+	.container {
+		width: 100%;
+		transition: all 0.3s ease;
+	}
 }
 .carousel[data-direction="vertical"] > .container {
 	flex-direction: column;
+	width: 100%;
 	min-height: inherit;
+	pointer-events: all;
+	transition: all 0.3s ease;
 	overflow: inherit;
 }
 .carousel[data-direction="bidirectional"] > .container {
 	grid-gap: 80px;
 	gap: 80px;
+	width: 100%;
+	transition: all 0.3s ease;
+	pointer-events: all;
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Item ) */

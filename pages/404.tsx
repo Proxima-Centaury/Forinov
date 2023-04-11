@@ -2,6 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetStaticProps } from "next";
+import { Fragment } from "react";
 import { NotFoundInterface } from "../typescript/interfaces";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -15,9 +16,9 @@ import NotFoundStyles from "../public/stylesheets/pages/NotFound.module.css";
 /* Not Found */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const NotFound = (pageProps: NotFoundInterface) => {
-    const { states, router }: any = pageProps;
-    const { metadatas, translations }: any = states;
-    return <>
+    const { states, router } = pageProps;
+    const { metadatas, translations } = states;
+    return <Fragment>
         <Head>
             <title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
@@ -29,7 +30,7 @@ const NotFound = (pageProps: NotFoundInterface) => {
                 <button onClick={ () => router.back() }>{ translations["Retournez à la page précédente"] + "." }</button>
             </div>
         </div>
-    </>;
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Static Props */

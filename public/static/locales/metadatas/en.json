@@ -15,8 +15,8 @@
 		"title": "Forinov for your startup, how does it work ?",
 		"description": "Forinov for your startup, how does it work? Register your startup on Forinov, respond to calls for applications, list your startup in the directory of French startups on Forinov. Integrate your startup into our database of startups. You have questions ? All the answers are on Forinov."
 	},
-	"/corporations": {
-		"title": "Forinov for your corporation, how does it work ?",
+	"/corporates": {
+		"title": "Forinov for your corporate, how does it work ?",
 		"description": "How to register your company on Forinov ? How to create an opportunity ? With Forinov, discover the best open innovation startups, create opportunities, manage your collaborations."
 	},
 	"/partners": {
@@ -25,7 +25,7 @@
 	},
     "/opportunities": {
         "title": "Les opportunités Forinov, comment ça marche ?",
-        "description": "Comment créer votre appel à candidatures / appel à projets / concours / challenges / évènements sur Forinov. Trouver des startups pertinentes, contactez les startups les plus intéressantes de notre annuaire de startups France, et suivez les via votre porte-feuille de startups. Toutes les réponses à vos questions sont sur Forinov."
+        "description": "Comment créer votre appel à candidatures / appel à candidatures / concours / challenges / évènements sur Forinov. Trouver des startups pertinentes, contactez les startups les plus intéressantes de notre annuaire de startups France, et suivez les via votre porte-feuille de startups. Toutes les réponses à vos questions sont sur Forinov."
     },
     "/login": {
         "title": "Access the entire Forinov platform",
@@ -41,15 +41,15 @@
     },
 	"/solutions/startups": {
 		"title": "Forinov, create your startup profile for free",
-		"description": "Forinov, connects the best startups with companies looking for solutions, allows them to apply for opportunities (calls for projects, calls for applications, partner programs...) and simplifies customer relationships. More than a prospecting solution, it is a business network!"
+		"description": "Forinov, connects the best startups with companies looking for solutions, allows them to apply for opportunities (calls for proposals, calls for applications, partner programs...) and simplifies customer relationships. More than a prospecting solution, it is a business network!"
 	},
-	"/solutions/corporations": {
+	"/solutions/corporates": {
 		"title": "Forinov, the most complete solution for open innovation",
-		"description": "More than a social network for Open Innovation, Forinov is the best open innovation solution for companies looking to innovate: startups and partners’ directories, monitoring solution, qualification and sourcing of startups, management of calls for projects and portfolio monitoring..."
+		"description": "More than a social network for Open Innovation, Forinov is the best open innovation solution for companies looking to innovate: startups and partners' directories, monitoring solution, qualification and sourcing of startups, management of calls for proposals and portfolio monitoring..."
 	},
 	"/solutions/partners": {
 		"title": "Forinov, the largest network of innovation partners",
-		"description": "Whether you are an incubator or an investor, join the largest network of innovation actors on Forinov. Create your profile to introduce your offers and services, develop your network, publish your calls for projects or simplify the management of your startups and partners’ portfolio."
+		"description": "Whether you are an incubator or an investor, join the largest network of innovation actors on Forinov. Create your profile to introduce your offers and services, develop your network, publish your calls for proposals or simplify the management of your startups and partners' portfolio."
 	},
 	"/about": {
 		"title": "Forinov, About us",
@@ -58,17 +58,33 @@
 	"/directories/startups": {
 		"title": "Forinov's startup directory - tech and innovative startups",
 		"description": "Forinov, start-ups directory. Thanks to the search engine by categories, technologies or sectors of activity, find the best startups classified by field. More than a mapping or a database of startups, join the largest network of startups and their qualified profiles, data updated in real time by the teams (fundraising, staff ... and key indicators ...)"
-	}, 
-    "/directories/corporations" : {
+	},
+    "/directories/startups/categories": {
+		"title": "Forinov's startup directory - tech and innovative startups",
+		"description": "Forinov, start-ups directory. Thanks to the search engine by categories, technologies or sectors of activity, find the best startups classified by field. More than a mapping or a database of startups, join the largest network of startups and their qualified profiles, data updated in real time by the teams (fundraising, staff ... and key indicators ...)"
+	},
+    "/directories/corporates" : {
         "title": "Forinov company directory - member companies of Forinov, the Open Innovation social network",
-        "description" : "Forinov, directory of companies present on Forinov, the social network of Open innovation. Find, by sector of activity, SMEs, ETIs, and large international groups looking for collaborations with startups. Contact the innovation teams and respond to their needs: calls for projects, programs, calls for applications from startups"
-    }, 
+        "description" : "Forinov, directory of companies present on Forinov, the social network of Open innovation. Find, by sector of activity, SMEs, ETIs, and large international groups looking for collaborations with startups. Contact the innovation teams and respond to their needs: calls for proposals, programs, calls for applications from startups"
+    },
+    "/directories/corporates/categories" : {
+        "title": "Forinov company directory - member companies of Forinov, the Open Innovation social network",
+        "description" : "Forinov, directory of companies present on Forinov, the social network of Open innovation. Find, by sector of activity, SMEs, ETIs, and large international groups looking for collaborations with startups. Contact the innovation teams and respond to their needs: calls for proposals, programs, calls for applications from startups"
+    },
     "/directories/partners" : {
-        "title": "Partners’ Directory: incubators, gas pedals, investment funds",
+        "title": "Partners' Directory: incubators, gas pedals, investment funds",
         "description" : "Find the largest network of partners on Forinov. From their profiles, discover their services, their startup portfolios and connect directly with the best incubators, accelerators, investment funds, business angels networks and investors..."
-    }, 
+    },
+    "/directories/partners/categories" : {
+        "title": "Partners' Directory: incubators, gas pedals, investment funds",
+        "description" : "Find the largest network of partners on Forinov. From their profiles, discover their services, their startup portfolios and connect directly with the best incubators, accelerators, investment funds, business angels networks and investors..."
+    },
     "/directories/opportunities" : {
-        "title": "Opportunities on Forinov: calls for projects, calls for applications, competitions and startup challenges...",
+        "title": "Opportunities on Forinov: calls for proposals, calls for applications, competitions and startup challenges...",
+        "description" : "Find the directory of opportunities on Forinov: calls for startup projects, calls for applications, calls for tenders, incubation and acceleration programs, networking events, challenges and competitions, startup meetups, startup networking events and many other unique opportunities just a click away."
+    },
+    "/directories/opportunities/categories" : {
+        "title": "Opportunities on Forinov: calls for proposals, calls for applications, competitions and startup challenges...",
         "description" : "Find the directory of opportunities on Forinov: calls for startup projects, calls for applications, calls for tenders, incubation and acceleration programs, networking events, challenges and competitions, startup meetups, startup networking events and many other unique opportunities just a click away."
     },
     "/annuaires/startups/[id]" : {
@@ -77,7 +93,7 @@
         "description1" : "Discover the complete Profile of the startup ",
         "description2" : ", member of Forinov in the category : "
     },
-    "/annuaires/corporations/[id]" : {
+    "/annuaires/corporates/[id]" : {
         "title1": "",
         "title2": " profile on Forinov : ",
         "title3": " company",
@@ -85,7 +101,7 @@
         "description2" : "on Forinov. On the ",
         "description3" : "open innovation page, find the key contacts of the innovation teams ( ",
         "description4" : "'s innovation director, startup partnership manager, etc.), their needs and searches for startups, and all the opportunities for collaborations and connections with ",
-        "description5" : ": calls for projects, calls for applications, challenges, etc..."
+        "description5" : ": calls for proposals, calls for applications, challenges, etc..."
     },
     "/annuaires/partners/[id]" : {
         "title1": "The profile of ",

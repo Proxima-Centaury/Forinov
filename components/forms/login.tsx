@@ -1,9 +1,4 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Imports */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { InputInterface } from "../../typescript/interfaces";
-import { buildProperties } from "../../scripts/utilities";
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Input from "../fields/input";
@@ -18,20 +13,15 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Login Form */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const LoginForm = (pageProps: any) => {
-    const { states }: any = pageProps;
-    const { translations }: any = states;
-    const inputProps = [ "label", "type", "name", "action" ];
-    const emailInputValues = [ translations["Adresse email"] + " *", "email", "email", undefined ];
-    const emailInputObject = buildProperties(inputProps, emailInputValues);
-    const passwordInputValues = [ translations["Mot de passe"] + " *", "password", "password", undefined ];
-    const passwordInputObject = buildProperties(inputProps, passwordInputValues);
+    const { states } = pageProps;
+    const { translations } = states;
     return <form className={ FormStyles.form }>
         <div className={ FormStyles.row }>
             <div className={ FormStyles.column }>
-                <Input { ...emailInputObject as InputInterface }/>
+                <Input label={ translations["Adresse email"] + " *" } type="email" name="email"/>
             </div>
             <div className={ FormStyles.column }>
-                <Input { ...passwordInputObject as InputInterface }/>
+                <Input label={ translations["Mot de passe"] + " *" } type="password" name="password"/>
             </div>
         </div>
         <div className={ FormStyles.row }>

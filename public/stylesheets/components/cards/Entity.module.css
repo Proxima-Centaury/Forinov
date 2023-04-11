@@ -2,7 +2,7 @@
 /* Entity ( Card ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .startup,
-.corporation,
+.corporate,
 .partner {
     display: flex;
     flex: 1;
@@ -16,18 +16,18 @@
 }
 @media screen and (max-width: 1200px) {
     .startup,
-    .corporation,
+    .corporate,
     .partner {
         width: 100%;
     }
 }
 .startup:hover,
-.corporation:hover,
+.corporate:hover,
 .partner:hover {
     transform: translate3d(0px, -8px, 0px);
 }
 div[class="list"] > .startup,
-div[class="list"] > .corporation,
+div[class="list"] > .corporate,
 div[class="list"] > .partner {
     grid-gap: 0px;
     gap: 0px;
@@ -44,7 +44,7 @@ div[class="list"] > .partner {
 .startup > .marker {
     background-color: var(--logo-orange-color);
 }
-.corporation > .marker {
+.corporate > .marker {
     background-color: var(--logo-blue-color);
 }
 .partner > .marker {
@@ -133,7 +133,7 @@ div[class="list"] .identity > div[class*="tags"] {
 .startup .branding > img {
     border-color: var(--logo-orange-color);
 }
-.corporation .branding > img {
+.corporate .branding > img {
     border-color: var(--logo-blue-color);
 }
 .partner .branding > img {

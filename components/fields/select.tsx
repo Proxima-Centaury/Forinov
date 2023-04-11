@@ -16,6 +16,10 @@ const Select = (selectProps: SelectInterface) => {
     const { options, action, placeholder, defaultValue, source } = selectProps;
     const [ selectState, setSelectState ] = useState(false);
     const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
+    const toggleButtoNHandler: MouseEventHandler = (event) => {
+        event.preventDefault();
+        return setSelectState(!selectState);
+    };
     const handleOutOfArea: MouseEventHandler = (event) => {
         if(selectReference && selectReference.current) {
             const current = selectReference.current as HTMLElement;
@@ -31,10 +35,10 @@ const Select = (selectProps: SelectInterface) => {
         };
     }, []);
     return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") } ref={ selectReference }>
-        <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
+        <button className={ SelectStyles.toggleButton } onClick={ toggleButtoNHandler }>
             <i className="fa-solid fa-caret-right"></i>
         </button>
-        <p>{ (placeholder && !defaultValue) ? placeholder : (defaultValue) ? defaultValue?.NAME : "" }</p>
+        <p className={ SelectStyles.placeholder }>{ (placeholder && !defaultValue) ? placeholder : (defaultValue) ? defaultValue?.NAME : "" }</p>
         <div className={ SelectStyles.options }>
             { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => <Option key={ key } option={ option } action={ action } selected={ option.VALUE === defaultValue.VALUE }/>) : null }
         </div>
@@ -44,14 +48,12 @@ const Select = (selectProps: SelectInterface) => {
 /* Select ( Option ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Option = (optionProps: any) => {
-    const { option, action, selected }: any = optionProps;
-    const additionalProps = {
-        className: SelectStyles.option + " " + ((selected) ? SelectStyles.selected : ""),
-        "data-id": option.ID,
-        "data-value": option.VALUE,
-        onClick: () => (action) ? action(option.VALUE) : undefined
+    const { option, action, selected } = optionProps;
+    const handleAction: MouseEventHandler = (event) => {
+        event.preventDefault();
+        return action(option.VALUE);
     };
-    return <button { ...additionalProps }>
+    return <button className={ SelectStyles.option + " " + ((selected) ? SelectStyles.selected : "") } data-id={ option.ID } data-value={ option.VALUE } onClick={ (action) ? handleAction : undefined }>
         <span>{ option.NAME }</span>
     </button>;
 };

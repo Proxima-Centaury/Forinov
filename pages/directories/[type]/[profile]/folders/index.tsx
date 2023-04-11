@@ -37,7 +37,7 @@ const Folders = (pageProps: FoldersInterface) => {
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Server Side Rendering */
+/* Server Side Props */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, query, locale, locales, defaultLocale } = context;
@@ -48,7 +48,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     if(type) {
         type = String(type);
         type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-        type = (type.match(/(corporation)/)) ? "entreprise" : type;
+        type = (type.match(/(corporate)/)) ? "entreprise" : type;
         type = (type.match(/(partner)/)) ? "partenaire" : type;
     };
     const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);

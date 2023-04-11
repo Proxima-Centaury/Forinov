@@ -1,25 +1,31 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Activity ( Card ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.activity {
+.card {
     display: flex;
     min-height: calc(55px + (2 * 16px));
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
-}
-.activity + .activity {
-    margin: 16px 0px 0px 0px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Activity ( Marker ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .marker {
-    min-width: 8px;
-    width: 8px;
-    max-width: 8px;
-    border-radius: 5px 0px 0px 5px;
+    min-width: 15px;
+    width: 15px;
+    max-width: 15px;
+    border-radius: 15px 0px 0px 15px;
     background-color: var(--logo-orange-color);
+}
+[data-profile="startup"] .marker {
+    background-color: var(--logo-orange-color);
+}
+[data-profile="corporate"] .marker {
+    background-color: var(--logo-blue-color);
+}
+[data-profile="partner"] .marker {
+    background-color: var(--logo-green-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Activity ( Content ) */
@@ -27,6 +33,8 @@
 .content {
     display: flex;
     flex-direction: column;
+    grid-gap: 8px;
+    gap: 8px;
     flex: 1;
     padding: 16px 16px 16px calc((55px / 2) + 16px);
     position: relative;
@@ -48,27 +56,26 @@
 .content > .user {
     display: flex;
     align-items: center;
-    margin: 0px 0px 16px 0px;
+    grid-gap: 8px;
+    gap: 8px;
     font-weight: 900;
     font-family: "Nunito Sans";
     font-size: 21px;
     text-transform: uppercase;
 }
 .content > .user > i {
-    margin: 0px 0px 0px 8px;
     font-size: 16px;
 }
 [data-profile="startup"] .content > .user > i {
     color: var(--logo-orange-color);
 }
-[data-profile="corporation"] .content > .user > i {
+[data-profile="corporate"] .content > .user > i {
     color: var(--logo-blue-color);
 }
 [data-profile="partner"] .content > .user > i {
     color: var(--logo-green-color);
 }
 .content > .time {
-    margin: 0px;
     position: absolute;
     top: 16px;
     right: 16px;

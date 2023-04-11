@@ -3,14 +3,23 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentation {
 	display: flex;
+	flex-direction: column;
 	grid-gap: 24px;
 	gap: 24px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px) calc(80px - 16px) 0px calc(80px - 16px);
+}
+.presentation:not([data-type="home"]) {
+	padding: calc(80px - 16px);
+}
+@media screen and (max-width: 992px) {
+	.presentation {
+		padding: calc(80px - 16px);
+	}
 }
 @media screen and (max-width: 576px) {
 	.presentation {
-		padding: 16px;
+		padding: calc(32px - 16px);
 	}
 }
 .presentation::before,
@@ -23,26 +32,44 @@
 	content: "";
 	z-index: -1;
 }
-.presentation > img {
-	width: 500px;
-	height: 500px;
-	margin: auto;
-	object-fit: contain;
+.presentation::before {
+	background-color: var(--background-sub-color);
+}
+.presentation > div[class="container"] {
+	padding: 16px 16px 0px 16px;
+}
+.presentation:not([data-type="home"]) > div[class="container"] {
+	flex-direction: row;
 }
 @media screen and (max-width: 992px) {
-	.presentation > img {
+	.presentation > div[class="container"] {
+		padding: 16px;
+	}
+	.presentation > div[class="container"] > img {
 		display: none;
 	}
+}
+.presentation:not([data-type="home"]) > div[class="container"] > img {
+	width: 500px;
+	height: 400px;
+	margin: auto;
+	object-fit: fill;
+}
+.presentation > div[class="container"] > h1 {
+	font-size: 56px;
+	font-family: "Nunito Sans";
+	font-weight: 300;
+	color: var(--logo-blue-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation For Home ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentation[data-type="home"]::before {
-	background-color: var(--background-sub-color);
+	background-color: var(--background-main-color);
 }
 .presentation[data-type="home"]::after {
 	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-main-color);
+	background-color: var(--background-sub-color);
 }
 @media screen and (max-width: 576px) {
 	.presentation[data-type="home"]::after {
@@ -65,17 +92,17 @@
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation For Corporation ) */
+/* Home ( Presentation For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="corporation"]::before {
+.presentation[data-type="corporate"]::before {
 	background-color: var(--background-main-color);
 }
-.presentation[data-type="corporation"]::after {
+.presentation[data-type="corporate"]::after {
 	border-radius: 0px 0px 0px 100px;
 	background-color: var(--lightblue-color);
 }
 @media screen and (max-width: 576px) {
-	.presentation[data-type="corporation"]::after {
+	.presentation[data-type="corporate"]::after {
 		border-radius: 0px 0px 0px 50px;
 	}
 }
@@ -110,6 +137,25 @@
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Jumbotron ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.jumbotron {
+	display: flex;
+	grid-gap: 40px;
+	gap: 40px;
+}
+.jumbotron > img {
+	width: 650px;
+	height: 100%;
+	margin: auto;
+	object-fit: fill;
+}
+@media screen and (max-width: 992px) {
+	.presentation > div[class="container"] > .jumbotron > img {
+		display: none;
+	}
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Content ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentationContent {
@@ -125,7 +171,7 @@
 }
 .presentationContent > p {
 	font-family: "Nunito Sans";
-	font-size: 24px;
+	font-size: 14px;
 }
 @media screen and (max-width: 576px) {
 	.presentationContent > h1,
@@ -134,39 +180,44 @@
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation Content For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="home"] > .presentationContent > h1,
-.presentation[data-type="home"] > .presentationContent > p {
-	color: var(--text-main-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Content For Startup ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="startup"] > .presentationContent > h1,
-.presentation[data-type="startup"] > .presentationContent > p {
+.presentation[data-type="startup"] > div[class="container"] > .presentationContent > h1,
+.presentation[data-type="startup"] > div[class="container"] > .presentationContent > p {
 	color: var(--sunred-color);
 }
+.presentation[data-type="startup"] > div[class="container"] > .presentationContent > p {
+	font-size: 24px;
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation Content For Corporation ) */
+/* Home ( Presentation Content For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="corporation"] > .presentationContent > h1,
-.presentation[data-type="corporation"] > .presentationContent > p {
+.presentation[data-type="corporate"] > div[class="container"] > .presentationContent > h1,
+.presentation[data-type="corporate"] > div[class="container"] > .presentationContent > p {
 	color: var(--pureblue-color);
+}
+.presentation[data-type="corporate"] > div[class="container"] > .presentationContent > p {
+	font-size: 24px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Content For Partner ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="partner"] > .presentationContent > h1,
-.presentation[data-type="partner"] > .presentationContent > p {
+.presentation[data-type="partner"] > div[class="container"] > .presentationContent > h1,
+.presentation[data-type="partner"] > div[class="container"] > .presentationContent > p {
 	color: var(--grassgreen-color);
+}
+.presentation[data-type="partner"] > div[class="container"] > .presentationContent > p {
+	font-size: 24px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Content For Opportunity ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="opportunity"] > .presentationContent > h1,
-.presentation[data-type="opportunity"] > .presentationContent > p {
+.presentation[data-type="opportunity"] > div[class="container"] > .presentationContent > h1,
+.presentation[data-type="opportunity"] > div[class="container"] > .presentationContent > p {
 	color: var(--perfect-black-color);
+}
+.presentation[data-type="opportunity"] > div[class="container"] > .presentationContent > p {
+	font-size: 24px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Links ) */
@@ -177,6 +228,12 @@
 	grid-gap: 16px;
 	gap: 16px;
 	width: max-content;
+	margin: 0px 0px 56px 0px;
+}
+@media screen and (max-width: 992px) {
+	.presentationLinks {
+		margin: 0px;
+	}
 }
 @media screen and (max-width: 576px) {
 	.presentationLinks {
@@ -192,11 +249,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.onboarding {
-		padding: 16px;
+		padding: calc(32px - 16px);
 	}
 }
 .onboarding::before,
@@ -209,13 +266,13 @@
 	content: "";
 	z-index: -1;
 }
-.onboarding > h3 {
+.onboarding > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
 }
-.onboarding > p {
+.onboarding > div[class="container"] > p {
 	font-family: "Nunito Sans";
 	font-size: 21px;
 	text-align: center;
@@ -224,15 +281,15 @@
 /* Home ( Onboarding For Home ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .onboarding[data-type="home"]::before {
-	background-color: var(--background-main-color);
+	background-color: var(--background-sub-color);
 }
 .onboarding[data-type="home"]::after {
-	border-radius: 100px 0px 0px 100px;
-	background-color: var(--background-sub-color);
+	border-radius: 100px 0px 0px 0px;
+	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
 	.onboarding[data-type="home"]::after {
-		border-radius: 50px 0px 0px 50px;
+		border-radius: 50px 0px 0px 0px;
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -243,6 +300,7 @@
 	justify-content: center;
 	grid-gap: 40px;
 	gap: 40px;
+	z-index: 1;
 }
 @media screen and (max-width: 768px) {
 	.types {
@@ -258,10 +316,16 @@
 	flex: 1;
 	grid-gap: 40px;
 	gap: 40px;
+	max-width: 300px;
 	padding: 16px;
 	border-radius: 15px;
 	background-color: var(--background-sub-color);
 	box-shadow: var(--box-shadow);
+}
+@media screen and (max-width: 768px) {
+	.type {
+		max-width: inherit;
+	}
 }
 .type > .head {
 	display: flex;
@@ -275,7 +339,7 @@
 .type[data-type="startup"] > .head > i {
 	color: var(--logo-orange-color);
 }
-.type[data-type="corporation"] > .head > i {
+.type[data-type="corporate"] > .head > i {
 	color: var(--logo-blue-color);
 }
 .type[data-type="partner"] > .head > i {
@@ -288,7 +352,7 @@
 .type[data-type="startup"] > .head > div > h5 {
 	color: var(--logo-orange-color);
 }
-.type[data-type="corporation"] > .head > div > h5 {
+.type[data-type="corporate"] > .head > div > h5 {
 	color: var(--logo-blue-color);
 }
 .type[data-type="partner"] > .head > div > h5 {
@@ -321,11 +385,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.sourcing {
-		padding: 16px;
+		padding: calc(32px - 16px);
 	}
 }
 .sourcing::before,
@@ -338,13 +402,13 @@
 	content: "";
 	z-index: -1;
 }
-.sourcing > h3 {
+.sourcing > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: 300;
 	text-align: center;
 }
-.sourcing > p {
+.sourcing > div[class="container"] > p {
 	font-family: "Nunito Sans";
 	font-size: 21px;
 	text-align: center;
@@ -382,41 +446,41 @@
 	background-color: var(--sunred-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Sourcing For Corporation ) */
+/* Home ( Sourcing For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.sourcing[data-type="corporation"]::before {
+.sourcing[data-type="corporate"]::before {
 	background-color: var(--background-main-color);
 }
-.sourcing[data-type="corporation"]::after {
+.sourcing[data-type="corporate"]::after {
 	border-radius: 100px 0px 0px 100px;
 	background-color: var(--lightblue-color);
 }
 @media screen and (max-width: 576px) {
-	.sourcing[data-type="corporation"]::after {
+	.sourcing[data-type="corporate"]::after {
 		border-radius: 50px 0px 0px 50px;
 	}
 }
-.sourcing[data-type="corporation"] h3,
-.sourcing[data-type="corporation"] h4,
-.sourcing[data-type="corporation"] p,
-.sourcing[data-type="corporation"] div {
+.sourcing[data-type="corporate"] h3,
+.sourcing[data-type="corporate"] h4,
+.sourcing[data-type="corporate"] p,
+.sourcing[data-type="corporate"] div {
 	color: var(--perfect-black-color);
 }
-.sourcing[data-type="corporation"] button {
+.sourcing[data-type="corporate"] button {
 	border: var(--border);
 	border-color: var(--pureblue-color);
 	background-color: var(--lightblue-color);
 }
-.sourcing[data-type="corporation"] button > i {
+.sourcing[data-type="corporate"] button > i {
 	color: var(--pureblue-color);
 }
-.sourcing[data-type="corporation"] button[class="active"] {
+.sourcing[data-type="corporate"] button[class="active"] {
 	background-color: var(--pureblue-color);
 }
-.sourcing[data-type="corporation"] button[class="active"] > i {
+.sourcing[data-type="corporate"] button[class="active"] > i {
 	color: var(--perfect-white-color);
 }
-.sourcing[data-type="corporation"] div[class="separatorVertical"] {
+.sourcing[data-type="corporate"] div[class="separatorVertical"] {
 	background-color: var(--pureblue-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -458,11 +522,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.opportunity {
-		padding: 16px;
+		padding: calc(32px - 16px);
 	}
 }
 .opportunity::before,
@@ -473,9 +537,10 @@
 	top: 0px;
 	left: 0px;
 	content: "";
+	background-color: var(--background-main-color);
 	z-index: -1;
 }
-.opportunity > h4 {
+.opportunity > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
@@ -497,17 +562,17 @@
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Opportunity For Corporation ) */
+/* Home ( Opportunity For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.opportunity[data-type="corporation"]::before {
+.opportunity[data-type="corporate"]::before {
 	background-color: var(--lightblue-color);
 }
-.opportunity[data-type="corporation"]::after {
+.opportunity[data-type="corporate"]::after {
 	border-radius: 0px 100px 0px 0px;
 	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
-	.opportunity[data-type="corporation"]::after {
+	.opportunity[data-type="corporate"]::after {
 		border-radius: 0px 50px 0px 0px;
 	}
 }
@@ -520,11 +585,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.register {
-		padding: 16px;
+		padding: calc(32px - 16px);
 	}
 }
 .register::before,
@@ -537,33 +602,33 @@
 	content: "";
 	z-index: -1;
 }
-.register > h3 {
+.register > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 45px;
 	font-weight: 300;
 	text-align: center;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Register For Corporation ) */
+/* Home ( Register For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.register[data-type="corporation"]::before {
+.register[data-type="corporate"]::before {
 	background-color: var(--lightblue-color);
 }
-.register[data-type="corporation"]::after {
+.register[data-type="corporate"]::after {
 	border-radius: 0px 100px 0px 0px;
 	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
-	.register[data-type="corporation"]::after {
+	.register[data-type="corporate"]::after {
 		border-radius: 0px 50px 0px 0px;
 	}
 }
-.register[data-type="corporation"] [class*="steps"] > button[class*="active"] {
+.register[data-type="corporate"] [class*="steps"] > button[class*="active"] {
 	color: var(--perfect-white-color);
 	border-color: var(--pureblue-color);
 	background-color: var(--pureblue-color);
 }
-.register[data-type="corporation"] [class*="steps"] > button:hover {
+.register[data-type="corporate"] [class*="steps"] > button:hover {
 	color: var(--pureblue-color);
 	border-color: var(--lightblue-color);
 	background-color: var(--lightblue-color);
@@ -603,12 +668,12 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.startups,
 	.structures {
-		padding: 16px;
+		padding: calc(32px - 16px);
 	}
 }
 .startups::before,
@@ -621,27 +686,40 @@
 	top: 0px;
 	left: 0px;
 	content: "";
+	background-color: var(--background-main-color);
 	z-index: -1;
 }
-.startups > h4,
-.structures > h4 {
+.startups > div[class="container"] > h3,
+.structures > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
 	text-align: center;
 }
-.structures > p {
+.structures > div[class="container"] > p {
 	font-family: "Nunito Sans";
 	font-size: 21px;
 	text-align: center;
 }
-.startups > .startupsCategories,
-.structures > .structuresCategories {
+.startups > div[class="container"] > .startupsCategories,
+.structures > div[class="container"] > .structuresCategories {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
 	grid-gap: 16px;
 	gap: 16px;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Startups For Home ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.startups[data-type="home"] > div[class="container"] > h3 {
+	font-family: "Nunito Sans";
+	font-size: 42px;
+	font-weight: bold;
+	text-align: left;
+}
+.startups[data-type="home"] > div[class="container"] > .startupsCategories {
+	justify-content: flex-start;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Startups For Partner ) */
@@ -670,8 +748,22 @@
 }
 @media screen and (max-width: 576px) {
 	.structures[data-type="home"]::after {
-		border-radius: 50px 0px 0px 50px;
+		border-radius: 0px 0px 50px 0px;
 	}
+}
+.structures[data-type="home"] > div[class="container"] > h3 {
+	font-family: "Nunito Sans";
+	font-size: 42px;
+	font-weight: bold;
+	text-align: left;
+}
+.structures[data-type="home"] > div[class="container"] > p {
+	font-family: "Nunito Sans";
+	font-size: 21px;
+	text-align: left;
+}
+.structures[data-type="home"] > div[class="container"] > .structuresCategories {
+	justify-content: flex-start;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Companies ) */
@@ -682,11 +774,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.companies {
-		padding: 16px;
+		padding: calc(32px - 16px);
 	}
 }
 .companies::before,
@@ -697,15 +789,16 @@
 	top: 0px;
 	left: 0px;
 	content: "";
+	background-color: var(--background-main-color);
 	z-index: -1;
 }
-.companies > h4 {
+.companies > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
 }
-.companies > p {
+.companies > div[class="container"] > p {
 	font-size: 21px;
 	font-weight: bold;
 	text-align: center;
@@ -726,17 +819,17 @@
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Companies For Corporation ) */
+/* Home ( Companies For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.companies[data-type="corporation"]::before {
+.companies[data-type="corporate"]::before {
 	background-color: var(--lightblue-color);
 }
-.companies[data-type="corporation"]::after {
+.companies[data-type="corporate"]::after {
 	border-radius: 0px 0px 100px 0px;
 	background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
-	.companies[data-type="corporation"]::after {
+	.companies[data-type="corporate"]::after {
 		border-radius: 0px 0px 50px 0px;
 	}
 }
@@ -764,11 +857,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.badges {
-		padding: 16px;
+		padding: calc(32px - 16px);
 	}
 }
 .badges::before,
@@ -781,26 +874,33 @@
 	content: "";
 	z-index: -1;
 }
-.badges > h3 {
+.badges > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: 300;
 	text-align: center;
+	color: var(--perfect-black-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Badges For Home ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .badges[data-type="home"]::before {
-	background-color: var(--background-sub-color);
+	background-color: var(--background-main-color);
 }
 .badges[data-type="home"]::after {
-	border-radius: 0px 100px 0px 0px;
-	background-color: var(--background-main-color);
+	border-radius: 0px 100px 0px 100px;
+	background-color: var(--background-private-color);
 }
 @media screen and (max-width: 576px) {
 	.badges[data-type="home"]::after {
-		border-radius: 0px 50px 0px 0px;
+		border-radius: 0px 50px 0px 50px;
 	}
+}
+.badges[data-type="home"] > div[class="container"] > h3 {
+	font-size: 48px;
+	font-weight: bold;
+	text-align: left;
+	color: var(--perfect-white-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Badges For Startup ) */
@@ -907,6 +1007,33 @@
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Badge For Home ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.badges[data-type="home"] .badge {
+	padding: 0px 8px;
+}
+.badges[data-type="home"] div[class="separator"],
+.badges[data-type="home"] .badge > i {
+	display: none;
+}
+.badges[data-type="home"] .badge > .content > h6,
+.badges[data-type="home"] .badge > .content > p {
+	width: inherit;
+	color: var(--perfect-white-color);
+	font-family: "Nunito Sans";
+	text-align: left;
+}
+.badges[data-type="home"] .badge > .content {
+	align-items: flex-start;
+}
+.badges[data-type="home"] .badge > .content > h6 {
+	font-size: 24px;
+	font-weight: 800;
+}
+.badges[data-type="home"] .badge > .content > p {
+	font-size: 14px;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Badge For Startup ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .badges[data-type="startup"] div[class="separator"] {
@@ -915,7 +1042,6 @@
 .badges[data-type="startup"] .badge > i {
 	color: var(--sunred-color);
 }
-.badges[data-type="startup"] > h3,
 .badges[data-type="startup"] .badge > .content > h6,
 .badges[data-type="startup"] .badge > .content > p {
 	color: var(--perfect-black-color);
@@ -929,7 +1055,6 @@
 .badges[data-type="partner"] .badge > i {
 	color: var(--grassgreen-color);
 }
-.badges[data-type="partner"] > h3,
 .badges[data-type="partner"] .badge > .content > h6,
 .badges[data-type="partner"] .badge > .content > p {
 	color: var(--perfect-black-color);
@@ -943,11 +1068,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.testimonials {
-		padding: 16px;
+		padding: calc(32px - 16px);
 	}
 }
 .testimonials::before,
@@ -960,7 +1085,7 @@
 	content: "";
 	z-index: -1;
 }
-.testimonials > h4 {
+.testimonials > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
@@ -990,12 +1115,12 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 	background-color: var(--background-sub-color);
 }
 @media screen and (max-width: 576px) {
 	.blog {
-		padding: 16px;
+		padding: 32px;
 	}
 }
 .blog::before,
@@ -1008,11 +1133,71 @@
 	content: "";
 	z-index: -1;
 }
-.blog > h4 {
+.blog > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
 	text-align: center;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Typing ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.typing {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: calc(80px - 16px);
+}
+@media screen and (max-width: 576px) {
+	.typing {
+		padding: calc(32px - 16px);
+	}
+}
+.typing::before,
+.typing::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.typing > div[class="container"] > p {
+	font-size: 20px;
+	color: var(--perfect-white-color);
+	text-align: center;
+}
+.typing > div[class="container"] > .animation {
+	text-align: center;
+}
+.typing > div[class="container"] > .animation > .typed,
+.typing > div[class="container"] > .animation > span {
+	display: inline;
+	font-size: 40px;
+	font-family: "Nunito Sans";
+	font-weight: bold;
+	color: var(--perfect-white-color);
+	text-align: center;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Typing For Home ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.typing[data-type="home"]::before {
+	background-color: var(--background-main-color);
+}
+.typing[data-type="home"]::after {
+	border-radius: 0px 100px 0px 100px;
+	background-color: var(--background-private-color);
+}
+@media screen and (max-width: 576px) {
+	.typing[data-type="home"]::after {
+		border-radius: 0px 50px 0px 50px;
+	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Questions ) */
@@ -1023,11 +1208,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.questions {
-		padding: 16px;
+		padding: calc(32px - 16px);
 	}
 }
 .questions::before,
@@ -1040,13 +1225,13 @@
 	content: "";
 	z-index: -1;
 }
-.questions > h5 {
+.questions > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
 	text-align: center;
 }
-.questions > [data-carousel] {
+.questions > div[class="container"] > [data-carousel] {
 	overflow: hidden;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -1070,23 +1255,23 @@
 	color: var(--perfect-black-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Questions For Corporation ) */
+/* Home ( Questions For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions[data-type="corporation"] button[class*="active"] {
+.questions[data-type="corporate"] button[class*="active"] {
 	border-color: var(--lightblue-color);
 	background-color: var(--lightblue-color);
 }
-.questions[data-type="corporation"] button[class*="active"] > span {
+.questions[data-type="corporate"] button[class*="active"] > span {
 	color: var(--pureblue-color);
 }
-.questions[data-type="corporation"] div[class*="active"] {
+.questions[data-type="corporate"] div[class*="active"] {
 	background-color: var(--lightblue-color);
 }
-.questions[data-type="corporation"] div[class*="active"] > button,
-.questions[data-type="corporation"] div[class*="active"] > button > i {
+.questions[data-type="corporate"] div[class*="active"] > button,
+.questions[data-type="corporate"] div[class*="active"] > button > i {
 	color: var(--pureblue-color);
 }
-.questions[data-type="corporation"] div[class*="active"] > div {
+.questions[data-type="corporate"] div[class*="active"] > div {
 	color: var(--perfect-black-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

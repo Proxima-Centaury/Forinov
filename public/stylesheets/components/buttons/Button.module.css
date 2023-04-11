@@ -1,4 +1,31 @@
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Old Home ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.oldHome {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
+    width: 100%;
+    height: 60px;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+}
+.oldHome:hover {
+    transform: scale(1.05);
+    background-color: var(--pastelblue-color);
+}
+.oldHome > i,
+.oldHome > span {
+    color: var(--logo-blue-color);
+    font-size: 16px;
+    font-weight: bold;
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Default ) */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .default {
@@ -9,8 +36,13 @@
     width: max-content;
 }
 .default:hover > i,
-.default:hover > span {
+.default:hover > span,
+.default.active > i,
+.default.active > span {
     color: var(--logo-blue-color);
+}
+.default.active > span {
+    font-weight: bold;
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Mask ) */
@@ -145,7 +177,8 @@
 .callToActionNegative,
 .callToActionNegativeAlternative,
 .callToActionSquared,
-.callToActionStep {
+.callToActionStep,
+.callToActionOldGrey {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,7 +200,8 @@
     .callToActionNegative,
     .callToActionNegativeAlternative,
     .callToActionSquared,
-    .callToActionStep {
+    .callToActionStep,
+    .callToActionOldGrey {
         flex-wrap: wrap;
         height: fit-content;
         white-space: initial;
@@ -178,7 +212,8 @@
 .callToActionNegative > i,
 .callToActionNegativeAlternative > i,
 .callToActionSquared > i,
-.callToActionStep > i {
+.callToActionStep > i,
+.callToActionOldGrey > i {
     font-size: 16px;
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -186,9 +221,11 @@
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .callToAction {
     background-color: var(--logo-blue-color);
+    color: var(--perfect-white-color);
 }
 .callToAction:hover {
     background-color: transparent;
+    color: var(--logo-blue-color);
 }
 .callToAction > i,
 .callToAction > span {
@@ -223,11 +260,14 @@
     background-color: var(--background-sub-color);
 }
 .callToActionNegative:hover {
+    border-color: var(--logo-blue-color);
     background-color: var(--logo-blue-color);
 }
+.callToActionNegative > i,
 .callToActionNegative > span {
     color: var(--logo-blue-color);
 }
+.callToActionNegative:hover > i,
 .callToActionNegative:hover > span {
     color: var(--perfect-white-color);
 }
@@ -268,6 +308,20 @@
 .callToActionStep:hover > span,
 .callToActionStep.active > span {
     color: var(--perfect-black-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Call To Action Old Grey ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.callToActionOldGrey {
+    border: none;
+    background-color: var(--lighter-grey-color);
+}
+.callToActionOldGrey:hover {
+    background-color: var(--light-grey-color);
+}
+.callToActionOldGrey > i,
+.callToActionOldGrey > span {
+    color: var(--perfect-grey-color);
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Call To Action Wide ) Core */

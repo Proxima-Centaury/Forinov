@@ -51,8 +51,10 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         const foundOption = (Array.isArray(options) && options.length > 0) ? options?.find((option: any) => option.ID == categoryId) : null;
         const optionSEO = [];
         (!dynamic && foundOption) ? optionSEO.push(foundOption) : null;
-        setSelectedOptions(optionSEO as any);
-    }, [ categoryId ]);
+        if(optionSEO.length > 0) {
+            setSelectedOptions(optionSEO as any);
+        };
+    }, [ options, dynamic, categoryId ]);
     useEffect(() => {
         if(selectedOptions.length <= 0) {
             if(!dynamic && search.categories && search.categories.split("-").length > 0) {
@@ -65,7 +67,7 @@ const MultipleSelect = (selectProps: SelectInterface) => {
                 });
             };
         };
-    }, [ search.categories ]);
+    });
     useEffect(() => {
         bindEventListeners(document, [ "click" ], handleOutOfArea);
         return () => {

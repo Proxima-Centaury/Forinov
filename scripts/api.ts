@@ -63,8 +63,9 @@ class API {
         if(type) {
             type = String(type);
             type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-            type = (type.match(/(corporation)/)) ? "entreprise" : type;
+            type = (type.match(/(corporate)/)) ? "entreprise" : type;
             type = (type.match(/(partner)/)) ? "partenaire" : type;
+            type = (type.match(/(opport)/)) ? "opportunite" : type;
         };
         var results = null;
         var url: String = this.endpoint + "?q=SEARCH_FULL&TYPE=" + type;
