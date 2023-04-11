@@ -2,7 +2,8 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { Fragment, Key, useEffect, useState } from "react";
+import { Fragment, Key, useEffect, useRef, useState } from "react";
+import Typed from "typed.js";
 import { HomeInterface } from "../typescript/interfaces";
 import { formatNameForUrl } from "../scripts/utilities";
 import api from "../scripts/api";
@@ -10,7 +11,6 @@ import api from "../scripts/api";
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
-import Script from "next/script";
 import Image from "next/image";
 import Carousel from "../components/carousels/carousel";
 import Format from "../components/texts/format";
@@ -25,10 +25,23 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* Home */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Home = (pageProps: HomeInterface) => {
+	const typedReference = useRef(null);
 	const { landing, startups, opportunities, states, router } = pageProps;
 	const { translations, metadatas, RGB } = states;
 	const [ lightingState, setLightingState ] = useState("disabled");
 	const structures: Array<String> = [ "Startup", "Grand groupe", "ETI", "PME", "Incubateur", "Accélérateur", "Pépinière", "Fond d'investissement", "Business angel", "Structure d'investissement" ];
+	useEffect(() => {
+		const typed = new Typed(typedReference.current, {
+			strings: [
+			translations["Plus de 1500 startups innovantes à l'international"] + ".",
+			translations["Des centaines d'entreprises à la recherche de solutions"] + ".",
+			translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"] + "."
+			],
+			typeSpeed: 50,
+			loop: true
+		});
+		return () => typed.destroy();
+	  }, []);
 	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
 	return <Fragment>
 		<Head>
@@ -181,23 +194,35 @@ const Home = (pageProps: HomeInterface) => {
 					</div>
 				</div>
 			</div>
+			{/* <div className={ HomeStyles.typing } data-type="home">
+				<div className="container">
+					<p>{ translations["Forinov aujourd'hui"] }</p>
+					<div className={ HomeStyles.animation }>
+						<h3 id="homeTyped" className={ HomeStyles.typed }/>
+					</div>
+					<Script id="homeTypedScript" strategy="afterInteractive">{`
+						const solutionTyped = () => {
+							const assign = new Typed("#homeTyped.${ HomeStyles.typed }", {
+								strings: [
+									"${ translations["Plus de 1500 startups innovantes à l'international"] + "." }",
+									"${ translations["Des centaines d'entreprises à la recherche de solutions"] + "." }",
+									"${ translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"] + "." }"
+								],
+								typeSpeed: 50,
+								loop: true
+							});
+							return assign;
+						};
+						solutionTyped();
+					`}</Script>
+				</div>
+			</div> */}
 			<div className={ HomeStyles.typing } data-type="home">
 				<div className="container">
 					<p>{ translations["Forinov aujourd'hui"] }</p>
 					<div className={ HomeStyles.animation }>
-						<h3 className={ HomeStyles.typed }/>
+						<h3 id="homeTyped" className={ HomeStyles.typed } ref={ typedReference }/>
 					</div>
-					<Script id="typedScript" strategy="afterInteractive">{`
-						typed = new Typed(".${ HomeStyles.typed }", {
-							strings: [
-								"${ translations["Plus de 1500 startups innovantes à l'international"] + "." }",
-								"${ translations["Des centaines d'entreprises à la recherche de solutions"] + "." }",
-								"${ translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"] + "." }"
-							],
-							typeSpeed: 50,
-							loop: true
-						});
-					`}</Script>
 				</div>
 			</div>
 			{ (structures.length > 0) ? <div className={ HomeStyles.structures } data-type="home">
