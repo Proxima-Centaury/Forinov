@@ -2,6 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
+import { Fragment } from "react";
 import { HomeInterface } from "../typescript/interfaces";
 import api from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -23,7 +24,7 @@ const CorporatesHome = (pageProps: HomeInterface) => {
 	const { opportunities, logos, states, accordionsConfigurations, router } = pageProps;
 	const { metadatas, translations } = states;
 	const { landings } = accordionsConfigurations;
-	return <>
+	return <Fragment>
 		<Head>
 			<title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
@@ -49,7 +50,7 @@ const CorporatesHome = (pageProps: HomeInterface) => {
 			</div>
 			<div className={ HomeStyles.companies } data-type="corporate">
 				<div className="container">
-					<h3>{ translations["Ils nous font confiance"] }</h3>
+					<h3>{ translations["Ils nous font confiance"] + " :" }</h3>
 					<Carousel { ...pageProps } component="CompaniesLogos" data={ logos }/>
 					<h3>{ translations["Des milliers de startups, d'entreprises et de partenaires vous attendent sur Forinov"] + " !" }</h3>
 					<p>{ translations["Adaptez votre forfait à vos besoins"] + " !" }</p>
@@ -62,7 +63,7 @@ const CorporatesHome = (pageProps: HomeInterface) => {
 			<div className={ HomeStyles.sourcing } data-type="corporate">
 				<div className="container">
 					<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
-					<p>{ translations["Publiez appels à candidatures, appels à candidatures et challenges en quelques clics"] }</p>
+					<p>{ translations["Publiez appels à candidatures, appels à candidatures et challenges en quelques clics"] + " !" }</p>
 					<Carousel { ...pageProps } component="HowToCreateOpportunity"/>
 					<div className={ HomeStyles.actions } data-justify="center">
 						<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Je publie mon opportunité"] }/>
@@ -81,7 +82,7 @@ const CorporatesHome = (pageProps: HomeInterface) => {
 			</div>
 			<div className={ HomeStyles.questions } data-type="corporate">
 				<div className="container">
-					<h3>{ translations["Les réponses à vos questions"] }</h3>
+					<h3>{ translations["Les réponses à vos questions"] + " :" }</h3>
 					<Carousel { ...pageProps } component="CorporateAccordions" data={ Object.values(landings.corporate) }/>
 					<div className={ HomeStyles.actions } data-justify="center">
 						<p>{ translations["Vous avez des questions"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/contact" text={ translations["N'hésitez pas à nous contacter"] }/>.</p>
@@ -89,7 +90,7 @@ const CorporatesHome = (pageProps: HomeInterface) => {
 				</div>
 			</div>
 		</div>
-	</>;
+	</Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Props */
