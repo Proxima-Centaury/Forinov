@@ -3,13 +3,25 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentation {
 	display: flex;
+	flex-direction: column;
 	grid-gap: 24px;
 	gap: 24px;
 	width: 100%;
+	padding: calc(80px - 16px) calc(80px - 16px) 0px calc(80px - 16px);
+}
+.presentation:not([data-type="home"]) {
 	padding: 80px;
+}
+@media screen and (max-width: 992px) {
+	.presentation {
+		padding: calc(80px - 16px);
+	}
 }
 @media screen and (max-width: 576px) {
 	.presentation {
+		padding: calc(32px - 16px);
+	}
+	.presentation:not([data-type="home"]) {
 		padding: 32px;
 	}
 }
@@ -23,29 +35,38 @@
 	content: "";
 	z-index: -1;
 }
-.presentation > img {
-	width: 650px;
-	height: 500px;
-	margin: auto;
-	object-fit: contain;
+.presentation::before {
+	background-color: var(--background-sub-color);
+}
+.presentation > div[class="container"] {
+	padding: 16px 16px 0px 16px;
+}
+.presentation:not([data-type="home"]) > div[class="container"] {
+	flex-direction: row;
 }
 @media screen and (max-width: 992px) {
-	.presentation > img {
+	.presentation > div[class="container"] {
+		padding: 16px;
+	}
+	.presentation > div[class="container"] > img {
 		display: none;
 	}
 }
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="home"] {
-	flex-direction: column;
+.presentation:not([data-type="home"]) > div[class="container"] > img {
+	width: 500px;
+	height: 400px;
+	margin: auto;
+	object-fit: fill;
 }
-.presentation[data-type="home"] > h1 {
+.presentation > div[class="container"] > h1 {
 	font-size: 56px;
 	font-family: "Nunito Sans";
 	font-weight: 300;
 	color: var(--logo-blue-color);
 }
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Home ( Presentation For Home ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .presentation[data-type="home"]::before {
 	background-color: var(--background-main-color);
 }
@@ -128,12 +149,12 @@
 }
 .jumbotron > img {
 	width: 650px;
-	height: 500px;
+	height: 100%;
 	margin: auto;
-	object-fit: contain;
+	object-fit: fill;
 }
 @media screen and (max-width: 992px) {
-	.presentation > .jumbotron > img {
+	.presentation > div[class="container"] > .jumbotron > img {
 		display: none;
 	}
 }
@@ -153,7 +174,7 @@
 }
 .presentationContent > p {
 	font-family: "Nunito Sans";
-	font-size: 24px;
+	font-size: 14px;
 }
 @media screen and (max-width: 576px) {
 	.presentationContent > h1,
@@ -162,42 +183,44 @@
 	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation Content For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="home"] > .jumbotron > .presentationContent > p {
-	color: var(--text-main-color);
-}
-.presentation[data-type="home"] > .jumbotron > .presentationContent > p {
-	font-size: 14px;
-	font-family: "Open Sans";
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Content For Startup ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="startup"] > .presentationContent > h1,
-.presentation[data-type="startup"] > .presentationContent > p {
+.presentation[data-type="startup"] > div[class="container"] > .presentationContent > h1,
+.presentation[data-type="startup"] > div[class="container"] > .presentationContent > p {
 	color: var(--sunred-color);
+}
+.presentation[data-type="startup"] > div[class="container"] > .presentationContent > p {
+	font-size: 24px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Content For Corporate ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="corporate"] > .presentationContent > h1,
-.presentation[data-type="corporate"] > .presentationContent > p {
+.presentation[data-type="corporate"] > div[class="container"] > .presentationContent > h1,
+.presentation[data-type="corporate"] > div[class="container"] > .presentationContent > p {
 	color: var(--pureblue-color);
+}
+.presentation[data-type="corporate"] > div[class="container"] > .presentationContent > p {
+	font-size: 24px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Content For Partner ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="partner"] > .presentationContent > h1,
-.presentation[data-type="partner"] > .presentationContent > p {
+.presentation[data-type="partner"] > div[class="container"] > .presentationContent > h1,
+.presentation[data-type="partner"] > div[class="container"] > .presentationContent > p {
 	color: var(--grassgreen-color);
+}
+.presentation[data-type="partner"] > div[class="container"] > .presentationContent > p {
+	font-size: 24px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Content For Opportunity ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="opportunity"] > .presentationContent > h1,
-.presentation[data-type="opportunity"] > .presentationContent > p {
+.presentation[data-type="opportunity"] > div[class="container"] > .presentationContent > h1,
+.presentation[data-type="opportunity"] > div[class="container"] > .presentationContent > p {
 	color: var(--perfect-black-color);
+}
+.presentation[data-type="opportunity"] > div[class="container"] > .presentationContent > p {
+	font-size: 24px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation Links ) */
@@ -208,6 +231,12 @@
 	grid-gap: 16px;
 	gap: 16px;
 	width: max-content;
+	margin: 0px 0px 56px 0px;
+}
+@media screen and (max-width: 992px) {
+	.presentationLinks {
+		margin: 0px;
+	}
 }
 @media screen and (max-width: 576px) {
 	.presentationLinks {
@@ -240,13 +269,13 @@
 	content: "";
 	z-index: -1;
 }
-.onboarding > h3 {
+.onboarding > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
 }
-.onboarding > p {
+.onboarding > div[class="container"] > p {
 	font-family: "Nunito Sans";
 	font-size: 21px;
 	text-align: center;
@@ -376,13 +405,13 @@
 	content: "";
 	z-index: -1;
 }
-.sourcing > h3 {
+.sourcing > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: 300;
 	text-align: center;
 }
-.sourcing > p {
+.sourcing > div[class="container"] > p {
 	font-family: "Nunito Sans";
 	font-size: 21px;
 	text-align: center;
@@ -514,7 +543,7 @@
 	background-color: var(--background-main-color);
 	z-index: -1;
 }
-.opportunity > h4 {
+.opportunity > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
@@ -576,7 +605,7 @@
 	content: "";
 	z-index: -1;
 }
-.register > h3 {
+.register > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 45px;
 	font-weight: 300;
@@ -663,20 +692,20 @@
 	background-color: var(--background-main-color);
 	z-index: -1;
 }
-.startups > h4,
-.structures > h4 {
+.startups > div[class="container"] > h3,
+.structures > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
 	text-align: center;
 }
-.structures > p {
+.structures > div[class="container"] > p {
 	font-family: "Nunito Sans";
 	font-size: 21px;
 	text-align: center;
 }
-.startups > .startupsCategories,
-.structures > .structuresCategories {
+.startups > div[class="container"] > .startupsCategories,
+.structures > div[class="container"] > .structuresCategories {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -686,13 +715,13 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Startups For Home ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.startups[data-type="home"] > h4 {
+.startups[data-type="home"] > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
 	text-align: left;
 }
-.startups[data-type="home"] > .startupsCategories {
+.startups[data-type="home"] > div[class="container"] > .startupsCategories {
 	justify-content: flex-start;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -725,18 +754,18 @@
 		border-radius: 0px 0px 50px 0px;
 	}
 }
-.structures[data-type="home"] > h4 {
+.structures[data-type="home"] > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
 	text-align: left;
 }
-.structures[data-type="home"] > p {
+.structures[data-type="home"] > div[class="container"] > p {
 	font-family: "Nunito Sans";
 	font-size: 21px;
 	text-align: left;
 }
-.structures[data-type="home"] > .structuresCategories {
+.structures[data-type="home"] > div[class="container"] > .structuresCategories {
 	justify-content: flex-start;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -766,13 +795,13 @@
 	background-color: var(--background-main-color);
 	z-index: -1;
 }
-.companies > h4 {
+.companies > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
 }
-.companies > p {
+.companies > div[class="container"] > p {
 	font-size: 21px;
 	font-weight: bold;
 	text-align: center;
@@ -848,7 +877,7 @@
 	content: "";
 	z-index: -1;
 }
-.badges > h3 {
+.badges > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 48px;
 	font-weight: 300;
@@ -868,6 +897,12 @@
 	.badges[data-type="home"]::after {
 		border-radius: 0px 50px 0px 50px;
 	}
+}
+.badges[data-type="home"] > div[class="container"] > h3 {
+	font-size: 48px;
+	font-weight: bold;
+	text-align: left;
+	color: var(--perfect-white-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Badges For Startup ) */
@@ -983,17 +1018,12 @@
 .badges[data-type="home"] .badge > i {
 	display: none;
 }
-.badges[data-type="home"] > h3,
 .badges[data-type="home"] .badge > .content > h6,
 .badges[data-type="home"] .badge > .content > p {
 	width: inherit;
 	color: var(--perfect-white-color);
 	font-family: "Nunito Sans";
 	text-align: left;
-}
-.badges[data-type="home"] > h3 {
-	font-size: 45px;
-	font-weight: bold;
 }
 .badges[data-type="home"] .badge > .content {
 	align-items: flex-start;
@@ -1014,7 +1044,6 @@
 .badges[data-type="startup"] .badge > i {
 	color: var(--sunred-color);
 }
-.badges[data-type="startup"] > h3,
 .badges[data-type="startup"] .badge > .content > h6,
 .badges[data-type="startup"] .badge > .content > p {
 	color: var(--perfect-black-color);
@@ -1028,7 +1057,6 @@
 .badges[data-type="partner"] .badge > i {
 	color: var(--grassgreen-color);
 }
-.badges[data-type="partner"] > h3,
 .badges[data-type="partner"] .badge > .content > h6,
 .badges[data-type="partner"] .badge > .content > p {
 	color: var(--perfect-black-color);
@@ -1059,7 +1087,7 @@
 	content: "";
 	z-index: -1;
 }
-.testimonials > h4 {
+.testimonials > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
@@ -1107,7 +1135,7 @@
 	content: "";
 	z-index: -1;
 }
-.blog > h4 {
+.blog > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
@@ -1141,15 +1169,16 @@
 	content: "";
 	z-index: -1;
 }
-.typing > p {
+.typing > div[class="container"] > p {
 	font-size: 20px;
 	color: var(--perfect-white-color);
-}
-.typing > .animation {
 	text-align: center;
 }
-.typing > .animation > .typed,
-.typing > .animation > span {
+.typing > div[class="container"] > .animation {
+	text-align: center;
+}
+.typing > div[class="container"] > .animation > .typed,
+.typing > div[class="container"] > .animation > span {
 	display: inline;
 	font-size: 40px;
 	font-family: "Nunito Sans";
@@ -1198,13 +1227,13 @@
 	content: "";
 	z-index: -1;
 }
-.questions > h5 {
+.questions > div[class="container"] > h3 {
 	font-family: "Nunito Sans";
 	font-size: 42px;
 	font-weight: bold;
 	text-align: center;
 }
-.questions > [data-carousel] {
+.questions > div[class="container"] > [data-carousel] {
 	overflow: hidden;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
