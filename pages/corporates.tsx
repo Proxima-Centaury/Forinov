@@ -56,7 +56,7 @@ const CorporatesHome = (pageProps: HomeInterface) => {
 					<p>{ translations["Adaptez votre forfait à vos besoins"] + " !" }</p>
 					<div className={ HomeStyles.actions } data-justify="center">
 						<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Rejoindre la communauté"] }/>
-						<Button button={ ButtonStyles.callToActionAlternative } href="/onboarding" text={ translations["Découvrir les offres"] }/>
+						<Button button={ ButtonStyles.callToActionAlternative } href="/solutions/corporates#plans" text={ translations["Découvrir les offres"] }/>
 					</div>
 				</div>
 			</div>
