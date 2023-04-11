@@ -10,7 +10,7 @@
 	padding: calc(80px - 16px) calc(80px - 16px) 0px calc(80px - 16px);
 }
 .presentation:not([data-type="home"]) {
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 992px) {
 	.presentation {
@@ -20,9 +20,6 @@
 @media screen and (max-width: 576px) {
 	.presentation {
 		padding: calc(32px - 16px);
-	}
-	.presentation:not([data-type="home"]) {
-		padding: 32px;
 	}
 }
 .presentation::before,
@@ -252,11 +249,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.onboarding {
-		padding: 32px;
+		padding: calc(32px - 16px);
 	}
 }
 .onboarding::before,
@@ -388,11 +385,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.sourcing {
-		padding: 32px;
+		padding: calc(32px - 16px);
 	}
 }
 .sourcing::before,
@@ -525,11 +522,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.opportunity {
-		padding: 32px;
+		padding: calc(32px - 16px);
 	}
 }
 .opportunity::before,
@@ -588,11 +585,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.register {
-		padding: 32px;
+		padding: calc(32px - 16px);
 	}
 }
 .register::before,
@@ -671,12 +668,12 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.startups,
 	.structures {
-		padding: 32px;
+		padding: calc(32px - 16px);
 	}
 }
 .startups::before,
@@ -777,11 +774,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.companies {
-		padding: 32px;
+		padding: calc(32px - 16px);
 	}
 }
 .companies::before,
@@ -860,11 +857,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.badges {
-		padding: 32px;
+		padding: calc(32px - 16px);
 	}
 }
 .badges::before,
@@ -882,6 +879,7 @@
 	font-size: 48px;
 	font-weight: 300;
 	text-align: center;
+	color: var(--perfect-black-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Badges For Home ) */
@@ -1070,11 +1068,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.testimonials {
-		padding: 32px;
+		padding: calc(32px - 16px);
 	}
 }
 .testimonials::before,
@@ -1117,7 +1115,7 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 	background-color: var(--background-sub-color);
 }
 @media screen and (max-width: 576px) {
@@ -1152,11 +1150,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.typing {
-		padding: 32px;
+		padding: calc(32px - 16px);
 	}
 }
 .typing::before,
@@ -1210,11 +1208,11 @@
 	grid-gap: 40px;
 	gap: 40px;
 	width: 100%;
-	padding: 80px;
+	padding: calc(80px - 16px);
 }
 @media screen and (max-width: 576px) {
 	.questions {
-		padding: 32px;
+		padding: calc(32px - 16px);
 	}
 }
 .questions::before,
