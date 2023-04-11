@@ -2,7 +2,8 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { Fragment } from "react";
+import { Fragment, useEffect, useRef } from "react";
+import Typed from "typed.js";
 import { HomeInterface } from "../../typescript/interfaces";
 import api from "../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -10,7 +11,6 @@ import api from "../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import Button from "../../components/buttons/button";
 import Carousel from "../../components/carousels/carousel";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -23,17 +23,27 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Startup Solutions */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StartupSolutions = (pageProps: HomeInterface) => {
-    const { opportunities, states, router } = pageProps;
+	const typedReference = useRef(null);
+    const { opportunities, states, accordionsConfigurations, router } = pageProps;
     const { metadatas, translations } = states;
+	const { solutions } = accordionsConfigurations;
+    useEffect(() => {
+		const typed = new Typed(typedReference.current, {
+			strings: [ "APPCRAFT EVENTS.", "CAMILEIA.", "LiberKeys." ],
+			typeSpeed: 50,
+			loop: true
+		});
+		return () => typed.destroy();
+	  }, []);
     return <Fragment>
         <Head>
             <title>{ metadatas[router.route].title }</title>
 			<meta name="description" content={ metadatas[router.route].description }/>
         </Head>
-        <div className="containerFull">
+        <div id="startups" className="containerFull">
             <div className={ SolutionsStyles.presentation } data-type="startup">
                 <div className="container">
-                    <h1>{ translations["Les meilleures startups sont sur Forinov, inscrivez-vous gratuitement"] }</h1>
+                    <h1>{ translations["Les meilleures startups sont sur Forinov, inscrivez-vous gratuitement"] + "." }</h1>
                     <div className={ SolutionsStyles.jumbotron }>
                         <div className={ SolutionsStyles.presentationContent }>
                             <p>{ translations["Vous proposez une solution innovante ? Vous cherchez des clients B2B ? Rejoignez Forinov pour booster votre visibilité et entrer en relation simplement avec des entreprises qui ont besoin de vos solutions pour innover"] + " !" }</p>
@@ -91,22 +101,25 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                     </div>
                 </div>
             </div>
-            <div className={ SolutionsStyles.banner + ' ' + SolutionsStyles.bannerWithImg } style={ { position: 'relative' } }>
-                <div className="container" >
-                    <h2 className={ SolutionsStyles.bannerUnderlineTitle }>{ translations["DÉCOUVREZ NOTRE COMMUNAUTÉ DE STARTUPS"] }</h2>
-                    <h1 className={ SolutionsStyles.bannerTitle }>{ translations["L'innovation a déjà un nom"] }, <br /><span>title</span>.</h1>
-                    <Image src={ router.basePath + "/assets/landings/solutions-su-seating.png"} alt="" width="500" height="500"/>
+            <div className={ SolutionsStyles.typing } data-type="startup">
+                <div className="container">
+                    <p>{ translations["Découvrez notre communauté de startups"] + " !" }</p>
+                    <div className={ SolutionsStyles.animation }>
+                        <h3>{ translations["L'innovation a déjà un nom"] + " : " }<span className={ HomeStyles.typed } ref={ typedReference }/></h3>
+                    </div>
                 </div>
             </div>
-            <div className={HomeStyles.opportunity} data-type="startup" style={{paddingTop: "15rem"}}>
-                <h4>{translations["Les dernières opportunités"] + " :"}</h4>
-                <Carousel {...pageProps} component="LatestOpportunities" data={opportunities} />
-                <div className={HomeStyles.actions} data-justify="left">
-                    <Button button={ButtonStyles.callToAction} href="/directories/opportunities/categories" text={translations["Découvrir toutes les opportunités"]} />
-                    <Button button={ButtonStyles.callToActionAlternative} href="/opportunities" text={translations["Qu'est-ce qu'une opportunité"] + " ?"} />
-                </div>
-            </div>
-            <div className={SolutionsStyles.banner3}>
+            <div className={ HomeStyles.opportunity } data-type="home">
+				<div className="container">
+					<h3>{ translations["Les dernières opportunités"] + " :" }</h3>
+					<Carousel { ...pageProps } component="LatestOpportunities" data={ opportunities }/>
+					<div className={ HomeStyles.actions } data-justify="left">
+						<Button button={ ButtonStyles.callToAction } href="/directories/opportunities/categories" text={ translations["Découvrir toutes les opportunités"] }/>
+						<Button button={ ButtonStyles.callToActionAlternative } href="/opportunities" text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
+					</div>
+				</div>
+			</div>
+            {/* <div className={SolutionsStyles.banner3}>
                 <div className="container">
                     <h1 className={SolutionsStyles.bannerTitle}>{translations["Les réponses à vos questions"]}</h1>
                     <div className={SolutionsStyles.bannerBlockWrapper}>
@@ -125,8 +138,8 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                             <p className={SolutionsStyles.bannerParagraph}>{translations["Pour mettre en avant ton profil, mets le à jour régulièrement, publie des nouvelles, ajoute tes entreprises cibles à ta wishlist et suis leurs profils… elles en seront informées ! Pense aussi à préciser tes différents produits et services : ton profil sera plus attractif et notre algorithme de matching fera le reste !"]}</p>
                         </div>
                         <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Comment puis-je postuler à un appel à projets ?"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Retrouve toutes les opportunités en cours dans l'onglet « Opportunités ». Avec ton profil Forinov, tu seras informé.e directement des appels à projets qui matchent avec ton profil. Pour postuler réponds au questionnaire associé à l'appel, et gagne un temps fou grâce aux nombreuses informations pré-remplies à partir de ton profil !"]}</p>
+                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Comment puis-je postuler à un appel à candidatures ?"]}</h3>
+                            <p className={SolutionsStyles.bannerParagraph}>{translations["Retrouve toutes les opportunités en cours dans l'onglet « Opportunités ». Avec ton profil Forinov, tu seras informé.e directement des appels à candidatures qui matchent avec ton profil. Pour postuler réponds au questionnaire associé à l'appel, et gagne un temps fou grâce aux nombreuses informations pré-remplies à partir de ton profil !"]}</p>
                         </div>
                     </div>
                     <div className={SolutionsStyles.bannerBlockWrapper}>
@@ -144,6 +157,15 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                     >
                         {translations["N'hésitez pas à nous contacter"]}
                     </Link></h1>
+                </div>
+            </div> */}
+            <div className={ HomeStyles.questions } data-type="startup">
+                <div className="container">
+                    <h3>{ translations["Les réponses à vos questions"] + " :" }</h3>
+					<Carousel { ...pageProps } component="CorporateAccordions" data={ Object.values(solutions.startup) }/>
+                    <div className={ HomeStyles.actions } data-justify="center">
+						<p>{ translations["Vous avez des questions"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/contact" text={ translations["N'hésitez pas à nous contacter"] }/>.</p>
+					</div>
                 </div>
             </div>
         </div>
