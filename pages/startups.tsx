@@ -46,7 +46,7 @@ const StartupsHome = (pageProps: HomeInterface) => {
 			<div className={ HomeStyles.sourcing } data-type="startup">
 				<div className="container">
 					<h3>{ translations["Et comment ça marche"] + " ?" }</h3>
-					<p>{ translations["S'inscrire sur Forinov c'est simple et rapide"] }</p>
+					<p>{ translations["S'inscrire sur Forinov c'est simple et rapide"] + " !" }</p>
 					<Carousel { ...pageProps } component="HowToGetStarted"/>
 				</div>
 			</div>
@@ -96,8 +96,8 @@ const StartupsHome = (pageProps: HomeInterface) => {
 				<div className="container">
 					<h3>{ translations["Ils nous font confiance pour vous trouver"] + " !" }</h3>
 					<Carousel { ...pageProps } component="CompaniesLogos" data={ logos }/>
-					<h3>{ translations["Et oui, Forinov c'est gratuit pour les startups"] }</h3>
-					<p>{ translations["De l'inscription à la concrétisation, en passant par la prise de contact"] }</p>
+					<h3>{ translations["Et oui, Forinov c'est gratuit pour les startups"] + " !" }</h3>
+					<p>{ translations["De l'inscription à la concrétisation, en passant par la prise de contact"] + "." }</p>
 					<div className={ HomeStyles.actions } data-justify="center">
 						<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["J'en profite dès maintenant"] }/>
 					</div>
@@ -105,7 +105,7 @@ const StartupsHome = (pageProps: HomeInterface) => {
 			</div>
 			<div className={ HomeStyles.questions } data-type="startup">
 				<div className="container">
-					<h3>{ translations["Les réponses à vos questions"] }</h3>
+					<h3>{ translations["Les réponses à vos questions"] + " :" }</h3>
 					<Carousel { ...pageProps } component="StartupAccordions" data={ Object.values(landings.startup) }/>
 					<div className={ HomeStyles.actions } data-justify="center">
 						<p>{ translations["Vous avez des questions"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/contact" text={ translations["N'hésitez pas à nous contacter"] }/>.</p>
