@@ -87,15 +87,15 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                     <h3>{ translations["Comment faire décoller mon business"] + " ?" }</h3>
                     <div className="grid threeColumns">
                         <div className={ SolutionsStyles.step }>
-                            <h5>1.</h5>
+                            <h5>1</h5>
                             <p>{ translations["Je crée mon profil \"startup\" gratuitement et en quelques clics"] + "." }</p>
                         </div>
                         <div className={ SolutionsStyles.step }>
-                            <h5>2.</h5>
+                            <h5>2</h5>
                             <p>{ translations["J'accède à la communauté et aux annuaires d'opportunités, d'entreprises et de partenaires"] + "." }</p>
                         </div>
                         <div className={ SolutionsStyles.step }>
-                            <h5>3.</h5>
+                            <h5>3</h5>
                             <p>{ translations["Je mets en avant mes solutions et partage mon actualité pour améliorer mon référencement"] + "." }</p>
                         </div>
                     </div>

@@ -184,7 +184,7 @@
     background-color: var(--program-color) !important;
 }
 .type[data-opportunity-type="2"] > div > div > p {
-    color: var(--perfect-black-color) !important;
+    color: var(--perfect-white-color) !important;
 }
 .type[data-opportunity-type="3"] > div > div {
     background-color: var(--challenge-color) !important;
@@ -202,5 +202,5 @@
     background-color: var(--offer-color) !important;
 }
 .type[data-opportunity-type="5"] > div > div > p {
-    color: var(--perfect-black-color) !important;
+    color: var(--perfect-white-color) !important;
 }
