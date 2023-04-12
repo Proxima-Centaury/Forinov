@@ -15,7 +15,7 @@ import FolderStyles from "../../public/stylesheets/components/cards/Folder.modul
 /* Folder Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const FolderCard = (folderProps: any) => {
-    const { folder } = folderProps;
+    const { folder, folderLink, carouselItem } = folderProps;
     const showOtherStartups = (startups: Array<any>, shift: Number) => {
         const otherStartups = startups.slice(shift as number, startups.length).map((startup: any) => startup[1] || startup.NAME);
         return otherStartups.join("\n");
