@@ -35,7 +35,7 @@ const EntityCard = (entityProps: any) => {
                 { (type.match(/(startup)/) && entity.TECHNOLOGIES.length <= 0) ? <Tags tags={ structureTags(translations["Non définies"] + ".") } limit={ 2 }/> : null }
             </div>
             { (details) ? <div className={ EntityStyles.description }>
-                <Format content={ entity.DESCRIPTION || translations["Non renseigné"] + "." }/>
+                <Format { ...entityProps } content={ entity.DESCRIPTION || translations["Non renseigné"] + "." }/>
             </div> : null }
         </div>
     </div>;
