@@ -761,6 +761,28 @@ body {
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
 }
+.placeholderCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 15px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+}
+.placeholderCard > p {
+    color: var(--logo-blue-color);
+    font-size: 32px;
+    font-family: "Nunito Sans";
+    font-weight: bold;
+    text-align: center;
+}
+.placeholderCard > a {
+    pointer-events: all;
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Spacer */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

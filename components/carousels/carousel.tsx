@@ -215,10 +215,13 @@ const CustomVertical = (carouselProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ClassicHorizontal = (carouselProps: any) => {
     const carouselReference = useRef(null);
+    const { component, states } = carouselProps;
+    const { translations, RGB } = states;
     const [ pressed, setPressed ] = useState(false);
     const [ startPosition, setStartPosition ] = useState(0);
     const [ position, setPosition ] = useState(0);
     const [ limit, setLimit ] = useState(0);
+	const [ lightingState, setLightingState ] = useState("disabled");
     const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithArrows;
     // const scrollHandler = (event: any) => {
@@ -315,6 +318,7 @@ const ClassicHorizontal = (carouselProps: any) => {
             };
         };
     });
+	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     return <div className={ CarouselStyles.carousel } ref={ carouselReference }>
         <div className={ CarouselStyles.arrows }>
             <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: any) => transitionHandler(event, "left") } icon="fa-light fa-arrow-left"/>
@@ -322,6 +326,18 @@ const ClassicHorizontal = (carouselProps: any) => {
         </div>
         <div className={ CarouselStyles.container } style={ { left: (position <= 0) ? ((position < limit) ? limit : position) + "px" : "0px" } }>
             <Items { ...carouselProps }/>
+            { (component === "LatestStartups") ? <div className={ CarouselStyles.item } data-rgb={ lightingState }>
+                <div className="placeholderCard">
+                    <p>{ translations["Rejoignez Forinov et découvrez l'ensemble des startups"] + " !" }</p>
+                    <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Je m'inscris"] }/>
+                </div>
+            </div> : null }
+            { (component === "LatestOpportunities") ? <div className={ CarouselStyles.item } data-rgb={ lightingState }>
+                <div className="placeholderCard">
+                    <p>{ translations["Rejoignez Forinov et découvrez l'ensemble des opportunités"] + " !" }</p>
+                    <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Je m'inscris"] }/>
+                </div>
+            </div> : null }
         </div>
     </div>;
 };
@@ -358,7 +374,7 @@ const Items = (itemProps: any) => {
             return data.map((folder: any, key: Key) => {
                 const url =  router.asPath.substring(0, router.asPath.lastIndexOf("/")) + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID;
                 return <div key={ key } className={ CarouselStyles.item } data-rgb={ lightingState }>
-                    <FolderCard { ...itemProps } folder={ folder }/>
+                    <FolderCard { ...itemProps } folder={ folder } folderLink={ url } carouselItem/>
                 </div>;
             });
         case "Testimonials":
