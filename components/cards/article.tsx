@@ -21,7 +21,10 @@ const ArticleCard = (articleProps: any) => {
     return <div className={ ArticleStyles.card }>
         <div className={ ArticleStyles.banner }>
             { (article.PICTURE) ? <Image src={ article.PICTURE } alt="" width="3840" height="2160"/> : null }
-            <Button button={ ButtonStyles.callToActionNegative } href={ article.URL } icon="fa-light fa-eye" text={ translations["Voir plus"] }/>
+            <a className={ ButtonStyles.callToActionNegative } href={ article.URL } target="_blank">
+                <i className="fa-light fa-eye"/>
+                <span>{ translations["Voir plus"] }</span>
+            </a>
         </div>
         <div className={ ArticleStyles.content }>
             <div className={ ArticleStyles.container }>
