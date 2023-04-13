@@ -527,7 +527,7 @@
     position: absolute;
     top: -2.5px;
     right: -2.5px;
-    font-size: 12px;
+    font-size: 10px;
     color: var(--perfect-white-color) !important;
     background-color: var(--error-color);
     border-radius: 10px;
