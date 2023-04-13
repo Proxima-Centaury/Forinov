@@ -509,7 +509,7 @@ class Utilities {
         type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
         type = (type.match(/(entreprise)/)) ? "corporate" : type;
         type = (type.match(/(partenaire)/)) ? "partner" : type;
-        type = (type.match(/(opportu)/)) ? "opportunity" : type;
+        type = (type.match(/(opportunities)/)) ? "opportunity" : type;
         return type;
     };
     /**
