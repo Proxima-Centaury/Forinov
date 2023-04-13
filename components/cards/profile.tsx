@@ -26,7 +26,7 @@ const ProfileCard = (profileProps: any) => {
     useEffect(() => (!type) ? setProfileType(definedType) : setProfileType(type), [ type, definedType ]);
     return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
-            <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3840" height="2160" priority/>
+            <Image src={ profile.BACKGROUND } alt="" width="3840" height="2160" priority/>
             { (profileType.match(/(startup)/) && !carouselItem) ? <StartupActions translations={ translations }/> : null }
             { (profileType.match(/(corporate|entreprise)/) && !carouselItem) ? <CorporateActions translations={ translations }/> : null }
             { (profileType.match(/(partner|partenaire)/) && !carouselItem) ? <PartnerActions translations={ translations }/> : null }
