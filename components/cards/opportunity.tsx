@@ -22,7 +22,7 @@ const OpportunityCard = (opportunityProps: any) => {
     const { translations } = states;
     return <div className={ OpportunityStyles.card }>
         <div className={ OpportunityStyles.banner } data-opportunity-type={ opportunity.TYPE[0].ID || "" }>
-            { (opportunity.BACKGROUND) ? <Image src={ opportunity.BACKGROUND } alt={ "Image de fond de l'opportunité " + opportunity.TITLE + "." } width="3840" height="2160"/> : null }
+            { (opportunity.BACKGROUND) ? <Image src={ opportunity.BACKGROUND } alt="" width="3840" height="2160"/> : null }
             { (opportunity.LANGUAGE === "en") ? <div className={ OpportunityStyles.informations }>
                 <p>{ translations["Anglais"] }</p>
             </div> : null }
@@ -32,7 +32,7 @@ const OpportunityCard = (opportunityProps: any) => {
         </div>
         <div className={ OpportunityStyles.content }>
             { (opportunity.OWNERLOGO) ? <div className={ OpportunityStyles.rightContainer }>
-                <Image src={ opportunity.OWNERLOGO } width="64" height="64" alt={ opportunity.OWNERNAME + " logo." }/>
+                <Image src={ opportunity.OWNERLOGO } alt="" width="64" height="64"/>
             </div> : null }
             <div className={ OpportunityStyles.leftContainer }>
                 <div className={ OpportunityStyles.top }>
