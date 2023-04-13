@@ -169,7 +169,7 @@ const StepsCarousel = (carouselProps: any) => {
                         </ul>
                     </div>
                     <div className={ CarouselStyles.stepPicture } data-rgb={ lightingState }>
-                        <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                        <Image src={ router.basePath + step.picture } alt="" width="3840" height="2160"/>
                     </div>
                 </div>;
             }) }
@@ -192,7 +192,7 @@ const CustomVertical = (carouselProps: any) => {
                     <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
                     <Format { ...carouselProps } content={ translations[step.text] + "." }/>
                 </div> : <div className={ CarouselStyles.verticalPicture } data-rgb={ lightingState }>
-                    <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                    <Image src={ router.basePath + step.picture } alt="" width="3840" height="2160"/>
                 </div> }
                 <div className={ CarouselStyles.steps }>
                     <div className="separatorVertical"></div>
@@ -201,7 +201,7 @@ const CustomVertical = (carouselProps: any) => {
                     </button>
                 </div>
                 { (key % 2 === 1) ? <div className={ CarouselStyles.verticalPicture } data-rgb={ lightingState }>
-                    <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                    <Image src={ router.basePath + step.picture } alt="" width="3840" height="2160"/>
                 </div> : <div className={ CarouselStyles.verticalContent }>
                     <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
                     <Format { ...carouselProps } content={ translations[step.text] + "." }/>
@@ -401,7 +401,7 @@ const InfiniteScrollHorizontal = (carouselProps: any) => {
                     if(key < 14) {
                         const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
                         return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
-                            <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
+                            <Image src={ logo } alt="" width="100" height="100"/>
                         </Link>;
                     };
                 });
