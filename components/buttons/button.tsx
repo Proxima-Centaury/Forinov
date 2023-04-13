@@ -22,7 +22,7 @@ const Button = (buttonProps: ButtonInterface): JSX.Element => {
         (action) ? action(event) : null;
     };
     const classList = button + ((active) ? " " + ButtonStyles.active : "") + ((disabled) ? " disabled" : "");
-	useEffect(() => (light && !disabled) ? setLightingState("enabled") : setLightingState("disabled"), [ light ]);
+	useEffect(() => (light && !disabled) ? setLightingState("enabled") : setLightingState("disabled"), [ light, disabled ]);
     if(button === ButtonStyles.navigationButton) {
         return <button className={ classList } onClick={ actionTrigger } data-rgb={ lightingState }>
             <span></span>
@@ -42,7 +42,7 @@ const Button = (buttonProps: ButtonInterface): JSX.Element => {
         return <button className={ classList } onClick={ actionTrigger } data-rgb={ lightingState }>
             { (icon) ? <i className={ icon.toString() }/> : null }
             { (text) ? <span>{ text }</span> : null }
-            { (notifications > 0) ? <span className={ ButtonStyles.notifications }>{ notifications.toString() }</span> : null }
+            { (notifications && notifications > 0) ? <span className={ ButtonStyles.notifications }>{ notifications.toString() }</span> : null }
         </button>;
     };
 };
