@@ -95,7 +95,9 @@
 	width: 100%;
 }
 @media screen and (max-width: 576px) {
-	.item > * {
+	.item > *,
+	.item > *[class*="Profile"],
+	.item > *[class*="Opportunity"] {
 		min-width: 100%;
 		width: 100%;
 		max-width: 100%;
