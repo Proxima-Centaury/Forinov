@@ -45,7 +45,7 @@ const Navbar = (pageProps: NavbarInterface): JSX.Element => {
     return <nav className={ NavbarStyles.navbar } ref={ menuReference }>
         <div className={ NavbarStyles.logo }>
             <Link href="/">
-                <Image src={ router.basePath + "/assets/logo.png" } alt={ translations["Logo de Forinov"] } width="50" height="50"/>
+                <Image src={ router.basePath + "/assets/logo.png" } alt="" width="50" height="50"/>
                 <span>forinov</span>
             </Link>
         </div>
