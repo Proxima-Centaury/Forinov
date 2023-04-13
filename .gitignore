@@ -48,6 +48,7 @@ production/
 tmp.*
 
 # Lock files
+package-lock.json
 
 # Next coming features
 typescript/schemas/
