@@ -22,7 +22,6 @@ const OpportunityPreview = (pageProps: any) => {
     const { opportunity, states } = pageProps;
     const { translations, RGB } = states;
 	const [ lightingState, setLightingState ] = useState("disabled");
-    const backgroundAlt = translations["Bannière d'opportunité"] + ".";
     const countries = opportunity.COUNTRIES;
     const localisationsText = translations["Localisations"] + " : ";
     const countriesList = localisationsText + countries.join(", ");
@@ -30,11 +29,11 @@ const OpportunityPreview = (pageProps: any) => {
 	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     return <div className={ PreviewStyles.opportunityPreview } data-rgb={ lightingState }>
         <div className={ PreviewStyles.background } data-opportunity-type={ opportunity.TYPE[0].ID }>
-            { (opportunity.BACKGROUND) ? <Image src={ opportunity.BACKGROUND } width="3840" height="2160" alt={ backgroundAlt }/> : null }
+            { (opportunity.BACKGROUND) ? <Image src={ opportunity.BACKGROUND } alt="" width="3840" height="2160"/> : null }
         </div>
         <div className={ PreviewStyles.identification }>
             <div className={ PreviewStyles.logo }>
-                <Image src={ opportunity.OWNERLOGO } width="120" height="120" alt={ translations["Logo d'entreprise"] + "." }/>
+                <Image src={ opportunity.OWNERLOGO } alt="" width="120" height="120"/>
             </div>
             <div className={ PreviewStyles.data }>
                 <h3>{ opportunity.OWNERNAME + " — " }<span>{ opportunity.TITLE }</span></h3>
