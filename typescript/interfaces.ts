@@ -102,6 +102,7 @@ interface ButtonInterface {
     action?: Function,
     icon?: String,
     text?: String,
+    notifications: Number,
     active?: Boolean
     disabled?: Boolean,
     light?: Boolean
