@@ -2,6 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { Fragment, useEffect, Key, useRef, useState } from "react";
+import transitionInstance from "../../scripts/transitions";
 import { formatNameForUrl } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -21,70 +22,6 @@ import Format from "../texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import CarouselStyles from "../../public/stylesheets/components/carousels/Carousel.module.css";
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Commons */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-class Transition {
-    transform;
-    transformArrows;
-    constructor() {
-        this.transform = 0;
-        this.transformArrows = 0;
-    };
-    resetTransform = () => {
-        this.transform = 0;
-        return true;
-    };
-    handleTransition = (event: any, carousel: any) => {
-        const itemWidth = 420;
-        const innerCarousel = carousel.querySelector("." + CarouselStyles.container);
-        const cards = [ ...innerCarousel.children ];
-        const limit = ((cards.length - 1) * itemWidth) * -1;
-        if(window.innerWidth > 576) {
-            if(event.wheelDelta > 0) {
-                this.transform = (this.transform < 0) ? this.transform + itemWidth + 16 : this.transform;
-            } else {
-                this.transform = (this.transform > limit) ? this.transform - itemWidth - 16 : this.transform;
-            };
-        };
-        innerCarousel.style.transform = "translateX(" + this.transform + "px)";
-        return true;
-    };
-    handleTransitionWithSteps = (event: any, name: String) => {
-        const target = event.target.closest("button");
-        const container = target.parentElement;
-        const buttons = (container) ? [ ...container.querySelectorAll("button") ] : [];
-        if(buttons.length > 0) {
-            buttons.forEach((button, key) => {
-                button.setAttribute("data-index", key);
-                button.classList.remove(ButtonStyles.active);
-            });
-        };
-        target.classList.add(ButtonStyles.active);
-        const carousel = document.querySelector("[data-carousel='" + name + "']") as HTMLElement;
-        const index = parseInt(target.getAttribute("data-index"));
-        if(carousel) {
-            carousel.style.transform = (index === 0) ? "translateX(-" + index + "00%)" : "translateX(calc(-" + index + "00% - " + (index * 80) + "px))";
-            return true;
-        };
-        return false;
-    };
-    handleTransitionWithArrows = (event: any, direction: String) => {
-        const target = event.target.closest("button");
-        const preciseTarget = target.closest("." + CarouselStyles.carousel);
-        const itemWidth = 100;
-        const container = preciseTarget.querySelector("." + CarouselStyles.container);
-        const cards = [ ...container.children ];
-        const limit = ((cards.length - 1) * itemWidth) * -1;
-        if(direction === "left") {
-            this.transform = (this.transform < 0) ? this.transform + itemWidth : this.transform;
-        } else {
-            this.transform = (this.transform > limit) ? this.transform - itemWidth : this.transform;
-        };
-        container.style.transform = "translateX(calc(" + this.transform + "% + " + ((this.transform / 100) * 16) + "px))";
-        return true;
-    };
-};
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -130,7 +67,6 @@ const StepsCarousel = (carouselProps: any) => {
     const { states, component, carouselsConfigurations, router } = carouselProps;
 	const { translations, RGB } = states;
 	const [ lightingState, setLightingState ] = useState("disabled");
-    const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const steps: Array<any> = carouselsConfigurations[component];
 	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
@@ -169,7 +105,7 @@ const StepsCarousel = (carouselProps: any) => {
                         </ul>
                     </div>
                     <div className={ CarouselStyles.stepPicture } data-rgb={ lightingState }>
-                        <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                        <Image src={ router.basePath + step.picture } alt="" width="3840" height="2160"/>
                     </div>
                 </div>;
             }) }
@@ -192,7 +128,7 @@ const CustomVertical = (carouselProps: any) => {
                     <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
                     <Format { ...carouselProps } content={ translations[step.text] + "." }/>
                 </div> : <div className={ CarouselStyles.verticalPicture } data-rgb={ lightingState }>
-                    <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                    <Image src={ router.basePath + step.picture } alt="" width="3840" height="2160"/>
                 </div> }
                 <div className={ CarouselStyles.steps }>
                     <div className="separatorVertical"></div>
@@ -201,7 +137,7 @@ const CustomVertical = (carouselProps: any) => {
                     </button>
                 </div>
                 { (key % 2 === 1) ? <div className={ CarouselStyles.verticalPicture } data-rgb={ lightingState }>
-                    <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                    <Image src={ router.basePath + step.picture } alt="" width="3840" height="2160"/>
                 </div> : <div className={ CarouselStyles.verticalContent }>
                     <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
                     <Format { ...carouselProps } content={ translations[step.text] + "." }/>
@@ -215,11 +151,13 @@ const CustomVertical = (carouselProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ClassicHorizontal = (carouselProps: any) => {
     const carouselReference = useRef(null);
+    const { component, states } = carouselProps;
+    const { translations, RGB } = states;
     const [ pressed, setPressed ] = useState(false);
     const [ startPosition, setStartPosition ] = useState(0);
     const [ position, setPosition ] = useState(0);
     const [ limit, setLimit ] = useState(0);
-    const transitionInstance = new Transition();
+	const [ lightingState, setLightingState ] = useState("disabled");
     const transitionHandler = transitionInstance.handleTransitionWithArrows;
     // const scrollHandler = (event: any) => {
     //     (window.innerWidth > 576) ? event.preventDefault() : null;
@@ -315,6 +253,7 @@ const ClassicHorizontal = (carouselProps: any) => {
             };
         };
     });
+	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     return <div className={ CarouselStyles.carousel } ref={ carouselReference }>
         <div className={ CarouselStyles.arrows }>
             <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: any) => transitionHandler(event, "left") } icon="fa-light fa-arrow-left"/>
@@ -322,6 +261,18 @@ const ClassicHorizontal = (carouselProps: any) => {
         </div>
         <div className={ CarouselStyles.container } style={ { left: (position <= 0) ? ((position < limit) ? limit : position) + "px" : "0px" } }>
             <Items { ...carouselProps }/>
+            { (component === "LatestStartups") ? <div className={ CarouselStyles.item } data-rgb={ lightingState }>
+                <div className="placeholderCard">
+                    <p>{ translations["Rejoignez Forinov et découvrez l'ensemble des startups"] + " !" }</p>
+                    <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Je m'inscris"] }/>
+                </div>
+            </div> : null }
+            { (component === "LatestOpportunities") ? <div className={ CarouselStyles.item } data-rgb={ lightingState }>
+                <div className="placeholderCard">
+                    <p>{ translations["Rejoignez Forinov et découvrez l'ensemble des opportunités"] + " !" }</p>
+                    <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Je m'inscris"] }/>
+                </div>
+            </div> : null }
         </div>
     </div>;
 };
@@ -358,7 +309,7 @@ const Items = (itemProps: any) => {
             return data.map((folder: any, key: Key) => {
                 const url =  router.asPath.substring(0, router.asPath.lastIndexOf("/")) + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID;
                 return <div key={ key } className={ CarouselStyles.item } data-rgb={ lightingState }>
-                    <FolderCard { ...itemProps } folder={ folder }/>
+                    <FolderCard { ...itemProps } folder={ folder } folderLink={ url } carouselItem/>
                 </div>;
             });
         case "Testimonials":
@@ -385,7 +336,7 @@ const InfiniteScrollHorizontal = (carouselProps: any) => {
                     if(key < 14) {
                         const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
                         return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
-                            <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
+                            <Image src={ logo } alt="" width="100" height="100"/>
                         </Link>;
                     };
                 });
@@ -408,7 +359,6 @@ const InfiniteScrollHorizontal = (carouselProps: any) => {
 const AccordionsHorizontal = (carouselProps: any) => {
     const { component, data, noActions, states } = carouselProps;
 	const { translations } = states;
-    const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const questionsButtons = [ translations["Général"] ];
     return <div className={ CarouselStyles.carousel } data-direction="bidirectional">

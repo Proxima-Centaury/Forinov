@@ -15,7 +15,7 @@ const MemberCard = (memberProps: any) => {
     const { member } = memberProps;
     return <div className={ MemberStyles.card }>
         <div className={ MemberStyles.main }>
-            { (member.PICTURE) ? <Image src={ member.PICTURE } alt={ "Image de profil de " + member.FIRSTNAME + " " + member.LASTNAME + "." } width="80" height="80"/> : null }
+            { (member.PICTURE) ? <Image src={ member.PICTURE } alt="" width="80" height="80"/> : null }
             { (!member.PICTURE) ? <i className="fa-light fa-user"/> : null }
             <div className={ MemberStyles.identity }>
                 { (member.FIRSTNAME || member.LASTNAME) ? <p className={ MemberStyles.fullname }>{ member.FIRSTNAME + member.LASTNAME }</p> : null }

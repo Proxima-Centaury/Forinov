@@ -2,6 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { MouseEventHandler, useState, useEffect } from "react";
+import errorsHandlerInstance from "../../scripts/errors";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -13,13 +14,15 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Devtools */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Devtools = ({ states, stateSetters }: any) => {
-    const { session, theme, translations, RGB }: any = states;
-    const { setSession, setTheme, setRGB }: any = stateSetters;
+const Devtools = (devtoolsProps: any) => {
+    const { states, stateSetters, router } = devtoolsProps;
+    const { errors, session, theme, translations, RGB } = states;
+    const { setErrors, setSession, setTheme, setModal, setRGB } = stateSetters;
     const [ hidden, setHidden ] = useState(false);
     const [ themeSwitcherIcon, setThemeSwitcherIcon ] = useState("fa-light fa-moon");
     const [ themeTopicSwitcherIcon, setThemeTopicSwitcherIcon ] = useState("fa-light fa-moon");
     const [ RGBSwitcherIcon, setRGBSwitcherIcon ] = useState("fa-light fa-lightbulb");
+    const [ errorsCount, setErrorsCount ] = useState(0);
     const switchSessionState: MouseEventHandler = (event) => {
         event.preventDefault();
         setSession(!session);
@@ -32,6 +35,10 @@ const Devtools = ({ states, stateSetters }: any) => {
         event.preventDefault();
         (theme !== "matrix") ? setTheme("matrix") : setTheme("dark");
     };
+    const showPageErrors: MouseEventHandler = (event) => {
+        event.preventDefault();
+        setModal("errors");
+    };
     const switchRGBState: MouseEventHandler = (event) => {
         event.preventDefault();
         setRGB(!RGB);
@@ -43,6 +50,13 @@ const Devtools = ({ states, stateSetters }: any) => {
     useEffect(() => (theme === "light") ? setThemeSwitcherIcon("fa-light fa-moon") : setThemeSwitcherIcon("fa-light fa-sun"), [ theme ]);
     useEffect(() => (theme !== "matrix") ? setThemeTopicSwitcherIcon("fa-light fa-phone-volume") : setThemeTopicSwitcherIcon("fa-light fa-phone-hangup"), [ theme ]);
     useEffect(() => (RGB) ? setRGBSwitcherIcon("fa-light fa-lightbulb") : setRGBSwitcherIcon("fa-light fa-lightbulb-on"), [ RGB ]);
+    useEffect(() => {
+        const errorHandlerResponse: any = errorsHandlerInstance.startCheckings(router.asPath);
+        setErrors(errorHandlerResponse.errors);
+    }, [ router.asPath ]);
+    useEffect(() => {
+        setErrorsCount(Object.keys(errors).length);
+    }, [ errors ]);
     return <div className={ (hidden) ? "closed" : "" } data-type="devtools">
         <p>Devtools</p>
         <div data-type="tooltip" data-tooltip={ translations["Simuler la connexion"] }>
@@ -55,7 +69,7 @@ const Devtools = ({ states, stateSetters }: any) => {
             <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchThemeTopic } icon={ themeTopicSwitcherIcon } light={ RGB }/>
         </div>
         <div data-type="tooltip" data-tooltip={ translations["Voir les erreurs sur la page"] }>
-            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon="fa-light fa-triangle-exclamation" disabled light={ RGB }/>
+            <Button button={ ButtonStyles.callToActionRoundedIcon } action={ showPageErrors } icon="fa-light fa-triangle-exclamation" notifications={ errorsCount } light={ RGB }/>
         </div>
         <div data-type="tooltip" data-tooltip={ translations["Activer l'éclairage RGB"] }>
             <Button button={ ButtonStyles.callToActionRoundedIcon } action={ switchRGBState } icon={ RGBSwitcherIcon } light={ RGB }/>

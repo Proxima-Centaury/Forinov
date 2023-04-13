@@ -87,15 +87,15 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                     <h3>{ translations["Comment faire décoller mon business"] + " ?" }</h3>
                     <div className="grid threeColumns">
                         <div className={ SolutionsStyles.step }>
-                            <h5>1.</h5>
+                            <h5>1</h5>
                             <p>{ translations["Je crée mon profil \"startup\" gratuitement et en quelques clics"] + "." }</p>
                         </div>
                         <div className={ SolutionsStyles.step }>
-                            <h5>2.</h5>
+                            <h5>2</h5>
                             <p>{ translations["J'accède à la communauté et aux annuaires d'opportunités, d'entreprises et de partenaires"] + "." }</p>
                         </div>
                         <div className={ SolutionsStyles.step }>
-                            <h5>3.</h5>
+                            <h5>3</h5>
                             <p>{ translations["Je mets en avant mes solutions et partage mon actualité pour améliorer mon référencement"] + "." }</p>
                         </div>
                     </div>
@@ -139,7 +139,7 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                         </div>
                         <div className={SolutionsStyles.bannerBlock}>
                             <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Comment puis-je postuler à un appel à candidatures ?"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Retrouve toutes les opportunités en cours dans l'onglet « Opportunités ». Avec ton profil Forinov, tu seras informé.e directement des appels à candidatures qui matchent avec ton profil. Pour postuler réponds au questionnaire associé à l'appel, et gagne un temps fou grâce aux nombreuses informations pré-remplies à partir de ton profil !"]}</p>
+                            <p className={SolutionsStyles.bannerParagraph}>{translations["Retrouve toutes les opportunités en cours dans l'onglet <b>Opportunités</b>. Avec ton profil Forinov, tu seras informé.e directement des appels à candidatures qui matchent avec ton profil. Pour postuler réponds au questionnaire associé à l'appel, et gagne un temps fou grâce aux nombreuses informations pré-remplies à partir de ton profil"]}</p>
                         </div>
                     </div>
                     <div className={SolutionsStyles.bannerBlockWrapper}>

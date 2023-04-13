@@ -59,9 +59,9 @@ const ProfileMenu = (pageProps: any) => {
     }, []);
     useEffect(() => {
         let correctMenu = menus.startup as any;
-        if(type.match(/(startup)/)) { correctMenu = menus.startup };
-        if(type.match(/(corporate|entreprise)/)) { correctMenu = menus.corporate };
-        if(type.match(/(partner|partenaire)/)) { correctMenu = menus.partner };
+        if(type.match(/(startups)/)) { correctMenu = menus.startup };
+        if(type.match(/(corporates)/)) { correctMenu = menus.corporate };
+        if(type.match(/(partners)/)) { correctMenu = menus.partner };
         setMenu(correctMenu);
     }, [ type ]);
     return <div className={ ProfileStyles.menu }>

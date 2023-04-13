@@ -80,16 +80,24 @@
 	}
 }
 .item > * {
-	min-width: 420px;
-	width: 420px;
-	max-width: 420px;
+	min-width: 400px;
+	width: 400px;
+	max-width: 400px;
 	height: 100%;
+}
+.item > *[class*="Profile"],
+.item > *[class*="Opportunity"] {
+	min-width: 520px;
+	width: 520px;
+	max-width: 520px;
 }
 .itemFullWidth > * {
 	width: 100%;
 }
 @media screen and (max-width: 576px) {
-	.item > * {
+	.item > *,
+	.item > *[class*="Profile"],
+	.item > *[class*="Opportunity"] {
 		min-width: 100%;
 		width: 100%;
 		max-width: 100%;

@@ -15,17 +15,17 @@
                 "navbar": [
                     { "url": "", "text": "Startups", "nesting": true, "nest": [
                         { "url": "/startups", "text": "Comment ça marche" },
-                        { "url": "/solutions/startups", "text": "Solutions de startups" },
+                        { "url": "/solutions/startups", "text": "Solutions startups" },
                         { "url": "/directories/startups", "text": "Annuaire de startups" }
                     ] },
                     { "url": "", "text": "Entreprises", "nesting": true, "nest": [
                         { "url": "/corporates", "text": "Comment ça marche" },
-                        { "url": "/solutions/corporates", "text": "Solutions d'entreprises" },
+                        { "url": "/solutions/corporates", "text": "Solutions entreprises" },
                         { "url": "/directories/corporates", "text": "Annuaire d'entreprises" }
                     ] },
                     { "url": "", "text": "Partenaires", "nesting": true, "nest": [
                         { "url": "/partners", "text": "Comment ça marche" },
-                        { "url": "/solutions/partners", "text": "Solutions de partenaires" },
+                        { "url": "/solutions/partners", "text": "Solutions partenaires" },
                         { "url": "/directories/partners", "text": "Annuaire de partenaires" }
                     ] },
                     { "url": "", "text": "Opportunités", "nesting": true, "nest": [
@@ -46,7 +46,7 @@
             "layout": {
                 "footer": [
                     { "url": "", "text": "Nos offres", "nesting": true, "nest": [
-                        { "url": "/solutions/startups", "text": "Solutions de startups" },
+                        { "url": "/solutions/startups", "text": "Solutions startups" },
                         { "url": "/solutions/corporates", "text": "Solutions entreprises" },
                         { "url": "/solutions/partners", "text": "Solutions partenaires" }
                     ] },

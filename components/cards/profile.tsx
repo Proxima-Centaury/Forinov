@@ -26,7 +26,7 @@ const ProfileCard = (profileProps: any) => {
     useEffect(() => (!type) ? setProfileType(definedType) : setProfileType(type), [ type, definedType ]);
     return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
-            <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3840" height="2160" priority/>
+            <Image src={ profile.BACKGROUND } alt="" width="3840" height="2160" priority/>
             { (profileType.match(/(startup)/) && !carouselItem) ? <StartupActions translations={ translations }/> : null }
             { (profileType.match(/(corporate|entreprise)/) && !carouselItem) ? <CorporateActions translations={ translations }/> : null }
             { (profileType.match(/(partner|partenaire)/) && !carouselItem) ? <PartnerActions translations={ translations }/> : null }
@@ -49,7 +49,7 @@ const ProfileCard = (profileProps: any) => {
                         <a href={ "https://" + profile.WEBSITE } target="blank">{ translations["Site internet"] }</a>
                     </div> : null }
                 </div> : null }
-                { (profile.COMMENT) ? <Format content={ profile.COMMENT }/> : null }
+                { (profile.COMMENT) ? <Format { ...profileProps } content={ profile.COMMENT }/> : null }
                 { (profile.CATEGORY.length > 0) ? <Tags tags={ profile.CATEGORY } main={ true }/> : null }
                 { (profile.TAGS) ? <Tags tags={ structureTags(profile.TAGS) } limit={ 2 }/> : null }
                 { (profileType.match(/(startup)/) && !carouselItem) ? <div className="separator"></div> : null }

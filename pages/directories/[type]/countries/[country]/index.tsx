@@ -33,7 +33,7 @@ const DirectoryCountry = (pageProps: DirectoryInterface) => {
         <IdenfiticationBanner { ...pageProps }/>
         { (companies.length > 0) ? <div className={ display }>
             { companies.map((company: any, key: KeyType) => (!search || (search && checkMatch(company.NAME, search))) ? <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID }>
-                <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
+                <EntityCard { ...pageProps } entity={ company } type={ formatType(type, "en") || undefined } details/>
             </Link> : null) }
         </div> : null}
         <div className={ DirectoryStyles.signup }>
@@ -53,11 +53,11 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const language = locale?.substring(0, 2);
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const companies = async () => {
-        if(type.match(/(startup)/)) {
+        if(type.match(/(startups)/)) {
             return await api.getFilteredStartupsByCountry(country, "next", "Sorbonne", language);
-        } else if(type.match(/(corporate|entreprise)/)) {
+        } else if(type.match(/(corporates)/)) {
             return await api.getFilteredCorporatesByCountry(country, "next", "Sorbonne", language);
-        } else if(type.match(/(partner|partenaire)/)) {
+        } else if(type.match(/(partners)/)) {
             return await api.getFilteredPartnersByCountry(country, "next", "Sorbonne", language);
         };
     };

@@ -32,7 +32,7 @@ const Product = (pageProps: ProductsInterface) => {
     }, [ products, product ]);
     return <div id="product" className="container">
         { (selectedProduct) ? <div className={ProductStyles.imageWrapper}>
-            { (selectedProduct.PICTURE) ? <Image src={ selectedProduct.PICTURE } alt={ selectedProduct.NAME }/> : null }
+            { (selectedProduct.PICTURE) ? <Image src={ selectedProduct.PICTURE } alt=""/> : null }
         </div> : null }
         { (selectedProduct) ? <div>
             <h1 className={ProductStyles.name}>{selectedProduct.NAME}</h1>
@@ -105,9 +105,9 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     if(type) {
         type = String(type);
-        type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-        type = (type.match(/(corporate)/)) ? "entreprise" : type;
-        type = (type.match(/(partner)/)) ? "partenaire" : type;
+        type = (type.match(/(startups)/)) ? "startup" : type;
+        type = (type.match(/(corporates)/)) ? "entreprise" : type;
+        type = (type.match(/(partners)/)) ? "partenaire" : type;
     };
     const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);
     if(!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {

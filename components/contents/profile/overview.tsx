@@ -24,9 +24,9 @@ const ProfileOverview = (pageProps: any) => {
     return <div className={ OverviewStyles.overview }>
         <h4>{ translations["En bref"] }</h4>
         <div className="separator"></div>
-        { (type.match(/(startup)/)) ? <Startup { ...pageProps }/> : null }
-        { (type.match(/(corporate|entreprise)/)) ? <Corporate { ...pageProps }/> : null }
-        { (type.match(/(partner|partenaire)/)) ? <Partner { ...pageProps }/> : null }
+        { (type.match(/(startups)/)) ? <Startup { ...pageProps }/> : null }
+        { (type.match(/(corporates)/)) ? <Corporate { ...pageProps }/> : null }
+        { (type.match(/(partners)/)) ? <Partner { ...pageProps }/> : null }
         <div className="separator"></div>
         { (profile.IMMAT) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Numéro d'immatriculation"] }</p>

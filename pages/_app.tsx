@@ -36,6 +36,7 @@ import "../public/stylesheets/tests.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const App = ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
+    const [ errors, setErrors ] = useState({});
     const [ locale, setLocale ] = useState(pageProps.locale);
     const [ locales, setLocales ] = useState(pageProps.locales);
     const [ metadatas, setMetadatas ] = useState(getMetadatasTranslations(locale));
@@ -107,6 +108,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         setCookie("forinov_rgb_preference", RGB, { sameSite: "strict" });
     }, [ RGB ])
     pageProps.states = {};
+    pageProps.states["errors"] = errors;
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;
     pageProps.states["metadatas"] = metadatas;
@@ -118,6 +120,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.states["RGB"] = RGB;
     pageProps.states["production"] = production;
     pageProps.stateSetters = {};
+    pageProps.stateSetters["setErrors"] = setErrors;
     pageProps.stateSetters["setLocale"] = setLocale;
     pageProps.stateSetters["setLocales"] = setLocales;
     pageProps.stateSetters["setMetadatas"] = setMetadatas;

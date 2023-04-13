@@ -18,7 +18,7 @@ const ProfileActivities = ({ type, profile, states }: any) => {
             { (profile.TWITTER) ? <TwitterFeed profile={ profile }/> : <div className={ ActivityStyles.card }>
                 <div className={ ActivityStyles.marker }></div>
                 <div className={ ActivityStyles.content }>
-                    <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
+                    <Image src={ profile.LOGO } alt="" width="50" height="50"/>
                     <p className={ ActivityStyles.user }>{ profile.NAME }<i className="fa-brands fa-twitter"/></p>
                     <p>{ translations["Aucun profil renseigné"] + "." }</p>
                 </div>
@@ -26,7 +26,7 @@ const ProfileActivities = ({ type, profile, states }: any) => {
             { (profile.FACEBOOK) ? <FacebookFeed profile={ profile }/> : <div className={ ActivityStyles.card }>
                 <div className={ ActivityStyles.marker }></div>
                 <div className={ ActivityStyles.content }>
-                    <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
+                    <Image src={ profile.LOGO } alt="" width="50" height="50"/>
                     <p className={ ActivityStyles.user }>{ profile.NAME }<i className="fa-brands fa-facebook-f"/></p>
                     <p>{ translations["Aucun profil renseigné"] + "." }</p>
                 </div>
@@ -41,7 +41,7 @@ const TwitterFeed = ({ profile }: any) => {
     return <div className={ ActivityStyles.card }>
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content }>
-            <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
+            <Image src={ profile.LOGO } alt="" width="50" height="50"/>
             <p className={ ActivityStyles.user }>{ profile.NAME }<i className="fa-brands fa-twitter"/></p>
             <a className="twitter-timeline" href={ profile.TWITTER } data-height="400">Tweets by Forinov</a>
             <script async src="https://platform.twitter.com/widgets.js"></script>
@@ -61,7 +61,7 @@ const FacebookFeed = ({ profile }: any) => {
     return <div className={ ActivityStyles.card }>
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content } style={ { minHeight: "400px" } }>
-            <Image src={ profile.LOGO } alt={ profile.NAME + " logo." } width="50" height="50"/>
+            <Image src={ profile.LOGO } alt="" width="50" height="50"/>
             <p className={ ActivityStyles.user }>{ profile.NAME }<i className="fa-brands fa-facebook-f"/></p>
             <iframe { ...iframeProps }></iframe>
         </div>

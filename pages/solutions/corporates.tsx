@@ -43,7 +43,7 @@ const CorporateSolutions = (pageProps: HomeInterface) => {
                             <p>{ translations["Trouvez et entrez en relation avec les startups qui répondent à vos besoins. Veille, sourcing, appels à projet et gestion de portefeuilles... Autant de solutions qui vous attendent sur Forinov"] + " !" }</p>
                             <div className={ SolutionsStyles.presentationLinks }>
                                 <Button button={ ButtonStyles.oldHome } href="/onboarding" icon="fa-solid fa-arrow-right" text={ translations["Je rejoins la communauté"] }/>
-                                <Button button={ ButtonStyles.oldHome } href="#offers" icon="fa-solid fa-arrow-right" text={ translations["Je découvre les offres pro / entreprise"] }/>
+                                <Button button={ ButtonStyles.oldHome } href="#plans" icon="fa-solid fa-arrow-right" text={ translations["Je découvre les offres pro / entreprise"] }/>
                                 <Button button={ ButtonStyles.oldHome } href="/directories/corporates/categories" icon="fa-solid fa-arrow-right" text={ translations["J'accède à l'annuaire des membres"] }/>
                             </div>
                         </div>

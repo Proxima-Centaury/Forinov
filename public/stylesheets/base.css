@@ -16,11 +16,11 @@
     --logo-orange-color: #FE6A28;
     --logo-green-color: #65D318;
     /* Opportunity Colors */
-    --project-color: #31A774;
-    --event-color: #8061DE;
-    --program-color: #7EC9FF;
-    --offer-color: #FA6A58;
-    --challenge-color: #ED9F00;
+    --project-color: #F75803;
+    --event-color: #003586;
+    --program-color: #1982C4;
+    --offer-color: #31A774;
+    --challenge-color: #EB9E00;
     /* Light & Dark Colors */
     --perfect-white-color: #FFFFFF;
     --darker-white-color: #F8F7F6;
@@ -264,6 +264,7 @@ body:not([data-theme="matrix"]) canvas#canvas {
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
+    border-radius: 50px;
     background-color: var(--background-main-color);
 }
 ::-webkit-scrollbar-thumb {
@@ -663,6 +664,85 @@ body {
     max-width: 892px;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Modal ( Errors ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.modal[data-modal="errors"] {
+    max-width: 892px;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Console */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.console {
+    border-radius: 15px;
+    background-color: var(--background-private-color);
+    overflow-y: auto;
+}
+.console > .container {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+.console > .container pre {
+    border-radius: 5px;
+    overflow: hidden;
+}
+.console > .container > .content {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
+}
+.console > .container > .content > .error,
+.console > .container > .content > .details {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 8px;
+    gap: 8px;
+}
+.console > .container > .content > .error > h5,
+.console > .container > .content > .error > h5 > span,
+.console > .container > .content > .details > h5 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    color: var(--perfect-white-color);
+    font-size: 20px;
+    font-family: "Nunito Sans";
+    border-radius: 5px;
+    background-color: var(--logo-blue-color);
+}
+.console > .container > .content > .error > h5 > span {
+    padding: 0px;
+}
+.console > .container > .content > .error > div > p,
+.console > .container > .content > .details > div > p {
+    display: inline-flex;
+    align-items: baseline;
+    grid-gap: 8px;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--error-color);
+}
+.console > .container > .content > .details > .solutions > p {
+    color: var(--success-color);
+}
+.console > .container > .content > .error > div > p > i,
+.console > .container > .content > .details > div > p > i {
+    color: var(--separator-color);
+    font-size: 12px;
+}
+.console > .container > .content > .error > div > h6,
+.console > .container > .content > .details > div > h6 {
+    font-size: 16px;
+    font-family: "Nunito Sans";
+    color: var(--separator-color);
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Custom Tool Tips */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 [data-type="tooltip"] {
@@ -761,6 +841,28 @@ body {
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
 }
+.placeholderCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 15px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+}
+.placeholderCard > p {
+    color: var(--logo-blue-color);
+    font-size: 32px;
+    font-family: "Nunito Sans";
+    font-weight: bold;
+    text-align: center;
+}
+.placeholderCard > a {
+    pointer-events: all;
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Spacer */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -855,4 +957,14 @@ div[data-carousel] {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 div.container > div[class*="card"]:hover {
     transform: none;
+}
+.language-html *,
+.hljs-name {
+    color: #3E9CC7;
+}
+.hljs-attr {
+    color: #AECff0;
+}
+.hljs-string {
+    color: #FB884F;
 }
