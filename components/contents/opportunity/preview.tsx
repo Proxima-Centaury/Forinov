@@ -18,8 +18,8 @@ import OpportunityStyles from "../../../public/stylesheets/components/cards/Oppo
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Opportunity Preview */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const OpportunityPreview = (pageProps: any) => {
-    const { opportunity, states } = pageProps;
+const OpportunityPreview = (opportunityPreviewProps: any) => {
+    const { opportunity, states } = opportunityPreviewProps;
     const { translations, RGB } = states;
 	const [ lightingState, setLightingState ] = useState("disabled");
     const countries = opportunity.COUNTRIES;
@@ -58,12 +58,12 @@ const OpportunityPreview = (pageProps: any) => {
         </div>
         <div className="separator"/>
         <div className={ PreviewStyles.description }>
-            { (opportunity.DESCRIPTION) ? <Format content={ opportunity.DESCRIPTION }/> : <p>{ translations["Non renseigné"] + "." }</p> }
+            { (opportunity.DESCRIPTION) ? <Format { ...opportunityPreviewProps } content={ opportunity.DESCRIPTION }/> : <p>{ translations["Non renseigné"] + "." }</p> }
         </div>
         <div className="separator"/>
         <div className={ PreviewStyles.eligibility }>
             <h4 className="mainTitleBold">{ translations["Critères d'éligibilité"] + " :" }</h4>
-            { (opportunity.ELIGIBILITY) ? <Format content={ opportunity.ELIGIBILITY }/> : <p>{ translations["Non renseigné"] + "." }</p> }
+            { (opportunity.ELIGIBILITY) ? <Format { ...opportunityPreviewProps } content={ opportunity.ELIGIBILITY }/> : <p>{ translations["Non renseigné"] + "." }</p> }
         </div>
         { (opportunity.CATEGORIES.length > 0 || structureTags(opportunity.TAGS)) ? <Fragment>
             <div className="separator"/>
@@ -72,7 +72,7 @@ const OpportunityPreview = (pageProps: any) => {
                 { (structureTags(opportunity.TAGS)) ? <Tags tags={ structureTags(opportunity.TAGS) }/> : null }
             </div>
         </Fragment> : null }
-        <Attachments { ...pageProps } attachments={ opportunity.ATTACHMENTS }/>
+        <Attachments { ...opportunityPreviewProps } attachments={ opportunity.ATTACHMENTS }/>
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

@@ -59,7 +59,7 @@ const OpportunityCard = (opportunityProps: any) => {
                     <i className="fa-solid fa-users"/>
                     <p>Membres Forinov uniquement</p>
                 </div> : null }
-                { (details) ? <Format content={ opportunity.DESCRIPTION }/> : null }
+                { (details) ? <Format { ...opportunityProps } content={ opportunity.DESCRIPTION }/> : null }
             </div>
         </div>
     </div>;

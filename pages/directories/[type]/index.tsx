@@ -11,6 +11,7 @@ import api from "../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import Link from "next/link";
+import MetaDatas from "../../../components/seo/metadatas/metadatas";
 import Filters from "../../../components/filters/filters";
 import IdenfiticationBanner from "../../../components/banners/identification";
 import CategoryCard from "../../../components/cards/category";
@@ -28,7 +29,7 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Directory = (pageProps: DirectoryInterface) => {
     const { states, router } = pageProps;
-    const { locale, translations, metadatas } = states;
+    const { locale, translations } = states;
     const { ui, type, category } = router.query;
     const [ search, setSearch ] = useState({ keywords: "", categories: (category) ? category : "", page: 1 });
     const [ results, setResults ] = useState(null || []);
@@ -36,6 +37,7 @@ const Directory = (pageProps: DirectoryInterface) => {
     const [ display, setDisplay ] = useState("grid threeColumns");
     const [ informations, setInformations ]: any = useState(null);
     const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
+    const categoryName = category?.substring(0, category.indexOf("_"));
     useEffect(() => {
         const fetchResults = async () => {
             const results = await api.searchEngine(formatType(type), search, locale?.substring(0, 2));
@@ -58,8 +60,7 @@ const Directory = (pageProps: DirectoryInterface) => {
     }, [ type, categoryId ]);
     return <Fragment>
         <Head>
-			<title>{ (metadatas[router.asPath]) ? metadatas[router.asPath].title : "" }</title>
-			<meta name="description" content={ (metadatas[router.asPath]) ? metadatas[router.asPath].description : "" }/>
+            <MetaDatas { ...pageProps } type={ type } categoryId={ categoryId || undefined } categoryName={ categoryName || undefined }/>
 		</Head>
         <div id="directory" className={ (ui && ui == "false") ? "containerFull" : "container" }>
             <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
@@ -92,22 +93,22 @@ const Categories = (pageProps: any) => {
     };
     if(ui && ui == "false") {
         return <Fragment>
-            { (type.match(/(startup)/)) ? <div className={ display }>
+            { (type.match(/(startups)/)) ? <div className={ display }>
                 { filters.CATEGORIES.map((filter: any, key: Key) => <button key={ key } onClick={ (event: any) => setCategory(event, filter.ID) }>
                     <CategoryCard { ...pageProps } category={ filter } display={ display }/>
                 </button>) }
             </div> : null}
-            { (type.match(/(corporate|entreprise)/)) ? <div className={ display }>
+            { (type.match(/(corporates)/)) ? <div className={ display }>
                 { filters.SECTORS.map((filter: any, key: Key) => <button key={ key } onClick={ (event: any) => setCategory(event, filter.ID) }>
                     <CategoryCard { ...pageProps } category={ filter } display={ display }/>
                 </button>) }
             </div> : null}
-            { (type.match(/(partner|partenaire)/)) ? <div className={ display }>
+            { (type.match(/(partners)/)) ? <div className={ display }>
                 { filters.PARTNERS_TYPES.map((filter: any, key: Key) => <button key={ key } onClick={ (event: any) => setCategory(event, filter.ID) }>
                     <CategoryCard { ...pageProps } category={ filter } display={ display }/>
                 </button>) }
             </div> : null}
-            { (type.match(/(opport)/)) ? <div className={ display }>
+            { (type.match(/(opportunities)/)) ? <div className={ display }>
                 { filters.OPPORTUNITIES.map((filter: any, key: Key) => <button key={ key } onClick={ (event: any) => setCategory(event, filter.ID) }>
                     <CategoryCard { ...pageProps } category={ filter } display={ display }/>
                 </button>) }
@@ -115,22 +116,22 @@ const Categories = (pageProps: any) => {
         </Fragment>;
     };
     return <Fragment>
-        { (type.match(/(startup)/)) ? <div className={ display }>
+        { (type.match(/(startups)/)) ? <div className={ display }>
             { filters.CATEGORIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
-        { (type.match(/(corporate|entreprise)/)) ? <div className={ display }>
+        { (type.match(/(corporates)/)) ? <div className={ display }>
             { filters.SECTORS.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
-        { (type.match(/(partner|partenaire)/)) ? <div className={ display }>
+        { (type.match(/(partners)/)) ? <div className={ display }>
             { filters.PARTNERS_TYPES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
         </div> : null}
-        { (type.match(/(opport)/)) ? <div className={ display }>
+        { (type.match(/(opportunities)/)) ? <div className={ display }>
             { filters.OPPORTUNITIES.map((filter: any, key: Key) => <Link key={ key } href={ "/directories/" + type + "/categories/" + formatNameForUrl(filter.NAME) + "_" + filter.ID }>
                 <CategoryCard { ...pageProps } category={ filter } display={ display }/>
             </Link>) }
@@ -159,12 +160,12 @@ const Results = (pageProps: any) => {
     const { ui, type } = router.query;
     if(ui && ui == "false") {
         return <Fragment>
-            { (!type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
+            { (!type.match(/(opportunities)/) && results.length > 0) ? <div className={ display }>
                 { results.map((company: any, key: Key) => <a key={ key } href={ company.URL } target="_blank" rel="noreferrer">
-                    <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
+                    <EntityCard { ...pageProps } entity={ company } type={ formatType(type, "en") || undefined } details/>
                 </a>) }
             </div> : null}
-            { (type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
+            { (type.match(/(opportunities)/) && results.length > 0) ? <div className={ display }>
                 { results.map((opportunity: any, key: Key) => <a key={ key } href={ opportunity.URL } target="_blank" rel="noreferrer">
                     <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ parseInt(key.toString()) + 1 }/>
                 </a>) }
@@ -172,12 +173,12 @@ const Results = (pageProps: any) => {
         </Fragment>;
     };
     return <Fragment>
-        { (!type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
+        { (!type.match(/(opportunities)/) && results.length > 0) ? <div className={ display }>
             { results.map((company: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(company.NAME) + "_" + company.ID }>
-                <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
+                <EntityCard { ...pageProps } entity={ company } type={ formatType(type, "en") || undefined } details/>
             </Link>) }
         </div> : null}
-        { (type.match(/(opport)/) && results.length > 0) ? <div className={ display }>
+        { (type.match(/(opportunities)/) && results.length > 0) ? <div className={ display }>
             { results.map((opportunity: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID }>
                 <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ parseInt(key.toString()) + 1 }/>
             </Link>) }

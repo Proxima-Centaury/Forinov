@@ -501,15 +501,22 @@ class Utilities {
     * @note This method is used to return the correct company type according to the router type parameter.
     * @note The {@link type} parameter should be a string.
     */
-    formatType = (type: String): String|Boolean => {
+    formatType = (type: String, language: String = "fr"): String|Boolean => {
         if(!type || type.trim().length <= 0) {
             return false;
         };
         type = String(type);
-        type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-        type = (type.match(/(entreprise)/)) ? "corporate" : type;
-        type = (type.match(/(partenaire)/)) ? "partner" : type;
-        type = (type.match(/(opportunities)/)) ? "opportunity" : type;
+        if(language === "fr") {
+            type = (type.match(/(startups)/)) ? "startup" : type;
+            type = (type.match(/(corporates)/)) ? "entreprise" : type;
+            type = (type.match(/(partners)/)) ? "partenaire" : type;
+            type = (type.match(/(opportunities)/)) ? "opportunite" : type;
+        } else if(language === "en") {
+            type = (type.match(/(startups)/)) ? "startup" : type;
+            type = (type.match(/(corporates)/)) ? "corporate" : type;
+            type = (type.match(/(partners)/)) ? "partner" : type;
+            type = (type.match(/(opportunities)/)) ? "opportunity" : type;
+        };
         return type;
     };
     /**

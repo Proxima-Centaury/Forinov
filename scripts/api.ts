@@ -62,7 +62,7 @@ class API {
     async searchEngine(type: String, filters: any, language: String) {
         if(type) {
             type = String(type);
-            type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
+            type = (type.match(/(startups)/)) ? "startup" : type;
             type = (type.match(/(corporates)/)) ? "entreprise" : type;
             type = (type.match(/(partners)/)) ? "partenaire" : type;
             type = (type.match(/(opportunities)/)) ? "opportunite" : type;

@@ -49,7 +49,7 @@ const ProfileCard = (profileProps: any) => {
                         <a href={ "https://" + profile.WEBSITE } target="blank">{ translations["Site internet"] }</a>
                     </div> : null }
                 </div> : null }
-                { (profile.COMMENT) ? <Format content={ profile.COMMENT }/> : null }
+                { (profile.COMMENT) ? <Format { ...profileProps } content={ profile.COMMENT }/> : null }
                 { (profile.CATEGORY.length > 0) ? <Tags tags={ profile.CATEGORY } main={ true }/> : null }
                 { (profile.TAGS) ? <Tags tags={ structureTags(profile.TAGS) } limit={ 2 }/> : null }
                 { (profileType.match(/(startup)/) && !carouselItem) ? <div className="separator"></div> : null }

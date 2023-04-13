@@ -139,7 +139,7 @@ const StartupSolutions = (pageProps: HomeInterface) => {
                         </div>
                         <div className={SolutionsStyles.bannerBlock}>
                             <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Comment puis-je postuler à un appel à candidatures ?"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Retrouve toutes les opportunités en cours dans l'onglet « Opportunités ». Avec ton profil Forinov, tu seras informé.e directement des appels à candidatures qui matchent avec ton profil. Pour postuler réponds au questionnaire associé à l'appel, et gagne un temps fou grâce aux nombreuses informations pré-remplies à partir de ton profil !"]}</p>
+                            <p className={SolutionsStyles.bannerParagraph}>{translations["Retrouve toutes les opportunités en cours dans l'onglet <b>Opportunités</b>. Avec ton profil Forinov, tu seras informé.e directement des appels à candidatures qui matchent avec ton profil. Pour postuler réponds au questionnaire associé à l'appel, et gagne un temps fou grâce aux nombreuses informations pré-remplies à partir de ton profil"]}</p>
                         </div>
                     </div>
                     <div className={SolutionsStyles.bannerBlockWrapper}>
