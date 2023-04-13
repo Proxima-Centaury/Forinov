@@ -42,7 +42,7 @@ const Home = (pageProps: HomeInterface) => {
 			loop: true
 		});
 		return () => typed.destroy();
-	  }, []);
+	});
 	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
 	return <Fragment>
 		<Head>
