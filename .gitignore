@@ -47,9 +47,6 @@ production/
 # Temporary files
 tmp.*
 
-# Lock files
-package-lock.json
-
 # Next coming features
 typescript/schemas/
 typescript/validator.ts
