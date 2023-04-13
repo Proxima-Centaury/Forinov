@@ -57,7 +57,6 @@ const Devtools = (devtoolsProps: any) => {
     useEffect(() => {
         setErrorsCount(Object.keys(errors).length);
     }, [ errors ]);
-    console.log(errors);
     return <div className={ (hidden) ? "closed" : "" } data-type="devtools">
         <p>Devtools</p>
         <div data-type="tooltip" data-tooltip={ translations["Simuler la connexion"] }>
