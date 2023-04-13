@@ -25,12 +25,12 @@ const ProfilePartners = (partnersProps: any) => {
             <p className={ PartnersStyles.label }>{ translations["Nos partenaires"] + " (" + (profile.PARTNERS.length || 0) + ")" }</p>
             { (profile.PARTNERS.length > 0) ? <SeeMore { ...partnersProps } list={ profile.PARTNERS } type="entities" max={ 4 } display="grid"/> : null }
         </div>
-        { (!type.match(/(startup)/)) ? <p className={ PartnersStyles.label }>{ translations["Dossiers de startups publics"] }</p>: null }
-        { (!type.match(/(startup)/) && folders.length > 0) ? <div className="grid twoColumns">
+        { (!type.match(/(startups)/)) ? <p className={ PartnersStyles.label }>{ translations["Dossiers de startups publics"] }</p>: null }
+        { (!type.match(/(startups)/) && folders.length > 0) ? <div className="grid twoColumns">
             { folders.map((folder: any, key: Key) => <Link key={ key } href={ router.asPath + "/folders/" + formatNameForUrl(folder.NAME) + "_" + folder.ID }>
                 <FolderCard folder={ folder }/>
             </Link>) }
-        </div> : (!type.match(/(startup)/)) ? <div className="placeholder">
+        </div> : (!type.match(/(startups)/)) ? <div className="placeholder">
             <p>{ translations["Aucun dossier de startup à afficher"] + "." }</p>
         </div> : null }
     </Fragment>;
