@@ -12,6 +12,7 @@ import api from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import Image from "next/image";
+import MetaDatas from "../components/seo/metadatas/metadatas";
 import Carousel from "../components/carousels/carousel";
 import Format from "../components/texts/format";
 import Button from "../components/buttons/button";
@@ -27,15 +28,15 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 const Home = (pageProps: HomeInterface) => {
 	const typedReference = useRef(null);
 	const { landing, startups, opportunities, states, router } = pageProps;
-	const { translations, metadatas, RGB } = states;
+	const { translations, RGB } = states;
 	const [ lightingState, setLightingState ] = useState("disabled");
 	const structures: Array<String> = [ "Startup", "Grand groupe", "ETI", "PME", "Incubateur", "Accélérateur", "Pépinière", "Fond d'investissement", "Business angel", "Structure d'investissement" ];
 	useEffect(() => {
 		const typed = new Typed(typedReference.current, {
 			strings: [
-			translations["Plus de 1500 startups innovantes à l'international"] + ".",
-			translations["Des centaines d'entreprises à la recherche de solutions"] + ".",
-			translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"] + "."
+				translations["Plus de 1500 startups innovantes à l'international"] + ".",
+				translations["Des centaines d'entreprises à la recherche de solutions"] + ".",
+				translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"] + "."
 			],
 			typeSpeed: 50,
 			loop: true
@@ -45,8 +46,7 @@ const Home = (pageProps: HomeInterface) => {
 	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
 	return <Fragment>
 		<Head>
-			<title>{ metadatas[router.route].title }</title>
-			<meta name="description" content={ metadatas[router.route].description }/>
+			<MetaDatas { ...pageProps }/>
 		</Head>
 		<div id="home" className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="home">
@@ -194,29 +194,6 @@ const Home = (pageProps: HomeInterface) => {
 					</div>
 				</div>
 			</div>
-			{/* <div className={ HomeStyles.typing } data-type="home">
-				<div className="container">
-					<p>{ translations["Forinov aujourd'hui"] }</p>
-					<div className={ HomeStyles.animation }>
-						<h3 id="homeTyped" className={ HomeStyles.typed }/>
-					</div>
-					<Script id="homeTypedScript" strategy="afterInteractive">{`
-						const solutionTyped = () => {
-							const assign = new Typed("#homeTyped.${ HomeStyles.typed }", {
-								strings: [
-									"${ translations["Plus de 1500 startups innovantes à l'international"] + "." }",
-									"${ translations["Des centaines d'entreprises à la recherche de solutions"] + "." }",
-									"${ translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"] + "." }"
-								],
-								typeSpeed: 50,
-								loop: true
-							});
-							return assign;
-						};
-						solutionTyped();
-					`}</Script>
-				</div>
-			</div> */}
 			<div className={ HomeStyles.typing } data-type="home">
 				<div className="container">
 					<p>{ translations["Forinov aujourd'hui"] }</p>
