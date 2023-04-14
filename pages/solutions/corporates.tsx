@@ -268,30 +268,6 @@ const CorporateSolutions = (pageProps: HomeInterface) => {
                     <div className={ HomeStyles.actions } data-justify="center">
 						<p>{ translations["Vous avez des questions"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/contact" text={ translations["N'hésitez pas à nous contacter"] }/>.</p>
 					</div>
-                    {/* <div className={SolutionsStyles.bannerBlockWrapper}>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Forinov vous permet de diffuser vos besoins et opportunités (appels à candidatures, concours…) en quelques clics. Vous pouvez créer vos formulaires personnalisés et centraliser la gestion des candidatures (notations, commentaires). Les startups gagnent un temps précieux en suivant le statut de leur candidature (et donc vous sollicitent moins). Les + pour vous : nous vous aidons dans le sourcing de startups, en invitant notamment les startups qui ne seraient pas encore sur Forinov"]}</p>
-                        </div>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Non, vous disposez d'espaces totalement privés et réservés à vous et vos collaborateurs pour y partager, par exemple, vos compte rendus de RDV, vos avis et commentaires… Seuls les utilisateurs habilités sur votre compte ont accès à ces informations confidentielles."]}</p>
-                        </div>
-                    </div>
-                    <div className={SolutionsStyles.bannerBlockWrapper}>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Fini les reportings fastidieux et obsolètes au bout d'un mois ! Les forces de Forinov : la centralisation des recherches, la possibilité de partager certains dossiers de votre portefeuille avec vos collaborateurs et surtout la mise à jour des fiches par les startups elles-mêmes ! Votre collaborateur a rencontré une startup il y a quelques mois et n'a pas donné suite ? Découvrez pourquoi sans avoir à remonter dans ses mails !"]}</p>
-                        </div>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Les utilisateurs mettent à jour leur propre profil ce qui permet d'avoir l'information directement à la source est d'être informé des dernières actualités. Pour les startups c'est l'occasion d'être en visibilité non pas d'une entreprise mais de tout un écosystème. Pour vous, c'est un gain de temps précieux : plus besoin de créer et mettre à jour des fiches, il vous suffit de les suivre pour les ajouter à votre portefeuille. Vous pourrez ensuite gérer le suivi de vos relations (RDV, notes…)"]}</p>
-                        </div>
-                    </div>
-                    <div className={SolutionsStyles.bannerBlockWrapper}>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Les équipes de Forinov s'occupent d'inviter gratuitement les startups de votre CRM. L'avantage ? Vous n'aurez plus à actualiser les données tous les mois car la startup s'occupe de tout ! Forinov vous donne donc accès à des données en temps réel, et à un reporting automatisé !"]}</p>
-                        </div>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Avec votre profil personnalisé et complet, vous indiquez précisément ce que vous recherchez sur Forinov, mais aussi ce que vous ne cherchez pas. Vous pouvez aussi suivre des profils de startups : elles en sont informées et ne cherchent donc pas à vous repartager et à vous vendre leurs produits, car vous y avez accès en quelques clics. Les appels à candidatures sont le signal pour elles que vous recherchez une technologie bien précise !"]}</p>
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </div>

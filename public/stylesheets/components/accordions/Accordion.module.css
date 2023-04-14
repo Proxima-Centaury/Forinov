@@ -60,7 +60,8 @@
 .container > div > .content * {
     font-size: 16px;
 }
-.container > div.active > .content > div[class="formattedContent"] {
+.container > div.active > .content > div[class="formattedContent"],
+.container > div.active > .content > div[class="formattedContent"] * {
     color: var(--perfect-black-color);
 }
 .container > div.active > .content > div[class="formattedContent"] a {

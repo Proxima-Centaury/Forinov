@@ -182,25 +182,6 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
                     </div>
                 </div>
             </div>
-            {/* <div className={ SolutionsStyles.typing } data-type="partner">
-                <div className="container">
-                    <p>{ translations["Découvrez notre communauté de startups"] + " !" }</p>
-                    <div className={ SolutionsStyles.animation }>
-                        <h3><span>{ translations["L'innovation a déjà un nom"] + " : " }</span><span id="solutionTyped" className={ HomeStyles.typed }></span></h3>
-                    </div>
-                    <Script id="solutionTypedScript" strategy="afterInteractive">{`
-                        const homeTyped = () => {
-                            const assign = new Typed("#solutionTyped.${ HomeStyles.typed }", {
-                                strings: [ "Les Premières.", "Créative Valley.", "MAKE SENSE." ],
-                                typeSpeed: 50,
-                                loop: true
-                            });
-                            return assign;
-                        };
-                        homeTyped();
-                    `}</Script>
-                </div>
-            </div> */}
             <div className={ SolutionsStyles.typing } data-type="partner">
                 <div className="container">
                     <p>{ translations["Découvrez notre communauté de startups"] + " !" }</p>
@@ -209,46 +190,6 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
                     </div>
                 </div>
             </div>
-            {/* <div className={SolutionsStyles.banner3}>
-                <div className="container">
-                    <h1 className={SolutionsStyles.bannerTitle}>{translations["Les réponses à vos questions"]}</h1>
-                    <div className={SolutionsStyles.bannerBlockWrapper}>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Pourquoi publier un appel à candidature sur Forinov"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Forinov vous permet de diffuser vos besoins et opportunités (appels à candidatures, concours…) en quelques clics. Vous pouvez créer vos formulaires personnalisés et centraliser la gestion des candidatures (notations, commentaires). Les startups gagnent un temps précieux en suivant le statut de leur candidature (et donc vous sollicitent moins). Les + pour vous : nous vous aidons dans le sourcing de startups, en invitant notamment les startups qui ne seraient pas encore sur Forinov"]}</p>
-                        </div>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Quelle valeur ajoutée pour mes startups ?"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Sur Forinov, votre réseau de startups et d'alumnis gagne en visibilité, accède à des mises en relation privilégiées avec des collaborateurs clés de grands groupes, PME et investisseurs, et surtout construit un profil unique visible par tous ! Fini donc les mille et une fiches à mettre à jour constamment : Forinov centralise toutes ces informations et s'en sert même pour rendre les candidatures de vos startups plus rapides !"]}</p>
-                        </div>
-                    </div>
-                    <div className={SolutionsStyles.bannerBlockWrapper}>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Comment puis-je inviter mes startups à s'inscrire sur Forinov ?"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Un lien simple vous permettra d'inviter votre startups. Nos équipes sont également disponibles pour faire ces invitations afin de centraliser, sur une unique plateforme, l'ensemble de vos startups et alumnis. Fini les « simples » CRM, Forinov est avant tout une communauté d'acteurs innovants et un outil de gestion de votre portefeuille !"]}</p>
-                        </div>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Puis-je faire des recommandations entre mes startups et des entreprises"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Forinov est aussi fait pour ça ! Si certains profils de votre réseau semblent correspondre aux recherches des entreprises inscrites, n'hésitez pas à pousser leurs profils! La messagerie interne et les profils détaillés des collaborateurs vous permettront de simplifier vos démarches et de mettre en relation vos startups avec les bonnes personnes !"]}</p>
-                        </div>
-                    </div>
-                    <div className={SolutionsStyles.bannerBlockWrapper}>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Comment puis-je mettre en avant mes startups sur Forinov ?"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Rien de plus simple, il vous suffit de créer des dossiers publics et d'y ajouter vos startups et/ou alumni. Ces dossiers seront directement accessibles depuis votre profil. Cela représente une vraie vitrine pour vos startups. Vous pouvez également créer des dossiers privés que vous partagez uniquement avec vos partenaires de manière à les aider dans l'identification de startups qui correspondent aux besoins qu'ils expriment. Le vrai plus ? Plus besoin de demander à vos startups leur nouveau logo ou leur dernier pitch, tout est mis à jour automatiquement à partir de leurs profils !"]}</p>
-                        </div>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Toutes les informations sont-elles publiques"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Non, vous disposez d'espaces totalement privés et réservés à vous et vos collaborateurs pour y partager, par exemple, vos compte rendus de RDV, vos avis et commentaires… Seuls les utilisateurs habilités sur votre compte ont accès à ces informations confidentielles."]}</p>
-                        </div>
-                    </div>
-                    <h1 className={SolutionsStyles.banner3Redirect}>{translations["Vous avez des questions ?"]} <Link
-                        href="/contact"
-                    >
-                        {translations["N'hésitez pas à nous contacter"]}
-                    </Link></h1>
-                </div>
-            </div> */}
             <div className={ HomeStyles.questions } data-type="partner">
                 <div className="container">
                     <h3>{ translations["Les réponses à vos questions"] + " :" }</h3>
