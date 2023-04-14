@@ -12,13 +12,9 @@
 .presentation:not([data-type="home"]) {
 	padding: calc(80px - 16px);
 }
-@media screen and (max-width: 992px) {
-	.presentation {
-		padding: calc(80px - 16px);
-	}
-}
 @media screen and (max-width: 576px) {
-	.presentation {
+	.presentation,
+	.presentation:not([data-type="home"]) {
 		padding: calc(32px - 16px);
 	}
 }
