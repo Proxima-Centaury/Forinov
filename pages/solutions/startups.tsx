@@ -119,46 +119,6 @@ const StartupSolutions = (pageProps: HomeInterface) => {
 					</div>
 				</div>
 			</div>
-            {/* <div className={SolutionsStyles.banner3}>
-                <div className="container">
-                    <h1 className={SolutionsStyles.bannerTitle}>{translations["Les réponses à vos questions"]}</h1>
-                    <div className={SolutionsStyles.bannerBlockWrapper}>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Forinov, est-ce vraiment gratuit pour les startups ?"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Oui ! Car nous cherchons à créer la première communauté des acteurs de l'innovation. Impossible sans les startups : inscris donc les différents membres de ton équipe pour ne rater aucune opportunité ! Prochainement, des options premium seront disponibles pour encore plus de mise en visibilité auprès des entreprises et de nouvelles fonctionnalités exclusives !"]}</p>
-                        </div>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Quel est l'intérêt de passer par Forinov plutôt qu'un autre canal ?"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Forinov, est-ce vraiment gratuit pour les startups ?"]}</p>
-                        </div>
-                    </div>
-                    <div className={SolutionsStyles.bannerBlockWrapper}>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Comment me faire repérer par les entreprises ?"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Pour mettre en avant ton profil, mets le à jour régulièrement, publie des nouvelles, ajoute tes entreprises cibles à ta wishlist et suis leurs profils… elles en seront informées ! Pense aussi à préciser tes différents produits et services : ton profil sera plus attractif et notre algorithme de matching fera le reste !"]}</p>
-                        </div>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Comment puis-je postuler à un appel à candidatures ?"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Retrouve toutes les opportunités en cours dans l'onglet <b>Opportunités</b>. Avec ton profil Forinov, tu seras informé.e directement des appels à candidatures qui matchent avec ton profil. Pour postuler réponds au questionnaire associé à l'appel, et gagne un temps fou grâce aux nombreuses informations pré-remplies à partir de ton profil"]}</p>
-                        </div>
-                    </div>
-                    <div className={SolutionsStyles.bannerBlockWrapper}>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Qui sont les personnes que je peux contacter sur Forinov ?"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Sur Forinov, tu peux retrouver des collaborateurs de grands groupes, de PME mais aussi des contacts clés d'incubateurs, accélérateurs ou structures d'investissement. Du côté des entreprises, il n'y a pas que les responsables innovation inscrits mais aussi les responsables métiers (RH, finance, digital, achat…) : tes clients potentiels sont donc nombreux !"]}</p>
-                        </div>
-                        <div className={SolutionsStyles.bannerBlock}>
-                            <h3 className={SolutionsStyles.bannerSubtitle}>{translations["Mon profil est-il celui d'une startup ou d'une entreprise ?"]}</h3>
-                            <p className={SolutionsStyles.bannerParagraph}>{translations["Sur Forinov, nous connectons des startups, des entreprises et des partenaires type incubateurs, accélérateurs. Nous entendons le mot « startups » au sens large du terme ! Toute jeune entreprise porteuse d'une solution innovante est la bienvenue pour répondre aux besoins des grands groupes et PME à la recherche de solutions comme les vôtres !"]}</p>
-                        </div>
-                    </div>
-                    <h1 className={SolutionsStyles.banner3Redirect}>{translations["Vous avez des questions ? "]}<Link
-                        href="/contact"
-                    >
-                        {translations["N'hésitez pas à nous contacter"]}
-                    </Link></h1>
-                </div>
-            </div> */}
             <div className={ HomeStyles.questions } data-type="startup">
                 <div className="container">
                     <h3>{ translations["Les réponses à vos questions"] + " :" }</h3>
