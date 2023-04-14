@@ -702,8 +702,8 @@ body {
 .console > .container > .content > .details {
     display: flex;
     flex-direction: column;
-    grid-gap: 8px;
-    gap: 8px;
+    grid-gap: 16px;
+    gap: 16px;
 }
 .console > .container > .content > .error > h5,
 .console > .container > .content > .error > h5 > span,
@@ -720,6 +720,13 @@ body {
 }
 .console > .container > .content > .error > h5 > span {
     padding: 0px;
+}
+.console > .container > .content > .error > div,
+.console > .container > .content > .details > div {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 8px;
+    gap: 8px;
 }
 .console > .container > .content > .error > div > p,
 .console > .container > .content > .details > div > p {
@@ -744,6 +751,10 @@ body {
     font-size: 16px;
     font-family: "Nunito Sans";
     color: var(--separator-color);
+}
+.console > .container > .content > .details > div > .elementPreview {
+    max-height: 0px;
+    overflow: hidden;
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Custom Tool Tips */

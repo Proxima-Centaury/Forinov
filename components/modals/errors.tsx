@@ -1,23 +1,32 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { Fragment, Key, useEffect, useState } from "react";
-import { getCookie } from "cookies-next";
+import { Fragment, Key, MouseEventHandler, useEffect } from "react";
 import hljs from "highlight.js";
+import { preciseTarget } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Format from "../texts/format";
+import Button from "../buttons/button";
 import Separator from "../separators/separator";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import "highlight.js/styles/dark.css";
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Errors Modal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ErrorsModal = (modalProps: any) => {
     const { states } = modalProps;
-    const { errors } = states;
+    const { errors, translations } = states;
+    const handlePreview: MouseEventHandler = (event) => {
+        const target = preciseTarget(event as any);
+        const previewContainer = target.nextElementSibling as HTMLElement;
+        const previewContainerMaxHeight = previewContainer?.scrollHeight || 0;
+        previewContainer.style.maxHeight = (previewContainer.clientHeight === 0) ? previewContainerMaxHeight + "px" : "0px";
+    };
     useEffect(() => {
         hljs.highlightAll();
     });
@@ -50,6 +59,10 @@ const ErrorsModal = (modalProps: any) => {
                                     { errors[keyName as keyof Object]["image" as keyof Object].toString().replace("&amp;", "&") }
                                 </code>
                             </pre>
+                            <Button button={ ButtonStyles.classicLink } action={ handlePreview } text={ translations["Prévisualiser l'élément"] }/>
+                            <div className="elementPreview">
+                                <Format { ...modalProps } content={ errors[keyName as keyof Object]["image" as keyof Object] }/>
+                            </div>
                         </div> : null }
                         <Separator { ...modalProps }/>
                         <div className="page">
