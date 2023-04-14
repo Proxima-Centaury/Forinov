@@ -84,8 +84,8 @@ const MetaDatas = (metadatasProps: any) => {
         </Fragment>;
     };
     return <Fragment>
-        <title>{ metadatas[router.asPath].title || "" }</title>
-        <meta name="description" content={ metadatas[router.asPath].description || "" }/>
+        <title>{ (metadatas[router.asPath]) ? metadatas[router.asPath].title : "" }</title>
+        <meta name="description" content={ (metadatas[router.asPath]) ? metadatas[router.asPath].description : "" }/>
     </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
