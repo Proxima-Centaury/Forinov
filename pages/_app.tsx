@@ -1,6 +1,7 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import dynamic from "next/dynamic";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
@@ -13,10 +14,9 @@ import Head from "next/head";
 import Navbar from "../layout/navbar";
 import AuthNavbar from "../layout/authNavbar";
 import Transition from "../layout/transition";
-import Modal from "../layout/modal";
 import Footer from "../layout/footer";
-import Devtools from "../components/devtools/devtools";
-import { GlobalContext } from "../components/context/globalContext";
+const Modal = dynamic(() => import("../layout/modal"));
+const Devtools = dynamic(() => import("../components/devtools/devtools"));
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -147,9 +147,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         </Head>
         { (router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/> }
         <Transition>
-            <GlobalContext>
-                <Component { ...pageProps }/>
-            </GlobalContext>
+            <Component { ...pageProps }/>
             { (router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/> }
         </Transition>
         <Modal { ...pageProps }/>
