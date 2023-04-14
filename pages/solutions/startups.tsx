@@ -115,7 +115,7 @@ const StartupSolutions = (pageProps: HomeInterface) => {
 					<Carousel { ...pageProps } component="LatestOpportunities" data={ opportunities }/>
 					<div className={ HomeStyles.actions } data-justify="left">
 						<Button button={ ButtonStyles.callToAction } href="/directories/opportunities/categories" text={ translations["Découvrir toutes les opportunités"] }/>
-						<Button button={ ButtonStyles.callToActionAlternative } href="/opportunities" text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
+						<Button button={ ButtonStyles.callToActionAlternative } href="/howto/opportunities" text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
 					</div>
 				</div>
 			</div>

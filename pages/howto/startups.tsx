@@ -3,21 +3,21 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
 import { Fragment } from "react";
-import { HomeInterface } from "../typescript/interfaces";
-import api from "../scripts/api";
+import { HomeInterface } from "../../typescript/interfaces";
+import api from "../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Head from "next/head";
 import Image from "next/image";
-import Carousel from "../components/carousels/carousel";
-import Button from "../components/buttons/button";
-import Separator from "../components/separators/separator";
+import Carousel from "../../components/carousels/carousel";
+import Button from "../../components/buttons/button";
+import Separator from "../../components/separators/separator";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import HomeStyles from "../public/stylesheets/pages/Home.module.css";
-import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
+import HomeStyles from "../../public/stylesheets/pages/Home.module.css";
+import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Startups Home */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -56,7 +56,7 @@ const StartupsHome = (pageProps: HomeInterface) => {
 					<Carousel { ...pageProps } component="LatestOpportunities" data={ opportunities }/>
 					<div className={ HomeStyles.actions } data-justify="left">
 						<Button button={ ButtonStyles.callToAction } href="/directories/opportunities/categories" text={ translations["Découvrir toutes les opportunités"] }/>
-						<Button button={ ButtonStyles.callToActionAlternative } href="/opportunities" text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
+						<Button button={ ButtonStyles.callToActionAlternative } href="/howto/opportunities" text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
 					</div>
 				</div>
 			</div>
