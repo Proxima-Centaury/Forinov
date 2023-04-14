@@ -673,7 +673,6 @@ body {
 /* Console */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .console {
-    border-radius: 15px;
     background-color: var(--background-private-color);
     overflow-y: auto;
 }
@@ -683,6 +682,7 @@ body {
     grid-gap: 16px;
     gap: 16px;
     max-height: 500px;
+    padding: 0px 16px 0px 0px;
     overflow-y: auto;
 }
 .console > .container pre {
@@ -694,6 +694,9 @@ body {
     flex-direction: column;
     grid-gap: 16px;
     gap: 16px;
+    padding: 16px;
+    border-radius: 15px;
+    background-color: var(--background-main-color);
 }
 .console > .container > .content > .error,
 .console > .container > .content > .details {
