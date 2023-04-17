@@ -142,7 +142,6 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Head>
             <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <title>Forinov</title>
             <link rel="icon" href={ router.basePath + "/assets/logo.png" }/>
         </Head>
         { (router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/> }

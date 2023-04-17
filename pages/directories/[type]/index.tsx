@@ -9,7 +9,6 @@ import api from "../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Head from "next/head";
 import Link from "next/link";
 import MetaDatas from "../../../components/seo/metadatas/metadatas";
 import Filters from "../../../components/filters/filters";
@@ -38,6 +37,18 @@ const Directory = (pageProps: DirectoryInterface) => {
     const [ informations, setInformations ]: any = useState(null);
     const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
     const categoryName = category?.substring(0, category.indexOf("_"));
+    const getTitle = (type: String): String => {
+        if(type.match(/(startups)/)) {
+            return translations["Startups"];
+        } else if(type.match(/(corporates)/)) {
+            return translations["Entreprises"];
+        } else if(type.match(/(partners)/)) {
+            return translations["Partenaires"];
+        } else {
+            return translations["Opportunités"];
+
+        };
+    };
     useEffect(() => {
         const fetchResults = async () => {
             const results = await api.searchEngine(formatType(type), search, locale?.substring(0, 2));
@@ -59,11 +70,9 @@ const Directory = (pageProps: DirectoryInterface) => {
         setSelects(null);
     }, [ type, categoryId ]);
     return <Fragment>
-        <Head>
-            <MetaDatas { ...pageProps } type={ type } categoryId={ categoryId || undefined } categoryName={ categoryName || undefined }/>
-		</Head>
+        <MetaDatas { ...pageProps } type={ type } categoryId={ categoryId || undefined } categoryName={ categoryName || undefined }/>
         <div id="directory" className={ (ui && ui == "false") ? "containerFull" : "container" }>
-            <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
+            <Filters { ...pageProps } title={ getTitle(type) } display={ display } setDisplay={ setDisplay } search={ search } setSearch={ setSearch } setResults={ setResults } setInformations={ setInformations } dynamicFilters={ selects }/>
             { (ui && ui == "false") ? null : <IdenfiticationBanner { ...pageProps }/> }
             { (informations && informations.RESULTSMESSAGE) ? <div className={ DirectoryStyles.message }>
                 <i className="fa-light fa-chevron-right"/>

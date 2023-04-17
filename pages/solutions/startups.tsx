@@ -9,8 +9,8 @@ import api from "../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Head from "next/head";
 import Image from "next/image";
+import MetaDatas from "../../components/seo/metadatas/metadatas";
 import Button from "../../components/buttons/button";
 import Carousel from "../../components/carousels/carousel";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -25,7 +25,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 const StartupSolutions = (pageProps: HomeInterface) => {
 	const typedReference = useRef(null);
     const { opportunities, states, accordionsConfigurations, router } = pageProps;
-    const { metadatas, translations } = states;
+    const { translations } = states;
 	const { solutions } = accordionsConfigurations;
     useEffect(() => {
 		const typed = new Typed(typedReference.current, {
@@ -36,10 +36,7 @@ const StartupSolutions = (pageProps: HomeInterface) => {
 		return () => typed.destroy();
 	  }, []);
     return <Fragment>
-        <Head>
-            <title>{ metadatas[router.route].title }</title>
-			<meta name="description" content={ metadatas[router.route].description }/>
-        </Head>
+        <MetaDatas { ...pageProps }/>
         <div id="startups" className="containerFull">
             <div className={ SolutionsStyles.presentation } data-type="startup">
                 <div className="container">
@@ -115,7 +112,7 @@ const StartupSolutions = (pageProps: HomeInterface) => {
 					<Carousel { ...pageProps } component="LatestOpportunities" data={ opportunities }/>
 					<div className={ HomeStyles.actions } data-justify="left">
 						<Button button={ ButtonStyles.callToAction } href="/directories/opportunities/categories" text={ translations["Découvrir toutes les opportunités"] }/>
-						<Button button={ ButtonStyles.callToActionAlternative } href="/howto/opportunities" text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
+						<Button button={ ButtonStyles.callToActionAlternative } href="/opportunities" text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
 					</div>
 				</div>
 			</div>

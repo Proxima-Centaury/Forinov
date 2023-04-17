@@ -8,8 +8,8 @@ import { HomeInterface } from "../../typescript/interfaces";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Head from "next/head";
 import Image from "next/image";
+import MetaDatas from "../../components/seo/metadatas/metadatas";
 import Button from "../../components/buttons/button";
 import Carousel from "../../components/carousels/carousel";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -24,7 +24,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 const PartnerSolutions = (pageProps: HomeInterface) => {
 	const typedReference = useRef(null);
     const { states, accordionsConfigurations, router } = pageProps;
-    const { metadatas, translations } = states;
+    const { translations } = states;
 	const { solutions } = accordionsConfigurations;
     useEffect(() => {
 		const typed = new Typed(typedReference.current, {
@@ -35,10 +35,7 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
 		return () => typed.destroy();
 	  }, []);
     return <Fragment>
-        <Head>
-            <title>{ metadatas[router.route].title }</title>
-            <meta name="description" content={ metadatas[router.route].description }/>
-        </Head>
+        <MetaDatas { ...pageProps }/>
         <div id="partners" className="containerFull">
             <div className={ SolutionsStyles.presentation } data-type="partner">
                 <div className="container">

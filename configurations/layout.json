@@ -14,22 +14,22 @@
             "layout": {
                 "navbar": [
                     { "url": "", "text": "Startups", "nesting": true, "nest": [
-                        { "url": "/howto/startups", "text": "Comment ça marche" },
+                        { "url": "/startups", "text": "Comment ça marche" },
                         { "url": "/solutions/startups", "text": "Solutions startups" },
                         { "url": "/directories/startups", "text": "Annuaire de startups" }
                     ] },
                     { "url": "", "text": "Entreprises", "nesting": true, "nest": [
-                        { "url": "/howto/corporates", "text": "Comment ça marche" },
+                        { "url": "/corporates", "text": "Comment ça marche" },
                         { "url": "/solutions/corporates", "text": "Solutions entreprises" },
                         { "url": "/directories/corporates", "text": "Annuaire d'entreprises" }
                     ] },
                     { "url": "", "text": "Partenaires", "nesting": true, "nest": [
-                        { "url": "/howto/partners", "text": "Comment ça marche" },
+                        { "url": "/partners", "text": "Comment ça marche" },
                         { "url": "/solutions/partners", "text": "Solutions partenaires" },
                         { "url": "/directories/partners", "text": "Annuaire de partenaires" }
                     ] },
                     { "url": "", "text": "Opportunités", "nesting": true, "nest": [
-                        { "url": "/howto/opportunities", "text": "Comment ça marche" },
+                        { "url": "/opportunities", "text": "Comment ça marche" },
                         { "url": "/directories/opportunities", "text": "Toutes les opportunités" },
                         { "url": "/directories/opportunities/categories/calls-for-proposals_1", "text": "Appels à candidatures" },
                         { "url": "/directories/opportunities/categories/programs_2", "text": "Programmes d'accompagnement" },

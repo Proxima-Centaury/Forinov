@@ -81,7 +81,7 @@ const Pagination = (pageProps: any) => {
 			<Button button={ (pages === currentPage) ? ButtonStyles.callToActionRoundedIcon : ButtonStyles.callToActionAlternativeRoundedIcon } action={ selectPage } text={ pages.toString() }/>
 			<Button button={ ButtonStyles.callToAction } action={ nextPage } icon="fa-light fa-arrow-right" text={ translations["Suivant"] }/>
 		</div>
-		<p>{ pages + " " + translations["Pages trouvées"].toLowerCase() }</p>
+		<p>{ pages + " " + ((pages === 1) ? translations["Page trouvée"].toLowerCase() : translations["Pages trouvées"].toLowerCase()) }</p>
 	</div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

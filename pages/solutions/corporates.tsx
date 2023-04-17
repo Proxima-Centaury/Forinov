@@ -8,8 +8,8 @@ import api from "../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Head from "next/head";
 import Image from "next/image";
+import MetaDatas from "../../components/seo/metadatas/metadatas";
 import Button from "../../components/buttons/button";
 import Carousel from "../../components/carousels/carousel";
 import Separator from "../../components/separators/separator";
@@ -24,16 +24,13 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CorporateSolutions = (pageProps: HomeInterface) => {
     const { landing, states, accordionsConfigurations, router } = pageProps;
-    const { metadatas, translations, RGB } = states;
+    const { translations, RGB } = states;
 	const { solutions } = accordionsConfigurations;
 	const [ lightingState, setLightingState ] = useState("disabled");
     const startupsCount: number = landing?.COUNTERS.STARTUPS;
 	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     return <Fragment>
-        <Head>
-            <title>{ metadatas[router.route].title }</title>
-            <meta name="description" content={ metadatas[router.route].description }/>
-        </Head>
+        <MetaDatas { ...pageProps }/>
         <div id="corporates" className="containerFull">
             <div className={ SolutionsStyles.presentation } data-type="corporate">
                 <div className="container">
@@ -187,7 +184,7 @@ const CorporateSolutions = (pageProps: HomeInterface) => {
                 <div className="container">
                     <h3>{ translations["Choisissez l'offre la plus adaptée pour vous et votre entreprise"] + " :" }</h3>
                     <div className="grid threeColumns">
-                        <div className={ SolutionsStyles.plan } data-rgb={ lightingState }>
+                        {/* <div className={ SolutionsStyles.plan } data-rgb={ lightingState }>
                             <div className={ SolutionsStyles.head }>
                                 <h5>{ translations["Professionnel"] }</h5>
                                 <p>{ "1" + " " + translations["Utilisateur"].toLowerCase() }</p>
@@ -216,7 +213,7 @@ const CorporateSolutions = (pageProps: HomeInterface) => {
                             <div className={ HomeStyles.actions } data-justify="center">
                                 <Button button={ ButtonStyles.classicLink } href="#" text={ translations["Voir le détail"] }/>
                             </div>
-                        </div>
+                        </div> */}
                         <div className={ SolutionsStyles.plan + " popular" } data-rgb={ lightingState }>
                             <div className={ SolutionsStyles.tab }>
                                 <i className="fa-solid fa-star"/>
