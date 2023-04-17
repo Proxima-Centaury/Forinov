@@ -75,6 +75,7 @@
     box-shadow: var(--box-shadow);
     overflow-x: hidden;
     overflow-y: auto;
+    transition: opacity 0.3s ease-in-out;
     z-index: 2;
 }
 .selectField.show > .options {
@@ -93,6 +94,7 @@
     height: 40px;
     padding: 8px;
     border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
 }
 .option > i {
     color: var(--logo-blue-color);
@@ -107,6 +109,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    transition: color 0.3s ease-in-out;
 }
 .option:hover > span {
     color: var(--perfect-black-color);

@@ -21,7 +21,6 @@ import config from "../configurations/config.json";
 * @method preventSubmit : {@link Utilities.preventSubmit} NEEDS DELETE
 * @method buildProperties : {@link Utilities.buildProperties} NEEDS DELETE
 * @method scrollTo : {@link Utilities.scrollTo} OK
-* @method seeMoreOrLess : {@link Utilities.seeMoreOrLess} NEEDS UPDATE
 * @method redirectTo : {@link Utilities.redirectTo} OK
 * @method uppercaseFirst : {@link Utilities.uppercaseFirst} OK
 * @method remainingTime : {@link Utilities.remainingTime} OK
@@ -29,9 +28,10 @@ import config from "../configurations/config.json";
 * @method bindEventListener : {@link Utilities.bindEventListeners} OK
 * @method removeEventListeners : {@link Utilities.removeEventListeners} OK
 * @method structureTags : {@link Utilities.structureTags} OK
-* @method formatType : {@link Utilities.formatType} NEEDS UPDATE
+* @method formatType : {@link Utilities.formatType} OK
 * @method checkMatch : {@link Utilities.checkMatch} OK
 * @method preciseTarget : {@link Utilities.preciseTarget} OK
+* @method escapeHTML : {@link Utilities.escapeHTML} OK
 * @returns
 * - ```void``` ( nothing ).
 * ---
@@ -292,39 +292,6 @@ class Utilities {
     };
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
-    * @function seeMoreOrLess
-    * @param { any } [ event ] Should be an ```event```.
-    * @param { any } [ translations ] Should be an ```object```.
-    * @param { String } [ selector ] Should be a ```string```.
-    * @param { Array<any> } [ array ] Should be an ```array```.
-    * @param { Number } [ defaultVisibleItemsCount ] Should be a ```number```.
-    * @param { Number } [ counter ] Should be a ```number```.
-    * @returns { array }
-    * - ```array```.
-    * ---
-    * @note This method is used to display more items.
-    */
-    seeMoreOrLess = (event: any, translations: any, selector: String, array = [], defaultVisibleItemsCount = 1, counter = true): Array<any> => {
-        const target = event.target.closest("button");
-        const container = (target?.closest("[data-type='list']")) ? target?.closest("[data-type='list']") : document.querySelector(selector as string)?.closest("[data-type='list']") as HTMLElement;
-        const visibleElements = container?.querySelectorAll(selector + ":not(.hidden)");
-        const hiddenElements = container?.querySelectorAll(selector + ".hidden");
-        // TODO => ANIMATE WITH A COLLAPSE
-        if(hiddenElements && hiddenElements.length > 0) {
-            hiddenElements.forEach((hiddenElement: any) => hiddenElement.classList.remove("hidden"));
-            target.querySelector("span").innerText = translations["Voir moins"];
-            (target.querySelector("i")) ? target.querySelector("i").style.transform = "rotate(-90deg)" : null;
-        } else {
-            if(visibleElements && visibleElements.length > defaultVisibleItemsCount) {
-                visibleElements.forEach((visibleElement: any, key: KeyType) => (parseInt(key) >= defaultVisibleItemsCount) ? visibleElement.classList.add("hidden") : null);
-                target.querySelector("span").innerText = translations["Voir plus"] + ((array.length > 0) ? " (" + (array.length - defaultVisibleItemsCount) + ")" : "");
-                (target.querySelector("i")) ? target.querySelector("i").style.transform = "rotate(90deg)" : null;
-            };
-        };
-        return [ target, hiddenElements ];
-    };
-    /**
-    * This is a ```method``` ( ```function``` inside ```class``` ).
     * @function redirectTo
     * @param { String } [ route ] Should be a ```string```.
     * @param { any } [ router ] Should be an ```object```.
@@ -498,18 +465,25 @@ class Utilities {
     * - ```string```.
     * - ```false``` if string parameter missing or wrong.
     * ---
-    * @note This method is used to return the correct company type according to the router type parameter.
+    * @note This method is used to return the correct company type for your scripts if specific transformations are needed according to the router type parameter.
     * @note The {@link type} parameter should be a string.
     */
-    formatType = (type: String): String|Boolean => {
+    formatType = (type: String, language: String = "fr"): String|Boolean => {
         if(!type || type.trim().length <= 0) {
             return false;
         };
         type = String(type);
-        type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-        type = (type.match(/(entreprise)/)) ? "corporate" : type;
-        type = (type.match(/(partenaire)/)) ? "partner" : type;
-        type = (type.match(/(opportu)/)) ? "opportunity" : type;
+        if(language === "fr") {
+            type = (type.match(/(startups)/)) ? "startup" : type;
+            type = (type.match(/(corporates)/)) ? "entreprise" : type;
+            type = (type.match(/(partners)/)) ? "partenaire" : type;
+            type = (type.match(/(opportunities)/)) ? "opportunite" : type;
+        } else if(language === "en") {
+            type = (type.match(/(startups)/)) ? "startup" : type;
+            type = (type.match(/(corporates)/)) ? "corporate" : type;
+            type = (type.match(/(partners)/)) ? "partner" : type;
+            type = (type.match(/(opportunities)/)) ? "opportunity" : type;
+        };
         return type;
     };
     /**
@@ -548,6 +522,20 @@ class Utilities {
         const preciseTarget = target.closest("button") || target.closest("a");
         return preciseTarget as HTMLElement;
     };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function escapeHTML
+    * @param { String } [ htmlString ] Should be a ```string```.
+    * @returns { String }
+    * - ```string``` an escaped version of the passed htmlString.
+    * ---
+    * @note This method is used to return an escaped version of the passed htmlString.
+    * @note The {@link htmlString} parameter should be a string.
+    */
+    escapeHTML = (htmlString: String): String => {
+        const escaped = htmlString.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+        return escaped;
+    };
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Instance */
@@ -565,7 +553,6 @@ const getMetadatasTranslations = utilities.getMetadatasTranslations;
 const preventSubmit = utilities.preventSubmit;
 const buildProperties = utilities.buildProperties;
 const scrollTo = utilities.scrollTo;
-const seeMoreOrLess = utilities.seeMoreOrLess;
 const redirectTo = utilities.redirectTo;
 const uppercaseFirst = utilities.uppercaseFirst;
 const remainingTime = utilities.remainingTime;
@@ -576,6 +563,7 @@ const structureTags = utilities.structureTags;
 const formatType = utilities.formatType;
 const checkMatch = utilities.checkMatch;
 const preciseTarget = utilities.preciseTarget;
+const escapeHTML = utilities.escapeHTML;
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -590,7 +578,6 @@ export {
     preventSubmit,
     buildProperties,
     scrollTo,
-    seeMoreOrLess,
     redirectTo,
     uppercaseFirst,
     remainingTime,
@@ -600,5 +587,6 @@ export {
     structureTags,
     formatType,
     checkMatch,
-    preciseTarget
+    preciseTarget,
+    escapeHTML
 };

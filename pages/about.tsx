@@ -7,8 +7,8 @@ import { HomeInterface } from "../typescript/interfaces";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Head from "next/head";
 import Image from "next/image";
+import MetaDatas from "../components/seo/metadatas/metadatas";
 import Button from "../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -20,12 +20,9 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const About = (pageProps: HomeInterface) => {
     const { states, router } = pageProps;
-    const { translations, metadatas } = states;
+    const { translations } = states;
     return <Fragment>
-        <Head>
-            <title>{ metadatas[router.asPath].title }</title>
-			<meta name="description" content={ metadatas[router.asPath].description }/>
-        </Head>
+        <MetaDatas { ...pageProps }/>
         <div className="containerFull" style={ { background: "var(--background-sub-color)" } }>
             <div className={ "container " + AboutStyles.heroContainer }>
                 <h1 className={ AboutStyles.heroTitle }>{ translations["Notre histoire et nos missions chez Forinov"] }</h1>

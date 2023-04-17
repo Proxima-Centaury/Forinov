@@ -8,8 +8,8 @@ import api from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Head from "next/head";
 import Image from "next/image";
+import MetaDatas from "../components/seo/metadatas/metadatas";
 import Carousel from "../components/carousels/carousel";
 import Button from "../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -22,13 +22,10 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CorporatesHome = (pageProps: HomeInterface) => {
 	const { opportunities, logos, states, accordionsConfigurations, router } = pageProps;
-	const { metadatas, translations } = states;
+	const { translations } = states;
 	const { landings } = accordionsConfigurations;
 	return <Fragment>
-		<Head>
-			<title>{ metadatas[router.route].title }</title>
-			<meta name="description" content={ metadatas[router.route].description }/>
-		</Head>
+        <MetaDatas { ...pageProps }/>
 		<div id="corporates" className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="corporate">
 				<div className="container">

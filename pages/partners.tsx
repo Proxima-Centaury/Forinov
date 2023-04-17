@@ -8,8 +8,8 @@ import api from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Head from "next/head";
 import Image from "next/image";
+import MetaDatas from "../components/seo/metadatas/metadatas";
 import Carousel from "../components/carousels/carousel";
 import Button from "../components/buttons/button";
 import Separator from "../components/separators/separator";
@@ -23,13 +23,10 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnersHome = (pageProps: HomeInterface) => {
 	const { startups, logos, states, accordionsConfigurations, router } = pageProps;
-	const { metadatas, translations } = states;
+	const { translations } = states;
 	const { landings } = accordionsConfigurations;
 	return <Fragment>
-		<Head>
-			<title>{ metadatas[router.route].title }</title>
-			<meta name="description" content={ metadatas[router.route].description }/>
-		</Head>
+        <MetaDatas { ...pageProps }/>
 		<div id="partners" className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="partner">
 				<div className="container">
@@ -53,7 +50,7 @@ const PartnersHome = (pageProps: HomeInterface) => {
 				<div className="container">
 					<h3>{ translations["Ils nous font confiance"] + " :" }</h3>
 					<Carousel { ...pageProps } component="CompaniesLogos" data={ logos }/>
-					<h3>{ translations["Rejoignez l'écosystème Forinov plus de 1200 startups vous attendent"] + " !" }</h3>
+					<h3>{ translations["Rejoignez l'écosystème Forinov plus de 2000 startups vous attendent"] + " !" }</h3>
 					<p>{ translations["Adaptez votre forfait à vos besoins"] + " !" }</p>
 					<div className={ HomeStyles.actions } data-justify="center">
 						<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Rejoindre l'écosystème Forinov"] }/>

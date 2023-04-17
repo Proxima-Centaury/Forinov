@@ -11,9 +11,12 @@ import Deals from "../index";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, locale, locales, defaultLocale } = context;
-    const language = locale?.substring(0, 2);
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     return {
+        redirect: {
+            destination: "/403",
+            permanent: false
+        },
         props: {
             locale, locales, defaultLocale
         }

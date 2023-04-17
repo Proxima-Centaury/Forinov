@@ -39,7 +39,7 @@ const Folder = (pageProps: FoldersInterface) => {
             { (selectedFolder) ? <p>{ selectedFolder.STARTUPS.length + " " + translations["Startups"].toLowerCase() }</p> : null }
         </div>
         <div className={ FolderStyles.description }>
-            { (selectedFolder) ? <Format content={ selectedFolder.DESCRIPTION }/> : null }
+            { (selectedFolder) ? <Format { ...pageProps } content={ selectedFolder.DESCRIPTION }/> : null }
         </div>
         <div className="grid twoColumns">
             { (selectedFolder && selectedFolder.STARTUPS) ? selectedFolder.STARTUPS.map((startup: any, key: Key) => {
@@ -67,9 +67,9 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     if(type) {
         type = String(type);
-        type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-        type = (type.match(/(corporate)/)) ? "entreprise" : type;
-        type = (type.match(/(partner)/)) ? "partenaire" : type;
+        type = (type.match(/(startups)/)) ? "startup" : type;
+        type = (type.match(/(corporates)/)) ? "entreprise" : type;
+        type = (type.match(/(partners)/)) ? "partenaire" : type;
     };
     const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);
     if(!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {

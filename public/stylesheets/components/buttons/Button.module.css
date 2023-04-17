@@ -14,6 +14,7 @@
     border-radius: 10px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 .oldHome:hover {
     transform: scale(1.05);
@@ -34,6 +35,10 @@
     grid-gap: 8px;
     gap: 8px;
     width: max-content;
+}
+.default > i,
+.default > span {
+    transition: color 0.3s ease-in-out;
 }
 .default:hover > i,
 .default:hover > span,
@@ -59,6 +64,10 @@
 .mask > i {
     margin: 8px 8px 8px auto;
     color: var(--light-grey-color);
+}
+.mask > i,
+.mask > span {
+    transition: color 0.3s ease-in-out;
 }
 .mask:hover > i,
 .mask:hover > span {
@@ -87,6 +96,7 @@
     border-radius: 20px;
     border: var(--border);
     border-color: var(--logo-blue-color);
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 .callToActionSquaredIcon,
 .callToActionAlternativeSquaredIcon,
@@ -103,6 +113,24 @@
 .callToActionNegativeSquaredIcon > i,
 .callToActionNegativeAlternativeSquaredIcon > i {
     font-size: 16px;
+}
+.callToActionRoundedIcon > i,
+.callToActionRoundedIcon > span,
+.callToActionAlternativeRoundedIcon > i,
+.callToActionAlternativeRoundedIcon > span,
+.callToActionNegativeRoundedIcon > i,
+.callToActionNegativeRoundedIcon > span,
+.callToActionNegativeAlternativeRoundedIcon > i,
+.callToActionNegativeAlternativeRoundedIcon > span,
+.callToActionSquaredIcon > i,
+.callToActionSquaredIcon > span,
+.callToActionAlternativeSquaredIcon > i,
+.callToActionAlternativeSquaredIcon > span,
+.callToActionNegativeSquaredIcon > i,
+.callToActionNegativeSquaredIcon > span,
+.callToActionNegativeAlternativeSquaredIcon > i,
+.callToActionNegativeAlternativeSquaredIcon > span  {
+    transition: color 0.3s ease-in-out;
 }
 .callToActionRoundedIcon > i[class*="ellipsis"],
 .callToActionAlternativeRoundedIcon > i[class*="ellipsis"],
@@ -193,6 +221,7 @@
     border-radius: 20px;
     border: var(--border);
     border-color: var(--logo-blue-color);
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 @media screen and (max-width: 576px) {
     .callToAction,
@@ -215,6 +244,22 @@
 .callToActionStep > i,
 .callToActionOldGrey > i {
     font-size: 16px;
+}
+.callToAction > i,
+.callToAction > span,
+.callToActionAlternative > i,
+.callToActionAlternative > span,
+.callToActionNegative > i,
+.callToActionNegative > span,
+.callToActionNegativeAlternative > i,
+.callToActionNegativeAlternative > span,
+.callToActionSquared > i,
+.callToActionSquared > span,
+.callToActionStep > i,
+.callToActionStep > span,
+.callToActionOldGrey > i,
+.callToActionOldGrey > span {
+    transition: color 0.3s ease-in-out;
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( Call To Action ) */
@@ -338,6 +383,7 @@
     border-style: dashed;
     border-radius: 10px;
     background-color: var(--background-sub-color);
+    transition: background-color 0.3s ease-in-out;
 }
 .callToActionWide:hover {
     background-color: var(--paleblue-color);
@@ -353,15 +399,19 @@
     color: var(--logo-blue-color);
     border-radius: 32px;
     background-color: var(--paleblue-color);
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 .callToActionWide:hover > i {
-    background-color: var(--perfect-white-color);
+    background-color: var(--lightblue-color);
 }
 .callToActionWide > span {
     font-family: "Nunito Sans";
     font-size: 21px;
     color: var(--logo-blue-color);
 }
+/* .callToActionWide:hover > span {
+    font-weight: bold;
+} */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Button ( See More ) */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -430,22 +480,26 @@
     opacity: 0;
 }
 .navigationButton.active > span:first-of-type {
-    transform: translateY(0px);
-    animation: firstBarAnimation 0.3s ease 0.3s forwards;
+    transform: translateY(0px) rotate(0deg);
+    animation: firstBarAnimation 0.3s ease-in-out 0.3s forwards;
 }
 @keyframes firstBarAnimation {
-    50% {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    } 50% {
         transform: translateY(10px);
     } 100% {
         transform: translateY(10px) rotate(45deg);
     }
 }
 .navigationButton.active > span:last-of-type {
-    transform: translateY(0px);
-    animation: thirdBarAnimation 0.3s ease 0.3s forwards;
+    transform: translateY(0px) rotate(0deg);
+    animation: thirdBarAnimation 0.3s ease-in-out 0.3s forwards;
 }
 @keyframes thirdBarAnimation {
-    50% {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    } 50% {
         transform: translateY(-10px);
     } 100% {
         transform: translateY(-10px) rotate(-45deg);
@@ -464,6 +518,7 @@
     top: 16px;
     right: 16px;
     border-radius: 30px;
+    transition: background-color 0.3s ease-in-out;
 }
 .closeModal:hover {
     background-color: var(--paleblue-color);
@@ -483,6 +538,7 @@
     width: max-content;
     border-bottom: var(--border);
     border-color: transparent;
+    transition: border-color 0.3s ease-in-out;
 }
 .classicLink:hover {
     border-color: var(--logo-blue-color);
@@ -514,4 +570,21 @@
 .dropdownLink.active > i,
 .dropdownLink.active > span {
     color: var(--perfect-white-color);
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Button ( Notifications ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.notifications {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: -2.5px;
+    right: -2.5px;
+    font-size: 10px;
+    color: var(--perfect-white-color) !important;
+    background-color: var(--error-color);
+    border-radius: 10px;
 }

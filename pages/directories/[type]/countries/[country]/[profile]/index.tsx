@@ -16,12 +16,12 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     profile = profile?.substring(profile.indexOf("_") + 1, profile.length);
     const language = locale?.substring(0, 2);
-    if(!type.match(/(opport)/)) {
+    if(!type.match(/(opportunities)/)) {
         if(type) {
             type = String(type);
-            type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-            type = (type.match(/(corporate)/)) ? "entreprise" : type;
-            type = (type.match(/(partner)/)) ? "partenaire" : type;
+            type = (type.match(/(startups)/)) ? "startup" : type;
+            type = (type.match(/(corporates)/)) ? "entreprise" : type;
+            type = (type.match(/(partners)/)) ? "partenaire" : type;
         };
         const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);
         if(!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {

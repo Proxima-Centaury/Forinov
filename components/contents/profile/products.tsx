@@ -25,9 +25,9 @@ const ProfileProducts = (productsProps: any) => {
             { (products.length > 0) ? products.map((product: any, key: Key) => <Link key={ key } href={ router.asPath + "/products/" + formatNameForUrl(product.NAME) + "_" + product.ID }>
                 <ProductCard { ...productsProps } product={ product }/>
             </Link>) : <div className="placeholder" style={ { gridColumn: "span 2" } }>
-                { (type.match(/(startup)/)) ? <p>{ translations["Aucun produit à afficher"] + "." }</p> : null }
-                { (type.match(/(corporate|entreprise)/)) ? <p>{ translations["Aucune offre à afficher"] + "." }</p> : null }
-                { (type.match(/(partner|partenaire)/)) ? <p>{ translations["Aucune offre à afficher"] + "." }</p> : null }
+                { (type.match(/(startups)/)) ? <p>{ translations["Aucun produit à afficher"] + "." }</p> : null }
+                { (type.match(/(corporates)/)) ? <p>{ translations["Aucune offre à afficher"] + "." }</p> : null }
+                { (type.match(/(partners)/)) ? <p>{ translations["Aucune offre à afficher"] + "." }</p> : null }
             </div> }
         </div>
     </div>;

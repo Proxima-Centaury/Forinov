@@ -7,13 +7,13 @@ import { preciseTarget } from "../scripts/utilities";
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import Button from "../components/buttons/button";
-import RegisterModal from "../components/modals/profile/register";
+import RegisterModal from "../components/modals/register";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
-import SelectStyles from "../public/stylesheets/components/fields/Select.module.css";
 import ContactModal from "../components/modals/contact";
+import ErrorsModal from "../components/modals/errors";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Modal */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -49,6 +49,11 @@ const ModalPicker = (modalProps: any) => {
         case "contact":
             return <div className="modal secondType" data-modal="contact">
                 <ContactModal { ...modalProps }/>
+                <Button button={ ButtonStyles.closeModal } action={ action }/>
+            </div>;
+        case "errors":
+            return <div className="modal secondType" data-modal="errors">
+                <ErrorsModal { ...modalProps }/>
                 <Button button={ ButtonStyles.closeModal } action={ action }/>
             </div>;
         default:

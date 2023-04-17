@@ -32,7 +32,7 @@
 				},
 				{
 					"button": "Comment entrer en contact avec des startups et développer mon réseau",
-					"content": "Pour contacter des startups et développer votre réseau, c'est très simple !<br><br>1- Vous pouvez rechercher des startups dans l'annuaire puis, à partir de leur profil, contacter directement des membres de leur équipe, via messagerie sécurisée. <br>2 - Vous pouvez suivre et ainsi ajouter les startups à votre portefeuille. Cela vous permet de les classer en dossiers thématiques, de suivre leurs actualités ou encore de renseigner l'avancée de vos relations (statut, prises de notes, suivi des RDVs, documents envoyés, etc.)<br>3 - En créant une opportunité (appel à candidatures, concours, etc.) vous recevrez des candidatures de startups, internes ou externes au réseau Forinov. En quelques clics, vous sélectionnez les plus pertinentes et poursuivez les échanges avec elles. La plateforme garde l'historique des candidatures et des évaluations pour vous permettre de suivre l'évolution des startups au fil du temps et vous faire gagner du temps"
+					"content": "Pour contacter des startups et développer votre réseau, c'est très simple !<br><br>1- Vous pouvez rechercher des startups dans l'annuaire puis, à partir de leur profil, contacter directement des membres de leur équipe, via messagerie sécurisée. <br>2 - Vous pouvez suivre et ainsi ajouter les startups à votre portefeuille. Cela vous permet de les classer en dossiers thématiques, de suivre leurs actualités ou encore de renseigner l'avancée de vos relations (statut, prises de notes, suivi des RDVs, documents envoyés, etc.).<br>3 - En créant une opportunité (appel à candidatures, concours, etc.) vous recevrez des candidatures de startups, internes ou externes au réseau Forinov. En quelques clics, vous sélectionnez les plus pertinentes et poursuivez les échanges avec elles. La plateforme garde l'historique des candidatures et des évaluations pour vous permettre de suivre l'évolution des startups au fil du temps et vous faire gagner du temps"
 				},
 				{
 					"button": "À quelle typologie d'entreprises s'adresse Forinov",
@@ -76,7 +76,7 @@
 			"general": [
 				{
 					"button": "Qu'est-ce qu'une opportunité",
-					"content": "Il y a cinq types d'opportunités : les [appels à candidatures=/directories/opportunities/callsforproposals], les [concours et challenges=/directories/opportunities/contestsandchallenges], les [programmes d'accompagnement=/directories/opportunities/followshipprograms], les [évènements=/directories/opportunities/events] et les [offres exclusives=/directories/opportunities/exclusiveoffers].<br><br>Les appels à candidatures sont publiés par les entreprises et partenaires afin de recevoir des réponses à un besoin plus ou moins précis. Cela peut être un appel à candidature, pour un besoin métier bien identifié, un appel à manifestation d'intérêt ou encore une recherche de solutions pour un benchmark.<br><br>Le programme d'accompagnement : généralement proposé par des partenaires, il s'agit d'un appel à candidatures destiné à trouver des candidats pour un programme d'incubation, d'accélération ou autre.<br><br>L'offre exclusive : Il s'agit d'offres promotionnelles proposées spécialement à la communauté Forinov venant de nos partenaires"
+					"content": "Il y a cinq types d'opportunités : les [appels à candidatures=/directories/opportunities/categories/calls-for-proposals_1], les [concours et challenges=/directories/opportunities/categories/challenges-and-contests_3], les [programmes d'accompagnement=/directories/opportunities/categories/programs_2], les [évènements=/directories/opportunities/categories/events_4] et les [offres exclusives=/directories/opportunities/categories/exclusive-offers_5].<br><br>Les appels à candidatures sont publiés par les entreprises et partenaires afin de recevoir des réponses à un besoin plus ou moins précis. Cela peut être un appel à candidature, pour un besoin métier bien identifié, un appel à manifestation d'intérêt ou encore une recherche de solutions pour un benchmark.<br><br>Le programme d'accompagnement : généralement proposé par des partenaires, il s'agit d'un appel à candidatures destiné à trouver des candidats pour un programme d'incubation, d'accélération ou autre.<br><br>L'offre exclusive : Il s'agit d'offres promotionnelles proposées spécialement à la communauté Forinov venant de nos partenaires"
 				},
 				{
 					"button": "Pourquoi publier une opportunité sur Forinov et pas ailleurs",
@@ -122,7 +122,7 @@
 				},
 				{
 					"button": "Comment puis-je postuler à un appel à candidatures",
-					"content": ""
+					"content": "Retrouve toutes les opportunités en cours dans l'onglet <b>Opportunités</b>. Avec ton profil Forinov, tu seras informé.e directement des appels à candidatures qui matchent avec ton profil. Pour postuler réponds au questionnaire associé à l'appel, et gagne un temps fou grâce aux nombreuses informations pré-remplies à partir de ton profil"
 				}
 			]
 		},
@@ -130,27 +130,27 @@
 			"general": [
 				{
 					"button": "Pourquoi publier un appel à candidature sur Forinov",
-					"content": ""
+					"content": "Forinov vous permet de diffuser vos besoins et opportunités (appels à candidatures, concours, etc.) en quelques clics. Vous pouvez créer vos formulaires personnalisés et centraliser la gestion des candidatures (notations, commentaires). Les startups gagnent un temps précieux en suivant le statut de leur candidature (et donc vous sollicitent moins). Les + pour vous : nous vous aidons dans le sourcing de startups, en invitant notamment les startups qui ne seraient pas encore sur Forinov"
 				},
 				{
 					"button": "Toutes les informations sont-elles publiques",
-					"content": ""
+					"content": "Non, vous disposez d'espaces totalement privés et réservés à vous et vos collaborateurs pour y partager, par exemple, vos compte rendus de RDV, vos avis et commentaires, etc. Seuls les utilisateurs habilités sur votre compte ont accès à ces informations confidentielles"
 				},
 				{
 					"button": "Quels sont les avantages de Forinov pour mon équipe",
-					"content": ""
+					"content": "Fini les reportings fastidieux et obsolètes au bout d'un mois ! Les forces de Forinov : la centralisation des recherches, la possibilité de partager certains dossiers de votre portefeuille avec vos collaborateurs et surtout la mise à jour des fiches par les startups elles-mêmes ! Votre collaborateur a rencontré une startup il y a quelques mois et n'a pas donné suite ? Découvrez pourquoi sans avoir à remonter dans ses mails"
 				},
 				{
 					"button": "D'où viennent les données et comment sont-elles mises à jour",
-					"content": ""
+					"content": "Les utilisateurs mettent à jour leur propre profil ce qui permet d'avoir l'information directement à la source est d'être informé des dernières actualités. Pour les startups c'est l'occasion d'être en visibilité non pas d'une entreprise mais de tout un écosystème. Pour vous, c'est un gain de temps précieux : plus besoin de créer et mettre à jour des fiches, il vous suffit de les suivre pour les ajouter à votre portefeuille. Vous pourrez ensuite gérer le suivi de vos relations (RDV, notes, etc.)"
 				},
 				{
 					"button": "J'ai déjà un CRM de startups, qu'est-ce que Forinov m'apporte de plus",
-					"content": ""
+					"content": "Les équipes de Forinov s'occupent d'inviter gratuitement les startups de votre CRM. L'avantage ? Vous n'aurez plus à actualiser les données tous les mois car la startup s'occupe de tout ! Forinov vous donne donc accès à des données en temps réel, et à un reporting automatisé"
 				},
 				{
 					"button": "En quoi Forinov permet d'éviter la sur-sollicitation",
-					"content": ""
+					"content": "Avec votre profil personnalisé et complet, vous indiquez précisément ce que vous recherchez sur Forinov, mais aussi ce que vous ne cherchez pas. Vous pouvez aussi suivre des profils de startups : elles en sont informées et ne cherchent donc pas à vous repartager et à vous vendre leurs produits, car vous y avez accès en quelques clics. Les appels à candidatures sont le signal pour elles que vous recherchez une technologie bien précise"
 				}
 			]
 		},
@@ -166,7 +166,7 @@
 				},
 				{
 					"button": "Puis-je faire des recommandations entre mes startups et des entreprises",
-					"content": ""
+					"content": "Forinov est aussi fait pour ça ! Si certains profils de votre réseau semblent correspondre aux recherches des entreprises inscrites, n'hésitez pas à pousser leurs profils ! La messagerie interne et les profils détaillés des collaborateurs vous permettront de simplifier vos démarches et de mettre en relation vos startups avec les bonnes personnes"
 				},
 				{
 					"button": "Quelle est la valeur ajoutée pour un incubateur / accélérateur",
@@ -174,7 +174,7 @@
 				},
 				{
 					"button": "Toutes les informations sont-elles publiques",
-					"content": ""
+					"content": "Non, vous disposez d'espaces totalement privés et réservés à vous et vos collaborateurs pour y partager, par exemple, vos compte rendus de RDV, vos avis et commentaires, etc. Seuls les utilisateurs habilités sur votre compte ont accès à ces informations confidentielles"
 				},
 				{
 					"button": "Comment inviter et mettre en avant mes startups sur Forinov",

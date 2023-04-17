@@ -21,8 +21,8 @@ const ProfileEcosystem = (ecosystemProps: any) => {
     const { lock, translations } = states;
     const { type } = router.query;
     return <div id="ecosystem" className={ EcosystemStyles.ecosystem }>
-        <h3>{ (type.match(/(startup)/)) ? translations["Marché et écosystème"] : translations["Écosystème et partenaires"] }</h3>
-        { (type.match(/(startup)/)) ? <div className={ EcosystemStyles.content }>
+        <h3>{ (type.match(/(startups)/)) ? translations["Marché et écosystème"] : translations["Écosystème et partenaires"] }</h3>
+        { (type.match(/(startups)/)) ? <div className={ EcosystemStyles.content }>
             <p className={ EcosystemStyles.label }>{ translations["Nos références clients"] + " (" + profile.CLIENTS.length + ")" }</p>
             <div className={ "grid twoColumns" + ((lock) ? " locked" : "") }>
                 { (profile.CLIENTS.length > 0) ? profile.CLIENTS.map((client: any, key: Key) => <Link key={ key } href={ "/directories/corporates/" + formatNameForUrl(client.NAME) + "_" + client.ID }>

@@ -10,8 +10,8 @@ import api from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Head from "next/head";
 import Image from "next/image";
+import MetaDatas from "../components/seo/metadatas/metadatas";
 import Carousel from "../components/carousels/carousel";
 import Format from "../components/texts/format";
 import Button from "../components/buttons/button";
@@ -27,27 +27,24 @@ import ButtonStyles from "../public/stylesheets/components/buttons/Button.module
 const Home = (pageProps: HomeInterface) => {
 	const typedReference = useRef(null);
 	const { landing, startups, opportunities, states, router } = pageProps;
-	const { translations, metadatas, RGB } = states;
+	const { translations, RGB } = states;
 	const [ lightingState, setLightingState ] = useState("disabled");
 	const structures: Array<String> = [ "Startup", "Grand groupe", "ETI", "PME", "Incubateur", "Accélérateur", "Pépinière", "Fond d'investissement", "Business angel", "Structure d'investissement" ];
 	useEffect(() => {
 		const typed = new Typed(typedReference.current, {
 			strings: [
-			translations["Plus de 1500 startups innovantes à l'international"] + ".",
-			translations["Des centaines d'entreprises à la recherche de solutions"] + ".",
-			translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"] + "."
+				translations["Plus de 1500 startups innovantes à l'international"] + ".",
+				translations["Des centaines d'entreprises à la recherche de solutions"] + ".",
+				translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"] + "."
 			],
 			typeSpeed: 50,
 			loop: true
 		});
 		return () => typed.destroy();
-	  }, []);
+	});
 	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
 	return <Fragment>
-		<Head>
-			<title>{ metadatas[router.route].title }</title>
-			<meta name="description" content={ metadatas[router.route].description }/>
-		</Head>
+		<MetaDatas { ...pageProps }/>
 		<div id="home" className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="home">
 				<div className="container">
@@ -81,9 +78,9 @@ const Home = (pageProps: HomeInterface) => {
 								</div>
 							</div>
 							<div className={ HomeStyles.body }>
-								<Format content={ translations["Accédez à plus <b>d'opportunités</b> (appels à candidatures, concours, etc.)"] + "." }/>
-								<Format content={ translations["Gagnez en <b>visibilité</b> et faites <b>matcher</b> vos solutions avec le besoin des entreprises"] + "." }/>
-								<Format content={ translations["Entrez en <b>contact direct</b> avec les décideurs et remportez des <b>contrats</b>"] + "." }/>
+								<Format { ...pageProps } content={ translations["Accédez à plus <b>d'opportunités</b> (appels à candidatures, concours, etc.)"] + "." }/>
+								<Format { ...pageProps } content={ translations["Gagnez en <b>visibilité</b> et faites <b>matcher</b> vos solutions avec le besoin des entreprises"] + "." }/>
+								<Format { ...pageProps } content={ translations["Entrez en <b>contact direct</b> avec les décideurs et remportez des <b>contrats</b>"] + "." }/>
 							</div>
 							<div className={ HomeStyles.footer }>
 								<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Créer mon compte"] }/>
@@ -99,9 +96,9 @@ const Home = (pageProps: HomeInterface) => {
 								</div>
 							</div>
 							<div className={ HomeStyles.body }>
-								<Format content={ translations["Optimisez votre <b>veille</b> et <bsourcing</b> de l'innovation (startups, incubateurs, etc.)"] + "." }/>
-								<Format content={ translations["Trouvez des <b>solutions concrètes</b> en partageant vos <b>appels à candidatures</b> et vos besoins en terme d'innovation"] + "." }/>
-								<Format content={ translations["Centralisez le suivi de vos <b>relations</b> entre <b>collaborateurs</b> et partagez-le avec <b>votre réseau</b> de startups et de partenaires"] + "." }/>
+								<Format { ...pageProps } content={ translations["Optimisez votre <b>veille</b> et <bsourcing</b> de l'innovation (startups, incubateurs, etc.)"] + "." }/>
+								<Format { ...pageProps } content={ translations["Trouvez des <b>solutions concrètes</b> en partageant vos <b>appels à candidatures</b> et vos besoins en terme d'innovation"] + "." }/>
+								<Format { ...pageProps } content={ translations["Centralisez le suivi de vos <b>relations</b> entre <b>collaborateurs</b> et partagez-le avec <b>votre réseau</b> de startups et de partenaires"] + "." }/>
 							</div>
 							<div className={ HomeStyles.footer }>
 								<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Créer mon compte"] }/>
@@ -117,9 +114,9 @@ const Home = (pageProps: HomeInterface) => {
 								</div>
 							</div>
 							<div className={ HomeStyles.body }>
-								<Format content={ translations["Apportez <b>visibilité</b> et <b>opportunités</b> à votre réseau de startups et d'entreprises"] + "." }/>
-								<Format content={ translations["Gérez vos <b>appels à candidatures</b> et partagez vos <b>opportunités</b>"] + "." }/>
-								<Format content={ translations["Simplifiez le <b>suivi de votre portefeuille</b> de startups (gestion du dealflow, suivi des mises en relation, etc.)"] + "." }/>
+								<Format { ...pageProps } content={ translations["Apportez <b>visibilité</b> et <b>opportunités</b> à votre réseau de startups et d'entreprises"] + "." }/>
+								<Format { ...pageProps } content={ translations["Gérez vos <b>appels à candidatures</b> et partagez vos <b>opportunités</b>"] + "." }/>
+								<Format { ...pageProps } content={ translations["Simplifiez le <b>suivi de votre portefeuille</b> de startups (gestion du dealflow, suivi des mises en relation, etc.)"] + "." }/>
 							</div>
 							<div className={ HomeStyles.footer }>
 								<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Créer mon compte"] }/>
@@ -194,29 +191,6 @@ const Home = (pageProps: HomeInterface) => {
 					</div>
 				</div>
 			</div>
-			{/* <div className={ HomeStyles.typing } data-type="home">
-				<div className="container">
-					<p>{ translations["Forinov aujourd'hui"] }</p>
-					<div className={ HomeStyles.animation }>
-						<h3 id="homeTyped" className={ HomeStyles.typed }/>
-					</div>
-					<Script id="homeTypedScript" strategy="afterInteractive">{`
-						const solutionTyped = () => {
-							const assign = new Typed("#homeTyped.${ HomeStyles.typed }", {
-								strings: [
-									"${ translations["Plus de 1500 startups innovantes à l'international"] + "." }",
-									"${ translations["Des centaines d'entreprises à la recherche de solutions"] + "." }",
-									"${ translations["Autant de partenaires au coeur du réseau des acteurs de l'innovation"] + "." }"
-								],
-								typeSpeed: 50,
-								loop: true
-							});
-							return assign;
-						};
-						solutionTyped();
-					`}</Script>
-				</div>
-			</div> */}
 			<div className={ HomeStyles.typing } data-type="home">
 				<div className="container">
 					<p>{ translations["Forinov aujourd'hui"] }</p>

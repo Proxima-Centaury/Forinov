@@ -15,7 +15,7 @@ const ProductCard = (productProps: any) => {
     return <div className={ ProductStyles.card }>
         <div className={ ProductStyles.banner }>
             <p>{ translations["Voir"] }</p>
-            { (product.PICTURE) ? <Image src={ product.PICTURE } alt={ "Image du produit " + product.NAME } width="1440" height="720"/> : null}
+            { (product.PICTURE) ? <Image src={ product.PICTURE } alt="" width="1440" height="720"/> : null}
         </div>
         <div className={ ProductStyles.content }>
             <p className={ ProductStyles.type }>{ product.ECONOMICMODEL.map((model: any) => model.NAME).join(" | ") }</p>

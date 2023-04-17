@@ -1,6 +1,7 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import dynamic from "next/dynamic";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
@@ -13,10 +14,9 @@ import Head from "next/head";
 import Navbar from "../layout/navbar";
 import AuthNavbar from "../layout/authNavbar";
 import Transition from "../layout/transition";
-import Modal from "../layout/modal";
 import Footer from "../layout/footer";
-import Devtools from "../components/devtools/devtools";
-import { GlobalContext } from "../components/context/globalContext";
+const Modal = dynamic(() => import("../layout/modal"));
+const Devtools = dynamic(() => import("../components/devtools/devtools"));
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -36,6 +36,7 @@ import "../public/stylesheets/tests.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const App = ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
+    const [ errors, setErrors ] = useState({});
     const [ locale, setLocale ] = useState(pageProps.locale);
     const [ locales, setLocales ] = useState(pageProps.locales);
     const [ metadatas, setMetadatas ] = useState(getMetadatasTranslations(locale));
@@ -107,6 +108,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         setCookie("forinov_rgb_preference", RGB, { sameSite: "strict" });
     }, [ RGB ])
     pageProps.states = {};
+    pageProps.states["errors"] = errors;
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;
     pageProps.states["metadatas"] = metadatas;
@@ -118,6 +120,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.states["RGB"] = RGB;
     pageProps.states["production"] = production;
     pageProps.stateSetters = {};
+    pageProps.stateSetters["setErrors"] = setErrors;
     pageProps.stateSetters["setLocale"] = setLocale;
     pageProps.stateSetters["setLocales"] = setLocales;
     pageProps.stateSetters["setMetadatas"] = setMetadatas;
@@ -139,14 +142,11 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Head>
             <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <title>Forinov</title>
             <link rel="icon" href={ router.basePath + "/assets/logo.png" }/>
         </Head>
         { (router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/> }
         <Transition>
-            <GlobalContext>
-                <Component { ...pageProps }/>
-            </GlobalContext>
+            <Component { ...pageProps }/>
             { (router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/> }
         </Transition>
         <Modal { ...pageProps }/>
