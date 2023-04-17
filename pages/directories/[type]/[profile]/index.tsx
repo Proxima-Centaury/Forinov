@@ -73,9 +73,7 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
     });
     if(profile && !opportunity) {
         return <Fragment>
-            <Head>
-                <MetaDatas { ...pageProps } type={ type } profile={ profile }/>
-            </Head>
+            <MetaDatas { ...pageProps } type={ type } profile={ profile }/>
             <div id="profile" className="container" data-profile={ type.substring(0, type.length - 1) }>
                 { (!session) ? <IdenfiticationBanner { ...pageProps }/> : null }
                 { (profile.STATE === "WO") ? <RecoverBanner { ...pageProps }/> : null} 
@@ -97,9 +95,7 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
         </Fragment>;
     } else if(!profile && opportunity) {
         return <Fragment>
-            <Head>
-                <MetaDatas { ...pageProps } type={ type } opportunity={ opportunity }/>
-            </Head>
+            <MetaDatas { ...pageProps } type={ type } opportunity={ opportunity }/>
             <div id="opportunity" className="container">
                 <OpportunityPreview { ...pageProps }/>
                 <OpportunityLinks { ...pageProps }/>

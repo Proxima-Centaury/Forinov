@@ -3,110 +3,109 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
 import { Fragment } from "react";
-import { HomeInterface } from "../../typescript/interfaces";
-import api from "../../scripts/api";
+import { HomeInterface } from "../typescript/interfaces";
+import api from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Head from "next/head";
 import Image from "next/image";
-import Carousel from "../../components/carousels/carousel";
-import Button from "../../components/buttons/button";
-import Separator from "../../components/separators/separator";
+import MetaDatas from "../components/seo/metadatas/metadatas";
+import Carousel from "../components/carousels/carousel";
+import Button from "../components/buttons/button";
+import Separator from "../components/separators/separator";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import HomeStyles from "../../public/stylesheets/pages/Home.module.css";
-import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
+import HomeStyles from "../public/stylesheets/pages/Home.module.css";
+import ButtonStyles from "../public/stylesheets/components/buttons/Button.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Startups Home */
+/* Partners Home */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const StartupsHome = (pageProps: HomeInterface) => {
-	const { opportunities, logos, states, accordionsConfigurations, router } = pageProps;
-	const { metadatas, translations } = states;
+const PartnersHome = (pageProps: HomeInterface) => {
+	const { startups, logos, states, accordionsConfigurations, router } = pageProps;
+	const { translations } = states;
 	const { landings } = accordionsConfigurations;
 	return <Fragment>
-		<Head>
-			<title>{ metadatas[router.route].title }</title>
-			<meta name="description" content={ metadatas[router.route].description }/>
-		</Head>
-		<div id="startups" className="containerFull">
-			<div className={ HomeStyles.presentation } data-type="startup">
+        <MetaDatas { ...pageProps }/>
+		<div id="partners" className="containerFull">
+			<div className={ HomeStyles.presentation } data-type="partner">
 				<div className="container">
 					<div className={ HomeStyles.presentationContent }>
-						<h1>{ translations["Développe ton business"] }</h1>
-						<p className={ HomeStyles.paragraph }>{ translations["Il n'a jamais été aussi simple pour les startups de trouver des clients, des opportunités (appels à candidatures, appels à candidatures, etc.) et de développer leurs réseaux"] + " !" }</p>
+						<h1>{ translations["Développez votre réseau"] }</h1>
+						<p className={ HomeStyles.paragraph }>{ translations["Partagez vos appels à candidatures, contactez les meilleures startups et partenaires ! Faites vous connaitre au sein de l'écosystème. Forinov est la solution qui fait grandir votre réseau"] + " !" }</p>
 						<div className={ HomeStyles.presentationLinks }>
-							<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Créer mon profil gratuitement"] }/>
+							<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Rejoindre la communauté"] }/>
 						</div>
 					</div>
 					<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="" width="3840" height="2160" priority/>
 				</div>
 			</div>
-			<div className={ HomeStyles.sourcing } data-type="startup">
+			<div className={ HomeStyles.register } data-type="partner">
 				<div className="container">
 					<h3>{ translations["Et comment ça marche"] + " ?" }</h3>
-					<p>{ translations["S'inscrire sur Forinov c'est simple et rapide"] + " !" }</p>
-					<Carousel { ...pageProps } component="HowToGetStarted"/>
+					<Carousel { ...pageProps } component="PartnerHowTo"/>
 				</div>
 			</div>
-			<div className={ HomeStyles.opportunity } data-type="startup">
+			<div className={ HomeStyles.companies } data-type="partner">
 				<div className="container">
-					<h3>{ translations["Les dernières opportunités"] + " :" }</h3>
-					<Carousel { ...pageProps } component="LatestOpportunities" data={ opportunities }/>
-					<div className={ HomeStyles.actions } data-justify="left">
-						<Button button={ ButtonStyles.callToAction } href="/directories/opportunities/categories" text={ translations["Découvrir toutes les opportunités"] }/>
-						<Button button={ ButtonStyles.callToActionAlternative } href="/howto/opportunities" text={ translations["Qu'est-ce qu'une opportunité"] + " ?" }/>
+					<h3>{ translations["Ils nous font confiance"] + " :" }</h3>
+					<Carousel { ...pageProps } component="CompaniesLogos" data={ logos }/>
+					<h3>{ translations["Rejoignez l'écosystème Forinov plus de 2000 startups vous attendent"] + " !" }</h3>
+					<p>{ translations["Adaptez votre forfait à vos besoins"] + " !" }</p>
+					<div className={ HomeStyles.actions } data-justify="center">
+						<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Rejoindre l'écosystème Forinov"] }/>
+						<Button button={ ButtonStyles.callToActionAlternative } href="/onboarding" text={ translations["Découvrir les offres"] }/>
 					</div>
 				</div>
 			</div>
-			<div className={ HomeStyles.badges } data-type="startup">
+			<div className={ HomeStyles.badges } data-type="partner">
 				<div className="container">
-					<h3>{ translations["Inscrire ma startup sur Forinov"] }</h3>
+					<h3>{ translations["Comment créer une opportunité"] + " ?" }</h3>
 					<div className={ HomeStyles.badgesList }>
 						<Separator { ...pageProps }/>
 						<div className={ HomeStyles.badge }>
 							<i className="fa-light fa-chart-network"/>
 							<div className={ HomeStyles.content }>
-								<h6>{ translations["Découvre"] }</h6>
-								<p>{ translations["Les appels à candidatures, programmes d'accompagnement, concours dans"] } <Button button={ ButtonStyles.classicLink } href="/directories/opportunities/categories" text={ translations["L'annuaire d'opportunités"].toLowerCase() }/>.</p>
+								<h6>{ translations["Publication"] }</h6>
+								<p>{ translations["Je créé mon opportunité (critères d'éligibilité, solutions recherchées, etc.) et le formulaire de candidature pour les startups"] + "." }</p>
 							</div>
 						</div>
 						<Separator { ...pageProps }/>
 						<div className={ HomeStyles.badge }>
 							<i className="fa-light fa-badge-check"/>
 							<div className={ HomeStyles.content }>
-								<h6>{ translations["Candidate"] }</h6>
-								<p>{ translations["Aux opportunités qui te correspondent, les entreprises concernées te répondront directement"] + " !" }</p>
+								<h6>{ translations["Évaluation"] }</h6>
+								<p>{ translations["Je reçois et évalue des candidatures de startups (notations, commentaires, etc.) et partage avec mes collaborateurs"] + "." }</p>
 							</div>
 						</div>
 						<Separator { ...pageProps }/>
 						<div className={ HomeStyles.badge }>
 							<i className="fa-light fa-gauge-high"/>
 							<div className={ HomeStyles.content }>
-								<h6>{ translations["Concrétise"] }</h6>
-								<p>{ translations["Ces opportunités en contrats grâce à un suivi simplifié et centralisé de tes échanges et de toutes tes candidatures"] + "." }</p>
+								<h6>{ translations["Prise de contacts"] }</h6>
+								<p>{ translations["Je contacte les startups retenues via messagerie sécurisée. Je simplifie le suivi de mes projets en interne et avec mes partenaires externes"] + "." }</p>
 							</div>
 						</div>
 						<Separator { ...pageProps }/>
 					</div>
-				</div>
-			</div>
-			<div className={ HomeStyles.companies } data-type="startup">
-				<div className="container">
-					<h3>{ translations["Ils nous font confiance pour vous trouver"] + " !" }</h3>
-					<Carousel { ...pageProps } component="CompaniesLogos" data={ logos }/>
-					<h3>{ translations["Et oui, Forinov c'est gratuit pour les startups"] + " !" }</h3>
-					<p>{ translations["De l'inscription à la concrétisation, en passant par la prise de contact"] + "." }</p>
 					<div className={ HomeStyles.actions } data-justify="center">
-						<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["J'en profite dès maintenant"] }/>
+						<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Je lance mon opportunité"] }/>
 					</div>
 				</div>
 			</div>
-			<div className={ HomeStyles.questions } data-type="startup">
+			<div className={ HomeStyles.startups } data-type="partner">
+				<div className="container">
+					<h3>{ translations["Nos startups à la une"] + " :" }</h3>
+					<Carousel { ...pageProps } component="LatestStartups" data={ startups }/>
+					<div className={ HomeStyles.actions } data-justify="left">
+						<Button button={ ButtonStyles.callToAction } href="/directories/startups/categories" text={ translations["Accéder à l'annuaire des startups"] }/>
+					</div>
+				</div>
+			</div>
+			<div className={ HomeStyles.questions } data-type="partner">
 				<div className="container">
 					<h3>{ translations["Les réponses à vos questions"] + " :" }</h3>
-					<Carousel { ...pageProps } component="StartupAccordions" data={ Object.values(landings.startup) }/>
+					<Carousel { ...pageProps } component="PartnerAccordions" data={ Object.values(landings.partner) }/>
 					<div className={ HomeStyles.actions } data-justify="center">
 						<p>{ translations["Vous avez des questions"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/contact" text={ translations["N'hésitez pas à nous contacter"] }/>.</p>
 					</div>
@@ -120,12 +119,12 @@ const StartupsHome = (pageProps: HomeInterface) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { res, locale, locales, defaultLocale } = context;
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-    const language = locale?.substring(0, 2);
+	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+	const language = locale?.substring(0, 2);
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			opportunities: await api.getLandingOpportunities("next", "Landing", language),
+			startups: await api.getLandingStartups("next", "Landing", language),
 			logos: await api.getLandingLogos("next", "Landing", language)
 		}
 	};
@@ -133,5 +132,5 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default StartupsHome;
+export default PartnersHome;
 export { getServerSideProps };

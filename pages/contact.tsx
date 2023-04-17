@@ -7,6 +7,7 @@ import { ContactInterface } from "../typescript/interfaces";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import MetaDatas from "../components/seo/metadatas/metadatas";
 import Carousel from "../components/carousels/carousel";
 import Button from "../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -23,6 +24,7 @@ const Contact = (pageProps: ContactInterface) => {
     const { setModal } = stateSetters;
     const { contact } = accordionsConfigurations;
     return <Fragment>
+        <MetaDatas { ...pageProps }/>
         <div id="contact" className="containerFull">
             <div className={ HomeStyles.questions } data-type="opportunity">
                 <div className="container">
