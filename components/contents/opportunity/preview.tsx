@@ -22,10 +22,19 @@ const OpportunityPreview = (opportunityPreviewProps: any) => {
     const { opportunity, states } = opportunityPreviewProps;
     const { translations, RGB } = states;
 	const [ lightingState, setLightingState ] = useState("disabled");
-    const countries = opportunity.COUNTRIES;
-    const localisationsText = translations["Localisations"] + " : ";
-    const countriesList = localisationsText + countries.join(", ");
-    const countriesCount = localisationsText + countries.splice(0, 3).join(", ") + ", +" + countries.length;
+    const [ localisations, setLocalisations ] = useState(translations["Localisations"] + " : ");
+    const [ countriesCount, setCountriesCount ] = useState("");
+    useEffect(() => {
+        if(opportunity.COUNTRIES.length > 0 && opportunity.COUNTRIES.length <= 3) {
+            setLocalisations(translations["Localisations"] + " : " + opportunity.COUNTRIES.map((country: any) => country.NAME).join(", "));
+        } else if(opportunity.COUNTRIES.length <= 0) {
+            setLocalisations(translations["Localisations"] + " : " + translations["Non renseigné"]);
+        };
+        if(opportunity.COUNTRIES.length > 3) {
+            setLocalisations(translations["Localisations"] + " : " + opportunity.COUNTRIES.splice(0, 3).map((country: any) => country.NAME).join(", "));
+            setCountriesCount(", +" + opportunity.COUNTRIES.length);
+        };
+    }, []);
 	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     return <div className={ PreviewStyles.opportunityPreview } data-rgb={ lightingState }>
         <div className={ PreviewStyles.background } data-opportunity-type={ opportunity.TYPE[0].ID }>
@@ -44,13 +53,11 @@ const OpportunityPreview = (opportunityPreviewProps: any) => {
         </div>
         <div className="separator"/>
         <div className={ PreviewStyles.informations }>
-            { (opportunity.ENDINGDATE) ? <p>{ translations["Expire le"] + " " + opportunity.ENDINGDATEDISPLAY }</p> : null }
             { (opportunity.STARTINGDATE && opportunity.REMAINING) ? <div>
                 <i className="fa-light fa-calendar"/>
                 <p>{ remainingTime(opportunity.REMAINING, opportunity.STARTINGDATE, null, translations) }</p>
             </div> : null }
-            { (countries.length > 0 && countries.length <= 3) ? <p>{ countriesList }</p> : <p>{ localisationsText + translations["Non renseigné"] }</p> }
-            { (countries.length > 3) ? <p>{ countriesCount }</p> : null }
+            <p>{ localisations + ((countriesCount) ? countriesCount : "") }</p>
             { (opportunity.PRIVACY) ? <div>
                 { (opportunity.PRIVACY === "Public") ? <i className="fa-light fa-eye"/> : <i className="fa-light fa-eye-slash"/> }
                 <p>{ (opportunity.PRIVACY) ? (opportunity.PRIVACY.match(/(ext)/)) ? translations["Externe"] : opportunity.PRIVACY : translations["Non renseigné"] }</p>
