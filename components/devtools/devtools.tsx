@@ -57,7 +57,7 @@ const Devtools = (devtoolsProps: any) => {
         };
     }, [ router.asPath, setErrors ]);
     useEffect(() => {
-        setErrorsCount(Object.keys(errors).length);
+        setErrorsCount((errors) ? Object.keys(errors).length : 0);
     }, [ errors ]);
     return <div className={ (hidden) ? "closed" : "" } data-type="devtools">
         <p>Devtools</p>
