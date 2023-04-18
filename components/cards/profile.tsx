@@ -46,7 +46,7 @@ const ProfileCard = (profileProps: any) => {
                     </div> : null }
                     { (profile.WEBSITE) ? <div>
                         <i className="fa-solid fa-link"/>
-                        <a href={ "https://" + profile.WEBSITE } target="blank">{ translations["Site internet"] }</a>
+                        { (profile.WEBSITE) ? <a href={ ((!profile.WEBSITE.includes("https://")) ? "https://" : "") + profile.WEBSITE.replaceAll("http://", "") } target="_blank">{ translations["Site internet"] }</a> : null }
                     </div> : null }
                 </div> : null }
                 { (profile.COMMENT) ? <Format { ...profileProps } content={ profile.COMMENT }/> : null }
