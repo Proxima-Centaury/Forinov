@@ -65,37 +65,39 @@ const App = ({ Component, pageProps }: AppProps) => {
             setCookie("forinov_theme_preference", theme, { sameSite: "strict" });
             const body = document.body;
             const canvas = document.querySelector("canvas#canvas") as HTMLCanvasElement;
-            switch(theme) {
-                case "matrix":
-                    const ctx = (canvas) ? canvas.getContext("2d") : null;
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                    let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん0123456789".repeat(10).split("");
-                    const fontSize = 16;
-                    const columns = canvas.width / fontSize;
-                    let drops: Array<any> = [];
-                    for(let i = 0; i < columns; i++) {
-                        drops[i] = 1;
-                    };
-                    const draw = () => {
-                        if(ctx) {
-                            ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-                            ctx.fillRect(0, 0, canvas.width, canvas.height);
-                            for(var i = 0; i < drops.length; i++) {
-                                var text = letters[Math.floor(Math.random() * letters.length)];
-                                ctx.fillStyle = "#0F0";
-                                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                                drops[i]++;
-                                if(drops[i] * fontSize > canvas.height && Math.random() > .95) {
-                                    drops[i] = 0;
+            if(canvas) {
+                switch(theme) {
+                    case "matrix":
+                        const ctx = (canvas) ? canvas.getContext("2d") : null;
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
+                        let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん0123456789".repeat(10).split("");
+                        const fontSize = 16;
+                        const columns = canvas.width / fontSize;
+                        let drops: Array<any> = [];
+                        for(let i = 0; i < columns; i++) {
+                            drops[i] = 1;
+                        };
+                        const draw = () => {
+                            if(ctx) {
+                                ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+                                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                                for(var i = 0; i < drops.length; i++) {
+                                    var text = letters[Math.floor(Math.random() * letters.length)];
+                                    ctx.fillStyle = "#0F0";
+                                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                                    drops[i]++;
+                                    if(drops[i] * fontSize > canvas.height && Math.random() > .95) {
+                                        drops[i] = 0;
+                                    };
                                 };
                             };
                         };
-                    };
-                    setInterval(draw, 30);
-                    break;
-                default:
-                    break;
+                        setInterval(draw, 30);
+                        break;
+                    default:
+                        break;
+                };
             };
             return body.setAttribute("data-theme", theme as string);
         }; applyTheme();
