@@ -22,8 +22,14 @@ const OpportunityLinks = (pageProps: any) => {
     const mailToBody = "&body=Lien vers l'opportunité : " + opportunityUrl;
     return <div className={ LinksStyles.container }>
         <div className={ LinksStyles.actions }>
-            <Button button={ ButtonStyles.callToActionStep } href={ "mailto:" + mailToSubject + mailToBody + "." } icon="fa-light fa-chart-network" text={ translations["Partager"] }/>
-            { (opportunity.ICS) ? <Button button={ ButtonStyles.callToActionStep } href={ opportunity.ICS } icon="fa-light fa-calendar" text={ translations["Ajouter à mon calendrier"] }/> : null }
+            <a className={ ButtonStyles.callToActionStep } href={ "mailto:" + mailToSubject + mailToBody + "." }>
+                <i className="fa-light fa-chart-network"/>
+                <span>{ translations["Partager"] }</span>
+            </a>
+            { (opportunity.ICS) ? <a className={ ButtonStyles.callToActionStep } href={ opportunity.ICS }>
+                <i className="fa-light fa-calendar"/>
+                <span>{ translations["Ajouter à mon calendrier"] }</span>
+            </a> : null }
             <Button button={ ButtonStyles.callToActionStep } href="/directories/opportunities/categories" icon="fa-light fa-star" text={ translations["Voir toutes les opportunités"] }/>
         </div>
         <Button button={ ButtonStyles.callToActionWide } href="/login" icon="fa-light fa-file-signature" text={ translations["Postuler"] }/>

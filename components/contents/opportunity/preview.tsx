@@ -34,7 +34,7 @@ const OpportunityPreview = (opportunityPreviewProps: any) => {
             setLocalisations(translations["Localisations"] + " : " + opportunity.COUNTRIES.splice(0, 3).map((country: any) => country.NAME).join(", "));
             setCountriesCount(", +" + opportunity.COUNTRIES.length);
         };
-    }, []);
+    });
 	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     return <div className={ PreviewStyles.opportunityPreview } data-rgb={ lightingState }>
         <div className={ PreviewStyles.background } data-opportunity-type={ opportunity.TYPE[0].ID }>
