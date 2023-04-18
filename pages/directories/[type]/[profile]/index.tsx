@@ -59,12 +59,9 @@ const DirectoryProfile = (pageProps: ProfileInterface) => {
                         "[data-type='devtools']",
                         ".modalLayout"
                     ];
-                    if(!target.closest(selectors.join(", "))) {
-                        if(lock) {
-                            return setModal("register");
-                        };
+                    if(!target.closest(selectors.join(", ")) && lock) {
+                        return setModal("register");
                     };
-                    return setModal(null);
                 };
             };
             (lock) ? window.addEventListener("click", showRegisterPopup) : null;
