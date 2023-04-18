@@ -390,7 +390,8 @@ body {
     grid-gap: 16px;
     gap: 16px;
 }
-.list > a > div {
+.list > a > div,
+.list > button > div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -398,7 +399,8 @@ body {
     gap: 8px;
     min-height: inherit;
 }
-.list > a > div > [class*="count"] {
+.list > a > div > [class*="count"],
+.list > button > div > [class*="count"] {
     margin: 0px 0px 0px auto;
     position: inherit;
     top: inherit;
@@ -406,19 +408,23 @@ body {
     order: 5;
     z-index: inherit;
 }
-.list > a > div > [class*="icon"] {
+.list > a > div > [class*="icon"],
+.list > button > div > [class*="icon"] {
     width: 48px;
     height: 48px;
     padding: 8px;
 }
-.list > a > div > i {
+.list > a > div > i,
+.list > button > div > i {
     font-size: 48px;
 }
-.list > a > div > h4 {
+.list > a > div > h4,
+.list > button > div > h4 {
     font-size: 16px;
     flex: 1;
 }
-.list > a > div > [class*="tags"] {
+.list > a > div > [class*="tags"],
+.list > button > div > [class*="tags"] {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
