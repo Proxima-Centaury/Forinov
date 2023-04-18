@@ -586,6 +586,7 @@ body {
     pointer-events: none;
     background-color: var(--filter-color);
     backdrop-filter: blur(10px);
+    transition: opacity 0.3s ease-in-out;
     z-index: 9000;
 }
 .modalLayout.open {
