@@ -12,6 +12,15 @@ import Head from "next/head";
 const MetaDatas = (metadatasProps: any) => {
     const { profile, opportunity, type, categoryId, categoryName, states, router } = metadatasProps;
     const { metadatas } = states;
+    // console.log("Profile value :", profile);
+    // console.log("Opportunity value :", opportunity);
+    // console.log("Type value :", type);
+    // console.log("Category id value :", categoryId);
+    // console.log("Category name value :", categoryName);
+    // console.log("Page value :", router.asPath);
+    // console.log("Meta datas :", metadatas);
+    // console.log("Has meta datas :", metadatas[router.asPath]);
+    // console.log("=".repeat(60));
     if(type && !profile && !opportunity) {
         if(type.match(/(startups)/) && categoryId && categoryName && metadatas["/directories/startups/categories/[category]"]) {
             const titles = [ metadatas["/directories/startups/categories/[category]"].title1, metadatas["/directories/startups/categories/[category]"].title2 ];
