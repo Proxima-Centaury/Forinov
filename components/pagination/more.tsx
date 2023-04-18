@@ -67,8 +67,8 @@ const SeeMore = (seeMoreProps: any) => {
             { (type === "activities") ? list.slice(0, iterations * max).map((event: any, key: Key) => <ActivityCard key={ key } { ...seeMoreProps } event={ event }/>) : null }
         </div>
         { (seeLess || (seeMore && list.length > max)) ? <div className="grid twoColumns">
-            { (seeLess) ? <Button button={ ButtonStyles.callToAction } action={ seeLessHandler } text={ translations["Voir moins"] } disabled={ (!session) ? true : undefined }/> : null }
-            { (seeMore && list.length > max) ? <Button button={ ButtonStyles.callToAction } action={ seeMoreHandler } text={ translations["Voir plus"] } disabled={ (!session) ? true : undefined }/> : null }
+            { (seeLess) ? <Button button={ ButtonStyles.callToAction } action={ seeLessHandler } icon="fa-light fa-eye-slash" text={ translations["Voir moins"] } disabled={ (!session) ? true : undefined }/> : null }
+            { (seeMore && list.length > max) ? <Button button={ ButtonStyles.callToAction } action={ seeMoreHandler } icon="fa-light fa-eye" text={ translations["Voir plus"] } disabled={ (!session) ? true : undefined }/> : null }
         </div> : null }
     </Fragment>;
 };
