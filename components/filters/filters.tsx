@@ -20,7 +20,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 const Filters = (pageProps: any) => {
     const { title, display, setDisplay, search, setSearch, setInformations, filters, dynamicFilters, states, router } = pageProps;
     const { session, translations } = states;
-    const { ui, domain, type, category, user } = router.query;
+    const { type, category, ui, domain, user } = router.query;
     const [ dynamicInformations, setDynamicInformations ]: Array<any> = useState([]);
     const [ dynamicFiltersToArray, setDynamicFiltersToArray ]: Array<any> = useState([]);
     const categoryId = category?.substring(category.indexOf("_") + 1, category.length);

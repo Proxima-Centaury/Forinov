@@ -29,7 +29,7 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 const Directory = (pageProps: DirectoryInterface) => {
     const { states, router } = pageProps;
     const { locale, translations } = states;
-    const { ui, type, category } = router.query;
+    const { type, category, ui, network, privateFilter } = router.query;
     const [ search, setSearch ] = useState({ keywords: "", categories: (category) ? category : "", page: 1 });
     const [ results, setResults ] = useState(null || []);
     const [ selects, setSelects ] = useState(null);
@@ -51,7 +51,7 @@ const Directory = (pageProps: DirectoryInterface) => {
     };
     useEffect(() => {
         const fetchResults = async () => {
-            const results = await api.searchEngine(formatType(type), search, locale?.substring(0, 2));
+            const results = await api.searchEngine(formatType(type), search, network, privateFilter, locale?.substring(0, 2));
             const formattedResults = results.slice(0, results.length - 1);
             const selects = results[results.length - 1];
             setResults(formattedResults);
@@ -63,7 +63,7 @@ const Directory = (pageProps: DirectoryInterface) => {
             setResults([]);
             setSelects(null);
         };
-    }, [ type, search, locale ]);
+    }, [ type, search, locale, network, privateFilter ]);
     useEffect(() => {
         setSearch({ keywords: "", categories: (categoryId) ? categoryId : "", page: 1 });
         setResults([]);
