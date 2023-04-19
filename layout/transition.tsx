@@ -4,6 +4,10 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Loaders from "../components/loaders/loaders";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import TransitionStyles from "../public/stylesheets/layout/Transition.module.css";
@@ -12,14 +16,17 @@ import TransitionStyles from "../public/stylesheets/layout/Transition.module.css
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Transition = ({ children }: any) => {
     const router = useRouter();
-    const [ opacity, setOpacity ] = useState(1);
+    // const [ opacity, setOpacity ] = useState(1);
+    const [ loading, setLoading ] = useState(false);
     const handleStartTransition = () => {
-        const transitionContainer = document.querySelector("." + TransitionStyles.container) as HTMLElement;
-        (transitionContainer) ? setOpacity(0) : null;
+        // const transitionContainer = document.querySelector("." + TransitionStyles.container) as HTMLElement;
+        // (transitionContainer) ? setOpacity(0) : null;
+        setLoading(true);
     };
     const handleCompleteTransition = () => {
-        const transitionContainer = document.querySelector("." + TransitionStyles.container) as HTMLElement;
-        (transitionContainer) ? setOpacity(1) : null;
+        // const transitionContainer = document.querySelector("." + TransitionStyles.container) as HTMLElement;
+        // (transitionContainer) ? setOpacity(1) : null;
+        setLoading(false);
     };
     useEffect(() => {
         router.events.on("routeChangeStart", handleStartTransition);
@@ -31,8 +38,11 @@ const Transition = ({ children }: any) => {
             router.events.off("routeChangeError", handleCompleteTransition);
         };
     }, [ router ]);
-    return <div className={ TransitionStyles.container } style={ { opacity: opacity } }>
-        { children }
+    // return <div className={ TransitionStyles.container } style={ { opacity: opacity } }>
+    //     { children }
+    // </div>;
+    return <div className={ TransitionStyles.container }>
+        { (loading) ? <Loaders version={ 1 }/> : children }
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
