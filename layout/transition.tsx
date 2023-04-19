@@ -2,7 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -12,13 +12,14 @@ import TransitionStyles from "../public/stylesheets/layout/Transition.module.css
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Transition = ({ children }: any) => {
     const router = useRouter();
+    const [ opacity, setOpacity ] = useState(1);
     const handleStartTransition = () => {
         const transitionContainer = document.querySelector("." + TransitionStyles.container) as HTMLElement;
-        (transitionContainer) ? transitionContainer.style.opacity = "0" : null;
+        (transitionContainer) ? setOpacity(0) : null;
     };
     const handleCompleteTransition = () => {
         const transitionContainer = document.querySelector("." + TransitionStyles.container) as HTMLElement;
-        (transitionContainer) ? transitionContainer.style.opacity = "1" : null;
+        (transitionContainer) ? setOpacity(1) : null;
     };
     useEffect(() => {
         router.events.on("routeChangeStart", handleStartTransition);
@@ -30,7 +31,7 @@ const Transition = ({ children }: any) => {
             router.events.off("routeChangeError", handleCompleteTransition);
         };
     }, [ router ]);
-    return <div className={ TransitionStyles.container }>
+    return <div className={ TransitionStyles.container } style={ { opacity: opacity } }>
         { children }
     </div>;
 };

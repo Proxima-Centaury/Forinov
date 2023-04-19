@@ -22,7 +22,7 @@ const Footer = (pageProps: FooterInterface) => {
     const { footer }: any = layoutConfigurations.navigations.common.layout;
     return <footer className={ FooterStyles.footer + " grid fourColumns" }>
         <div className={ FooterStyles.section }>
-            <Image src={ router.basePath + "/assets/logo.png" } alt="Forinov logo" width="50" height="50"/>
+            <Image src={ router.basePath + "/assets/logo.png" } alt={ translations["Logo de l'entreprise du nom de"] + " " + "Forinov" + "." } width="50" height="50"/>
             <p>{ translations["Forinov connecte startups, entreprises et partenaires pour matcher l'offre et le besoin d'innovation."] }</p>
             <div className={ FooterStyles.socials }>
                 <a className={ ButtonStyles.default } href="https://twitter.com/Forinov1" target="_blank">

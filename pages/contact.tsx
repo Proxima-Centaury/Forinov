@@ -7,6 +7,7 @@ import { ContactInterface } from "../typescript/interfaces";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import MetaDatas from "../components/seo/metadatas/metadatas";
 import Carousel from "../components/carousels/carousel";
 import Button from "../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -23,16 +24,19 @@ const Contact = (pageProps: ContactInterface) => {
     const { setModal } = stateSetters;
     const { contact } = accordionsConfigurations;
     return <Fragment>
-        <div id="contact" className="container">
+        <MetaDatas { ...pageProps }/>
+        <div id="contact" className="containerFull">
             <div className={ HomeStyles.questions } data-type="opportunity">
-                <h5>{ translations["Les réponses à vos questions"] }</h5>
-                <Carousel { ...pageProps } component="StartupAccordions" data={ Object.values(contact) } noActions/>
-                <div className={ HomeStyles.actions } data-justify="center">
-                    <p>{ translations["Vous ne trouvez pas la réponse à votre question"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/questions" text={ translations["Accédez à la FAQ"] }/>.</p>
+                <div className="container">
+                    <h3>{ translations["Les réponses à vos questions"] }</h3>
+                    <Carousel { ...pageProps } component="StartupAccordions" data={ Object.values(contact) } noActions/>
+                    <div className={ HomeStyles.actions } data-justify="center">
+                        <p>{ translations["Vous ne trouvez pas la réponse à votre question"] + " ? " }<Button button={ ButtonStyles.classicLink } href="/questions" text={ translations["Accédez à la FAQ"] }/>.</p>
+                    </div>
+                    <div className={ HomeStyles.actions } data-justify="center">
+                        <Button button={ ButtonStyles.callToAction } action={ () => setModal("contact") } text={ translations["Nous contacter"] }/>
+                    </div>
                 </div>
-            </div>
-            <div className={ HomeStyles.actions } data-justify="center">
-                <Button button={ ButtonStyles.callToAction } action={ () => setModal("contact") } text={ translations["Nous contacter"] }/>
             </div>
         </div>
     </Fragment>;

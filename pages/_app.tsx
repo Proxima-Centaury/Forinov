@@ -1,9 +1,10 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import dynamic from "next/dynamic";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
 import { getTranslations, getMetadatasTranslations, scrollTo } from "../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -13,10 +14,9 @@ import Head from "next/head";
 import Navbar from "../layout/navbar";
 import AuthNavbar from "../layout/authNavbar";
 import Transition from "../layout/transition";
-import Modal from "../layout/modal";
 import Footer from "../layout/footer";
-import Devtools from "../components/devtools/devtools";
-import { GlobalContext } from "../components/context/globalContext";
+const Modal = dynamic(() => import("../layout/modal"));
+const Devtools = dynamic(() => import("../components/devtools/devtools"));
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* JSON */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -36,6 +36,7 @@ import "../public/stylesheets/tests.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const App = ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
+    const [ errors, setErrors ] = useState({});
     const [ locale, setLocale ] = useState(pageProps.locale);
     const [ locales, setLocales ] = useState(pageProps.locales);
     const [ metadatas, setMetadatas ] = useState(getMetadatasTranslations(locale));
@@ -44,7 +45,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     const [ theme, setTheme ] = useState(getCookie("forinov_theme_preference") || "light");
     const [ lock, setLock ] = useState(true);
     const [ modal, setModal ] = useState(null);
-    const [ RGB, setRGB ] = useState(false);
+    const [ RGB, setRGB ] = useState(getCookie("forinov_rgb_preference") || false);
     const [ production, setProduction ] = useState((process.env.NODE_ENV === "development") ? false : true);
     useEffect(() => {
         setMetadatas(getMetadatasTranslations(locale));
@@ -63,6 +64,41 @@ const App = ({ Component, pageProps }: AppProps) => {
         let applyTheme = () => {
             setCookie("forinov_theme_preference", theme, { sameSite: "strict" });
             const body = document.body;
+            const canvas = document.querySelector("canvas#canvas") as HTMLCanvasElement;
+            if(canvas) {
+                switch(theme) {
+                    case "matrix":
+                        const ctx = (canvas) ? canvas.getContext("2d") : null;
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
+                        let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん0123456789".repeat(10).split("");
+                        const fontSize = 16;
+                        const columns = canvas.width / fontSize;
+                        let drops: Array<any> = [];
+                        for(let i = 0; i < columns; i++) {
+                            drops[i] = 1;
+                        };
+                        const draw = () => {
+                            if(ctx) {
+                                ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+                                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                                for(var i = 0; i < drops.length; i++) {
+                                    var text = letters[Math.floor(Math.random() * letters.length)];
+                                    ctx.fillStyle = "#0F0";
+                                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                                    drops[i]++;
+                                    if(drops[i] * fontSize > canvas.height && Math.random() > .95) {
+                                        drops[i] = 0;
+                                    };
+                                };
+                            };
+                        };
+                        setInterval(draw, 30);
+                        break;
+                    default:
+                        break;
+                };
+            };
             return body.setAttribute("data-theme", theme as string);
         }; applyTheme();
         return () => { applyTheme = undefined as any; };
@@ -70,7 +106,11 @@ const App = ({ Component, pageProps }: AppProps) => {
     useEffect(() => {
         scrollTo(0, 0);
     }, [ router.route ]);
+    useEffect(() => {
+        setCookie("forinov_rgb_preference", RGB, { sameSite: "strict" });
+    }, [ RGB ])
     pageProps.states = {};
+    pageProps.states["errors"] = errors;
     pageProps.states["locale"] = locale;
     pageProps.states["locales"] = locales;
     pageProps.states["metadatas"] = metadatas;
@@ -82,6 +122,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.states["RGB"] = RGB;
     pageProps.states["production"] = production;
     pageProps.stateSetters = {};
+    pageProps.stateSetters["setErrors"] = setErrors;
     pageProps.stateSetters["setLocale"] = setLocale;
     pageProps.stateSetters["setLocales"] = setLocales;
     pageProps.stateSetters["setMetadatas"] = setMetadatas;
@@ -99,23 +140,21 @@ const App = ({ Component, pageProps }: AppProps) => {
     pageProps.carouselsConfigurations = carouselsConfigurations;
     pageProps.accordionsConfigurations = accordionsConfigurations;
     pageProps.router = router;
-    return <>
+    return <Fragment>
         <Head>
             <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <title>Forinov</title>
             <link rel="icon" href={ router.basePath + "/assets/logo.png" }/>
         </Head>
         { (router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/> }
         <Transition>
-            <GlobalContext>
-                <Component { ...pageProps }/>
-            </GlobalContext>
+            <Component { ...pageProps }/>
             { (router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/> }
         </Transition>
         <Modal { ...pageProps }/>
         { (router.query.ui && router.query.ui == "false") ? null : (!production) ? <Devtools { ...pageProps }/> : null }
-    </>;
+        { (router.query.ui && router.query.ui == "false") ? null : (!production) ? <canvas id="canvas"/> : null }
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */

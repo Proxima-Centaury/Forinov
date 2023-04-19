@@ -59,18 +59,18 @@ class API {
             }, writable: false });
         });
     };
-    async searchEngine(type: String, filters: any, language: String) {
+    async searchEngine(type: String, filters: any, network: String, privateFilter: String, language: String) {
         if(type) {
             type = String(type);
-            type = (type[type.length - 1] === "s") ? type.substring(0, type.length - 1) : type;
-            type = (type.match(/(corporate)/)) ? "entreprise" : type;
-            type = (type.match(/(partner)/)) ? "partenaire" : type;
-            type = (type.match(/(opport)/)) ? "opportunite" : type;
+            type = (type.match(/(startups)/)) ? "startup" : type;
+            type = (type.match(/(corporates)/)) ? "entreprise" : type;
+            type = (type.match(/(partners)/)) ? "partenaire" : type;
+            type = (type.match(/(opportunities)/)) ? "opportunite" : type;
         };
         var results = null;
         var url: String = this.endpoint + "?q=SEARCH_FULL&TYPE=" + type;
         const buildUrl = Object.keys(filters).map((filter) => ((filter === "keywords" && filters[filter].length >= 2) || (filter !== "keywords" &&filters[filter])) ? "&" + filter.toUpperCase() + "=" + filters[filter] : null).join("");
-        url += buildUrl + "&app=next&authkey=Sorbonne&lang=" + language;
+        url += buildUrl + ((network) ? "&NETWORK=" + network : "") + ((privateFilter) ? "&PRIVATEFILTER=" + privateFilter : "") + "&app=next&authkey=Sorbonne&lang=" + language;
         const call = (url) ? await fetch(url.toString()) : null;
         results = (call) ? call.json() : null;
         return results;

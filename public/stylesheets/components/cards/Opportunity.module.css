@@ -7,6 +7,7 @@
     width: 100%;
     border-radius: 15px;
     box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease-in-out;
 }
 .card:hover {
     transform: translate3d(0px, -8px, 0px);
@@ -90,7 +91,7 @@
     max-width: calc(100% - 64px - 18px);
 }
 .leftContainer:only-child {
-    max-width: none;
+    max-width: 100%;
 }
 .leftContainer > .top {
     display: flex;
@@ -187,7 +188,7 @@
     background-color: var(--program-color) !important;
 }
 .type[data-opportunity-type="2"] > div > div > p {
-    color: var(--perfect-black-color) !important;
+    color: var(--perfect-white-color) !important;
 }
 .type[data-opportunity-type="3"] > div > div {
     background-color: var(--challenge-color) !important;
@@ -205,5 +206,5 @@
     background-color: var(--offer-color) !important;
 }
 .type[data-opportunity-type="5"] > div > div > p {
-    color: var(--perfect-black-color) !important;
+    color: var(--perfect-white-color) !important;
 }

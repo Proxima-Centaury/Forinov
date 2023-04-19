@@ -1,622 +1,681 @@
-.heroContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    min-height: 75vh;
-    position: relative;
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Presentation ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentation {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 24px;
+	gap: 24px;
+	width: 100%;
+	padding: calc(80px - 16px) calc(80px - 16px) 0px calc(80px - 16px);
 }
-
-.heroTitle {
-    text-align: left !important;
-    box-sizing: border-box;
-    font-family: "Nunito Sans", sans-serif;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    font-weight: 300;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.2;
-    letter-spacing: normal;
-    color: #006dff;
-    margin-top: 5.5rem;
+@media screen and (max-width: 992px) {
+	.presentation {
+		padding: calc(80px - 16px);
+	}
 }
-
-.heroImg {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 50%;
-    height: fit-content;
-    object-fit: contain;
+@media screen and (max-width: 576px) {
+	.presentation {
+		padding: calc(32px - 16px);
+	}
 }
-
-.heroDesc {
-    font-size: 1.0625rem;
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-main-color);
-    font-family: "Open Sans", sans-serif;
-    pointer-events: auto;
-    box-sizing: border-box;
-    margin: 2rem 0;
-    text-align: left !important;
-    width: 50%;
+.presentation::before,
+.presentation::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
 }
-
-.heroLinks {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-top: 1.5rem;
-    gap: 1rem;
-    width: 30%;
+.presentation::before {
+	background-color: var(--background-main-color);
 }
-
-.heroLink {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    border-radius: 1rem;
-    font-weight: 600;
-    padding: 1rem 2rem;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.6;
-    letter-spacing: normal;
-    text-align: center;
-    text-decoration: none;
-    background-color: var(--background-sub-color);
-    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+.presentation > div[class="container"] {
+	padding: 16px 16px 0px 16px;
 }
-
-.heroLink>span,
-.heroLink>i {
-    font-size: 1.2rem;
-    color: var(--logo-blue-color);
+@media screen and (max-width: 992px) {
+	.presentation > div[class="container"] {
+		padding: 16px;
+	}
+	.presentation > div[class="container"] > img {
+		display: none;
+	}
 }
-
+.presentation > div[class="container"] > h1 {
+	font-size: 56px;
+	font-family: "Nunito Sans";
+	font-weight: 300;
+	color: var(--logo-blue-color);
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Jumbotron ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.jumbotron {
+	display: flex;
+	grid-gap: 40px;
+	gap: 40px;
+}
+.jumbotron > img {
+	width: 650px;
+	height: 100%;
+	margin: auto;
+	object-fit: contain;
+}
+@media screen and (max-width: 992px) {
+	.presentation > div[class="container"] > .jumbotron > img {
+		display: none;
+	}
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Presentation Content ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentationContent {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+}
+.presentationContent > h1 {
+	font-family: "Nunito Sans";
+	font-size: 65px;
+	font-weight: 600;
+}
+.presentationContent > p {
+	font-family: "Nunito Sans";
+	font-size: 14px;
+}
+@media screen and (max-width: 576px) {
+	.presentationContent > h1,
+	.presentationContent > p {
+		text-align: center;
+	}
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Presentation Links ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.presentationLinks {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 16px;
+	gap: 16px;
+	width: max-content;
+	margin: 0px 0px 56px 0px;
+}
+@media screen and (max-width: 992px) {
+	.presentationLinks {
+		margin: 0px;
+	}
+}
+@media screen and (max-width: 576px) {
+	.presentationLinks {
+		width: 100%;
+	}
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Banner ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .banner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 5rem 0;
-    background-color: var(--page-color);
-    border-top-left-radius: 75px;
-    border-bottom-right-radius: 75px;
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: calc(80px - 16px);
 }
-
-.bannerTitle,
-.bannerTitle>span {
-    font-family: "Nunito Sans", sans-serif;
-    display: inline-block;
-    font-size: clamp(2rem, 5vw, 2.8125rem);
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.33;
-    letter-spacing: -0.34px;
-    color: #ffffff;
-    text-align: start;
+@media screen and (max-width: 576px) {
+	.banner {
+		padding: calc(32px - 16px);
+	}
 }
-
-.bannerSubtitle {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.2px;
-    color: #ffffff;
+.banner::before,
+.banner::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
 }
-
-.bannerParagraph {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 0.875rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.5px;
-    color: #ffffff;
-    width: 90%;
+.banner::after {
+	border-radius: 100px 0px 100px 0px;
 }
-
-.bannerBlockWrapper {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin-top: 3rem;
-    justify-content: space-between;
+@media screen and (max-width: 576px) {
+	.banner::after {
+		border-radius: 50px 0px 50px 0px;
+	}
 }
-
-.bannerBlock {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    min-width: 300px;
-    gap: 1rem;
+.banner > div[class="container"] > div[class*="grid"] > .purpose {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 16px;
+	gap: 16px;
+	height: 100%;
 }
-
-.banner2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 5rem 0;
+.banner > div[class="container"] > h3,
+.banner > div[class="container"] > div[class*="grid"] > .purpose > h5 {
+	font-family: "Nunito Sans";
+	font-size: 48px;
+	font-weight: bold;
+	text-align: left;
+	color: var(--perfect-white-color);
 }
-
-.bannerTitle2 {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 2.8125rem;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.33;
-    letter-spacing: -0.34px;
-    color: var(--text-main-color);
+.banner > div[class="container"] > div[class*="grid"] > .purpose > h5 {
+	font-size: 21px;
 }
-
-.bannerSubtitle2 {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.2px;
-    color: var(--text-main-color);
+.banner > div[class="container"] > div[class*="grid"] > .purpose > p {
+	font-family: "Nunito Sans";
+	font-size: 16px;
+	color: var(--perfect-white-color);
 }
-
-.bannerUnderlineTitle {
-    margin-top: 0;
-    margin-bottom: .5rem;
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 1.43px;
-    color: #ffffff;
-    text-decoration: underline;
-    text-transform: uppercase;
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Banner For Startup ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.banner[data-type="startup"]::before {
+	background-color: var(--background-main-color);
 }
-
-.bannerImgSeating {
-    position: absolute;
-    width: fit-content;
-    height: 400px;
-    object-fit: contain;
-    margin: 0;
-    right: 0;
-    bottom: -46.7%;
-    transform: translateY(32.5%);
+.banner[data-type="startup"]::after {
+	background-color: var(--sunred-color);
 }
-
-.banner3 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10rem 0 5rem 0;
-    background-color: var(--page-color);
-    position: relative;
-    margin: 5rem 0;
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Banner For Corporate ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.banner[data-type="corporate"]::before {
+	background-color: var(--background-main-color);
 }
-
-.banner3::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    transform: translate(0%, -50%);
-    width: 100%;
-    height: 50px;
-    border-radius: 100%;
-    background-color: var(--background-sub-color);
-    z-index: 10;
+.banner[data-type="corporate"]::after {
+	background-color: var(--logo-blue-color);
 }
-
-.banner3::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    transform: translate(0%, 50%);
-    width: 100%;
-    height: 50px;
-    border-radius: 100%;
-    background-color: var(--page-color);
-    z-index: 10;
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Banner For Partner ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.banner[data-type="partner"]::before {
+	background-color: var(--background-main-color);
 }
-
-.banner3Redirect {
-    margin: 5rem auto;
-    box-sizing: border-box;
-    letter-spacing: 0.1px;
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 1.5rem;
-    text-align: center;
-    color: #ffffff;
+.banner[data-type="partner"]::after {
+	background-color: var(--grassgreen-color);
 }
-
-.banner3Redirect>a {
-    color: #ffffff;
-    text-decoration: underline;
-    font-size: inherit;
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( How To ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.howTo {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: calc(80px - 16px);
 }
-
-.banner3Redirect>a:hover {
-    opacity: 0.5;
+@media screen and (max-width: 576px) {
+	.howTo {
+		padding: calc(32px - 16px);
+	}
 }
-
-.coloredTitle {
-    box-sizing: border-box;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 2.8125rem;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.33;
-    letter-spacing: -0.34px;
-    text-align: center;
-    color: var(--page-color);
+.howTo::before,
+.howTo::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	background-color: var(--background-main-color);
+	z-index: -1;
 }
-
-.coloredSubtitle {
-    box-sizing: border-box;
-    margin-top: 0;
-    margin-bottom: .5rem;
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 1.3125rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.17px;
-    text-align: center;
-    color: var(--page-color);
+.howTo > div[class="container"] > div[class*="grid"] > .step {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 16px;
+	gap: 16px;
+	height: 100%;
 }
-
-.cardWrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 2rem;
+.howTo > div[class="container"] > h3,
+.howTo > div[class="container"] > div[class*="grid"] > .step > h5 {
+	font-family: "Nunito Sans";
+	font-size: 48px;
+	font-weight: bold;
+	text-align: center;
 }
-
-.card {
-    width: calc(50% - 1rem);
-    padding: 2rem;
-    border-radius: 1rem;
-    transition: all 0.3s ease;
-    margin: 0;
+.howTo > div[class="container"] > div[class*="grid"] > .step > h5 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80px;
+	height: 80px;
+	margin: auto;
+	font-size: 32px;
+	text-align: center;
+	border-radius: 40px;
+	color: var(--sunred-color);
+	background-color: var(--lightred-color);
 }
-
-.card:hover {
-    transform: translate(0, -5px);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+.howTo > div[class="container"] > div[class*="grid"] > .step > p {
+	font-family: "Nunito Sans";
+	font-size: 16px;
+	text-align: center;
 }
-
-.cardTitle {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.2px;
-    color: var(--text-main-color);
-    opacity: 0.5;
-    margin-bottom: 1rem;
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Types ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.types {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: calc(80px - 16px);
 }
-
-.listItem {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 1.125rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.14px;
-    color: var(--text-main-color);
-    margin-bottom: 1rem;
-    width: calc(50% - 1rem);
+@media screen and (max-width: 576px) {
+	.types {
+		padding: calc(32px - 16px);
+	}
 }
-
-.listItemTitle {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.2px;
-    color: var(--text-main-color);
-    margin-bottom: 2rem;
+.types::before,
+.types::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	background-color: var(--background-main-color);
+	z-index: -1;
 }
-
-.listItem ul {
-    padding-left: 0;
+.types > div[class="container"] > h3 {
+	font-family: "Nunito Sans";
+	font-size: 42px;
+	font-weight: bold;
+	text-align: center;
 }
-
-.listItem ul li {
-    display: flex;
-    align-items: center;
-    grid-gap: 8px;
-    gap: 8px;
-    margin-top: 2rem;
-    align-items: center;
-    font-size: 1.0625rem;
+.types > div[class="container"] > p {
+	font-family: "Nunito Sans";
+	font-size: 21px;
+	text-align: center;
 }
-
-.listItem ul li > i {
-    color: var(--logo-blue-color);
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Types For Corporate ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.types[data-type="corporate"] > div[class="container"] > h3,
+.types[data-type="corporate"] > div[class="container"] > p {
+	color: var(--logo-blue-color);
 }
-
-.greyBanner {
-    background-color: var(--background-main-color);
-    padding: 5rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    position: relative;
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Types For Partner ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.types[data-type="partner"] > div[class="container"] > h3,
+.types[data-type="partner"] > div[class="container"] > p {
+	color: var(--grassgreen-color);
 }
-
-.bannerImgSeatingCorpo {
-    position: absolute;
-    width: fit-content;
-    height: 400px;
-    object-fit: contain;
-    margin: 0;
-    right: 0;
-    bottom: -5rem;
-    transform: translateY(32.5%);
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Type ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.type {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 16px;
+	gap: 16px;
+	padding: 16px;
+	border-radius: 15px;
+	background-color: var(--background-sub-color);
+	box-shadow: var(--box-shadow);
 }
-
-.solutionsCards {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-end;
-    gap: 2rem;
-    width: 100%;
-    flex-wrap: wrap;
+.type > h5 {
+	font-size: 21px;
+	font-weight: bold;
+	color: var(--text-inactive-color);
 }
-
-.solutionItem {
-    width: 33.33333%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    position: relative;
-    z-index: 10;
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Checklists ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.checklists {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: calc(80px - 16px);
 }
-
-.solutionTitle {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: 0.2px;
-    text-align: center;
-    color: #006dff;
+@media screen and (max-width: 576px) {
+	.checklists {
+		padding: calc(32px - 16px);
+	}
 }
-
-.solutionConstraint {
-    font-family: "Open Sans", sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.4px;
-    text-align: center;
-    text-transform: uppercase;
-    color: #595959;
+.checklists::before,
+.checklists::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	background-color: var(--background-sub-color);
+	z-index: -1;
 }
-
-.solutionPricing {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 2rem;
-    letter-spacing: 0.22px;
-    font-weight: bold;
-    text-align: center;
-    color: #595959;
-    margin: 1rem 0;
+.checklists > div[class="container"] > div[class*="grid"] > .list {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 16px;
+	gap: 16px;
+	height: 100%;
 }
-
-.solutionFonctionnalities {
-    margin-top: 1rem;
-    width: 100%;
-    margin-bottom: 2rem;
+.checklists > div[class="container"] > h3,
+.checklists > div[class="container"] > div[class*="grid"] > .list > h5 {
+	font-family: "Nunito Sans";
+	font-size: 48px;
+	font-weight: bold;
+	text-align: left;
 }
-
-.solutionFonctionnalities li {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap:1rem;
-    padding: 1rem 0;
+.checklists > div[class="container"] > div[class*="grid"] > .list > h5 {
+	font-size: 21px;
 }
-
-.solutionFonctionnalities li p {
-    font-family: "Open Sans", sans-serif;
-    font-size: 19px;
-    letter-spacing: 0.4px;
-    color: #595959;
+.checklists > div[class="container"] > div[class*="grid"] > .list > ul {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 16px;
+	gap: 16px;
 }
-
-.solutionFonctionnalities li i {
-    color: var(--page-color);
-    font-size: 19px;
+.checklists > div[class="container"] > div[class*="grid"] > .list > ul > li {
+	display: flex;
+	align-items: center;
+	grid-gap: 16px;
+	gap: 16px;
+	font-family: "Nunito Sans";
+	font-size: 16px;
 }
-
-.solutionSeeDetails {
-    font-family: "Open Sans", sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.4px;
-    text-align: center;
-    text-transform: uppercase;
-    color: var(--page-color);
-    cursor: pointer;
+.checklists > div[class="container"] > div[class*="grid"] > .list > ul > li > i {
+	color: var(--logo-blue-color);
 }
-
-.solutionLabel {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1rem;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    text-align: center;
-    position: absolute;
-    left: 0;
-    top: -30px;
-    z-index: -1;
-    background: var(--background-sub-color);
-    display: flex;
-    color: #FFB00D;
-    height: 40px;
-    padding: 0 15px 10px 15px;
-    align-items: center;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Startups Count ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.startupsCount {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: calc(80px - 16px);
 }
-
-.solutionLabel > i {
-    color: #FFB00D;
-    margin-right: 0.5rem;
+@media screen and (max-width: 576px) {
+	.startupsCount {
+		padding: calc(32px - 16px);
+	}
 }
-
-.trusters {
-    display: flex;
-    gap: 2rem;
+.startupsCount::before,
+.startupsCount::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	background-color: var(--background-main-color);
+	z-index: -1;
 }
-
-.trusterItem {
-    width: calc(50% - 2rem);
-    display: flex;
-    flex-direction: column;
+.startupsCount > div[class="container"] > p {
+	font-family: "Nunito Sans";
+	font-size: 24px;
 }
-
-.trusterAvatar {
-    width: 288px;
-    height: 288px;
-    aspect-ratio: 1/1;
-    background: var(--page-color);
-    margin-bottom: 2rem;
-    border-radius: 100%;
-    position: relative;
+.startupsCount > div[class="container"] > h3 {
+	padding: 0px 280px 0px 0px;
+	font-family: "Nunito Sans";
+	font-size: 42px;
+	font-weight: bold;
 }
-
-.trusterCompany {
-    width: 100px;
-    height: 100px;
-    aspect-ratio: 1/1;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: #fff;
-    border-radius: 100%;
-    border: 4px solid var(--page-color);
+@media screen and (max-width: 768px) {
+	.startupsCount > div[class="container"] > h3 {
+		padding: 0px 0px 200px 0px;
+	}
 }
-
-.trusterName {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 2rem;
-    font-weight: 600;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.41;
-    letter-spacing: 0.22px;
-    color: var(--text-main-color)
+@media screen and (max-width: 576px) {
+	.startupsCount > div[class="container"] > h3 {
+		padding: 0px;
+	}
 }
-
-.trusterJob {
-    color: var(--text-main-color);
-    font-family: "Open Sans", sans-serif;
-    pointer-events: auto;
-    box-sizing: border-box;
-    margin-bottom: 2rem;
-    font-weight: 400;
-    font-size: 1.1875rem;
-    letter-spacing: -.01em;
-    line-height: 1.45;
-    margin-top: .5rem!important;
-    text-align: left!important;
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Plans ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.plans {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: calc(80px - 16px);
 }
-
-@media screen and (max-width: 991px) {
-    .heroContainer {
-        min-height: 110vh;
-    }
-
-    .heroTitle {
-        margin-top: 2rem;
-    }
-
-    .heroDesc {
-        width: 100%;
-    }
-
-    .heroLinks {
-        width: 100%;
-    }
-
-    .heroImg {
-        height: fit-content;
-        width: 80%;
-        bottom: 0;
-        right: 50%;
-        transform: translateX(50%);
-    }
-
-    .bannerBlockWrapper {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-    }
-
-    .bannerWithImg {
-        padding-bottom: 20rem;
-    }
-
-    .bannerImgSeating {
-        position: absolute;
-        width: fit-content;
-        height: 400px;
-        object-fit: contain;
-        margin: 0;
-        right:50%;
-        bottom: -100%;
-        transform: translateX(50%) translateY(61%);
-        z-index: 10;
-    }
-    .card, .listItem, .solutionItem, .trusterItem {
-        width: 100%;
-    }
-
-    .solutionsCards {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: calc(2rem + 40px);
-    }
-
-    .trusters {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-    }
+@media screen and (max-width: 576px) {
+	.plans {
+		padding: calc(32px - 16px);
+	}
+}
+.plans::before,
+.plans::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.plans > div[class="container"] {
+	overflow: inherit;
+}
+.plans > div[class="container"] > h3 {
+	padding: 0px 280px 0px 0px;
+	font-family: "Nunito Sans";
+	font-size: 45px;
+	font-weight: bold;
+	color: var(--perfect-white-color);
+}
+.plans > div[class="container"] > img {
+	width: 280px;
+	height: 480px;
+	position: absolute;
+	top: calc(-280px - 50px - 8.5px);
+	right: 0px;
+}
+.plans > div[class="container"] > div[class*="grid"] {
+	margin: 24px 0px 0px 0px;
+}
+@media screen and (max-width: 768px) {
+	.plans > div[class="container"] > h3 {
+		padding: 140px 0px 0px 0px;
+	}
+	.plans > div[class="container"] > img {
+		right: 50%;
+		transform: translateX(50%);
+	}
+	.plans > div[class="container"] > div[class*="grid"] {
+		grid-gap: 56px;
+		gap: 56px;
+		margin: 0px;
+	}
+}
+@media screen and (max-width: 576px) {
+	.plans > div[class="container"] > h3 {
+		padding: 0px;
+	}
+	.plans > div[class="container"] > img {
+		display: none;
+	}
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Plans For Corporate ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.plans[data-type="corporate"]::before {
+	background-color: var(--background-main-color);
+}
+.plans[data-type="corporate"]::after {
+	border-radius: 100px 0px 0px 0px;
+	background-color: var(--logo-blue-color);
+}
+@media screen and (max-width: 576px) {
+	.plans[data-type="corporate"]::after {
+		border-radius: 50px 0px 0px 0px;
+	}
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Plan ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.plan {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 16px;
+	gap: 16px;
+	height: 550px;
+	padding: 16px;
+	border: var(--border);
+	border-width: 2px;
+	border-color: var(--background-sub-color);
+	border-radius: 15px;
+	background-color: var(--background-sub-color);
+}
+.plan[data-rgb="enabled"] {
+	border: none;
+}
+.plan[class*="popular"] {
+	background-color: var(--challenge-color);
+}
+.plan > .tab {
+	display: flex;
+	align-items: center;
+	grid-gap: 8px;
+	gap: 8px;
+	padding: 8px 16px 24px 16px;
+	position: absolute;
+	bottom: calc(100% - 16px);
+	left: -2px;
+	border-radius: 15px 15px 0px 0px;
+	background-color: var(--background-main-color);
+	z-index: -1;
+}
+.plan > .tab > p {
+	font-weight: bold;
+}
+.plan > .tab > i,
+.plan > .tab > p {
+	color: var(--challenge-color);
+}
+.plan > .head {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 8px;
+	gap: 8px;
+}
+.plan > .head > h5 {
+	font-family: "Nunito Sans";
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	color: var(--logo-blue-color);
+}
+.plan[class*="popular"] > .head > h5 {
+	color: var(--perfect-black-color);
+}
+.plan > .head > h5 > p {
+	text-align: center;
+}
+.plan > .price {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+}
+.plan > .price > p {
+	font-family: "Nunito Sans";
+	font-size: 32px;
+	font-weight: bold;
+	text-align: center;
+}
+.plan > .advantages {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 8px;
+	gap: 8px;
+}
+.plan > .advantages > .advantage {
+	display: flex;
+	align-items: center;
+	grid-gap: 8px;
+	gap: 8px;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Typing ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.typing {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 40px;
+	gap: 40px;
+	width: 100%;
+	padding: calc(80px - 16px);
+}
+@media screen and (max-width: 576px) {
+	.typing {
+		padding: calc(32px - 16px);
+	}
+}
+.typing::before,
+.typing::after {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: -1;
+}
+.typing::after {
+	border-radius: 100px 0px 100px 0px;
+}
+@media screen and (max-width: 576px) {
+	.typing::after {
+		border-radius: 50px 0px 50px 0px;
+	}
+}
+.typing > div[class="container"] > p {
+	font-size: 20px;
+	color: var(--perfect-white-color);
+}
+.typing > div[class="container"] > .animation {
+	text-align: left;
+}
+.typing > div[class="container"] > .animation > h3,
+.typing > div[class="container"] > .animation > h3 > span {
+	display: inline;
+	font-size: 40px;
+	font-family: "Nunito Sans";
+	font-weight: bold;
+	color: var(--perfect-white-color);
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Typing For Partner ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.typing[data-type="startup"]::before {
+	background-color: var(--background-main-color);
+}
+.typing[data-type="startup"]::after {
+	background-color: var(--sunred-color);
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Typing For Partner ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.typing[data-type="partner"]::before {
+	background-color: var(--background-main-color);
+}
+.typing[data-type="partner"]::after {
+	background-color: var(--grassgreen-color);
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Solutions ( Testimonials ) */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.testimonials {
+	background-color: var(--background-sub-color);
 }

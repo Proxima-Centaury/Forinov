@@ -2,15 +2,11 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { useState, Fragment, useEffect, Key } from "react";
 import { DealsInterface } from "../../typescript/interfaces";
-import { formatType, formatNameForUrl, checkMatch } from "../../scripts/utilities";
-import api from "../../scripts/api";
+import { checkMatch } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Link from "next/link";
-import Pagination from "../../components/pagination/pagination";
 import Button from "../../components/buttons/button";
 import Breadcrumb from "../../components/menus/breadcrumb";
 import OpportunityCard from "../../components/cards/opportunity";
@@ -74,9 +70,12 @@ const Deals = (pageProps: DealsInterface) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, locale, locales, defaultLocale } = context;
-    const language = locale?.substring(0, 2);
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     return {
+        redirect: {
+            destination: "/403",
+            permanent: false
+        },
         props: {
             locale, locales, defaultLocale
         }

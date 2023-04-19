@@ -53,13 +53,15 @@
 }
 .links > a > i,
 .links > a > span {
-    color: var(--perfect-black-color);
+    color: var(--text-main-color);
+    transition: color 0.3s ease-in-out;
 }
 .links > a:hover {
-    border-color: var(--perfect-black-color);
+    border-color: var(--logo-blue-color);
 }
+.links > a:hover > i,
 .links > a:hover > span {
-    font-weight: bold;
+    color: var(--logo-blue-color);
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Filters ( Search ) */

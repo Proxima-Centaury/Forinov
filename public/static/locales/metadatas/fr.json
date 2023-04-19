@@ -1,114 +1,146 @@
 {
+    "/403": {
+        "title": "Forinov, page en cours de développement",
+        "description": "La page à laquelle vous essayez d'accéder est en cours de développement"
+    },
     "/404": {
-        "title": "",
-        "description": ""
+        "title": "Forinov, page inexistante",
+        "description": "La page à laquelle vous tentez d'accéder n'existe pas"
     },
     "/500": {
-        "title": "",
-        "description": ""
+        "title": "Forinov, page inaccessible suite à une erreur côté serveur",
+        "description": "La page à laquelle vous essayez d'accéder a rencontré un problème en raison d'une erreur côté serveur"
     },
     "/": {
         "title": "Forinov, le réseau social de l'open innovation",
-        "description": "Forinov est le réseau social de l'open innovation qui connecte startups, entreprises et partenaires pour faciliter leur collaboration. Forinov optimise veille, sourcing, gestion du portefeuille de startups et de partenaires (accélérateurs, incubateurs, etc.)."
+        "description": "Forinov est le réseau social de l'open innovation qui connecte startups, entreprises et partenaires pour faciliter leur collaboration. Forinov optimise veille, sourcing, gestion du portefeuille de startups et de partenaires (accélérateurs, incubateurs, etc.)"
     },
     "/startups": {
         "title": "Forinov pour votre startup, comment ça marche ?",
-        "description": "Forinov pour votre startup, comment ça marche ? Inscrire votre startup sur Forinov, répondre à des appels à candidatures, référencer votre startup dans l'annuaire de startups de France sur Forinov. Intégrez votre startup à notre base de données de startups. Vous avez des questions ? Toutes les réponses sont sur Forinov."
+        "description": "Forinov pour votre startup, comment ça marche ? Inscrire votre startup sur Forinov, répondre à des appels à candidatures, référencer votre startup dans l'annuaire de startups de France sur Forinov. Intégrez votre startup à notre base de données de startups. Vous avez des questions ? Toutes les réponses sont sur Forinov"
     },
     "/corporates": {
         "title": "Forinov pour votre entreprise, comment ça marche ?",
-        "description": "Comment inscrire votre entreprise sur Forinov ? Créer un appel à projets / candidatures, trouver des startups pertinentes. Découvrir des startups innovantes pour votre entreprise sur Forinov. Startups par catégories / secteurs. Entrer en relation avec les startups. Toutes les réponses à vos questions sont sur Forinov."
+        "description": "Comment inscrire votre entreprise sur Forinov ? Créer un appel à candidatures / candidatures, trouver des startups pertinentes. Découvrir des startups innovantes pour votre entreprise sur Forinov. Startups par catégories / secteurs. Entrer en relation avec les startups. Toutes les réponses à vos questions sont sur Forinov"
     },
     "/partners": {
         "title": "Forinov en tant que partenaire, comment ça marche ?",
-        "description": "Comment s'inscrire en tant que partenaire sur Forinov ?  Créer des opportunités sur Forinov. Retrouvez notre annuaire de startups Françaises et internationales sur Forinov. Ajoutez des startups et entreprises à votre réseau. Vous souhaitez avoir une place de choix dans l'écosystème innovant ? Toutes les réponses sont sur Forinov."
+        "description": "Comment s'inscrire en tant que partenaire sur Forinov ? Créer des opportunités sur Forinov. Retrouvez notre annuaire de startups Françaises et internationales sur Forinov. Ajoutez des startups et entreprises à votre réseau. Vous souhaitez avoir une place de choix dans l'écosystème innovant ? Toutes les réponses sont sur Forinov"
     },
     "/opportunities": {
         "title": "Les opportunités Forinov, comment ça marche ?",
-        "description": "Comment créer votre appel à candidatures / appel à projets / concours / challenges / évènements sur Forinov. Trouver des startups pertinentes, contactez les startups les plus intéressantes de notre annuaire de startups France, et suivez les via votre porte-feuille de startups. Toutes les réponses à vos questions sont sur Forinov."
+        "description": "Comment créer votre appel à candidatures / concours / challenges / évènements sur Forinov. Trouver des startups pertinentes, contactez les startups les plus intéressantes de notre annuaire de startups France, et suivez les via votre portefeuille de startups. Toutes les réponses à vos questions sont sur Forinov"
+    },
+    "/solutions/startups": {
+        "title": "Forinov, créez votre profil startup gratuitement",
+        "description" : "Forinov, met en relation les meilleures startups avec les entreprises en recherche de solutions, permet de postuler aux opportunités (appels à candidatures, programmes partenaires, etc.) et de simplifier les relations clients. Plus qu'une solution de prospection, c'est un réseau d'affaires"
+    },
+    "/solutions/corporates": {
+        "title": "Forinov, la solution la plus complète d'open innovation",
+        "description" : "Plus qu'un réseau social de l'open innovation, Forinov, c'est la meilleure solution d'open innovation pour les entreprises qui cherchent à innover : annuaires de startups et partenaires, solution de veille, qualification et sourcing de startups, gestion d'appels à candidatures et suivi du portefeuille, entre autres"
+    },
+    "/solutions/partners": {
+        "title": "Forinov, le plus grand réseau de partenaires de l'innovation",
+        "description" : "Que vous soyez un incubateur, un accélérateur ou encore un investisseur, rejoignez le plus grand réseau d'acteurs innovants sur Forinov. Créez votre profil pour mettre avant vos offres et services, développer votre réseau, publier vos appels à candidatures ou simplifier la gestion de votre portefeuille de startups et de partenaires"
+    },
+    "/directories/startups": {
+        "title": "Annuaire des startups de Forinov - Les startups tech et innovantes",
+        "description" : "Forinov, annuaire de startups. Grâce au moteur de recherche par catégories, technologies ou secteurs d'activités retrouvez les meilleures startups classées par domaine. Plus qu'un mapping ou une base de données de startups, rejoignez le plus grand réseau de startups et leurs profils qualifiés, des données mises à jours en temps réel par les équipes (levées de fonds, effectifs, et autres indicateurs clés)"
+    },
+    "/directories/startups/categories": {
+        "title": "Annuaire des startups de Forinov - Les startups tech et innovantes",
+        "description" : "Forinov, annuaire de startups. Grâce au moteur de recherche par catégories, technologies ou secteurs d'activités retrouvez les meilleures startups classées par domaine. Plus qu'un mapping ou une base de données de startups, rejoignez le plus grand réseau de startups et leurs profils qualifiés, des données mises à jours en temps réel par les équipes (levées de fonds, effectifs, et autres indicateurs clés)"
+    },
+    "/directories/startups/categories/[category]": {
+        "title1": "Annuaire des startups",
+        "title2": "de Forinov, le réseau social de l'innovation",
+        "description1": "Accédez à l'annuaire complet de toutes les startups",
+        "description2": "sur Forinov. Contactez les fondateurs et suivez les profils les plus pertinents pour créer vos propres listes de startups",
+        "description3": "qualifiées"
+    },
+    "/directories/startups/[id]": {
+        "title1": "Le profil de",
+        "title2": ", startup",
+        "description1" : "Découvrez le profil complet de la startup",
+        "description2" : ", membre de Forinov dans la catégorie"
+    },
+    "/directories/corporates": {
+        "title": "Annuaire des entreprises de Forinov - Les entreprises membres de Forinov, le réseau social de l'open innovation",
+        "description" : "Annuaire des entreprises présentes sur Forinov, le réseau social de l'open innovation. Retrouvez, par secteurs d'activités, les PME, ETI, et Grands groupes internationaux en recherche de collaborations avec des startups. Contactez les équipes innovations et répondez à leurs besoins : appels à candidatures, programmes, etc."
+    },
+    "/directories/corporates/categories": {
+        "title": "Annuaire des entreprises de Forinov - Les entreprises membres de Forinov, le réseau social de l'open innovation",
+        "description" : "Annuaire des entreprises présentes sur Forinov, le réseau social de l'open innovation. Retrouvez, par secteurs d'activités, les PME, ETI, et Grands groupes internationaux en recherche de collaborations avec des startups. Contactez les équipes innovations et répondez à leurs besoins : appels à candidatures, programmes, etc."
+    },
+    "/directories/corporates/categories/[category]": {
+        "title1": "Annuaire des entreprises",
+        "title2": "de Forinov, le réseau social de l'innovation",
+        "description1": "Accédez à l'annuaire complet de toutes les entreprises",
+        "description2": "sur Forinov. Contactez les fondateurs et suivez les profils les plus pertinents pour créer vos propres listes d'entreprises",
+        "description3": "qualifiées"
+    },
+    "/directories/corporates/[id]": {
+        "title1": "Le profil de",
+        "title2": "sur forinov, entreprise :",
+        "description1" : "Découvrez le profil de l'entreprise",
+        "description2" : ", sur Forinov. Sur la page open innovation de",
+        "description3" : ", retrouvez les contacts clés des équipes innovation (directeur innovation de",
+        "description4" : ", responsable partenariats startups, etc.), leurs besoins et recherches de startups et toutes les opportunités de collaborations et de mise en relation avec",
+        "description5" : ", tels que : appels à candidatures, concours et challenges, etc."
+    },
+    "/directories/partners": {
+        "title": "Annuaire des partenaires de Forinov - Les partenaires membres de Forinov, le réseau social de l'open innovation",
+        "description" : "Annuaire des partenaires présents sur Forinov, le réseau social de l'open innovation. Retrouvez le plus grand réseau de partenaires sur Forinov. À partir de leurs profils, découvrez leurs services, leurs portefeuilles de startups et entrez en relation directement avec les meilleurs incubateurs, accélérateurs, fonds d'investissements, réseaux de business angels et investisseurs"
+    },
+    "/directories/partners/categories": {
+        "title": "Annuaire des partenaires de Forinov - Les partenaires membres de Forinov, le réseau social de l'open innovation",
+        "description" : "Annuaire des partenaires présents sur Forinov, le réseau social de l'open innovation. Retrouvez le plus grand réseau de partenaires sur Forinov. À partir de leurs profils, découvrez leurs services, leurs portefeuilles de startups et entrez en relation directement avec les meilleurs incubateurs, accélérateurs, fonds d'investissements, réseaux de business angels et investisseurs"
+    },
+    "/directories/partners/categories/[category]": {
+        "title1": "Annuaire des partenaires",
+        "title2": "de Forinov, le réseau social de l'innovation",
+        "description1": "Accédez à l'annuaire complet de tout les partenaires",
+        "description2": "sur Forinov. Contactez les fondateurs et suivez les profils les plus pertinents pour créer vos propres listes de partenaires",
+        "description3": "qualifiés"
+    },
+    "/directories/partners/[id]": {
+        "title1": "Le profil de",
+        "title2": "sur Forinov :",
+        "description1" : "Profil de l'incubateur",
+        "description2" : ". Retrouvez toutes les informations sur",
+        "description3" : ", les contacts clés, les offres et services, les conditions d'éligibilité, les startups accompagnées et en portefeuille, leurs alumni, etc. et bien sur toutes les opportunités de",
+        "description4" : ", tels que : appels à candidatures, concours et challenges, évènements, etc."
+    },
+    "/directories/opportunities": {
+        "title": "Les opportunités sur Forinov : appels à candidatures, concours et challenges, etc.",
+        "description" : "Retrouvez l'annuaire des opportunités sur Forinov : appels à candidatures, programmes d'incubation et d'accélération, événements, challenges et concours, meetups, évènements de mises en relation startups et bien d'autres opportunités uniques à portée de clics"
+    },
+    "/directories/opportunities/categories": {
+        "title": "Les opportunités sur Forinov : appels à candidatures, concours et challenges, etc.",
+        "description" : "Retrouvez l'annuaire des opportunités sur Forinov : appels à candidatures, programmes d'incubation et d'accélération, événements, challenges et concours, meetups, évènements de mises en relation startups et bien d'autres opportunités uniques à portée de clics"
+    },
+    "/directories/opportunities/categories/[category]": {
+        "title1": "Annuaire des opportunités",
+        "title2": "de Forinov, le réseau social de l'innovation",
+        "description1": "Accédez à l'annuaire complet de toutes les opportunités",
+        "description2": "sur Forinov. Découvrez tous les détails sur les opportunités",
+        "description3": "sur les pages dédiées, comportant toutes les informations relatives aux méthodes de candidature. Inscrivez-vous sur Forinov, et remplissez les formulaires de candidature afin de participer aux opportunités",
+        "description4": "sur notre réseau social de l'innovation"
     },
     "/login": {
         "title": "Accéder à tout Forinov",
-        "description": "Identifiez-vous sur la plateforme Forinov afin d'accéder à tout un panel d'outils permettant d'améliorer votre visibilité en tant que startup, entreprise (PME, ETI, Grand Groupe, etc.) ou partenaire (incubateur, accélérateur, etc.) !"
-    },
-    "/connexion": {
-        "title": "Accéder à tout Forinov",
-        "description": "Identifiez-vous sur la plateforme Forinov afin d'accéder à tout un panel d'outils permettant d'améliorer votre visibilité en tant que startup, entreprise (PME, ETI, Grand Groupe, etc.) ou partenaire (incubateur, accélérateur, etc.) !"
+        "description": "Identifiez-vous sur la plateforme Forinov afin d'accéder à tout un panel d'outils permettant d'améliorer votre visibilité en tant que startup, entreprise (PME, ETI, Grand Groupe, etc.) ou partenaire (incubateur, accélérateur, etc.)"
     },
     "/onboarding": {
         "title": "Onboarding au sein de Forinov",
-        "description": "Rejoignez Forinov afin d'améliorer votre visibilité en tant que startup, entreprise (PME, ETI, Grand Groupe, etc.) ou partenaire (incubateur, accélérateur, etc.) ! En vous inscrivant, vous bénéficierez d'outils permettant la mise en relation entre structures, la possibilité de participer à des évènements ou a des opportunités proposées par nos membres et bien plus !"
+        "description": "Rejoignez Forinov afin d'améliorer votre visibilité en tant que startup, entreprise (PME, ETI, Grand Groupe, etc.) ou partenaire (incubateur, accélérateur, etc.) ! En vous inscrivant, vous bénéficierez d'outils permettant la mise en relation entre structures, la possibilité de participer à des évènements ou a des opportunités proposées par nos membres et bien plus"
     },
-    "/solutions/startups" : {
-        "title": "Forinov, créez votre profil startup gratuitement",
-        "description" : "Forinov, met en relation les meilleures startups avec les entreprises en recherche de solutions, permet de postuler aux opportunités (appels à projets, appels à candidatures, programmes partenaires…) et de simplifier les relations clients. Plus qu’une solution de prospection, c’est un réseau d'affaires ! "
+    "/about": {
+        "title": "Forinov, à propos",
+        "description" : "À propos de Forinov, le premier réseau social de l'Open Innovation. Comment est née l'idée, quel est le concept et quelle est l'ambition de Forinov"
     },
-    "/solutions/corporates" : {
-        "title": "Forinov, la solution la plus complète d’open innovation",
-        "description" : "Plus qu’un réseau social de l’Open Innovation, Forinov, c’est la meilleure solution d’open innovation pour les entreprises qui cherchent à innover : Annuaires de startups et partenaires, solution de veille, qualification et sourcing de startups, gestion d’appels à projets et suivi du portefeuille..."
-    },
-    "/solutions/partners" : {
-        "title": "Forinov, le plus grand réseau de partenaires de l’innovation",
-        "description" : "Que vous soyez un incubateur, un accélérateur ou encore un investisseur, rejoignez le plus grand réseau d’acteurs innovants sur Forinov. Créez votre profil pour mettre avant vos offres et services, développer votre réseau, publier vos appels à candidatures ou simplifier la gestion de votre portefeuille de startups et de partenaires."
-    },
-    "/about" : {
-        "title": "Forinov, A propos",
-        "description" : "A propos de Forinov, le premier réseau social de l’Open Innovation. Comment est née l’idée, quel est le concept et quelle est l’ambition de Forinov ?"
-    },
-    "/directories/startups" : {
-        "title": "Annuaire des startups de Forinov - les start-ups tech et innovantes",
-        "description" : "Forinov, annuaire de start-ups. Grâce au moteur de recherche par catégories, technologies ou secteurs d’activités retrouvez les meilleures start ups classées par domaine. Plus qu’un mapping ou une base de données de startups, rejoignez le plus grand réseau de startups et leurs profils qualifiés, des données mises à jours en temps réel par les équipes (levées de fonds, effectifs…et indicateurs clés"
-    },
-    "/directories/startups/categories" : {
-        "title": "Annuaire des startups de Forinov - les start-ups tech et innovantes",
-        "description" : "Forinov, annuaire de start-ups. Grâce au moteur de recherche par catégories, technologies ou secteurs d’activités retrouvez les meilleures start ups classées par domaine. Plus qu’un mapping ou une base de données de startups, rejoignez le plus grand réseau de startups et leurs profils qualifiés, des données mises à jours en temps réel par les équipes (levées de fonds, effectifs…et indicateurs clés"
-    },
-    "/directories/corporates" : {
-        "title": "Annuaire des entreprises de Forinov -  les entreprises membres de Forinov, le réseau social de l’Open Innovation",
-        "description" : "Forinov, annuaire des entreprises présentes sur Forinov, le réseau social de l’Open innovation. Retrouvez, par secteurs d’activités, les PME, ETI, et Grands groupes internationaux en recherche de collaborations avec des startups. Contactez les équipes innovations et répondez à leurs besoins : appels à projets, programmes, appels à candidatures de start-ups"
-    },
-    "/directories/corporates/categories" : {
-        "title": "Annuaire des entreprises de Forinov -  les entreprises membres de Forinov, le réseau social de l’Open Innovation",
-        "description" : "Forinov, annuaire des entreprises présentes sur Forinov, le réseau social de l’Open innovation. Retrouvez, par secteurs d’activités, les PME, ETI, et Grands groupes internationaux en recherche de collaborations avec des startups. Contactez les équipes innovations et répondez à leurs besoins : appels à projets, programmes, appels à candidatures de start-ups"
-    },
-    "/directories/partners" : {
-        "title": "Annuaire des partenaires : incubateurs, accélérateurs, fonds d'investissements",
-        "description" : "Retrouvez le plus grand réseau de partenaires sur Forinov. A partir de leurs profils , découvrez leurs services, leurs portefeuilles de startups et entrez en relation directement avec les meilleurs incubateurs, accélérateurs, fonds d’investissement, réseaux de Business angels et investisseurs…"
-    },
-    "/directories/partners/categories" : {
-        "title": "Annuaire des partenaires : incubateurs, accélérateurs, fonds d'investissements",
-        "description" : "Retrouvez le plus grand réseau de partenaires sur Forinov. A partir de leurs profils , découvrez leurs services, leurs portefeuilles de startups et entrez en relation directement avec les meilleurs incubateurs, accélérateurs, fonds d’investissement, réseaux de Business angels et investisseurs…"
-    },
-    "/directories/opportunities" : {
-        "title": "Les opportunités sur Forinov : appels à projets, appels à candidatures, concours et challenges startups…",
-        "description" : "Retrouvez l’annuaire des opportunités sur Forinov : appels à projets startups, appels à candidatures, appels d’offres, programmes d’incubation et d’accélération, événements networking, challenges et concours, meetup startups, évènements de mises en relation startups et bien d’autres opportunités uniques à portée de clics. "
-    },
-    "/directories/opportunities/categories" : {
-        "title": "Les opportunités sur Forinov : appels à projets, appels à candidatures, concours et challenges startups…",
-        "description" : "Retrouvez l’annuaire des opportunités sur Forinov : appels à projets startups, appels à candidatures, appels d’offres, programmes d’incubation et d’accélération, événements networking, challenges et concours, meetup startups, évènements de mises en relation startups et bien d’autres opportunités uniques à portée de clics. "
-    },
-    "/annuaires/startups/[id]" : {
-        "title1": "Le profil de",
-        "title2": ", startup",
-        "description1" : "Découvrez le Profil complet de la startup ",
-        "description2" : ", membre de Forinov dans la catégorie "
-    },
-    "/annuaires/corporates/[id]" : {
-        "title1": "Le profil de ",
-        "title2": " sur forinov, entreprise :",
-        "title3": "",
-        "description1" : "Découvrez le profil de l'entreprise ",
-        "description2" : ", sur Forinov. Sur la page open innovation de ",
-        "description3" : " retrouvez les contacts clés des équipes innovation (directeur innovation de ",
-        "description4" : ", responsable partenariats startups…), leurs besoins et recherches de startups et toutes les opportunités de collaborations et de mise en relation avec ",
-        "description5" : " : appels à projets, appels à candidatures, concours challenges..."
-    },
-    "/annuaires/partners/[id]" : {
-        "title1": "Le profil de ",
-        "title2": " sur Forinov :",
-        "description1" : "Profil de l’incubateur ",
-        "description2" : ". Retrouvez les informations toutes les informations sur ",
-        "description3" : ", les contacts clés, les offres et services, les conditions d'éligibilité, les startups accompagnées et en portefeuille, leurs alumni…Et bien sur toutes les opportunités de ",
-        "description4" : " : appels à candidatures, concours, challenges, évènements…"
+    "/contact": {
+        "title": "Forinov, contactez-nous",
+        "description": "Pour toute question relative au contenu du site, aux services proposés ou pour tout problème technique, n'hésite pas à nous contacter via formulaire de contact, nous vous répondrons dès que possible"
     }
 }

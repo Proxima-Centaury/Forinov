@@ -1,4 +1,7 @@
-import { GetStaticProps } from 'next';
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Imports */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { GetServerSideProps } from "next";
 import DealStyles from '../public/stylesheets/components/deal/Deal.module.css';
 import TagsStyles from '../public/stylesheets/components/tags/Tags.module.css';
 import ButtonStyles from '../public/stylesheets/components/buttons/Button.module.css';
@@ -18,7 +21,7 @@ const deal = {
     remainingTime: '1',
     tags: "crm,marketing,automation",
     authorId: 1,
-    authorImage: 'https://via.placeholder.com/150',
+    authorImage: '/assets/placeholders/woman.jpg',
     localisation: "Paris, France",
     url: 'https://www.example.com',
     criterias: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam illo sequi mollitia aliquam rem laudantium. Omnis aliquid dolores placeat, autem, ipsa dolorem repudiandae numquam beatae exercitationem minus aut, quis excepturi."
@@ -38,10 +41,12 @@ const Deal = (pageProps: any) => {
                 <div className={DealStyles.detailsContainer}>
                     <div className={DealStyles.authorDetails}>
                         <div className={DealStyles.avatar}>
-                            <img
-                                src={deal.authorImage}
+                            <Image
+                                src={router.basePath + deal.authorImage}
                                 alt={deal.authorName}
-                            ></img>
+                                width="3840"
+                                height="2160"
+                            ></Image>
                         </div>
 
                         <h1 className={DealStyles.name}>{deal.authorName} - <span className={DealStyles.description}>{deal.authorDescription}</span></h1>
@@ -134,13 +139,19 @@ const Deal = (pageProps: any) => {
         </section>
     )
 }
-
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Static Props */
+/* Server Side Props */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const getStaticProps: GetStaticProps = async (context) => ({ props: { ...context } });
+const getServerSideProps: GetServerSideProps = async (context: any) => {
+    return {
+        redirect: {
+            destination: "/404",
+            permanent: false
+        }
+    };
+};
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export { getStaticProps };
-export default Deal
+export default Deal;
+export { getServerSideProps };

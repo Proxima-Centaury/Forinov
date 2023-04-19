@@ -26,7 +26,7 @@ const ProfileCard = (profileProps: any) => {
     useEffect(() => (!type) ? setProfileType(definedType) : setProfileType(type), [ type, definedType ]);
     return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
-            <Image src={ profile.BACKGROUND } alt={ "Image de fond de la structure " + profile.NAME } width="3840" height="2160" priority/>
+            <Image src={ profile.BACKGROUND } alt={ translations["Image de fond de l'entreprise du nom de"] + " " + profile.NAME + "." } width="3840" height="2160" priority/>
             { (profileType.match(/(startup)/) && !carouselItem) ? <StartupActions translations={ translations }/> : null }
             { (profileType.match(/(corporate|entreprise)/) && !carouselItem) ? <CorporateActions translations={ translations }/> : null }
             { (profileType.match(/(partner|partenaire)/) && !carouselItem) ? <PartnerActions translations={ translations }/> : null }
@@ -34,7 +34,7 @@ const ProfileCard = (profileProps: any) => {
         </div>
         <div className={ ProfileStyles.body }>
             <div className={ ProfileStyles.picture }>
-                <Image src={ profile.LOGO } alt="Company background." width="120" height="120"/>
+                <Image src={ profile.LOGO } alt={ translations["Image de profil de l'entreprise du nom de"] + " " + profile.NAME + "." } width="120" height="120"/>
                 { (type !== "startup" && (!session || (session && profile.PDF)) && !carouselItem) ? <Button button={ ButtonStyles.callToActionAlternative } href={ profile.PDF } icon="fa-light fa-cloud-arrow-down" text="PDF"/> : null }
             </div>
             <div className={ ProfileStyles.content }>
@@ -46,10 +46,10 @@ const ProfileCard = (profileProps: any) => {
                     </div> : null }
                     { (profile.WEBSITE) ? <div>
                         <i className="fa-solid fa-link"/>
-                        <a href={ "https://" + profile.WEBSITE } target="blank">{ translations["Site internet"] }</a>
+                        { (profile.WEBSITE) ? <a href={ ((!profile.WEBSITE.includes("https://")) ? "https://" : "") + profile.WEBSITE.replaceAll("http://", "") } target="_blank">{ translations["Site internet"] }</a> : null }
                     </div> : null }
                 </div> : null }
-                { (profile.COMMENT) ? <Format content={ profile.COMMENT }/> : null }
+                { (profile.COMMENT) ? <Format { ...profileProps } content={ profile.COMMENT }/> : null }
                 { (profile.CATEGORY.length > 0) ? <Tags tags={ profile.CATEGORY } main={ true }/> : null }
                 { (profile.TAGS) ? <Tags tags={ structureTags(profile.TAGS) } limit={ 2 }/> : null }
                 { (profileType.match(/(startup)/) && !carouselItem) ? <div className="separator"></div> : null }

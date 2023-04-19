@@ -32,12 +32,12 @@ const Directory = (pageProps: DirectoryInterface) => {
     return <div id="directory" className="container">
         <Filters { ...pageProps } title={ type } display={ display } setDisplay={ setDisplay } setSearch={ setSearch }/>
         <IdenfiticationBanner { ...pageProps }/>
-        { (!type.match(/(opport)/) && result.length > 0) ? <div className={ display }>
+        { (!type.match(/(opportunities)/) && result.length > 0) ? <div className={ display }>
             { result.map((company: any, key: KeyType) => (!search || (search && checkMatch(company.NAME, search))) ? <Link key={ key } href={ router.asPath + formatNameForUrl(company.NAME) + "_" + company.ID }>
-                <EntityCard { ...pageProps } entity={ company } type={ formatType(type) || undefined } details/>
+                <EntityCard { ...pageProps } entity={ company } type={ formatType(type, "en") || undefined } details/>
             </Link> : null) }
         </div> : null}
-        { (type.match(/(opport)/) && result.length > 0) ? <div className={ display }>
+        { (type.match(/(opportunities)/) && result.length > 0) ? <div className={ display }>
             { result.map((opportunity: any, key: KeyType) => (!search || (search && checkMatch(opportunity.TITLE, search))) ? <Link key={ key } href={ router.asPath + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID }>
                 <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ key + 1 }/>
             </Link> : null) }
@@ -58,13 +58,13 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const language = locale?.substring(0, 2);
     const research = async () => {
-        if(type.match(/(startup)/)) {
+        if(type.match(/(startups)/)) {
             return await api.getStartups("next", "Sorbonne", language);
-        } else if(type.match(/(corporate|entreprise)/)) {
+        } else if(type.match(/(corporates)/)) {
             return await api.getCorporates("next", "Sorbonne", language);
-        } else if(type.match(/(partner|partenaire)/)) {
+        } else if(type.match(/(partners)/)) {
             return await api.getPartners("next", "Sorbonne", language);
-        } else if(type.match(/(opport)/)) {
+        } else if(type.match(/(opportunities)/)) {
             return await api.getOpportunities("next", "Sorbonne", language);
         };
     };

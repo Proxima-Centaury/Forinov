@@ -2,6 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { Fragment, useEffect, Key, useRef, useState } from "react";
+import transitionInstance from "../../scripts/transitions";
 import { formatNameForUrl } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -21,70 +22,6 @@ import Format from "../texts/format";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import CarouselStyles from "../../public/stylesheets/components/carousels/Carousel.module.css";
 import ButtonStyles from "../../public/stylesheets/components/buttons/Button.module.css";
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Commons */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-class Transition {
-    transform;
-    transformArrows;
-    constructor() {
-        this.transform = 0;
-        this.transformArrows = 0;
-    };
-    resetTransform = () => {
-        this.transform = 0;
-        return true;
-    };
-    handleTransition = (event: any, carousel: any) => {
-        const itemWidth = 420;
-        const innerCarousel = carousel.querySelector("." + CarouselStyles.container);
-        const cards = [ ...innerCarousel.children ];
-        const limit = ((cards.length - 1) * itemWidth) * -1;
-        if(window.innerWidth > 576) {
-            if(event.wheelDelta > 0) {
-                this.transform = (this.transform < 0) ? this.transform + itemWidth + 16 : this.transform;
-            } else {
-                this.transform = (this.transform > limit) ? this.transform - itemWidth - 16 : this.transform;
-            };
-        };
-        innerCarousel.style.transform = "translateX(" + this.transform + "px)";
-        return true;
-    };
-    handleTransitionWithSteps = (event: any, name: String) => {
-        const target = event.target.closest("button");
-        const container = target.parentElement;
-        const buttons = (container) ? [ ...container.querySelectorAll("button") ] : [];
-        if(buttons.length > 0) {
-            buttons.forEach((button, key) => {
-                button.setAttribute("data-index", key);
-                button.classList.remove(ButtonStyles.active);
-            });
-        };
-        target.classList.add(ButtonStyles.active);
-        const carousel = document.querySelector("[data-carousel='" + name + "']") as HTMLElement;
-        const index = parseInt(target.getAttribute("data-index"));
-        if(carousel) {
-            carousel.style.transform = (index === 0) ? "translateX(-" + index + "00%)" : "translateX(calc(-" + index + "00% - " + (index * 80) + "px))";
-            return true;
-        };
-        return false;
-    };
-    handleTransitionWithArrows = (event: any, direction: String) => {
-        const target = event.target.closest("button");
-        const preciseTarget = target.closest("." + CarouselStyles.carousel);
-        const itemWidth = 100;
-        const container = preciseTarget.querySelector("." + CarouselStyles.container);
-        const cards = [ ...container.children ];
-        const limit = ((cards.length - 1) * itemWidth) * -1;
-        if(direction === "left") {
-            this.transform = (this.transform < 0) ? this.transform + itemWidth : this.transform;
-        } else {
-            this.transform = (this.transform > limit) ? this.transform - itemWidth : this.transform;
-        };
-        container.style.transform = "translateX(calc(" + this.transform + "% + " + ((this.transform / 100) * 16) + "px))";
-        return true;
-    };
-};
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -128,10 +65,11 @@ const Carousel = (carouselProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const StepsCarousel = (carouselProps: any) => {
     const { states, component, carouselsConfigurations, router } = carouselProps;
-	const { translations } = states;
-    const transitionInstance = new Transition();
+	const { translations, RGB } = states;
+	const [ lightingState, setLightingState ] = useState("disabled");
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const steps: Array<any> = carouselsConfigurations[component];
+	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     useEffect(() => {
         const handleStepButtonsTitle = () => {
             const stepButtons = document.querySelectorAll("." + CarouselStyles.steps + "[data-carousel='" + component + "Steps'] button") || [];
@@ -162,12 +100,12 @@ const StepsCarousel = (carouselProps: any) => {
                         <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
                         <ul>
                             { step.list.map((item: String, key: Key) => <li key={ key }>
-                                <div><i className="fa-light fa-arrow-right"/><Format { ...carouselProps } content={ translations[item as keyof Object] }/></div>
+                                <div><i className="fa-light fa-arrow-right"/><Format { ...carouselProps } content={ translations[item as keyof Object] + "." }/></div>
                             </li>) }
                         </ul>
                     </div>
-                    <div className={ CarouselStyles.stepPicture }>
-                        <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                    <div className={ CarouselStyles.stepPicture } data-rgb={ lightingState }>
+                        <Image src={ router.basePath + step.picture } alt="" width="3840" height="2160"/>
                     </div>
                 </div>;
             }) }
@@ -179,16 +117,18 @@ const StepsCarousel = (carouselProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CustomVertical = (carouselProps: any) => {
     const { states, carouselsConfigurations, router, component } = carouselProps;
-	const { translations } = states;
+	const { translations, RGB } = states;
+	const [ lightingState, setLightingState ] = useState("disabled");
     const steps: Array<any> = carouselsConfigurations[component];
+	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     return <div className={ CarouselStyles.carousel } data-direction="vertical">
         <div className={ CarouselStyles.container } data-carousel={ component }>
             { steps.map((step, key) => <div key={ key } className={ CarouselStyles.itemFullWidth }>
                 { (key % 2 === 1) ? <div className={ CarouselStyles.verticalContent }>
-                    <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
-                    <Format { ...carouselProps } content={ translations[step.text] }/>
-                </div> : <div className={ CarouselStyles.verticalPicture }>
-                    <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                    <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
+                    <Format { ...carouselProps } content={ translations[step.text] + "." }/>
+                </div> : <div className={ CarouselStyles.verticalPicture } data-rgb={ lightingState }>
+                    <Image src={ router.basePath + step.picture } alt="" width="3840" height="2160"/>
                 </div> }
                 <div className={ CarouselStyles.steps }>
                     <div className="separatorVertical"></div>
@@ -196,11 +136,11 @@ const CustomVertical = (carouselProps: any) => {
                         <i className={ (key === steps.length - 1) ? "fa-light fa-check" : "fa-light fa-chevron-down" }/>
                     </button>
                 </div>
-                { (key % 2 === 1) ? <div className={ CarouselStyles.verticalPicture }>
-                    <Image src={ router.basePath + step.picture } alt={ translations[step.title] } width="3840" height="2160"/>
+                { (key % 2 === 1) ? <div className={ CarouselStyles.verticalPicture } data-rgb={ lightingState }>
+                    <Image src={ router.basePath + step.picture } alt="" width="3840" height="2160"/>
                 </div> : <div className={ CarouselStyles.verticalContent }>
-                    <h4>{  (key + 1) + ". " + translations[step.title] }</h4>
-                    <Format { ...carouselProps } content={ translations[step.text] }/>
+                    <h4>{ (key + 1) + ". " + translations[step.title] }</h4>
+                    <Format { ...carouselProps } content={ translations[step.text] + "." }/>
                 </div> }
             </div>) }
         </div>
@@ -211,11 +151,13 @@ const CustomVertical = (carouselProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ClassicHorizontal = (carouselProps: any) => {
     const carouselReference = useRef(null);
+    const { component, states } = carouselProps;
+    const { translations, RGB } = states;
     const [ pressed, setPressed ] = useState(false);
     const [ startPosition, setStartPosition ] = useState(0);
     const [ position, setPosition ] = useState(0);
     const [ limit, setLimit ] = useState(0);
-    const transitionInstance = new Transition();
+	const [ lightingState, setLightingState ] = useState("disabled");
     const transitionHandler = transitionInstance.handleTransitionWithArrows;
     // const scrollHandler = (event: any) => {
     //     (window.innerWidth > 576) ? event.preventDefault() : null;
@@ -311,6 +253,7 @@ const ClassicHorizontal = (carouselProps: any) => {
             };
         };
     });
+	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     return <div className={ CarouselStyles.carousel } ref={ carouselReference }>
         <div className={ CarouselStyles.arrows }>
             <Button button={ ButtonStyles.callToActionRoundedIcon } action={ (event: any) => transitionHandler(event, "left") } icon="fa-light fa-arrow-left"/>
@@ -318,6 +261,18 @@ const ClassicHorizontal = (carouselProps: any) => {
         </div>
         <div className={ CarouselStyles.container } style={ { left: (position <= 0) ? ((position < limit) ? limit : position) + "px" : "0px" } }>
             <Items { ...carouselProps }/>
+            { (component === "LatestStartups") ? <div className={ CarouselStyles.item } data-rgb={ lightingState }>
+                <div className="placeholderCard">
+                    <p>{ translations["Rejoignez Forinov et découvrez l'ensemble des startups"] + " !" }</p>
+                    <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Je m'inscris"] }/>
+                </div>
+            </div> : null }
+            { (component === "LatestOpportunities") ? <div className={ CarouselStyles.item } data-rgb={ lightingState }>
+                <div className="placeholderCard">
+                    <p>{ translations["Rejoignez Forinov et découvrez l'ensemble des opportunités"] + " !" }</p>
+                    <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Je m'inscris"] }/>
+                </div>
+            </div> : null }
         </div>
     </div>;
 };
@@ -325,39 +280,42 @@ const ClassicHorizontal = (carouselProps: any) => {
 /* Classic Horizontal ( Items ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Items = (itemProps: any) => {
-    const { component, data, router } = itemProps;
+    const { component, data, states, router } = itemProps;
+    const { RGB } = states;
+	const [ lightingState, setLightingState ] = useState("disabled");
+	useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [ RGB ]);
     switch(component) {
         case "LatestStartups":
             return data.map((startup: any, key: Key) => {
                 const url = "/directories/startups/categories/" + formatNameForUrl(startup.CATEGORY[0].NAME) + "_" + startup.CATEGORY[0].ID + "/" + formatNameForUrl(startup.NAME) + "_" + startup.ID;
-                return <div key={ key } className={ CarouselStyles.item }>
+                return <div key={ key } className={ CarouselStyles.item } data-rgb={ lightingState }>
                     <ProfileCard { ...itemProps } profile={ startup } definedType="startup" profileLink={ url } carouselItem/>
                 </div>;
             });
         case "LatestOpportunities":
             return data.map((opportunity: any, key: Key) => {
                 const url = "/directories/opportunities/categories/" + formatNameForUrl(opportunity.TYPE[0].NAME) + "_" + opportunity.TYPE[0].ID + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID;
-                return <div key={ key } className={ CarouselStyles.item }>
+                return <div key={ key } className={ CarouselStyles.item } data-rgb={ lightingState }>
                     <OpportunityCard { ...itemProps } opportunity={ opportunity } opportunityLink={ url } carouselItem/>
                 </div>;
             });
         case "ForinovBlog":
             return data.map((article: any, key: Key) => {
-                return <div key={ key } className={ CarouselStyles.item }>
+                return <div key={ key } className={ CarouselStyles.item } data-rgb={ lightingState }>
                     <ArticleCard { ...itemProps } article={ article }/>
                 </div>;
             });
         case "StartupsFolders":
             return data.map((folder: any, key: Key) => {
                 const url =  router.asPath.substring(0, router.asPath.lastIndexOf("/")) + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID;
-                return <div key={ key } className={ CarouselStyles.item }>
-                    <FolderCard { ...itemProps } folder={ folder }/>
+                return <div key={ key } className={ CarouselStyles.item } data-rgb={ lightingState }>
+                    <FolderCard { ...itemProps } folder={ folder } folderLink={ url } carouselItem/>
                 </div>;
             });
         case "Testimonials":
             const importation = require("../../configurations/testimonials.json");
             const { testimonials } = importation;
-            return testimonials.map((testimonial: any, key: Key) => <div key={ key } className={ CarouselStyles.item }>
+            return testimonials.map((testimonial: any, key: Key) => <div key={ key } className={ CarouselStyles.item } data-rgb={ lightingState }>
                 <TestimonialCard { ...itemProps } testimonial={ testimonial }/>
             </div>);
         default:
@@ -378,7 +336,7 @@ const InfiniteScrollHorizontal = (carouselProps: any) => {
                     if(key < 14) {
                         const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
                         return <Link key={ key } href={ url } className={ CarouselStyles.logo } data-type="tooltip" data-tooltip={ name }>
-                            <Image src={ logo } alt={ name + " logo." } width="100" height="100"/>
+                            <Image src={ logo } alt="" width="100" height="100"/>
                         </Link>;
                     };
                 });
@@ -401,7 +359,6 @@ const InfiniteScrollHorizontal = (carouselProps: any) => {
 const AccordionsHorizontal = (carouselProps: any) => {
     const { component, data, noActions, states } = carouselProps;
 	const { translations } = states;
-    const transitionInstance = new Transition();
     const transitionHandler = transitionInstance.handleTransitionWithSteps;
     const questionsButtons = [ translations["Général"] ];
     return <div className={ CarouselStyles.carousel } data-direction="bidirectional">

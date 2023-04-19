@@ -81,7 +81,8 @@
     right: 16px;
     color: var(--text-inactive-color);
 }
-.content iframe {
+.content iframe,
+.content iframe * {
     flex: 1;
     width: 100% !important;
     border-radius: 10px;
