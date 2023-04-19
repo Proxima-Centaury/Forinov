@@ -147,7 +147,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <link rel="icon" href={ router.basePath + "/assets/logo.png" }/>
         </Head>
         { (router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/> }
-        <Transition>
+        <Transition { ...pageProps }>
             <Component { ...pageProps }/>
             { (router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/> }
         </Transition>

@@ -11,9 +11,8 @@ import HourglassStyles from "./Hourglass.module.css";
 /* Loaders */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Loaders = (loadersProps: LoadersInterface): JSX.Element => {
-    // switch() {
-
-    // };
+    const { states } = loadersProps;
+    const { translations } = states;
     const Dots = (): JSX.Element => {
         return <span className={ LoadersStyles.dots }>
             <span className={ LoadersStyles.dot }></span>
@@ -24,7 +23,7 @@ const Loaders = (loadersProps: LoadersInterface): JSX.Element => {
     return <div id="hourglassLoader" className={ LoadersStyles.container }>
         <h6>Forinov</h6>
         <div>
-            <p>Page en cours de chargement<Dots/></p>
+            <p>{ translations["Page en cours de chargement"] }<Dots/></p>
             <div className={ HourglassStyles.hourglass }></div>
         </div>
     </div>;

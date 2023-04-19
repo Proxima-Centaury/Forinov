@@ -51,10 +51,17 @@ const Devtools = (devtoolsProps: any) => {
     useEffect(() => (theme !== "matrix") ? setThemeTopicSwitcherIcon("fa-light fa-phone-volume") : setThemeTopicSwitcherIcon("fa-light fa-phone-hangup"), [ theme ]);
     useEffect(() => (RGB) ? setRGBSwitcherIcon("fa-light fa-lightbulb") : setRGBSwitcherIcon("fa-light fa-lightbulb-on"), [ RGB ]);
     useEffect(() => {
-        if(setErrors) {
-            const errorHandlerResponse: any = errorsHandlerInstance.startCheckings(router.asPath);
-            setErrors(errorHandlerResponse.errors);
-        };
+        const checkForErrors = setInterval(() => {
+            const ErrorHandler = errorsHandlerInstance.startCheckings(router.asPath);
+            console.log(ErrorHandler);
+            if(!ErrorHandler.wait) {
+                if(setErrors) {
+                    setErrors(ErrorHandler.errors);
+                };
+                clearInterval(checkForErrors);
+            };
+        }, 1000);
+        return () => clearInterval(checkForErrors);
     }, [ router.asPath, setErrors ]);
     useEffect(() => {
         setErrorsCount((errors) ? Object.keys(errors).length : 0);
