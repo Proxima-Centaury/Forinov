@@ -17,13 +17,29 @@ import SelectStyles from "../../public/stylesheets/components/fields/Select.modu
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const MultipleSelect = (selectProps: SelectInterface) => {
     const selectReference = useRef(null);
-    const { options, action, placeholder, source, dynamic, search, states, router } = selectProps;
+    const { options, action, placeholder, source, dynamic, limited, search, states, stateSetters, router } = selectProps;
     const { translations } = states;
+    const { setModal } = stateSetters;
     const { category } = router.query;
     const [ selectState, setSelectState ] = useState(false);
     const [ selectedOptions, setSelectedOptions ] = useState([]);
     const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
     const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
+    const placeholderToSearchFilter = (): String => {
+        let filterName = "";
+        if(placeholder?.match(/(secteurs)/i)) {
+            filterName = "targetsectors";
+        } else if(placeholder?.match(/(technologies)/i)) {
+            filterName = "technologies";
+        } else if(placeholder?.match(/(métiers)/i)) {
+            filterName = "targetjobs";
+        } else if(placeholder?.match(/(business)/i)) {
+            filterName = "businessmodel";
+        } else {
+            filterName = placeholder?.replaceAll(" ", "").toLowerCase() || "";
+        };
+        return filterName;
+    };
     const selectAllHandler: MouseEventHandler = (event) => {
         if(selectedOptions.length > 0) {
             setSelectedOptions([]);
@@ -48,17 +64,20 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         };
     };
     useEffect(() => {
-        const foundOption = (Array.isArray(options) && options.length > 0) ? options?.find((option: any) => option.ID == categoryId) : null;
-        const optionSEO = [];
-        (!dynamic && foundOption) ? optionSEO.push(foundOption) : null;
-        if(optionSEO.length > 0) {
-            setSelectedOptions(optionSEO as any);
-        };
-    }, [ options, dynamic, categoryId ]);
-    useEffect(() => {
         if(selectedOptions.length <= 0) {
             if(!dynamic && search.categories && search.categories.split("-").length > 0) {
                 search.categories.split("-").map((option: any) => {
+                    if(option) {
+                        if(options && options.filter((selectedOption: any) => selectedOption.ID === option.toString()).length > 0) {
+                            setSelectedOptions(options.filter((selectedOption: any) => selectedOption.ID === option.toString()) as any);
+                        };
+                    };
+                });
+            } else if(dynamic) {
+                const filterName = placeholderToSearchFilter();
+                const filterValues = search[filterName as keyof Object] || "";
+                const filterValuesToArray = filterValues.split("-");
+                filterValuesToArray.map((option: any) => {
                     if(option) {
                         if(options && options.filter((selectedOption: any) => selectedOption.ID === option.toString()).length > 0) {
                             setSelectedOptions(options.filter((selectedOption: any) => selectedOption.ID === option.toString()) as any);
@@ -79,7 +98,7 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         text: (selectedOptions.length > 0) ? translations["Tout désélectionner"] : translations["Tout sélectionner"]
     };
     return <div className={ SelectStyles.selectField + " " + ((selectState) ? SelectStyles.show : "") } ref={ selectReference }>
-        <button className={ SelectStyles.toggleButton } onClick={ () => setSelectState(!selectState) }>
+        <button className={ SelectStyles.toggleButton } onClick={ () => (limited) ? setModal("register") : setSelectState(!selectState) }>
             <i className="fa-solid fa-caret-right"/>
         </button>
         { (placeholder) ? <p className={ SelectStyles.placeholder }>{ placeholder + " : " }{ (selectedOptions?.length <= 0) ? null : <span>{ selectedOptions?.length }</span> }</p> : null }
@@ -87,7 +106,7 @@ const MultipleSelect = (selectProps: SelectInterface) => {
             <Button button={ SelectStyles.option } { ...additionalProps } action={ selectAllHandler }/>
             { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => {
                 const isDynamic = (dynamic) ? true : false;
-                return <Option key={ key } option={ option } selectedOptions={ selectedOptions } action={ action } ownAction={ setSelectedOptions } dynamic={ (isDynamic) ? placeholder : null }/>;
+                return (!option.COUNT || option.COUNT && option.COUNT > 0) ? <Option key={ key } option={ option } selectedOptions={ selectedOptions } action={ action } ownAction={ setSelectedOptions } dynamic={ (isDynamic) ? placeholder : null }/> : null;
             }) : null }
         </div>
     </div>;
