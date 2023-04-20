@@ -59,7 +59,7 @@ class API {
             }, writable: false });
         });
     };
-    async searchEngine(type: String, filters: any, language: String) {
+    async searchEngine(type: String, filters: any, network: String, privateFilter: String, ssid: String, language: String) {
         if(type) {
             type = String(type);
             type = (type.match(/(startups)/)) ? "startup" : type;
@@ -70,7 +70,7 @@ class API {
         var results = null;
         var url: String = this.endpoint + "?q=SEARCH_FULL&TYPE=" + type;
         const buildUrl = Object.keys(filters).map((filter) => ((filter === "keywords" && filters[filter].length >= 2) || (filter !== "keywords" &&filters[filter])) ? "&" + filter.toUpperCase() + "=" + filters[filter] : null).join("");
-        url += buildUrl + "&app=next&authkey=Sorbonne&lang=" + language;
+        url += buildUrl + ((network) ? "&NETWORK=" + network : "") + ((privateFilter) ? "&PRIVATEFILTER=" + privateFilter : "") + ((ssid) ? "&ssid=" + ssid : "") + "&app=next&authkey=Sorbonne&lang=" + language;
         const call = (url) ? await fetch(url.toString()) : null;
         results = (call) ? call.json() : null;
         return results;

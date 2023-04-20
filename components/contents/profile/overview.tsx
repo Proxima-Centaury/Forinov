@@ -46,22 +46,22 @@ const ProfileOverview = (pageProps: any) => {
             </div> }
             { (profile.WEBSITE) ? <div className={ OverviewStyles.website }>
                 <i className="fa-solid fa-thumbtack"/>
-                <a href={ "https://" + profile.WEBSITE } target="_blank" rel="noreferrer">{ translations["Site internet"] }</a>
+                <a href={ ((!profile.WEBSITE.includes("https://")) ? "https://" : "") + profile.WEBSITE.replaceAll("http://", "") } target="_blank">{ translations["Site internet"] }</a>
             </div> : <div className={ OverviewStyles.location }>
                 <i className="fa-solid fa-thumbtack"/>
                 <span>{ translations["Non renseigné"] + "." }</span>
             </div> }
             { (profile.FACEBOOK || profile.TWITTER || profile.LINKEDIN || profile.CRUNCHBASE) ? <div className={ OverviewStyles.networks }>
-                { (profile.FACEBOOK) ? <a href={ profile.FACEBOOK } target="_blank" rel="noreferrer">
+                { (profile.FACEBOOK) ? <a href={ ((!profile.FACEBOOK.includes("https://")) ? "https://" : "") + profile.FACEBOOK.replaceAll("http://", "") } target="_blank">
                     <i className="fa-brands fa-facebook-f"/>
                 </a> : null }
-                { (profile.TWITTER) ? <a href={ profile.TWITTER } target="_blank" rel="noreferrer">
+                { (profile.TWITTER) ? <a href={ ((!profile.TWITTER.includes("https://")) ? "https://" : "") + profile.TWITTER.replaceAll("http://", "") } target="_blank">
                     <i className="fa-brands fa-twitter"/>
                 </a> : null }
-                { (profile.LINKEDIN) ? <a href={ profile.LINKEDIN } target="_blank" rel="noreferrer">
+                { (profile.LINKEDIN) ? <a href={ ((!profile.LINKEDIN.includes("https://")) ? "https://" : "") + profile.LINKEDIN.replaceAll("http://", "") } target="_blank">
                     <i className="fa-brands fa-linkedin"/>
                 </a> : null }
-                { (profile.CRUNCHBASE) ? <a href={ profile.CRUNCHBASE } target="_blank" rel="noreferrer">cb</a> : null }
+                { (profile.CRUNCHBASE) ? <a href={((!profile.CRUNCHBASE.includes("https://")) ? "https://" : "") +  profile.CRUNCHBASE.replaceAll("http://", "") } target="_blank">cb</a> : null }
             </div> : null }
         </div>
     </div>;

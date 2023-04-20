@@ -4,22 +4,28 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Components */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import Loaders from "../components/loaders/loaders";
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import TransitionStyles from "../public/stylesheets/layout/Transition.module.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Transition */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Transition = ({ children }: any) => {
+const Transition = (transitionProps: any) => {
     const router = useRouter();
-    const [ opacity, setOpacity ] = useState(1);
+    const { children } = transitionProps;
+    const [ loading, setLoading ] = useState(false);
+    const [ loaded, setLoaded ] = useState(true);
     const handleStartTransition = () => {
-        const transitionContainer = document.querySelector("." + TransitionStyles.container) as HTMLElement;
-        (transitionContainer) ? setOpacity(0) : null;
+        setLoading(true);
+        setLoaded(false);
     };
     const handleCompleteTransition = () => {
-        const transitionContainer = document.querySelector("." + TransitionStyles.container) as HTMLElement;
-        (transitionContainer) ? setOpacity(1) : null;
+        setLoading(false);
+        setLoaded(true);
     };
     useEffect(() => {
         router.events.on("routeChangeStart", handleStartTransition);
@@ -31,8 +37,8 @@ const Transition = ({ children }: any) => {
             router.events.off("routeChangeError", handleCompleteTransition);
         };
     }, [ router ]);
-    return <div className={ TransitionStyles.container } style={ { opacity: opacity } }>
-        { children }
+    return <div className={ TransitionStyles.container } data-page-loaded={ loaded }>
+        { (loading) ? <Loaders { ...transitionProps } version={ 1 }/> : children }
     </div>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

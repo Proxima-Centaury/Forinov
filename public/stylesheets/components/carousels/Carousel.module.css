@@ -91,6 +91,10 @@
 .itemFullWidth > * {
 	width: 100%;
 }
+.item > *:hover,
+.itemFullWidth > *:hover {
+	transform: inherit !important;
+}
 @media screen and (max-width: 576px) {
 	.item > *,
 	.item > *[class*="Profile"],

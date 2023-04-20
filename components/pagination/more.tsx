@@ -10,6 +10,7 @@ import Link from "next/link";
 import MemberCard from "../cards/member";
 import OpportunityCard from "../cards/opportunity";
 import EntityCard from "../cards/entity";
+import ActivityCard from "../cards/activity";
 import Button from "../buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
@@ -20,7 +21,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const SeeMore = (seeMoreProps: any) => {
     const { list, type, max, display, states } = seeMoreProps;
-    const { translations } = states;
+    const { translations, session } = states;
     const [ iterations, setIterations ] = useState(1);
     const [ seeMore, setSeeMore ] = useState(true);
     const [ seeLess, setSeeLess ] = useState(false);
@@ -63,10 +64,11 @@ const SeeMore = (seeMoreProps: any) => {
                     <EntityCard { ...seeMoreProps } entity={ entity } type="partner" details/>
                 </Link>;
             }) : null }
+            { (type === "activities") ? list.slice(0, iterations * max).map((event: any, key: Key) => <ActivityCard key={ key } { ...seeMoreProps } event={ event }/>) : null }
         </div>
         { (seeLess || (seeMore && list.length > max)) ? <div className="grid twoColumns">
-            { (seeLess) ? <Button button={ ButtonStyles.callToAction } action={ seeLessHandler } text={ translations["Voir moins"] }/> : null }
-            { (seeMore && list.length > max) ? <Button button={ ButtonStyles.callToAction } action={ seeMoreHandler } text={ translations["Voir plus"] }/> : null }
+            { (seeLess) ? <Button button={ ButtonStyles.callToAction } action={ seeLessHandler } icon="fa-light fa-eye-slash" text={ translations["Voir moins"] } disabled={ (!session) ? true : undefined }/> : null }
+            { (seeMore && list.length > max) ? <Button button={ ButtonStyles.callToAction } action={ seeMoreHandler } icon="fa-light fa-eye" text={ translations["Voir plus"] } disabled={ (!session) ? true : undefined }/> : null }
         </div> : null }
     </Fragment>;
 };
