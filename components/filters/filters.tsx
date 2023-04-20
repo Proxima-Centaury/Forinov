@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { Key, MouseEventHandler, useEffect, useState } from "react";
+import { Fragment, Key, useEffect, useState } from "react";
 import { uppercaseFirst } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -17,10 +17,10 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Filters */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const Filters = (pageProps: any) => {
-    const { title, display, setDisplay, search, setSearch, setInformations, filters, dynamicFilters, states, router } = pageProps;
+const Filters = (filtersProps: any): JSX.Element => {
+    const { title, search, setSearch, setInformations, filters, dynamicFilters, states, router } = filtersProps;
     const { session, translations } = states;
-    const { type, category, ui, domain, user } = router.query;
+    const { type, category, ui, user } = router.query;
     const [ dynamicInformations, setDynamicInformations ]: Array<any> = useState([]);
     const [ dynamicFiltersToArray, setDynamicFiltersToArray ]: Array<any> = useState([]);
     const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
@@ -43,8 +43,25 @@ const Filters = (pageProps: any) => {
         newSearch[propName as keyof Object] = dynamicValues;
         return setSearch({ ...newSearch, page: 1 });
     };
-    const gridButtonAction: MouseEventHandler = () => setDisplay("grid threeColumns");
-    const listButtonAction: MouseEventHandler = () => setDisplay("list");
+    const setBaseFilters = (event: any, values: Array<any>, dynamic: String) => {
+        event.preventDefault();
+        const baseValues = values.map((option) => option.ID).join("-");
+        let propName = "";
+        if(dynamic.match(/(secteurs)/i)) {
+            propName = "targetsectors";
+        } else if(dynamic.match(/(technologies)/i)) {
+            propName = "technologies";
+        } else if(dynamic.match(/(métiers)/i)) {
+            propName = "targetjobs";
+        } else if(dynamic.match(/(business)/i)) {
+            propName = "businessmodel";
+        } else {
+            propName = dynamic.replaceAll(" ", "").toLowerCase();
+        };
+        const newSearch = search;
+        newSearch[propName as keyof Object] = baseValues;
+        return setSearch({ ...newSearch, page: 1 });
+    };
     useEffect(() => {
         const informations = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] === "INFORMATIONS")[0] : [];
         const filters = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] !== "INFORMATIONS") : [];
@@ -53,52 +70,103 @@ const Filters = (pageProps: any) => {
         (setInformations && informations) ? setInformations(informations[1]) : null;
     }, [ dynamicFilters, setInformations, type ]);
     return <div className={ FiltersStyles.container }>
-        { (title) ? <div className={ FiltersStyles.header }>
-            { (type.match(/(startups)/)) ? <i className="fa-light fa-rocket-launch"/> : null }
-            { (type.match(/(corporates)/)) ? <i className="fa-light fa-buildings"/> : null }
-            { (type.match(/(partners)/)) ? <i className="fa-light fa-handshake-simple"/> : null }
-            { (type.match(/(opportunities)/)) ? <i className="fa-light fa-circle-star"/> : null }
-            { (type.match(/(startups)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.STARTUPS) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
-            { (type.match(/(corporates)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.CORPORATES) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
-            { (type.match(/(partners)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.PARTNERS) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
-            { (type.match(/(opportunities)/)) ? <h1>{ title + " ( " }<span>{ ((dynamicInformations && dynamicInformations[1]) ? dynamicInformations[1].COUNT : filters.OPPORTUNITIES_COUNT) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
-            <div className={ FiltersStyles.displays }>
-                <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ gridButtonAction } icon="fa-light fa-grid-2" active={ display === "grid threeColumns" }/>
-                <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ listButtonAction } icon="fa-light fa-list" active={ display !== "grid threeColumns" }/>
-                { (ui && ui == "false") ? <a className={ ButtonStyles.callToActionAlternativeSquaredIcon } href={ domain + "/account_startup_map.php" } target="_parent">
-                    <i className="fa-light fa-map-location-dot"/>
-                </a> : null }
-            </div>
-        </div> : null }
-        { (title) ? <div className="separator"/> : null }
-        <div className={ FiltersStyles.links }>
-            { ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_mystartup.php" } target="_parent">
-                <i className="fa-light fa-folder-open"/>
-                <span>Portefeuille</span>
-            </a> : null }
-            { ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_mystartup_ecosystem.php" } target="_parent">
-                <i className="fa-light fa-globe"/>
-                <span>Écosystème</span>
-            </a> : null }
-            { ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? <a className={ ButtonStyles.classicLink } href={ domain + "/account_parametres_statut.php" } target="_parent">
-                <i className="fa-light fa-file"/>
-                <span>Paramètres relation</span>
-            </a> : null }
-        </div>
+        <Links { ...filtersProps }/>
         <div className={ FiltersStyles.search }>
             <form>
-                <Input type="search" name="search" placeholder={ translations["Rechercher dans l'annuaire des"] + " " + title } action={ setKeywords }/>
-                <Button button={ ButtonStyles.callToActionRoundedIcon } action={ listButtonAction } icon="fa-light fa-search"/>
+                <Input type="search" name="search" placeholder={ translations["Rechercher dans l'annuaire des"] + " " + title.toLowerCase() } action={ setKeywords }/>
+                <Button button={ ButtonStyles.callToActionRoundedIcon } icon="fa-light fa-search"/>
             </form>
         </div>
         <div className={ FiltersStyles.filters + " grid fourColumns" }>
-            { (filters && type.match(/(startups)/)) ? <MultipleSelect { ...pageProps } options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
-            { (filters && type.match(/(corporates)/)) ? <MultipleSelect { ...pageProps } options={ filters.SECTORS } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
-            { (filters && type.match(/(partners)/)) ? <MultipleSelect { ...pageProps } options={ filters.PARTNERS_TYPES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
-            { (filters && type.match(/(opportunities)/)) ? <MultipleSelect { ...pageProps } options={ filters.OPPORTUNITIES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
-            { (dynamicFiltersToArray.length > 0) ? dynamicFiltersToArray.map((filter: any, key: Key) => <MultipleSelect key={ key } { ...pageProps } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(filter[0]).toString() } dynamic/>) : null }
+            { (filters && type.match(/(startups)/)) ? <MultipleSelect { ...filtersProps } options={ filters.CATEGORIES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
+            { (filters && type.match(/(corporates)/)) ? <MultipleSelect { ...filtersProps } options={ filters.CORPORATES_SECTORS } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
+            { (filters && type.match(/(partners)/)) ? <MultipleSelect { ...filtersProps } options={ filters.PARTNERS_TYPES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
+            { (filters && type.match(/(opportunities)/)) ? <MultipleSelect { ...filtersProps } options={ filters.OPPORTUNITIES } action={ setCategories } placeholder={ translations["Catégories"] }/> : null }
+            { (dynamicFiltersToArray.length > 0) ? dynamicFiltersToArray.map((filter: any, key: Key) => <MultipleSelect key={ key } { ...filtersProps } options={ filter[1] as any } action={ setDynamicFilters } placeholder={ uppercaseFirst(filter[0]).toString() } dynamic limited={ (session || (ui && ui == "false")) && (user && !user.match(/(startup)/i)) ? false : true }/>) : null }
+            { (type.match(/(startups)/) && dynamicFiltersToArray.length <= 0) ? <MultipleSelect { ...filtersProps } options={ filters.SECTORS } action={ setBaseFilters } placeholder={ translations["Secteurs cibles"] } dynamic limited={ (session || (ui && ui == "false")) && (user && !user.match(/(startup)/i)) ? false : true }/> : null }
+            { (type.match(/(startups)/) && dynamicFiltersToArray.length <= 0) ? <MultipleSelect { ...filtersProps } options={ filters.TECHNOLOGIES } action={ setBaseFilters } placeholder={ translations["Technologies"] } dynamic limited={ (session || (ui && ui == "false")) && (user && !user.match(/(startup)/i)) ? false : true }/> : null }
+            { (type.match(/(startups)/) && dynamicFiltersToArray.length <= 0) ? <MultipleSelect { ...filtersProps } options={ filters.JOBS } action={ setBaseFilters } placeholder={ translations["Métiers cibles"] } dynamic limited={ (session || (ui && ui == "false")) && (user && !user.match(/(startup)/i)) ? false : true }/> : null }
+            { (type.match(/(startups)/) && dynamicFiltersToArray.length <= 0) ? <MultipleSelect { ...filtersProps } options={ filters.BUSINESSMODELS } action={ setBaseFilters } placeholder={ translations["Business model"] } dynamic limited={ (session || (ui && ui == "false")) && (user && !user.match(/(startup)/i)) ? false : true }/> : null }
         </div>
     </div>;
+};
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Links */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+const Links = (linksProps: any): JSX.Element => {
+    const { states, router } = linksProps;
+    const { session, translations } = states;
+    const { type, ui, user, domain } = router.query;
+    if(type.match(/(startups)/)) {
+        return <div className={ FiltersStyles.links }>
+            <a className={ ButtonStyles.classicLink + " " + FiltersStyles.active } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_startup.php" : router.basePath + "/directories/startups" } target="_parent">
+                <i className="fa-light fa-search"/>
+                <span>{ translations["Toutes les startups"] }</span>
+            </a>
+            <a className={ ButtonStyles.classicLink + (((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? "" : " " + FiltersStyles.disabled) } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_mystartup.php" : "" } target="_parent">
+                <i className="fa-light fa-folder-open"/>
+                <span>{ translations["Portefeuille"] }</span>
+            </a>
+            <a className={ ButtonStyles.classicLink + (((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? "" : " " + FiltersStyles.disabled) } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_mystartup_ecosystem.php" : "" } target="_parent">
+                <i className="fa-light fa-globe"/>
+                <span>{ translations["Écosystème"] }</span>
+            </a>
+            <a className={ ButtonStyles.classicLink + (((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? "" : " " + FiltersStyles.disabled) } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_parametres_statut.php" : "" } target="_parent">
+                <i className="fa-light fa-gear"/>
+                <span>{ translations["Paramètres relation"] }</span>
+            </a>
+        </div>;
+    } else if(type.match(/(corporates)/)) {
+        return <div className={ FiltersStyles.links }>
+            <a className={ ButtonStyles.classicLink + " " + FiltersStyles.active } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_entreprise.php" : router.basePath + "/directories/corporates" } target="_parent">
+                <i className="fa-light fa-search"/>
+                <span>{ translations["Toutes les entreprises"] }</span>
+            </a>
+            <a className={ ButtonStyles.classicLink + (((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? "" : " " + FiltersStyles.disabled) } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_myentreprise.php" : "" } target="_parent">
+                <i className="fa-light fa-folder-open"/>
+                <span>{ translations["Portefeuille"] }</span>
+            </a>
+            <a className={ ButtonStyles.classicLink + (((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? "" : " " + FiltersStyles.disabled) } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_myentreprisestats.php" : "" } target="_parent">
+                <i className="fa-light fa-chart-pie"/>
+                <span>{ translations["Statistiques"] }</span>
+            </a>
+            <a className={ ButtonStyles.classicLink + (((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? "" : " " + FiltersStyles.disabled) } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_myentrepriselinked.php" : "" } target="_parent">
+                <i className="fa-light fa-link"/>
+                <span>{ translations["Comptes liés"] }</span>
+            </a>
+        </div>;
+    } else if(type.match(/(partners)/)) {
+        return <div className={ FiltersStyles.links }>
+            <a className={ ButtonStyles.classicLink + " " + FiltersStyles.active } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_incubateur.php" : router.basePath + "/directories/partners" } target="_parent">
+                <i className="fa-light fa-search"/>
+                <span>{ translations["Tous les partenaires"] }</span>
+            </a>
+            <a className={ ButtonStyles.classicLink + (((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? "" : " " + FiltersStyles.disabled) } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_myincubateur.php" : "" } target="_parent">
+                <i className="fa-light fa-folder-open"/>
+                <span>{ translations["Portefeuille"] }</span>
+            </a>
+            <a className={ ButtonStyles.classicLink + (((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? "" : " " + FiltersStyles.disabled) } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_myincubateurstats.php" : "" } target="_parent">
+                <i className="fa-light fa-chart-pie"/>
+                <span>{ translations["Statistiques"] }</span>
+            </a>
+        </div>;
+    } else if(type.match(/(opportunities)/)) {
+        return <div className={ FiltersStyles.links }>
+            <a className={ ButtonStyles.classicLink + " " + FiltersStyles.active } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_projects.php" : router.basePath + "/directories/opportunities" } target="_parent">
+                <i className="fa-light fa-search"/>
+                <span>{ translations["Toutes les opportunités"] }</span>
+            </a>
+            <a className={ ButtonStyles.classicLink + (((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? "" : " " + FiltersStyles.disabled) } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_form_templates.php" : "" } target="_parent">
+                <i className="fa-light fa-scroll"/>
+                <span>{ translations["Formulaires"] }</span>
+            </a>
+            <a className={ ButtonStyles.classicLink + (((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? "" : " " + FiltersStyles.disabled) } href={ ((session || (ui && ui == "false")) && (user && !user.match(/(startup)/i))) ? domain + "/account_parametres_evaluation.php" : "" } target="_parent">
+                <i className="fa-light fa-gear"/>
+                <span>{ translations["Paramètres"] }</span>
+            </a>
+        </div>;
+    };
+    return <Fragment/>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */

@@ -53,7 +53,6 @@ const Devtools = (devtoolsProps: any) => {
     useEffect(() => {
         const checkForErrors = setInterval(() => {
             const ErrorHandler = errorsHandlerInstance.startCheckings(router.asPath);
-            console.log(ErrorHandler);
             if(!ErrorHandler.wait) {
                 if(setErrors) {
                     setErrors(ErrorHandler.errors);
