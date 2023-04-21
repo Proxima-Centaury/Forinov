@@ -24,7 +24,7 @@ const EntityCard = (entityProps: any) => {
             <div className={ EntityStyles.head }>
                 <div className={ EntityStyles.identity }>
                     <div className={ EntityStyles.branding }>
-                        <Image src={ entity.LOGO } alt="" width="55" height="55"/>
+                        <Image src={ entity.LOGO } alt={translations["Le logo de "] + entity.NAME} width="55" height="55"/>
                         <p className={ EntityStyles.name }>{ entity.NAME }</p>
                     </div>
                     { (type === "startup") ? ((entity.CATEGORY && entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }

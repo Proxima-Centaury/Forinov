@@ -15,13 +15,14 @@ import CategoryStyles from "../../public/stylesheets/components/cards/Category.m
 /* Category Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const CategoryCard = (categoryProps: any) => {
-    const { category, display, router } = categoryProps;
+    const { category, display, router, states } = categoryProps;
+    const { translations } = states;
     return <div className={ CategoryStyles.card }>
         { (category.COUNT) ? <div className={ CategoryStyles.count }>
             <p>{ category.COUNT }</p>
         </div> : null }
         <div className={ CategoryStyles.icon }>
-            { (category.LOGO) ? <Image src={ category.LOGO } alt="" width="80" height="80"/> : null }
+            { (category.LOGO) ? <Image src={ category.LOGO } alt={translations["Image de la catégorie "] + category.NAME} width="80" height="80"/> : null }
             { (category.CODE) ? <Image src={ router.basePath + "/assets/flags/" + category.CODE.toLowerCase() + ".png" } alt="" width="80" height="80"/> : null }
             { (!category.LOGO && !category.CODE) ? <i className="fa-light fa-circle-star"/> : null }
         </div>
