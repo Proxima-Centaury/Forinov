@@ -123,7 +123,7 @@ class ErrorsHandler {
         images.forEach((image: HTMLImageElement, key: Key) => {
             if(!image.alt) {
                 const title = "Missing alt attribute on image !";
-                const message = "No alt was found for on an image !";
+                const message = "No alt was found on an image !";
                 const currentPage = this.page;
                 const solutions = [ "Set an alt attribute in the image with a string as a value for the image that will appear if the source is broken." ];
                 foundErrors["missingAltAttribute" + (parseInt(key.toString()) + 1)] = this.generateError(title, message, image, currentPage, solutions);
