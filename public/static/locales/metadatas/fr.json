@@ -60,7 +60,7 @@
     },
     "/directories/startups/[id]": {
         "title1": "Le profil de",
-        "title2": ", startup",
+        "title2": "sur Forinov, startup",
         "description1" : "Découvrez le profil complet de la startup",
         "description2" : ", membre de Forinov dans la catégorie"
     },
@@ -81,7 +81,7 @@
     },
     "/directories/corporates/[id]": {
         "title1": "Le profil de",
-        "title2": "sur forinov, entreprise :",
+        "title2": "sur Forinov, entreprise",
         "description1" : "Découvrez le profil de l'entreprise",
         "description2" : ", sur Forinov. Sur la page open innovation de",
         "description3" : ", retrouvez les contacts clés des équipes innovation (directeur innovation de",
@@ -105,7 +105,7 @@
     },
     "/directories/partners/[id]": {
         "title1": "Le profil de",
-        "title2": "sur Forinov :",
+        "title2": "sur Forinov, partenaire",
         "description1" : "Profil de l'incubateur",
         "description2" : ". Retrouvez toutes les informations sur",
         "description3" : ", les contacts clés, les offres et services, les conditions d'éligibilité, les startups accompagnées et en portefeuille, leurs alumni, etc. et bien sur toutes les opportunités de",

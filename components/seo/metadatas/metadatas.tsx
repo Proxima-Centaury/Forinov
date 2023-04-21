@@ -65,14 +65,14 @@ const MetaDatas = (metadatasProps: any) => {
             const titles = [ metadatas["/directories/startups/[id]"].title1, metadatas["/directories/startups/[id]"].title2 ];
             const descriptions = [ metadatas["/directories/startups/[id]"].description1, metadatas["/directories/startups/[id]"].description2 ];
             return <Head>
-                <title>{ titles.join(" " + profile.NAME) + " " + profile.CATEGORY[0].NAME }</title>
+                <title>{ titles.join(" " + profile.NAME + " ") + " : " + profile.CATEGORY[0].NAME }</title>
                 <meta name="description" content={ descriptions.join(" " + profile.NAME) + " " + profile.CATEGORY[0].NAME + ", " + metadataComment + ", " + profileTagsString + "."}/>
             </Head>;
         } else if(type.match(/(corporates)/) && metadatas["/directories/corporates/[id]"]) {
             const titles = [ metadatas["/directories/corporates/[id]"].title1, metadatas["/directories/corporates/[id]"].title2 ];
             const descriptions = [ metadatas["/directories/corporates/[id]"].description1, metadatas["/directories/corporates/[id]"].description2, metadatas["/directories/corporates/[id]"].description3, metadatas["/directories/corporates/[id]"].description4, metadatas["/directories/corporates/[id]"].description5 ];
             return <Head>
-                <title>{ titles.join(" " + profile.NAME) + " " + profile.CATEGORY[0] }</title>
+                <title>{ titles.join(" " + profile.NAME + " ") + " : " + profile.CATEGORY[0] }</title>
                 <meta name="description" content={ descriptions.join(" " + profile.NAME) + ((descriptions.join(" " + profile.NAME)[descriptions.join(" " + profile.NAME).length - 1] === ".") ? "" : ".") }/>
             </Head>;
         } else if(type.match(/(partners)/) && metadatas["/directories/partners/[id]"]) {
@@ -80,7 +80,7 @@ const MetaDatas = (metadatasProps: any) => {
             const titles = [ metadatas["/directories/partners/[id]"].title1, metadatas["/directories/partners/[id]"].title2 ];
             const descriptions = [ metadatas["/directories/partners/[id]"].description1, metadatas["/directories/partners/[id]"].description2, metadatas["/directories/partners/[id]"].description3, metadatas["/directories/partners/[id]"].description4 ];
             return <Head>
-                <title>{ titles.join(" " + profile.NAME + " ") + " " + categories }</title>
+                <title>{ titles.join(" " + profile.NAME + " ") + " : " + categories }</title>
                 <meta name="description" content={ descriptions.join(" " + profile.NAME) }/>
             </Head>;
         };
