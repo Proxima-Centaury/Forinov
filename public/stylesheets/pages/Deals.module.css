@@ -29,6 +29,7 @@
     font-size: 36px;
     font-family: "Nunito Sans";
     color: var(--logo-blue-color);
+    text-transform: uppercase;
 }
 .catch > p {
     color: var(--text-inactive-color);

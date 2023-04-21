@@ -22,7 +22,8 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Deals */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Deals = (pageProps: DealsInterface) => {
-    const { filters, router } = pageProps;
+    const { filters, states, router } = pageProps;
+    const { translations } = states;
     const { category } = router.query;
     const categories = filters?.OPPORTUNITIES.find((category: any) => category.ID === "5").CATEGORIES || [];
     return <div id="deals" className="container">
@@ -34,8 +35,8 @@ const Deals = (pageProps: DealsInterface) => {
         </div>
         <Breadcrumb { ...pageProps }/>
         <div className={ DealsStyles.catch }>
-            <h1>LES OFFRES EXCLUSIVES FORINOV</h1>
-            <p>Forinov a négocié pour ses membres des deals exclusifs pour que vous ayez accès aux meilleures logiciels et locigiels à des conditions et tarifs imbattables !</p>
+            <h1>{ translations["Les offres exclusives Forinov"] }</h1>
+            <p>{ translations["Forinov a négocié pour ses membres des deals exclusifs pour que vous ayez accès aux meilleures logiciels à des conditions et tarifs imbattables"] + " !" }</p>
         </div>
         { (category) ? <div className={ HomeStyles.actions } data-justify="center">
             { (categories.length > 0) ? categories.map((category: any) => category.SUBCATEGORIES.map((subcategory: any, key: Key) => {
