@@ -540,35 +540,36 @@ class Utilities {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Instance */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const utilities = new Utilities();
+const utilitiesInstance = new Utilities();
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Quick Method Access */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const beautifyTheLogs = utilities.beautifyTheLogs;
-const selectifyTheOptions = utilities.selectifyTheOptions;
-// const setCookie = utilities.setCookie;
-// const getCookie = utilities.getCookie;
-const getTranslations = utilities.getTranslations;
-const getMetadatasTranslations = utilities.getMetadatasTranslations;
-const preventSubmit = utilities.preventSubmit;
-const buildProperties = utilities.buildProperties;
-const scrollTo = utilities.scrollTo;
-const redirectTo = utilities.redirectTo;
-const uppercaseFirst = utilities.uppercaseFirst;
-const remainingTime = utilities.remainingTime;
-const formatNameForUrl = utilities.formatNameForUrl;
-const bindEventListeners = utilities.bindEventListeners;
-const removeEventListeners = utilities.removeEventListeners;
-const structureTags = utilities.structureTags;
-const formatType = utilities.formatType;
-const checkMatch = utilities.checkMatch;
-const preciseTarget = utilities.preciseTarget;
-const escapeHTML = utilities.escapeHTML;
+const beautifyTheLogs = utilitiesInstance.beautifyTheLogs;
+const selectifyTheOptions = utilitiesInstance.selectifyTheOptions;
+// const setCookie = utilitiesInstance.setCookie;
+// const getCookie = utilitiesInstance.getCookie;
+const getTranslations = utilitiesInstance.getTranslations;
+const getMetadatasTranslations = utilitiesInstance.getMetadatasTranslations;
+const preventSubmit = utilitiesInstance.preventSubmit;
+const buildProperties = utilitiesInstance.buildProperties;
+const scrollTo = utilitiesInstance.scrollTo;
+const redirectTo = utilitiesInstance.redirectTo;
+const uppercaseFirst = utilitiesInstance.uppercaseFirst;
+const remainingTime = utilitiesInstance.remainingTime;
+const formatNameForUrl = utilitiesInstance.formatNameForUrl;
+const bindEventListeners = utilitiesInstance.bindEventListeners;
+const removeEventListeners = utilitiesInstance.removeEventListeners;
+const structureTags = utilitiesInstance.structureTags;
+const formatType = utilitiesInstance.formatType;
+const checkMatch = utilitiesInstance.checkMatch;
+const preciseTarget = utilitiesInstance.preciseTarget;
+const escapeHTML = utilitiesInstance.escapeHTML;
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-export default utilities;
+export default utilitiesInstance;
 export {
+    Utilities,
     beautifyTheLogs,
     selectifyTheOptions,
     // setCookie,

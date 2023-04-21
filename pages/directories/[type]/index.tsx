@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import { useState, Fragment, useEffect, Key, MouseEventHandler } from "react";
 import { DirectoryInterface } from "../../../typescript/interfaces";
 import { formatType, formatNameForUrl } from "../../../scripts/utilities";
-import api from "../../../scripts/api";
+import apiInstance from "../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -52,7 +52,7 @@ const Directory = (pageProps: DirectoryInterface) => {
     const listButtonAction: MouseEventHandler = () => setDisplay("list");
     useEffect(() => {
         const fetchResults = async () => {
-            const results = await api.searchEngine(formatType(type), search, network, privateFilter, ssid, locale?.substring(0, 2));
+            const results = await apiInstance.searchEngine(formatType(type), search, network, privateFilter, ssid, locale?.substring(0, 2));
             const formattedResults = results.slice(0, results.length - 1);
             const selects = results[results.length - 1];
             setResults(formattedResults);
@@ -87,7 +87,7 @@ const Directory = (pageProps: DirectoryInterface) => {
                     <div className={ FiltersStyles.displays }>
                         <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ gridButtonAction } icon="fa-light fa-grid-2" active={ display === "grid threeColumns" }/>
                         <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ listButtonAction } icon="fa-light fa-list" active={ display !== "grid threeColumns" }/>
-                        { (ui && ui == "false") ? <a className={ ButtonStyles.callToActionAlternativeSquaredIcon } href={ domain + "/account_startup_map.php" } target="_parent">
+                        { (ui && ui == "false" && !type.match(/(startups)/)) ? <a className={ ButtonStyles.callToActionAlternativeSquaredIcon } href={ domain + "/account_startup_map.php" } target="_parent">
                             <i className="fa-light fa-map-location-dot"/>
                         </a> : null }
                     </div>
@@ -230,7 +230,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             locale, locales, defaultLocale,
-            filters: await api.getPublicCommons("next", "Landing", language)
+            filters: await apiInstance.getPublicCommons("next", "Landing", language)
         }
     };
 }
