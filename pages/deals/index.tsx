@@ -2,8 +2,10 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
+import { Key } from "react";
 import { DealsInterface } from "../../typescript/interfaces";
-import { checkMatch } from "../../scripts/utilities";
+import { checkMatch, formatNameForUrl, uppercaseFirst } from "../../scripts/utilities";
+import apiInstance from "../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -20,48 +22,30 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Deals */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Deals = (pageProps: DealsInterface) => {
-    const { router } = pageProps;
+    const { filters, states, router } = pageProps;
+    const { translations } = states;
     const { category } = router.query;
-    const newDealTest = {
-        TYPE: [ { ID: 5, NAME: "Offre exclusive" } ],
-        TITLE: "Test affichage deal",
-        OFFER: "2 mois d'abonnement offerts",
-        CATCH: "Économisez jusqu'à 500€",
-        FORINOV: true,
-        PRIVACY: "Privée",
-        OWNERLOGO: router.basePath + "/assets/placeholders/woman.jpg",
-        OWNERNAME: "Clara & Co.",
-    };
+    const categories = filters?.OPPORTUNITIES.find((category: any) => category.ID === "5").CATEGORIES || [];
     return <div id="deals" className="container">
         <div className={ DealsStyles.categories }>
-            <Button button={ ButtonStyles.default } href={ "/deals/all" } text="Toutes" active={ checkMatch(router.asPath, "/deals/all") }/>
-            <Button button={ ButtonStyles.default } href={ "/deals/finance" } text="Finance" active={ checkMatch(router.asPath, "/deals/finance") }/>
-            <Button button={ ButtonStyles.default } href={ "/deals/human_ressources" } text="Ressources humaines" active={ checkMatch(router.asPath, "/deals/human_ressources") }/>
-            <Button button={ ButtonStyles.default } href={ "/deals/sale" } text="Vente" active={ checkMatch(router.asPath, "/deals/sale") }/>
-            <Button button={ ButtonStyles.default } href={ "/deals/softwares" } text="Logiciels" active={ checkMatch(router.asPath, "/deals/softwares") }/>
+            { (categories.length > 0) ? categories.map((category: any, key: Key) => {
+                const url = "/deals/" + formatNameForUrl(category.NAME) + "_" + category.ID;
+                return <Button key={ key } button={ ButtonStyles.default } href={ url } text={ uppercaseFirst(category.NAME.toLowerCase()).toString() } active={ checkMatch(router.asPath, url) }/>;
+            }) : null }
         </div>
         <Breadcrumb { ...pageProps }/>
         <div className={ DealsStyles.catch }>
-            <h1>LES OFFRES EXCLUSIVES FORINOV</h1>
-            <p>Forinov a négocié pour ses membres des deals exclusifs pour que vous ayez accès aux meilleures logiciels et locigiels à des conditions et tarifs imbattables !</p>
+            <h1>{ translations["Les offres exclusives Forinov"] }</h1>
+            <p>{ translations["Forinov a négocié pour ses membres des deals exclusifs pour que vous ayez accès aux meilleures logiciels à des conditions et tarifs imbattables"] + " !" }</p>
         </div>
         { (category) ? <div className={ HomeStyles.actions } data-justify="center">
-            <Button button={ (checkMatch(router.asPath, "/deals/" + category + "/subcat1")) ? ButtonStyles.callToAction : ButtonStyles.callToActionOldGrey } href={ "/deals/" + category + "/subcat1" } text="Sous catégorie 1"/>
-            <Button button={ (checkMatch(router.asPath, "/deals/" + category + "/subcat2")) ? ButtonStyles.callToAction : ButtonStyles.callToActionOldGrey } href={ "/deals/" + category + "/subcat2" } text="Sous catégorie 2"/>
-            <Button button={ (checkMatch(router.asPath, "/deals/" + category + "/subcat3")) ? ButtonStyles.callToAction : ButtonStyles.callToActionOldGrey } href={ "/deals/" + category + "/subcat3" } text="Sous catégorie 3"/>
-            <Button button={ (checkMatch(router.asPath, "/deals/" + category + "/subcat4")) ? ButtonStyles.callToAction : ButtonStyles.callToActionOldGrey } href={ "/deals/" + category + "/subcat4" } text="Sous catégorie 4"/>
-            <Button button={ (checkMatch(router.asPath, "/deals/" + category + "/subcat5")) ? ButtonStyles.callToAction : ButtonStyles.callToActionOldGrey } href={ "/deals/" + category + "/subcat5" } text="Sous catégorie 5"/>
+            { (categories.length > 0) ? categories.map((category: any) => category.SUBCATEGORIES.map((subcategory: any, key: Key) => {
+                const url = "/deals/" + formatNameForUrl(category.NAME) + "_" + category.ID + "/" + formatNameForUrl(subcategory.NAME) + "_" + subcategory.ID;
+                return <Button key={ key } button={ (checkMatch(router.asPath, url)) ? ButtonStyles.callToAction : ButtonStyles.callToActionOldGrey } href={ url } text={ subcategory.NAME } active={ checkMatch(router.asPath, url) }/>;
+            })) : null }
         </div> : null }
         <div className="grid twoColumns">
-            <OpportunityCard { ...pageProps } opportunity={ newDealTest }/>
-            <OpportunityCard { ...pageProps } opportunity={ newDealTest }/>
-            <OpportunityCard { ...pageProps } opportunity={ newDealTest }/>
-            <OpportunityCard { ...pageProps } opportunity={ newDealTest }/>
-            <OpportunityCard { ...pageProps } opportunity={ newDealTest }/>
-            <OpportunityCard { ...pageProps } opportunity={ newDealTest }/>
-            <OpportunityCard { ...pageProps } opportunity={ newDealTest }/>
-            <OpportunityCard { ...pageProps } opportunity={ newDealTest }/>
-            <OpportunityCard { ...pageProps } opportunity={ newDealTest }/>
+
         </div>
     </div>;
 };
@@ -70,14 +54,17 @@ const Deals = (pageProps: DealsInterface) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, locale, locales, defaultLocale } = context;
+    const language = locale?.substring(0, 2);
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     return {
-        redirect: {
-            destination: "/403",
-            permanent: false
-        },
+        // redirect: {
+        //     destination: "/403",
+        //     permanent: false
+        // },
         props: {
-            locale, locales, defaultLocale
+            locale, locales, defaultLocale,
+            filters: await apiInstance.getPublicCommons("next", "Landing", language),
+            deals: await apiInstance.searchEngine()
         }
     };
 }
