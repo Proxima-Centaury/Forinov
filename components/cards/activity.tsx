@@ -22,7 +22,7 @@ const ActivityCard = (activityProps: any) => {
     return <div className={ ActivityStyles.card }>
         <div className={ ActivityStyles.marker }></div>
         <div className={ ActivityStyles.content }>
-            <Image src={ event.LOGO } alt="" width="55" height="55"/>
+            <Image src={ event.LOGO } alt={"Event : " + event.NAME } width="55" height="55"/>
             <p className={ ActivityStyles.user }>{ event.NAME }</p>
             <Format { ...activityProps } content={ event.CONTENT }/>
             <p className={ ActivityStyles.time }>{ activityTimestamp(event.DATE) + "d" }</p>

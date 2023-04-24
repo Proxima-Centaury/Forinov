@@ -32,7 +32,7 @@ const Product = (pageProps: ProductsInterface) => {
     }, [ products, product ]);
     return <div id="product" className="container">
         { (selectedProduct) ? <div className={ProductStyles.imageWrapper}>
-            { (selectedProduct.PICTURE) ? <Image src={ selectedProduct.PICTURE } alt=""/> : null }
+            {(selectedProduct.PICTURE) ? <Image src={selectedProduct.PICTURE} alt={ translations["Image du produit : "] + selectedProduct.NAME} /> : null }
         </div> : null }
         { (selectedProduct) ? <div>
             <h1 className={ProductStyles.name}>{selectedProduct.NAME}</h1>

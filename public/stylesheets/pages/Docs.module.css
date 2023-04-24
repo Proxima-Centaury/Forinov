@@ -1,0 +1,218 @@
+.box {
+    position:  absolute;
+    top: 0;
+    transform: rotate(80deg);
+    left: 0;
+    pointer-events: none;
+    z-index: -10;
+}
+
+.wave {
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: .4;
+    position: absolute;
+    top: 3%;
+    left: 10%;
+    background: var(--logo-blue-color);
+    width: 1500px;
+    height: 1300px;
+    margin-left: -150px;
+    margin-top: -250px;
+    transform-origin: 50% 48%;
+    border-radius: 43%;
+    animation: drift 7000ms infinite linear;
+    z-index: -1;
+}
+
+.wave.three {
+    animation: drift 7500ms infinite linear;
+    position: fixed;
+    z-index: -1;
+}
+
+.wave.two {
+    animation: drift 3000ms infinite linear;
+    opacity: .1;
+    background: black;
+    position: fixed;
+    z-index: -1;
+}
+
+.hero {
+    width: 100%;
+    height: calc(100vh - 4.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.heroCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.heroTitle {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--logo-blue-color);
+    vertical-align: baseline;
+}
+
+.heroSub {
+    font-size: 16px;
+    font-weight: 100;
+    letter-spacing: 8px;
+    color: var(--text-main-color);
+    vertical-align: baseline;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    gap: 8px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    transition: all 0.3s ease-in-out;
+    /* make a left to right blue to white 1% separated gradient that takes 200% of the div so when i hover the white part goes to right and we see the blue part */
+    background: linear-gradient(120deg, var(--logo-blue-color) 0%, var(--logo-blue-color) 49%, var(--background-sub-color) 1%, var(--background-sub-color) 100%);
+    background-size: 200% 100%;
+    background-position: 90% 0%;
+}
+
+.card:hover {
+    transform: skew(0deg, 0deg) scale(1.05);
+    background-position: 10% 0%;
+}
+
+.card:hover .cardTitle,
+.card:hover>i {
+    color: white;
+}
+
+.card:hover i {
+    animation: iconPulse 1s infinite ease-in-out;
+}
+
+.card>i {
+    font-size: 64px;
+    color: var(--logo-blue-color);
+    transition: all 0.3s ease-in-out;
+}
+
+.cardTitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-main-color);
+    vertical-align: baseline;
+    transition: all .3s ease-in-out;
+}
+
+.cardTag {
+    font-size: 16px;
+    font-weight: 100;
+    vertical-align: baseline;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    color: var(--logo-blue-color);
+    opacity: .5;
+}
+
+/* ANIMATIONS */
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes iconPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    10% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+
+@-webkit-keyframes anim {
+    0% {
+        -webkit-transform: scale(0, 0) rotateZ(-90deg);
+        transform: scale(0, 0) rotateZ(-90deg);
+        opacity: 0
+    }
+
+    30% {
+        -webkit-transform: scale(1, 1) rotateZ(0deg);
+        transform: scale(1, 1) rotateZ(0deg);
+        opacity: 1
+    }
+
+    50% {
+        -webkit-transform: scale(1, 1) rotateZ(0deg);
+        transform: scale(1, 1) rotateZ(0deg);
+        opacity: 1
+    }
+
+    80% {
+        -webkit-transform: scale(0, 0) rotateZ(90deg);
+        transform: scale(0, 0) rotateZ(90deg);
+        opacity: 0
+    }
+}
+
+@keyframes anim {
+    0% {
+        -webkit-transform: scale(0, 0) rotateZ(-90deg);
+        transform: scale(0, 0) rotateZ(-90deg);
+        opacity: 0
+    }
+
+    30% {
+        -webkit-transform: scale(1, 1) rotateZ(0deg);
+        transform: scale(1, 1) rotateZ(0deg);
+        opacity: 1
+    }
+
+    50% {
+        -webkit-transform: scale(1, 1) rotateZ(0deg);
+        transform: scale(1, 1) rotateZ(0deg);
+        opacity: 1
+    }
+
+    80% {
+        -webkit-transform: scale(0, 0) rotateZ(90deg);
+        transform: scale(0, 0) rotateZ(90deg);
+        opacity: 0
+    }
+}
+
+
+@keyframes drift {
+    from { transform: rotate(0deg); }
+    from { transform: rotate(360deg); }
+  }
+  
