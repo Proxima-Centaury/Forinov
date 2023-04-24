@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { DirectoryInterface } from "../../../../typescript/interfaces";
 import { formatNameForUrl, formatType, checkMatch } from "../../../../scripts/utilities";
-import api from "../../../../scripts/api";
+import apiInstance from "../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -59,13 +59,13 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const language = locale?.substring(0, 2);
     const research = async () => {
         if(type.match(/(startups)/)) {
-            return await api.getStartups("next", "Sorbonne", language);
+            return await apiInstance.getStartups("next", "Sorbonne", language);
         } else if(type.match(/(corporates)/)) {
-            return await api.getCorporates("next", "Sorbonne", language);
+            return await apiInstance.getCorporates("next", "Sorbonne", language);
         } else if(type.match(/(partners)/)) {
-            return await api.getPartners("next", "Sorbonne", language);
+            return await apiInstance.getPartners("next", "Sorbonne", language);
         } else if(type.match(/(opportunities)/)) {
-            return await api.getOpportunities("next", "Sorbonne", language);
+            return await apiInstance.getOpportunities("next", "Sorbonne", language);
         };
     };
     return {

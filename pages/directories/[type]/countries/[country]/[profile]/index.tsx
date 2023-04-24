@@ -2,7 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import api from "../../../../../../scripts/api";
+import apiInstance from "../../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Page */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -23,7 +23,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             type = (type.match(/(corporates)/)) ? "entreprise" : type;
             type = (type.match(/(partners)/)) ? "partenaire" : type;
         };
-        const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);
+        const foundProfile = await apiInstance.getProfile(type, profile, "next", "Sorbonne", language);
         if(!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {
             return {
                 redirect: {
@@ -36,13 +36,13 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             props: {
                 locale, locales, defaultLocale,
                 profile: foundProfile,
-                products: await api.getProducts(type, profile, "next", "Sorbonne", language),
-                activities: await api.getActivity(type, profile, "next", "Sorbonne", language),
-                folders: await api.getFolders(type, profile, "next", "Sorbonne", language)
+                products: await apiInstance.getProducts(type, profile, "next", "Sorbonne", language),
+                activities: await apiInstance.getActivity(type, profile, "next", "Sorbonne", language),
+                folders: await apiInstance.getFolders(type, profile, "next", "Sorbonne", language)
             }
         };
     };
-    const opportunity = await api.getOpportunity(profile, "next", "Sorbonne", language);
+    const opportunity = await apiInstance.getOpportunity(profile, "next", "Sorbonne", language);
     if(!opportunity || (opportunity && opportunity.ERROR)) {
         return {
             redirect: {

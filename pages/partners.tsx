@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { Fragment } from "react";
 import { HomeInterface } from "../typescript/interfaces";
-import api from "../scripts/api";
+import apiInstance from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -124,8 +124,8 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			startups: await api.getLandingStartups("next", "Landing", language),
-			logos: await api.getLandingLogos("next", "Landing", language)
+			startups: await apiInstance.getLandingStartups("next", "Landing", language),
+			logos: await apiInstance.getLandingLogos("next", "Landing", language)
 		}
 	};
 };

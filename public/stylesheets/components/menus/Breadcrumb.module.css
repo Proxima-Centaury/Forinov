@@ -11,6 +11,3 @@
 .container > i {
     font-size: 10px;
 }
-.container > a > span {
-    text-transform: capitalize;
-}

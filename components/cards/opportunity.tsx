@@ -30,22 +30,22 @@ const OpportunityCard = (opportunityProps: any) => {
             {(opportunity.CATCH) ? <p>{opportunity.CATCH}</p> : null}
             {(opportunityLink && carouselItem) ? <Button button={ButtonStyles.callToActionNegative} href={opportunityLink} icon="fa-light fa-eye" text={translations["Voir plus"]} /> : null}
         </div>
-        <div className={OpportunityStyles.content}>
-            {(opportunity.OWNERLOGO) ? <div className={OpportunityStyles.rightContainer}>
-                <Image src={opportunity.OWNERLOGO} alt={translations["Logo de l'entreprise "] + opportunity.OWNERNAME} width="64" height="64" />
-            </div> : null}
-            <div className={OpportunityStyles.leftContainer}>
-                <div className={OpportunityStyles.top}>
-                    {(opportunity.OWNERNAME) ? <div className={OpportunityStyles.author}>
-                        <p>{opportunity.OWNERNAME}</p>
-                    </div> : null}
-                    <div className={OpportunityStyles.privacy}>
-                        <i className="fa-light fa-eye" />
-                        <p>{(opportunity.PRIVACY) ? (opportunity.PRIVACY.match(/(ext)/)) ? translations["Externe"] : uppercaseFirst(opportunity.PRIVACY) : translations["Confidentialité non-définie"]}</p>
+        <div className={ OpportunityStyles.content }>
+            { (opportunity.OWNERLOGO) ? <div className={ OpportunityStyles.leftContainer }>
+                <Image src={ opportunity.OWNERLOGO } alt={ translations["Logo de l'entreprise "] + opportunity.OWNERNAME } width="64" height="64"/>
+            </div> : null }
+            <div className={ OpportunityStyles.rightContainer }>
+                <div className={ OpportunityStyles.top }>
+                    { (opportunity.OWNERNAME) ? <div className={ OpportunityStyles.author }>
+                        <p>{ opportunity.OWNERNAME }</p>
+                    </div> : null }
+                    <div className={ OpportunityStyles.privacy }>
+                        <i className="fa-light fa-eye"/>
+                        <p>{ (opportunity.PRIVACY) ? (opportunity.PRIVACY.match(/(ext)/)) ? translations["Externe"] : uppercaseFirst(opportunity.PRIVACY) : translations["Confidentialité non-définie"] }</p>
                     </div>
                 </div>
-                <div className={OpportunityStyles.title} data-type="tooltip" data-tooltip={opportunity.TITLE}>
-                    <h3>{(opportunity.TITLE) ? uppercaseFirst(opportunity.TITLE) : translations["Nom non-défini"]}</h3>
+                <div className={ OpportunityStyles.title } data-type="tooltip" data-tooltip={ opportunity.TITLE }>
+                    <h3>{ (opportunity.TITLE) ? opportunity.TITLE : translations["Nom non-défini"] }</h3>
                 </div>
                 {(opportunity.TYPE) ? <div className={OpportunityStyles.type} data-opportunity-type={opportunity.TYPE[0].ID || ""}>
                     <Tags tags={opportunity.TYPE} main={true} />

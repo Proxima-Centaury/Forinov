@@ -41,6 +41,11 @@
     color: var(--logo-blue-color);
     text-decoration: underline;
 }
+.overview > .details > .networks > a,
+.overview > .details > .networks > a > i {
+    transition: color 0.3s ease-in-out;
+}
+.overview > .details > .networks > a:hover,
 .overview > .details > .networks > a:hover > i {
     color: var(--logo-blue-color);
 }

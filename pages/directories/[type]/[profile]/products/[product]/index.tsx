@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { ProductsInterface } from "../../../../../../typescript/interfaces";
-import api from "../../../../../../scripts/api";
+import apiInstance from "../../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -109,7 +109,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         type = (type.match(/(corporates)/)) ? "entreprise" : type;
         type = (type.match(/(partners)/)) ? "partenaire" : type;
     };
-    const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);
+    const foundProfile = await apiInstance.getProfile(type, profile, "next", "Sorbonne", language);
     if(!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {
         return {
             redirect: {
@@ -122,7 +122,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         props: {
             locale, locales, defaultLocale,
             profile: foundProfile,
-            products: await api.getProducts(type, profile, "next", "Sorbonne", language)
+            products: await apiInstance.getProducts(type, profile, "next", "Sorbonne", language)
         }
     };
 };

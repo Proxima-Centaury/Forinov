@@ -16,8 +16,10 @@ import { checkMatch } from "./utilities";
 * @note This class is used to fetch errors in the current page.
 */
 class ErrorsHandler {
+    wait: Boolean = false;
     page: String = "/";
     errors: Object = {};
+    message: String = "";
     constructor() {};
     generateError(title?: String, message?: String, image?: HTMLImageElement, currentPage?: String, solutions?: Array<String>): ErrorInterface {
         const error: ErrorInterface = {};
@@ -39,31 +41,36 @@ class ErrorsHandler {
         });
         return cleanedErrors;
     };
-    startCheckings(page: String): Object {
-        this.errors = {};
-        this.page = page;
-        // console.log("Instance errors count before checkings :", Object.keys(this.errors).length, "errors in total for", page, "page.");
-        // console.log("React saved errors count :", Object.keys(errors).length, "errors in total for", page, "page.");
-        const foundErrors: any = {};
-        const response: Array<any> = [];
-        if(typeof this.checkMetaDatas() !== "string") {
-            const metaDatasErrors = this.checkMetaDatas();
-            foundErrors["metaDatasErrors"] = metaDatasErrors;
-            response.push(foundErrors["metaDatasErrors" as keyof Object]);
+    startCheckings(page: String): ErrorsHandler {
+        this.wait = true;
+        const loadedPage = document.querySelector("[data-page-loaded='true']");
+        (loadedPage) ? this.wait = false : null;
+        if(!this.wait) {
+            this.errors = {};
+            this.page = page;
+            // console.log("Instance errors count before checkings :", Object.keys(this.errors).length, "errors in total for", page, "page.");
+            // console.log("React saved errors count :", Object.keys(errors).length, "errors in total for", page, "page.");
+            const foundErrors: any = {};
+            const response: Array<any> = [];
+            if(typeof this.checkMetaDatas() !== "string") {
+                const metaDatasErrors = this.checkMetaDatas();
+                foundErrors["metaDatasErrors"] = metaDatasErrors;
+                response.push(foundErrors["metaDatasErrors" as keyof Object]);
+            };
+            if(typeof this.checkImages() !== "string") {
+                const imagesErrors = this.checkImages();
+                foundErrors["imagesErrors"] = imagesErrors;
+                response.push(foundErrors["imagesErrors" as keyof Object]);
+            };
+            if(response.length > 0) {
+                this.errors = { ...foundErrors["metaDatasErrors"], ...foundErrors["imagesErrors"] };
+                // console.log("Instance errors count after checkings :", Object.keys(this.errors).length, "errors in total for", page, "page.");
+            } else {
+                this.cleanErrors(this.errors, [ "^missingAltAttribute" ]);
+                this.message = "No errors found.";
+            };
         };
-        if(typeof this.checkImages() !== "string") {
-            const imagesErrors = this.checkImages();
-            foundErrors["imagesErrors"] = imagesErrors;
-            response.push(foundErrors["imagesErrors" as keyof Object]);
-        };
-        if(response.length > 0) {
-            this.errors = { ...foundErrors["metaDatasErrors"], ...foundErrors["imagesErrors"] };
-            // console.log("Instance errors count after checkings :", Object.keys(this.errors).length, "errors in total for", page, "page.");
-            return this;
-        } else {
-            this.cleanErrors(this.errors, [ "^missingAltAttribute" ]);
-            return "No errors found.";
-        };
+        return this;
     };
     checkMetaDatas(): Object|String {
         const title = document.title;
@@ -116,7 +123,7 @@ class ErrorsHandler {
         images.forEach((image: HTMLImageElement, key: Key) => {
             if(!image.alt) {
                 const title = "Missing alt attribute on image !";
-                const message = "No alt was found for on an image !";
+                const message = "No alt was found on an image !";
                 const currentPage = this.page;
                 const solutions = [ "Set an alt attribute in the image with a string as a value for the image that will appear if the source is broken." ];
                 foundErrors["missingAltAttribute" + (parseInt(key.toString()) + 1)] = this.generateError(title, message, image, currentPage, solutions);
