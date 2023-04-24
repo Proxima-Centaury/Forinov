@@ -432,7 +432,9 @@
 	"Rejoignez Forinov et découvrez l'ensemble des opportunités": "Rejoignez Forinov et découvrez l'ensemble des opportunités",
 	"Prévisualiser l'élément": "Prévisualiser l'élément",
 	"La page que vous recherchez, est en cours de développement": "La page que vous recherchez, est en cours de développement",
+	"Logo de la startup du nom de": "Logo de la startup du nom de",
 	"Logo de l'entreprise du nom de": "Logo de l'entreprise du nom de",
+	"Logo du partenaire du nom de": "Logo du partenaire du nom de",
 	"Première illustration de la page à propos": "Première illustration de la page à propos",
 	"Seconde illustration de la page à propos": "Seconde illustration de la page à propos",
 	"Image de fond de l'entreprise du nom de": "Image de fond de l'entreprise du nom de",
@@ -446,6 +448,7 @@
 	"Formulaires": " Formulaires",
 	"Les offres exclusives Forinov": "Les offres exclusives Forinov",
 	"Forinov a négocié pour ses membres des deals exclusifs pour que vous ayez accès aux meilleures logiciels à des conditions et tarifs imbattables": "Forinov a négocié pour ses membres des deals exclusifs pour que vous ayez accès aux meilleures logiciels à des conditions et tarifs imbattables",
+	"Image représentative de la catégorie": "Image représentative de la catégorie",
 	"annuaire_opport_selectors": [
 		"Tous",
 		"Appels à candidature",
@@ -670,10 +673,5 @@
 	"La plateforme des acteurs de l'innovation": "La plateforme des acteurs de l'innovation",
 	"Inscrivez vous gratuitement pour profiter de toute la plateforme": "Inscrivez vous gratuitement pour profiter de toute la plateforme",
 	"Illustration de page d'accueil Forinov": "Illustration de page d'accueil Forinov",
-	"Image d'illustration de l'opportunité : ": "Image d'illustration de l'opportunité : ",
-	"Logo de l'entreprise ": "Logo de l'entreprise ",
-	"Image de l'article de blog titré : " : "Image de l'article de blog titré : ",
-	"Image du produit : ": "Image du produit : ",
-	"Logo de la startup : ": "Logo de la startup : ",
-	"Le logo de ": "Le logo de "
+	"Image de l'article de blog titré": "Image de l'article de blog titré"
 }

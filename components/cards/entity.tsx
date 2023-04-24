@@ -18,13 +18,24 @@ import EntityStyles from "../../public/stylesheets/components/cards/Entity.modul
 const EntityCard = (entityProps: any) => {
     const { entity, type, details, states } = entityProps;
     const { translations } = states;
+    const getType = (): String => {
+        if(type === "startup") {
+            return translations["Logo de la startup du nom de"];
+        } else if(type === "corporate") {
+            return translations["Logo de l'entreprise du nom de"];
+        } else if(type === "partner") {
+            return translations["Logo du partenaire du nom de"];
+        } else {
+            return "";
+        };
+    };
     return <div className={ EntityStyles[type] }>
         <div className={ EntityStyles.marker }></div>
         <div className={ EntityStyles.content }>
             <div className={ EntityStyles.head }>
                 <div className={ EntityStyles.identity }>
                     <div className={ EntityStyles.branding }>
-                        <Image src={ entity.LOGO } alt={translations["Le logo de "] + entity.NAME} width="55" height="55"/>
+                        <Image src={ entity.LOGO } alt={ getType() + " " + entity.NAME + "." } width="55" height="55"/>
                         <p className={ EntityStyles.name }>{ entity.NAME }</p>
                     </div>
                     { (type === "startup") ? ((entity.CATEGORY && entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }

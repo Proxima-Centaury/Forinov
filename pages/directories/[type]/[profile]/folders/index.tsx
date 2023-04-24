@@ -30,7 +30,7 @@ const Folders = (pageProps: FoldersInterface) => {
         </div>
         <div className="grid twoColumns">
             { (folders) ? folders.map((folder: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID }>
-                <FolderCard folder={ folder }/>
+                <FolderCard { ...pageProps } folder={ folder }/>
             </Link>) : null }
         </div>
         <Button button={ ButtonStyles.classicLink } href={ router.asPath.substring(0, router.asPath.lastIndexOf("/")) } icon="fa-light fa-arrow-left" text={ translations["Retourner au profil"] }/>

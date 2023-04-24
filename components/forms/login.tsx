@@ -13,17 +13,20 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Login Form */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const LoginForm = (pageProps: any) => {
-    const { states } = pageProps;
+    const { administration, states } = pageProps;
     const { translations } = states;
     return <form className={ FormStyles.form }>
-        <div className={ FormStyles.row }>
+        { (!administration) ? <div className={ FormStyles.row }>
             <div className={ FormStyles.column }>
                 <Input label={ translations["Adresse email"] + " *" } type="email" name="email"/>
             </div>
             <div className={ FormStyles.column }>
                 <Input label={ translations["Mot de passe"] + " *" } type="password" name="password"/>
             </div>
-        </div>
+        </div> : <div className="list">
+            <Input label={ translations["Adresse email"] + " *" } type="email" name="email"/>
+            <Input label={ translations["Mot de passe"] + " *" } type="password" name="password"/>
+        </div> }
         <div className={ FormStyles.row }>
             <Button button={ ButtonStyles.callToAction } text={ translations["Me connecter"] }/>
         </div>

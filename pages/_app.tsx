@@ -6,7 +6,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
-import { getTranslations, getMetadatasTranslations, scrollTo } from "../scripts/utilities";
+import { getTranslations, getMetadatasTranslations, scrollTo, checkMatch } from "../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -146,10 +146,10 @@ const App = ({ Component, pageProps }: AppProps) => {
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <link rel="icon" href={ router.basePath + "/assets/logo.png" }/>
         </Head>
-        { (router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/> }
+        { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/>) : null }
         <Transition { ...pageProps }>
             <Component { ...pageProps }/>
-            { (router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/> }
+            { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/>) : null }
         </Transition>
         <Modal { ...pageProps }/>
         { (router.query.ui && router.query.ui == "false") ? null : (!production) ? <Devtools { ...pageProps }/> : null }
