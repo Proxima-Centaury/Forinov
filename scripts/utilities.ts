@@ -49,6 +49,9 @@ import config from "../configurations/config.json";
 * @method {@link Utilities.formatType formatType}
 * @status - Needs an update.
 * ---
+* @method {@link Utilities.getProperAlt getProperAlt}
+* @status - Needs an update.
+* ---
 * @method {@link Utilities.checkMatch checkMatch}
 * @status - Needs an update.
 * ---
@@ -454,7 +457,7 @@ class Utilities {
     * @note This method is used to return the correct company type for your scripts if specific transformations are needed according to the router type parameter.
     * @note The {@link type} parameter should be a string.
     */
-    formatType = (type: String, language: String = "fr"): String|Boolean => {
+    formatType = (type: String, language: String = "fr", asTitle: Boolean = false, plural: Boolean = false): String|Boolean => {
         if(!type || type.trim().length <= 0) {
             return false;
         };
@@ -463,14 +466,33 @@ class Utilities {
             type = (type.match(/(startups)/)) ? "startup" : type;
             type = (type.match(/(corporates)/)) ? "entreprise" : type;
             type = (type.match(/(partners)/)) ? "partenaire" : type;
-            type = (type.match(/(opportunities)/)) ? "opportunite" : type;
+            type = (type.match(/(opportunities)/)) ? ((asTitle) ? "opportunité" : "opportunite") : type;
         } else if(language === "en") {
             type = (type.match(/(startups)/)) ? "startup" : type;
             type = (type.match(/(corporates)/)) ? "corporate" : type;
             type = (type.match(/(partners)/)) ? "partner" : type;
-            type = (type.match(/(opportunities)/)) ? "opportunity" : type;
+            type = (type.match(/(opportunities)/)) ? ((plural) ? "opportunitie" : "opportunity") : type;
         };
-        return type;
+        type = (asTitle && uppercaseFirst(type)) ? uppercaseFirst(type).toString() : type;
+        return (plural) ? (type) + "s" : type;
+    };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function getProperAlt
+    */
+    getProperAlt = (type: String, translations: any, picture: String = "logo"): String|Boolean => {
+        if(!type || type.trim().length <= 0) {
+            return false;
+        };
+        if(formatType(type, "en") === "startup") {
+            return (picture === "logo") ? translations["Logo de la startup du nom de"] : translations["Image de fond de la startup du nom de"];
+        } else if(formatType(type, "en") === "corporate") {
+            return (picture === "logo") ? translations["Logo de l'entreprise du nom de"] : translations["Image de fond de l'entreprise du nom de"];
+        } else if(formatType(type, "en") === "partner") {
+            return (picture === "logo") ? translations["Logo du partenaire du nom de"] : translations["Image de fond du partenaire du nom de"];
+        } else {
+            return "";
+        };
     };
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
@@ -545,6 +567,7 @@ const bindEventListeners = utilitiesInstance.bindEventListeners;
 const removeEventListeners = utilitiesInstance.removeEventListeners;
 const structureTags = utilitiesInstance.structureTags;
 const formatType = utilitiesInstance.formatType;
+const getProperAlt = utilitiesInstance.getProperAlt;
 const checkMatch = utilitiesInstance.checkMatch;
 const preciseTarget = utilitiesInstance.preciseTarget;
 const escapeHTML = utilitiesInstance.escapeHTML;
@@ -569,6 +592,7 @@ export {
     removeEventListeners,
     structureTags,
     formatType,
+    getProperAlt,
     checkMatch,
     preciseTarget,
     escapeHTML
