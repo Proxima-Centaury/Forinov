@@ -184,7 +184,7 @@ class Utilities {
     * - An ```object``` with all the translations.
     * ---
     * @notes
-    * - This method is used to get the proper texts according to locale's value.
+    * - This method is used to get the proper texts according to {@link locale}'s value.
     * - The {@link locale} parameter should be the user's selected language.
     */
     getTranslations(locale: String): Object {
@@ -200,7 +200,7 @@ class Utilities {
     * - An ```object``` with all the translations.
     * ---
     * @notes
-    * - This method is used to get the proper meta datas according to locale's value.
+    * - This method is used to get the proper meta datas according to {@link locale}'s value.
     * - The {@link locale} parameter should be the user's selected language.
     */
     getMetaDatasTranslations(locale: String): Object {
