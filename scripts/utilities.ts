@@ -17,10 +17,10 @@ import config from "../configurations/config.json";
 * @status - Needs an update.
 * ---
 * @method {@link Utilities.getTranslations getTranslations}
-* @status - Needs an update.
+* @status - Up to date.
 * ---
 * @method {@link Utilities.getMetaDatasTranslations getMetaDatasTranslations}
-* @status - Needs an update.
+* @status - Up to date.
 * ---
 * @method {@link Utilities.scrollTo scrollTo}
 * @status - Needs an update.
@@ -179,38 +179,34 @@ class Utilities {
         return selectifiedOptions;
     };
     /**
-    * This is a ```method``` ( ```function``` inside ```class``` ).
-    * @function getTranslations
-    * @param { String|RegExp } [ locale ] Should be a ```string```.
+    * @param { String } [ locale ] Should be a ```string```.
     * @returns { Object }
-    * - ```object```.
+    * - An ```object``` with all the translations.
     * ---
-    * @note This method is used to get the proper texts according to locale's value.
-    * @note The {@link locale} parameter should be the user's selected language.
+    * @notes
+    * - This method is used to get the proper texts according to locale's value.
+    * - The {@link locale} parameter should be the user's selected language.
     */
-    getTranslations = (locale: String): Object => {
+    getTranslations(locale: String): Object {
         if(locale) {
             const language = locale.substring(0, 2);
-            const translations = require("../public/static/locales/" + language + ".json");
-            return translations;
+            return require("../public/static/locales/" + language + ".json");
         };
         return require("../public/static/locales/fr.json");
     };
     /**
-    * This is a ```method``` ( ```function``` inside ```class``` ).
-    * @function getMetadatasTranslations
-    * @param { String|RegExp } [ locale ] Should be a ```string```.
+    * @param { String } [ locale ] Should be a ```string```.
     * @returns { Object }
-    * - ```object```.
+    * - An ```object``` with all the translations.
     * ---
-    * @note This method is used to get the proper metadatas according to locale's value.
-    * @note The {@link locale} parameter should be the user's selected language.
+    * @notes
+    * - This method is used to get the proper meta datas according to locale's value.
+    * - The {@link locale} parameter should be the user's selected language.
     */
-    getMetadatasTranslations = (locale: String): Object => {
+    getMetaDatasTranslations(locale: String): Object {
         if(locale) {
             const language = locale.substring(0, 2);
-            const translations = require("../public/static/locales/metadatas/" + language + ".json");
-            return translations;
+            return require("../public/static/locales/metadatas/" + language + ".json");
         };
         return require("../public/static/locales/metadatas/fr.json");
     };
@@ -537,7 +533,7 @@ const utilitiesInstance = new Utilities();
 const beautifyTheLogs = utilitiesInstance.beautifyTheLogs;
 const selectifyTheOptions = utilitiesInstance.selectifyTheOptions;
 const getTranslations = utilitiesInstance.getTranslations;
-const getMetadatasTranslations = utilitiesInstance.getMetadatasTranslations;
+const getMetaDatasTranslations = utilitiesInstance.getMetaDatasTranslations;
 const preventSubmit = utilitiesInstance.preventSubmit;
 const buildProperties = utilitiesInstance.buildProperties;
 const scrollTo = utilitiesInstance.scrollTo;
@@ -561,7 +557,7 @@ export {
     beautifyTheLogs,
     selectifyTheOptions,
     getTranslations,
-    getMetadatasTranslations,
+    getMetaDatasTranslations,
     preventSubmit,
     buildProperties,
     scrollTo,
