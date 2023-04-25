@@ -31,8 +31,8 @@ const EntityCard = (entityProps: any) => {
                     { (type === "corporate") ? ((entity.CATEGORY && entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
                     { (type === "partner") ? ((entity.CATEGORY && entity.CATEGORY.length > 0) ? <Tags tags={ entity.CATEGORY } main={ true } limit={ 1 }/> : <Tags tags={ structureTags(translations["Non catégorisée"]) } main={ true } limit={ 1 }/>) : null }
                 </div>
-                { (type === "startup" && entity.TECHNOLOGIES.length > 0) ? <Tags tags={ entity.TECHNOLOGIES } limit={ 2 }/> : null }
-                { (type === "startup" && entity.TECHNOLOGIES.length <= 0) ? <Tags tags={ structureTags(translations["Non définies"] + ".") } limit={ 2 }/> : null }
+                { (type === "startup" && entity.TECHNOLOGIES && entity.TECHNOLOGIES.length > 0) ? <Tags tags={ entity.TECHNOLOGIES } limit={ 2 }/> : null }
+                { (type === "startup" && entity.TECHNOLOGIES && entity.TECHNOLOGIES.length <= 0) ? <Tags tags={ structureTags(translations["Non définies"] + ".") } limit={ 2 }/> : null }
             </div>
             { (details) ? <div className={ EntityStyles.description }>
                 <Format { ...entityProps } content={ entity.DESCRIPTION || translations["Non renseigné"] + "." }/>

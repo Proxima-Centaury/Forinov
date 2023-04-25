@@ -7,7 +7,6 @@
     height: 300px;
     max-height: 300px;
     cursor: pointer;
-    border-radius: 10px;
     transition: transform 0.3s ease-in-out;
 }
 .card:hover {
@@ -25,7 +24,7 @@
     margin: calc(16px * 3) 0px 0px 0px;
     padding: 16px;
     position: relative;
-    border-radius: 0px 10px 10px 10px;
+    border-radius: 0px 15px 15px 15px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
     z-index: 1;
@@ -41,7 +40,7 @@
     position: absolute;
     bottom: 100%;
     left: 0px;
-    border-radius: 10px 0px 0px 0px;
+    border-radius: 15px 0px 0px 0px;
     background-color: var(--background-sub-color);
 }
 .content::after {
