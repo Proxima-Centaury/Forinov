@@ -22,7 +22,7 @@ const CategoryCard = (categoryProps: any) => {
             <p>{ category.COUNT }</p>
         </div> : null }
         <div className={ CategoryStyles.icon }>
-            { (category.LOGO) ? <Image src={ category.LOGO } alt={translations["Image de la catégorie "] + category.NAME} width="80" height="80"/> : null }
+            { (category.LOGO) ? <Image src={ category.LOGO } alt={ translations["Image représentative de la catégorie"] + " " + category.NAME + "." } width="80" height="80"/> : null }
             { (category.CODE) ? <Image src={ router.basePath + "/assets/flags/" + category.CODE.toLowerCase() + ".png" } alt="" width="80" height="80"/> : null }
             { (!category.LOGO && !category.CODE) ? <i className="fa-light fa-circle-star"/> : null }
         </div>

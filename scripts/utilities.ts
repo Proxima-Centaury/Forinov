@@ -10,57 +10,87 @@ import config from "../configurations/config.json";
 /* Utilities */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /**
-* This is a ```class```.
-* @class Utilities
-* @method beautifyTheLogs : {@link Utilities.beautifyTheLogs} OK
-* @method selectifyTheOptions : {@link Utilities.selectifyTheOptions} NEEDS DELETE
-* @method setCookie : {@link Utilities.setCookie} NEEDS DELETE
-* @method getCookie : {@link Utilities.getCookie} NEEDS DELETE
-* @method getTranslations : {@link Utilities.getTranslations}  OK
-* @method getMetadatasTranslations : {@link Utilities.getMetadatasTranslations} OK
-* @method preventSubmit : {@link Utilities.preventSubmit} NEEDS DELETE
-* @method buildProperties : {@link Utilities.buildProperties} NEEDS DELETE
-* @method scrollTo : {@link Utilities.scrollTo} OK
-* @method redirectTo : {@link Utilities.redirectTo} OK
-* @method uppercaseFirst : {@link Utilities.uppercaseFirst} OK
-* @method remainingTime : {@link Utilities.remainingTime} OK
-* @method formatNameForUrl : {@link Utilities.formatNameForUrl} OK
-* @method bindEventListener : {@link Utilities.bindEventListeners} OK
-* @method removeEventListeners : {@link Utilities.removeEventListeners} OK
-* @method structureTags : {@link Utilities.structureTags} OK
-* @method formatType : {@link Utilities.formatType} OK
-* @method checkMatch : {@link Utilities.checkMatch} OK
-* @method preciseTarget : {@link Utilities.preciseTarget} OK
-* @method escapeHTML : {@link Utilities.escapeHTML} OK
-* @returns
-* - ```void``` ( nothing ).
+* @method {@link Utilities.beautifyTheLogs beautifyTheLogs}
+* @status - Up to date.
 * ---
-* @note This class is used to complete many general tasks.
-* @note These tasks are usually tasks that are common to multiple pages.
-* @note This helps users to avoid copy/paste lines of code in multiple locations.
-* @note That way, one function, one call wherever you need it.
+* @method {@link Utilities.selectifyTheOptions selectifyTheOptions}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.getTranslations getTranslations}
+* @status - Up to date.
+* ---
+* @method {@link Utilities.getMetaDatasTranslations getMetaDatasTranslations}
+* @status - Up to date.
+* ---
+* @method {@link Utilities.scrollTo scrollTo}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.redirectTo redirectTo}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.uppercaseFirst uppercaseFirst}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.remainingTime remainingTime}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.formatNameForUrl formatNameForUrl}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.bindEventListeners bindEventListener}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.removeEventListeners removeEventListeners}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.structureTags structureTags}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.formatType formatType}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.getProperAlt getProperAlt}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.checkMatch checkMatch}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.preciseTarget preciseTarget}
+* @status - Needs an update.
+* ---
+* @method {@link Utilities.escapeHTML escapeHTML}
+* @status - Needs an update.
+* ---
+* @returns { void } - ```void``` ( nothing ).
+* ---
+* @notes
+* - This class is used to complete many general tasks.
+* - These tasks are usually tasks that are common to multiple pages.
+* - This helps users to avoid copy/paste lines of code in multiple locations.
+* - That way, one function, one call wherever you need it.
 */
 class Utilities {
     constructor() {};
     /**
-    * This is a ```method``` ( ```function``` inside ```class``` ).
-    * @function beautifyTheLogs
-    * @param { any } [ logs ] Could be anything, any type.
-    * @returns { Array|Boolean }
-    * - ```array``` with all passed parameters.
-    * - The only passed parameter.
-    * - ```false``` if no parameters passed.
+    * @param { any } [ logs ] Could be anything, ```any``` type.
+    * @returns { Array|Boolean|any }
+    * - An ```array``` with all passed parameters.
+    * - A ```boolean``` if no parameters passed.
+    * - The only passed parameter of ```any``` type.
     * ---
-    * @note This method is used to log multiple elements for debugging.
+    * @notes
+    * - This method is used to log multiple elements for debugging.
+    * - Prints logs using ```chalk package``` to add colors.
     */
-    beautifyTheLogs(...logs: any): Array<any>|Boolean {
+    beautifyTheLogs(...logs: any): Array<any>|Boolean|any {
         if(!logs || logs.length <= 0) {
             return false;
         };
         const logType = chalk.blueBright("[Log]");
-        const logText = " Logging an element of ";
-        const logElementType = (log: any) => chalk.blueBright(typeof log) + " type.\n=>";
-        logs.map((log: any) => console.log(logType + logText + logElementType(log), (typeof log === "string") ? chalk.greenBright(log) : log, "\n"));
+        const logText = "Logging an element of";
+        const logElementType = (log: any) => chalk.blueBright(typeof log) + " " + "type.\n=>";
+        const logElement = (log: any) => log;
+        logs.map((log: any) => console.log(logType + " " + logText + " " + logElementType(log), logElement(log), "\n"));
         return (logs.length === 1) ? logs[0] : logs;
     };
     /**
@@ -152,75 +182,34 @@ class Utilities {
         return selectifiedOptions;
     };
     /**
-    * This is a ```method``` ( ```function``` inside ```class``` ).
-    * @function setCookie
-    * @param { String } [ name ] Should be a ```string```.
-    * @param { String } [ value ] Should be a ```string```.
-    * @param { Number } [ age ] Should be a ```number```.
-    * @param { String } [ path ] Should be a ```string```.
-    * @returns { void }
-    * - ```void``` ( nothing ).
-    * ---
-    * @note This method is used to create a cookie.
-    * @note The {@link name} parameter should be the cookie's name.
-    * @note The {@link value} parameter should be the cookie's value.
-    * @note The {@link value} parameter should be a string or a stringified element.
-    * @note The {@link age} parameter should be the cookie's expiration timestamp.
-    * @note The {@link path} parameter should be the cookie's effective url.
-    */
-    setCookie(name: String, value: String, age: Number, path: String): void {
-        document.cookie = `${ name }=${ value }; max-age=${ age }; path=${ path }`;
-    };
-    /**
-    * This is a ```method``` ( ```function``` inside ```class``` ).
-    * @function getCookie
-    * @param { String|RegExp } [ name ] Should be a ```string```.
-    * @returns { String | null }
-    * - ```string```.
-    * - ```null``` if no cookie value set.
-    * ---
-    * @note This method is used to retrieve a cookie's value.
-    * @note The {@link name} parameter should be the cookie's name.
-    */
-    getCookie(name: String|RegExp): String | null {
-        const cookies = decodeURIComponent(document.cookie).split("; ");
-        const match: Function = (cookie: String, regexp: RegExp) => (cookie.match(regexp)) ? true : false;
-        const cookie = cookies.map((cookie) => (match(cookie, name)) ? cookie.replace(name + "=", "") : null).filter((cookie) => cookie !== null)[0];
-        return cookie;
-    };
-    /**
-    * This is a ```method``` ( ```function``` inside ```class``` ).
-    * @function getTranslations
-    * @param { String|RegExp } [ locale ] Should be a ```string```.
+    * @param { String } [ locale ] Should be a ```string```.
     * @returns { Object }
-    * - ```object```.
+    * - An ```object``` with all the translations.
     * ---
-    * @note This method is used to get the proper texts according to locale's value.
-    * @note The {@link locale} parameter should be the user's selected language.
+    * @notes
+    * - This method is used to get the proper texts according to {@link locale}'s value.
+    * - The {@link locale} parameter should be the user's selected language.
     */
-    getTranslations = (locale: String): Object => {
+    getTranslations(locale: String): Object {
         if(locale) {
             const language = locale.substring(0, 2);
-            const translations = require("../public/static/locales/" + language + ".json");
-            return translations;
+            return require("../public/static/locales/" + language + ".json");
         };
         return require("../public/static/locales/fr.json");
     };
     /**
-    * This is a ```method``` ( ```function``` inside ```class``` ).
-    * @function getMetadatasTranslations
-    * @param { String|RegExp } [ locale ] Should be a ```string```.
+    * @param { String } [ locale ] Should be a ```string```.
     * @returns { Object }
-    * - ```object```.
+    * - An ```object``` with all the translations.
     * ---
-    * @note This method is used to get the proper metadatas according to locale's value.
-    * @note The {@link locale} parameter should be the user's selected language.
+    * @notes
+    * - This method is used to get the proper meta datas according to {@link locale}'s value.
+    * - The {@link locale} parameter should be the user's selected language.
     */
-    getMetadatasTranslations = (locale: String): Object => {
+    getMetaDatasTranslations(locale: String): Object {
         if(locale) {
             const language = locale.substring(0, 2);
-            const translations = require("../public/static/locales/metadatas/" + language + ".json");
-            return translations;
+            return require("../public/static/locales/metadatas/" + language + ".json");
         };
         return require("../public/static/locales/metadatas/fr.json");
     };
@@ -468,7 +457,7 @@ class Utilities {
     * @note This method is used to return the correct company type for your scripts if specific transformations are needed according to the router type parameter.
     * @note The {@link type} parameter should be a string.
     */
-    formatType = (type: String, language: String = "fr"): String|Boolean => {
+    formatType = (type: String, language: String = "fr", asTitle: Boolean = false, plural: Boolean = false): String|Boolean => {
         if(!type || type.trim().length <= 0) {
             return false;
         };
@@ -477,14 +466,33 @@ class Utilities {
             type = (type.match(/(startups)/)) ? "startup" : type;
             type = (type.match(/(corporates)/)) ? "entreprise" : type;
             type = (type.match(/(partners)/)) ? "partenaire" : type;
-            type = (type.match(/(opportunities)/)) ? "opportunite" : type;
+            type = (type.match(/(opportunities)/)) ? ((asTitle) ? "opportunité" : "opportunite") : type;
         } else if(language === "en") {
             type = (type.match(/(startups)/)) ? "startup" : type;
             type = (type.match(/(corporates)/)) ? "corporate" : type;
             type = (type.match(/(partners)/)) ? "partner" : type;
-            type = (type.match(/(opportunities)/)) ? "opportunity" : type;
+            type = (type.match(/(opportunities)/)) ? ((plural) ? "opportunitie" : "opportunity") : type;
         };
-        return type;
+        type = (asTitle && uppercaseFirst(type)) ? uppercaseFirst(type).toString() : type;
+        return (plural) ? (type) + "s" : type;
+    };
+    /**
+    * This is a ```method``` ( ```function``` inside ```class``` ).
+    * @function getProperAlt
+    */
+    getProperAlt = (type: String, translations: any, picture: String = "logo"): String|Boolean => {
+        if(!type || type.trim().length <= 0) {
+            return false;
+        };
+        if(formatType(type, "en") === "startup") {
+            return (picture === "logo") ? translations["Logo de la startup du nom de"] : translations["Image de fond de la startup du nom de"];
+        } else if(formatType(type, "en") === "corporate") {
+            return (picture === "logo") ? translations["Logo de l'entreprise du nom de"] : translations["Image de fond de l'entreprise du nom de"];
+        } else if(formatType(type, "en") === "partner") {
+            return (picture === "logo") ? translations["Logo du partenaire du nom de"] : translations["Image de fond du partenaire du nom de"];
+        } else {
+            return "";
+        };
     };
     /**
     * This is a ```method``` ( ```function``` inside ```class``` ).
@@ -546,10 +554,8 @@ const utilitiesInstance = new Utilities();
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const beautifyTheLogs = utilitiesInstance.beautifyTheLogs;
 const selectifyTheOptions = utilitiesInstance.selectifyTheOptions;
-// const setCookie = utilitiesInstance.setCookie;
-// const getCookie = utilitiesInstance.getCookie;
 const getTranslations = utilitiesInstance.getTranslations;
-const getMetadatasTranslations = utilitiesInstance.getMetadatasTranslations;
+const getMetaDatasTranslations = utilitiesInstance.getMetaDatasTranslations;
 const preventSubmit = utilitiesInstance.preventSubmit;
 const buildProperties = utilitiesInstance.buildProperties;
 const scrollTo = utilitiesInstance.scrollTo;
@@ -561,6 +567,7 @@ const bindEventListeners = utilitiesInstance.bindEventListeners;
 const removeEventListeners = utilitiesInstance.removeEventListeners;
 const structureTags = utilitiesInstance.structureTags;
 const formatType = utilitiesInstance.formatType;
+const getProperAlt = utilitiesInstance.getProperAlt;
 const checkMatch = utilitiesInstance.checkMatch;
 const preciseTarget = utilitiesInstance.preciseTarget;
 const escapeHTML = utilitiesInstance.escapeHTML;
@@ -572,10 +579,8 @@ export {
     Utilities,
     beautifyTheLogs,
     selectifyTheOptions,
-    // setCookie,
-    // getCookie,
     getTranslations,
-    getMetadatasTranslations,
+    getMetaDatasTranslations,
     preventSubmit,
     buildProperties,
     scrollTo,
@@ -587,6 +592,7 @@ export {
     removeEventListeners,
     structureTags,
     formatType,
+    getProperAlt,
     checkMatch,
     preciseTarget,
     escapeHTML

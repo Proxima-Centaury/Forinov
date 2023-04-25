@@ -103,11 +103,13 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         </button>
         { (placeholder) ? <p className={ SelectStyles.placeholder }>{ placeholder + " : " }{ (selectedOptions?.length <= 0) ? null : <span>{ selectedOptions?.length }</span> }</p> : null }
         <div className={ SelectStyles.options }>
-            <Button button={ SelectStyles.option } { ...additionalProps } action={ selectAllHandler }/>
-            { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => {
-                const isDynamic = (dynamic) ? true : false;
-                return (!option.COUNT || option.COUNT && option.COUNT > 0) ? <Option key={ key } option={ option } selectedOptions={ selectedOptions } action={ action } ownAction={ setSelectedOptions } dynamic={ (isDynamic) ? placeholder : null }/> : null;
-            }) : null }
+            <div className={ SelectStyles.container }>
+                <Button button={ SelectStyles.option } { ...additionalProps } action={ selectAllHandler }/>
+                { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => {
+                    const isDynamic = (dynamic) ? true : false;
+                    return (!option.COUNT || option.COUNT && option.COUNT > 0) ? <Option key={ key } option={ option } selectedOptions={ selectedOptions } action={ action } ownAction={ setSelectedOptions } dynamic={ (isDynamic) ? placeholder : null }/> : null;
+                }) : null }
+            </div>
         </div>
     </div>;
 };

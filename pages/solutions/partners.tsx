@@ -5,6 +5,7 @@ import { GetServerSideProps } from "next";
 import { Fragment, useEffect, useRef } from "react";
 import Typed from "typed.js";
 import { HomeInterface } from "../../typescript/interfaces";
+import apiInstance from "../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -23,7 +24,7 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const PartnerSolutions = (pageProps: HomeInterface) => {
 	const typedReference = useRef(null);
-    const { states, accordionsConfigurations, router } = pageProps;
+    const { startups, states, accordionsConfigurations, router } = pageProps;
     const { translations } = states;
 	const { solutions } = accordionsConfigurations;
     useEffect(() => {
@@ -49,7 +50,7 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
                                 <Button button={ ButtonStyles.oldHome } href="/directories/partners/categories" icon="fa-solid fa-arrow-right" text={ translations["J'accède à l'annuaire des membres"] }/>
                             </div>
                         </div>
-                        <Image src={ router.basePath + "/assets/landings/solutions-partners.png" } alt="" width="500" height="500"/>
+                        <Image src={ router.basePath + "/assets/landings/solutions-partners.png" } alt={ translations["Première illustration de la page solutions partenaires"] + "." } width="500" height="500"/>
                     </div>
                 </div>
             </div>
@@ -187,6 +188,15 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
                     </div>
                 </div>
             </div>
+            <div className={ HomeStyles.startups } data-type="home">
+				<div className="container">
+					<h3>{ translations["Nos startups à la une"] + " :" }</h3>
+					<Carousel { ...pageProps } component="LatestStartups" data={ startups }/>
+					<div className={ HomeStyles.actions } data-justify="left">
+						<Button button={ ButtonStyles.callToAction } href="/directories/startups/categories" text={ translations["Accéder à l'annuaire des startups"] }/>
+					</div>
+				</div>
+			</div>
             <div className={ HomeStyles.questions } data-type="partner">
                 <div className="container">
                     <h3>{ translations["Les réponses à vos questions"] + " :" }</h3>
@@ -205,9 +215,11 @@ const PartnerSolutions = (pageProps: HomeInterface) => {
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, locale, locales, defaultLocale } = context;
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+	const language = locale?.substring(0, 2);
     return {
         props: {
             locale, locales, defaultLocale,
+			startups: await apiInstance.getLandingStartups("next", "Landing", language)
         },
     };
 };

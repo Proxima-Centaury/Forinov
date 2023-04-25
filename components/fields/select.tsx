@@ -40,7 +40,9 @@ const Select = (selectProps: SelectInterface) => {
         </button>
         <p className={ SelectStyles.placeholder }>{ (placeholder && !defaultValue) ? placeholder : (defaultValue) ? defaultValue?.NAME : "" }</p>
         <div className={ SelectStyles.options }>
-            { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => <Option key={ key } option={ option } action={ action } selected={ option.VALUE === defaultValue.VALUE }/>) : null }
+            <div className={ SelectStyles.container }>
+                { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => <Option key={ key } option={ option } action={ action } selected={ option.VALUE === defaultValue.VALUE }/>) : null }
+            </div>
         </div>
     </div>;
 };
