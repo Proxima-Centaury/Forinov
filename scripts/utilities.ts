@@ -13,6 +13,9 @@ import config from "../configurations/config.json";
 * @method {@link Utilities.beautifyTheLogs beautifyTheLogs}
 * @status - Up to date.
 * ---
+* @method {@link Utilities.selectifyTheOptions selectifyTheOptions}
+* @status - Needs an update.
+* ---
 * @method {@link Utilities.getTranslations getTranslations}
 * @status - Needs an update.
 * ---
