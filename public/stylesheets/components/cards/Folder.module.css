@@ -99,6 +99,7 @@
     border-width: 2px;
     border-color: var(--background-sub-color);
     border-radius: 100px;
+    box-shadow: var(--box-shadow);
 }
 .content > .startups > div {
     background-color: var(--background-information-color);
