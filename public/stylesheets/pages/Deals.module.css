@@ -33,4 +33,5 @@
 }
 .catch > p {
     color: var(--text-inactive-color);
+    text-align: center;
 }

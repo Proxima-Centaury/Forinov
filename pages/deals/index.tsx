@@ -2,7 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { Key } from "react";
+import { Key, useEffect, useState } from "react";
 import { DealsInterface } from "../../typescript/interfaces";
 import { checkMatch, formatNameForUrl, uppercaseFirst } from "../../scripts/utilities";
 import apiInstance from "../../scripts/api";
@@ -25,7 +25,17 @@ const Deals = (pageProps: DealsInterface) => {
     const { filters, states, router } = pageProps;
     const { translations } = states;
     const { category } = router.query;
+    const [ subcategories, setSubcategories ] = useState([]);
+    const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
     const categories = filters?.OPPORTUNITIES.find((category: any) => category.ID === "5").CATEGORIES || [];
+    useEffect(() => {
+        if(categories.length > 0 && categoryId) {
+            setSubcategories(categories.find((category: any) => category.ID === categoryId).SUBCATEGORIES);
+        };
+        return () => {
+            setSubcategories([]);
+        };
+    }, [ category ]);
     return <div id="deals" className="container">
         <div className={ DealsStyles.categories }>
             { (categories.length > 0) ? categories.map((category: any, key: Key) => {
@@ -38,11 +48,11 @@ const Deals = (pageProps: DealsInterface) => {
             <h1>{ translations["Les offres exclusives Forinov"] }</h1>
             <p>{ translations["Forinov a négocié pour ses membres des deals exclusifs pour que vous ayez accès aux meilleures logiciels à des conditions et tarifs imbattables"] + " !" }</p>
         </div>
-        { (category) ? <div className={ HomeStyles.actions } data-justify="center">
-            { (categories.length > 0) ? categories.map((category: any) => category.SUBCATEGORIES.map((subcategory: any, key: Key) => {
-                const url = "/deals/" + formatNameForUrl(category.NAME) + "_" + category.ID + "/" + formatNameForUrl(subcategory.NAME) + "_" + subcategory.ID;
+        { (category && subcategories.length > 0) ? <div className={ HomeStyles.actions } data-justify="center">
+            { subcategories.map((subcategory: any, key: Key) => {
+                const url = "/deals/" + category + "/" + formatNameForUrl(subcategory.NAME) + "_" + subcategory.ID;
                 return <Button key={ key } button={ (checkMatch(router.asPath, url)) ? ButtonStyles.callToAction : ButtonStyles.callToActionOldGrey } href={ url } text={ subcategory.NAME } active={ checkMatch(router.asPath, url) }/>;
-            })) : null }
+            }) }
         </div> : null }
         <div className="grid twoColumns">
 

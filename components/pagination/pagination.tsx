@@ -21,21 +21,13 @@ const Pagination = (pageProps: any) => {
 	const { translations } = states;
 	const [ currentPage, setCurrentPage ] = useState(1);
 	const [ showPageInput, setShowPageInput ] = useState(false);
+	const nextPage: MouseEventHandler = () => (currentPage < pages) ? setCurrentPage(currentPage + 1) : null;
+	const previousPage: MouseEventHandler = () => (currentPage > 1) ? setCurrentPage(currentPage - 1) : null;
 	const selectPage: MouseEventHandler = (event) => {
 		const target = preciseTarget(event as any);
 		const selectedPage = target.querySelector("span")?.innerText;
 		if(selectedPage) {
 			setCurrentPage(parseInt(selectedPage));
-		};
-	};
-	const nextPage: MouseEventHandler = () => {
-		if(currentPage < pages) {
-			setCurrentPage(currentPage + 1);
-		};
-	};
-	const previousPage: MouseEventHandler = () => {
-		if(currentPage > 1) {
-			setCurrentPage(currentPage - 1);
 		};
 	};
 	const setPage = (event: any) => {
