@@ -59,9 +59,21 @@ const SeeMore = (seeMoreProps: any) => {
                 </Link>;
             }) : null }
             { (type === "entities") ? list.slice(0, iterations * max).map((entity: any, key: Key) => {
-                const url = "/directories/partners/" + formatNameForUrl(entity.NAME) + "_" + entity.ID;
+                const getType = (type: String) => {
+                    switch(type) {
+                        case "Startup":
+                            return "startup";
+                        case "Entreprise":
+                            return "corporate";
+                        case "Incubateur":
+                            return "partner";
+                        default :
+                            return "";
+                    };
+                };
+                const url = "/directories/" + getType(entity.TYPE) + "s/" + formatNameForUrl(entity.NAME) + "_" + entity.ID;
                 return <Link key={ key } href={ url }>
-                    <EntityCard { ...seeMoreProps } entity={ entity } type="partner" details/>
+                    <EntityCard { ...seeMoreProps } entity={ entity } type={ getType(entity.TYPE) } details/>
                 </Link>;
             }) : null }
             { (type === "activities") ? list.slice(0, iterations * max).map((event: any, key: Key) => <ActivityCard key={ key } { ...seeMoreProps } event={ event }/>) : null }
