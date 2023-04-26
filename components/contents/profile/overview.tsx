@@ -1,6 +1,7 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { Fragment } from "react";
 import { formatNameForUrl } from "../../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -72,7 +73,7 @@ const ProfileOverview = (pageProps: any) => {
 const Startup = (pageProps: any) => {
     const { profile, states }: any = pageProps;
     const { lock, translations }: any = states;
-    return <>
+    return <Fragment>
         { (profile.TECHNO.length > 0) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Technologie(s)"] }</p>
             <Tags tags={ profile.TECHNO } lock={ lock }/>
@@ -94,7 +95,7 @@ const Startup = (pageProps: any) => {
             <p className={ OverviewStyles.label }>{ translations["Présence"] }</p>
             <p>{ translations["Non renseigné"] + "." }</p>
         </div> }
-    </>;
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Corporate Overview */
@@ -102,7 +103,8 @@ const Startup = (pageProps: any) => {
 const Corporate = (pageProps: any) => {
     const { profile, states }: any = pageProps;
     const { translations }: any = states;
-    return <>
+    console.log(profile);
+    return <Fragment>
         { (profile.HEADQUARTER) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Maison mère"] }</p>
             <Link href={ "/directories/corporates/" + formatNameForUrl(profile.HEADQUARTER_NAME || profile.NAME) + "_" + profile.HEADQUARTER[0].Entreprise }>
@@ -114,7 +116,7 @@ const Corporate = (pageProps: any) => {
         </div> }
         { (profile.CREATIONDATE) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Année de création"] }</p>
-            <span>{ new Date(profile.CREATIONDATE).getFullYear() }</span>
+            <span>{ new Date(profile.CREATIONDATE).getFullYear() || "???" }</span>
         </div> : <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Année de création"] }</p>
             <p>{ translations["Non renseigné"] + "." }</p>
@@ -133,7 +135,7 @@ const Corporate = (pageProps: any) => {
             <p className={ OverviewStyles.label }>{ translations["Secteur d'activités"] }</p>
             <p>{ translations["Non renseigné"] + "." }</p>
         </div> }
-    </>;
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Partner Overview */
@@ -141,7 +143,7 @@ const Corporate = (pageProps: any) => {
 const Partner = (pageProps: any) => {
     const { profile, states }: any = pageProps;
     const { lock, translations }: any = states;
-    return <>
+    return <Fragment>
         { (profile.CREATIONDATE && !isNaN(new Date(profile.CREATIONDATE).getTime())) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Année de création"] }</p>
             <p>{ new Date(profile.CREATIONDATE).getFullYear() }</p>
@@ -163,7 +165,7 @@ const Partner = (pageProps: any) => {
             <p className={ OverviewStyles.label }>{ translations["Effectifs"] }</p>
             <p>{ translations["Non renseigné"] + "." }</p>
         </div> }
-    </>;
+    </Fragment>;
 };
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Exports */
