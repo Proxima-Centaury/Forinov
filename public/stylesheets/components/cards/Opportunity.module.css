@@ -178,33 +178,33 @@
 .type[data-opportunity-type] {
     background-color: transparent;
 }
-.type[data-opportunity-type="1"] > div > div {
+.type[data-opportunity-type="1"] > div:first-of-type > div {
     background-color: var(--project-color) !important;
 }
-.type[data-opportunity-type="1"] > div > div > p {
+.type[data-opportunity-type="1"] > div:first-of-type > div > p {
     color: var(--perfect-white-color) !important;
 }
-.type[data-opportunity-type="2"] > div > div {
+.type[data-opportunity-type="2"] > div:first-of-type > div {
     background-color: var(--program-color) !important;
 }
-.type[data-opportunity-type="2"] > div > div > p {
+.type[data-opportunity-type="2"] > div:first-of-type > div > p {
     color: var(--perfect-white-color) !important;
 }
-.type[data-opportunity-type="3"] > div > div {
+.type[data-opportunity-type="3"] > div:first-of-type > div {
     background-color: var(--challenge-color) !important;
 }
-.type[data-opportunity-type="3"] > div > div > p {
+.type[data-opportunity-type="3"] > div:first-of-type > div > p {
     color: var(--perfect-black-color) !important;
 }
-.type[data-opportunity-type="4"] > div > div {
+.type[data-opportunity-type="4"] > div:first-of-type > div {
     background-color: var(--event-color) !important;
 }
-.type[data-opportunity-type="4"] > div > div > p {
+.type[data-opportunity-type="4"] > div:first-of-type > div > p {
     color: var(--perfect-white-color) !important;
 }
-.type[data-opportunity-type="5"] > div > div {
+.type[data-opportunity-type="5"] > div:first-of-type > div {
     background-color: var(--offer-color) !important;
 }
-.type[data-opportunity-type="5"] > div > div > p {
+.type[data-opportunity-type="5"] > div:first-of-type > div > p {
     color: var(--perfect-white-color) !important;
 }
