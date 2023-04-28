@@ -60,7 +60,7 @@
     },
     "/directories/startups/[id]": {
         "title1": "Profile of",
-        "title2": ", startup of category :",
+        "title2": "on Forinov, startup",
         "description1" : "Discover the full profile of the startup",
         "description2" : ", Forinov's member in the following category :"
     },
@@ -81,7 +81,7 @@
     },
     "/directories/corporates/[id]": {
         "title1": "Profile of",
-        "title2": "on Forinov, corporate of category :",
+        "title2": "on Forinov, corporate",
         "description1" : "Discover the profile of the corporate",
         "description2" : ", on Forinov. On",
         "description3" : "'s open innovation page, find the key contacts of the innovation teams (innovation director of",
@@ -105,7 +105,7 @@
     },
     "/directories/partners/[id]": {
         "title1": "Profile of",
-        "title2": "on Forinov, partner of category :",
+        "title2": "on Forinov, partner",
         "description1" : "Discover the profile of the partner",
         "description2" : ". Find all the information about",
         "description3" : ", key contacts, offers and services, eligibility conditions, supported and portfolio startups, their alumni, etc. and of course all the opportunities",

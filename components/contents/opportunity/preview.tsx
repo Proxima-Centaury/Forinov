@@ -48,6 +48,10 @@ const OpportunityPreview = (opportunityPreviewProps: any) => {
                 <h3>{ opportunity.OWNERNAME + " — " }<span>{ opportunity.TITLE }</span></h3>
                 <div className={ OpportunityStyles.type } data-opportunity-type={ opportunity.TYPE[0].ID }>
                     <Tags tags={ opportunity.TYPE } main={ true }/>
+                    { (opportunity.DEALCATEGORIES && opportunity.DEALCATEGORIES.length > 0) ? <Tags tags={ opportunity.DEALCATEGORIES } main={ true } limit={ 1 }/> : null }
+                </div>
+                <div className={ OpportunityStyles.type }>
+                    { (opportunity.DEALSUBCATEGORIES && opportunity.DEALSUBCATEGORIES.length > 0) ? <Tags tags={ opportunity.DEALSUBCATEGORIES } limit={ 2 }/> : null }
                 </div>
             </div>
         </div>

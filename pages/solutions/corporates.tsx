@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { Fragment, useEffect, useState } from "react";
 import { HomeInterface } from "../../typescript/interfaces";
-import api from "../../scripts/api";
+import apiInstance from "../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -44,7 +44,7 @@ const CorporateSolutions = (pageProps: HomeInterface) => {
                                 <Button button={ ButtonStyles.oldHome } href="/directories/corporates/categories" icon="fa-solid fa-arrow-right" text={ translations["J'accède à l'annuaire des membres"] }/>
                             </div>
                         </div>
-                        <Image src={ router.basePath + "/assets/landings/solutions-corpo-hero.png" } alt="" width="500" height="500"/>
+                        <Image src={ router.basePath + "/assets/landings/solutions-corpo-hero.png" } alt={ translations["Première illustration de la page solutions entreprises"] + "." } width="500" height="500"/>
                     </div>
                 </div>
             </div>
@@ -245,11 +245,11 @@ const CorporateSolutions = (pageProps: HomeInterface) => {
                                 <Separator { ...pageProps }/>
                             </div>
                             <div className={ HomeStyles.actions } data-justify="center">
-                                <Button button={ ButtonStyles.classicLink } href="#" text={ translations["Voir le détail"] }/>
+                                <Button button={ ButtonStyles.classicLink } href="/contact" text={ translations["Demander une démo"] }/>
                             </div>
                         </div>
                     </div>
-                    <Image src={ router.basePath + "/assets/landings/solutions-corpo-seating.png" } alt="" width="1000" height="500"/>
+                    <Image src={ router.basePath + "/assets/landings/solutions-corpo-seating.png" } alt={ translations["Seconde illustration de la page solutions entreprises"] + "." } width="1000" height="500"/>
                 </div>
             </div>
             <div className={ HomeStyles.testimonials + " " + SolutionsStyles.testimonials } data-type="corporate">
@@ -280,7 +280,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             locale, locales, defaultLocale,
-            landing: await api.getLanding("next", "Landing", language)
+            landing: await apiInstance.getLanding("next", "Landing", language)
         },
     };
 };

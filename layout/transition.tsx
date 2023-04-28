@@ -1,7 +1,6 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
@@ -15,17 +14,18 @@ import TransitionStyles from "../public/stylesheets/layout/Transition.module.css
 /* Transition */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Transition = (transitionProps: any) => {
-    const router = useRouter();
-    const { children } = transitionProps;
+    const { children, router } = transitionProps;
     const [ loading, setLoading ] = useState(false);
     const [ loaded, setLoaded ] = useState(true);
-    const handleStartTransition = () => {
+    const handleStartTransition = (): Object => {
         setLoading(true);
         setLoaded(false);
+        return { states: { loading: loading, loaded: loaded } };
     };
-    const handleCompleteTransition = () => {
+    const handleCompleteTransition = (): Object => {
         setLoading(false);
         setLoaded(true);
+        return { states: { loading: loading, loaded: loaded } };
     };
     useEffect(() => {
         router.events.on("routeChangeStart", handleStartTransition);

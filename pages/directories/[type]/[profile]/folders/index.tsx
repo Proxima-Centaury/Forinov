@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import { Key } from "react";
 import { FoldersInterface } from "../../../../../typescript/interfaces";
 import { formatNameForUrl } from "../../../../../scripts/utilities";
-import api from "../../../../../scripts/api";
+import apiInstance from "../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -30,7 +30,7 @@ const Folders = (pageProps: FoldersInterface) => {
         </div>
         <div className="grid twoColumns">
             { (folders) ? folders.map((folder: any, key: Key) => <Link key={ key } href={ router.asPath + "/" + formatNameForUrl(folder.NAME) + "_" + folder.ID }>
-                <FolderCard folder={ folder }/>
+                <FolderCard { ...pageProps } folder={ folder }/>
             </Link>) : null }
         </div>
         <Button button={ ButtonStyles.classicLink } href={ router.asPath.substring(0, router.asPath.lastIndexOf("/")) } icon="fa-light fa-arrow-left" text={ translations["Retourner au profil"] }/>
@@ -51,7 +51,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         type = (type.match(/(corporates)/)) ? "entreprise" : type;
         type = (type.match(/(partners)/)) ? "partenaire" : type;
     };
-    const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);
+    const foundProfile = await apiInstance.getProfile(type, profile, "next", "Sorbonne", language);
     if(!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {
         return {
             redirect: {
@@ -64,7 +64,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         props: {
             locale, locales, defaultLocale,
             profile: foundProfile,
-            folders: await api.getFolders(type, profile, "next", "Sorbonne", language)
+            folders: await apiInstance.getFolders(type, profile, "next", "Sorbonne", language)
         }
     };
 };

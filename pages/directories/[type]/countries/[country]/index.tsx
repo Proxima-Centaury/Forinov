@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { DirectoryInterface } from "../../../../../typescript/interfaces";
 import { formatNameForUrl, formatType, checkMatch } from "../../../../../scripts/utilities";
-import api from "../../../../../scripts/api";
+import apiInstance from "../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -54,11 +54,11 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const companies = async () => {
         if(type.match(/(startups)/)) {
-            return await api.getFilteredStartupsByCountry(country, "next", "Sorbonne", language);
+            return await apiInstance.getFilteredStartupsByCountry(country, "next", "Sorbonne", language);
         } else if(type.match(/(corporates)/)) {
-            return await api.getFilteredCorporatesByCountry(country, "next", "Sorbonne", language);
+            return await apiInstance.getFilteredCorporatesByCountry(country, "next", "Sorbonne", language);
         } else if(type.match(/(partners)/)) {
-            return await api.getFilteredPartnersByCountry(country, "next", "Sorbonne", language);
+            return await apiInstance.getFilteredPartnersByCountry(country, "next", "Sorbonne", language);
         };
     };
     return {

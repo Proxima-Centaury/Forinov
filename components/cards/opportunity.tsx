@@ -21,8 +21,8 @@ const OpportunityCard = (opportunityProps: any) => {
     const { opportunity, opportunityLink, carouselItem, details, states } = opportunityProps;
     const { translations } = states;
     return <div className={ OpportunityStyles.card }>
-        <div className={ OpportunityStyles.banner } data-opportunity-type={ opportunity.TYPE[0].ID || "" }>
-            { (opportunity.BACKGROUND) ? <Image src={ opportunity.BACKGROUND } alt="" width="3840" height="2160"/> : null }
+        <div className={ OpportunityStyles.banner } data-opportunity-type={ (opportunity.TYPE) ? opportunity.TYPE[0].ID : "" }>
+            { (opportunity.BACKGROUND) ? <Image src={ opportunity.BACKGROUND } alt={ translations["Image d'illustration de l'opportunité : "] + opportunity.TITLE } width="3840" height="2160"/> : null }
             { (opportunity.LANGUAGE === "en") ? <div className={ OpportunityStyles.informations }>
                 <p>{ translations["Anglais"] }</p>
             </div> : null }
@@ -31,10 +31,10 @@ const OpportunityCard = (opportunityProps: any) => {
             { (opportunityLink && carouselItem) ? <Button button={ ButtonStyles.callToActionNegative } href={ opportunityLink } icon="fa-light fa-eye" text={ translations["Voir plus"] }/> : null }
         </div>
         <div className={ OpportunityStyles.content }>
-            { (opportunity.OWNERLOGO) ? <div className={ OpportunityStyles.rightContainer }>
-                <Image src={ opportunity.OWNERLOGO } alt="" width="64" height="64"/>
+            { (opportunity.OWNERLOGO) ? <div className={ OpportunityStyles.leftContainer }>
+                <Image src={ opportunity.OWNERLOGO } alt={ translations["Logo de l'entreprise "] + opportunity.OWNERNAME } width="64" height="64"/>
             </div> : null }
-            <div className={ OpportunityStyles.leftContainer }>
+            <div className={ OpportunityStyles.rightContainer }>
                 <div className={ OpportunityStyles.top }>
                     { (opportunity.OWNERNAME) ? <div className={ OpportunityStyles.author }>
                         <p>{ opportunity.OWNERNAME }</p>
@@ -45,7 +45,7 @@ const OpportunityCard = (opportunityProps: any) => {
                     </div>
                 </div>
                 <div className={ OpportunityStyles.title } data-type="tooltip" data-tooltip={ opportunity.TITLE }>
-                    <h3>{ (opportunity.TITLE) ? uppercaseFirst(opportunity.TITLE) : translations["Nom non-défini"] }</h3>
+                    <h3>{ (opportunity.TITLE) ? opportunity.TITLE : translations["Nom non-défini"] }</h3>
                 </div>
                 { (opportunity.TYPE) ? <div className={ OpportunityStyles.type } data-opportunity-type={ opportunity.TYPE[0].ID || "" }>
                     <Tags tags={ opportunity.TYPE } main={ true }/>

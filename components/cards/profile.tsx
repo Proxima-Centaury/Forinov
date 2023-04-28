@@ -1,8 +1,9 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { structureTags } from "../../scripts/utilities";
+import { formatType, getProperAlt, structureTags } from "../../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -19,22 +20,23 @@ import ButtonStyles from "../../public/stylesheets/components/buttons/Button.mod
 /* Profile Card */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const ProfileCard = (profileProps: any) => {
-    const { profile, definedType, profileLink, carouselItem, states, router } = profileProps;
+    const router = useRouter();
+    const { profile, definedType, profileLink, carouselItem, states } = profileProps;
     const { session, lock, translations } = states;
     const { type } = router.query;
     const [ profileType, setProfileType ] = useState("");
-    useEffect(() => (!type) ? setProfileType(definedType) : setProfileType(type), [ type, definedType ]);
+    useEffect(() => (!type) ? setProfileType(definedType) : setProfileType((type) ? formatType(type.toString(), "en").toString() : ""), [ type, definedType ]);
     return <div className={ ProfileStyles.card }>
         <div className={ ProfileStyles.banner }>
-            <Image src={ profile.BACKGROUND } alt={ translations["Image de fond de l'entreprise du nom de"] + " " + profile.NAME + "." } width="3840" height="2160" priority/>
-            { (profileType.match(/(startup)/) && !carouselItem) ? <StartupActions translations={ translations }/> : null }
-            { (profileType.match(/(corporate|entreprise)/) && !carouselItem) ? <CorporateActions translations={ translations }/> : null }
-            { (profileType.match(/(partner|partenaire)/) && !carouselItem) ? <PartnerActions translations={ translations }/> : null }
+            <Image src={ profile.BACKGROUND } alt={ getProperAlt((type) ? type.toString() : "", translations, "background") + " " + profile.NAME + "." } width="3840" height="2160" priority/>
+            { (profileType === "startup" && !carouselItem) ? <StartupActions translations={ translations }/> : null }
+            { (profileType === "corporate" && !carouselItem) ? <CorporateActions translations={ translations }/> : null }
+            { (profileType === "partner" && !carouselItem) ? <PartnerActions translations={ translations }/> : null }
             { (profileLink && carouselItem) ? <Button button={ ButtonStyles.callToActionNegative } href={ profileLink } icon="fa-light fa-eye" text={ translations["Voir plus"] }/> : null }
         </div>
         <div className={ ProfileStyles.body }>
             <div className={ ProfileStyles.picture }>
-                <Image src={ profile.LOGO } alt={ translations["Image de profil de l'entreprise du nom de"] + " " + profile.NAME + "." } width="120" height="120"/>
+                <Image src={ profile.LOGO } alt={ getProperAlt((type) ? type.toString() : "", translations) + " " + profile.NAME + "." } width="120" height="120"/>
                 { (type !== "startup" && (!session || (session && profile.PDF)) && !carouselItem) ? <Button button={ ButtonStyles.callToActionAlternative } href={ profile.PDF } icon="fa-light fa-cloud-arrow-down" text="PDF"/> : null }
             </div>
             <div className={ ProfileStyles.content }>
@@ -52,8 +54,8 @@ const ProfileCard = (profileProps: any) => {
                 { (profile.COMMENT) ? <Format { ...profileProps } content={ profile.COMMENT }/> : null }
                 { (profile.CATEGORY.length > 0) ? <Tags tags={ profile.CATEGORY } main={ true }/> : null }
                 { (profile.TAGS) ? <Tags tags={ structureTags(profile.TAGS) } limit={ 2 }/> : null }
-                { (profileType.match(/(startup)/) && !carouselItem) ? <div className="separator"></div> : null }
-                { (profileType.match(/(startup)/) && !carouselItem) ? <div className={ ProfileStyles.stats }>
+                { (profileType === "startup" && !carouselItem) ? <div className="separator"></div> : null }
+                { (profileType === "startup" && !carouselItem) ? <div className={ ProfileStyles.stats }>
                     { (profile.CREATIONDATE) ? <div>
                         <p className={ ProfileStyles.label }>{ translations["Date de création"] }</p>
                         <div>

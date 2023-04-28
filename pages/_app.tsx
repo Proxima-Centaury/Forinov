@@ -6,7 +6,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
-import { getTranslations, getMetadatasTranslations, scrollTo } from "../scripts/utilities";
+import { getTranslations, getMetaDatasTranslations, scrollTo, checkMatch } from "../scripts/utilities";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -39,7 +39,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     const [ errors, setErrors ] = useState({});
     const [ locale, setLocale ] = useState(pageProps.locale);
     const [ locales, setLocales ] = useState(pageProps.locales);
-    const [ metadatas, setMetadatas ] = useState(getMetadatasTranslations(locale));
+    const [ metadatas, setMetadatas ] = useState(getMetaDatasTranslations(locale));
     const [ translations, setTranslations ] = useState(getTranslations(locale));
     const [ session, setSession ] = useState(false);
     const [ theme, setTheme ] = useState(getCookie("forinov_theme_preference") || "light");
@@ -48,7 +48,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     const [ RGB, setRGB ] = useState(getCookie("forinov_rgb_preference") || false);
     const [ production, setProduction ] = useState((process.env.NODE_ENV === "development") ? false : true);
     useEffect(() => {
-        setMetadatas(getMetadatasTranslations(locale));
+        setMetadatas(getMetaDatasTranslations(locale));
         setTranslations(getTranslations(locale));
     }, [ locale ]);
     useEffect(() => {
@@ -146,10 +146,10 @@ const App = ({ Component, pageProps }: AppProps) => {
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <link rel="icon" href={ router.basePath + "/assets/logo.png" }/>
         </Head>
-        { (router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/> }
+        { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/>) : null }
         <Transition { ...pageProps }>
             <Component { ...pageProps }/>
-            { (router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/> }
+            { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/>) : null }
         </Transition>
         <Modal { ...pageProps }/>
         { (router.query.ui && router.query.ui == "false") ? null : (!production) ? <Devtools { ...pageProps }/> : null }

@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { Fragment } from "react";
 import { HomeInterface } from "../typescript/interfaces";
-import api from "../scripts/api";
+import apiInstance from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -37,7 +37,7 @@ const StartupsHome = (pageProps: HomeInterface) => {
 							<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Créer mon profil gratuitement"] }/>
 						</div>
 					</div>
-					<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="" width="3840" height="2160" priority/>
+					<Image src={ router.basePath + "/assets/landings/presentation.png" } alt={translations["Illustration de page d'accueil Forinov"]} width="3840" height="2160" priority/>
 				</div>
 			</div>
 			<div className={ HomeStyles.sourcing } data-type="startup">
@@ -122,8 +122,8 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			opportunities: await api.getLandingOpportunities("next", "Landing", language),
-			logos: await api.getLandingLogos("next", "Landing", language)
+			opportunities: await apiInstance.getLandingOpportunities("next", "Landing", language),
+			logos: await apiInstance.getLandingLogos("next", "Landing", language)
 		}
 	};
 };

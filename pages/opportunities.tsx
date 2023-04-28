@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { Fragment } from "react";
 import { HomeInterface } from "../typescript/interfaces";
-import api from "../scripts/api";
+import apiInstance from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -25,7 +25,7 @@ const Home = (pageProps: HomeInterface) => {
 	const { translations } = states;
 	const { landings } = accordionsConfigurations;
 	return <Fragment>
-        <MetaDatas { ...pageProps }/>
+		<MetaDatas { ...pageProps }/>
 		<div id="opportunities" className="containerFull">
 			<div className={ HomeStyles.presentation } data-type="opportunity">
 				<div className="container">
@@ -36,7 +36,7 @@ const Home = (pageProps: HomeInterface) => {
 							<Button button={ ButtonStyles.callToAction } href="/" text={ translations["Voir la vidéo de présentation"] }/>
 						</div>
 					</div>
-					<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="" width="3840" height="2160" priority/>
+					<Image src={ router.basePath + "/assets/landings/presentation.png" } alt={ translations["Illustration de page d'accueil Forinov"] } width="3840" height="2160" priority/>
 				</div>
 			</div>
 			<div className={ HomeStyles.sourcing } data-type="opportunity">
@@ -73,12 +73,12 @@ const Home = (pageProps: HomeInterface) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const getServerSideProps: GetServerSideProps = async (context) => {
 	const { res, locale, locales, defaultLocale } = context;
-    res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
 	const language = locale?.substring(0, 2);
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			logos: await api.getLandingLogos("next", "Landing", language)
+			logos: await apiInstance.getLandingLogos("next", "Landing", language)
 		}
 	};
 };

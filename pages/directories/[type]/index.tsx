@@ -2,10 +2,10 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
-import { useState, Fragment, useEffect, Key, MouseEventHandler } from "react";
+import { useState, Fragment, useEffect, Key, MouseEventHandler, useRef } from "react";
 import { DirectoryInterface } from "../../../typescript/interfaces";
 import { formatType, formatNameForUrl } from "../../../scripts/utilities";
-import api from "../../../scripts/api";
+import apiInstance from "../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -27,6 +27,7 @@ import ButtonStyles from "../../../public/stylesheets/components/buttons/Button.
 /* Directory */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Directory = (pageProps: DirectoryInterface) => {
+    const displaysReference = useRef(null);
     const { filters, states, router } = pageProps;
     const { locale, translations } = states;
     const { type, category, ui, domain, network, privateFilter, ssid } = router.query;
@@ -34,6 +35,7 @@ const Directory = (pageProps: DirectoryInterface) => {
     const [ results, setResults ] = useState(null || []);
     const [ selects, setSelects ] = useState(null);
     const [ display, setDisplay ] = useState("grid threeColumns");
+    const [ displaySwitcherOffset, setDisplaySwitcherOffset ] = useState(1);
     const [ informations, setInformations ]: any = useState(null);
     const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
     const categoryName = category?.substring(0, category.indexOf("_"));
@@ -50,9 +52,23 @@ const Directory = (pageProps: DirectoryInterface) => {
     };
     const gridButtonAction: MouseEventHandler = () => setDisplay("grid threeColumns");
     const listButtonAction: MouseEventHandler = () => setDisplay("list");
+    const switchDisplayButtonAction: MouseEventHandler = () => {
+        const displaysContainer = (displaysReference.current) ? displaysReference.current as HTMLElement : null;
+        const buttons = (displaysContainer) ? displaysContainer.querySelectorAll("[class*='Button']:not([class*='Filter'])") : null;
+        setDisplaySwitcherOffset(displaySwitcherOffset + 1);
+        if(buttons && buttons?.length > 0) {
+            if(displaySwitcherOffset >= buttons.length - 1) {
+                setDisplaySwitcherOffset(0);
+            };
+            buttons.forEach((button) => {
+                const toElementType = button as HTMLButtonElement;
+                toElementType.style.transform = "translateY(-" + (displaySwitcherOffset * 100) + "%)";
+            });
+        };
+    };
     useEffect(() => {
         const fetchResults = async () => {
-            const results = await api.searchEngine(formatType(type), search, network, privateFilter, ssid, locale?.substring(0, 2));
+            const results = await apiInstance.searchEngine(formatType(type), search, network, privateFilter, ssid, locale?.substring(0, 2));
             const formattedResults = results.slice(0, results.length - 1);
             const selects = results[results.length - 1];
             setResults(formattedResults);
@@ -60,6 +76,8 @@ const Directory = (pageProps: DirectoryInterface) => {
         };
         if(search.keywords.length >= 2 || search.categories.length >= 1 || search["targetsectors" as keyof Object] || search["technologies" as keyof Object] || search["targetjobs" as keyof Object] || search["businessmodel" as keyof Object]) {
             fetchResults();
+        } else if(network >= 1) {
+            setSearch({ ...search, categories: filters.CATEGORIES.map((category: any) => category.ID).join(", ") });
         } else {
             setResults([]);
             setSelects(null);
@@ -84,12 +102,13 @@ const Directory = (pageProps: DirectoryInterface) => {
                     { (type.match(/(corporates)/)) ? <h1>{ getTitle(type) + " ( " }<span>{ ((informations) ? informations.COUNT : filters.CORPORATES) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
                     { (type.match(/(partners)/)) ? <h1>{ getTitle(type) + " ( " }<span>{ ((informations) ? informations.COUNT : filters.PARTNERS) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
                     { (type.match(/(opportunities)/)) ? <h1>{ getTitle(type) + " ( " }<span>{ ((informations) ? informations.COUNT : filters.OPPORTUNITIES_COUNT) + " " + translations["Résultats"].toLowerCase() }</span>{ " )" }</h1> : null }
-                    <div className={ FiltersStyles.displays }>
+                    <div className={ FiltersStyles.displays } ref={ displaysReference }>
                         <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ gridButtonAction } icon="fa-light fa-grid-2" active={ display === "grid threeColumns" }/>
                         <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ listButtonAction } icon="fa-light fa-list" active={ display !== "grid threeColumns" }/>
-                        { (ui && ui == "false") ? <a className={ ButtonStyles.callToActionAlternativeSquaredIcon } href={ domain + "/account_startup_map.php" } target="_parent">
+                        { (ui && ui == "false" && type.match(/(startups)/)) ? <a className={ ButtonStyles.callToActionAlternativeSquaredIcon } href={ domain + "/account_startup_map.php" } target="_parent">
                             <i className="fa-light fa-map-location-dot"/>
                         </a> : null }
+                        <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon + " " + FiltersStyles.switcher } action={ switchDisplayButtonAction } icon="fa-light fa-arrow-up-arrow-down"/>
                     </div>
                 </div>
                 { (ui && ui == "false") ? null : <div className={ FiltersStyles.message }>
@@ -230,7 +249,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             locale, locales, defaultLocale,
-            filters: await api.getPublicCommons("next", "Landing", language)
+            filters: await apiInstance.getPublicCommons("next", "Landing", language)
         }
     };
 }

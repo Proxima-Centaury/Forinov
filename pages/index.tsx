@@ -6,7 +6,7 @@ import { Fragment, Key, useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
 import { HomeInterface } from "../typescript/interfaces";
 import { formatNameForUrl } from "../scripts/utilities";
-import api from "../scripts/api";
+import apiInstance from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -60,7 +60,7 @@ const Home = (pageProps: HomeInterface) => {
 								<Button button={ ButtonStyles.oldHome } href="/directories/opportunities/categories" icon="fa-light fa-arrow-right" text={ translations["Postulez aux opportunités en cours"] }/>
 							</div>
 						</div>
-						<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="" width="3840" height="2160" priority/>
+						<Image src={ router.basePath + "/assets/landings/presentation.png" } alt={translations["Illustration de page d'accueil Forinov"]} width="3840" height="2160" priority/>
 					</div>
 				</div>
 			</div>
@@ -236,9 +236,9 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			landing: await api.getLanding("next", "Landing", language),
-			opportunities: await api.getLandingOpportunities("next", "Landing", language),
-			startups: await api.getLandingStartups("next", "Landing", language)
+			landing: await apiInstance.getLanding("next", "Landing", language),
+			opportunities: await apiInstance.getLandingOpportunities("next", "Landing", language),
+			startups: await apiInstance.getLandingStartups("next", "Landing", language)
 		}
 	};
 };

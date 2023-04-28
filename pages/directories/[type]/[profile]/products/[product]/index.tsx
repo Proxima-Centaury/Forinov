@@ -4,23 +4,24 @@
 import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { ProductsInterface } from "../../../../../../typescript/interfaces";
-import api from "../../../../../../scripts/api";
+import apiInstance from "../../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-import Image from 'next/image';
+import Image from "next/image";
 import Link from "next/link";
+import Tags from "../../../../../../components/tags/tags";
+import Button from "../../../../../../components/buttons/button";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Styles */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import ProductStyles from "../../../../../../public/stylesheets/pages/Product.module.css";
 import ButtonStyles from "../../../../../../public/stylesheets/components/buttons/Button.module.css";
-import Tags from "../../../../../../components/tags/tags";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Product */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Product = (pageProps: ProductsInterface) => {
-    const { profile, products, states, router } = pageProps;
+    const { products, states, router } = pageProps;
     const { translations } = states;
     let { product } = router.query;
     product = product?.substring(product.indexOf("_") + 1, product.length);
@@ -32,65 +33,52 @@ const Product = (pageProps: ProductsInterface) => {
     }, [ products, product ]);
     return <div id="product" className="container">
         { (selectedProduct) ? <div className={ProductStyles.imageWrapper}>
-            { (selectedProduct.PICTURE) ? <Image src={ selectedProduct.PICTURE } alt=""/> : null }
+            { (selectedProduct.PICTURE) ? <Image src={ selectedProduct.PICTURE } alt={ translations["Image du produit"] + " : " + selectedProduct.NAME + "." } width="3840" height="2160"/> : null }
         </div> : null }
         { (selectedProduct) ? <div>
-            <h1 className={ProductStyles.name}>{selectedProduct.NAME}</h1>
-            <div className={ProductStyles.spacer}></div>
+            <h1 className={ ProductStyles.name }>{ selectedProduct.NAME }</h1>
+            <div className={ ProductStyles.spacer }></div>
         </div> : null }
         { (selectedProduct) ? <div>
-            <p>{selectedProduct.DESCRIPTION}</p>
+            <p>{ selectedProduct.DESCRIPTION }</p>
         </div> : null }
-        { (selectedProduct) ? <div className={ProductStyles.table}>
-            <div className={ProductStyles.row}>
-                <span>{translations["Maturité"]}</span>
+        { (selectedProduct) ? <div className={ ProductStyles.table }>
+            <div className={ ProductStyles.row }>
+                <span>{ translations["Maturité"] }</span>
                 <Tags tags={ selectedProduct.MATURITY }/>
             </div>
-            <div className={ProductStyles.row}>
-                <span>{ translations["Modèle économique"]}</span>
+            <div className={ ProductStyles.row }>
+                <span>{ translations["Modèle économique"] }</span>
                 <Tags tags={ selectedProduct.ECONOMICMODEL }/>
             </div>
-            <div className={ProductStyles.row}>
-                <span>{ translations["Ordre de prix"]}</span>
-                <span>{selectedProduct.PRICE} €</span>
+            <div className={ ProductStyles.row }>
+                <span>{ translations["Ordre de prix"] }</span>
+                <span>{ selectedProduct.PRICE || "??" } €</span>
             </div>
-            <div className={ProductStyles.row}>
-                <span>{translations["Clients actuels"]}</span>
-                <span>{selectedProduct.CLIENTS}</span>
+            <div className={ ProductStyles.row }>
+                <span>{ translations["Clients actuels"] }</span>
+                <span>{ selectedProduct.CLIENTS }</span>
             </div>
-            <div className={ProductStyles.row}>
-                <span>{translations["Modèle"]}</span>
+            <div className={ ProductStyles.row }>
+                <span>{ translations["Modèle"] }</span>
                 <Tags tags={ selectedProduct.BUSINESSMODEL }/>
             </div>
-            <div className={ProductStyles.row}>
-                <span>{ translations["Technologies"]}</span>
+            <div className={ ProductStyles.row }>
+                <span>{ translations["Technologies"] }</span>
                 <Tags tags={ selectedProduct.TECHNOLOGIES }/>
             </div>
-            <div className={ProductStyles.row}>
-                <span>{translations["Entreprises Cible"] }</span>
+            <div className={ ProductStyles.row }>
+                <span>{ translations["Entreprises Cible"] }</span>
                 <Tags tags={ selectedProduct.TARGETCOMPANIES }/>
             </div>
-            <div className={ProductStyles.row}>
-                <span>{translations["Secteurs Cible"]}</span>
+            <div className={ ProductStyles.row }>
+                <span>{ translations["Secteurs Cible"] }</span>
                 <Tags tags={ selectedProduct.TARGETSECTORS }/>
             </div>
         </div> : null }
-        { (selectedProduct) ? <div className={ProductStyles.actions}>
-            <Link
-                href={selectedProduct.LINK}
-                className={ProductStyles.link}
-            >
-                {translations["Voir la vidéo de présentation"]}
-            </Link>
-            <Link
-                href={'/login'}
-                className={ButtonStyles.callToAction}
-                style={{
-                    color: "var(--perfect-white-color)"
-                }}
-            >
-                {translations["Faire une demande"]}
-            </Link>
+        { (selectedProduct) ? <div className={ ProductStyles.actions }>
+            <Button button={ ButtonStyles.classicLink } href={ selectedProduct.LINK || "#" } text={ translations["Voir la vidéo de présentation"] }/>
+            <Button button={ ButtonStyles.callToAction } href="/login" text={ translations["Faire une demande"] }/>
         </div> : null }
     </div>;
 };
@@ -109,7 +97,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         type = (type.match(/(corporates)/)) ? "entreprise" : type;
         type = (type.match(/(partners)/)) ? "partenaire" : type;
     };
-    const foundProfile = await api.getProfile(type, profile, "next", "Sorbonne", language);
+    const foundProfile = await apiInstance.getProfile(type, profile, "next", "Sorbonne", language);
     if(!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {
         return {
             redirect: {
@@ -122,7 +110,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         props: {
             locale, locales, defaultLocale,
             profile: foundProfile,
-            products: await api.getProducts(type, profile, "next", "Sorbonne", language)
+            products: await apiInstance.getProducts(type, profile, "next", "Sorbonne", language)
         }
     };
 };

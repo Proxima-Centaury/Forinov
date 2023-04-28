@@ -4,7 +4,7 @@
 import { GetServerSideProps } from "next";
 import { Fragment } from "react";
 import { HomeInterface } from "../typescript/interfaces";
-import api from "../scripts/api";
+import apiInstance from "../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Components */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -37,7 +37,7 @@ const PartnersHome = (pageProps: HomeInterface) => {
 							<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Rejoindre la communauté"] }/>
 						</div>
 					</div>
-					<Image src={ router.basePath + "/assets/landings/presentation.png" } alt="" width="3840" height="2160" priority/>
+					<Image src={ router.basePath + "/assets/landings/presentation.png" } alt={translations["Illustration de page d'accueil Forinov"]} width="3840" height="2160" priority/>
 				</div>
 			</div>
 			<div className={ HomeStyles.register } data-type="partner">
@@ -124,8 +124,8 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	return {
 		props: {
 			locale, locales, defaultLocale,
-			startups: await api.getLandingStartups("next", "Landing", language),
-			logos: await api.getLandingLogos("next", "Landing", language)
+			startups: await apiInstance.getLandingStartups("next", "Landing", language),
+			logos: await apiInstance.getLandingLogos("next", "Landing", language)
 		}
 	};
 };
