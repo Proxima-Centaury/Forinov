@@ -76,6 +76,8 @@ const Directory = (pageProps: DirectoryInterface) => {
         };
         if(search.keywords.length >= 2 || search.categories.length >= 1 || search["targetsectors" as keyof Object] || search["technologies" as keyof Object] || search["targetjobs" as keyof Object] || search["businessmodel" as keyof Object]) {
             fetchResults();
+        } else if(network >= 1) {
+            setSearch({ ...search, categories: filters.CATEGORIES.map((category: any) => category.ID).join(", ") });
         } else {
             setResults([]);
             setSelects(null);
