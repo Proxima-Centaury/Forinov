@@ -20,7 +20,7 @@ const MultipleSelect = (selectProps: SelectInterface) => {
     const { options, action, placeholder, source, dynamic, limited, search, states, stateSetters, router } = selectProps;
     const { translations } = states;
     const { setModal } = stateSetters;
-    const { category } = router.query;
+    const { category, defaultCategories } = router.query;
     const [ selectState, setSelectState ] = useState(false);
     const [ selectedOptions, setSelectedOptions ] = useState([]);
     const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
@@ -47,6 +47,10 @@ const MultipleSelect = (selectProps: SelectInterface) => {
                 return (action) ? action(event, [], placeholder) : null;
             };
             return (action) ? action(event, []) : null;
+        } else if(defaultCategories) {
+            const defaultCategoriesIds = (defaultCategories) ? defaultCategories.split("-") : [];
+            const defaultCategoriesSelection = options?.filter((option: any) => defaultCategoriesIds.includes(option.ID));
+            setSelectedOptions(defaultCategoriesSelection as any);
         } else {
             setSelectedOptions(selectifiedOptions as any);
             if(dynamic) {
@@ -105,7 +109,12 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         <div className={ SelectStyles.options }>
             <div className={ SelectStyles.container }>
                 <Button button={ SelectStyles.option } { ...additionalProps } action={ selectAllHandler }/>
-                { (selectifiedOptions.length > 0) ? selectifiedOptions.map((option: any, key: Key) => {
+                { (selectifiedOptions.length > 0 && placeholder === translations["Catégories"] && defaultCategories) ? selectifiedOptions.map((option: any, key: Key) => {
+                    const isDynamic = (dynamic) ? true : false;
+                    const defaultCategoriesIds = (defaultCategories) ? defaultCategories.split("-") : [];
+                    return (defaultCategoriesIds.includes(option.ID)) ? <Option key={ key } option={ option } selectedOptions={ selectedOptions } action={ action } ownAction={ setSelectedOptions } dynamic={ (isDynamic) ? placeholder : null }/> : null;
+                }) : null }
+                { (selectifiedOptions.length > 0 && placeholder !== translations["Catégories"]) ? selectifiedOptions.map((option: any, key: Key) => {
                     const isDynamic = (dynamic) ? true : false;
                     return (!option.COUNT || option.COUNT && option.COUNT > 0) ? <Option key={ key } option={ option } selectedOptions={ selectedOptions } action={ action } ownAction={ setSelectedOptions } dynamic={ (isDynamic) ? placeholder : null }/> : null;
                 }) : null }
