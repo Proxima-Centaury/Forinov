@@ -48,7 +48,6 @@ const MultipleSelect = (selectProps: SelectInterface) => {
             };
             return (action) ? action(event, []) : null;
         } else if(defaultCategories) {
-            console.log(options);
             const defaultCategoriesIds = (defaultCategories) ? defaultCategories.split("-") : [];
             const defaultCategoriesSelection = options?.filter((option: any) => defaultCategoriesIds.includes(option.ID));
             setSelectedOptions(defaultCategoriesSelection as any);
