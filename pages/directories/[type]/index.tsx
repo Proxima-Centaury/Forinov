@@ -50,6 +50,17 @@ const Directory = (pageProps: DirectoryInterface) => {
             return translations["Opportunités"];
         };
     };
+    const getMapUrlParameters = () => {
+        if(network && !privateFilter) {
+            return "?NETWORK=" + network;
+        } else if(!network && privateFilter) {
+            return "?PRIVATEFILTER=" + privateFilter;
+        } else if(network && privateFilter) {
+            return "?NETWORK=" + network + "&PRIVATEFILTER=" + privateFilter;
+        } else {
+            return "";
+        };
+    };
     const gridButtonAction: MouseEventHandler = () => setDisplay("grid threeColumns");
     const listButtonAction: MouseEventHandler = () => setDisplay("list");
     const switchDisplayButtonAction: MouseEventHandler = () => {
@@ -105,7 +116,7 @@ const Directory = (pageProps: DirectoryInterface) => {
                     <div className={ FiltersStyles.displays } ref={ displaysReference }>
                         <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ gridButtonAction } icon="fa-light fa-grid-2" active={ display === "grid threeColumns" }/>
                         <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon } action={ listButtonAction } icon="fa-light fa-list" active={ display !== "grid threeColumns" }/>
-                        { (ui && ui == "false" && type.match(/(startups)/)) ? <a className={ ButtonStyles.callToActionAlternativeSquaredIcon } href={ domain + "/account_startup_map.php" } target="_parent">
+                        { (ui && ui == "false" && type.match(/(startups)/)) ? <a className={ ButtonStyles.callToActionAlternativeSquaredIcon } href={ domain + "/account_startup_map.php" + getMapUrlParameters() } target="_parent">
                             <i className="fa-light fa-map-location-dot"/>
                         </a> : null }
                         <Button button={ ButtonStyles.callToActionAlternativeSquaredIcon + " " + FiltersStyles.switcher } action={ switchDisplayButtonAction } icon="fa-light fa-arrow-up-arrow-down"/>
