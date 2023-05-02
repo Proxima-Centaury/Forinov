@@ -2,6 +2,7 @@
 /* Imports */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 import { GetServerSideProps } from "next";
+import { formatType } from "../../../../../../../../scripts/utilities";
 import apiInstance from "../../../../../../../../scripts/api";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Page */
@@ -10,19 +11,14 @@ import Folder from "../../../../../[profile]/folders/[folder]";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Props */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const getServerSideProps: GetServerSideProps = async (context) => {
+const getServerSideProps: GetServerSideProps = async (context: any) => {
     const { res, query, locale, locales, defaultLocale } = context;
-    let { profile, type }: any = query;
-    profile = profile?.substring(profile.indexOf("_") + 1, profile.length);
-    const language = "&lang=" + locale?.substring(0, 2);
+    const { type, profile } = query;
+    const typeReference = formatType(type, "fr");
+    const profileReference = profile?.substring(profile.indexOf("_") + 1, profile.length);
+    const language = locale?.substring(0, 2);
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-    if(type) {
-        type = String(type);
-        type = (type.match(/(startups)/)) ? "startup" : type;
-        type = (type.match(/(corporates)/)) ? "entreprise" : type;
-        type = (type.match(/(partners)/)) ? "partenaire" : type;
-    };
-    const foundProfile = await apiInstance.getProfile(type, profile, "next", "Sorbonne", language);
+    const foundProfile = await apiInstance.getProfile(typeReference, profileReference, "next", "Sorbonne", language);
     if(!foundProfile || (foundProfile && Object.keys(foundProfile).length === 0)) {
         return {
             redirect: {
@@ -35,7 +31,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         props: {
             locale, locales, defaultLocale,
             profile: foundProfile,
-            folders: await apiInstance.getFolders(type, profile, "next", "Sorbonne", language)
+            folders: await apiInstance.getFolders(typeReference, profileReference, "next", "Sorbonne", language)
         }
     };
 };

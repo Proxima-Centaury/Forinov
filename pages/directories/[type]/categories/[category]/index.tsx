@@ -10,7 +10,7 @@ import Directory from "../index";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Server Side Props */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-const getServerSideProps: GetServerSideProps = async (context) => {
+const getServerSideProps: GetServerSideProps = async (context: any) => {
     const { res, locale, locales, defaultLocale } = context;
     const language = locale?.substring(0, 2);
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
