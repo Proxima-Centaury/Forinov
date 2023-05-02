@@ -12,6 +12,12 @@
 .presentation:not([data-type="home"]) {
 	padding: calc(80px - 16px);
 }
+@media screen and (max-width: 992px) {
+	.presentation,
+	.presentation:not([data-type="home"]) {
+		padding: calc(80px - 16px);
+	}
+}
 @media screen and (max-width: 576px) {
 	.presentation,
 	.presentation:not([data-type="home"]) {
@@ -56,6 +62,11 @@
 	font-family: "Nunito Sans";
 	font-weight: 300;
 	color: var(--logo-blue-color);
+}
+@media screen and (max-width: 576px) {
+	.presentation > div[class="container"] > h1 {
+		text-align: center;
+	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Presentation For Home ) */
@@ -329,6 +340,11 @@
 	grid-gap: 16px;
 	gap: 16px;
 }
+@media screen and (max-width: 576px) {
+	.type > .head {
+		justify-content: center;
+	}
+}
 .type > .head > i {
 	font-size: 56px;
 }
@@ -362,6 +378,11 @@
 	flex-direction: column;
 	grid-gap: 16px;
 	gap: 16px;
+}
+@media screen and (max-width: 576px) {
+	.type > .body * {
+		text-align: center;
+	}
 }
 .type > .footer {
 	display: flex;
@@ -717,6 +738,14 @@
 .startups[data-type="home"] > div[class="container"] > .startupsCategories {
 	justify-content: flex-start;
 }
+@media screen and (max-width: 576px) {
+	.startups[data-type="home"] > div[class="container"] > h3 {
+		text-align: center;
+	}
+	.startups[data-type="home"] > div[class="container"] > .startupsCategories {
+		justify-content: center;
+	}
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Startups For Partner ) */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -760,6 +789,15 @@
 }
 .structures[data-type="home"] > div[class="container"] > .structuresCategories {
 	justify-content: flex-start;
+}
+@media screen and (max-width: 576px) {
+	.structures[data-type="home"] > div[class="container"] > h3,
+	.structures[data-type="home"] > div[class="container"] > p {
+		text-align: center;
+	}
+	.structures[data-type="home"] > div[class="container"] > .structuresCategories {
+		justify-content: center;
+	}
 }
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Home ( Companies ) */

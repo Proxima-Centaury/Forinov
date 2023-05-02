@@ -27,11 +27,9 @@ const Deals = (pageProps: DealsInterface) => {
     const router = useRouter();
     const { filters, deals, states } = pageProps;
     const { translations } = states;
-    const { category, subcategory } = router.query;
-    const [ informations, setInformations ]: any = useState(null);
+    const { category } = router.query;
     const [ subcategories, setSubcategories ] = useState([]);
     const categoryId = category?.toString().substring(category.indexOf("_") + 1, category.length);
-    const subcategoryId = subcategory?.toString().substring(subcategory.indexOf("_") + 1, subcategory.length);
     const categories = filters?.OPPORTUNITIES.find((category: any) => category.ID === "5").CATEGORIES || [];
     useEffect(() => {
         if(categories.length > 0 && categoryId) {
@@ -41,14 +39,6 @@ const Deals = (pageProps: DealsInterface) => {
             setSubcategories([]);
         };
     }, [ category ]);
-    // useEffect(() => {
-    //     const informations = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] === "INFORMATIONS")[0] : [];
-    //     const filters = (dynamicFilters) ? Object.entries(dynamicFilters).filter((filter) => filter[0] !== "INFORMATIONS") : [];
-    //     setDynamicInformations(informations);
-    //     (type.match(/(startups)/)) ? setDynamicFiltersToArray(filters) : setDynamicFiltersToArray([]);
-    //     (setInformations && informations) ? setInformations(informations[1]) : null;
-    // }, [ dynamicFilters, setInformations, type ]);
-    // console.log(filters, deals);
     return <div id="deals" className="container">
         <div className={ DealsStyles.categories }>
             { (categories.length > 0) ? categories.map((category: any, key: Key) => {
@@ -68,9 +58,25 @@ const Deals = (pageProps: DealsInterface) => {
             }) }
         </div> : null }
         { (deals && deals.length > 0) ? <div className="grid threeColumns">
-            { deals.map((opportunity: any, key: Key) => (key < deals.length - 1) ? <Link key={ key } href={ "/directories/opportunities/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID }>
-                <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ parseInt(key.toString()) + 1 }/>
-            </Link> : null) }
+            { deals.map((opportunity: any, key: Key) => {
+                if(key < deals.length - 1) {
+                    const getUrl = (): String => {
+                        const dealCategory = opportunity.DEALCAT[0] || null;
+                        const subCategory = opportunity.DEALSUBCAT[0] || null;
+                        if(!dealCategory && !subCategory) {
+                            return "/deals/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID;
+                        } else if(dealCategory && !subCategory) {
+                            return "/deals/" + formatNameForUrl(dealCategory.NAME) + "_" + dealCategory.ID + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID;
+                        } else if(dealCategory && subCategory) {
+                            return "/deals/" + formatNameForUrl(dealCategory.NAME) + "_" + dealCategory.ID + "/" + formatNameForUrl(subCategory.NAME) + "_" + subCategory.ID + "/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID;
+                        };
+                        return "/deals/" + formatNameForUrl(opportunity.TITLE) + "_" + opportunity.ID;
+                    };
+                    return <Link key={ key } href={ getUrl().toString() }>
+                        <OpportunityCard { ...pageProps } opportunity={ opportunity } index={ parseInt(key.toString()) + 1 }/>
+                    </Link>;
+                };
+            }) }
         </div> : null}
     </div>;
 };
@@ -80,15 +86,11 @@ const Deals = (pageProps: DealsInterface) => {
 const getServerSideProps: GetServerSideProps = async (context) => {
     const { res, query, locale, locales, defaultLocale } = context;
     const { category, subcategory } = query;
-    const language = locale?.substring(0, 2);
     const categoryId = category?.toString().substring(category.indexOf("_") + 1, category.length);
     const subcategoryId = subcategory?.toString().substring(subcategory.indexOf("_") + 1, subcategory.length);
+    const language = locale?.substring(0, 2);
     res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     return {
-        // redirect: {
-        //     destination: "/403",
-        //     permanent: false
-        // },
         props: {
             locale, locales, defaultLocale,
             filters: await apiInstance.getPublicCommons("next", "Landing", language),
