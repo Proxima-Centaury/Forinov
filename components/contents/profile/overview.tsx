@@ -103,7 +103,6 @@ const Startup = (pageProps: any) => {
 const Corporate = (pageProps: any) => {
     const { profile, states }: any = pageProps;
     const { translations }: any = states;
-    console.log(profile);
     return <Fragment>
         { (profile.HEADQUARTER) ? <div className={ OverviewStyles.details }>
             <p className={ OverviewStyles.label }>{ translations["Maison mère"] }</p>
