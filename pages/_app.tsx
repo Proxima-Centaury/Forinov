@@ -36,6 +36,7 @@ import "../public/stylesheets/tests.css";
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const App = ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
+    const { ui } = router.query;
     const [ errors, setErrors ] = useState({});
     const [ locale, setLocale ] = useState(pageProps.locale);
     const [ locales, setLocales ] = useState(pageProps.locales);
@@ -109,6 +110,10 @@ const App = ({ Component, pageProps }: AppProps) => {
     useEffect(() => {
         setCookie("forinov_rgb_preference", RGB, { sameSite: "strict" });
     }, [ RGB ])
+    useEffect(() => {
+        const body = document.body;
+        (body) ? body.setAttribute("data-ui", ui || true) : null;
+    }, [ ui ]);
     pageProps.states = {};
     pageProps.states["errors"] = errors;
     pageProps.states["locale"] = locale;
