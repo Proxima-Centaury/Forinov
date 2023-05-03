@@ -114,7 +114,7 @@ const MultipleSelect = (selectProps: SelectInterface) => {
                     const defaultCategoriesIds = (defaultCategories) ? defaultCategories.split("-") : [];
                     return (defaultCategoriesIds.includes(option.ID)) ? <Option key={ key } option={ option } selectedOptions={ selectedOptions } action={ action } ownAction={ setSelectedOptions } dynamic={ (isDynamic) ? placeholder : null }/> : null;
                 }) : null }
-                { (selectifiedOptions.length > 0 && placeholder !== translations["Catégories"]) ? selectifiedOptions.map((option: any, key: Key) => {
+                { (selectifiedOptions.length > 0 && (placeholder !== translations["Catégories"] || placeholder === translations["Catégories"] && !defaultCategories)) ? selectifiedOptions.map((option: any, key: Key) => {
                     const isDynamic = (dynamic) ? true : false;
                     return (!option.COUNT || option.COUNT && option.COUNT > 0) ? <Option key={ key } option={ option } selectedOptions={ selectedOptions } action={ action } ownAction={ setSelectedOptions } dynamic={ (isDynamic) ? placeholder : null }/> : null;
                 }) : null }
