@@ -8,7 +8,6 @@
     align-items: center;
     grid-gap: 8px;
     gap: 8px;
-    flex: 1;
 }
 .container > p {
     color: var(--logo-blue-color);
