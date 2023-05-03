@@ -1,6 +1,9 @@
 {
     "api": {
-        "endpoint": "https://www.forinov.fr/remote/back/api.php",
+        "endpoint": {
+            "development": "https://dev.forinov.fr/remote/back/api.php",
+            "production": "https://www.forinov.fr/remote/back/api.php"
+        },
         "calls": {
             "getProfile": {
                 "query": "V5_GET_PROFILE",

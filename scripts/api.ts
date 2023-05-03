@@ -19,7 +19,7 @@ import apiConfigurations from "../configurations/api.json";
 * @note This class is used to fetch data from external API.
 */
 class API {
-    endpoint: String = apiConfigurations.api.endpoint;
+    endpoint: String = apiConfigurations.api.endpoint[(process.env.NODE_ENV === "development") ? "development" : "production"];
     constructor() {
         const queryProps = Object.entries(apiConfigurations.api.calls);
         queryProps.map((query: Array<any>) => {
