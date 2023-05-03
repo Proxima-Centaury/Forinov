@@ -112,7 +112,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     }, [ RGB ])
     useEffect(() => {
         const body = document.body;
-        (body) ? body.setAttribute("data-ui", ui || true) : null;
+        (body) ? body.setAttribute("data-ui", (ui) ? ui.toString() : "true") : null;
     }, [ ui ]);
     pageProps.states = {};
     pageProps.states["errors"] = errors;
