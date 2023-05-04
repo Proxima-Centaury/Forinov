@@ -20,14 +20,15 @@ const MultipleSelect = (selectProps: SelectInterface) => {
     const { options, action, placeholder, source, dynamic, limited, search, states, stateSetters, router } = selectProps;
     const { translations } = states;
     const { setModal } = stateSetters;
-    const { category, defaultCategories } = router.query;
+    const { defaultCategories } = router.query;
     const [ selectState, setSelectState ] = useState(false);
     const [ selectedOptions, setSelectedOptions ] = useState([]);
-    const categoryId = category?.substring(category.indexOf("_") + 1, category.length);
     const selectifiedOptions = selectifyTheOptions(options, source) as Array<Object>;
     const placeholderToSearchFilter = (): String => {
         let filterName = "";
-        if(placeholder?.match(/(secteurs)/i)) {
+        if(placeholder?.match(/(catégories)/i)) {
+            filterName = "categories";
+        } else if(placeholder?.match(/(secteurs)/i)) {
             filterName = "targetsectors";
         } else if(placeholder?.match(/(technologies)/i)) {
             filterName = "technologies";
@@ -68,29 +69,15 @@ const MultipleSelect = (selectProps: SelectInterface) => {
         };
     };
     useEffect(() => {
-        if(selectedOptions.length <= 0) {
-            if(!dynamic && search.categories && search.categories.split("-").length > 0) {
-                search.categories.split("-").map((option: any) => {
-                    if(option) {
-                        if(options && options.filter((selectedOption: any) => selectedOption.ID === option.toString()).length > 0) {
-                            setSelectedOptions(options.filter((selectedOption: any) => selectedOption.ID === option.toString()) as any);
-                        };
-                    };
-                });
-            } else if(dynamic) {
-                const filterName = placeholderToSearchFilter();
-                const filterValues = search[filterName as keyof Object] || "";
-                const filterValuesToArray = filterValues.split("-");
-                filterValuesToArray.map((option: any) => {
-                    if(option) {
-                        if(options && options.filter((selectedOption: any) => selectedOption.ID === option.toString()).length > 0) {
-                            setSelectedOptions(options.filter((selectedOption: any) => selectedOption.ID === option.toString()) as any);
-                        };
-                    };
-                });
+        if(defaultCategories && placeholder?.match(/(catégories|categories)/i)) {
+            const defaultCategoriesIds = (defaultCategories) ? defaultCategories.split("-") : [];
+            if(defaultCategoriesIds.length > 0 && options && options?.length > 0) {
+                const iframeDefaultSelectedOptions: any = [];
+                options.map((option: any) => (defaultCategoriesIds.includes(option.ID)) ? iframeDefaultSelectedOptions.push(option) : null);
+                setSelectedOptions(iframeDefaultSelectedOptions);
             };
         };
-    });
+    }, [ defaultCategories ]);
     useEffect(() => {
         bindEventListeners(document, [ "click" ], handleOutOfArea);
         return () => {
