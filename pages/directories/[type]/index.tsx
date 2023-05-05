@@ -88,7 +88,15 @@ const Directory = (pageProps: DirectoryInterface) => {
         if(search.keywords.length >= 2 || search.categories.length >= 1 || search["targetsectors" as keyof Object] || search["technologies" as keyof Object] || search["targetjobs" as keyof Object] || search["businessmodel" as keyof Object]) {
             fetchResults();
         } else if(network >= 1) {
-            setSearch({ ...search, categories: filters.CATEGORIES.map((category: any) => category.ID).join("-") });
+            if(type.match(/(startups)/)) {
+                setSearch({ ...search, categories: filters.CATEGORIES.map((category: any) => category.ID).join("-") });
+            } else if(type.match(/(corporates)/)) {
+                setSearch({ ...search, categories: filters.CORPORATES_SECTORS.map((category: any) => category.ID).join("-") });
+            } else if(type.match(/(partners)/)) {
+                setSearch({ ...search, categories: filters.PARTNERS_TYPES.map((category: any) => category.ID).join("-") });
+            } else if(type.match(/(opportunities)/)) {
+                setSearch({ ...search, categories: filters.OPPORTUNITIES.map((category: any) => category.ID).join("-") });
+            };
         } else {
             setResults([]);
             setSelects(null);
