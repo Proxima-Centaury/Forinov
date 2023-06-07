@@ -32,7 +32,7 @@ const StartupsHome = (pageProps: HomeInterface) => {
 				<div className="container">
 					<div className={ HomeStyles.presentationContent }>
 						<h1>{ translations["Développe ton business"] }</h1>
-						<p className={ HomeStyles.paragraph }>{ translations["Il n'a jamais été aussi simple pour les startups de trouver des clients, des opportunités (appels à candidatures, appels à candidatures, etc.) et de développer leurs réseaux"] + " !" }</p>
+						<p className={ HomeStyles.paragraph }>{ translations["Il n'a jamais été aussi simple pour les startups de trouver des clients, des opportunités (appels à candidatures, etc.) et de développer leurs réseaux"] + " !" }</p>
 						<div className={ HomeStyles.presentationLinks }>
 							<Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations["Créer mon profil gratuitement"] }/>
 						</div>

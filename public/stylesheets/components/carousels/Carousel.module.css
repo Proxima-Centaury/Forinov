@@ -52,6 +52,87 @@
 	pointer-events: all;
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Infinite ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.infinite {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 48px 0px;
+	overflow-x: hidden;
+}
+.infinite[data-size="small"] {
+	max-width: calc(8 * 160px);
+	height: calc(80px + (2 * 48px));
+}
+.infinite[data-size="classic"] {
+	max-width: calc(8 * 450px);
+	height: calc(400px + (2 * 48px));
+}
+.infinite::before,
+.infinite::after {
+	width: 50px;
+	height: 100%;
+	position: absolute;
+	content: "";
+	z-index: 1;
+}
+.infinite::before {
+	left: 0px;
+	background: linear-gradient(-90deg, #00000000 0%, var(--background-main-color) 80%);
+}
+.infinite::after {
+	right: 0px;
+	background: linear-gradient(90deg, #00000000 0%, var(--background-main-color) 80%);
+}
+.firstCopy,
+.secondCopy {
+	display: flex;
+	grid-gap: 16px;
+	gap: 16px;
+	position: absolute;
+}
+[data-size="small"] .firstCopy {
+	animation: scrollSmall1 6s linear infinite;
+}
+[data-size="classic"] .firstCopy {
+	animation: scrollClassic1 16s linear infinite;
+}
+[data-size="small"] .secondCopy {
+	animation: scrollSmall2 6s linear infinite;
+}
+[data-size="classic"] .secondCopy {
+	animation: scrollClassic2 16s linear infinite;
+}
+@keyframes scrollSmall1 {
+	0% {
+		transform: translateX(0);
+	} 100% {
+		transform: translateX(calc((-160px - 16px) * 8));
+	}
+}
+@keyframes scrollClassic1 {
+	0% {
+		transform: translateX(0);
+	} 100% {
+		transform: translateX(calc((-450px - 16px) * 8));
+	}
+}
+@keyframes scrollSmall2 {
+	0% {
+		transform: translateX(calc((160px + 16px) * 8));
+	} 100% {
+		transform: translateX(0);
+	}
+}
+@keyframes scrollClassic2 {
+	0% {
+		transform: translateX(calc((450px + 16px) * 8));
+	} 100% {
+		transform: translateX(0);
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Item ) */
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .item,
@@ -66,27 +147,18 @@
 	min-width: 100%;
 	flex: 1;
 }
-@media screen and (max-width: 576px) {
-	.item {
-		min-width: 100%;
-	}
-}
 @media screen and (max-width: 992px) {
 	.itemFullWidth {
 		flex-direction: column;
 	}
 }
-.item > * {
-	min-width: 400px;
-	width: 400px;
-	max-width: 400px;
-	height: 100%;
-}
-.item > *[class*="Profile"],
-.item > *[class*="Opportunity"] {
-	min-width: 520px;
-	width: 520px;
-	max-width: 520px;
+.item {
+	min-width: 450px;
+	width: 450px;
+	max-width: 450px;
+	min-height: 400px;
+	height: 400px;
+	max-height: 400px;
 }
 .itemFullWidth > * {
 	width: 100%;
@@ -95,14 +167,15 @@
 .itemFullWidth > *:hover {
 	transform: inherit !important;
 }
-@media screen and (max-width: 576px) {
-	.item > *,
-	.item > *[class*="Profile"],
-	.item > *[class*="Opportunity"] {
-		min-width: 100%;
-		width: 100%;
-		max-width: 100%;
-	}
+.item > *,
+.item > *[class*="Profile"],
+.item > *[class*="Opportunity"] {
+	min-width: 100%;
+	width: 100%;
+	max-width: 100%;
+	min-height: 100%;
+	height: 100%;
+	max-height: 100%;
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Carousel ( Item Step Content ) */
@@ -308,61 +381,6 @@
 @media screen and (max-width: 768px) {
 	.actions {
 		flex-direction: column;
-	}
-}
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Carousel ( Infinite ) */
-/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.infinite {
-	display: flex;
-	align-items: center;
-	width: 100%;
-	max-width: calc(15 * 160px);
-	height: calc(80px + (2 * 48px));
-	padding: 48px 0px;
-	overflow-x: hidden;
-}
-.infinite::before,
-.infinite::after {
-	width: 50px;
-	height: 100%;
-	position: absolute;
-	content: "";
-	z-index: 1;
-}
-.infinite::before {
-	left: 0px;
-	background: linear-gradient(-90deg, #00000000 0%, var(--background-main-color) 80%);
-}
-.infinite::after {
-	right: 0px;
-	background: linear-gradient(90deg, #00000000 0%, var(--background-main-color) 80%);
-}
-.firstCopy,
-.secondCopy {
-	display: flex;
-	grid-gap: 16px;
-	gap: 16px;
-	position: absolute;
-}
-.firstCopy {
-	animation: scroll1 10s linear infinite;
-}
-.secondCopy {
-	animation: scroll2 10s linear infinite;
-}
-@keyframes scroll1 {
-	0% {
-		transform: translateX(0);
-	} 100% {
-		transform: translateX(calc((-160px - 16px) * 14));
-	}
-}
-@keyframes scroll2 {
-	0% {
-		transform: translateX(calc((160px + 16px) * 14));
-	} 100% {
-		transform: translateX(0);
 	}
 }
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
