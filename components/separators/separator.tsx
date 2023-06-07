@@ -2,13 +2,15 @@
 /* Separator */
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Separator = (pageProps: any) => {
-    const { type, states }: any = pageProps;
-    const { translations }: any = states;
+    const { type, states } = pageProps;
+    const { translations } = states;
     switch(type) {
         case "or":
             return <div className="separatorOr">
                 <span>{ translations["Ou"] }</span>
             </div>;
+        case "vertical":
+            return <div className="separatorVertical"/>;
         default:
             return <div className="separator"/>;
     };

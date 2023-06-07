@@ -23,9 +23,9 @@
     grid-gap: 8px;
     gap: 8px;
     width: 100%;
-    min-height: 152px;
-    height: 152px;
-    max-height: 152px;
+    min-height: 150px;
+    height: 150px;
+    max-height: 150px;
     border-radius: 15px 15px 0px 0px;
     overflow: hidden;
 }
