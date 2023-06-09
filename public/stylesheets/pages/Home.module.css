@@ -1033,6 +1033,9 @@
 	text-align: center;
 	font-size: 16px;
 }
+.badge > .content > p > a span {
+	font-size: 16px;
+}
 @media screen and (max-width: 1200px) {
 	.badge > .content > h6,
 	.badge > .content > p {

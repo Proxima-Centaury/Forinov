@@ -298,7 +298,7 @@ const InfiniteScrollHorizontal = (carouselProps: any) => {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 const Items = (itemProps: any) => {
     const { component, data, states, router } = itemProps;
-    const { RGB } = states;
+    const { translations, RGB } = states;
     const [ lightingState, setLightingState ] = useState("disabled");
     useEffect(() => (RGB) ? setLightingState("enabled") : setLightingState("disabled"), [RGB]);
     switch (component) {
@@ -339,12 +339,10 @@ const Items = (itemProps: any) => {
             return data.map(({ id, type, name, logo }: any, key: Key) => {
                 type = (type.match(/(entreprise)/i)) ? "corporate" : type;
                 type = (type.match(/(partenaire)/i)) ? "partner" : type;
-                if (key < 14) {
-                    const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
-                    return <Link key={key} href={url} className={CarouselStyles.logo} data-type="tooltip" data-tooltip={name}>
-                        <Image src={logo} alt={"Image de l'entreprise no"} width="100" height="100" />
-                    </Link>;
-                };
+                const url = "/directories/" + type.toLowerCase() + "s/" + formatNameForUrl(name) + "_" + id;
+                return <Link key={ key } className={ CarouselStyles.logo } href={ url } data-type="tooltip" data-tooltip={ name }>
+                    <Image src={ logo } alt={ translations["Logo de l'entreprise du nom de"] + " " + name } width="100" height="100" />
+                </Link>;
             });
         default:
             return <div></div>;

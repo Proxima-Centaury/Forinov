@@ -66,7 +66,7 @@ const StartupsHome = (pageProps: HomeInterface) => {
 							<i className="fa-light fa-chart-network"/>
 							<div className={ HomeStyles.content }>
 								<h6>{ translations["Découvre"] }</h6>
-								<p>{ translations["Les appels à candidatures, programmes d'accompagnement, concours dans"] } <Button button={ ButtonStyles.classicLink } href="/directories/opportunities/categories" text={ translations["L'annuaire d'opportunités"].toLowerCase() }/>.</p>
+								<p>{ translations["Les appels à candidatures, programmes d'accompagnement, challenges et concours dans"] } <Button button={ ButtonStyles.classicLink } href="/directories/opportunities/categories" text={ translations["L'annuaire d'opportunités"].toLowerCase() }/>.</p>
 							</div>
 						</div>
 						<Separator { ...pageProps }/>
