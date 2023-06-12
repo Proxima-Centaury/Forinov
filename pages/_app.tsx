@@ -153,8 +153,8 @@ const App = ({ Component, pageProps }: AppProps) => {
         </Head>
         { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/>) : null }
         <Transition { ...pageProps }>
-            <Component { ...pageProps }/>
-            { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/>) : null }
+            {/* <Component { ...pageProps }/>
+            { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/>) : null } */}
         </Transition>
         <Modal { ...pageProps }/>
         { (router.query.ui && router.query.ui == "false") ? null : (!production) ? <Devtools { ...pageProps }/> : null }
