@@ -4,7 +4,7 @@
         "paths": {
             "@layout/*": [ "layout/*" ],
             "@loaders/*": [ "components/loaders/*" ],
-            "@action/*": [ "components/action/*" ],
+            "@actions/*": [ "components/actions/*" ],
             "@typescript/types/*": [ "typescript/types/*" ],
             "@scripts/*": [ "utilities/scripts/*" ],
             "@stylesheets/*": [ "public/stylesheets/*" ],
