@@ -1,32 +1,17 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/** @type { import("next-sitemap").IConfig } */
+/** @type { import("next-i18next").UserConfig } */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Configuration */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const nextSiteMapConfiguration = {
-    sourceDir: "production",
-    siteUrl: "https://interface.forinov.net",
-    generateRobotsTxt: true,
-    exclude: [ "/en-US/*", "/403", "/404", "/500", "/server-sitemap-index.xml" ],
-    alternateRefs: [
-        {
-            href: "https://interface.forinov.net/fr-FR",
-            hreflang: "fr",
-        },
-        {
-            href: "https://interface.forinov.net/en-US",
-            hreflang: "en",
-        },
-    ],
-    robotsTxtOptions: {
-        additionalSitemaps: [
-          "https://interface.forinov.net/server-sitemap-index.xml"
-        ]
+const i18nextConfiguration = {
+    i18n: {
+        defaultLocale: "fr",
+        locales: [ "fr", "en" ]
     }
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export default { nextSiteMapConfiguration };
+module.exports = { ...i18nextConfiguration };
