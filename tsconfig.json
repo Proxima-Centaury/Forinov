@@ -2,7 +2,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@utilities/*": [ "utilities/*" ],
+            "@scripts/*": [ "utilities/scripts/*" ],
             "@stylesheets/*": [ "public/stylesheets/*" ],
         },
         "target": "es5",
