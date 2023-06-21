@@ -2,7 +2,8 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@scripts/*": [ "scripts/*" ]
+            "@scripts/*": [ "scripts/*" ],
+            "@stylesheets/*": [ "public/stylesheets/*" ],
         },
         "target": "es5",
         "lib": [ "dom", "dom.iterable", "esnext" ],
