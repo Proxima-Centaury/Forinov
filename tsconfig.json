@@ -2,7 +2,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@layout/*": [ "layout/*" ]
+            "@layout/*": [ "layout/*" ],
             "@scripts/*": [ "utilities/scripts/*" ],
             "@stylesheets/*": [ "public/stylesheets/*" ],
         },
