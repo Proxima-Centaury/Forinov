@@ -3,6 +3,7 @@
         "baseUrl": ".",
         "paths": {
             "@layout/*": [ "layout/*" ],
+            "@loaders/*": [ "components/loaders/*" ],
             "@scripts/*": [ "utilities/scripts/*" ],
             "@stylesheets/*": [ "public/stylesheets/*" ],
         },
