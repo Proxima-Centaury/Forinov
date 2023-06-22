@@ -5,6 +5,7 @@
             "@layout/*": [ "layout/*" ],
             "@loaders/*": [ "components/loaders/*" ],
             "@actions/*": [ "components/actions/*" ],
+            "@separators/*": [ "components/separators/*" ],
             "@typescript/types/*": [ "typescript/types/*" ],
             "@scripts/*": [ "utilities/scripts/*" ],
             "@stylesheets/*": [ "public/stylesheets/*" ],
