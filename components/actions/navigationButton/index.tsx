@@ -10,8 +10,8 @@ import ActionsStyles from "@actions/action.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Navigation Button*/
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const NavigationButton = (buttonProps: TButton): JSX.Element => {
-    const { classList, action, active, disabled, tabIndex, ariaLabel } = buttonProps;
+const NavigationButton = (params: TButton): JSX.Element => {
+    const { classList, action, active, disabled, tabIndex, ariaLabel } = params;
     const isActive = (active) ? " " + ActionsStyles.active : "";
     const isDisabled = (disabled) ? " " + ActionsStyles.disabled : "";
     const nextClasses = classList?.split(" ").map((cssClass: string) => ActionsStyles[cssClass as keyof object]).join(" "); 

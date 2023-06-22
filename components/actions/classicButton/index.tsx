@@ -10,8 +10,8 @@ import ActionsStyles from "@actions/action.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Classic Button */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const ClassicButton = (buttonProps: TButton): JSX.Element => {
-    const { classList, icon, text, action, notifications, active, disabled, tabIndex, ariaLabel } = buttonProps;
+const ClassicButton = (params: TButton): JSX.Element => {
+    const { classList, icon, text, action, notifications, active, disabled, tabIndex, ariaLabel } = params;
     const isActive = (active) ? " " + ActionsStyles.active : "";
     const isDisabled = (disabled) ? " " + ActionsStyles.disabled : "";
     const nextClasses = classList?.split(" ").map((cssClass: string) => ActionsStyles[cssClass as keyof object]).join(" "); 
