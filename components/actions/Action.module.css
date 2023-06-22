@@ -1,0 +1,359 @@
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Action */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action:not(.ignore) {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    grid-gap: 8px;
+    gap: 8px;
+    padding: 8px 16px;
+    position: relative;
+    white-space: nowrap;
+    border-bottom: var(--border);
+    border-color: transparent;
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.action:not(.ignore):hover,
+.action:not(.ignore).active {
+    border-color: var(--logo-blue-color);
+}
+.action:not(.ignore) * {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--text-main-color);
+    transition: color 0.3s ease-in-out;
+}
+.action:not(.ignore):hover *,
+.action:not(.ignore).active * {
+    color: var(--logo-blue-color);
+}
+.action:not(.ignore).squared,
+.action:not(.ignore).circled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 40px;
+    width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    height: 40px;
+    max-height: 40px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Primary */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.primary {
+    border: var(--border);
+    border-color: var(--logo-blue-color);
+    border-radius: 100px;
+    background-color: var(--logo-blue-color);
+}
+.action.primary:hover,
+.action.primary.active {
+    background-color: var(--background-sub-color);
+}
+.action.primary * {
+    color: var(--perfect-white-color);
+}
+.action.primary:hover *,
+.action.primary.active * {
+    color: var(--logo-blue-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Secondary */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.secondary {
+    border: none;
+    border-radius: 100px;
+    background-color: var(--logo-blue-color);
+}
+.action.secondary:hover,
+.action.secondary.active {
+    background-color: var(--background-sub-color);
+}
+.action.secondary * {
+    color: var(--perfect-white-color);
+}
+.action.secondary:hover *,
+.action.secondary.active * {
+    color: var(--logo-blue-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Tertiary */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.tertiary {
+    border: none;
+    border-radius: 100px;
+    background-color: var(--lighter-grey-color);
+}
+.action.tertiary:hover,
+.action.tertiary.active {
+    background-color: var(--light-grey-color);
+}
+.action.tertiary * {
+    color: var(--text-inactive-color);
+}
+.action.tertiary:hover *,
+.action.tertiary.active * {
+    color: var(--perfect-black-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Quaternary */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.quaternary {
+    border: none;
+    border-radius: 100px;
+    background-color: transparent;
+}
+.action.quaternary:hover {
+    background-color: var(--lighter-grey-color);
+}
+.action.quaternary.active {
+    background-color: var(--background-private-color);
+}
+.action.quaternary * {
+    color: var(--perfect-black-color);
+}
+[data-theme="dark"] .action.quaternary * {
+    color: var(--perfect-white-color);
+}
+[data-theme="dark"] .action.quaternary:hover * {
+    color: var(--perfect-black-color);
+}
+.action.quaternary.active * {
+    color: var(--perfect-white-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Quinary */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.quinary {
+    border: none;
+    border-radius: 100px;
+    background-color: transparent;
+}
+.action.quinary:hover,
+.action.quinary.active {
+    background-color: var(--logo-blue-color);
+}
+.action.quinary * {
+    color: var(--logo-blue-color);
+}
+.action.quinary:hover *,
+.action.quinary.active * {
+    color: var(--perfect-white-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Sinary */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.sinary {
+    border: none;
+    border-radius: 100px;
+    background-color: var(--logo-blue-color);
+}
+.action.sinary:hover,
+.action.sinary.active {
+    background-color: var(--light-blue-color);
+}
+.action.sinary * {
+    color: var(--perfect-white-color);
+}
+.action.sinary:hover *,
+.action.sinary.active * {
+    color: var(--logo-blue-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Septary */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.septary {
+    border: none;
+    border-radius: 100px;
+    background-color: var(--background-sub-color);
+}
+.action.septary:hover,
+.action.septary.active {
+    background-color: var(--light-blue-color);
+}
+.action.septary * {
+    color: var(--logo-blue-color);
+}
+.action.septary:hover *,
+.action.septary.active * {
+    color: var(--logo-blue-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Design */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.design {
+    background: linear-gradient(90deg, #ec008c, #fc6767);
+    overflow: hidden;
+}
+.action.design::before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    content: "";
+    opacity: 0;
+    background-color: var(--background-sub-color);
+    transition: opacity 0.3s ease-in-out;
+}
+.action.design:hover::before,
+.action.design.active::before {
+    opacity: 1;
+}
+.action.design * {
+    color: var(--perfect-white-color);
+    background: linear-gradient(90deg, #ec008c, #fc6767);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+.action.design:hover *,
+.action.design.active * {
+    color: transparent;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Wide */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.wide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
+    flex: 1;
+    padding: 16px;
+    border: var(--border);
+    border-style: dashed;
+    border-radius: 10px;
+    background-color: var(--background-sub-color);
+}
+.action.wide:hover {
+    background-color: var(--light-blue-color);
+}
+.action.wide * {
+    color: var(--logo-blue-color);
+}
+.action.wide > i {
+    padding: 16px;
+    font-size: 20px;
+    border-radius: 100px;
+    background-color: var(--light-blue-color);
+    transition: background-color 0.3s ease-in-out;
+}
+.action.wide:hover > i {
+    background-color: var(--background-sub-color);
+}
+.action.wide > span {
+    font-size: 21px;
+    font-family: "Nunito Sans";
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Link */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.link {
+    width: fit-content;
+    padding: 0px 0px 4px 0px;
+}
+.action.link > * {
+    color: var(--logo-blue-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Sizes */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.bigger {
+    padding: 16px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Corners */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.sharp {
+    border-radius: 0px;
+}
+.action.squared,
+.action.narrow {
+    border-radius: 10px;
+}
+.action.circled {
+    border-radius: 40px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Shadows */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.shadow {
+    box-shadow: var(--box-shadow);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Animations */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.scale:hover {
+    transform: scale(1.05);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* toggle */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.toggle {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    position: absolute;
+    background-color: var(--background-sub-color);
+    z-index: 1;
+}
+.action.toggle > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 16px auto auto;
+    pointer-events: none;
+    color: var(--border-color);
+    transition: transform 0.3s ease-in-out;
+}
+.action.toggle.active > i {
+    color: var(--logo-blue-color);
+    transform: rotate(90deg);
+}
+footer .action.toggle.active > i {
+    color: var(--logo-blue-color);
+    transform: rotate(-90deg);
+}
+/* --------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Option */
+/* --------------------------------------------------------------------------------------------------------------------------------------------- */
+.action.option {
+    display: flex;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+.action.option:hover {
+    background-color: var(--separator-color);
+}
+.action.option.active {
+    background-color: var(--logo-blue-color);
+}
+.action.option > i {
+    color: var(--logo-blue-color);
+}
+.action.option > span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: color 0.3s ease-in-out;
+}
+.action.option:hover > span {
+    color: var(--perfect-black-color);
+}
+.action.option.active > span {
+    color: var(--perfect-white-color);
+}
