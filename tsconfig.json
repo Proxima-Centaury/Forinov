@@ -6,6 +6,7 @@
             "@loaders/*": [ "components/loaders/*" ],
             "@actions/*": [ "components/actions/*" ],
             "@separators/*": [ "components/separators/*" ],
+            "@carousels/*": [ "components/carousels/*" ],
             "@typescript/types/*": [ "typescript/types/*" ],
             "@scripts/*": [ "utilities/scripts/*" ],
             "@stylesheets/*": [ "public/stylesheets/*" ],
