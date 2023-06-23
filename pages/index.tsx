@@ -234,7 +234,7 @@ const Home = (pageProps: TPage): JSX.Element => {
 				</div>
 				<DefaultCarousel items={ startups } navigation="bar"/>
 				<div className={ HomeStyles.containerTitle }>
-					<h5>{ t("hameStartupsCategoriesTitle", { startups: counters.startups.total, categories: counters.startups.categories }) }</h5>
+					<h5>{ t("homeStartupsCategoriesTitle", { startups: counters.startups.total, categories: counters.startups.categories }) }</h5>
 				</div>
 				<div className={ HomeStyles.startupsCategoriesSection }>
 					{ categories.startups.map((category: any, key: number) => {
@@ -267,7 +267,14 @@ const Home = (pageProps: TPage): JSX.Element => {
 		</div>
 		<div className={ HomeStyles.mainContainer }>
 			<div className="boxedContent">
-
+				<div className={ HomeStyles.containerTitle }>
+					<h6>{ t("homeTestimonialsTitle") }</h6>
+				</div>
+				<DefaultCarousel items={ articles } navigation="bar"/>
+				<div className={ HomeStyles.containerTitle }>
+					<h6>{ t("homeArticlesTitle") }</h6>
+				</div>
+				<DefaultCarousel items={ articles } navigation="bar"/>
 			</div>
 		</div>
 	</div>;
@@ -281,7 +288,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	const language = locale?.substring(0, 2);
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "home" ])),
+			...(await serverSideTranslations(locale || "fr", [ "common", "home" ])),
 			locales,
 			landing: await apiInstance.getLanding("next", "Landing", language),
 			opportunities: await apiInstance.getLandingOpportunities("next", "Landing", language),

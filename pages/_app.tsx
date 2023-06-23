@@ -34,7 +34,7 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
     const router = useRouter();
 	const { basePath, asPath, query } = router;
 	const { ui } = query;
-    const { i18n } = useTranslation("home");
+    const { i18n, t } = useTranslation("common");
     const [ states, setStates ] = useState({
         errors: [],
         session: null,
@@ -58,6 +58,10 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
             <link rel="icon" href={ `${ basePath }/assets/logo.ico` }/>
         </Head>
         {/* { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/>) : null } */}
+        { (!production) ? <div className="developmentModeIndicator">
+            <span className="dot"/>
+            <span>{ t("developmentModeIndicator") }</span>
+        </div> : null }
         <Component { ...pageProps }/>
         {/* { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/>) : null } */}
         {/* <Modal { ...pageProps }/> */}
