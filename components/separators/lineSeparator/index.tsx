@@ -1,16 +1,20 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Types */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import type { TSeparator } from "@typescript/types/TSeparator";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import LineStyles from "@separators/lineSeparator/line.module.css";
+import SeparatorStyles from "@separators/Separator.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Line Separator */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const LineSeparator = (componentParams: any) => {
-    const { classList } = componentParams;
-    const nextClasses = classList?.split(" ").map((cssClass: string) => LineStyles[cssClass as keyof object]).join(" ") || LineStyles.horizontal; 
-    const formatedClassList = LineStyles.line + " " + nextClasses;
+const LineSeparator = (params: TSeparator) => {
+    const { classList } = params;
+    const nextClasses = classList?.split(" ").map((cssClass: string) => SeparatorStyles[cssClass as keyof object]).join(" ") || SeparatorStyles.horizontal; 
+    const formatedClassList = SeparatorStyles.line + " " + nextClasses;
     return <div className={ formatedClassList }>
-        { (nextClasses?.includes(LineStyles.or)) ? <span>{ "Or" }</span> : null }
+        { (nextClasses?.includes(SeparatorStyles.or)) ? <span>{ "Or" }</span> : null }
     </div>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
