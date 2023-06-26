@@ -1,11 +1,14 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import { useTranslation } from "next-i18next";
 import { useRef, useState, useEffect } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import ClassicButton from "@actions/classicButton";
+import StartupProfileCard from "@cards/profiles/startup";
+import Tooltip from "components/tooltips/tooltip";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -14,47 +17,62 @@ import type { TCarousel } from "@typescript/types/TCarousel";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import DefaultCarouselStyles from "@carousels/Carousel.module.css";
+import CarouselStyles from "@carousels/Carousel.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Default Carousel */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const DefaultCarousel = (params: TCarousel): JSX.Element => {
     const carouselReference = useRef(null);
-    const { items, navigation } = params;
+	const { t } = useTranslation("common");
+    const { classList, items, itemsType, navigation } = params;
     const [ currentIndex, setCurrentIndex ] = useState(0);
-    const moveLeft: MouseEventHandler = () => (currentIndex > 0) ? setCurrentIndex(currentIndex - 1) : false;
-    const moveRight: MouseEventHandler = () => (items && currentIndex < items.length - 1) ? setCurrentIndex(currentIndex + 1) : false;
+    const [ pause, setPause ] = useState(false);
+    const moveLeft: MouseEventHandler = () => (items) ? setCurrentIndex((currentIndex > 0) ? currentIndex - 1 : items.length - 1) : false;
+    const moveRight: MouseEventHandler = () => (items) ? setCurrentIndex((currentIndex < items.length - 1) ? currentIndex + 1 : 0) : false;
+    const handlePause: MouseEventHandler = () => setPause(!pause);
+    const nextClasses = classList?.split(" ").map((cssClass: string) => CarouselStyles[cssClass as keyof object]).join(" ") || ""; 
+    const formatedClassList = CarouselStyles.carousel + " " + nextClasses;
     useEffect(() => {
-        if(carouselReference?.current) {
-            const autoSlide = setInterval(() => {
-                if(items) {
-                    if(currentIndex < items.length - 1) {
+        if(items && carouselReference?.current) {
+            const wrapper: HTMLDivElement = carouselReference.current;
+            const childWidth = wrapper.querySelector("[class*='card']")?.clientWidth || 550;
+            const space = 16; // Wrapper's paddings
+            const border = 10; // Border width of the cards
+            const autoSlide = setInterval(() => { // Setting interval for carousel automation
+                if(items && !pause) {
+                    if(currentIndex < items.length - 1) { // Increments the current index while last card not matched
                         setCurrentIndex(currentIndex + 1);
-                    } else {
+                    } else { // Otherwise resets the carousel to the start
                         setCurrentIndex(0);
                     };
                 };
             }, 1000);
-            const wrapper: HTMLDivElement = carouselReference.current;
-            const childWidth = wrapper.querySelector(`.${ DefaultCarouselStyles.item }`)?.clientWidth || 550;
-            wrapper.style.transform = `translateX(calc(-${ currentIndex * childWidth }px - ${ currentIndex * 16 }px))`;
+            wrapper.style.transform = `translateX(calc(-${ currentIndex * (childWidth + border) }px - ${ currentIndex * space }px))`;
             return () => {
                 clearInterval(autoSlide);
             };
         };
-    }, [ items, currentIndex ]);
-    return <div className={ DefaultCarouselStyles.container }>
-        <div className={ DefaultCarouselStyles.carousel }>
+    }, [ items, currentIndex, pause ]);
+    return <div className={ CarouselStyles.container }>
+        <div className={ formatedClassList }>
             <ClassicButton classList="sinary circled" action={ moveLeft } icon="fa-solid fa-chevron-left"/>
-            <div className={ DefaultCarouselStyles.wrapper } ref={ carouselReference }>
-                { (items) ? items.map((item: unknown, key: number) => <div key={ key } className={ DefaultCarouselStyles.item } data-index={ key }>
-
-                </div>) : null }
+            <div className={ CarouselStyles.wrapper } ref={ carouselReference }>
+                { (items) ? items.map((item: unknown, key: number) => {
+                    switch(itemsType) {
+                        case "startups" :
+                            return <StartupProfileCard key={ key } startup={ item }/>;
+                    };
+                }) : null }
             </div>
             <ClassicButton classList="sinary circled" action={ moveRight } icon="fa-solid fa-chevron-right"/>
+            <div className={ CarouselStyles.actions }>
+                <Tooltip tooltip={ (pause) ? t("carouselResumeTooltip") : t("carouselPauseTooltip") }>
+                    <ClassicButton classList="sinary circled" action={ handlePause } icon={ `fa-solid ${ (pause) ? "fa-play" : "fa-pause" }` }/>
+                </Tooltip>
+            </div>
         </div>
-        { (navigation) ? <div className={ DefaultCarouselStyles.navigation }>
-            { (items) ? items?.map((item: unknown, key: number) => <div key={ key } className={ DefaultCarouselStyles[navigation as keyof object] }>
+        { (navigation) ? <div className={ CarouselStyles.navigation }>
+            { (items) ? items?.map((item: unknown, key: number) => <div key={ key } className={ CarouselStyles[navigation as keyof object] }>
                 <ClassicButton classList="octary" action={ () => setCurrentIndex(key) } active={ key === currentIndex }/>
             </div>) : null }
         </div> : null }
