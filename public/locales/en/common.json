@@ -1,3 +1,5 @@
 {
-    "developmentModeIndicator": "Under developement"
+    "developmentModeIndicator": "Under developement",
+    "carouselResumeTooltip": "Resume the carousel",
+    "carouselPauseTooltip": "Pause the carousel"
 }
