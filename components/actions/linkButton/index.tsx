@@ -9,16 +9,16 @@ import type { TButton } from "@typescript/types/TButton";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import ActionsStyles from "@actions/action.module.css";
+import ActionStyles from "@actions/Action.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Link Button */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const LinkButton = (params: TButton): JSX.Element => {
     const { classList, href, icon, text, active, disabled, tabIndex, ariaLabel } = params;
-    const isActive = (active) ? " " + ActionsStyles.active : "";
-    const isDisabled = (disabled) ? " " + ActionsStyles.disabled : "";
-    const nextClasses = classList?.split(" ").map((cssClass: string) => ActionsStyles[cssClass as keyof object]).join(" "); 
-    const formatedClassList = ActionsStyles.action + " " + nextClasses + isActive + isDisabled;
+    const isActive = (active) ? " " + ActionStyles.active : "";
+    const isDisabled = (disabled) ? " " + ActionStyles.disabled : "";
+    const nextClasses = classList?.split(" ").map((cssClass: string) => ActionStyles[cssClass as keyof object]).join(" "); 
+    const formatedClassList = ActionStyles.action + " " + nextClasses + isActive + isDisabled;
     const tabIndexValue = (tabIndex) ? tabIndex : 1;
     const target = (href?.match(/(http)/)) ? "_blank" : undefined;
     return <Link className={ formatedClassList } href={ (href) ? href : "/" } tabIndex={ tabIndexValue } aria-label={ ariaLabel } target={ target }>
