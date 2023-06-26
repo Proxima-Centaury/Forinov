@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { appWithTranslation, useTranslation } from "next-i18next";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useMemo } from "react";
 import { setCookie, getCookie } from "cookies-next";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
@@ -46,10 +46,10 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
         modal: null,
         production: (process.env.NODE_ENV === "development") ? false : true
     });
-    const { session, production } = states;
-    useEffect(() => (session) ? setStates((states) => ({ ...states, limited: false })) : undefined, [ session ]);
+    const memorizedStates = useMemo(() => ({ ...states }), [ states ]);
+    const { production } = memorizedStates;
     useEffect(() => { scrollTo(0, 0) }, [ asPath ]);
-    pageProps.states = { ...states };
+    pageProps.states = { ...memorizedStates };
     pageProps.setStates = setStates;
     return <Fragment>
         <Head>
