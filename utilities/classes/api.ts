@@ -13,14 +13,14 @@ import { formatForUrl } from "@scripts/formatForUrl";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* JSON */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import apiConfigurations from "../../configurations/api.json";
+import configuration from "@configurations/api.json";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* API */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 class API {
-    endpoint: string = apiConfigurations.api.endpoint[(process.env.NODE_ENV === "development") ? "development" : "production"];
+    endpoint: string = configuration.api.endpoint[(process.env.NODE_ENV === "development") ? "development" : "production"];
     constructor() {
-        const queryProps = Object.entries(apiConfigurations.api.calls);
+        const queryProps = Object.entries(configuration.api.calls);
         queryProps.map((query: Array<any>) => {
             Object.defineProperty(this, query[0] as PropertyKey, { value: async (...parameters: Array<any>) => {
                 const expectedParameters = query[1].parameters;
@@ -84,7 +84,7 @@ class API {
                     startups: response.CATEGORIES.map((category: any) => ({
                         id: parseInt(category.ID),
                         name: category.NAME,
-                        url: `/directories/startups/${ formatForUrl(category.NAME) }_${ category.ID }`
+                        url: `/startups/directory/${ formatForUrl(category.NAME) }_${ category.ID }`
                     }))
                 },
                 counters: {
@@ -143,9 +143,9 @@ class API {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Instance */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const apiInstance: TAPI = new API();
+const api: TAPI = new API();
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export default apiInstance;
+export default api;
 export { API };
