@@ -26,8 +26,11 @@
 	position: absolute;
 	z-index: 1;
 }
-.carousel > [class*="action"]:last-of-type {
+.carousel > [class*="action"]:not([class*="actions"]):last-of-type {
 	right: 16px;
+}
+.carousel > [class*="actions"] {
+	bottom: -16px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Screen */
@@ -44,10 +47,10 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .wrapper {
 	display: flex;
-	align-items: center;
 	grid-gap: 16px;
 	gap: 16px;
 	flex: 1;
+	height: max-content;
 	padding: 16px;
 	transition: transform 0.3s ease-in-out;
 }

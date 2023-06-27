@@ -4,8 +4,7 @@
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { Key, useEffect, useRef, useState } from "react";
-import apiInstance from "../utilities/classes/api";
+import api from "@classes/api";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -18,7 +17,7 @@ import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import LinkButton from "@actions/linkButton";
+import LinkButton from "@actions/linkAction";
 import LineSeparator from "@separators/lineSeparator";
 import DefaultCarousel from "@carousels/defaultCarousel";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -38,91 +37,15 @@ import HomeStyles from "@stylesheets/pages/Home.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Home */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Home = (pageProps: TPage): JSX.Element => {
+const Home = (params: TPage): JSX.Element => {
 	const router = useRouter();
 	const { basePath } = router;
 	const { t } = useTranslation("home");
-	const { landing, startups, opportunities, states } = pageProps;
+	const { landing, startups, opportunities, states } = params;
 	const { articles, categories, counters } = landing;
 	const { language } = states;
-	const homeHeaderLinks: Array<TButton> = [
-        {
-            classList: "septary bigger narrow shadow scale",
-            href: `/${ language }/directories/startups`,
-            icon: "fa-solid fa-arrow-right",
-            text: t("homeHeaderStartupsLink")
-        },
-        {
-            classList: "septary bigger narrow shadow scale",
-            href: `/${ language }/directories/corporates`,
-            icon: "fa-solid fa-arrow-right",
-            text: t("homeHeaderCorporatesLink")
-        },
-        {
-            classList: "septary bigger narrow shadow scale",
-            href: `/${ language }/directories/partners`,
-            icon: "fa-solid fa-arrow-right",
-            text: t("homeHeaderPartnersLink")
-        },
-        {
-            classList: "septary bigger narrow shadow scale",
-            href: `/${ language }/directories/opportunities`,
-            icon: "fa-solid fa-arrow-right",
-            text: t("homeHeaderOpportunitiesLink")
-        }
-    ];
-	const homeStructuresLinks: Array<TButton> = [
-		{
-            classList: "tertiary",
-            href: `/${ language }/onboarding`,
-            text: t("homeStructureLink1")
-        },
-		{
-            classList: "tertiary",
-            href: `/${ language }/onboarding`,
-            text: t("homeStructureLink2")
-        },
-		{
-            classList: "tertiary",
-            href: `/${ language }/onboarding`,
-            text: t("homeStructureLink3")
-        },
-		{
-            classList: "tertiary",
-            href: `/${ language }/onboarding`,
-            text: t("homeStructureLink4")
-        },
-		{
-            classList: "tertiary",
-            href: `/${ language }/onboarding`,
-            text: t("homeStructureLink5")
-        },
-		{
-            classList: "tertiary",
-            href: `/${ language }/onboarding`,
-            text: t("homeStructureLink6")
-        },
-		{
-            classList: "tertiary",
-            href: `/${ language }/onboarding`,
-            text: t("homeStructureLink7")
-        },
-		{
-            classList: "tertiary",
-            href: `/${ language }/onboarding`,
-            text: t("homeStructureLink8")
-        },
-		{
-            classList: "tertiary",
-            href: `/${ language }/onboarding`,
-            text: t("homeStructureLink9")
-        },
-		{
-            classList: "tertiary",
-            href: `/${ language }/onboarding`,
-            text: t("homeStructureLink10")
-        }
-	];
+	const homeHeaderLinks: TButton[] = require("@configurations/links.json").home.header;
+	const homeStructuresLinks: TButton[] = require("@configurations/links.json").home.structures;
 	return <Fragment>
 		<Head>
 			<title>{ t("homeMetaTitle") }</title>
@@ -141,7 +64,11 @@ const Home = (pageProps: TPage): JSX.Element => {
 								<p>{ t("homeHeaderParagraph2") }</p>
 							</div>
 							<div className={ HomeStyles.headerActions }>
-								{ homeHeaderLinks.map((link: TButton, key: number) => <LinkButton key={ key } { ...link }/>) }
+								{ homeHeaderLinks.map(({ classList, href, icon, text }: TButton, key: number) => {
+									const translatedText = (text) ? t(text) : undefined;
+									const dynamicParams = { classList, href: href?.replace("{{ language }}", language), icon, text: translatedText };
+									return <LinkButton key={ key } { ...dynamicParams }/>;
+								}) }
 							</div>
 						</div>
 						<div className={ HomeStyles.headerRightContainer }>
@@ -243,7 +170,7 @@ const Home = (pageProps: TPage): JSX.Element => {
 					<div className={ HomeStyles.containerTitle }>
 						<h4>{ t("homeLatestStartupsTitle") }</h4>
 					</div>
-					<DefaultCarousel classList="screen" items={ startups } itemsType="startups" navigation="bar"/>
+					<DefaultCarousel items={ startups } itemsType="startups" navigation="bar"/>
 					<div className={ HomeStyles.containerTitle }>
 						<h5>{ t("homeStartupsCategoriesTitle", { startups: counters.startups.total, categories: counters.startups.categories }) }</h5>
 					</div>
@@ -256,7 +183,7 @@ const Home = (pageProps: TPage): JSX.Element => {
 					<div className={ HomeStyles.containerTitle }>
 						<h4>{ t("homeLatestOpportunitiesTitle") }</h4>
 					</div>
-					{/* <DefaultCarousel items={ opportunities } navigation="bar"/> */}
+					<DefaultCarousel items={ opportunities } itemsType="opportunities" navigation="bar"/>
 				</div>
 			</div>
 			<div className={ HomeStyles.mainContainer }>
@@ -271,7 +198,11 @@ const Home = (pageProps: TPage): JSX.Element => {
 						<p>{ t("homeStructuresSectionText") }</p>
 					</div>
 					<div className={ HomeStyles.structuresSection }>
-						{ homeStructuresLinks.map((link: TButton, key: number) => <LinkButton key={ key } { ...link }/>) }
+						{ homeStructuresLinks.map(({ classList, href, text }: TButton, key: number) => {
+							const translatedText = (text) ? t(text) : undefined;
+							const dynamicParams = { classList, href: href?.replace("{{ language }}", language), text: translatedText };
+							return <LinkButton key={ key } { ...dynamicParams }/>;
+						}) }
 					</div>
 				</div>
 			</div>
@@ -301,9 +232,9 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 		props: {
 			...(await serverSideTranslations(locale || "fr", [ "common", "home" ])),
 			locales,
-			landing: await apiInstance.getLanding("next", "Landing", language),
-			opportunities: await apiInstance.getLandingOpportunities("next", "Landing", language),
-			startups: await apiInstance.getLandingStartups("next", "Landing", language)
+			landing: await api.getLanding("next", "Landing", language),
+			opportunities: await api.getLandingOpportunities("next", "Landing", language),
+			startups: await api.getLandingStartups("next", "Landing", language)
 		}
 	};
 };

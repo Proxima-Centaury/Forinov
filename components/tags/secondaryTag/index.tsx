@@ -1,55 +1,19 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* List */
+/* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.list {
-    display: flex;
-    flex-wrap: wrap;
-    grid-gap: 8px;
-    gap: 8px;
-}
+import type { TTag } from "@typescript/types/TTag";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Primary */
+/* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.primary {
-    width: fit-content;
-    padding: 4px;
-    color: var(--logo-blue-color);
-    font-size: 12px;
-    border-radius: 4px;
-    background-color: var(--light-blue-color);
-}
+import TagStyles from "@tags/Tag.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Secondary */
+/* Secondary Tag */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.secondary {
-    width: fit-content;
-    max-width: 150px;
-    padding: 4px;
-    color: var(--logo-blue-color);
-    font-size: 12px;
-    border-radius: 4px;
-    background-color: var(--pastel-blue-color);
-}
+const SecondaryTag = (params: TTag): JSX.Element => {
+    const { tag } = params;
+    return <p className={ TagStyles.secondary }>{ tag }</p>;
+};
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Colors */
+/* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.type1 {
-    color: var(--perfect-white-color);
-    background-color: var(--project-color);
-}
-.type2 {
-    color: var(--perfect-white-color);
-    background-color: var(--event-color);
-}
-.type3 {
-    color: var(--perfect-black-color);
-    background-color: var(--program-color);
-}
-.type4 {
-    color: var(--perfect-black-color);
-    background-color: var(--offer-color);
-}
-.type5 {
-    color: var(--perfect-black-color);
-    background-color: var(--challenge-color);
-}
+export default SecondaryTag;

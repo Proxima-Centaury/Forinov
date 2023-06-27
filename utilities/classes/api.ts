@@ -133,7 +133,7 @@ class API {
                 },
                 privacy: opportunity.PRIVACY,
                 tags: opportunity.TAGS?.split(","),
-                remainingTime: opportunity.REMAINING.split(","),
+                remainingTime: opportunity.REMAINING.split(",").map((value: string) => parseInt(value)),
                 title: opportunity.TITLE,
                 url: `/directories/opportunities/${ formatForUrl(opportunity.TYPE[0].NAME) }_${ opportunity.TYPE[0].ID }/${ formatForUrl(opportunity.TITLE) }_${ opportunity.ID }`
             }));

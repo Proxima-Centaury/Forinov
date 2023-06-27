@@ -21,7 +21,7 @@ type TOpportunity = {
     },
     privacy?: string,
     tags?: string[],
-    remainingTime?: string[],
+    remainingTime?: number[],
     title?: string,
     url?: string
 };

@@ -9,12 +9,14 @@
             "@carousels/*": [ "components/carousels/*" ],
             "@cards/*": [ "components/cards/*" ],
             "@tags/*": [ "components/tags/*" ],
+            "@tags": [ "components/tags" ],
             "@tooltips/*": [ "components/tooltips/*" ],
             "@typescript/types/*": [ "typescript/types/*" ],
             "@scripts/*": [ "utilities/scripts/*" ],
             "@stylesheets/*": [ "public/stylesheets/*" ],
             "@classes/*": [ "utilities/classes/*" ],
-            "@configurations/*": [ "configurations/*" ]
+            "@configurations/*": [ "configurations/*" ],
+            "@contents/*": [ "components/contents/*" ]
         },
         "target": "es5",
         "downlevelIteration": true,

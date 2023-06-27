@@ -2,5 +2,13 @@
     "developmentModeIndicator": "Under developement",
     "carouselResumeTooltip": "Resume the carousel",
     "carouselPauseTooltip": "Pause the carousel",
-    "lineSeparatorText": "Or"
+    "lineSeparatorText": "Or",
+    "undefinedText": "Undefined",
+    "remainingTimeFullText": "Expires in {{ years }} year(s), {{ months }} month(s) and {{ days }} day(s)",
+    "remainingTimeYearsAndMonthsText": "Expires in {{ years }} year(s) and {{ months }} month(s)",
+    "remainingTimeYearsAndDaysText": "Expires in {{ years }} year(s) and {{ days }} day(s)",
+    "remainingTimeMonthsAndDaysText": "Expires in {{ months }} month(s) and {{ days }} day(s)",
+    "remainingTimeYearsText": "Expires in {{ years }} year(s)",
+    "remainingTimeMonthsText": "Expires in {{ months }} month(s)",
+    "remainingTimeDaysText": "Expires in {{ days }} day(s)"
 }
