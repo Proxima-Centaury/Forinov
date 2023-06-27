@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { appWithTranslation, useTranslation } from "next-i18next";
-import { Fragment, useEffect, useState, useMemo } from "react";
+import { Fragment, useMemo, useEffect, useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
