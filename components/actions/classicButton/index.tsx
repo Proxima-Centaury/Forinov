@@ -14,7 +14,7 @@ const ClassicButton = (params: TButton): JSX.Element => {
     const { classList, icon, text, action, notifications, active, disabled, tabIndex, ariaLabel } = params;
     const isActive = (active) ? " " + ActionsStyles.active : "";
     const isDisabled = (disabled) ? " " + ActionsStyles.disabled : "";
-    const nextClasses = classList?.split(" ").map((cssClass: string) => ActionsStyles[cssClass as keyof object]).join(" "); 
+    const nextClasses = classList?.split(" ").map((cssClass: string) => ActionsStyles[cssClass]).join(" "); 
     const formatedClassList = ActionsStyles.action + " " + nextClasses + isActive + isDisabled;
     const tabIndexValue = (tabIndex) ? tabIndex : 1;
     const actionTrigger: MouseEventHandler = (event) => (action) ? action(event) : null;
