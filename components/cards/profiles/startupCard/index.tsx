@@ -7,45 +7,42 @@ import Link from "next/link";
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import LineSeparator from "@separators/lineSeparator";
-import PrimaryTag from "@tags/primary";
+import Tooltip from "@tooltips/tooltip";
+import PrimaryTag from "@tags/primaryTag";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TOpportunity } from "@typescript/types/TOpportunity";
+import type { TStartup } from "@typescript/types/TStartup";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import CardStyles from "@cards/Card.module.css";
-import Tooltip from "components/tooltips/tooltip";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Opportunity Card */
+/* Startup Profile Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const OpportunityCard = (params: TOpportunity) => {
-    const { url } = params;
+const StartupProfileCard = (params: TStartup) => {
+    const { banner, category, logo, name, url } = params;
     return <Link className={ CardStyles.card } href={ url || "/404" }>
         <div className={ `${ CardStyles.header } ${ CardStyles.banner }` }>
-            {/* <Image src={ opportunity.banner } alt={ "" } width="500" height="150"/> */}
+            <Image src={ banner || "/assets/placeholders/banner.png" } alt={ "" } width="500" height="150"/>
         </div>
         <div className={ CardStyles.body }>
             <div className={ CardStyles.leftContainer }>
-                {/* <Image src={ owner.logo } alt={ "" } width="100" height="100"/> */}
+                <Image src={ logo || "/assets/placeholders/logo.png" } alt={ "" } width="100" height="100"/>
             </div>
             <LineSeparator classList="vertical"/>
             <div className={ CardStyles.rightContainer }>
-                {/* <Tooltip tooltip={ startup.name }>
-                    <p className={ CardStyles.title }>{ startup.name }</p>
+                <Tooltip tooltip={ name }>
+                    <p className={ CardStyles.title }>{ name }</p>
                 </Tooltip>
-                <Tooltip tooltip={ startup.category.name }>
-                    <PrimaryTag tag={ startup.category.name }/>
-                </Tooltip> */}
+                <Tooltip tooltip={ category?.name }>
+                    <PrimaryTag tag={ category?.name }/>
+                </Tooltip>
             </div>
-        </div>
-        <div className={ CardStyles.footer }>
-
         </div>
     </Link>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export default OpportunityCard;
+export default StartupProfileCard;
