@@ -2,7 +2,7 @@
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { useTranslation } from "next-i18next";
-import { memo, useRef, useState, useEffect } from "react";
+import { memo, useRef, useState, useEffect, Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -15,6 +15,8 @@ import Tooltip from "@tooltips/tooltip";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { MouseEventHandler } from "react";
 import type { TCarousel } from "@typescript/types/TCarousel";
+import type { TStartup } from "@typescript/types/TStartup";
+import type { TOpportunity } from "@typescript/types/TOpportunity";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -63,12 +65,16 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
         <div className={ formatedClassList }>
             <ClassicButton classList="sinary circled" action={ moveLeft } icon="fa-solid fa-chevron-left"/>
             <div className={ CarouselStyles.wrapper } ref={ carouselReference }>
-                { (items) ? items.map((item: unknown, key: number) => {
+                { (items) ? items.map((item: TStartup|TOpportunity, key: number) => {
                     switch(itemsType) {
                         case "startups" :
-                            return <MemoStartupProfileCard key={ key } startup={ item }/>;
+                            return <Fragment key={ key }>
+                                <MemoStartupProfileCard { ...item }/>
+                            </Fragment>;
                         case "opportunities" :
-                            return <MemoOpportunityCard key={ key } opportunity={ item }/>;
+                            return <Fragment key={ key }>
+                                <MemoOpportunityCard { ...item }/>
+                            </Fragment>;
                     };
                 }) : null }
             </div>
