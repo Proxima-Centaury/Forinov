@@ -1,5 +1,6 @@
 {
     "developmentModeIndicator": "Under developement",
     "carouselResumeTooltip": "Resume the carousel",
-    "carouselPauseTooltip": "Pause the carousel"
+    "carouselPauseTooltip": "Pause the carousel",
+    "lineSeparatorText": "Or"
 }
