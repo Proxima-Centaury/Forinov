@@ -1,13 +1,31 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Page Type */
+/* Opportunity Type */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-type TPage = {
-    landing?: any,
-    startups?: any[],
-    opportunities?: any[],
-    states?: any
+type TOpportunity = {
+    id?: number,
+    banner?: string,
+    category?: {
+        id?: number,
+        name?: string
+    },
+    countries?: [],
+    dates?: {
+        end?: string,
+        start?: string
+    },
+    description?: string,
+    language?: string,
+    owner?: {
+        logo?: string,
+        name?: string
+    },
+    privacy?: string,
+    tags?: string[],
+    remainingTime?: string[],
+    title?: string,
+    url?: string
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export type { TPage };
+export type { TOpportunity };
