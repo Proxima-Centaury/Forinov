@@ -6,10 +6,10 @@ import { memo, useRef, useState, useEffect, Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import ClassicButton from "@actions/classicButton";
-import StartupProfileCard from "@cards/profiles/startup";
-import OpportunityCard from "@cards/opportunity";
-import Tooltip from "@tooltips/tooltip";
+import ClassicButton from "@actions/classicAction";
+import StartupProfileCard from "@cards/profiles/startupCard";
+import OpportunityCard from "@cards/opportunityCard";
+import Tooltip from "@tooltips/defaultTooltip";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

@@ -7,7 +7,7 @@ import Link from "next/link";
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import LineSeparator from "@separators/lineSeparator";
-import Tooltip from "@tooltips/tooltip";
+import Tooltip from "@tooltips/defaultTooltip";
 import PrimaryTag from "@tags/primaryTag";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
