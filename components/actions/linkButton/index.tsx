@@ -17,7 +17,7 @@ const LinkButton = (params: TButton): JSX.Element => {
     const { classList, href, icon, text, active, disabled, tabIndex, ariaLabel } = params;
     const isActive = (active) ? " " + ActionStyles.active : "";
     const isDisabled = (disabled) ? " " + ActionStyles.disabled : "";
-    const nextClasses = classList?.split(" ").map((cssClass: string) => ActionStyles[cssClass as keyof object]).join(" "); 
+    const nextClasses = classList?.split(" ").map((cssClass: string) => ActionStyles[cssClass]).join(" "); 
     const formatedClassList = ActionStyles.action + " " + nextClasses + isActive + isDisabled;
     const tabIndexValue = (tabIndex) ? tabIndex : 1;
     const target = (href?.match(/(http)/)) ? "_blank" : undefined;
