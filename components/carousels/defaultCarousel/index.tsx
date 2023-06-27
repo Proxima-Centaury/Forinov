@@ -2,13 +2,14 @@
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { useTranslation } from "next-i18next";
-import { useRef, useState, useEffect } from "react";
+import { memo, useRef, useState, useEffect } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import ClassicButton from "@actions/classicButton";
 import StartupProfileCard from "@cards/profiles/startup";
-import Tooltip from "components/tooltips/tooltip";
+import OpportunityCard from "@cards/opportunity";
+import Tooltip from "@tooltips/tooltip";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -18,6 +19,11 @@ import type { TCarousel } from "@typescript/types/TCarousel";
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import CarouselStyles from "@carousels/Carousel.module.css";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Memorization */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+const MemoStartupProfileCard = memo(StartupProfileCard);
+const MemoOpportunityCard = memo(OpportunityCard);
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Default Carousel */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -30,7 +36,7 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
     const moveLeft: MouseEventHandler = () => (items) ? setCurrentIndex((currentIndex > 0) ? currentIndex - 1 : items.length - 1) : false;
     const moveRight: MouseEventHandler = () => (items) ? setCurrentIndex((currentIndex < items.length - 1) ? currentIndex + 1 : 0) : false;
     const handlePause: MouseEventHandler = () => setPause(!pause);
-    const nextClasses = classList?.split(" ").map((cssClass: string) => CarouselStyles[cssClass as keyof object]).join(" ") || ""; 
+    const nextClasses = classList?.split(" ").map((cssClass: string) => CarouselStyles[cssClass]).join(" ") || ""; 
     const formatedClassList = CarouselStyles.carousel + " " + nextClasses;
     useEffect(() => {
         if(items && carouselReference?.current) {
@@ -60,7 +66,9 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
                 { (items) ? items.map((item: unknown, key: number) => {
                     switch(itemsType) {
                         case "startups" :
-                            return <StartupProfileCard key={ key } startup={ item }/>;
+                            return <MemoStartupProfileCard key={ key } startup={ item }/>;
+                        case "opportunities" :
+                            return <MemoOpportunityCard key={ key } opportunity={ item }/>;
                     };
                 }) : null }
             </div>
@@ -72,7 +80,7 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
             </div>
         </div>
         { (navigation) ? <div className={ CarouselStyles.navigation }>
-            { (items) ? items?.map((item: unknown, key: number) => <div key={ key } className={ CarouselStyles[navigation as keyof object] }>
+            { (items) ? items?.map((item: unknown, key: number) => <div key={ key } className={ CarouselStyles[navigation] }>
                 <ClassicButton classList="octary" action={ () => setCurrentIndex(key) } active={ key === currentIndex }/>
             </div>) : null }
         </div> : null }
