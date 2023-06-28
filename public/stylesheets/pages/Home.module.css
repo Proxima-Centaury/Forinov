@@ -1,1371 +1,418 @@
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation {
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Page */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.page {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 70px 0px 0px 0px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Main Container */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.mainContainer {
 	display: flex;
 	flex-direction: column;
-	grid-gap: 24px;
-	gap: 24px;
-	width: 100%;
-	padding: calc(80px - 16px) calc(80px - 16px) 0px calc(80px - 16px);
+    flex: 1;
+    padding: calc(50px - 16px);
+	transition: border-radius 0.3s ease-in-out;
 }
-.presentation:not([data-type="home"]) {
-	padding: calc(80px - 16px);
+.mainContainer:first-of-type {
+    border-radius: 0px 0px 100px 0px;
+    background-color: var(--background-sub-color);
 }
-@media screen and (max-width: 992px) {
-	.presentation,
-	.presentation:not([data-type="home"]) {
-		padding: calc(80px - 16px);
-	}
+.mainContainer:nth-of-type(2) {
+    border-radius: 100px 0px 0px 0px;
+    background-color: var(--background-main-color);
 }
-@media screen and (max-width: 576px) {
-	.presentation,
-	.presentation:not([data-type="home"]) {
-		padding: calc(32px - 16px);
-	}
+.mainContainer:nth-of-type(2)::before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    content: "";
+    background-color: var(--background-sub-color);
+    z-index: -1;
 }
-.presentation::before,
-.presentation::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
+.mainContainer:nth-of-type(3) {
+    border-radius: 0px 100px 0px 100px;
+    background-color: var(--background-private-color);
 }
-.presentation::before {
-	background-color: var(--background-sub-color);
+.mainContainer:nth-of-type(4) {
+    border-radius: 0px;
+    background-color: var(--background-main-color);
 }
-.presentation > div[class="container"] {
-	padding: 16px 16px 0px 16px;
+.mainContainer:nth-of-type(5) {
+    border-radius: 0px 100px 0px 100px;
+    background-color: var(--background-private-color);
 }
-.presentation:not([data-type="home"]) > div[class="container"] {
-	flex-direction: row;
+.mainContainer:nth-of-type(6) {
+    border-radius: 0px 0px 100px 0px;
+    background-color: var(--background-main-color);
 }
-@media screen and (max-width: 992px) {
-	.presentation > div[class="container"] {
-		padding: 16px;
-	}
-	.presentation > div[class="container"] > img {
-		display: none;
-	}
+.mainContainer:nth-of-type(6)::before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    content: "";
+    background-color: var(--background-sub-color);
+    z-index: -1;
 }
-.presentation:not([data-type="home"]) > div[class="container"] > img {
-	width: 500px;
-	height: 400px;
-	margin: auto;
-	object-fit: fill;
-}
-.presentation > div[class="container"] > h1 {
-	font-size: 56px;
-	font-family: "Nunito Sans";
-	font-weight: 300;
-	color: var(--logo-blue-color);
+.mainContainer:nth-of-type(7) {
+    border-radius: 100px 0px 0px 0px;
+    background-color: var(--background-sub-color);
 }
 @media screen and (max-width: 576px) {
-	.presentation > div[class="container"] > h1 {
-		text-align: center;
-	}
+    .mainContainer {
+        padding: 0px;
+    }
+    .mainContainer:first-of-type {
+        border-radius: 50px 0px 50px 0px;
+    }
+    .mainContainer:nth-of-type(2) {
+        border-radius: 50px 0px 0px 0px;
+    }
+	.mainContainer:nth-of-type(3) {
+        border-radius: 0px 50px 0px 50px;
+    }
+	.mainContainer:nth-of-type(4) {
+        border-radius: 0px;
+    }
+	.mainContainer:nth-of-type(5) {
+        border-radius: 0px 50px 0px 50px;
+    }
+	.mainContainer:nth-of-type(6) {
+        border-radius: 0px 0px 50px 0px;
+    }
+	.mainContainer:nth-of-type(7) {
+        border-radius: 50px 0px 0px 0px;
+    }
 }
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="home"]::before {
-	background-color: var(--background-main-color);
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Container Title */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.containerTitle {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
 }
-.presentation[data-type="home"]::after {
-	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-sub-color);
-}
-@media screen and (max-width: 576px) {
-	.presentation[data-type="home"]::after {
-		border-radius: 0px 0px 50px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation For Startup ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="startup"]::before {
-	background-color: var(--background-main-color);
-}
-.presentation[data-type="startup"]::after {
-	border-radius: 0px 0px 100px 0px;
-	background-color: var(--lightred-color);
-}
-@media screen and (max-width: 576px) {
-	.presentation[data-type="startup"]::after {
-		border-radius: 0px 0px 50px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation For Corporate ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="corporate"]::before {
-	background-color: var(--background-main-color);
-}
-.presentation[data-type="corporate"]::after {
-	border-radius: 0px 0px 0px 100px;
-	background-color: var(--lightblue-color);
+.containerTitle > h1 {
+    font-size: 56px;
+    font-family: Nunito Sans;
+    font-weight: 300;
+    color: var(--logo-blue-color);
 }
 @media screen and (max-width: 576px) {
-	.presentation[data-type="corporate"]::after {
-		border-radius: 0px 0px 0px 50px;
-	}
+    .containerTitle > h1 {
+        text-align: center;
+    }
 }
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="partner"]::before {
-	background-color: var(--background-main-color);
+.containerTitle > h2 {
+	font-family: Nunito Sans;
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
 }
-.presentation[data-type="partner"]::after {
-	border-radius: 0px 0px 0px 100px;
-	background-color: var(--lightgreen-color);
+.containerTitle > h2 + p {
+	font-family: Nunito Sans;
+    font-size: 21px;
+    text-align: center;
 }
-@media screen and (max-width: 576px) {
-	.presentation[data-type="partner"]::after {
-		border-radius: 0px 0px 0px 50px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation For Opportunity ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="opportunity"]::before {
-	background-color: var(--background-main-color);
-}
-.presentation[data-type="opportunity"]::after {
-	border-radius: 0px 0px 100px 0px;
-	background-color: var(--light-grey-color);
-}
-@media screen and (max-width: 576px) {
-	.presentation[data-type="opportunity"]::after {
-		border-radius: 0px 0px 50px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Jumbotron ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.jumbotron {
-	display: flex;
-	grid-gap: 40px;
-	gap: 40px;
-}
-.jumbotron > img {
-	width: 650px;
-	height: 100%;
-	margin: auto;
-	object-fit: fill;
-}
-@media screen and (max-width: 992px) {
-	.presentation > div[class="container"] > .jumbotron > img {
-		display: none;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation Content ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentationContent {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-}
-.presentationContent > h1 {
-	font-family: "Nunito Sans";
-	font-size: 65px;
-	font-weight: 600;
-}
-.presentationContent > p {
-	font-family: "Nunito Sans";
-	font-size: 14px;
-}
-@media screen and (max-width: 576px) {
-	.presentationContent > h1,
-	.presentationContent > p {
-		text-align: center;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation Content For Startup ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="startup"] > div[class="container"] > .presentationContent > h1,
-.presentation[data-type="startup"] > div[class="container"] > .presentationContent > p {
-	color: var(--sunred-color);
-}
-.presentation[data-type="startup"] > div[class="container"] > .presentationContent > p {
-	font-size: 24px;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation Content For Corporate ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="corporate"] > div[class="container"] > .presentationContent > h1,
-.presentation[data-type="corporate"] > div[class="container"] > .presentationContent > p {
-	color: var(--pureblue-color);
-}
-.presentation[data-type="corporate"] > div[class="container"] > .presentationContent > p {
-	font-size: 24px;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation Content For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="partner"] > div[class="container"] > .presentationContent > h1,
-.presentation[data-type="partner"] > div[class="container"] > .presentationContent > p {
-	color: var(--grassgreen-color);
-}
-.presentation[data-type="partner"] > div[class="container"] > .presentationContent > p {
-	font-size: 24px;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation Content For Opportunity ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentation[data-type="opportunity"] > div[class="container"] > .presentationContent > h1,
-.presentation[data-type="opportunity"] > div[class="container"] > .presentationContent > p {
-	color: var(--perfect-black-color);
-}
-.presentation[data-type="opportunity"] > div[class="container"] > .presentationContent > p {
-	font-size: 24px;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Presentation Links ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.presentationLinks {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 16px;
-	gap: 16px;
-	width: max-content;
-	margin: 0px 0px 56px 0px;
-}
-@media screen and (max-width: 992px) {
-	.presentationLinks {
-		margin: 0px;
-	}
-}
-@media screen and (max-width: 576px) {
-	.presentationLinks {
-		width: 100%;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Onboarding ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.onboarding {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: calc(80px - 16px);
-}
-@media screen and (max-width: 576px) {
-	.onboarding {
-		padding: calc(32px - 16px);
-	}
-}
-.onboarding::before,
-.onboarding::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.onboarding > div[class="container"] > h3 {
-	font-family: "Nunito Sans";
+.containerTitle > h3 {
 	font-size: 48px;
-	font-weight: bold;
-	text-align: center;
+    font-weight: 700;
+    text-align: left;
+    color: var(--perfect-white-color);
 }
-.onboarding > div[class="container"] > p {
-	font-family: "Nunito Sans";
-	font-size: 21px;
-	text-align: center;
+.containerTitle > h4 {
+    font-family: Nunito Sans;
+    font-size: 42px;
+    font-weight: 700;
+    text-align: left;
 }
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Onboarding For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.onboarding[data-type="home"]::before {
-	background-color: var(--background-sub-color);
+.containerTitle > h5 {
+    font-family: Nunito Sans;
+    font-size: 42px;
+    font-weight: 700;
+    text-align: left;
 }
-.onboarding[data-type="home"]::after {
-	border-radius: 100px 0px 0px 0px;
-	background-color: var(--background-main-color);
+.containerTitle > h6 {
+    font-family: Nunito Sans;
+    font-size: 42px;
+    font-weight: 700;
+    text-align: left;
 }
-@media screen and (max-width: 576px) {
-	.onboarding[data-type="home"]::after {
-		border-radius: 50px 0px 0px 0px;
-	}
+.containerTitle > h6 + p {
+    font-family: Nunito Sans;
+    font-size: 21px;
+    text-align: left;
 }
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Onboarding Types ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.types {
-	display: flex;
-	justify-content: center;
-	grid-gap: 40px;
-	gap: 40px;
-	z-index: 1;
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Header */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.header {
+    display: flex;
+    grid-gap: 32px;
+    gap: 32px;
+}
+@media screen and (max-width: 992px) {
+    .header {
+        flex-direction: column;
+    }
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Header's Right Container */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.headerRightContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    max-height: 400px;
+    border: var(--border);
+    border-width: 16px;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+.headerRightContainer > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Header's Left Container */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.headerLeftContainer {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 32px;
+    gap: 32px;
+    width: 100%;
+    max-width: 400px;
+}
+@media screen and (max-width: 992px) {
+    .headerLeftContainer {
+        flex-direction: row-reverse;
+        max-width: 100%;
+    }
 }
 @media screen and (max-width: 768px) {
-	.types {
-		flex-direction: column;
-	}
+    .headerLeftContainer {
+        flex-direction: column;
+        max-width: 100%;
+    }
 }
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Onboarding Type ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.type {
-	display: flex;
-	flex-direction: column;
-	flex: 1;
-	grid-gap: 40px;
-	gap: 40px;
-	max-width: 300px;
-	padding: 16px;
-	border-radius: 15px;
-	background-color: var(--background-sub-color);
-	box-shadow: var(--box-shadow);
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Header Paragraphs */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.headerParagraphs {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
 }
-@media screen and (max-width: 768px) {
-	.type {
-		max-width: inherit;
-	}
-}
-.type > .head {
-	display: flex;
-	align-items: center;
-	grid-gap: 16px;
-	gap: 16px;
+.headerParagraphs > p {
+    font-family: Nunito Sans;
+    font-size: 14px;
 }
 @media screen and (max-width: 576px) {
-	.type > .head {
-		justify-content: center;
-	}
+    .headerParagraphs > p {
+        text-align: center;
+    }
 }
-.type > .head > i {
-	font-size: 56px;
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Header Actions */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.headerActions {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
 }
-.type[data-type="startup"] > .head > i {
-	color: var(--logo-orange-color);
-}
-.type[data-type="corporate"] > .head > i {
-	color: var(--logo-blue-color);
-}
-.type[data-type="partner"] > .head > i {
-	color: var(--logo-green-color);
-}
-.type > .head > div > h5 {
-	font-family: "Nunito Sans";
-	font-size: 24px;
-}
-.type[data-type="startup"] > .head > div > h5 {
-	color: var(--logo-orange-color);
-}
-.type[data-type="corporate"] > .head > div > h5 {
-	color: var(--logo-blue-color);
-}
-.type[data-type="partner"] > .head > div > h5 {
-	color: var(--logo-green-color);
-}
-.type > .head > div > p {
-	color: var(--text-inactive-color);
-}
-.type > .body {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 16px;
-	gap: 16px;
+.headerActions > [class*="action"] {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    font-weight: bold;
 }
 @media screen and (max-width: 576px) {
-	.type > .body * {
-		text-align: center;
-	}
+    .headerActions > [class*="action"]:hover {
+        transform: scale(1);
+    }
 }
-.type > .footer {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	grid-gap: 8px;
-	gap: 8px;
-	margin: auto 0px 0px 0px;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Sourcing ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.sourcing {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: calc(80px - 16px);
-}
-@media screen and (max-width: 576px) {
-	.sourcing {
-		padding: calc(32px - 16px);
-	}
-}
-.sourcing::before,
-.sourcing::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.sourcing > div[class="container"] > h3 {
-	font-family: "Nunito Sans";
-	font-size: 48px;
-	font-weight: 300;
-	text-align: center;
-}
-.sourcing > div[class="container"] > p {
-	font-family: "Nunito Sans";
-	font-size: 21px;
-	text-align: center;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Sourcing For Startup ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.sourcing[data-type="startup"]::before {
-	background-color: var(--lightred-color);
-}
-.sourcing[data-type="startup"]::after {
-	border-radius: 100px 0px 0px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.sourcing[data-type="startup"]::after {
-		border-radius: 50px 0px 0px 0px;
-	}
-}
-.sourcing[data-type="startup"] button {
-	border: var(--border);
-	border-color: var(--sunred-color);
-	background-color: var(--lightred-color);
-}
-.sourcing[data-type="startup"] button > i {
-	color: var(--sunred-color);
-}
-.sourcing[data-type="startup"] button[class="active"] {
-	background-color: var(--sunred-color);
-}
-.sourcing[data-type="startup"] button[class="active"] > i {
-	color: var(--perfect-white-color);
-}
-.sourcing[data-type="startup"] div[class="separatorVertical"] {
-	background-color: var(--sunred-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Sourcing For Corporate ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.sourcing[data-type="corporate"]::before {
-	background-color: var(--background-main-color);
-}
-.sourcing[data-type="corporate"]::after {
-	border-radius: 100px 0px 0px 100px;
-	background-color: var(--lightblue-color);
-}
-@media screen and (max-width: 576px) {
-	.sourcing[data-type="corporate"]::after {
-		border-radius: 50px 0px 0px 50px;
-	}
-}
-.sourcing[data-type="corporate"] h3,
-.sourcing[data-type="corporate"] h4,
-.sourcing[data-type="corporate"] p,
-.sourcing[data-type="corporate"] div {
-	color: var(--perfect-black-color);
-}
-.sourcing[data-type="corporate"] button {
-	border: var(--border);
-	border-color: var(--pureblue-color);
-	background-color: var(--lightblue-color);
-}
-.sourcing[data-type="corporate"] button > i {
-	color: var(--pureblue-color);
-}
-.sourcing[data-type="corporate"] button[class="active"] {
-	background-color: var(--pureblue-color);
-}
-.sourcing[data-type="corporate"] button[class="active"] > i {
-	color: var(--perfect-white-color);
-}
-.sourcing[data-type="corporate"] div[class="separatorVertical"] {
-	background-color: var(--pureblue-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Sourcing For Opportunity ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.sourcing[data-type="opportunity"]::before {
-	background-color: var(--light-grey-color);
-}
-.sourcing[data-type="opportunity"]::after {
-	border-radius: 100px 0px 0px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.sourcing[data-type="opportunity"]::after {
-		border-radius: 50px 0px 0px 0px;
-	}
-}
-.sourcing[data-type="opportunity"] button {
-	background-color: var(--perfect-white-color);
-}
-.sourcing[data-type="opportunity"] button > i {
-	color: var(--perfect-black-color);
-}
-.sourcing[data-type="opportunity"] button[class="active"] {
-	background-color: var(--light-grey-color);
-}
-.sourcing[data-type="opportunity"] button[class="active"] > i {
-	color: var(--perfect-black-color);
-}
-.sourcing[data-type="opportunity"] div[class="separatorVertical"] {
-	background-color: var(--light-grey-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Opportunity ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.opportunity {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: calc(80px - 16px);
-}
-@media screen and (max-width: 576px) {
-	.opportunity {
-		padding: calc(32px - 16px);
-	}
-}
-.opportunity::before,
-.opportunity::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	background-color: var(--background-main-color);
-	z-index: -1;
-}
-.opportunity > div[class="container"] > h3 {
-	font-family: "Nunito Sans";
-	font-size: 42px;
-	font-weight: bold;
-	text-align: center;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Opportunity For Startup ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.opportunity[data-type="startup"]::before {
-	background-color: var(--lightred-color);
-}
-.opportunity[data-type="startup"]::after {
-	border-radius: 0px 0px 0px 100px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.opportunity[data-type="startup"]::after {
-		border-radius: 0px 0px 0px 50px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Opportunity For Corporate ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.opportunity[data-type="corporate"]::before {
-	background-color: var(--lightblue-color);
-}
-.opportunity[data-type="corporate"]::after {
-	border-radius: 0px 100px 0px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.opportunity[data-type="corporate"]::after {
-		border-radius: 0px 50px 0px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Register ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.register {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: calc(80px - 16px);
-}
-@media screen and (max-width: 576px) {
-	.register {
-		padding: calc(32px - 16px);
-	}
-}
-.register::before,
-.register::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.register > div[class="container"] > h3 {
-	font-family: "Nunito Sans";
-	font-size: 45px;
-	font-weight: 300;
-	text-align: center;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Register For Corporate ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.register[data-type="corporate"]::before {
-	background-color: var(--lightblue-color);
-}
-.register[data-type="corporate"]::after {
-	border-radius: 0px 100px 0px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.register[data-type="corporate"]::after {
-		border-radius: 0px 50px 0px 0px;
-	}
-}
-.register[data-type="corporate"] [class*="steps"] > button[class*="active"] {
-	color: var(--perfect-white-color);
-	border-color: var(--pureblue-color);
-	background-color: var(--pureblue-color);
-}
-.register[data-type="corporate"] [class*="steps"] > button:hover {
-	color: var(--pureblue-color);
-	border-color: var(--lightblue-color);
-	background-color: var(--lightblue-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Register For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.register[data-type="partner"]::before {
-	background-color: var(--lightgreen-color);
-}
-.register[data-type="partner"]::after {
-	border-radius: 0px 100px 0px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.register[data-type="partner"]::after {
-		border-radius: 0px 50px 0px 0px;
-	}
-}
-.register[data-type="partner"] [class*="steps"] > button[class*="active"] {
-	color: var(--perfect-white-color);
-	border-color: var(--grassgreen-color);
-	background-color: var(--grassgreen-color);
-}
-.register[data-type="partner"] [class*="steps"] > button:hover {
-	color: var(--grassgreen-color);
-	border-color: var(--lightgreen-color);
-	background-color: var(--lightgreen-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Startups & Structures ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.startups,
-.structures {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: calc(80px - 16px);
-}
-@media screen and (max-width: 576px) {
-	.startups,
-	.structures {
-		padding: calc(32px - 16px);
-	}
-}
-.startups::before,
-.startups::after,
-.structures::before,
-.structures::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	background-color: var(--background-main-color);
-	z-index: -1;
-}
-.startups > div[class="container"] > h3,
-.structures > div[class="container"] > h3 {
-	font-family: "Nunito Sans";
-	font-size: 42px;
-	font-weight: bold;
-	text-align: center;
-}
-.structures > div[class="container"] > p {
-	font-family: "Nunito Sans";
-	font-size: 21px;
-	text-align: center;
-}
-.startups > div[class="container"] > .startupsCategories,
-.structures > div[class="container"] > .structuresCategories {
-	display: flex;
-	justify-content: center;
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Join Cards */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.joinCards {
+    display: flex;
 	flex-wrap: wrap;
-	grid-gap: 16px;
-	gap: 16px;
+    justify-content: center;
+    grid-gap: 16px;
+    gap: 16px;
 }
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Startups For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.startups[data-type="home"] > div[class="container"] > h3 {
-	font-family: "Nunito Sans";
-	font-size: 42px;
-	font-weight: bold;
-	text-align: left;
-}
-.startups[data-type="home"] > div[class="container"] > .startupsCategories {
-	justify-content: flex-start;
-}
-@media screen and (max-width: 576px) {
-	.startups[data-type="home"] > div[class="container"] > h3 {
-		text-align: center;
-	}
-	.startups[data-type="home"] > div[class="container"] > .startupsCategories {
-		justify-content: center;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Startups For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.startups[data-type="partner"]::before {
-	background-color: var(--lightgreen-color);
-}
-.startups[data-type="partner"]::after {
-	border-radius: 0px 100px 0px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.startups[data-type="partner"]::after {
-		border-radius: 0px 50px 0px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Structures For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.structures[data-type="home"]::before {
-	background-color: var(--background-sub-color);
-}
-.structures[data-type="home"]::after {
-	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.structures[data-type="home"]::after {
-		border-radius: 0px 0px 50px 0px;
-	}
-}
-.structures[data-type="home"] > div[class="container"] > h3 {
-	font-family: "Nunito Sans";
-	font-size: 42px;
-	font-weight: bold;
-	text-align: left;
-}
-.structures[data-type="home"] > div[class="container"] > p {
-	font-family: "Nunito Sans";
-	font-size: 21px;
-	text-align: left;
-}
-.structures[data-type="home"] > div[class="container"] > .structuresCategories {
-	justify-content: flex-start;
-}
-@media screen and (max-width: 576px) {
-	.structures[data-type="home"] > div[class="container"] > h3,
-	.structures[data-type="home"] > div[class="container"] > p {
-		text-align: center;
-	}
-	.structures[data-type="home"] > div[class="container"] > .structuresCategories {
-		justify-content: center;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Companies ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.companies {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: calc(80px - 16px);
-}
-@media screen and (max-width: 576px) {
-	.companies {
-		padding: calc(32px - 16px);
-	}
-}
-.companies::before,
-.companies::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	background-color: var(--background-main-color);
-	z-index: -1;
-}
-.companies > div[class="container"] > h3 {
-	font-family: "Nunito Sans";
-	font-size: 48px;
-	font-weight: bold;
-	text-align: center;
-}
-.companies > div[class="container"] > p {
-	font-size: 21px;
-	font-weight: bold;
-	text-align: center;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Companies For Startup ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.companies[data-type="startup"]::before {
-	background-color: var(--lightred-color);
-}
-.companies[data-type="startup"]::after {
-	border-radius: 100px 0px 0px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.companies[data-type="startup"]::after {
-		border-radius: 50px 0px 0px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Companies For Corporate ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.companies[data-type="corporate"]::before {
-	background-color: var(--lightblue-color);
-}
-.companies[data-type="corporate"]::after {
-	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.companies[data-type="corporate"]::after {
-		border-radius: 0px 0px 50px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Companies For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.companies[data-type="partner"]::before {
-	background-color: var(--lightgreen-color);
-}
-.companies[data-type="partner"]::after {
-	border-radius: 0px 0px 100px 0px;
-	background-color: var(--background-main-color);
-}
-@media screen and (max-width: 576px) {
-	.companies[data-type="partner"]::after {
-		border-radius: 0px 0px 50px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badges ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: calc(80px - 16px);
-}
-@media screen and (max-width: 576px) {
-	.badges {
-		padding: calc(32px - 16px);
-	}
-}
-.badges::before,
-.badges::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.badges > div[class="container"] > h3 {
-	font-family: "Nunito Sans";
-	font-size: 48px;
-	font-weight: 300;
-	text-align: center;
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badges For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges[data-type="home"]::before {
-	background-color: var(--background-main-color);
-}
-.badges[data-type="home"]::after {
-	border-radius: 0px 100px 0px 100px;
-	background-color: var(--background-private-color);
-}
-@media screen and (max-width: 576px) {
-	.badges[data-type="home"]::after {
-		border-radius: 0px 50px 0px 50px;
-	}
-}
-.badges[data-type="home"] > div[class="container"] > h3 {
-	font-size: 48px;
-	font-weight: bold;
-	text-align: left;
-	color: var(--perfect-white-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badges For Startup ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges[data-type="startup"]::before {
-	background-color: var(--background-main-color);
-}
-.badges[data-type="startup"]::after {
-	border-radius: 0px 100px 100px 0px;
-	background-color: var(--lightred-color);
-}
-@media screen and (max-width: 576px) {
-	.badges[data-type="startup"]::after {
-		border-radius: 0px 50px 50px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badges For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges[data-type="partner"]::before {
-	background-color: var(--background-main-color);
-}
-.badges[data-type="partner"]::after {
-	border-radius: 100px 0px 0px 100px;
-	background-color: var(--lightgreen-color);
-}
-@media screen and (max-width: 576px) {
-	.badges[data-type="partner"]::after {
-		border-radius: 50px 0px 0px 50px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badges List ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badgesList {
-	display: flex;
-	grid-gap: 16px;
-	gap: 16px;
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Join Card */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.joinCard {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
+    flex: 1;
+    min-width: 280px;
+    width: 280px;
+    max-width: 280px;
+    padding: 16px;
+    border-radius: 15px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
 }
 @media screen and (max-width: 768px) {
-	.badgesList  {
-		flex-direction: column;
+	.joinCard {
+		min-width: 100%;
+		max-width: 100%;
 	}
 }
-.badgesList > div[class="separator"] {
-	margin: calc(128px / 2) 0px auto 0px;
+/* [data-theme="nextinov"] .joinCard { // This is a border gradient hack with border radius support
+    border: 4px solid transparent;
+    border-radius: 15px;
+    background: linear-gradient(var(--background-sub-color), var(--background-sub-color)) padding-box, var(--gradient-ui) border-box;
+} */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Join Card Header */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.joinCardHeader {
+    display: flex;
+    grid-gap: 16px;
+    gap: 16px;
 }
-@media screen and (max-width: 1200px) {
-	.badgesList > div[class="separator"] {
-		display: none;
-	}
+.joinCardHeader > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 56px;
+    width: 56px;
+    max-width: 56px;
+    min-height: 56px;
+    height: 56px;
+    max-height: 56px;
+    font-size: 56px;
+    overflow: hidden;
 }
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badge ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badge {
+.joinCard:first-of-type > .joinCardHeader > i {
+    color: var(--logo-orange-color);
+}
+.joinCard:nth-of-type(2) > .joinCardHeader > i {
+    color: var(--logo-blue-color);
+}
+.joinCard:last-of-type > .joinCardHeader > i {
+    color: var(--logo-green-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Join Card Header Title */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.joinCardHeaderTitle > p:first-of-type {
+    font-family: Nunito Sans;
+    font-size: 24px;
+    font-weight: bold;
+    line-break: anywhere;
+}
+.joinCard:first-of-type > .joinCardHeader > .joinCardHeaderTitle > p:first-of-type {
+    color: var(--logo-orange-color);
+}
+.joinCard:nth-of-type(2) > .joinCardHeader > .joinCardHeaderTitle > p:first-of-type {
+    color: var(--logo-blue-color);
+}
+.joinCard:last-of-type > .joinCardHeader > .joinCardHeaderTitle > p:first-of-type {
+    color: var(--logo-green-color);
+}
+.joinCardHeaderTitle > p:last-of-type {
+    color: var(--text-placeholder-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Join Card Body */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.joinCardBody {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
+}
+.joinCardBody + [class*="line"] {
+    margin: auto 0px 0px 0px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Join Card Footer */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.joinCardFooter {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
+}
+.joinCardFooter > a {
+    width: fit-content;
+    margin: auto;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Community Sections */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.communitySections {
+	display: flex;
+    flex-wrap: wrap;
+	grid-gap: 16px;
+    gap: 16px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Community Section */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.communitySection {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	grid-gap: 16px;
-	gap: 16px;
-	flex: 1;
+    gap: 16px;
+    min-width: calc((100% / 3) - 16px);
+    max-width: calc((100% / 3) - 16px);
 }
-.badge > i {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-width: 128px;
-	width: 128px;
-	max-width: 128px;
-	min-height: 128px;
-	height: 128px;
-	max-height: 128px;
-	position: relative;
-	font-size: 60px;
-	border-radius: calc(128px / 2);
-	background-color: var(--background-sub-color);
-	box-shadow: var(--box-shadow);
-}
-.badge > .content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	grid-gap: 16px;
-	gap: 16px;
-}
-.badge > .content > h6 {
-	width: 180%;
-	font-family: "Nunito Sans";
-	font-size: 32px;
-	font-weight: bold;
-	text-align: center;
-}
-.badge > .content > p {
-	width: 180%;
-	text-align: center;
-	font-size: 16px;
-}
-.badge > .content > p > a span {
-	font-size: 16px;
-}
-@media screen and (max-width: 1200px) {
-	.badge > .content > h6,
-	.badge > .content > p {
-		width: 100%;
-		left: inherit;
+@media screen and (max-width: 992px) {
+	.communitySection {
+		min-width: calc((100% / 2) - 16px);
+		max-width: calc((100% / 2) - 16px);
 	}
 }
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badge For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges[data-type="home"] .badge {
-	padding: 0px 8px;
+@media screen and (max-width: 768px) {
+	.communitySection {
+		min-width: 100%;
+		max-width: 100%;
+	}
 }
-.badges[data-type="home"] div[class="separator"],
-.badges[data-type="home"] .badge > i {
-	display: none;
-}
-.badges[data-type="home"] .badge > .content > h6,
-.badges[data-type="home"] .badge > .content > p {
-	width: inherit;
+.communitySection > p {
 	color: var(--perfect-white-color);
-	font-family: "Nunito Sans";
-	text-align: left;
+	font-family: Nunito Sans;
 }
-.badges[data-type="home"] .badge > .content {
-	align-items: flex-start;
-}
-.badges[data-type="home"] .badge > .content > h6 {
+.communitySection > p:first-of-type {
 	font-size: 24px;
-	font-weight: 800;
+    font-weight: 800;
 }
-.badges[data-type="home"] .badge > .content > p {
-	font-size: 14px;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badge For Startup ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges[data-type="startup"] div[class="separator"] {
-	background-color: var(--sunred-color);
-}
-.badges[data-type="startup"] .badge > i {
-	color: var(--sunred-color);
-}
-.badges[data-type="startup"] .badge > .content > h6,
-.badges[data-type="startup"] .badge > .content > p {
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badge For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.badges[data-type="partner"] div[class="separator"] {
-	background-color: var(--grassgreen-color);
-}
-.badges[data-type="partner"] .badge > i {
-	color: var(--grassgreen-color);
-}
-.badges[data-type="partner"] .badge > .content > h6,
-.badges[data-type="partner"] .badge > .content > p {
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Testimonials ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.testimonials {
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Startups Categories Section */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.startupsCategoriesSection {
 	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: calc(80px - 16px);
-}
-@media screen and (max-width: 576px) {
-	.testimonials {
-		padding: calc(32px - 16px);
-	}
-}
-.testimonials::before,
-.testimonials::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.testimonials > div[class="container"] > h3 {
-	font-family: "Nunito Sans";
-	font-size: 42px;
-	font-weight: bold;
-	text-align: center;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Badges For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.testimonials[data-type="home"]::before {
-	background-color: var(--background-main-color);
-}
-.testimonials[data-type="home"]::after {
-	border-radius: 100px 0px 0px 0px;
-	background-color: var(--background-sub-color);
-}
-@media screen and (max-width: 576px) {
-	.testimonials[data-type="home"]::after {
-		border-radius: 50px 0px 0px 0px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Blog ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.blog {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: calc(80px - 16px);
-	background-color: var(--background-sub-color);
-}
-@media screen and (max-width: 576px) {
-	.blog {
-		padding: 32px;
-	}
-}
-.blog::before,
-.blog::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.blog > div[class="container"] > h3 {
-	font-family: "Nunito Sans";
-	font-size: 42px;
-	font-weight: bold;
-	text-align: center;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Typing ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.typing {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: calc(80px - 16px);
-}
-@media screen and (max-width: 576px) {
-	.typing {
-		padding: calc(32px - 16px);
-	}
-}
-.typing::before,
-.typing::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.typing > div[class="container"] > p {
-	font-size: 20px;
-	color: var(--perfect-white-color);
-	text-align: center;
-}
-.typing > div[class="container"] > .animation {
-	text-align: center;
-}
-.typing > div[class="container"] > .animation > .typed,
-.typing > div[class="container"] > .animation > span {
-	display: inline;
-	font-size: 40px;
-	font-family: "Nunito Sans";
-	font-weight: bold;
-	color: var(--perfect-white-color);
-	text-align: center;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Typing For Home ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.typing[data-type="home"]::before {
-	background-color: var(--background-main-color);
-}
-.typing[data-type="home"]::after {
-	border-radius: 0px 100px 0px 100px;
-	background-color: var(--background-private-color);
-}
-@media screen and (max-width: 576px) {
-	.typing[data-type="home"]::after {
-		border-radius: 0px 50px 0px 50px;
-	}
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Questions ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions {
-	display: flex;
-	flex-direction: column;
-	grid-gap: 40px;
-	gap: 40px;
-	width: 100%;
-	padding: calc(80px - 16px);
-}
-@media screen and (max-width: 576px) {
-	.questions {
-		padding: calc(32px - 16px);
-	}
-}
-.questions::before,
-.questions::after {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	content: "";
-	z-index: -1;
-}
-.questions > div[class="container"] > h3 {
-	font-family: "Nunito Sans";
-	font-size: 42px;
-	font-weight: bold;
-	text-align: center;
-}
-.questions > div[class="container"] > [data-carousel] {
-	overflow: hidden;
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Questions For Startup ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions[data-type="startup"] button[class*="active"] {
-	border-color: var(--lightred-color);
-	background-color: var(--lightred-color);
-}
-.questions[data-type="startup"] button[class*="active"] > span {
-	color: var(--sunred-color);
-}
-.questions[data-type="startup"] div[class*="active"] {
-	background-color: var(--lightred-color);
-}
-.questions[data-type="startup"] div[class*="active"] > button,
-.questions[data-type="startup"] div[class*="active"] > button > i {
-	color: var(--sunred-color);
-}
-.questions[data-type="startup"] div[class*="active"] > div {
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Questions For Corporate ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions[data-type="corporate"] button[class*="active"] {
-	border-color: var(--lightblue-color);
-	background-color: var(--lightblue-color);
-}
-.questions[data-type="corporate"] button[class*="active"] > span {
-	color: var(--pureblue-color);
-}
-.questions[data-type="corporate"] div[class*="active"] {
-	background-color: var(--lightblue-color);
-}
-.questions[data-type="corporate"] div[class*="active"] > button,
-.questions[data-type="corporate"] div[class*="active"] > button > i {
-	color: var(--pureblue-color);
-}
-.questions[data-type="corporate"] div[class*="active"] > div {
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Questions For Partner ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions[data-type="partner"] button[class*="active"] {
-	border-color: var(--lightgreen-color);
-	background-color: var(--lightgreen-color);
-}
-.questions[data-type="partner"] button[class*="active"] > span {
-	color: var(--grassgreen-color);
-}
-.questions[data-type="partner"] div[class*="active"] {
-	background-color: var(--lightgreen-color);
-}
-.questions[data-type="partner"] div[class*="active"] > button,
-.questions[data-type="partner"] div[class*="active"] > button > i {
-	color: var(--grassgreen-color);
-}
-.questions[data-type="partner"] div[class*="active"] > div {
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Questions For Opportunity ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.questions[data-type="opportunity"] button[class*="active"] {
-	border-color: var(--light-grey-color);
-	background-color: var(--light-grey-color);
-}
-.questions[data-type="opportunity"] button[class*="active"] > span {
-	color: var(--perfect-black-color);
-}
-.questions[data-type="opportunity"] div[class*="active"] {
-	background-color: var(--light-grey-color);
-}
-.questions[data-type="opportunity"] div[class*="active"] > button,
-.questions[data-type="opportunity"] div[class*="active"] > button > i {
-	color: var(--perfect-black-color);
-}
-.questions[data-type="opportunity"] div[class*="active"] > div {
-	color: var(--perfect-black-color);
-}
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/* Home ( Actions ) */
-/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.actions {
-	display: flex;
-	align-items: center;
+    flex-wrap: wrap;
 	grid-gap: 16px;
-	gap: 16px;
+    gap: 16px;
 }
-.actions[data-justify="left"] {
-	justify-content: flex-start;
-}
-.actions[data-justify="center"] {
-	justify-content: center;
-}
-.actions[data-justify="right"] {
-	justify-content: flex-end;
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Structures Section */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.structuresSection {
+	display: flex;
+    flex-wrap: wrap;
+	grid-gap: 16px;
+    gap: 16px;
 }

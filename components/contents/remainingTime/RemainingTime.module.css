@@ -1,0 +1,19 @@
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Container */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.container {
+    display: flex;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
+}
+@media screen and (max-width: 576px) {
+    .container {
+        align-items: baseline;
+    }    
+}
+.container > i,
+.container > p {
+    font-size: 12px;
+    color: var(--text-placeholder-color);
+}
