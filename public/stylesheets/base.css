@@ -27,7 +27,10 @@
     --lighter-grey-color: #E7E7E7;
     --light-grey-color: #CFD0D1;
     --perfect-grey-color: #808080;
-    --lighter-black-color: #242526;
+    --dark-grey-color: #6D6D6D;
+    --darker-grey-color: #555555;
+    --lighter-black-color: #363839;
+    --light-black-color: #242526;
     --classic-black-color: #141516;
     --perfect-black-color: #000000;
     /* Feedback Colors */
@@ -60,10 +63,8 @@
     /* Background Colors */
     --background-main-color: var(--darker-white-color);
     --background-sub-color: var(--perfect-white-color);
-    --background-private-color: var(--lighter-black-color);
+    --background-private-color: var(--light-black-color);
     --background-information-color: var(--light-grey-color);
-    /* Inverted color */
-    --inverted-color: var(--perfect-black-color);
     /* Other Variables */
     --shadow-color: #00000030;
     --darker-shadow-color: #00000050;
@@ -72,7 +73,7 @@
     --darker-box-shadow: 4px 4px 10px 0px var(--darker-shadow-color);
     --filter-color: #FFFFFF80;
     --gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, #FFFFFFFF 80%);
-    --gradient-ui: linear-gradient(90deg, #EC008C, #FC6767);
+    --gradient-ui: linear-gradient(90deg, #EC008C, #FF8336);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Dark Theme */
@@ -91,10 +92,13 @@
     /* Light & Dark Colors */
     --perfect-white-color: #FFFFFF;
     --darker-white-color: #F8F7F6;
+    --lighter-grey-color: #E7E7E7;
     --light-grey-color: #CFD0D1;
-    /* --iron-grey-color: #B7B7B9; */
     --perfect-grey-color: #808080;
-    --lighter-black-color: #242526;
+    --dark-grey-color: #6D6D6D;
+    --darker-grey-color: #555555;
+    --lighter-black-color: #363839;
+    --light-black-color: #242526;
     --classic-black-color: #141516;
     --perfect-black-color: #000000;
     /* Feedback Colors */
@@ -103,40 +107,109 @@
     --error-color: #E01E3E;
     --information-color: #1F4497;
     /* Blue Tones */
-    --pastelblue-color: #F0F6FF;
-    --lightblue-color: #B2D1FF;
-    --paleblue-color: #97C0FD;
-    --pureblue-color: #006DFF;
+    --pastel-blue-color: #F0F6FF;
+    --light-blue-color: #B2D1FF;
+    --pale-blue-color: #97C0FD;
+    --pure-blue-color: #006DFF;
     /* Green Tones */
-    --lightgreen-color: #D1F2E4;
-    --palegreen-color: #9FE9CA;
-    --grassgreen-color: #38BF84;
+    --light-green-color: #D1F2E4;
+    --pale-green-color: #9FE9CA;
+    --grass-green-color: #38BF84;
     /* Red Tones */
-    --lightred-color: #FFEFE6;
-    --palered-color: #FFCFD1;
-    --sunred-color: #FF5500;
+    --light-red-color: #FFEFE6;
+    --pale-red-color: #FFCFD1;
+    --sun-red-color: #FF5500;
+    /* Text Colors */
+    --text-main-color: var(--perfect-black-color);
+    --text-inactive-color: var(--perfect-grey-color);
+    --text-placeholder-color: var(--perfect-grey-color);
+    /* Line Colors */
+    --separator-color: var(--light-grey-color);
+    --border-color: var(--light-grey-color);
+    --border: 1px solid var(--border-color);
+    --debugging-border: 1px dashed var(--logo-blue-color);
+    /* Background Colors */
+    --background-main-color: var(--darker-white-color);
+    --background-sub-color: var(--perfect-white-color);
+    --background-private-color: var(--light-black-color);
+    --background-information-color: var(--light-grey-color);
+    /* Other Variables */
+    --shadow-color: #00000030;
+    --darker-shadow-color: #00000050;
+    --box-shadow: 4px 4px 10px 0px var(--shadow-color);
+    --box-shadow-reversed: 4px -4px 10px 0px var(--shadow-color);
+    --darker-box-shadow: 4px 4px 10px 0px var(--darker-shadow-color);
+    --filter-color: #FFFFFF80;
+    --gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, #FFFFFFFF 80%);
+    --gradient-ui: linear-gradient(90deg, #EC008C, #FF8336);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Nextinov Theme */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+[data-theme="nextinov"] {
+    /* Logo Colors */
+    --logo-blue-color: #005AEB;
+    --logo-orange-color: #FE6A28;
+    --logo-green-color: #65D318;
+    /* Opportunity Colors */
+    --project-color: #31A774;
+    --event-color: #8061DE;
+    --program-color: #7EC9FF;
+    --offer-color: #FA6A58;
+    --challenge-color: #ED9F00;
+    /* Light & Dark Colors */
+    --perfect-white-color: #FFFFFF;
+    --darker-white-color: #F8F7F6;
+    --lighter-grey-color: #E7E7E7;
+    --light-grey-color: #CFD0D1;
+    --perfect-grey-color: #808080;
+    --dark-grey-color: #6D6D6D;
+    --darker-grey-color: #555555;
+    --lighter-black-color: #363839;
+    --light-black-color: #242526;
+    --classic-black-color: #141516;
+    --perfect-black-color: #000000;
+    /* Feedback Colors */
+    --success-color: #00A04A;
+    --warning-color: #FCDC0C;
+    --error-color: #E01E3E;
+    --information-color: #1F4497;
+    /* Blue Tones */
+    --pastel-blue-color: #F0F6FF;
+    --light-blue-color: #B2D1FF;
+    --pale-blue-color: #97C0FD;
+    --pure-blue-color: #006DFF;
+    /* Green Tones */
+    --light-green-color: #D1F2E4;
+    --pale-green-color: #9FE9CA;
+    --grass-green-color: #38BF84;
+    /* Red Tones */
+    --light-red-color: #FFEFE6;
+    --pale-red-color: #FFCFD1;
+    --sun-red-color: #FF5500;
     /* Text Colors */
     --text-main-color: var(--perfect-white-color);
     --text-inactive-color: var(--perfect-grey-color);
+    --text-placeholder-color: var(--perfect-grey-color);
     /* Line Colors */
-    --border-color: var(--light-grey-color);
+    --separator-color: var(--darker-grey-color);
+    --border-color: var(--darker-grey-color);
     --border: 1px solid var(--border-color);
-    --separator-color: var(--border-color);
+    --debugging-border: 1px dashed var(--logo-blue-color);
     /* Background Colors */
-    --background-main-color: var(--lighter-black-color);
+    --background-main-color: var(--light-black-color);
     --background-sub-color: var(--classic-black-color);
-    --background-private-color: var(--classic-black-color);
-    --background-information-color: var(--perfect-grey-color);
-    /* Inverted color */
-    --inverted-color: var(--perfect-white-color);
+    --background-private-color: var(--lighter-black-color);
+    --background-information-color: var(--light-grey-color);
     /* Other Variables */
-    --shadow-color: #00000070;
-    --darker-shadow-color: #00000090;
+    --shadow-color: #00000030;
+    --darker-shadow-color: #00000050;
     --box-shadow: 4px 4px 10px 0px var(--shadow-color);
+    --box-shadow-reversed: 4px -4px 10px 0px var(--shadow-color);
     --darker-box-shadow: 4px 4px 10px 0px var(--darker-shadow-color);
     --filter-color: #00000080;
     --gradient-mask: linear-gradient(180deg, #00000000 0%, #000000FF 80%);
-    --gradient-rgb: linear-gradient(90deg, #FB0094, #0000FF, #00FF00,#FFFF00, #FF0000, #FB0094, #0000FF, #00FF00,#FFFF00, #FF0000);
+    --gradient-ui: linear-gradient(90deg, #EC008C, #FF8336);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Resets */
@@ -176,6 +249,7 @@ body {
     background-color: var(--background-main-color);
     overflow-x: hidden;
 }
+
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scroll Bar */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -260,160 +334,22 @@ body {
     }
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* List */
+/* Forinov Design */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.list {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 16px;
-    gap: 16px;
+[data-theme="nextinov"] h1,
+[data-theme="nextinov"] h2,
+[data-theme="nextinov"] h3,
+[data-theme="nextinov"] h4,
+[data-theme="nextinov"] h5,
+[data-theme="nextinov"] h6 {
+    color: transparent;
+    background: var(--gradient-ui);
+    background-clip: text;
 }
-.list > a > div,
-.list > button > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    grid-gap: 8px;
-    gap: 8px;
-    min-height: inherit;
-}
-.list > a > div > [class*="count"],
-.list > button > div > [class*="count"] {
-    margin: 0px 0px 0px auto;
-    position: inherit;
-    top: inherit;
-    right: inherit;
-    order: 5;
-    z-index: inherit;
-}
-.list > a > div > [class*="icon"],
-.list > button > div > [class*="icon"] {
-    width: 48px;
-    height: 48px;
-    padding: 8px;
-}
-.list > a > div > i,
-.list > button > div > i {
-    font-size: 48px;
-}
-.list > a > div > h4,
-.list > button > div > h4 {
-    font-size: 16px;
-    flex: 1;
-}
-.list > a > div > [class*="tags"],
-.list > button > div > [class*="tags"] {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    flex: 1 !important;
-}
-.list > a > div [class*="banner"][data-opportunity-type] {
-    min-width: 350px;
-    width: 350px;
-    max-width: 350px;
-    min-height: inherit;
-    height: inherit;
-    max-height: inherit;
-    border-radius: 15px 0px 0px 15px;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Modal Layout */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.modalLayout {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    padding: 0px 16px;
-    opacity: 0;
-    pointer-events: none;
-    background-color: var(--filter-color);
-    backdrop-filter: blur(10px);
-    z-index: 9000;
-}
-.modalLayout.open {
-    opacity: 1;
-    pointer-events: all;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Modal ( Base ) */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.modal {
-    display: flex;
-    flex-direction: column;
-    grid-gap: 24px;
-    gap: 24px;
-    position: relative;
-    background-color: var(--background-sub-color);
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-}
-.modal.firstType {
-    border-radius: 15px;
-}
-.modal.secondType {
-    padding: 16px;
-    border-radius: 15px;
-}
-.modal > .header {
-    display: flex;
-    flex-direction: column;
-    grid-gap: 8px;
-    gap: 8px;
-    padding: 0px calc(70px - 16px) 0px 0px;
-}
-.modal > .header > h6 {
-    color: var(--logo-blue-color);
-    font-family: "Nunito Sans";
-    font-size: 24px;
-    font-weight: 800;
-}
-.modal > .header > p {
-    color: var(--text-inactive-color);
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Modal ( Register ) */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.modal[data-modal="register"] {
-    max-width: 892px;
-}
-.modal[data-modal="register"] > div {
-    display: flex;
-    align-items: center;
-}
-.modal[data-modal="register"] > div > i {
-    margin: 0px 16px 0px 0px;
-    font-size: 40px;
-    color: var(--warning-color);
-}
-.modal[data-modal="register"] > div > p {
-    font-family: "Nunito Sans";
-    font-size: 32px;
-    font-weight: 800;
-}
-.modal[data-modal="register"] > div:first-of-type {
-    padding: 24px calc((24px + 16px) + 30px) 8px 24px;
-}
-.modal[data-modal="register"] > div:last-of-type {
-    padding: 24px 24px 24px calc((24px + 16px) + 35px);
-    background-color: var(--logo-blue-color);
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Modal ( Contact ) */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.modal[data-modal="contact"] {
-    max-width: 892px;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Modal ( Errors ) */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.modal[data-modal="errors"] {
-    max-width: 892px;
+[data-theme="nextinov"] [class*="primary"],
+[data-theme="nextinov"] [class*="secondary"] {
+    color: var(--perfect-white-color);
+    background: var(--gradient-ui);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Custom Tool Tips */
@@ -513,77 +449,6 @@ body {
 }
 [data-type="devtools"].closed > button > i {
     transform: rotate(-180deg);
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Placeholders */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.placeholder {
-    width: 100%;
-    padding: 16px;
-    border-radius: 10px;
-    background-color: var(--background-sub-color);
-    box-shadow: var(--box-shadow);
-}
-.placeholderCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    grid-gap: 16px;
-    gap: 16px;
-    padding: 16px;
-    border-radius: 15px;
-    background-color: var(--background-sub-color);
-    box-shadow: var(--box-shadow);
-}
-.placeholderCard > p {
-    color: var(--logo-blue-color);
-    font-size: 32px;
-    font-family: "Nunito Sans";
-    font-weight: bold;
-    text-align: center;
-}
-.placeholderCard > a {
-    pointer-events: all;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Opportunity Types */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-[data-opportunity-type="1"] {
-    background-color: var(--project-color);
-}
-[data-opportunity-type="1"] * {
-    color: var(--perfect-white-color);
-}
-[data-opportunity-type="2"] {
-    background-color: var(--program-color);
-}
-[data-opportunity-type="2"] * {
-    color: var(--perfect-black-color);
-}
-[data-opportunity-type="3"] {
-    background-color: var(--challenge-color);
-}
-[data-opportunity-type="3"] * {
-    color: var(--perfect-black-color);
-}
-[data-opportunity-type="4"] {
-    background-color: var(--event-color);
-}
-[data-opportunity-type="4"] * {
-    color: var(--perfect-white-color);
-}
-[data-opportunity-type="5"] {
-    background-color: var(--offer-color);
-}
-[data-opportunity-type="5"] * {
-    color: var(--perfect-black-color);
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Home ( Carousels ) */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-div[data-carousel] {
-	position: relative;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Development Mode Indicator */
