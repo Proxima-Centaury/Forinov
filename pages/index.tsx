@@ -17,9 +17,10 @@ import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import LinkButton from "@actions/linkAction";
+import LinkButton from "@buttons/linkButton";
 import LineSeparator from "@separators/lineSeparator";
 import DefaultCarousel from "@carousels/defaultCarousel";
+import Testimonials from "@contents/testimonials";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -39,11 +40,10 @@ import HomeStyles from "@stylesheets/pages/Home.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const Home = (params: TPage): JSX.Element => {
 	const router = useRouter();
-	const { basePath } = router;
+	const { locale } = router;
 	const { t } = useTranslation("home");
 	const { landing, startups, opportunities, states } = params;
 	const { articles, categories, counters } = landing;
-	const { language } = states;
 	const homeHeaderLinks: TButton[] = require("@configurations/links.json").home.header;
 	const homeStructuresLinks: TButton[] = require("@configurations/links.json").home.structures;
 	return <Fragment>
@@ -66,13 +66,13 @@ const Home = (params: TPage): JSX.Element => {
 							<div className={ HomeStyles.headerActions }>
 								{ homeHeaderLinks.map(({ classList, href, icon, text }: TButton, key: number) => {
 									const translatedText = (text) ? t(text) : undefined;
-									const dynamicParams = { classList, href: href?.replace("{{ language }}", language), icon, text: translatedText };
+									const dynamicParams = { classList, href, icon, text: translatedText };
 									return <LinkButton key={ key } { ...dynamicParams }/>;
 								}) }
 							</div>
 						</div>
 						<div className={ HomeStyles.headerRightContainer }>
-							<Image src={ `${ basePath }/assets/home.gif` } alt={ t("homeHeaderIllustrationAlt") } width="500" height="500" priority/>
+							<Image src="/assets/home.gif" alt={ t("homeHeaderIllustrationAlt") } width="500" height="500" priority/>
 						</div>
 					</div>
 				</div>
@@ -99,8 +99,8 @@ const Home = (params: TPage): JSX.Element => {
 							</div>
 							<LineSeparator/>
 							<div className={ HomeStyles.joinCardFooter }>
-								<LinkButton classList="primary" href={ `/${ language }/onboarding` } text={ t("homeJoinOnbardingLink") }/>
-								<LinkButton classList="link" href={ `/${ language }/startups` } text={ t("homeJoinFindOutMoreLink") }/>
+								<LinkButton classList="primary" href="/onboarding" text={ t("homeJoinOnbardingLink") } locale={ locale }/>
+								<LinkButton classList="link" href="/startups" text={ t("homeJoinFindOutMoreLink") } locale={ locale }/>
 							</div>
 						</div>
 						<div className={ HomeStyles.joinCard }>
@@ -118,8 +118,8 @@ const Home = (params: TPage): JSX.Element => {
 							</div>
 							<LineSeparator/>
 							<div className={ HomeStyles.joinCardFooter }>
-								<LinkButton classList="primary" href={ `/${ language }/onboarding` } text={ t("homeJoinOnbardingLink") }/>
-								<LinkButton classList="link" href={ `/${ language }/corporates` } text={ t("homeJoinFindOutMoreLink") }/>
+								<LinkButton classList="primary" href="/onboarding" text={ t("homeJoinOnbardingLink") } locale={ locale }/>
+								<LinkButton classList="link" href="/corporates" text={ t("homeJoinFindOutMoreLink") } locale={ locale }/>
 							</div>
 						</div>
 						<div className={ HomeStyles.joinCard }>
@@ -137,8 +137,8 @@ const Home = (params: TPage): JSX.Element => {
 							</div>
 							<LineSeparator/>
 							<div className={ HomeStyles.joinCardFooter }>
-								<LinkButton classList="primary" href={ `/${ language }/onboarding` } text={ t("homeJoinOnbardingLink") }/>
-								<LinkButton classList="link" href={ `/${ language }/partners` } text={ t("homeJoinFindOutMoreLink") }/>
+								<LinkButton classList="primary" href="/onboarding" text={ t("homeJoinOnbardingLink") } locale={ locale }/>
+								<LinkButton classList="link" href="/partners" text={ t("homeJoinFindOutMoreLink") } locale={ locale }/>
 							</div>
 						</div>
 					</div>
@@ -176,7 +176,7 @@ const Home = (params: TPage): JSX.Element => {
 					</div>
 					<div className={ HomeStyles.startupsCategoriesSection }>
 						{ categories.startups.map((category: any, key: number) => {
-							const url = `/${ language }/directories/startups/${ formatForUrl(category.name) }_${ category.id }`;
+							const url = `/directories/startups/${ formatForUrl(category.name) }_${ category.id }`;
 							return (category.name) ? <LinkButton key={ key } classList="tertiary" href={ url } text={ category.name }/> : null;
 						}) }
 					</div>
@@ -200,7 +200,7 @@ const Home = (params: TPage): JSX.Element => {
 					<div className={ HomeStyles.structuresSection }>
 						{ homeStructuresLinks.map(({ classList, href, text }: TButton, key: number) => {
 							const translatedText = (text) ? t(text) : undefined;
-							const dynamicParams = { classList, href: href?.replace("{{ language }}", language), text: translatedText };
+							const dynamicParams = { classList, href, text: translatedText };
 							return <LinkButton key={ key } { ...dynamicParams }/>;
 						}) }
 					</div>
@@ -211,11 +211,11 @@ const Home = (params: TPage): JSX.Element => {
 					<div className={ HomeStyles.containerTitle }>
 						<h6>{ t("homeTestimonialsTitle") }</h6>
 					</div>
-					{/* <DefaultCarousel items={ articles } navigation="bar"/> */}
+					<Testimonials/>
 					<div className={ HomeStyles.containerTitle }>
 						<h6>{ t("homeArticlesTitle") }</h6>
 					</div>
-					{/* <DefaultCarousel items={ articles } navigation="bar"/> */}
+					<DefaultCarousel items={ articles } itemsType="articles" navigation="bar"/>
 				</div>
 			</div>
 		</div>
@@ -230,7 +230,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	const language = locale?.substring(0, 2);
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "common", "home" ])),
+			...(await serverSideTranslations(locale || "fr", [ "common", "footer", "home" ])),
 			locales,
 			landing: await api.getLanding("next", "Landing", language),
 			opportunities: await api.getLandingOpportunities("next", "Landing", language),

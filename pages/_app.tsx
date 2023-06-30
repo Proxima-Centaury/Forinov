@@ -16,7 +16,7 @@ import Head from "next/head";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 // import Navbar from "../layout/navbar";
 // import AuthNavbar from "../layout/authNavbar";
-// import Footer from "../layout/footer";
+import Footer from "@layouts/footer";
 // const Modal = dynamic(() => import("../layout/modal"));
 // const Devtools = dynamic(() => import("../components/devtools/devtools"));
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -32,14 +32,12 @@ import "@stylesheets/base.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const App = ({ Component, pageProps }: AppProps): JSX.Element => {
     const router = useRouter();
-	const { basePath, asPath, query } = router;
+	const { asPath, query } = router;
 	const { ui } = query;
-    const { i18n, t } = useTranslation("common");
+    const { t } = useTranslation("common");
     const [ states, setStates ] = useState({
         errors: [],
         session: null,
-        language: i18n.language,
-        languages: pageProps.locales,
         interface: (ui) ? false : true,
         theme: "light",
         limited: true,
@@ -55,7 +53,7 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
         <Head>
             <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <link rel="icon" href={ `${ basePath }/assets/logo.ico` }/>
+            <link rel="icon" href="/assets/logo.ico"/>
         </Head>
         {/* { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/>) : null } */}
         { (!production) ? <div className="developmentModeIndicator">
@@ -63,6 +61,7 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
             <span>{ t("developmentModeIndicator") }</span>
         </div> : null }
         <Component { ...pageProps }/>
+        <Footer/>
         {/* { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/>) : null } */}
         {/* <Modal { ...pageProps }/> */}
         {/* { (router.query.ui && router.query.ui == "false") ? null : (!production) ? <Devtools { ...pageProps }/> : null } */}

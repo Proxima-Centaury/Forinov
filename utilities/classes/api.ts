@@ -76,8 +76,8 @@ class API {
             return {
                 articles: response.BLOG.map((article: any) => ({
                     id: parseInt(article.ID),
-                    name: article.NAME,
-                    picture: article.PICTURE,
+                    banner: article.PICTURE,
+                    title: article.NAME,
                     url: article.URL
                 })),
                 categories: {
@@ -109,7 +109,7 @@ class API {
                 },
                 logo: startup.LOGO,
                 name: startup.NAME,
-                tags: startup.TAGS?.split(","),
+                tags: startup.TAGS?.split(",").filter((tag: string) => tag.trim().length > 0),
                 url: `/directories/startups/${ formatForUrl(startup.CATEGORY[0].NAME) }_${ startup.CATEGORY[0].ID }/${ formatForUrl(startup.NAME) }_${ startup.ID }`
             }));
         } else if(call === "getLandingOpportunities") {
@@ -132,7 +132,7 @@ class API {
                     name: opportunity.OWNERNAME
                 },
                 privacy: opportunity.PRIVACY,
-                tags: opportunity.TAGS?.split(","),
+                tags: opportunity.TAGS?.split(",").filter((tag: string) => tag.trim().length > 0),
                 remainingTime: opportunity.REMAINING.split(",").map((value: string) => parseInt(value)),
                 title: opportunity.TITLE,
                 url: `/directories/opportunities/${ formatForUrl(opportunity.TYPE[0].NAME) }_${ opportunity.TYPE[0].ID }/${ formatForUrl(opportunity.TITLE) }_${ opportunity.ID }`

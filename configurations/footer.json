@@ -1,0 +1,38 @@
+{
+    "sections": [
+        {
+            "title": "footerSecondSectionTitle",
+            "links": [
+                { "classList": "link", "href": "/startups/solutions", "icon": "fa-solid fa-chevron-right", "text": "footerStartupsSolutionsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "/corporates/solutions", "icon": "fa-solid fa-chevron-right", "text": "footerCorporatesSolutionsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "/partners/solutions", "icon": "fa-solid fa-chevron-right", "text": "footerPartnersSolutionsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" }
+            ]
+        },
+        {
+            "title": "footerThirdSectionTitle",
+            "links": [
+                { "classList": "link", "href": "/about", "icon": "fa-solid fa-chevron-right", "text": "footerAboutLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "/contact", "icon": "fa-solid fa-chevron-right", "text": "footerContactLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "https://fr.forinov.com/files/CGU%20v5.pdf", "icon": "fa-solid fa-chevron-right", "text": "footerTermsOfServiceLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "https://fr.forinov.com/legales/CGV_FORINOV_V4.pdf", "icon": "fa-solid fa-chevron-right", "text": "footerTermsOfSaleLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "https://fr.forinov.com/legales/Informations_legales.pdf", "icon": "fa-solid fa-chevron-right", "text": "footerLegalNoticeLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "https://fr.forinov.com/files/202112%20-%20Protection_des_données_personnelles.pdf", "icon": "fa-solid fa-chevron-right", "text": "footerDataProtectionLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "/blog", "icon": "fa-solid fa-chevron-right", "text": "footerBlogLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" }
+            ]
+        },
+        {
+            "title": "footerFourthSectionTitle",
+            "links": [
+                { "classList": "link", "href": "/startups/directory", "icon": "fa-solid fa-chevron-right", "text": "footerStartupsDirectoryLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "/corporates/directory", "icon": "fa-solid fa-chevron-right", "text": "footerCorporatesDirectoryLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "/partners/directory", "icon": "fa-solid fa-chevron-right", "text": "footerPartnersDirectoryLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "/opportunities/directory/calls-for-proposals_1", "icon": "fa-solid fa-chevron-right", "text": "footerCallsForProposalsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "/opportunities/directory/support-programs_2", "icon": "fa-solid fa-chevron-right", "text": "footerSupportProgramsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "/opportunities/directory/challenges-and-contests_3", "icon": "fa-solid fa-chevron-right", "text": "footerChallengesAndContestsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "/opportunities/directory/events_4", "icon": "fa-solid fa-chevron-right", "text": "footerEventsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "/opportunities/directory/exclusive-offers_5", "icon": "fa-solid fa-chevron-right", "text": "footerExclusiveOffersLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
+                { "classList": "link", "href": "/deals", "icon": "fa-solid fa-chevron-right", "text": "footerDealsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" }
+            ]
+        }
+    ]
+}

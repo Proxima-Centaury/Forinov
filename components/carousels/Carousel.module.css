@@ -17,7 +17,6 @@
 	gap: 16px;
 	width: 100%;
 	height: 100%;
-	padding: 16px;
 }
 .carousel > [class*="action"] {
 	display: flex;
@@ -27,7 +26,7 @@
 	z-index: 1;
 }
 .carousel > [class*="action"]:not([class*="actions"]):last-of-type {
-	right: 16px;
+	right: 0px;
 }
 .carousel > [class*="actions"] {
 	bottom: -16px;
@@ -51,15 +50,35 @@
 	gap: 16px;
 	flex: 1;
 	height: max-content;
-	padding: 16px;
 	transition: transform 0.3s ease-in-out;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 576px) {
 	.wrapper {
 		min-width: 100%;
 		width: 100%;
 		max-width: 100%;
 	}
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Actions */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.actions {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 16px;
+	gap: 16px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Controls */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.controls {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 8px;
+	gap: 8px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Navigation */
@@ -70,8 +89,6 @@
 	align-items: center;
 	grid-gap: 8px;
 	gap: 8px;
-	width: 100%;
-	padding: 16px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Bar */
@@ -114,26 +131,4 @@
 	width: 100%;
 	height: 100%;
 	padding: 0px;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Actions */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.actions {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: calc(100% - 32px);
-	/* width: fit-content; */
-	padding: 16px;
-	position: absolute;
-	left: 50%;
-	bottom: 0px;
-	transform: translateX(-50%);
-	pointer-events: none;
-	/* border-radius: 15px; */
-	/* background-color: var(--filter-color); */
-	/* backdrop-filter: blur(10px); */
-}
-.actions > button {
-	pointer-events: all;
 }

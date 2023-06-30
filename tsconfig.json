@@ -2,9 +2,10 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@layout/*": [ "layout/*" ],
+            "@layouts/*": [ "components/layouts/*" ],
             "@loaders/*": [ "components/loaders/*" ],
-            "@actions/*": [ "components/actions/*" ],
+            "@fields/*": [ "components/fields/*" ],
+            "@buttons/*": [ "components/buttons/*" ],
             "@separators/*": [ "components/separators/*" ],
             "@carousels/*": [ "components/carousels/*" ],
             "@cards/*": [ "components/cards/*" ],

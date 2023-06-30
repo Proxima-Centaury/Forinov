@@ -2,57 +2,48 @@
 /* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import Image from "next/image";
-import Link from "next/link";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import LineSeparator from "@separators/lineSeparator";
-import PrimaryTag from "@tags/primaryTag";
-import RemainingTime from "@contents/remainingTime";
 import Tooltip from "@tooltips/defaultTooltip";
+import LineSeparator from "@separators/lineSeparator";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TOpportunity } from "@typescript/types/TOpportunity";
+import type { TTestimonial } from "@typescript/types/TTestimonial";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import CardStyles from "@cards/Card.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Opportunity Card */
+/* Testimonial Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const OpportunityCard = (params: TOpportunity) => {
-    const { banner, category, owner, privacy, remainingTime, title, url } = params;
-    return <Link className={ CardStyles.card } href={ url || "/404" }>
+const TestimonialCard = (params: TTestimonial) => {
+    const { company, job, logo, name, picture, testimonial } = params;
+    return <div className={ CardStyles.card } data-size="smaller">
         <div className={ `${ CardStyles.header } ${ CardStyles.banner }` }>
-            <Image src={ banner || "/assets/placeholders/banner.png" } alt={ "" } width="490" height="150"/>
+            <Image src={ picture || "/assets/placeholders/banner.png" } alt={ "" } width="340" height="200"/>
         </div>
         <div className={ CardStyles.body }>
-            <div className={ CardStyles.leftContainer }>
-                <Image src={ owner?.logo || "/assets/placeholders/logo.png" } alt={ "" } width="100" height="100"/>
-            </div>
-            <LineSeparator classList="vertical"/>
+            <i className="fa-solid fa-quote-left"/>
+            <Image src={ logo || "/assets/placeholders/banner.png" } alt={ "" } width="100" height="100"/>
             <div className={ CardStyles.rightContainer }>
-                <div className={ CardStyles.opportunityMeta }>
-                    <p>{ owner?.name }</p>
-                    <div className={ CardStyles.privacy }>
-                        <i className={ `fa-light fa-${ (privacy?.match(/(public)/i)) ? "eye" : "eye-slash" }` }/>
-                        <p>{ privacy }</p>
-                    </div>
+                <p className={ CardStyles.company }>{ company }</p>
+                <div className={ CardStyles.testimonial }>
+                    <p dangerouslySetInnerHTML={ { __html: testimonial || "" } }/>
                 </div>
-                <Tooltip tooltip={ title }>
-                    <p className={ CardStyles.title }>{ title }</p>
-                </Tooltip>
-                <Tooltip tooltip={ category?.name }>
-                    <PrimaryTag tag={ category?.name } color={ `type${ category?.id }` }/>
-                </Tooltip>
-                <RemainingTime remainingTime={ remainingTime }/>
             </div>
         </div>
-        <div className={ CardStyles.footer }/>
-    </Link>;
+        <LineSeparator/>
+        <div className={ CardStyles.footer }>
+            <div className={ CardStyles.identity }>
+                <p>{ name }</p>
+                <p>{ job }</p>
+            </div>
+        </div>
+    </div>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export default OpportunityCard;
+export default TestimonialCard;
