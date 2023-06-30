@@ -1,20 +1,16 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Button Type */
+/* Testimonial Type */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-type TButton = {
-    classList?: string,
-    href?: string,
-    icon?: string,
-    text?: string,
-    action?: Function,
-    notifications?: number,
-    active?: boolean
-    disabled?: boolean,
-    tabIndex?: number,
-    ariaLabel?: string,
-    locale?: string
+type TTestimonial = {
+    id?: number,
+    company?: string,
+    job?: string,
+    logo?: string,
+    name?: string,
+    picture?: string,
+    testimonial?: string
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export type { TButton };
+export type { TTestimonial };

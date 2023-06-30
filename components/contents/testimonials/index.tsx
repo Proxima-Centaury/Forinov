@@ -1,29 +1,37 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Imports */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import { useTranslation } from "next-i18next";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* React Components */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import { Fragment } from "react";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import Tooltip from "@tooltips/defaultTooltip";
-import SecondaryTag from "@tags/secondaryTag";
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Types */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TTags } from "@typescript/types/TTags";
+import LinkButton from "@buttons/linkButton";
+import DefaultCarousel from "@carousels/defaultCarousel";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import TagStyles from "@tags/Tag.module.css";
+import TestimonialsStyles from "@contents/testimonials/Testimonials.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Tags */
+/* Testimonials */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Tags = (params: TTags): JSX.Element => {
-    const { children, tags, limit } = params;
-    return <div className={ TagStyles.list }>
-        { children?.slice(0, limit) }
-        { (children && limit && children.length > limit) ? <Tooltip tooltip={ tags?.slice(limit, tags.length).join("\n") }>
-            <SecondaryTag tag={ `+${ children.length - limit }` }/>
-        </Tooltip> : null }
+const Testimonials = (params: any): JSX.Element => {
+    const { t } = useTranslation("common");
+    const { testimonials } = require("@configurations/testimonials.json");
+    return <div className={ TestimonialsStyles.container }>
+        {/* <div className={ TestimonialsStyles.leftContainer }>
+            <i className="fa-solid fa-quote-left"/>
+            <p>bla bla bla bla bla</p>
+            <p>{ "Lorem ipsum dolor sit amet asectetur adipiscim".repeat(10) }</p>
+            <LinkButton classList="primary" text={ t("communityJoinLinkText") }/>
+        </div> */}
+        <DefaultCarousel items={ testimonials } itemsType="testimonials" navigation="bar"/>
     </div>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export default Tags;
+export default Testimonials;

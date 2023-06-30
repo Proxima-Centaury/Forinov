@@ -16,7 +16,6 @@
         "chalk": "^5.2.0",
         "cookies-next": "^2.1.1",
         "i18next": "^23.2.1",
-        "logrocket": "^4.0.3",
         "next": "^13.4.6",
         "next-i18next": "^14.0.0",
         "next-sitemap": "^4.1.3",

@@ -14,7 +14,6 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({ enabled: process.e
 /* Configuration */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const nextConfiguration = {
-    basePath: (process.env.NODE_ENV === "production") ? "" : "/dev",
     distDir: "production",
     reactStrictMode: true,
     swcMinify: true,

@@ -1,30 +1,33 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Next Components */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import Link from "next/link";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { MouseEventHandler } from "react";
 import type { TButton } from "@typescript/types/TButton";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import ActionsStyles from "@actions/Action.module.css";
+import ButtonStyles from "@buttons/Button.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Classic Button */
+/* Link Action */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const ClassicButton = (params: TButton): JSX.Element => {
-    const { classList, icon, text, action, notifications, active, disabled, tabIndex, ariaLabel } = params;
-    const isActive = (active) ? " " + ActionsStyles.active : "";
-    const isDisabled = (disabled) ? " " + ActionsStyles.disabled : "";
-    const nextClasses = classList?.split(" ").map((cssClass: string) => ActionsStyles[cssClass]).join(" "); 
-    const formatedClassList = ActionsStyles.action + " " + nextClasses + isActive + isDisabled;
+const LinkButton = (params: TButton): JSX.Element => {
+    const { classList, href, icon, text, active, disabled, tabIndex, ariaLabel, locale } = params;
+    const isActive = (active) ? " " + ButtonStyles.active : "";
+    const isDisabled = (disabled) ? " " + ButtonStyles.disabled : "";
+    const nextClasses = classList?.split(" ").map((cssClass: string) => ButtonStyles[cssClass]).join(" "); 
+    const formatedClassList = ButtonStyles.action + " " + nextClasses + isActive + isDisabled;
+    const target = (href?.match(/(http)/)) ? "_blank" : undefined;
     const tabIndexValue = (tabIndex) ? tabIndex : 1;
-    const actionTrigger: MouseEventHandler = (event) => (action) ? action(event) : null;
-    return <button className={ formatedClassList } onClick={ actionTrigger } tabIndex={ tabIndexValue } aria-label={ ariaLabel }>
+    const additionalAttributes = { tabIndex: tabIndexValue, "aria-label": ariaLabel };
+    return <Link className={ formatedClassList } href={ (href) ? href : "/" } locale={ locale } target={ target } { ...additionalAttributes }>
         { (icon) ? <i className={ icon }/> : null }
         { (text) ? <span>{ text }</span> : null }
-        { (notifications && notifications > 0) ? <span className={ ActionsStyles.notifications }>{ notifications }</span> : null }
-    </button>;
+    </Link>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export default ClassicButton;
+export default LinkButton;

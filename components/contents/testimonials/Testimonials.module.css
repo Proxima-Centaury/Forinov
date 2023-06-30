@@ -1,0 +1,43 @@
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Container */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.container {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
+    border-radius: 15px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Left Container */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.leftContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
+    max-width: 250px;
+}
+.leftContainer > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    color: var(--logo-blue-color);
+    font-size: 60px;
+    border-radius: 50px;
+    background-color: var(--pale-blue-color);
+}
+.leftContainer > p {
+    text-align: center;
+}
+.leftContainer > p:first-of-type {
+    font-size: 24px;
+    font-weight: 800;
+}
+.leftContainer > p:last-of-type {
+    font-family: "Nunito Sans";
+}

@@ -1,0 +1,73 @@
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Footer */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.footer {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 32px;
+    gap: 32px;
+    width: 100%;
+    padding: calc(50px - 16px);
+    background-color: var(--background-sub-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Footer ( Sections ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.sections {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 32px;
+    gap: 32px;
+    width: 100%;
+    background-color: var(--background-sub-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Footer ( Section ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.section {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    gap: 16px;
+    flex: 1;
+}
+@media screen and (max-width: 576px) {
+    .section {
+        width: 100%;
+    }
+}
+.section > img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+.section > p:first-of-type {
+    color: var(--text-inactive-color);
+}
+.section > h6 {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "Nunito Sans";
+}
+.section > ul {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 8px;
+    gap: 8px;
+}
+.section > ul > li > a[class*="action"] > span {
+    text-transform: inherit;
+    color: var(--text-inactive-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Footer ( Socials ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.socials {
+    display: flex;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
+}
+.socials > a > i {
+    font-size: 20px;
+}

@@ -3,25 +3,25 @@
         "header": [
             {
                 "classList": "septary bigger narrow shadow scale",
-                "href": "/{{ language }}/directories/startups",
+                "href": "/directories/startups",
                 "icon": "fa-solid fa-arrow-right",
                 "text": "homeHeaderStartupsLink"
             },
             {
                 "classList": "septary bigger narrow shadow scale",
-                "href": "/{{ language }}/directories/corporates",
+                "href": "/directories/corporates",
                 "icon": "fa-solid fa-arrow-right",
                 "text": "homeHeaderCorporatesLink"
             },
             {
                 "classList": "septary bigger narrow shadow scale",
-                "href": "/{{ language }}/directories/partners",
+                "href": "/directories/partners",
                 "icon": "fa-solid fa-arrow-right",
                 "text": "homeHeaderPartnersLink"
             },
             {
                 "classList": "septary bigger narrow shadow scale",
-                "href": "/{{ language }}/directories/opportunities",
+                "href": "/directories/opportunities",
                 "icon": "fa-solid fa-arrow-right",
                 "text": "homeHeaderOpportunitiesLink"
             }
@@ -29,52 +29,52 @@
         "structures": [
             {
                 "classList": "tertiary",
-                "href": "/{{ language }}/onboarding",
+                "href": "/onboarding",
                 "text": "homeStructureLink1"
             },
             {
                 "classList": "tertiary",
-                "href": "/{{ language }}/onboarding",
+                "href": "/onboarding",
                 "text": "homeStructureLink2"
             },
             {
                 "classList": "tertiary",
-                "href": "/{{ language }}/onboarding",
+                "href": "/onboarding",
                 "text": "homeStructureLink3"
             },
             {
                 "classList": "tertiary",
-                "href": "/{{ language }}/onboarding",
+                "href": "/onboarding",
                 "text": "homeStructureLink4"
             },
             {
                 "classList": "tertiary",
-                "href": "/{{ language }}/onboarding",
+                "href": "/onboarding",
                 "text": "homeStructureLink5"
             },
             {
                 "classList": "tertiary",
-                "href": "/{{ language }}/onboarding",
+                "href": "/onboarding",
                 "text": "homeStructureLink6"
             },
             {
                 "classList": "tertiary",
-                "href": "/{{ language }}/onboarding",
+                "href": "/onboarding",
                 "text": "homeStructureLink7"
             },
             {
                 "classList": "tertiary",
-                "href": "/{{ language }}/onboarding",
+                "href": "/onboarding",
                 "text": "homeStructureLink8"
             },
             {
                 "classList": "tertiary",
-                "href": "/{{ language }}/onboarding",
+                "href": "/onboarding",
                 "text": "homeStructureLink9"
             },
             {
                 "classList": "tertiary",
-                "href": "/{{ language }}/onboarding",
+                "href": "/onboarding",
                 "text": "homeStructureLink10"
             }
         ]
