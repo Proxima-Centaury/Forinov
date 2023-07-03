@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { appWithTranslation, useTranslation } from "next-i18next";
 import { Fragment, useMemo, useEffect, useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
+import api from "@classes/api";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -18,7 +19,12 @@ import Head from "next/head";
 // import AuthNavbar from "../layout/authNavbar";
 import Footer from "@layouts/footer";
 // const Modal = dynamic(() => import("../layout/modal"));
-// const Devtools = dynamic(() => import("../components/devtools/devtools"));
+import ClassicButton from "@buttons/classicButton";
+import Tooltip from "@tooltips/defaultTooltip";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Types */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import type { MouseEventHandler } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -45,7 +51,6 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
         production: (process.env.NODE_ENV === "development") ? false : true
     });
     const memorizedStates = useMemo(() => ({ ...states }), [ states ]);
-    const { production } = memorizedStates;
     useEffect(() => { scrollTo(0, 0) }, [ asPath ]);
     pageProps.states = { ...memorizedStates };
     pageProps.setStates = setStates;
@@ -56,10 +61,16 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
             <link rel="icon" href="/assets/logo.ico"/>
         </Head>
         {/* { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/>) : null } */}
+        {/* <div data-type="devtools">
+            <p>DevTools</p>
+            <Tooltip tooltip={ `Current mode : ${ (production) ? "Production" : "Development" }` }>
+                <ClassicButton classList="nonary squared" icon="fa-solid fa-gear" action={ switchEnvironment }/>
+            </Tooltip>
+        </div>
         { (!production) ? <div className="developmentModeIndicator">
             <span className="dot"/>
             <span>{ t("developmentModeIndicator") }</span>
-        </div> : null }
+        </div> : null } */}
         <Component { ...pageProps }/>
         <Footer/>
         {/* { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/>) : null } */}

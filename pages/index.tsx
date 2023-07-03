@@ -21,6 +21,7 @@ import LinkButton from "@buttons/linkButton";
 import LineSeparator from "@separators/lineSeparator";
 import DefaultCarousel from "@carousels/defaultCarousel";
 import Testimonials from "@contents/testimonials";
+import OnboardingGroups from "@contents/onboardingGroups";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -34,7 +35,7 @@ import { formatForUrl } from "@scripts/formatForUrl";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import HomeStyles from "@stylesheets/pages/Home.module.css";
+import HomeStyles from "@pages/Home.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Home */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -44,6 +45,7 @@ const Home = (params: TPage): JSX.Element => {
 	const { t } = useTranslation("home");
 	const { landing, startups, opportunities, states } = params;
 	const { articles, categories, counters } = landing;
+	const { production } = states;
 	const homeHeaderLinks: TButton[] = require("@configurations/links.json").home.header;
 	const homeStructuresLinks: TButton[] = require("@configurations/links.json").home.structures;
 	return <Fragment>
@@ -181,7 +183,7 @@ const Home = (params: TPage): JSX.Element => {
 						}) }
 					</div>
 					<div className={ HomeStyles.containerTitle }>
-						<h4>{ t("homeLatestOpportunitiesTitle") }</h4>
+						<h6>{ t("homeLatestOpportunitiesTitle") }</h6>
 					</div>
 					<DefaultCarousel items={ opportunities } itemsType="opportunities" navigation="bar"/>
 				</div>

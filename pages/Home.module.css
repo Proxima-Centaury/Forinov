@@ -412,7 +412,8 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .structuresSection {
 	display: flex;
-    flex-wrap: wrap;
+	flex-wrap: wrap;
+    align-items: center;
 	grid-gap: 16px;
     gap: 16px;
 }

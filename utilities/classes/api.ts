@@ -53,7 +53,10 @@ class API {
             }, writable: false });
         });
     };
-    async searchEngine(type: string, filters: any, network: string, privateFilter: string, ssid: string, language: string) {
+    setEndpoint = (isProduction: boolean) => {
+        return this.endpoint = configuration.api.endpoint[(isProduction) ? "production" : "development"];
+    };
+    searchEngine = async (type: string, filters: any, network: string, privateFilter: string, ssid: string, language: string) => {
         if(!type || !filters) {
             return [];
         };
