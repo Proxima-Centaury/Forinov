@@ -63,15 +63,13 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
                             setCurrentIndex(0);
                         };
                     };
-                    if(itemsType === "testimonials") {
-                        if(window.innerWidth > 576) {
-                            setPause(true);
-                            setCurrentIndex(0);
-                            setActions(false);
-                        } else {
-                            setPause(false);
-                            setActions(true);
-                        };
+                    if(wrapper.clientWidth >= wrapperParent.clientWidth) {
+                        setPause(false);
+                        setActions(true);
+                    } else {
+                        setPause(true);
+                        setActions(false);
+                        setCurrentIndex(0);
                     };
                 }, 2000);
                 wrapper.style.transform = `translateX(calc(-${ currentIndex * (childWidth + border) }px - ${ currentIndex * space }px))`;
