@@ -15,8 +15,7 @@ import Head from "next/head";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-// import Navbar from "../layout/navbar";
-// import AuthNavbar from "../layout/authNavbar";
+import Navbar from "@layouts/navbar";
 import Footer from "@layouts/footer";
 // const Modal = dynamic(() => import("../layout/modal"));
 import ClassicButton from "@buttons/classicButton";
@@ -40,7 +39,6 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
     const router = useRouter();
 	const { asPath, query } = router;
 	const { ui } = query;
-    const { t } = useTranslation("common");
     const [ states, setStates ] = useState({
         errors: [],
         session: null,
@@ -60,17 +58,7 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <link rel="icon" href="/assets/logo.ico"/>
         </Head>
-        {/* { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : (!session) ? <Navbar { ...pageProps }/> : <AuthNavbar { ...pageProps }/>) : null } */}
-        {/* <div data-type="devtools">
-            <p>DevTools</p>
-            <Tooltip tooltip={ `Current mode : ${ (production) ? "Production" : "Development" }` }>
-                <ClassicButton classList="nonary squared" icon="fa-solid fa-gear" action={ switchEnvironment }/>
-            </Tooltip>
-        </div>
-        { (!production) ? <div className="developmentModeIndicator">
-            <span className="dot"/>
-            <span>{ t("developmentModeIndicator") }</span>
-        </div> : null } */}
+        <Navbar/>
         <Component { ...pageProps }/>
         <Footer/>
         {/* { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/>) : null } */}

@@ -64,10 +64,8 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
                         };
                     };
                     if(wrapper.clientWidth >= wrapperParent.clientWidth) {
-                        setPause(false);
                         setActions(true);
                     } else {
-                        setPause(true);
                         setActions(false);
                         setCurrentIndex(0);
                     };

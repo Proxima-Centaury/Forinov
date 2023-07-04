@@ -21,7 +21,6 @@ import LinkButton from "@buttons/linkButton";
 import LineSeparator from "@separators/lineSeparator";
 import DefaultCarousel from "@carousels/defaultCarousel";
 import Testimonials from "@contents/testimonials";
-import OnboardingGroups from "@contents/onboardingGroups";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -232,7 +231,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 	const language = locale?.substring(0, 2);
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "common", "footer", "home" ])),
+			...(await serverSideTranslations(locale || "fr", [ "common", "navbar", "footer", "home" ])),
 			locales,
 			landing: await api.getLanding("next", "Landing", language),
 			opportunities: await api.getLandingOpportunities("next", "Landing", language),

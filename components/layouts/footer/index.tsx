@@ -27,7 +27,7 @@ import FooterStyles from "@layouts/footer/Footer.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const Footer = (): JSX.Element => {
     const router = useRouter();
-    const { locale, locales } =  router;
+    const { locale, locales } = router;
     const { t } = useTranslation("footer");
     const footer = require("@configurations/footer.json").sections;
     return <footer className={ FooterStyles.footer }>

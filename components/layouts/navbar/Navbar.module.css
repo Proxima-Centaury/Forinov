@@ -1,0 +1,199 @@
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Navbar */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    padding: 0px 16px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+    z-index: 1000;
+}
+/* .navbar::after {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    content: "";
+    background-color: var(--background-sub-color);
+} */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Logo */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.logo {
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+.logo > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
+}
+.logo > a > img {
+    object-fit: contain;
+}
+.logo > a > span {
+    font-size: 26px;
+    font-weight: bold;
+    font-family: "Montserrat Alternates";
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Links */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.links {
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    gap: 24px;
+    height: 100%;
+    transition: top 0.3s ease-in-out;
+    z-index: 1;
+}
+.links > li {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+}
+.links > li > a,
+.links > li > button {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    border-bottom: var(--border);
+    border-width: 3px;
+    border-color: transparent;
+    transition: border-color 0.3s ease-in-out;
+}
+.links > li > a:hover,
+.links > li > a.active,
+.links > li > button:hover,
+.links > li > button.active {
+    border-color: var(--logo-blue-color);
+}
+.links > li > a:hover > span,
+.links > li > a.active > span,
+.links > li > button:hover > span,
+.links > li > button.active > span {
+    color: var(--logo-blue-color);
+}
+.links > li > a:only-child:hover {
+    border-color: var(--logo-blue-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Nested Links */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.nestedLinks {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    position: absolute;
+    top: calc(64px - 5px);
+    opacity: 0;
+    pointer-events: none;
+    border-radius: 5px;
+    border-top: var(--border);
+    border-width: 5px;
+    border-color: var(--logo-blue-color);
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+    transition: opacity 0.3s ease-in-out;
+}
+.nestedLinks > li + li {
+    border-top: var(--border);
+}
+.nestedLinks > li > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    white-space: nowrap;
+}
+.nestedLinks > li > a:hover > span,
+.nestedLinks > li > a.active > span,
+.nestedLinks > li > button:hover > span,
+.nestedLinks > li > button.active > span {
+    color: var(--logo-blue-color);
+}
+.nestedLinks > li > a.active > span,
+.nestedLinks > li > button.active > span {
+    font-weight: bold;
+}
+.navbar > .links > li > a + ul.show,
+.navbar > .links > li > button + ul.show,
+.navbar > .links > li > a + ul.show,
+.navbar > .links > li > button + ul.show {
+    opacity: 1;
+    pointer-events: all;
+}
+/* @media screen and (max-width: 992px) {
+    .navbar > .links > li > ul {
+        flex-direction: column;
+        width: 100%;
+        max-height: 0px;
+        padding: 0px;
+        position: initial;
+        opacity: 0;
+        border-top: var(--border);
+        border-radius: inherit;
+        box-shadow: inherit;
+        overflow: hidden;
+    }
+    .navbar > .links > li > ul.show {
+        opacity: 1;
+        max-height: max-content;
+    }
+    .navbar > .links > li > ul > li + li {
+        border-top: none;
+    }
+} */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Navbar ( Actions ) */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.navbar > .actions {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
+    border-radius: 50px;
+    background-color: var(--background-sub-color);
+    z-index: 1;
+}
+.navbar > .actions > [class*="selectField"] {
+    min-width: 80px;
+}
+.navbar > .actions > a > i {
+    font-size: 24px;
+    color: var(--logo-blue-color);
+}
+@media screen and (max-width: 992px) {
+    .navbar > .actions {
+        padding: 8px;
+        position: absolute;
+        top: calc(64px + 16px);
+        right: calc(-100% - 16px);
+        pointer-events: none;
+        box-shadow: var(--box-shadow);
+        transition: right 0.3s ease-in-out;
+    }
+    .navbar > .links.show + .actions {
+        right: 16px;
+        pointer-events: all;
+    }
+    .navbar > .actions > [class*="selectField"] {
+        border-radius: 50px 0px 0px 50px;
+    }
+}

@@ -1,3 +1,26 @@
 {
-    
+    "navbarStartupsMenuItemTitle": "Startups",
+    "navbarStartupsLink": "How it works ?",
+    "navbarStartupsSolutionsLink": "Startups solutions",
+    "navbarStartupsDirectoryLink": "Startups directory",
+    "navbarCorporatesMenuItemTitle": "Corporates",
+    "navbarCorporatesLink": "How it works ?",
+    "navbarCorporatesSolutionsLink": "Corporates solutions",
+    "navbarCorporatesDirectoryLink": "Corporates directory",
+    "navbarPartnersMenuItemTitle": "Partners",
+    "navbarPartnersLink": "How it works ?",
+    "navbarPartnersSolutionsLink": "Partners solutions",
+    "navbarPartnersDirectoryLink": "Partners directory",
+    "navbarOpportunitiesMenuItemTitle": "Opportunités",
+    "navbarOpportunitiesLink": "How it works ?",
+    "navbarOpportunitiesDirectoryLink": "All opportunities",
+    "navbarCallsForProposalsLink": "Calls for proposals",
+    "navbarSupportProgramsLink": "Support programs",
+    "navbarChallengesAndContestsLink": "Challenges and contests",
+    "navbarEventsLink": "Events",
+    "navbarExclusiveOffersLink": "Exclusives offers",
+    "navbarAboutMenuItemTitle": "About",
+    "navbarAboutLink": "About",
+    "navbarDealsMenuItemTitle": "Deals",
+    "navbarDealsLink": "Deals"
 }
