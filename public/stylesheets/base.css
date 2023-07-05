@@ -245,16 +245,14 @@ body {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    min-height: 100vh;
+    max-height: 100vh;
     background-color: var(--background-main-color);
-    overflow-x: hidden;
+    overflow: hidden;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Accessibility */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 *:focus-visible {
-    padding: 8px !important;
-    border: var(--border) !important;
     border-color: var(--logo-blue-color) !important;
     background-color: var(--pale-blue-color) !important;
 }
@@ -262,10 +260,10 @@ body {
 /* Scroll Bar */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 8px;
+    height: 8px;
     border-radius: 50px;
-    background-color: var(--background-main-color);
+    background-color: var(--border-color);
 }
 ::-webkit-scrollbar-thumb {
     border-radius: 50px;
@@ -275,10 +273,16 @@ body {
 /* Next Container */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 #__next {
+    height: calc(100% - 70px);
+    max-height: calc(100% - 70px);
+    margin: 70px 0px 0px 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#__next > [data-page] {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
+    margin: 0px -8px 0px 0px; /* Fixes the gap caused by the scrollbar */
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Boxed Content */

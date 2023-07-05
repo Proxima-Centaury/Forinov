@@ -32,7 +32,7 @@ const Navbar = (): JSX.Element => {
     const navbar = require("@configurations/navbar.json").menus;
     const menuReference = useRef(null);
     const [ menuState, setMenuState ] = useState(false);
-    // const switchMenuState: MouseEventHandler = () => setMenuState(!menuState);
+    const switchMenuState: MouseEventHandler = () => setMenuState(!menuState);
     // const handleOutOfArea: MouseEventHandler = (event) => {
     //     const current = (menuReference.current) ? menuReference.current as HTMLElement : null;
     //     const target = (event.target) ? event.target as HTMLElement : null;
@@ -47,28 +47,29 @@ const Navbar = (): JSX.Element => {
     //     };
     // }, []);
     return <nav className={ NavbarStyles.navbar } ref={ menuReference }>
-        <div className={ NavbarStyles.logo }>
-            <Link href="/" locale={ locale }>
-                <Image src="/assets/logo.ico" alt={ t("") } width="50" height="50"/>
-                <span>forinov</span>
-            </Link>
+        <div className="boxedContent">
+            <div className={ NavbarStyles.logo }>
+                <Link href="/" locale={ locale } tabIndex={ 1 }>
+                    <Image src="/assets/logo.ico" alt={ t("") } width="50" height="50"/>
+                    <span>forinov</span>
+                </Link>
+            </div>
+            <ul className={ NavbarStyles.links + ((menuState) ? " " + NavbarStyles.show : "") }>
+                { navbar.map((menu: any, key: number) => <li key={ key } className={ NavbarStyles.menu }>
+                    <ClassicButton classList="ignore" text={ t(menu.title) } tabIndex={ 1 }/>
+                    { (menu.links.length > 0) ? <ul className={ NavbarStyles.nestedLinks }>
+                        { menu.links.map((link: TButton, key: number) => <li key={ key }>
+                            <LinkButton { ...link } text={ t(link?.text || "undefined") } locale={ locale } tabIndex={ -1 }/>
+                        </li>) }
+                    </ul> : null }
+                </li>) }
+            </ul>
+            <div className={ NavbarStyles.actions }>
+                <Select options={ locales } defaultValue={ locale }/>
+                <LinkButton classList="primary circled" href="/login" icon="fa-solid fa-user"/>
+                <LinkButton classList="primary" href="/onboarding" text={ t("navbarSignUpLink") }/>
+            </div>
         </div>
-        <ul className={ NavbarStyles.links + ((menuState) ? " " + NavbarStyles.show : "") }>
-            { navbar.map((menu: any, key: number) => <li key={ key } className={ NavbarStyles.menu }>
-                <ClassicButton classList="ignore" text={ t(menu.title) }/>
-                { (menu.links.length > 0) ? <ul className={ NavbarStyles.nestedLinks }>
-                    { menu.links.map((link: TButton, key: number) => <li key={ key }>
-                        <LinkButton { ...link } text={ t(link?.text || "undefined") } locale={ locale }/>
-                    </li>) }
-                </ul> : null }
-            </li>) }
-        </ul>
-        <div className={ NavbarStyles.actions }>
-            {/* <Select { ...navbarProps } options={ navbarProps.locales } placeholder="FR" action={ getSelectedLanguage } defaultValue={ languageSelectDefaultValue() } source="locales" selectButtonAriaLabel={ translations?.navbarSelectButtonAriaLabel }/>
-            <Button button={ ButtonStyles.default } href="/login" icon="fa-light fa-user" ariaLabel={ translations?.navbarLoginLinkAriaLabel }/>
-            <Button button={ ButtonStyles.callToAction } href="/onboarding" text={ translations?.navbarOnboardingLink } ariaLabel={ translations?.navbarOnboardingLinkAriaLabel }/> */}
-        </div>
-        {/* <Button button={ ButtonStyles.navigationButton } action={ switchMenuState } active={ menuState } ariaLabel={ translations?.navbarMenuButtonAriaLabel }/> */}
     </nav>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

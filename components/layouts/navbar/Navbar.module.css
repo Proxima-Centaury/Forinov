@@ -7,13 +7,25 @@
     align-items: center;
     width: 100%;
     height: 70px;
-    padding: 0px 16px;
+    padding: 0px calc(50px - 16px);
     position: fixed;
     top: 0px;
     left: 0px;
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
     z-index: 1000;
+}
+@media screen and (max-width: 576px) {
+    .navbar {
+        padding: 0px;
+    }
+}
+.navbar > div {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0px 16px;
 }
 /* .navbar::after {
     display: flex;
@@ -56,20 +68,30 @@
     align-items: center;
     grid-gap: 24px;
     gap: 24px;
+    /* width: 100%; */
     height: 100%;
     transition: top 0.3s ease-in-out;
     z-index: 1;
 }
+@media screen and (max-width: 1200px) {
+    .links {
+        position: fixed;
+        top: -100%;
+    }
+}
 .links > li {
     display: flex;
     justify-content: center;
+    /* flex: 1; */
     height: 100%;
     position: relative;
 }
 .links > li > a,
 .links > li > button {
     display: flex;
+    justify-content: center;
     align-items: center;
+    /* width: 100%; */
     height: 100%;
     position: relative;
     border-bottom: var(--border);
@@ -82,6 +104,10 @@
 .links > li > button:hover,
 .links > li > button.active {
     border-color: var(--logo-blue-color);
+}
+.links > li > a > span,
+.links > li > button > span {
+    transition: color 0.3s ease-in-out;
 }
 .links > li > a:hover > span,
 .links > li > a.active > span,
@@ -163,7 +189,7 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Navbar ( Actions ) */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.navbar > .actions {
+.actions {
     display: flex;
     align-items: center;
     grid-gap: 16px;
@@ -172,15 +198,8 @@
     background-color: var(--background-sub-color);
     z-index: 1;
 }
-.navbar > .actions > [class*="selectField"] {
-    min-width: 80px;
-}
-.navbar > .actions > a > i {
-    font-size: 24px;
-    color: var(--logo-blue-color);
-}
 @media screen and (max-width: 992px) {
-    .navbar > .actions {
+    .actions {
         padding: 8px;
         position: absolute;
         top: calc(64px + 16px);
@@ -189,11 +208,11 @@
         box-shadow: var(--box-shadow);
         transition: right 0.3s ease-in-out;
     }
-    .navbar > .links.show + .actions {
+    .links.show + .actions {
         right: 16px;
         pointer-events: all;
     }
-    .navbar > .actions > [class*="selectField"] {
+    .actions > [class*="selectField"] {
         border-radius: 50px 0px 0px 50px;
     }
 }
