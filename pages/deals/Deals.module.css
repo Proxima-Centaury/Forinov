@@ -1,21 +1,47 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Types */
+/* Main Container */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TButton } from "@typescript/types/TButton";
+.mainContainer {
+	display: flex;
+	flex-direction: column;
+    flex: 1;
+    padding: calc(50px - 16px);
+	transition: border-radius 0.3s ease-in-out;
+}
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Footer Type */
+/* Categories */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-type TFooter = {
-    [key: string]: any
-};
+.categories {
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    gap: 24px;
+    padding: 16px;
+    border-radius: 15px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+}
+.categories > a > span {
+    white-space: nowrap;
+}
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Footer Section Type */
+/* Catch */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-type TFooterSection = {
-    title: string,
-    links: TButton[]
-};
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Exports */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export type { TFooter, TFooterSection };
+.catch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
+}
+.catch > h1 {
+    font-size: 36px;
+    font-family: "Nunito Sans";
+    color: var(--logo-blue-color);
+    text-transform: uppercase;
+}
+.catch > p {
+    color: var(--text-inactive-color);
+    text-align: center;
+}

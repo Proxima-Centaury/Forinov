@@ -2,68 +2,46 @@
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { useRouter } from "next/router";
-import { appWithTranslation } from "next-i18next";
-import { Fragment, useMemo, useEffect, useState } from "react";
-import { setCookie, getCookie } from "cookies-next";
+import { useEffect, useState } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Next Components */
+/* React Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import Head from "next/head";
+import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import Navbar from "@layouts/navbar";
-import Footer from "@layouts/footer";
-// const Modal = dynamic(() => import("../layout/modal"));
-// import ClassicButton from "@buttons/classicButton";
-// import Tooltip from "@tooltips/defaultTooltip";
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Types */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { AppProps } from "next/app";
+import LinkButton from "@buttons/linkButton";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import { scrollTo } from "@scripts/scrollTo";
+import { uppercaseFirst } from "@scripts/uppercaseFirst";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import "@stylesheets/base.css";
+import BreadcrumbStyles from "@contents/breadcrumb/Breadcrumb.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* App */
+/* Breadcrumb */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const App = ({ Component, pageProps }: AppProps): JSX.Element => {
+const Breadcrumb = (params: any) => {
     const router = useRouter();
-	const { asPath, query } = router;
-	const { ui } = query;
-    const [ states, setStates ] = useState({
-        errors: [],
-        session: null,
-        interface: (ui) ? false : true,
-        theme: "light",
-        limited: true,
-        modal: null,
-        production: (process.env.NODE_ENV === "development") ? false : true
-    });
-    const memorizedStates = useMemo(() => ({ ...states }), [ states ]);
-    useEffect(() => { scrollTo(0, 0) }, [ asPath ]);
-    pageProps.states = { ...memorizedStates };
-    pageProps.setStates = setStates;
-    return <Fragment>
-        <Head>
-            <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <link rel="icon" href="/assets/logo.ico"/>
-        </Head>
-        <Navbar/>
-        <Component { ...pageProps }/>
-        <Footer/>
-        {/* { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/>) : null } */}
-        {/* <Modal { ...pageProps }/> */}
-        {/* { (router.query.ui && router.query.ui == "false") ? null : (!production) ? <Devtools { ...pageProps }/> : null } */}
-    </Fragment>;
+    const { asPath } = router;
+    const [ breadcrumb, setBreadcrumb ] = useState(router.asPath.split("/").filter((crumb: string) => crumb.length > 0));
+    const urls: string[] = [];
+    useEffect(() => {
+        setBreadcrumb(router.asPath.split("/").filter((crumb: string) => crumb.length > 0));
+    }, [ router.asPath ])
+    return <div className={ BreadcrumbStyles.container }>
+        { breadcrumb.map((crumb: string, key: number) => {
+            const crumbName = (crumb.indexOf("_") > 0) ? uppercaseFirst(crumb.replaceAll("-", " ").substring(0, crumb.indexOf("_"))) : uppercaseFirst(crumb);
+            urls.push((key > 0) ? "/" + breadcrumb[parseInt(key.toString()) - 1] + "/" + crumb : "/" + crumb);
+            return (crumb) ? <Fragment key={ key }>
+                <LinkButton classList="link borderless" href={ urls[key] } text={ crumbName } active={ (asPath.match(urls[key])) ? true : false }/>
+                <i className="fa-light fa-chevron-right"/>
+            </Fragment> : null;
+        }) }
+    </div>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export default appWithTranslation(App);
+export default Breadcrumb;

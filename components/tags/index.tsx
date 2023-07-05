@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import Tooltip from "@tooltips/defaultTooltip";
 import SecondaryTag from "@tags/secondaryTag";
+import DefaultTooltip from "@tooltips/defaultTooltip";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -18,9 +18,9 @@ const Tags = (params: TTags): JSX.Element => {
     const { children, tags, limit } = params;
     return <div className={ TagStyles.list }>
         { children?.slice(0, limit) }
-        { (children && limit && children.length > limit) ? <Tooltip tooltip={ tags?.slice(limit, tags.length).join("\n") }>
+        { (children && limit && children.length > limit) ? <DefaultTooltip tooltip={ tags?.slice(limit, tags.length).join("\n") }>
             <SecondaryTag tag={ `+${ children.length - limit }` }/>
-        </Tooltip> : null }
+        </DefaultTooltip> : null }
     </div>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

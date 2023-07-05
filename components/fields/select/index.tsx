@@ -1,40 +1,43 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import { useMemo, useEffect, useState, useRef } from "react";
+import { useRouter } from "next/router";
+import { useMemo, useRef, useEffect, useState } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import ClassicButton from "@buttons/classicButton";
 import Option from "@fields/select/option";
+import ClassicButton from "@buttons/classicButton";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { MouseEventHandler } from "react";
 import type { TSelect } from "@typescript/types/TSelect";
 import type { TOption, TUnkownOption } from "@typescript/types/TOption";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Scripts */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import { isNode } from "@scripts/isNode";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import SelectStyles from "@fields/select/Select.module.css";
-import { useRouter } from "next/dist/client/router";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Select */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Select = (selectProps: TSelect): JSX.Element => {
-    const selectReference = useRef(null);
+const Select = (params: TSelect): JSX.Element => {
     const router = useRouter();
     const { locale } = router;
-    const { options, placeholder, action, defaultValue, ariaLabel } = selectProps;
-    const [ selected, setSelected ] = useState({ id: 0, name: "", value: "" } as TOption);
-    const [ selectState, setSelectState ] = useState(false);
-    const memoBetterOptions = useMemo((): Array<TOption> => {
-        const betterOptionsBuilder = (options: Array<TUnkownOption|string>): Array<TOption>|boolean => {
+    const selectReference = useRef(null);
+    const { options, placeholder, action, defaultValue, ariaLabel } = params;
+    const [ selected, setSelected ] = useState<TOption>({ id: 0, name: "", value: "" });
+    const [ selectState, setSelectState ] = useState<boolean>(false);
+    const memoBetterOptions = useMemo((): TOption[] => {
+        const betterOptionsBuilder = (options: TUnkownOption[] | string[]): TOption[] | boolean => {
             if(!options || options.length <= 0 || (options && !Array.isArray(options))) {
                 return false;
             };
-            const betterOptions: Array<TOption> = [];
-            options.map((option: TUnkownOption|string, key: number) => {
+            const betterOptions: TOption[] = [];
+            options.map((option: TUnkownOption | string, key: number) => {
                 if(typeof option === "string") {
                     (option.length > 0) ? betterOptions.push({ id: key, name: option, value: option }) : null;
                 } else {
@@ -61,9 +64,9 @@ const Select = (selectProps: TSelect): JSX.Element => {
             return "";
         };
     }, [ placeholder, selected ]);
-    const switchSelectState: MouseEventHandler = () => setSelectState(!selectState);
-    const handleOutOfArea = (event: any) => {
-        const target: HTMLElement = event.target;
+    const switchSelectState = () => setSelectState(!selectState);
+    const handleOutOfArea = (event: MouseEvent) => {
+        const target = isNode(event.target);
         if(selectReference && selectReference.current) {
             const current: HTMLElement = selectReference.current;
             if(!current.contains(target)) {

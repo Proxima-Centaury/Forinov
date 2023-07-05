@@ -1,13 +1,4 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Page */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.page {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin: 70px 0px 0px 0px;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Main Container */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .mainContainer {
@@ -362,8 +353,6 @@
 /* Community Sections */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .communitySections {
-	display: flex;
-    flex-wrap: wrap;
 	grid-gap: 16px;
     gap: 16px;
 }
@@ -375,28 +364,27 @@
 	flex-direction: column;
 	grid-gap: 16px;
     gap: 16px;
-    min-width: calc((100% / 3) - 16px);
-    max-width: calc((100% / 3) - 16px);
-}
-@media screen and (max-width: 992px) {
-	.communitySection {
-		min-width: calc((100% / 2) - 16px);
-		max-width: calc((100% / 2) - 16px);
-	}
-}
-@media screen and (max-width: 768px) {
-	.communitySection {
-		min-width: 100%;
-		max-width: 100%;
-	}
+    padding: 16px;
+    border-radius: 15px;
+    background-color: var(--lighter-black-color);
+    box-shadow: var(--box-shadow);
 }
 .communitySection > p {
 	color: var(--perfect-white-color);
 	font-family: Nunito Sans;
 }
 .communitySection > p:first-of-type {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
 	font-size: 24px;
     font-weight: 800;
+}
+.communitySection > p > i {
+    color: var(--warning-color);
+	font-size: 20px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Startups Categories Section */
@@ -404,6 +392,7 @@
 .startupsCategoriesSection {
 	display: flex;
     flex-wrap: wrap;
+    align-items: center;
 	grid-gap: 16px;
     gap: 16px;
 }
@@ -412,7 +401,8 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .structuresSection {
 	display: flex;
-    flex-wrap: wrap;
+	flex-wrap: wrap;
+    align-items: center;
 	grid-gap: 16px;
     gap: 16px;
 }

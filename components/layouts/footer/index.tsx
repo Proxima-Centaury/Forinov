@@ -10,13 +10,13 @@ import Image from "next/image";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import Select from "@fields/select";
 import LinkButton from "@buttons/linkButton";
 import LineSeparator from "@separators/lineSeparator";
-import Select from "@fields/select";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TFooterSection } from "@typescript/types/TFooter";
+import type { TFooter, TFooterSection } from "@typescript/types/TFooter";
 import type { TButton } from "@typescript/types/TButton";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
@@ -25,14 +25,14 @@ import FooterStyles from "@layouts/footer/Footer.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Footer */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Footer = (): JSX.Element => {
+const Footer = (params: TFooter): JSX.Element => {
     const router = useRouter();
-    const { locale, locales } =  router;
+    const { locale, locales } = router;
     const { t } = useTranslation("footer");
-    const footer = require("@configurations/footer.json").sections;
+    const footer: TFooterSection[] = require("@configurations/footer.json").sections;
     return <footer className={ FooterStyles.footer }>
         <div className="boxedContent">
-            <div className={ FooterStyles.sections }>
+            <div className={ `${ FooterStyles.sections } grid fourColumns` }>
                 <div className={ FooterStyles.section }>
                     <Image src="/assets/logo.ico" alt={ t("footerLogoAlternativeText", { company: "Forinov" }) } width="50" height="50"/>
                     <p>{ t("footerMainText") }</p>

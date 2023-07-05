@@ -58,6 +58,7 @@
 .section > ul > li > a[class*="action"] > span {
     text-transform: inherit;
     color: var(--text-inactive-color);
+    white-space: break-spaces;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Footer ( Socials ) */

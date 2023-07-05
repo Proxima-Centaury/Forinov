@@ -53,5 +53,9 @@
     "homeStructureLink9": "Business angel",
     "homeStructureLink10": "Structure d'investissement",
     "homeTestimonialsTitle": "Ils nous font confiance :",
-    "homeArticlesTitle": "Le blog Forinov :"
+    "homeArticlesTitle": "Le blog Forinov :",
+    "homeStructuresOnboardingGroupCardTypeStartupsText": "Startup",
+    "homeStructuresOnboardingGroupCardTypeCorporatesText": "Entreprise",
+    "homeStructuresOnboardingGroupCardTypePartnersText": "Partenaire",
+    "homeJoinOnboardingTooltip": "M'inscrire"
 }

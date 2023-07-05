@@ -3,15 +3,15 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { TTooltip } from "@typescript/types/TTooltip";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Tooltip */
+/* TDefault ooltip */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Tooltip = (params: TTooltip): JSX.Element => {
-    const { children, tooltip } = params;
-    return <div data-type="tooltip" data-tooltip={ tooltip }>
+const DefaultTooltip = (params: TTooltip): JSX.Element => {
+    const { children, tooltip, direction } = params;
+    return <div data-type="tooltip" data-tooltip={ tooltip } data-direction={ direction || "top" }>
         { children }
     </div>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export default Tooltip;
+export default DefaultTooltip;

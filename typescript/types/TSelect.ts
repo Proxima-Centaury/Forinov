@@ -7,11 +7,11 @@ import type { TUnkownOption } from "@typescript/types/TOption";
 /* Select Type */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 type TSelect = {
-    options?: Array<TUnkownOption|string>,
-    action?: MouseEventHandler,
+    options?: TUnkownOption[] | string[],
+    action?: MouseEventHandler<MouseEvent>,
     placeholder?: string,
-    defaultValue?: number|string,
-    defaultValues?: Array<number|string>,
+    defaultValue?: number | string,
+    defaultValues?: number[] | string[],
     source?: string,
     dynamic?: boolean,
     limited?: boolean,

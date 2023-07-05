@@ -245,19 +245,25 @@ body {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    min-height: 100vh;
+    max-height: 100vh;
     background-color: var(--background-main-color);
-    overflow-x: hidden;
+    overflow: hidden;
 }
-
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Accessibility */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+*:focus-visible {
+    border-color: var(--logo-blue-color) !important;
+    background-color: var(--pale-blue-color) !important;
+}
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scroll Bar */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 8px;
+    height: 8px;
     border-radius: 50px;
-    background-color: var(--background-main-color);
+    background-color: var(--border-color);
 }
 ::-webkit-scrollbar-thumb {
     border-radius: 50px;
@@ -267,10 +273,16 @@ body {
 /* Next Container */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 #__next {
+    height: calc(100% - 70px);
+    max-height: calc(100% - 70px);
+    margin: 70px 0px 0px 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#__next > [data-page] {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
+    margin: 0px -8px 0px 0px; /* Fixes the gap caused by the scrollbar */
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Boxed Content */
@@ -410,21 +422,23 @@ body {
 [data-type="devtools"] {
     display: flex;
     align-items: center;
-    width: 100%;
+    grid-gap: 16px;
+    gap: 16px;
+    max-height: 50px;
     padding: 16px;
     position: fixed;
-    bottom: 0px;
-    left: 0px;
-    transform: translateY(0%);
-    background-color: var(--background-sub-color);
+    left: 16px;
+    bottom: 16px;
+    border-radius: 15px;
+    background-color: var(--filter-color);
+    backdrop-filter: blur(10px);
     box-shadow: var(--box-shadow);
-    z-index: 10000;
+    z-index: 10;
 }
 [data-type="devtools"].closed {
     transform: translateY(100%);
 }
 [data-type="devtools"] > p {
-    margin: 0px 16px 0px 0px;
     color: var(--logo-blue-color);
     text-transform: uppercase;
     font-weight: bold;
@@ -458,6 +472,7 @@ body {
     align-items: center;
     grid-gap: 8px;
     gap: 8px;
+    max-height: 50px;
     padding: 16px;
     position: fixed;
     right: 16px;
@@ -493,3 +508,33 @@ body {
         opacity: 1;
     }
 };
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Data Style Attributes */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+[data-text-align="left"] {
+    text-align: left !important;
+}
+[data-text-align="center"] {
+    text-align: center !important;
+}
+[data-text-align="right"] {
+    text-align: right !important;
+}
+[data-flex-align="left"] {
+    align-items: flex-start !important;
+}
+[data-flex-align="center"] {
+    align-items: center !important;
+}
+[data-flex-align="right"] {
+    align-items: flex-end !important;
+}
+[data-flex-justify="left"] {
+    justify-content: flex-start !important;
+}
+[data-flex-justify="center"] {
+    justify-content: center !important;
+}
+[data-flex-justify="right"] {
+    justify-content: flex-end !important;
+}

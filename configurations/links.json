@@ -3,25 +3,25 @@
         "header": [
             {
                 "classList": "septary bigger narrow shadow scale",
-                "href": "/directories/startups",
+                "href": "/startups/directory",
                 "icon": "fa-solid fa-arrow-right",
                 "text": "homeHeaderStartupsLink"
             },
             {
                 "classList": "septary bigger narrow shadow scale",
-                "href": "/directories/corporates",
+                "href": "/corporates/directory",
                 "icon": "fa-solid fa-arrow-right",
                 "text": "homeHeaderCorporatesLink"
             },
             {
                 "classList": "septary bigger narrow shadow scale",
-                "href": "/directories/partners",
+                "href": "/partners/directory",
                 "icon": "fa-solid fa-arrow-right",
                 "text": "homeHeaderPartnersLink"
             },
             {
                 "classList": "septary bigger narrow shadow scale",
-                "href": "/directories/opportunities",
+                "href": "/opportunities/directory",
                 "icon": "fa-solid fa-arrow-right",
                 "text": "homeHeaderOpportunitiesLink"
             }

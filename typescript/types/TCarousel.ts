@@ -8,7 +8,7 @@ import type { TOpportunity } from "@typescript/types/TOpportunity";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 type TCarousel = {
     classList?: string,
-    items?: TStartup[]|TOpportunity[],
+    items?: TStartup[] | TOpportunity[],
     itemsType?: string,
     navigation?: string
 };

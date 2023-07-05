@@ -17,10 +17,10 @@ import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import LinkButton from "@buttons/linkButton";
-import LineSeparator from "@separators/lineSeparator";
 import DefaultCarousel from "@carousels/defaultCarousel";
 import Testimonials from "@contents/testimonials";
+import LinkButton from "@buttons/linkButton";
+import LineSeparator from "@separators/lineSeparator";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -34,7 +34,7 @@ import { formatForUrl } from "@scripts/formatForUrl";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import HomeStyles from "@stylesheets/pages/Home.module.css";
+import HomeStyles from "@pages/Home.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Home */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -42,7 +42,7 @@ const Home = (params: TPage): JSX.Element => {
 	const router = useRouter();
 	const { locale } = router;
 	const { t } = useTranslation("home");
-	const { landing, startups, opportunities, states } = params;
+	const { landing, startups, opportunities } = params;
 	const { articles, categories, counters } = landing;
 	const homeHeaderLinks: TButton[] = require("@configurations/links.json").home.header;
 	const homeStructuresLinks: TButton[] = require("@configurations/links.json").home.structures;
@@ -51,7 +51,7 @@ const Home = (params: TPage): JSX.Element => {
 			<title>{ t("homeMetaTitle") }</title>
 			<meta name="description" content={ t("homeMetaDescription") }/>
 		</Head>
-		<div className={ HomeStyles.page } data-page="home">
+		<div data-page="home">
 			<div className={ HomeStyles.mainContainer }>
 				<div className="boxedContent">
 					<div className={ HomeStyles.containerTitle }>
@@ -149,17 +149,17 @@ const Home = (params: TPage): JSX.Element => {
 					<div className={ HomeStyles.containerTitle }>
 						<h3>{ t("homeCommunitySectionsTitle") }</h3>
 					</div>
-					<div className={ HomeStyles.communitySections }>
+					<div className={ `${ HomeStyles.communitySections } grid threeColumns` }>
 						<div className={ HomeStyles.communitySection }>
-							<p>{ t("homeCommunitySectionTitle1") }</p>
+							<p>{ t("homeCommunitySectionTitle1") }<i className="fa-solid fa-star"/></p>
 							<p>{ t("homeCommunitySectionText1") }</p>
 						</div>
 						<div className={ HomeStyles.communitySection }>
-							<p>{ t("homeCommunitySectionTitle2") }</p>
+							<p>{ t("homeCommunitySectionTitle2") }<i className="fa-solid fa-star"/></p>
 							<p>{ t("homeCommunitySectionText2") }</p>
 						</div>
 						<div className={ HomeStyles.communitySection }>
-							<p>{ t("homeCommunitySectionTitle3") }</p>
+							<p>{ t("homeCommunitySectionTitle3") }<i className="fa-solid fa-star"/></p>
 							<p>{ t("homeCommunitySectionText3") }</p>
 						</div>
 					</div>
@@ -181,7 +181,7 @@ const Home = (params: TPage): JSX.Element => {
 						}) }
 					</div>
 					<div className={ HomeStyles.containerTitle }>
-						<h4>{ t("homeLatestOpportunitiesTitle") }</h4>
+						<h6>{ t("homeLatestOpportunitiesTitle") }</h6>
 					</div>
 					<DefaultCarousel items={ opportunities } itemsType="opportunities" navigation="bar"/>
 				</div>
@@ -224,17 +224,15 @@ const Home = (params: TPage): JSX.Element => {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Server Side Props */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const getServerSideProps: GetServerSideProps = async (context) => {
-	const { res, locale, locales } = context;
+const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) => {
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-	const language = locale?.substring(0, 2);
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "common", "footer", "home" ])),
+			...(await serverSideTranslations(locale || "fr", [ "common", "navbar", "footer", "home" ])),
 			locales,
-			landing: await api.getLanding("next", "Landing", language),
-			opportunities: await api.getLandingOpportunities("next", "Landing", language),
-			startups: await api.getLandingStartups("next", "Landing", language)
+			landing: await api.getLanding("next", "Landing", locale),
+			opportunities: await api.getLandingOpportunities("next", "Landing", locale),
+			startups: await api.getLandingStartups("next", "Landing", locale)
 		}
 	};
 };

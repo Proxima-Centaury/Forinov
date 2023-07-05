@@ -56,19 +56,20 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
                 const space = 16; // Space size in pixels between items
                 const border = 10; // Border width of the cards in pixels
                 const autoSlide = setInterval(() => { // Setting interval for carousel automation
-                    if(items && !pause && wrapper.clientWidth > wrapperParent.clientWidth) {
+                    if(items && !pause) {
                         if(currentIndex < items.length - 1) { // Increments the current index while last card not matched
                             setCurrentIndex(currentIndex + 1);
                         } else { // Otherwise resets the carousel to the start
                             setCurrentIndex(0);
                         };
                     };
+                    if(wrapper.clientWidth >= wrapperParent.clientWidth) {
+                        setActions(true);
+                    } else {
+                        setActions(false);
+                        setCurrentIndex(0);
+                    };
                 }, 2000);
-                if(wrapper.clientWidth <= wrapperParent.clientWidth) {
-                    clearInterval(autoSlide);
-                    setCurrentIndex(0);
-                    setActions(false);
-                };
                 wrapper.style.transform = `translateX(calc(-${ currentIndex * (childWidth + border) }px - ${ currentIndex * space }px))`;
                 return () => {
                     clearInterval(autoSlide);

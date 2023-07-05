@@ -17,7 +17,7 @@ const LineSeparator = (params: TSeparator): JSX.Element => {
     const { t } = useTranslation("common");
     const { classList } = params;
     const nextClasses = classList?.split(" ").map((cssClass: string) => SeparatorStyles[cssClass]).join(" ") || SeparatorStyles.horizontal; 
-    const formatedClassList = SeparatorStyles.line + " " + nextClasses;
+    const formatedClassList = `${ SeparatorStyles.line} ${ nextClasses }`;
     return <div className={ formatedClassList }>
         { (nextClasses?.includes(SeparatorStyles.or)) ? <span>{ t("lineSeparatorText") }</span> : null }
     </div>;
