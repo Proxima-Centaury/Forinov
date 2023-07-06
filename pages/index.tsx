@@ -231,7 +231,7 @@ const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) 
 			...(await serverSideTranslations(locale || "fr", [ "common", "navbar", "footer", "home" ])),
 			locales,
 			landing: await api.getLanding("next", "Landing", locale),
-			opportunities: await api.getLandingOpportunities("next", "Landing", locale),
+			opportunities: await api.getLandingOpportunities("next", "Landing"),
 			startups: await api.getLandingStartups("next", "Landing", locale)
 		}
 	};

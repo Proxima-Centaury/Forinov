@@ -386,6 +386,7 @@ body {
 }
 [data-type="tooltip"]:before {
     width: max-content;
+    max-width: 200px;
     padding: 8px;
     bottom: 100%;
     content: attr(data-tooltip);
