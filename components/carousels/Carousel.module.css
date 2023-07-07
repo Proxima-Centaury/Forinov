@@ -4,8 +4,6 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	grid-gap: 16px;
-	gap: 16px;
 	width: 100%;
 	overflow: hidden;
 }
@@ -15,8 +13,6 @@
 .carousel {
 	display: flex;
 	align-items: center;
-	grid-gap: 16px;
-	gap: 16px;
 	width: 100%;
 	height: 100%;
 	padding: 16px 0px;
@@ -49,8 +45,6 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .wrapper {
 	display: flex;
-	grid-gap: 16px;
-	gap: 16px;
 	width: fit-content;
 	height: max-content;
 	transition: transform 0.3s ease-in-out;
@@ -62,6 +56,9 @@
 		max-width: 100%;
 	}
 }
+.wrapper > * + * {
+	margin: 0px 0px 0px var(--space-16);
+}
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Actions */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -70,9 +67,10 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	grid-gap: 16px;
-	gap: 16px;
-	margin: 0px 0px 16px 0px;
+	margin: var(--space-16) 0px;
+}
+.actions > * + * {
+	margin: var(--space-16) 0px 0px 0px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Controls */
@@ -81,8 +79,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	grid-gap: 8px;
-	gap: 8px;
+}
+.controls > * + * {
+	margin: 0px 0px 0px var(--space-8);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Navigation */
@@ -91,8 +90,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	grid-gap: 8px;
-	gap: 8px;
+}
+.navigation > * + * {
+	margin: 0px 0px 0px var(--space-8);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Bar */

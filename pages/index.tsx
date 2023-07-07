@@ -83,7 +83,7 @@ const Home = (params: TPage): JSX.Element => {
 						<h2>{ t("homeWhyJoinTitle") }</h2>
 						<p>{ t("homeWhyJoinText") }</p>
 					</div>
-					<div className={ HomeStyles.joinCards }>
+					<div className="grid threeColumns">
 						<div className={ HomeStyles.joinCard }>
 							<div className={ HomeStyles.joinCardHeader }>
 								<i className="fa-light fa-rocket-launch"/>
@@ -149,7 +149,7 @@ const Home = (params: TPage): JSX.Element => {
 					<div className={ HomeStyles.containerTitle }>
 						<h3>{ t("homeCommunitySectionsTitle") }</h3>
 					</div>
-					<div className={ `${ HomeStyles.communitySections } grid threeColumns` }>
+					<div className="grid threeColumns">
 						<div className={ HomeStyles.communitySection }>
 							<p>{ t("homeCommunitySectionTitle1") }<i className="fa-solid fa-star"/></p>
 							<p>{ t("homeCommunitySectionText1") }</p>
@@ -231,7 +231,7 @@ const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) 
 			...(await serverSideTranslations(locale || "fr", [ "common", "navbar", "footer", "home" ])),
 			locales,
 			landing: await api.getLanding("next", "Landing", locale),
-			opportunities: await api.getLandingOpportunities("next", "Landing"),
+			opportunities: await api.getLandingOpportunities("next", "Landing", locale),
 			startups: await api.getLandingStartups("next", "Landing", locale)
 		}
 	};

@@ -4,8 +4,6 @@
 .card {
     display: flex;
     flex-direction: column;
-    grid-gap: 16px;
-    gap: 16px;
     max-width: 500px;
     border: var(--border);
     border-width: 5px;
@@ -33,6 +31,9 @@
         width: 100%;
         max-width: 100%;
     }
+}
+.card > * + * {
+    margin: var(--space-16) 0px 0px 0px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Header */
@@ -66,8 +67,6 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .body {
     display: flex;
-    grid-gap: 16px;
-    gap: 16px;
     width: 100%;
     max-width: 100%;
     height: 100%;
@@ -84,6 +83,7 @@
         min-height: 1px;
         height: 1px;
         max-height: 1px;
+        margin: var(--space-16) 0px;
     }
 }
 .body > i {
@@ -128,13 +128,13 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Left Container */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.body > .leftContainer {
+.leftContainer {
     display: flex;
     flex-direction: column;
     width: max-content;
     max-width: max-content;
 }
-.body > .leftContainer > img {
+.leftContainer > img {
     top: calc(((100px / 2) + 16px) * -1);
     border: var(--border);
     border-width: 5px;
@@ -143,7 +143,7 @@
     box-shadow: var(--box-shadow);
 }
 @media screen and (max-width: 576px) {
-    .body > .leftContainer {
+    .leftContainer {
         height: calc((100px / 2) - 16px);
         margin: 0px auto;
     }
@@ -151,21 +151,22 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Right Container */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.body > .rightContainer {
+.rightContainer {
     display: flex;
     flex-direction: column;
-    grid-gap: 8px;
-    gap: 8px;
     width: 100%;
     max-width: calc(100% - (1px + (2 * 16px) + 100px));
 }
 @media screen and (max-width: 576px) {
-    .body > .rightContainer {
+    .rightContainer {
         max-width: 100%;
     }
 }
-.body > .rightContainer:only-of-type {
+.rightContainer:only-of-type {
     max-width: inherit;
+}
+.rightContainer > * + * {
+    margin: var(--space-8) 0px 0px 0px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Opportunity Meta */
@@ -185,8 +186,9 @@
 .privacy {
     display: flex;
     align-items: center;
-    grid-gap: 8px;
-    gap: 8px;
+}
+.privacy > i {
+    margin: 0px var(--space-8) 0px 0px;
 }
 .privacy > i,
 .privacy > p {
@@ -228,8 +230,6 @@
 .identity {
     display: flex;
     flex-direction: column;
-    grid-gap: 8px;
-    gap: 8px;
 }
 .identity > p:first-of-type {
     font-weight: bold;
@@ -242,6 +242,6 @@
 /* Company */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .company {
-    margin: 16px 0px 0px 0px;
+    margin: var(--space-16) 0px;
     color: var(--logo-blue-color);
 }

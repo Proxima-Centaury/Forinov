@@ -4,8 +4,6 @@
 .container {
     display: flex;
     align-items: center;
-    grid-gap: 16px;
-    gap: 16px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Left Container */
@@ -15,8 +13,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    grid-gap: 16px;
-    gap: 16px;
     max-width: 250px;
 }
 .leftContainer > i {

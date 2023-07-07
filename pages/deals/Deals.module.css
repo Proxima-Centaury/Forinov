@@ -14,8 +14,6 @@
 .categories {
     display: flex;
     align-items: center;
-    grid-gap: 24px;
-    gap: 24px;
     padding: 16px;
     border-radius: 15px;
     background-color: var(--background-sub-color);
@@ -32,8 +30,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    grid-gap: 8px;
-    gap: 8px;
 }
 .catch > h1 {
     font-size: 36px;

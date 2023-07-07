@@ -40,7 +40,6 @@ class API {
                 return this.formatResponse(query[0], response);
             }, writable: false });
         });
-        console.log(this);
     };
     getEndpoint = (): string => {
         return this._endpoint;
