@@ -2,6 +2,7 @@
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import chalk from "chalk";
+import error from "@classes/error";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -19,46 +20,57 @@ import configuration from "@configurations/api.json";
 /* API */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 class API {
-    endpoint: string = configuration.api.endpoint[(process.env.NODE_ENV === "development") ? "development" : "production"];
+    private _endpoint: string = configuration.api.endpoint[(process.env.NODE_ENV === "development") ? "development" : "production"];
     constructor() {
         const queryProps = Object.entries(configuration.api.calls);
-        this.setEndpoint(true);
-        queryProps.map((query: Array<any>) => {
-            Object.defineProperty(this, query[0] as PropertyKey, { value: async (...parameters: Array<any>) => {
+        // this.setEndpoint(true);
+        queryProps.map((query: any[]) => {
+            Object.defineProperty(this, query[0], { value: async (...parameters: any[]) => {
+                console.time("Execution time");
                 const expectedParameters = query[1].parameters;
+                const givenParameters = parameters;
+                const url = this.getEndpoint() + "?" + this.buildParameters(query, parameters, expectedParameters);
                 if(expectedParameters.length !== parameters.length) {
-                    const separator = `${ "-".repeat(100) }\n`;
-                    const errorGeneralMessage = `Error occured trying to fetch data using ${ query[0] }() method.\n\n`;
-                    const expectedParametersMessage = `Expected parameters :\n- ${ expectedParameters.join("\n- ") }\n\n`;
-                    const errorEndMessage = `Please make sure you passed all parameters to the method.`;
-                    console.error(`${ separator }${ chalk.red(errorGeneralMessage + expectedParametersMessage + errorEndMessage) }`);
-                    return false;
+                    this.callLogger(query, parameters, url, "red");
+                    return error.sendFeedback("api", { query, expectedParameters, givenParameters });
                 };
-                const buildParameters = () => {
-                    const array: Array<string> = [];
-                    array.push("q=" + query[1].query);
-                    expectedParameters.map((parameter: string, key: number) => array.push(parameter + "=" + parameters[key as keyof object]));
-                    return array.join("&");
-                };
-                const url = this.endpoint + "?" + buildParameters();
+                this.callLogger(query, parameters, url);
                 const promise = await fetch(url);
                 const response = await promise.json();
-                const logTheCall = () => {
-                    const separator = `${ "-".repeat(100) }\n`;
-                    const callParameters = parameters.map((parameter) => typeof parameter).join(", ");
-                    const action = `[ ${ chalk.blueBright("CALL") } ] => ${ chalk.blueBright(query[0]) }(${ callParameters })\n`;
-                    const calledUrl = `${ chalk.blueBright(">") } ${ url }`;
-                    return separator + action + calledUrl;
-                };
-                console.log(logTheCall());
-                return this.updateFormat(query[0], response);
+                return this.formatResponse(query[0], response);
             }, writable: false });
         });
     };
-    setEndpoint = (isProduction: boolean) => {
-        return this.endpoint = configuration.api.endpoint[(isProduction) ? "production" : "development"];
+    getEndpoint = (): string => {
+        return this._endpoint;
     };
-    searchEngine = async (type: string, filters: any, network: string, privateFilter: string, ssid: string, language: string) => {
+    setEndpoint = (isProduction: boolean) => {
+        const environment: string = (isProduction) ? "production" : "development";
+        return this._endpoint = configuration.api.endpoint[environment as keyof object];
+    };
+    callLogger = (query?: any[], parameters?: any[], url?: string, color?: string) => {
+        if(query && parameters && url) {
+            const logColor = ((color) ? color : "blueBright") as keyof Object;
+            const separator = `${ "-".repeat(130) }\n`;
+            const callParameters = parameters.map((parameter: string) => typeof parameter).join(", ");
+            const action = `[ ${ chalk[logColor]("CALL") } ] => ${ chalk[logColor](query[0]) }(${ callParameters })\n`;
+            const calledUrl = `${ chalk[logColor](">") } ${ url }`;
+            return console.log(separator + action + calledUrl);
+        } else {
+            return false;
+        };
+    };
+    buildParameters = (query?: any[], parameters?: any[], expectedParameters?: string[]) => {
+        if(query && parameters && expectedParameters) {
+            const array: Array<string> = [];
+            array.push("q=" + query[1].query);
+            expectedParameters?.map((parameter: string, key: number) => array.push(parameter + "=" + parameters[key as keyof object]));
+            return array.join("&");
+        } else {
+            return false;
+        };
+    };
+    searchEngine = async (type?: string, filters?: any, network?: string, privateFilter?: string, ssid?: string, language?: string) => {
         if(!type || !filters) {
             return [];
         };
@@ -69,16 +81,17 @@ class API {
             type = (type.match(/(opportunities)/)) ? "opportunite" : type;
         };
         var results = null;
-        var url: string = this.endpoint + "?q=SEARCH_FULL&TYPE=" + type;
+        var url: string = this.getEndpoint() + "?q=SEARCH_FULL&TYPE=" + type;
         const buildUrl = Object.keys(filters).map((filter) => ((filter === "keywords" && filters[filter].length >= 2) || (filter !== "keywords" &&filters[filter])) ? "&" + filter.toUpperCase() + "=" + filters[filter] : null).join("");
         url += buildUrl + ((network) ? "&NETWORK=" + network : "") + ((privateFilter) ? "&PRIVATEFILTER=" + privateFilter : "") + ((ssid) ? "&ssid=" + ssid : "") + "&app=next&authkey=Sorbonne&lang=" + language;
         const call = (url) ? await fetch(url) : null;
         results = (call) ? call.json() : null;
         return results;
     };
-    updateFormat = (call: string, response: any) => {
+    formatResponse = (call?: string, response?: any) => {
+        let formattedResponse = null;
         if(call === "getPublicCommons") {
-            return {
+            formattedResponse = {
                 categories: {
                     corporates: response[0].CORPORATES_SECTORS.map((sector: any) => ({
                         id: parseInt(sector.ID),
@@ -164,7 +177,7 @@ class API {
                 }
             };
         } else if(call === "getLanding") {
-            return {
+            formattedResponse = {
                 articles: response.BLOG.map((article: any) => ({
                     id: parseInt(article.ID),
                     banner: article.PICTURE,
@@ -186,7 +199,7 @@ class API {
                 }
             };
         } else if(call === "getLandingStartups") {
-            return response.map((startup: any) => ({
+            formattedResponse = response.map((startup: any) => ({
                 id: parseInt(startup.ID),
                 banner: startup.BACKGROUND,
                 category: {
@@ -204,7 +217,7 @@ class API {
                 url: `/directories/startups/${ formatForUrl(startup.CATEGORY[0].NAME) }_${ startup.CATEGORY[0].ID }/${ formatForUrl(startup.NAME) }_${ startup.ID }`
             }));
         } else if(call === "getLandingOpportunities") {
-            return Object.values(response[0].PROJECT).map((opportunity: any) => ({
+            formattedResponse = Object.values(response[0].PROJECT).map((opportunity: any) => ({
                 id: parseInt(opportunity.ID),
                 banner: opportunity.BACKGROUND,
                 category: {
@@ -229,6 +242,8 @@ class API {
                 url: `/directories/opportunities/${ formatForUrl(opportunity.TYPE[0].NAME) }_${ opportunity.TYPE[0].ID }/${ formatForUrl(opportunity.TITLE) }_${ opportunity.ID }`
             }));
         };
+        console.timeEnd("Execution time");
+        return formattedResponse;
     };
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

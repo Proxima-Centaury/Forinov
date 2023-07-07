@@ -4,13 +4,14 @@
 .container {
     display: flex;
     align-items: center;
-    grid-gap: 8px;
-    gap: 8px;
 }
 @media screen and (max-width: 576px) {
     .container {
         align-items: baseline;
     }    
+}
+.container > i {
+    margin: 0px var(--space-8) 0px 0px;
 }
 .container > i,
 .container > p {

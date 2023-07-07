@@ -7,7 +7,7 @@
     align-items: center;
     width: 100%;
     height: 70px;
-    padding: 0px calc(50px - 16px);
+    padding: 0px calc(50px - var(--space-16));
     position: fixed;
     top: 0px;
     left: 0px;
@@ -25,18 +25,8 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    padding: 0px 16px;
+    padding: 0px var(--space-16);
 }
-/* .navbar::after {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    content: "";
-    background-color: var(--background-sub-color);
-} */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Logo */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -49,8 +39,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    grid-gap: 16px;
-    gap: 16px;
 }
 .logo > a > img {
     object-fit: contain;
@@ -66,9 +54,6 @@
 .links {
     display: flex;
     align-items: center;
-    grid-gap: 24px;
-    gap: 24px;
-    /* width: 100%; */
     height: 100%;
     transition: top 0.3s ease-in-out;
     z-index: 1;
@@ -82,7 +67,6 @@
 .links > li {
     display: flex;
     justify-content: center;
-    /* flex: 1; */
     height: 100%;
     position: relative;
 }
@@ -91,13 +75,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* width: 100%; */
     height: 100%;
     position: relative;
     border-bottom: var(--border);
-    border-width: 3px;
+    border-width: 2px;
     border-color: transparent;
     transition: border-color 0.3s ease-in-out;
+}
+.links > * + * {
+    margin: 0px 0px 0px var(--space-16);
 }
 .links > li > a:hover,
 .links > li > a.active,
@@ -124,9 +110,9 @@
 .nestedLinks {
     display: flex;
     flex-direction: column;
-    padding: 16px;
+    padding: var(--space-16);
     position: absolute;
-    top: calc(64px - 5px);
+    top: calc(70px - 5px);
     opacity: 0;
     pointer-events: none;
     border-radius: 5px;
@@ -187,29 +173,30 @@
     }
 } */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Navbar ( Actions ) */
+/* Actions */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .actions {
     display: flex;
     align-items: center;
-    grid-gap: 16px;
-    gap: 16px;
     border-radius: 50px;
     background-color: var(--background-sub-color);
     z-index: 1;
+}
+.actions > * + * {
+    margin: 0px 0px 0px var(--space-8);
 }
 @media screen and (max-width: 992px) {
     .actions {
         padding: 8px;
         position: absolute;
-        top: calc(64px + 16px);
-        right: calc(-100% - 16px);
+        top: calc(70px + var(--space-16));
+        right: calc(-100% - var(--space-16));
         pointer-events: none;
         box-shadow: var(--box-shadow);
         transition: right 0.3s ease-in-out;
     }
     .links.show + .actions {
-        right: 16px;
+        right: var(--space-16);
         pointer-events: all;
     }
     .actions > [class*="selectField"] {

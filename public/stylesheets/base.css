@@ -68,12 +68,22 @@
     /* Other Variables */
     --shadow-color: #00000030;
     --darker-shadow-color: #00000050;
-    --box-shadow: 4px 4px 10px 0px var(--shadow-color);
-    --box-shadow-reversed: 4px -4px 10px 0px var(--shadow-color);
-    --darker-box-shadow: 4px 4px 10px 0px var(--darker-shadow-color);
+    --box-shadow: 5px 5px 10px 0px var(--shadow-color);
+    --box-shadow-reversed: 5px -5px 10px 0px var(--shadow-color);
+    --darker-box-shadow: 5px 5px 10px 0px var(--darker-shadow-color);
     --filter-color: #FFFFFF80;
     --gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, #FFFFFFFF 80%);
     --gradient-ui: linear-gradient(90deg, #EC008C, #FF8336);
+    /* Spaces */
+    --space-8: 8px;
+    --space-16: 16px;
+    --space-24: 24px;
+    --space-32: 32px;
+    --space-40: 40px;
+    /* Borders */
+    --radius-5: 5px;
+    --radius-10: 10px;
+    --radius-15: 15px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Dark Theme */
@@ -136,87 +146,27 @@
     /* Other Variables */
     --shadow-color: #00000030;
     --darker-shadow-color: #00000050;
-    --box-shadow: 4px 4px 10px 0px var(--shadow-color);
-    --box-shadow-reversed: 4px -4px 10px 0px var(--shadow-color);
-    --darker-box-shadow: 4px 4px 10px 0px var(--darker-shadow-color);
+    --box-shadow: 5px 5px 10px 0px var(--shadow-color);
+    --box-shadow-reversed: 5px -5px 10px 0px var(--shadow-color);
+    --darker-box-shadow: 5px 5px 10px 0px var(--darker-shadow-color);
     --filter-color: #FFFFFF80;
     --gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, #FFFFFFFF 80%);
     --gradient-ui: linear-gradient(90deg, #EC008C, #FF8336);
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Nextinov Theme */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-[data-theme="nextinov"] {
-    /* Logo Colors */
-    --logo-blue-color: #005AEB;
-    --logo-orange-color: #FE6A28;
-    --logo-green-color: #65D318;
-    /* Opportunity Colors */
-    --project-color: #31A774;
-    --event-color: #8061DE;
-    --program-color: #7EC9FF;
-    --offer-color: #FA6A58;
-    --challenge-color: #ED9F00;
-    /* Light & Dark Colors */
-    --perfect-white-color: #FFFFFF;
-    --darker-white-color: #F8F7F6;
-    --lighter-grey-color: #E7E7E7;
-    --light-grey-color: #CFD0D1;
-    --perfect-grey-color: #808080;
-    --dark-grey-color: #6D6D6D;
-    --darker-grey-color: #555555;
-    --lighter-black-color: #363839;
-    --light-black-color: #242526;
-    --classic-black-color: #141516;
-    --perfect-black-color: #000000;
-    /* Feedback Colors */
-    --success-color: #00A04A;
-    --warning-color: #FCDC0C;
-    --error-color: #E01E3E;
-    --information-color: #1F4497;
-    /* Blue Tones */
-    --pastel-blue-color: #F0F6FF;
-    --light-blue-color: #B2D1FF;
-    --pale-blue-color: #97C0FD;
-    --pure-blue-color: #006DFF;
-    /* Green Tones */
-    --light-green-color: #D1F2E4;
-    --pale-green-color: #9FE9CA;
-    --grass-green-color: #38BF84;
-    /* Red Tones */
-    --light-red-color: #FFEFE6;
-    --pale-red-color: #FFCFD1;
-    --sun-red-color: #FF5500;
-    /* Text Colors */
-    --text-main-color: var(--perfect-white-color);
-    --text-inactive-color: var(--perfect-grey-color);
-    --text-placeholder-color: var(--perfect-grey-color);
-    /* Line Colors */
-    --separator-color: var(--darker-grey-color);
-    --border-color: var(--darker-grey-color);
-    --border: 1px solid var(--border-color);
-    --debugging-border: 1px dashed var(--logo-blue-color);
-    /* Background Colors */
-    --background-main-color: var(--light-black-color);
-    --background-sub-color: var(--classic-black-color);
-    --background-private-color: var(--lighter-black-color);
-    --background-information-color: var(--light-grey-color);
-    /* Other Variables */
-    --shadow-color: #00000030;
-    --darker-shadow-color: #00000050;
-    --box-shadow: 4px 4px 10px 0px var(--shadow-color);
-    --box-shadow-reversed: 4px -4px 10px 0px var(--shadow-color);
-    --darker-box-shadow: 4px 4px 10px 0px var(--darker-shadow-color);
-    --filter-color: #00000080;
-    --gradient-mask: linear-gradient(180deg, #00000000 0%, #000000FF 80%);
-    --gradient-ui: linear-gradient(90deg, #EC008C, #FF8336);
+    /* Spaces */
+    --space-8: 8px;
+    --space-16: 16px;
+    --space-24: 24px;
+    --space-32: 32px;
+    --space-40: 40px;
+    /* Borders */
+    --radius-5: 5px;
+    --radius-10: 10px;
+    --radius-15: 15px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Resets */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 * {
-    grid-gap: 0px;
-    gap: 0px;
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
@@ -260,8 +210,8 @@ body {
 /* Scroll Bar */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: var(--space-8);
+    height: var(--space-8);
     border-radius: 50px;
     background-color: var(--border-color);
 }
@@ -290,12 +240,10 @@ body {
 .boxedContent {
     display: flex;
     flex-direction: column;
-    grid-gap: 32px;
-    gap: 32px;
     width: 100%;
     margin: 0px auto;
-    padding: 16px;
-    border-radius: 15px;
+    padding: var(--space-16);
+    border-radius: var(--radius-15);
     z-index: 1;
 }
 @media screen and (min-width: 1400px) {
@@ -303,46 +251,92 @@ body {
         max-width: 1400px;
     }
 }
+.boxedContent > *:not([class*="Navbar"]) + * {
+    margin-top: var(--space-24);
+}
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Grid */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .grid {
     display: grid;
-    grid-template-columns: repeat(1, minmax(0%, 1fr));
-    grid-gap: 16px;
-    gap: 16px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-rows: repeat(1, minmax(0, 1fr));
+    padding: var(--space-16) var(--space-16) 0px 0px;
+}
+.grid > * {
+    width: calc(100% - var(--space-16));
+    margin: 0px 0px var(--space-16) var(--space-16);
 }
 .twoColumns {
-    grid-template-columns: repeat(2, minmax(0%, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .threeColumns {
-    grid-template-columns: repeat(3, minmax(0%, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .fourColumns {
-    grid-template-columns: repeat(4, minmax(0%, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 @media screen and (max-width: 1200px) {
     .twoColumns {
-        grid-template-columns: repeat(1, minmax(0%, 1fr));
+        grid-template-columns: repeat(1, minmax(0, 1fr));
     }
     .threeColumns {
-        grid-template-columns: repeat(2, minmax(0%, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     .fourColumns {
-        grid-template-columns: repeat(3, minmax(0%, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 @media screen and (max-width: 768px) {
     .threeColumns {
-        grid-template-columns: repeat(1, minmax(0%, 1fr));
+        grid-template-columns: repeat(1, minmax(0, 1fr));
     }
     .fourColumns {
-        grid-template-columns: repeat(2, minmax(0%, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 @media screen and (max-width: 576px) {
     .fourColumns {
-        grid-template-columns: repeat(1, minmax(0%, 1fr));
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Grid Items */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.grid > *:nth-of-type(1n) {
+    justify-self: center;
+}
+.grid.twoColumns > *:nth-of-type(1n) {
+    justify-self: flex-end;
+}
+.grid.twoColumns > *:nth-of-type(2n) {
+    justify-self: flex-start;
+}
+.grid.threeColumns > *:nth-of-type(1n) {
+    justify-self: flex-end;
+}
+.grid.threeColumns > *:nth-of-type(2n) {
+    justify-self: center;
+}
+.grid.threeColumns > *:nth-of-type(3n) {
+    justify-self: flex-start;
+}
+.grid.fourColumns > *:nth-of-type(1n) {
+    justify-self: flex-end;
+}
+.grid.fourColumns > *:nth-of-type(2n),
+.grid.fourColumns > *:nth-of-type(3n) {
+    justify-self: center;
+}
+.grid.fourColumns > *:nth-of-type(4n) {
+    justify-self: flex-start;
+}
+@media screen and (max-width: 1200px) {
+    .grid.threeColumns > *:nth-of-type(1n) {
+        justify-self: flex-end;
+    }
+    .grid.threeColumns > *:nth-of-type(2n) {
+        justify-self: flex-start;
     }
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -386,7 +380,8 @@ body {
 }
 [data-type="tooltip"]:before {
     width: max-content;
-    padding: 8px;
+    max-width: 200px;
+    padding: var(--space-8);
     bottom: 100%;
     content: attr(data-tooltip);
     font-weight: 500;
@@ -394,17 +389,17 @@ body {
     color: var(--logo-blue-color);
     white-space: break-spaces;
     background-color: var(--background-sub-color);
-    border-radius: 5px;
+    border-radius: var(--radius-5);
     box-shadow: var(--box-shadow);
 }
 [data-type="tooltip"]:after {
     width: 0px;
     height: 0px;
-    bottom: calc(100% - 6px);
+    bottom: calc(100% - var(--space-8));
     content: "";
-	border-top: 6px solid var(--logo-blue-color); 
-    border-right: 6px solid transparent;
-    border-left: 6px solid transparent;
+	border-top: var(--space-8) solid var(--logo-blue-color); 
+    border-right: var(--space-8) solid transparent;
+    border-left: var(--space-8) solid transparent;
 }
 [data-type="tooltip"]:hover:before,
 [data-type="tooltip"]:hover:after {
@@ -416,98 +411,6 @@ body {
     white-space: nowrap;
     overflow: hidden;
 }
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Custom Devtools */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-[data-type="devtools"] {
-    display: flex;
-    align-items: center;
-    grid-gap: 16px;
-    gap: 16px;
-    max-height: 50px;
-    padding: 16px;
-    position: fixed;
-    left: 16px;
-    bottom: 16px;
-    border-radius: 15px;
-    background-color: var(--filter-color);
-    backdrop-filter: blur(10px);
-    box-shadow: var(--box-shadow);
-    z-index: 10;
-}
-[data-type="devtools"].closed {
-    transform: translateY(100%);
-}
-[data-type="devtools"] > p {
-    color: var(--logo-blue-color);
-    text-transform: uppercase;
-    font-weight: bold;
-}
-[data-type="devtools"] > div + div {
-    margin: 0px 0px 0px 8px;
-}
-[data-type="devtools"] > button {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    right: 0px;
-    bottom: 100%;
-    border-radius: 10px 10px 0px 0px;
-    background-color: var(--background-sub-color);
-}
-[data-type="devtools"] > button:hover {
-    background-color: var(--logo-blue-color);
-}
-[data-type="devtools"] > button:hover > i {
-    color: var(--perfect-white-color);
-}
-[data-type="devtools"].closed > button > i {
-    transform: rotate(-180deg);
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Development Mode Indicator */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.developmentModeIndicator {
-    display: flex;
-    align-items: center;
-    grid-gap: 8px;
-    gap: 8px;
-    max-height: 50px;
-    padding: 16px;
-    position: fixed;
-    right: 16px;
-    bottom: 16px;
-    border-radius: 15px;
-    background-color: var(--filter-color);
-    backdrop-filter: blur(10px);
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-    z-index: 10;
-}
-.developmentModeIndicator > .dot {
-    min-width: 8px;
-    width: 8px;
-    max-width: 8px;
-    min-height: 8px;
-    height: 8px;
-    max-height: 8px;
-    border-radius: 8px;
-    background-color: var(--logo-blue-color);
-    animation: flash 1s ease-in-out infinite;
-}
-.developmentModeIndicator > span:not(.dot) {
-    color: var(--logo-blue-color);
-    font-weight: bold;
-}
-@keyframes flash {
-    0% {
-        opacity: 1;
-    } 50% {
-        opacity: 0;
-    } 100% {
-        opacity: 1;
-    }
-};
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Data Style Attributes */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

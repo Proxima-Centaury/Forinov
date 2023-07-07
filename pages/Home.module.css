@@ -88,8 +88,6 @@
 .containerTitle {
     display: flex;
     flex-direction: column;
-    grid-gap: 16px;
-    gap: 16px;
 }
 .containerTitle > h1 {
     font-size: 56px;
@@ -147,8 +145,6 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .header {
     display: flex;
-    grid-gap: 32px;
-    gap: 32px;
 }
 @media screen and (max-width: 992px) {
     .header {
@@ -164,11 +160,17 @@
     align-items: center;
     flex: 1;
     max-height: 400px;
+    margin: 0px 0px 0px var(--space-24);
     border: var(--border);
     border-width: 16px;
     border-radius: 15px;
     box-shadow: var(--box-shadow);
     overflow: hidden;
+}
+@media screen and (max-width: 992px) {
+    .headerRightContainer {
+        margin: var(--space-24) 0px 0px 0px;
+    }
 }
 .headerRightContainer > img {
     width: 100%;
@@ -181,8 +183,6 @@
 .headerLeftContainer {
     display: flex;
     flex-direction: column;
-    grid-gap: 32px;
-    gap: 32px;
     width: 100%;
     max-width: 400px;
 }
@@ -204,12 +204,13 @@
 .headerParagraphs {
     display: flex;
     flex-direction: column;
-    grid-gap: 16px;
-    gap: 16px;
 }
 .headerParagraphs > p {
     font-family: Nunito Sans;
     font-size: 14px;
+}
+.headerParagraphs > p + p {
+    margin-top: var(--space-16);
 }
 @media screen and (max-width: 576px) {
     .headerParagraphs > p {
@@ -222,13 +223,25 @@
 .headerActions {
     display: flex;
     flex-direction: column;
-    grid-gap: 16px;
-    gap: 16px;
+    margin: var(--space-16) 0px 0px 0px;
+}
+@media screen and (max-width: 992px) {
+    .headerActions {
+        margin: 0px var(--space-16) 0px 0px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .headerActions {
+        margin: var(--space-16) 0px 0px 0px;
+    }
 }
 .headerActions > [class*="action"] {
     flex-direction: row-reverse;
     justify-content: space-between;
     font-weight: bold;
+}
+.headerActions > [class*="action"] + [class*="action"] {
+    margin-top: var(--space-16);
 }
 @media screen and (max-width: 576px) {
     .headerActions > [class*="action"]:hover {
@@ -236,27 +249,16 @@
     }
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Cards */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCards {
-    display: flex;
-	flex-wrap: wrap;
-    justify-content: center;
-    grid-gap: 16px;
-    gap: 16px;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Join Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .joinCard {
     display: flex;
     flex-direction: column;
-    grid-gap: 16px;
-    gap: 16px;
     flex: 1;
     min-width: 280px;
     width: 280px;
     max-width: 280px;
+    margin: 0px 0px var(--space-16) var(--space-16);
     padding: 16px;
     border-radius: 15px;
     background-color: var(--background-sub-color);
@@ -264,9 +266,13 @@
 }
 @media screen and (max-width: 768px) {
 	.joinCard {
-		min-width: 100%;
+		width: 100%;
 		max-width: 100%;
+        margin: 0px;
 	}
+    .joinCard + .joinCard {
+        margin: var(--space-16) 0px 0px 0px;
+    }
 }
 /* [data-theme="nextinov"] .joinCard { // This is a border gradient hack with border radius support
     border: 4px solid transparent;
@@ -278,8 +284,7 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .joinCardHeader {
     display: flex;
-    grid-gap: 16px;
-    gap: 16px;
+    margin-bottom: var(--space-16);
 }
 .joinCardHeader > i {
     display: flex;
@@ -291,6 +296,7 @@
     min-height: 56px;
     height: 56px;
     max-height: 56px;
+    margin-right: var(--space-16);
     font-size: 56px;
     overflow: hidden;
 }
@@ -330,11 +336,10 @@
 .joinCardBody {
     display: flex;
     flex-direction: column;
-    grid-gap: 16px;
-    gap: 16px;
+    margin: 0px 0px auto 0px;
 }
-.joinCardBody + [class*="line"] {
-    margin: auto 0px 0px 0px;
+.joinCardBody > * + * {
+    margin: var(--space-16) 0px 0px 0px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Join Card Footer */
@@ -342,19 +347,13 @@
 .joinCardFooter {
     display: flex;
     flex-direction: column;
-    grid-gap: 16px;
-    gap: 16px;
 }
 .joinCardFooter > a {
     width: fit-content;
     margin: auto;
 }
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Community Sections */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.communitySections {
-	grid-gap: 16px;
-    gap: 16px;
+.joinCardFooter > a + a {
+    margin: var(--space-16) auto 0px auto;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Community Section */
@@ -362,8 +361,6 @@
 .communitySection {
 	display: flex;
 	flex-direction: column;
-	grid-gap: 16px;
-    gap: 16px;
     padding: 16px;
     border-radius: 15px;
     background-color: var(--lighter-black-color);
@@ -377,8 +374,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    grid-gap: 8px;
-    gap: 8px;
+    margin: 0px 0px var(--space-8) 0px;
 	font-size: 24px;
     font-weight: 800;
 }
@@ -393,8 +389,10 @@
 	display: flex;
     flex-wrap: wrap;
     align-items: center;
-	grid-gap: 16px;
-    gap: 16px;
+    padding: var(--space-8) var(--space-8) 0px 0px;
+}
+.startupsCategoriesSection > * {
+    margin: 0px 0px var(--space-8) var(--space-8);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Structures Section */
@@ -403,6 +401,8 @@
 	display: flex;
 	flex-wrap: wrap;
     align-items: center;
-	grid-gap: 16px;
-    gap: 16px;
+    padding: var(--space-8) var(--space-8) 0px 0px;
+}
+.structuresSection > * {
+    margin: 0px 0px var(--space-8) var(--space-8);
 }

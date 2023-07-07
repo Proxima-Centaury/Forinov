@@ -4,7 +4,7 @@
 import { useRouter } from "next/router";
 import { appWithTranslation } from "next-i18next";
 import { Fragment, useMemo, useEffect, useState } from "react";
-import { setCookie, getCookie } from "cookies-next";
+// import { setCookie, getCookie } from "cookies-next";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -58,9 +58,6 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
         <Navbar/>
         <Component { ...pageProps }/>
         <Footer/>
-        {/* { (!checkMatch(router.asPath, "/administration")) ? ((router.query.ui && router.query.ui == "false") ? null : <Footer { ...pageProps }/>) : null } */}
-        {/* <Modal { ...pageProps }/> */}
-        {/* { (router.query.ui && router.query.ui == "false") ? null : (!production) ? <Devtools { ...pageProps }/> : null } */}
     </Fragment>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
