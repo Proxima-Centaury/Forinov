@@ -1,0 +1,14 @@
+{
+    "developmentModeIndicator": "En développement",
+    "carouselResumeTooltip": "Relancer le carrousel",
+    "carouselPauseTooltip": "Mettre le carrousel en pause",
+    "lineSeparatorText": "Ou",
+    "undefinedText": "Non défini",
+    "remainingTimeFullText": "Expire dans {{ years }} année(s), {{ months }} mois et {{ days }} jour(s)",
+    "remainingTimeYearsAndMonthsText": "Expire dans {{ years }} année(s) et {{ months }} mois",
+    "remainingTimeYearsAndDaysText": "Expire dans {{ years }} année(s) et {{ days }} jour(s)",
+    "remainingTimeMonthsAndDaysText": "Expire dans {{ months }} mois et {{ days }} jour(s)",
+    "remainingTimeYearsText": "Expire dans {{ years }} année(s)",
+    "remainingTimeMonthsText": "Expire dans {{ months }} mois",
+    "remainingTimeDaysText": "Expire dans {{ days }} jour(s)"
+}

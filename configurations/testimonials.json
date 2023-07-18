@@ -1,20 +1,22 @@
 {
     "testimonials": [
         {
-            "PICTURE": "https://www.forinov.com/pictures/uploads/20210528161012.jpg",
-            "LOGO": "https://www.forinov.fr/pictures/entreprise/188/logo.jpg",
-            "COMPANY": "Groupe Crédit Mutuel-CIC",
-            "NAME": "Gilles Favre",
-            "JOBNAME": "Responsable innovation",
-            "TESTIMONIAL": "Nous partageons le même constat que les équipes de Forinov : il est urgent de faciliter les relations entre les grandes entreprises et les startups.<br><br>C'est pourquoi nous avons décidé de leur faire confiance et de les accompagner dès la sortie de leur plateforme. Aujourd'hui Forinov nous permet de centraliser le flux de sollicitations de startups, de découvrir de nouvelles solutions et de suivre, de manière collaborative, nos différents portefeuilles de startups, ce qui est essentiel pour un groupe mutualiste comme le nôtre"
+            "id": 0,
+            "company": "Groupe Crédit Mutuel-CIC",
+            "job": "Responsable innovation",
+            "logo": "https://www.forinov.fr/pictures/entreprise/188/logo.jpg",
+            "name": "Gilles Favre",
+            "picture": "https://www.forinov.com/pictures/uploads/20210528161012.jpg",
+            "testimonial": "Nous partageons le même constat que les équipes de Forinov : il est urgent de faciliter les relations entre les grandes entreprises et les startups.<br><br>C'est pourquoi nous avons décidé de leur faire confiance et de les accompagner dès la sortie de leur plateforme. Aujourd'hui Forinov nous permet de centraliser le flux de sollicitations de startups, de découvrir de nouvelles solutions et de suivre, de manière collaborative, nos différents portefeuilles de startups, ce qui est essentiel pour un groupe mutualiste comme le nôtre."
         },
         {
-            "PICTURE": "https://www.forinov.com/pictures/uploads/20210528155252.jpg",
-            "LOGO": "https://www.forinov.fr/pictures/incubateur/273/logo.jpg",
-            "COMPANY": "Réseau Les Premières",
-            "NAME": "Grégory Fournier",
-            "JOBNAME": "Délégué général",
-            "TESTIMONIAL": "Rejoindre Forinov va contribuer au développement de nos entrepreneur·es. C'est un atout précieux pour nos incubées !<br><br>En plus d'optimiser le suivi de notre accompagnement avec l'ensemble de nos membres, Forinov permet d'apporter plus de visibilité au sein de l'écosystème entrepreneurial et un accès privilégié aux opportunités (appels à projets...)"
+            "id": 1,
+            "company": "Réseau Les Premières",
+            "job": "Délégué général",
+            "logo": "https://www.forinov.fr/pictures/incubateur/273/logo.jpg",
+            "name": "Grégory Fournier",
+            "picture": "https://www.forinov.com/pictures/uploads/20210528155252.jpg",
+            "testimonial": "Rejoindre Forinov va contribuer au développement de nos entrepreneur·es. C'est un atout précieux pour nos incubées !<br><br>En plus d'optimiser le suivi de notre accompagnement avec l'ensemble de nos membres, Forinov permet d'apporter plus de visibilité au sein de l'écosystème entrepreneurial et un accès privilégié aux opportunités (appels à projets...)."
         }
     ]
 }

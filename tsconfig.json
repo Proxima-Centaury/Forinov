@@ -1,6 +1,27 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@pages/*": [ "pages/*" ],
+            "@layouts/*": [ "components/layouts/*" ],
+            "@loaders/*": [ "components/loaders/*" ],
+            "@fields/*": [ "components/fields/*" ],
+            "@buttons/*": [ "components/buttons/*" ],
+            "@separators/*": [ "components/separators/*" ],
+            "@carousels/*": [ "components/carousels/*" ],
+            "@cards/*": [ "components/cards/*" ],
+            "@tags/*": [ "components/tags/*" ],
+            "@tags": [ "components/tags" ],
+            "@tooltips/*": [ "components/tooltips/*" ],
+            "@typescript/types/*": [ "typescript/types/*" ],
+            "@scripts/*": [ "utilities/scripts/*" ],
+            "@stylesheets/*": [ "public/stylesheets/*" ],
+            "@classes/*": [ "utilities/classes/*" ],
+            "@configurations/*": [ "configurations/*" ],
+            "@contents/*": [ "components/contents/*" ]
+        },
         "target": "es5",
+        "downlevelIteration": true,
         "lib": [ "dom", "dom.iterable", "esnext" ],
         "allowJs": true,
         "skipLibCheck": true,

@@ -1,0 +1,20 @@
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Container */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.container {
+    display: flex;
+    align-items: center;
+}
+@media screen and (max-width: 576px) {
+    .container {
+        align-items: baseline;
+    }    
+}
+.container > i {
+    margin: 0px var(--space-8) 0px 0px;
+}
+.container > i,
+.container > p {
+    font-size: 12px;
+    color: var(--text-placeholder-color);
+}

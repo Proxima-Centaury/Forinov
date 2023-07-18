@@ -1,0 +1,79 @@
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Field */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 80px;
+    height: 40px;
+    position: relative;
+    border-bottom: var(--border);
+    background-color: var(--background-sub-color);
+}
+.field > p {
+    padding: 0px var(--space-32) 0px var(--space-16);
+    pointer-events: none;
+    z-index: 1;
+}
+.field > .placeholder {
+    color: var(--border-color);
+}
+.field > .placeholder > span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    color: var(--perfect-white-color);
+    font-size: 11px;
+    border-radius: 50px;
+    background-color:  var(--logo-blue-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Options */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: var(--space-8);
+    position: absolute;
+    top: 100%;
+    border-top: 1px solid var(--separator-color);
+    border-radius: 0px 0px 10px 10px;
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    z-index: 2;
+}
+.options[data-state="hidden"] {
+    max-height: 0px;
+    opacity: 0;
+    pointer-events: none;
+}
+.options[data-state="visible"] {
+    max-height: 250px;
+    opacity: 1;
+    pointer-events: all;
+}
+footer .options {
+    top: inherit;
+    bottom: 100%;
+    border-top: inherit;
+    border-bottom: 1px solid var(--separator-color);
+    border-radius: 10px 10px 0px 0px;
+    box-shadow: var(--box-shadow-reversed);
+}
+.options > .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 0px var(--space-8) 0px 0px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.options > .container > * + * {
+    margin: var(--space-8) 0px 0px 0px;
+}

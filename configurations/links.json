@@ -1,0 +1,82 @@
+{
+    "home": {
+        "header": [
+            {
+                "classList": "septary bigger narrow shadow scale",
+                "href": "/startups/directory",
+                "icon": "fa-solid fa-arrow-right",
+                "text": "homeHeaderStartupsLink"
+            },
+            {
+                "classList": "septary bigger narrow shadow scale",
+                "href": "/corporates/directory",
+                "icon": "fa-solid fa-arrow-right",
+                "text": "homeHeaderCorporatesLink"
+            },
+            {
+                "classList": "septary bigger narrow shadow scale",
+                "href": "/partners/directory",
+                "icon": "fa-solid fa-arrow-right",
+                "text": "homeHeaderPartnersLink"
+            },
+            {
+                "classList": "septary bigger narrow shadow scale",
+                "href": "/opportunities/directory",
+                "icon": "fa-solid fa-arrow-right",
+                "text": "homeHeaderOpportunitiesLink"
+            }
+        ],
+        "structures": [
+            {
+                "classList": "tertiary",
+                "href": "/onboarding",
+                "text": "homeStructureLink1"
+            },
+            {
+                "classList": "tertiary",
+                "href": "/onboarding",
+                "text": "homeStructureLink2"
+            },
+            {
+                "classList": "tertiary",
+                "href": "/onboarding",
+                "text": "homeStructureLink3"
+            },
+            {
+                "classList": "tertiary",
+                "href": "/onboarding",
+                "text": "homeStructureLink4"
+            },
+            {
+                "classList": "tertiary",
+                "href": "/onboarding",
+                "text": "homeStructureLink5"
+            },
+            {
+                "classList": "tertiary",
+                "href": "/onboarding",
+                "text": "homeStructureLink6"
+            },
+            {
+                "classList": "tertiary",
+                "href": "/onboarding",
+                "text": "homeStructureLink7"
+            },
+            {
+                "classList": "tertiary",
+                "href": "/onboarding",
+                "text": "homeStructureLink8"
+            },
+            {
+                "classList": "tertiary",
+                "href": "/onboarding",
+                "text": "homeStructureLink9"
+            },
+            {
+                "classList": "tertiary",
+                "href": "/onboarding",
+                "text": "homeStructureLink10"
+            }
+        ]
+    }
+}
