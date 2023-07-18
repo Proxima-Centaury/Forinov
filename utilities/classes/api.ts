@@ -23,7 +23,7 @@ class API {
     private _endpoint: string = configuration.api.endpoint[(process.env.NODE_ENV === "development") ? "development" : "production"];
     constructor() {
         const queryProps = Object.entries(configuration.api.calls);
-        // this.setEndpoint(true);
+        this.setEndpoint(true);
         queryProps.map((query: any[]) => {
             Object.defineProperty(this, query[0], { value: async (...parameters: any[]) => {
                 console.time("Execution time");

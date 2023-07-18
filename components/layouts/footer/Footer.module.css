@@ -42,7 +42,7 @@
     margin-bottom: var(--space-16);
 }
 .section > p {
-    color: var(--text-inactive-color);
+    color: var(--text-placeholder-color);
 }
 .section > p:last-of-type {
     margin-top: var(--space-16);
@@ -61,7 +61,7 @@
 }
 .section > ul > li > a[class*="action"] > span {
     text-transform: inherit;
-    color: var(--text-inactive-color);
+    color: var(--text-placeholder-color);
     white-space: break-spaces;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

@@ -4,7 +4,7 @@
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import api from "@classes/api";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
@@ -24,6 +24,7 @@ import type { TPage } from "@typescript/types/TPage";
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { formatForUrl } from "@scripts/formatForUrl";
+import { getRouteId } from "@scripts/getRouteId";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -39,9 +40,9 @@ const Deals = (params: TPage): JSX.Element => {
     const { filters, deals, states } = params;
     const { categories } = filters;
     const { opportunities } = categories;
+    const dealsCategories = useMemo(() => opportunities.find((category: any) => category.id === 5)?.deals.categories || [], [ category ]);
     const [ subcategories, setSubcategories ] = useState([]);
     // const categoryId = category?.toString().substring(category.indexOf("_") + 1, category.length);
-    const dealsCategories = opportunities.find((category: any) => category.id === 5)?.deals.categories || [];
     // useEffect(() => {
     //     if(categories.length > 0 && categoryId) {
     //         setSubcategories(categories.find((category: any) => category.ID === categoryId).SUBCATEGORIES);
@@ -79,8 +80,8 @@ const Deals = (params: TPage): JSX.Element => {
                     const url = "/deals/" + category + "/" + formatNameForUrl(subcategory.NAME) + "_" + subcategory.ID;
                     return <Button key={ key } button={ (checkMatch(router.asPath, url)) ? ButtonStyles.callToAction : ButtonStyles.callToActionOldGrey } href={ url } text={ subcategory.NAME } active={ checkMatch(router.asPath, url) }/>;
                 }) }
-            </div> : null }
-            { (deals && deals.length > 0) ? <div className="grid threeColumns">
+            </div> : null } */}
+            {/* { (deals && deals.length > 0) ? <div className="grid threeColumns">
                 { deals.map((opportunity: any, key: Key) => {
                     if(key < deals.length - 1) {
                         const getUrl = (): String => {
@@ -110,12 +111,10 @@ const Deals = (params: TPage): JSX.Element => {
 const getServerSideProps: GetServerSideProps = async ({ res, query, locale, locales }) => {
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
     const { category, subcategory } = query;
-    const categoryId = category?.toString().substring(category.indexOf("_") + 1, category.length);
-    const subcategoryId = subcategory?.toString().substring(subcategory.indexOf("_") + 1, subcategory.length);
     const searchEngineFilters = {
         categories: 5,
-        subcategories1: (categoryId) ? parseInt(categoryId) : null,
-        subcategories2: (subcategoryId) ? parseInt(subcategoryId) : null
+        subcategories1: (category) ? getRouteId(category) : null,
+        subcategories2: (subcategory) ? getRouteId(subcategory) : null
     };
 	return {
 		props: {

@@ -9,3 +9,6 @@
 .container > i {
     font-size: 10px;
 }
+.container > * + * {
+    margin: 0px 0px 0px 8px;
+}

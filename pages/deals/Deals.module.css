@@ -13,14 +13,21 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .categories {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    padding: var(--space-16);
+    padding: var(--space-8) var(--space-16) var(--space-16) var(--space-16);
     border-radius: var(--radius-15);
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
 }
 .categories > a > span {
     white-space: nowrap;
+}
+.categories > * {
+    margin: var(--space-8) var(--space-8) 0px 0px;
+}
+.categories > *:last-of-type {
+    margin: var(--space-8) 0px 0px 0px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Catch */
@@ -32,12 +39,14 @@
     align-items: center;
 }
 .catch > h1 {
+    margin: 0px 0px var(--space-16) 0px;
     font-size: 36px;
     font-family: "Nunito Sans";
     color: var(--logo-blue-color);
     text-transform: uppercase;
+    text-align: center;
 }
 .catch > p {
-    color: var(--text-inactive-color);
+    color: var(--text-placeholder-color);
     text-align: center;
 }

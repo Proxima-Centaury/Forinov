@@ -115,6 +115,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100vw;
+    height: 100vh;
     max-height: 100vh;
     background-color: var(--background-main-color);
     overflow: hidden;
@@ -143,6 +144,8 @@ body {
 /* Next Container */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 #__next {
+    display: flex;
+    flex-direction: column;
     height: calc(100% - 70px);
     max-height: calc(100% - 70px);
     margin: 70px 0px 0px 0px;
@@ -152,6 +155,7 @@ body {
 #__next > [data-page] {
     display: flex;
     flex-direction: column;
+    flex: 1;
     margin: 0px -8px 0px 0px; /* Fixes the gap caused by the scrollbar */
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
