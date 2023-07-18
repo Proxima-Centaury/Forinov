@@ -9,14 +9,18 @@ const nextSiteMapConfiguration = {
     sourceDir: "production",
     siteUrl: "https://interface.forinov.net",
     generateRobotsTxt: true,
-    exclude: [ "/en-US/*", "/403", "/404", "/500", "/server-sitemap-index.xml" ],
+    exclude: [ "/en/*", "/403", "/404", "/500", "/server-sitemap-index.xml" ],
     alternateRefs: [
         {
-            href: "https://interface.forinov.net/fr-FR",
+            href: "https://interface.forinov.net/",
             hreflang: "fr",
         },
         {
-            href: "https://interface.forinov.net/en-US",
+            href: "https://interface.forinov.net/fr",
+            hreflang: "fr",
+        },
+        {
+            href: "https://interface.forinov.net/en",
             hreflang: "en",
         },
     ],
