@@ -1,0 +1,70 @@
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Container */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
+    margin: auto 0px 0px 0px;
+}
+.container > p {
+    color: var(--logo-blue-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Actions */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
+    flex: 1;
+}
+.actions > button:first-child,
+.actions > button:last-child {
+    min-width: 150px;
+    width: 150px;
+    max-width: 150px;
+}
+.actions > button:last-child {
+    flex-direction: row-reverse;
+}
+@media screen and (max-width: 768px) {
+    .actions > button:first-child,
+    .actions > button:last-child {
+        min-width: 40px;
+        width: 40px;
+        max-width: 40px;
+        min-height: 40px;
+        height: 40px;
+        max-height: 40px;
+    }
+    .actions > button:first-child > span,
+    .actions > button:last-child > span {
+        display: none;
+    }
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Type Page */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.typePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.typePage > .custom {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    z-index: 1;
+}
+.typePage > .custom input {
+    padding: 8px;
+    text-align: center;
+}

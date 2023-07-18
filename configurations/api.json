@@ -47,7 +47,7 @@
             },
             "getSearchEngine": {
                 "query": "SEARCH_FULL",
-                "parameters": [ "TYPE", "app", "authkey", "lang" ]
+                "parameters": [ "TYPE", "NETWORK", "PRIVATEFILTER", "ssid", "app", "authkey", "lang" ]
             },
             "getOpportunities": {
                 "query": "LANDING_FULLOPPORTUNITES",

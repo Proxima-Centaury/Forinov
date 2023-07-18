@@ -18,7 +18,9 @@
             "@stylesheets/*": [ "public/stylesheets/*" ],
             "@classes/*": [ "utilities/classes/*" ],
             "@configurations/*": [ "configurations/*" ],
-            "@contents/*": [ "components/contents/*" ]
+            "@contents/*": [ "components/contents/*" ],
+            "@pagination": [ "components/pagination" ],
+            "@pagination/*": [ "components/pagination/*" ]
         },
         "target": "es5",
         "downlevelIteration": true,

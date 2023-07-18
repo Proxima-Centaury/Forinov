@@ -72,7 +72,7 @@ const Home = (params: TPage): JSX.Element => {
 							</div>
 						</div>
 						<div className={ HomeStyles.headerRightContainer }>
-							<Image src="/assets/home.gif" alt={ t("homeHeaderIllustrationAlt") } width="500" height="500" priority/>
+							{/* <Image src="/assets/home.gif" alt={ t("homeHeaderIllustrationAlt") } width="500" height="500" priority/> */}
 						</div>
 					</div>
 				</div>

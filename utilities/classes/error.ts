@@ -28,7 +28,6 @@ class Error {
         const givenParametersMessage = `${ chalk.red("Received parameters :\n") }- ${ givenParameters.join("\n- ") }\n\n`;
         const errorEndMessage = `${ chalk.red(">") } Full url of the api call can be found right after this message.`
         console.error(`${ separator }${ action + errorGeneralMessage + expectedParametersMessage + givenParametersMessage + errorEndMessage }`);
-        console.timeEnd("Execution time");
         return false;
     };
 };
