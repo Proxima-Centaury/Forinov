@@ -31,7 +31,7 @@ const getServerSideProps: GetServerSideProps = async ({ res, query, locale, loca
 			...(await serverSideTranslations(locale || "fr", [ "common", "navbar", "footer", "deals" ])),
 			locales,
             filters: await api.getPublicCommons("next", "Landing", locale),
-            deals: await api.searchEngine("opportunities", searchEngineFilters, null, null, null, locale)
+            deals: await api.searchEngine("opportunite", searchEngineFilters, null, null, null, locale)
 		}
 	};
 };

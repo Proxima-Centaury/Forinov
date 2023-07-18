@@ -293,9 +293,13 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Link */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.inactiveLink,
 .action.link {
     width: fit-content;
     padding: 0px 0px 4px 0px;
+}
+.action.inactiveLink > * {
+    color: var(--text-placeholder-color);
 }
 .action.link > * {
     color: var(--logo-blue-color);
@@ -331,9 +335,11 @@
 .action.borderless {
     border: none;
 }
+.action.inactiveLink.borderless,
 .action.link.borderless {
     padding: 0px;
 }
+.action.inactiveLink.borderless > span,
 .action.link.borderless > span {
     text-transform: inherit;
 }

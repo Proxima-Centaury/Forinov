@@ -31,12 +31,15 @@ const Breadcrumb = (params: any) => {
         setBreadcrumb(router.asPath.split("/").filter((crumb: string) => crumb.length > 0));
     }, [ router.asPath ])
     return <div className={ BreadcrumbStyles.container }>
+        <LinkButton classList="inactiveLink borderless" href="/" icon="fa-solid fa-home"/>
         { breadcrumb.map((crumb: string, key: number) => {
-            const crumbName = (crumb.indexOf("_") > 0) ? uppercaseFirst(crumb.replaceAll("-", " ").substring(0, crumb.indexOf("_"))) : uppercaseFirst(crumb);
+            const crumbName = (crumb.indexOf("_") > 0) ? crumb.replaceAll("-", " ").substring(0, crumb.indexOf("_")) : crumb;
+            const formattedCrumbName = uppercaseFirst(crumbName);
             urls.push((key > 0) ? "/" + breadcrumb[parseInt(key.toString()) - 1] + "/" + crumb : "/" + crumb);
+            const isActive = (asPath.match(urls[key])) ? true : false;
             return (crumb) ? <Fragment key={ key }>
-                <LinkButton classList="link borderless" href={ urls[key] } text={ crumbName } active={ (asPath.match(urls[key])) ? true : false }/>
                 <i className="fa-light fa-chevron-right"/>
+                <LinkButton classList="link borderless" href={ urls[key] } text={ formattedCrumbName } active={ isActive }/>
             </Fragment> : null;
         }) }
     </div>;

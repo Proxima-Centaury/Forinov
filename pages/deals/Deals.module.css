@@ -15,19 +15,17 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: var(--space-8) var(--space-16) var(--space-16) var(--space-16);
     border-radius: var(--radius-15);
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
+    overflow: hidden;
 }
 .categories > a > span {
     white-space: nowrap;
 }
 .categories > * {
-    margin: var(--space-8) var(--space-8) 0px 0px;
-}
-.categories > *:last-of-type {
-    margin: var(--space-8) 0px 0px 0px;
+    flex: 1;
+    padding: var(--space-8);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Catch */
@@ -49,4 +47,17 @@
 .catch > p {
     color: var(--text-placeholder-color);
     text-align: center;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Actions */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+}
+.actions > * {
+    margin: var(--space-8) var(--space-8) 0px 0px;
+}
+.actions > *:last-of-type {
+    margin: var(--space-8) 0px 0px 0px;
 }
