@@ -5,7 +5,7 @@
 	display: flex;
 	flex-direction: column;
     flex: 1;
-    padding: calc(50px - 16px);
+    padding: calc(50px - var(--space-16));
 	transition: border-radius 0.3s ease-in-out;
 }
 .mainContainer:first-of-type {
@@ -162,8 +162,8 @@
     max-height: 400px;
     margin: 0px 0px 0px var(--space-24);
     border: var(--border);
-    border-width: 16px;
-    border-radius: 15px;
+    border-width: var(--space-16);
+    border-radius: var(--radius-15);
     box-shadow: var(--box-shadow);
     overflow: hidden;
 }
@@ -259,8 +259,8 @@
     width: 280px;
     max-width: 280px;
     margin: 0px 0px var(--space-16) var(--space-16);
-    padding: 16px;
-    border-radius: 15px;
+    padding: var(--space-16);
+    border-radius: var(--radius-15);
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
 }
@@ -290,14 +290,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 56px;
-    width: 56px;
-    max-width: 56px;
-    min-height: 56px;
-    height: 56px;
-    max-height: 56px;
+    min-width: 50px;
+    width: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    height: 50px;
+    max-height: 50px;
     margin-right: var(--space-16);
-    font-size: 56px;
+    font-size: 50px;
     overflow: hidden;
 }
 .joinCard:first-of-type > .joinCardHeader > i {
@@ -361,8 +361,8 @@
 .communitySection {
 	display: flex;
 	flex-direction: column;
-    padding: 16px;
-    border-radius: 15px;
+    padding: var(--space-16);
+    border-radius: var(--radius-15);
     background-color: var(--lighter-black-color);
     box-shadow: var(--box-shadow);
 }

@@ -53,88 +53,8 @@
     --sun-red-color: #FF5500;
     /* Text Colors */
     --text-main-color: var(--perfect-black-color);
-    --text-inactive-color: var(--perfect-grey-color);
     --text-placeholder-color: var(--perfect-grey-color);
     /* Line Colors */
-    --separator-color: var(--light-grey-color);
-    --border-color: var(--light-grey-color);
-    --border: 1px solid var(--border-color);
-    --debugging-border: 1px dashed var(--logo-blue-color);
-    /* Background Colors */
-    --background-main-color: var(--darker-white-color);
-    --background-sub-color: var(--perfect-white-color);
-    --background-private-color: var(--light-black-color);
-    --background-information-color: var(--light-grey-color);
-    /* Other Variables */
-    --shadow-color: #00000030;
-    --darker-shadow-color: #00000050;
-    --box-shadow: 5px 5px 10px 0px var(--shadow-color);
-    --box-shadow-reversed: 5px -5px 10px 0px var(--shadow-color);
-    --darker-box-shadow: 5px 5px 10px 0px var(--darker-shadow-color);
-    --filter-color: #FFFFFF80;
-    --gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, #FFFFFFFF 80%);
-    --gradient-ui: linear-gradient(90deg, #EC008C, #FF8336);
-    /* Spaces */
-    --space-8: 8px;
-    --space-16: 16px;
-    --space-24: 24px;
-    --space-32: 32px;
-    --space-40: 40px;
-    /* Borders */
-    --radius-5: 5px;
-    --radius-10: 10px;
-    --radius-15: 15px;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Dark Theme */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-[data-theme="dark"] {
-    /* Logo Colors */
-    --logo-blue-color: #005AEB;
-    --logo-orange-color: #FE6A28;
-    --logo-green-color: #65D318;
-    /* Opportunity Colors */
-    --project-color: #31A774;
-    --event-color: #8061DE;
-    --program-color: #7EC9FF;
-    --offer-color: #FA6A58;
-    --challenge-color: #ED9F00;
-    /* Light & Dark Colors */
-    --perfect-white-color: #FFFFFF;
-    --darker-white-color: #F8F7F6;
-    --lighter-grey-color: #E7E7E7;
-    --light-grey-color: #CFD0D1;
-    --perfect-grey-color: #808080;
-    --dark-grey-color: #6D6D6D;
-    --darker-grey-color: #555555;
-    --lighter-black-color: #363839;
-    --light-black-color: #242526;
-    --classic-black-color: #141516;
-    --perfect-black-color: #000000;
-    /* Feedback Colors */
-    --success-color: #00A04A;
-    --warning-color: #FCDC0C;
-    --error-color: #E01E3E;
-    --information-color: #1F4497;
-    /* Blue Tones */
-    --pastel-blue-color: #F0F6FF;
-    --light-blue-color: #B2D1FF;
-    --pale-blue-color: #97C0FD;
-    --pure-blue-color: #006DFF;
-    /* Green Tones */
-    --light-green-color: #D1F2E4;
-    --pale-green-color: #9FE9CA;
-    --grass-green-color: #38BF84;
-    /* Red Tones */
-    --light-red-color: #FFEFE6;
-    --pale-red-color: #FFCFD1;
-    --sun-red-color: #FF5500;
-    /* Text Colors */
-    --text-main-color: var(--perfect-black-color);
-    --text-inactive-color: var(--perfect-grey-color);
-    --text-placeholder-color: var(--perfect-grey-color);
-    /* Line Colors */
-    --separator-color: var(--light-grey-color);
     --border-color: var(--light-grey-color);
     --border: 1px solid var(--border-color);
     --debugging-border: 1px dashed var(--logo-blue-color);
@@ -263,10 +183,6 @@ body {
     grid-template-rows: repeat(1, minmax(0, 1fr));
     padding: var(--space-16) var(--space-16) 0px 0px;
 }
-.grid > * {
-    width: calc(100% - var(--space-16));
-    margin: 0px 0px var(--space-16) var(--space-16);
-}
 .twoColumns {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -303,59 +219,10 @@ body {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Grid Items */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.grid > *:nth-of-type(1n) {
+.grid > * {
     justify-self: center;
-}
-.grid.twoColumns > *:nth-of-type(1n) {
-    justify-self: flex-end;
-}
-.grid.twoColumns > *:nth-of-type(2n) {
-    justify-self: flex-start;
-}
-.grid.threeColumns > *:nth-of-type(1n) {
-    justify-self: flex-end;
-}
-.grid.threeColumns > *:nth-of-type(2n) {
-    justify-self: center;
-}
-.grid.threeColumns > *:nth-of-type(3n) {
-    justify-self: flex-start;
-}
-.grid.fourColumns > *:nth-of-type(1n) {
-    justify-self: flex-end;
-}
-.grid.fourColumns > *:nth-of-type(2n),
-.grid.fourColumns > *:nth-of-type(3n) {
-    justify-self: center;
-}
-.grid.fourColumns > *:nth-of-type(4n) {
-    justify-self: flex-start;
-}
-@media screen and (max-width: 1200px) {
-    .grid.threeColumns > *:nth-of-type(1n) {
-        justify-self: flex-end;
-    }
-    .grid.threeColumns > *:nth-of-type(2n) {
-        justify-self: flex-start;
-    }
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Forinov Design */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-[data-theme="nextinov"] h1,
-[data-theme="nextinov"] h2,
-[data-theme="nextinov"] h3,
-[data-theme="nextinov"] h4,
-[data-theme="nextinov"] h5,
-[data-theme="nextinov"] h6 {
-    color: transparent;
-    background: var(--gradient-ui);
-    background-clip: text;
-}
-[data-theme="nextinov"] [class*="primary"],
-[data-theme="nextinov"] [class*="secondary"] {
-    color: var(--perfect-white-color);
-    background: var(--gradient-ui);
+    width: calc(100% - var(--space-16));
+    margin: 0px 0px var(--space-16) var(--space-16);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Custom Tool Tips */

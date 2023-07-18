@@ -44,7 +44,7 @@ const OpportunityCard = (params: TOpportunity) => {
                     <p className={ CardStyles.title }>{ title }</p>
                 </Tooltip>
                 <Tooltip tooltip={ category?.name }>
-                    <PrimaryTag tag={ category?.name } color={ `type${ category?.id }` }/>
+                    <PrimaryTag tag={ category?.name } color={ `type${ (category?.id) ? category?.id : 0 }` }/>
                 </Tooltip>
                 <RemainingTime remainingTime={ remainingTime }/>
             </div>
