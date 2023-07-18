@@ -66,8 +66,8 @@ const Select = (params: TSelect): JSX.Element => {
     }, [ placeholder, selected ]);
     const switchSelectState = () => setSelectState(!selectState);
     const handleOutOfArea = (event: MouseEvent) => {
-        const target = isNode(event.target);
-        if(selectReference && selectReference.current) {
+        if(isNode(event.target) && selectReference && selectReference.current) {
+            const target = isNode(event.target);
             const current: HTMLElement = selectReference.current;
             if(!current.contains(target)) {
                 setSelectState(false);
