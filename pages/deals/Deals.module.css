@@ -15,17 +15,19 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    transform: skew(-15deg);
     border-radius: var(--radius-15);
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
     overflow: hidden;
 }
-.categories > a > span {
+.categories > [class*="action"] > span {
     white-space: nowrap;
 }
-.categories > * {
+.categories > [class*="action"] {
     flex: 1;
     padding: var(--space-8);
+    border-right: var(--border);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Catch */

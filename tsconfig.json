@@ -2,6 +2,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
+            "@project/*": [ "/*" ],
             "@pages/*": [ "pages/*" ],
             "@layouts/*": [ "components/layouts/*" ],
             "@loaders/*": [ "components/loaders/*" ],
