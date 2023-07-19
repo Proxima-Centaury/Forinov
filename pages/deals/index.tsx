@@ -37,9 +37,9 @@ import DealsStyles from "@pages/deals/Deals.module.css";
 const Deals = (params: TPage): JSX.Element => {
     const router = useRouter();
     const { query } = router;
-    const { category } = query;
+    const { category, page } = query;
 	const { t } = useTranslation("deals");
-    const { filters, deals, states } = params;
+    const { filters, deals } = params;
     const { categories } = filters;
     const { opportunities } = categories;
     const dealsCategories = useMemo(() => {
@@ -82,7 +82,7 @@ const Deals = (params: TPage): JSX.Element => {
                             </Fragment>;
                         }) }
                     </div> : null }
-                    <Pagination>
+                    <Pagination pages={ deals.pagination.pages } page={ page || 1 }>
                         <Grid columns="three" cards={ deals.items } type="deals"/>
                     </Pagination>
 				</div>
@@ -95,11 +95,12 @@ const Deals = (params: TPage): JSX.Element => {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const getServerSideProps: GetServerSideProps = async ({ res, query, locale, locales }) => {
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-    const { category, subcategory } = query;
+    const { category, subcategory, page } = query;
     const searchEngineFilters = {
         categories: 5,
         subcategories1: (category) ? getRouteId(category) : null,
-        subcategories2: (subcategory) ? getRouteId(subcategory) : null
+        subcategories2: (subcategory) ? getRouteId(subcategory) : null,
+        page: page || 1
     };
 	return {
 		props: {

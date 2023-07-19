@@ -6,12 +6,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    grid-gap: 8px;
-    gap: 8px;
     margin: auto 0px 0px 0px;
 }
 .container > p {
     color: var(--logo-blue-color);
+}
+.container > * + * {
+    margin: var(--space-16) 0px 0px 0px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Actions */
@@ -20,8 +21,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    grid-gap: 8px;
-    gap: 8px;
+    grid-gap: var(--space-8);
+    gap: var(--space-8);
     flex: 1;
 }
 .actions > button:first-child,
@@ -59,12 +60,12 @@
 }
 .typePage > .custom {
     position: absolute;
-    bottom: calc(100% + 8px);
-    border-radius: 10px;
+    bottom: calc(100% + var(--space-8));
+    border-radius: var(--radius-10);
     box-shadow: var(--box-shadow);
     z-index: 1;
 }
 .typePage > .custom input {
-    padding: 8px;
+    padding: var(--space-8);
     text-align: center;
 }

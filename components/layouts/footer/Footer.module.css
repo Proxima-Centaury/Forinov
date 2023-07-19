@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: calc(50px - 16px);
+    padding: calc(50px - var(--space-16));
     background-color: var(--background-sub-color);
 }
 @media screen and (max-width: 576px) {

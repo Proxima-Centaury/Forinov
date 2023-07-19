@@ -53,9 +53,9 @@ const Footer = (params: TFooter): JSX.Element => {
                     </ul> : null }
                 </div>) }
             </div>
-            <div className={ FooterStyles.sections }>
+            {/* <div className={ FooterStyles.sections }>
                 <Select options={ locales } defaultValue={ locale }/>
-            </div>
+            </div> */}
         </div>
     </footer>;
 };

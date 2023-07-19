@@ -80,7 +80,7 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
     return <div className={ CarouselStyles.container }>
         <div className={ formatedClassList }>
             <div className={ CarouselStyles.wrapper } ref={ carouselReference }>
-                { (items) ? items.map((item: TStartup|TOpportunity|TArticle|TTestimonial, key: number) => {
+                { (Array.isArray(items)) ? items?.map((item: TStartup|TOpportunity|TArticle|TTestimonial, key: number) => {
                     switch(itemsType) {
                         case "startups" :
                             return <Fragment key={ key }>
@@ -111,7 +111,7 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
                 <ClassicButton classList="sinary circled" action={ moveRight } icon="fa-solid fa-chevron-right"/>
             </div>
             <div className={ CarouselStyles.navigation }>
-                { (items) ? items?.map((item: unknown, key: number) => <div key={ key } className={ CarouselStyles[navigation || "bar"] }>
+                { (Array.isArray(items)) ? items?.map((item: unknown, key: number) => <div key={ key } className={ CarouselStyles[navigation || "bar"] }>
                     <ClassicButton classList="octary" action={ () => setCurrentIndex(key) } active={ key === currentIndex }/>
                 </div>) : null }
             </div>

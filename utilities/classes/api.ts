@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import chalk from "chalk";
 import error from "@classes/error";
+import logger from "@classes/logger";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -25,38 +25,46 @@ import configuration from "@configurations/api.json";
 class API {
     private _endpoint: string = configuration.api.endpoint[(process.env.NODE_ENV === "development") ? "development" : "production"];
     constructor() {
-        const queryProps = Object.entries(configuration.api.calls);
-        this.setEndpoint(true);
-        queryProps.map((query: any[]) => {
+        const queryProperties = Object.entries(configuration.api.calls);
+        this.setEndpoint("production");
+        queryProperties.map((query: any[]) => {
             Object.defineProperty(this, query[0], { value: async (...parameters: any[]) => {
                 const expectedParameters = query[1].parameters;
                 const givenParameters = parameters;
-                const url = this.getEndpoint() + "?" + this.buildParameters(query, parameters, expectedParameters);
+                const url = this.getEndpoint() + "?" + this._buildParameters({ query, expectedParameters, givenParameters });
                 if(expectedParameters.length !== parameters.length) {
-                    this.callLogger(query, parameters, url, "red");
-                    return error.sendFeedback("api", { query, expectedParameters, givenParameters });
+                    return error.sendFeedback("api", { query, expectedParameters, givenParameters, url });
                 };
-                this.callLogger(query, parameters, url);
-                const promise = await fetch(url);
-                const response = await promise.json();
-                return this.formatResponse(query[0], response);
+                const response = await this._call({ query, expectedParameters, givenParameters, url });
+                return (response.code) ? response : this._formatResponse(query[0], response);
             }, writable: false });
         });
     };
-    searchEngine = async (type?: string, filters?: any, network?: string, privateFilter?: string, ssid?: string, language?: string) => {
-        if(!type || !filters) {
-            return [];
-        };
+    searchEngine = async (type: string, filters: any, network?: string, privateFilter?: string, ssid?: string, language?: string) => {
         const query: any[] = [ "getSearchEngine", configuration.api.calls.getSearchEngine ];
-        const parameters = Object.values(filters).concat([ type, network, privateFilter, ssid, "next", "Landing", language ]);
         const expectedParameters = Object.keys(filters).map((filter: string) => filter.toUpperCase()).concat(query[1].parameters);
-        const url: string = this.getEndpoint() + "?" + this.buildParameters(query, parameters, expectedParameters);
-        this.callLogger(query, parameters, url);
-        const promise = await fetch(url);
-        const response = await promise.json();
-        return this.formatResponse("searchEngine", response);
+        const givenParameters = Object.values(filters).concat([ type, network, privateFilter, ssid, "next", "Landing", language ]);
+        const url: string = this.getEndpoint() + "?" + this._buildParameters({ query, expectedParameters, givenParameters });
+        logger.callLog({ query, givenParameters, url });
+        const response = await this._call({ query, expectedParameters, givenParameters, url });
+        return (response.code) ? response : this._formatResponse("searchEngine", response);
     };
-    formatResponse = (call?: string, response?: any) => {
+    private _buildParameters = ({ query, expectedParameters, givenParameters, url }: any): string => {
+        const array: Array<string> = [];
+        array.push("q=" + query[1].query);
+        expectedParameters?.map((parameter: string, key: number) => array.push(parameter + "=" + givenParameters[key as keyof object]));
+        return array.join("&");
+    };
+    private _call = async ({ query, expectedParameters, givenParameters, url }: any) => {
+        try {
+            logger.callLog({ query, givenParameters, url });
+            const promise = await fetch(url);
+            return await promise.json();
+        } catch {
+            return error.sendFeedback("call", { query, expectedParameters, givenParameters, url });
+        };
+    };
+    private _formatResponse = (call?: string, response?: any) => {
         if(call === "getPublicCommons") {
             return formatGetPublicCommons(response);
         } else if(call === "getLanding") {
@@ -69,34 +77,15 @@ class API {
             return formatSearchEngine(response);
         };
     };
-    buildParameters = (query?: any[], parameters?: any[], expectedParameters?: string[]) => {
-        if(query && parameters && expectedParameters) {
-            const array: Array<string> = [];
-            array.push("q=" + query[1].query);
-            expectedParameters?.map((parameter: string, key: number) => array.push(parameter + "=" + parameters[key as keyof object]));
-            return array.join("&");
-        } else {
-            return false;
-        };
-    };
-    callLogger = (query?: any[], parameters?: any[], url?: string, color?: string) => {
-        if(query && parameters && url) {
-            const logColor = ((color) ? color : "blueBright") as keyof Object;
-            const separator = `${ "-".repeat(130) }\n`;
-            const callParameters = parameters.map((parameter: string) => typeof parameter).join(", ");
-            const action = `[ ${ chalk[logColor]("CALL") } ] => ${ chalk[logColor](query[0]) }(${ callParameters })\n`;
-            const calledUrl = `${ chalk[logColor](">") } ${ url }`;
-            return console.log(separator + action + calledUrl);
-        } else {
-            return false;
-        };
-    };
     getEndpoint = (): string => {
         return this._endpoint;
     };
-    setEndpoint = (isProduction: boolean) => {
-        const environment: string = (isProduction) ? "production" : "development";
-        return this._endpoint = configuration.api.endpoint[environment as keyof object];
+    setEndpoint = (environment: "production" | "development"): boolean => {
+        if(environment.match(/(production|development)/)) {
+            this._endpoint = configuration.api.endpoint[environment as keyof object];
+            return true;
+        };
+        return false;
     };
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

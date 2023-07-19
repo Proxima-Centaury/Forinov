@@ -1,7 +1,7 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import chalk from "chalk";
+import logger from "@classes/logger";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -10,24 +10,36 @@ import chalk from "chalk";
 /* Error */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 class Error {
+    private _errors: any[] = [ { code: null, message: null } ];
     constructor() {};
-    sendFeedback = (type?: string, sourceParameters?: any) => {
+    sendFeedback = (type?: string, sourceParameters?: any): any | boolean => {
         switch(type) {
             case "api":
                 return this.generateApiFeedback(sourceParameters);
+            case "call":
+                return this.generateCallFeedback(sourceParameters);
             default:
                 return false;
         };
     };
-    generateApiFeedback = ({ query, expectedParameters, givenParameters }: any) => {
-        const separator = `${ "-".repeat(130) }\n`;
-        const callParameters = givenParameters.map((parameter: string) => typeof parameter).join(", ");
-        const action = `[ ${ chalk.red("CALL") } ] => ${ chalk.red(query[0]) }(${ callParameters })\n`;
-        const errorGeneralMessage = `${ chalk.red(">") } Error occured trying to fetch data using ${ query[0] }() call.\n\n`;
-        const expectedParametersMessage = `${ chalk.red("Expected parameters :\n") }- ${ expectedParameters.join("\n- ") }\n\n`;
-        const givenParametersMessage = `${ chalk.red("Received parameters :\n") }- ${ givenParameters.join("\n- ") }\n\n`;
-        const errorEndMessage = `${ chalk.red(">") } Full url of the api call can be found right after this message.`
-        console.error(`${ separator }${ action + errorGeneralMessage + expectedParametersMessage + givenParametersMessage + errorEndMessage }`);
+    generateApiFeedback = ({ query, expectedParameters, givenParameters, url }: any) => {
+        logger.apiErrorLog({ query, expectedParameters, givenParameters, url });
+        this.setErrors([ { code: 400, message: "Error occured due to missing parameters in client side" } ]);
+        return { code: 400, errors: this.getErrors() };
+    };
+    generateCallFeedback = ({ query, expectedParameters, givenParameters, url }: any) => {
+        logger.callErrorLog({ query, expectedParameters, givenParameters, url });
+        this.setErrors([ { code: 500, message: "Error occured due to JSON Syntax error on server side" } ]);
+        return { code: 500, errors: this.getErrors() };
+    };
+    getErrors = (): any[] => {
+        return this._errors;
+    };
+    setErrors = (...errors: any[]): boolean => {
+        if(errors.length > 0) {
+            this._errors = errors;
+            return true;
+        };
         return false;
     };
 };

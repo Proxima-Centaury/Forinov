@@ -72,7 +72,7 @@ const Home = (params: TPage): JSX.Element => {
 							</div>
 						</div>
 						<div className={ HomeStyles.headerRightContainer }>
-							{/* <Image src="/assets/home.gif" alt={ t("homeHeaderIllustrationAlt") } width="500" height="500" priority/> */}
+							<Image src="/assets/home.gif" alt={ t("homeHeaderIllustrationAlt") } fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder="blur" blurDataURL="/assets/home.gif"/>
 						</div>
 					</div>
 				</div>
@@ -83,7 +83,7 @@ const Home = (params: TPage): JSX.Element => {
 						<h2>{ t("homeWhyJoinTitle") }</h2>
 						<p>{ t("homeWhyJoinText") }</p>
 					</div>
-					<div className="grid threeColumns">
+					<div className={ HomeStyles.joinCards }>
 						<div className={ HomeStyles.joinCard }>
 							<div className={ HomeStyles.joinCardHeader }>
 								<i className="fa-light fa-rocket-launch"/>

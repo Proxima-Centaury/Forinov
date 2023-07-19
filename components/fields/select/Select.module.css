@@ -8,7 +8,7 @@
     min-width: 80px;
     height: 40px;
     position: relative;
-    border-bottom: var(--border);
+    border-bottom: var(--border-1);
     background-color: var(--background-sub-color);
 }
 .field > p {
@@ -41,7 +41,7 @@
     position: absolute;
     top: 100%;
     border-top: 1px solid var(--separator-color);
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px var(--radius-10) var(--radius-10);
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
     transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -62,7 +62,7 @@ footer .options {
     bottom: 100%;
     border-top: inherit;
     border-bottom: 1px solid var(--separator-color);
-    border-radius: 10px 10px 0px 0px;
+    border-radius: var(--radius-10) var(--radius-10) 0px 0px;
     box-shadow: var(--box-shadow-reversed);
 }
 .options > .container {

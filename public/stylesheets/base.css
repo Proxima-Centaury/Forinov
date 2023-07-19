@@ -1,7 +1,7 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Breakpoints */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* xs => < 576px */
+/* xs => > 320px */
 /* sm => > 576px */
 /* md => > 768px */
 /* lg => > 992px */
@@ -39,10 +39,9 @@
     --error-color: #E01E3E;
     --information-color: #1F4497;
     /* Blue Tones */
-    --pastel-blue-color: #F0F6FF;
-    --light-blue-color: #B2D1FF;
-    --pale-blue-color: #97C0FD;
-    --pure-blue-color: #006DFF;
+    --light-blue-color: #F0F6FF;
+    --pale-blue-color: #B2D1FF;
+    --sky-blue-color: #97C0FD;
     /* Green Tones */
     --light-green-color: #D1F2E4;
     --pale-green-color: #9FE9CA;
@@ -56,8 +55,10 @@
     --text-placeholder-color: var(--perfect-grey-color);
     /* Line Colors */
     --border-color: var(--light-grey-color);
-    --border: 1px solid var(--border-color);
-    --debugging-border: 1px dashed var(--logo-blue-color);
+    --border-1: 1px solid var(--border-color);
+    --border-2: 2px solid var(--border-color);
+    --border-3: 3px solid var(--border-color);
+    --border-debugging: 1px dashed var(--logo-blue-color);
     /* Background Colors */
     --background-main-color: var(--darker-white-color);
     --background-sub-color: var(--perfect-white-color);
@@ -67,10 +68,10 @@
     --shadow-color: #00000030;
     --darker-shadow-color: #00000050;
     --box-shadow: 5px 5px 10px 0px var(--shadow-color);
-    --box-shadow-reversed: 5px -5px 10px 0px var(--shadow-color);
     --darker-box-shadow: 5px 5px 10px 0px var(--darker-shadow-color);
     --filter-color: #FFFFFF80;
-    --gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, #FFFFFFFF 80%);
+    --horizontal-gradient-mask: linear-gradient(90deg, #FFFFFF00 0%, var(--background-main-color) 80%);
+    --vertical-gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, var(--background-main-color) 80%);
     --gradient-ui: linear-gradient(90deg, #EC008C, #FF8336);
     /* Spaces */
     --space-8: 8px;
@@ -78,10 +79,41 @@
     --space-24: 24px;
     --space-32: 32px;
     --space-40: 40px;
+    --space-48: 48px;
+    --space-56: 56px;
+    --space-64: 64px;
+    --space-72: 72px;
+    --space-80: 80px;
+    --space-88: 88px;
+    --space-96: 96px;
     /* Borders */
     --radius-5: 5px;
     --radius-10: 10px;
     --radius-15: 15px;
+    --radius-20: 20px;
+    --radius-25: 25px;
+    --radius-30: 30px;
+    --radius-35: 35px;
+    --radius-40: 40px;
+    --radius-45: 45px;
+    --radius-50: 50px;
+    --radius-55: 55px;
+    --radius-60: 60px;
+    --radius-65: 65px;
+    --radius-70: 70px;
+    --radius-75: 75px;
+    --radius-80: 80px;
+    --radius-85: 85px;
+    --radius-90: 90px;
+    --radius-95: 95px;
+    --radius-100: 100px;
+    /* Breakpoints */
+    --xs: 320px;
+    --sm: 576px;
+    --md: 768px;
+    --lg: 992px;
+    --xl: 1200px;
+    --xx: 1400px;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Resets */
@@ -133,29 +165,26 @@ body {
 ::-webkit-scrollbar {
     width: var(--space-8);
     height: var(--space-8);
-    border-radius: 50px;
+    border-radius: var(--radius-50);
     background-color: var(--border-color);
 }
 ::-webkit-scrollbar-thumb {
-    border-radius: 50px;
+    border-radius: var(--radius-50);
     background-color: var(--logo-blue-color);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Container */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 #__next {
-    /* display: flex;
-    flex-direction: column; */
-    height: calc(100% - 70px);
-    max-height: calc(100% - 70px);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     margin: 70px 0px 0px 0px;
     overflow-y: auto;
     overflow-x: hidden;
 }
 #__next > [data-page] {
-    /* display: flex;
-    flex-direction: column;
-    flex: 1; */
+    flex: 1;
     margin: 0px -8px 0px 0px; /* Fixes the gap caused by the scrollbar */
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -172,7 +201,7 @@ body {
 }
 @media screen and (min-width: 1400px) {
     .boxedContent {
-        max-width: 1400px;
+        max-width: var(--xx);
     }
 }
 .boxedContent > *:not([class*="Navbar"]) + * {
@@ -185,6 +214,7 @@ body {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     grid-template-rows: repeat(1, minmax(0, 1fr));
+    width: 100%;
     padding: var(--space-16) var(--space-16) 0px 0px;
 }
 .twoColumns {

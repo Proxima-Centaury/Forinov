@@ -8,6 +8,11 @@
     padding: calc(50px - var(--space-16));
 	transition: border-radius 0.3s ease-in-out;
 }
+@media screen and (max-width: 576px) {
+    .mainContainer {
+        padding: 0px;
+    }
+}
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Categories */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -15,7 +20,6 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    transform: skew(-15deg);
     border-radius: var(--radius-15);
     background-color: var(--background-sub-color);
     box-shadow: var(--box-shadow);
@@ -27,7 +31,7 @@
 .categories > [class*="action"] {
     flex: 1;
     padding: var(--space-8);
-    border-right: var(--border);
+    border-right: var(--border-1);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Catch */

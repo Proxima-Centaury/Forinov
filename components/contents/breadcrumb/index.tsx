@@ -34,7 +34,7 @@ const Breadcrumb = (params: any) => {
         <LinkButton classList="inactiveLink borderless" href="/" icon="fa-solid fa-home"/>
         { breadcrumb.map((crumb: string, key: number) => {
             const crumbName = (crumb.indexOf("_") > 0) ? crumb.replaceAll("-", " ").substring(0, crumb.indexOf("_")) : crumb;
-            const formattedCrumbName = decodeURIComponent(uppercaseFirst(crumbName));
+            const formattedCrumbName = decodeURIComponent(uppercaseFirst(crumbName.split("?")[0]));
             urls.push((key > 0) ? "/" + breadcrumb[parseInt(key.toString()) - 1] + "/" + crumb : "/" + crumb);
             const isActive = (asPath.match(urls[key])) ? true : false;
             return (crumb) ? <Fragment key={ key }>
