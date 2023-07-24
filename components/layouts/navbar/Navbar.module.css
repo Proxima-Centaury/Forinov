@@ -87,9 +87,7 @@
     margin: 0px 0px 0px var(--space-16);
 }
 .links > li > a:hover,
-.links > li > a.active,
-.links > li > button:hover,
-.links > li > button.active {
+.links > li > button:hover {
     border-color: var(--logo-blue-color);
 }
 .links > li > a > span,
@@ -97,9 +95,7 @@
     transition: color 0.3s ease-in-out;
 }
 .links > li > a:hover > span,
-.links > li > a.active > span,
-.links > li > button:hover > span,
-.links > li > button.active > span {
+.links > li > button:hover > span {
     color: var(--logo-blue-color);
 }
 .links > li > a:only-child:hover {

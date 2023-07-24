@@ -52,7 +52,7 @@
     --sun-red-color: #FF5500;
     /* Text Colors */
     --text-main-color: var(--perfect-black-color);
-    --text-placeholder-color: var(--perfect-grey-color);
+    --text-placeholder-color: var(--dark-grey-color);
     /* Line Colors */
     --border-color: var(--light-grey-color);
     --border-1: 1px solid var(--border-color);

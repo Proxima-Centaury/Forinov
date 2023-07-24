@@ -1,31 +1,30 @@
 {
     "menus": [
         {
-            "title": "navbarStartupsMenuItemTitle",
             "links": [
                 { "classList": "link", "href": "/startups", "icon": "fa-solid fa-chevron-right", "text": "navbarStartupsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
                 { "classList": "link", "href": "/startups/solutions", "icon": "fa-solid fa-chevron-right", "text": "navbarStartupsSolutionsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
                 { "classList": "link", "href": "/startups/directory", "icon": "fa-solid fa-chevron-right", "text": "navbarStartupsDirectoryLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" }
-            ]
+            ],
+            "title": "navbarStartupsMenuItemTitle"
         },
         {
-            "title": "navbarCorporatesMenuItemTitle",
             "links": [
                 { "classList": "link", "href": "/corporates", "icon": "", "text": "navbarCorporatesLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
                 { "classList": "link", "href": "/corporates/solutions", "icon": "fa-solid fa-chevron-right", "text": "navbarCorporatesSolutionsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
                 { "classList": "link", "href": "/corporates/directory", "icon": "fa-solid fa-chevron-right", "text": "navbarCorporatesDirectoryLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" }
-            ]
+            ],
+            "title": "navbarCorporatesMenuItemTitle"
         },
         {
-            "title": "navbarPartnersMenuItemTitle",
             "links": [
                 { "classList": "link", "href": "/partners", "icon": "", "text": "navbarPartnersLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
                 { "classList": "link", "href": "/partners/solutions", "icon": "fa-solid fa-chevron-right", "text": "navbarPartnersSolutionsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
                 { "classList": "link", "href": "/partners/directory", "icon": "fa-solid fa-chevron-right", "text": "navbarPartnersDirectoryLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" }
-            ]
+            ],
+            "title": "navbarPartnersMenuItemTitle"
         },
         {
-            "title": "navbarOpportunitiesMenuItemTitle",
             "links": [
                 { "classList": "link", "href": "/opportunities", "icon": "", "text": "navbarOpportunitiesLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
                 { "classList": "link", "href": "/opportunities/solutions", "icon": "fa-solid fa-chevron-right", "text": "navbarOpportunitiesSolutionsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
@@ -35,19 +34,18 @@
                 { "classList": "link", "href": "/opportunities/directory/challenges-and-contests_3", "icon": "fa-solid fa-chevron-right", "text": "navbarChallengesAndContestsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
                 { "classList": "link", "href": "/opportunities/directory/events_4", "icon": "fa-solid fa-chevron-right", "text": "navbarEventsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" },
                 { "classList": "link", "href": "/opportunities/directory/exclusive-offers_5", "icon": "fa-solid fa-chevron-right", "text": "navbarExclusiveOffersLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" }
-            ]
+            ],
+            "title": "navbarOpportunitiesMenuItemTitle"
         },
         {
-            "title": "navbarAboutMenuItemTitle",
-            "links": [
-                { "classList": "link", "href": "/startups/directory", "icon": "fa-solid fa-chevron-right", "text": "navbarAboutLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" }
-            ]
+            "href": "/about",
+            "links": [],
+            "title": "navbarAboutMenuItemTitle"
         },
         {
-            "title": "navbarDealsMenuItemTitle",
-            "links": [
-                { "classList": "link", "href": "/startups/directory", "icon": "fa-solid fa-chevron-right", "text": "navbarDealsLink", "active": false, "disabled": false, "tabIndex": "", "ariaLabel": "" }
-            ]
+            "href": "/deals",
+            "links": [],
+            "title": "navbarDealsMenuItemTitle"
         }
     ]
 }

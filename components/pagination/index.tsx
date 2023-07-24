@@ -1,4 +1,8 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Imports */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import { useTranslation } from "next-i18next";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* React Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { Fragment } from "react";
@@ -15,6 +19,7 @@ import PaginationStyles from "@pagination/Pagination.module.css";
 /* Pagination */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const Pagination = (params: any): JSX.Element => {
+    const { t } = useTranslation("common");
 	const { children, pages, page } = params;
 	const showPagination = () => {
 		const buttons = [];
@@ -31,16 +36,16 @@ const Pagination = (params: any): JSX.Element => {
 	return <div className={ PaginationStyles.container }>
         { children }
 		<div className={ PaginationStyles.actions }>
-			<DefaultTooltip tooltip="Page précédente">
+			<DefaultTooltip tooltip={ t("previousPageText") }>
 				<LinkButton classList="primary" href={ `?page=${ parseInt(page) - 1 }` } icon="fa-light fa-arrow-left" disabled={ page <= 1 }/>
 			</DefaultTooltip>
 			{ showPagination() }
-			<LinkButton classList="primary circled" href={ `?page=${ pages }` } text={ pages }/>
-			<DefaultTooltip tooltip="Page suivante">
-				<LinkButton classList="primary" href={ `?page=${ parseInt(page) + 1 }` } icon="fa-light fa-arrow-right" disabled={ page >= pages }/>
+			<LinkButton classList="primary circled" href={ `?page=${ pages }` } text={ pages || "0" }/>
+			<DefaultTooltip tooltip={ t("nextPageText") }>
+				<LinkButton classList="primary" href={ `?page=${ parseInt(page) + 1 }` } icon="fa-light fa-arrow-right" disabled={ page >= pages || !pages }/>
 			</DefaultTooltip>
 		</div>
-		<p>{ pages + " " + ((pages === 1) ? "Page trouvée".toLowerCase() : "Pages trouvées".toLowerCase()) }</p>
+		<p>{ (pages || 0) + " " + ((!pages || pages === 1) ? t("pageFoundText").toLowerCase() : t("pagesFoundText").toLowerCase()) }</p>
 	</div>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

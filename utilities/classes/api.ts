@@ -45,7 +45,6 @@ class API {
         const expectedParameters = Object.keys(filters).map((filter: string) => filter.toUpperCase()).concat(query[1].parameters);
         const givenParameters = Object.values(filters).concat([ type, network, privateFilter, ssid, "next", "Landing", language ]);
         const url: string = this.getEndpoint() + "?" + this._buildParameters({ query, expectedParameters, givenParameters });
-        logger.callLog({ query, givenParameters, url });
         const response = await this._call({ query, expectedParameters, givenParameters, url });
         return (response.code) ? response : this._formatResponse("searchEngine", response);
     };

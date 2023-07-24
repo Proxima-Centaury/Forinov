@@ -112,10 +112,21 @@
     text-align: center;
 }
 .containerTitle > h3 {
+    margin: 0px 0px var(--space-16) 0px;
 	font-size: 48px;
     font-weight: 700;
-    text-align: left;
+    text-align: center;
     color: var(--perfect-white-color);
+}
+.containerTitle > h3 + p {
+    font-family: Nunito Sans;
+    font-size: 21px;
+    text-align: center;
+    color: var(--perfect-white-color);
+}
+.containerTitle > h3 + p + [class*="action"] {
+    margin: var(--space-24) auto 0px auto;
+    width: fit-content;
 }
 .containerTitle > h4 {
     font-family: Nunito Sans;
@@ -187,7 +198,6 @@
 }
 @media screen and (max-width: 992px) {
     .headerLeftContainer {
-        flex-direction: row-reverse;
         max-width: 100%;
     }
 }
@@ -198,51 +208,25 @@
     }
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Header Paragraphs */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.headerParagraphs {
-    display: flex;
-    flex-direction: column;
-}
-.headerParagraphs > p {
-    font-family: Nunito Sans;
-    font-size: 14px;
-}
-.headerParagraphs > p + p {
-    margin-top: var(--space-16);
-}
-@media screen and (max-width: 576px) {
-    .headerParagraphs > p {
-        text-align: center;
-    }
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Header Actions */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .headerActions {
     display: flex;
     flex-direction: column;
-    margin: var(--space-16) 0px 0px 0px;
-}
-@media screen and (max-width: 992px) {
-    .headerActions {
-        margin: 0px var(--space-16) 0px 0px;
-    }
-}
-@media screen and (max-width: 768px) {
-    .headerActions {
-        margin: var(--space-16) 0px 0px 0px;
-    }
 }
 .headerActions > [class*="action"] {
     flex-direction: row-reverse;
     justify-content: space-between;
+    width: fit-content;
     font-weight: bold;
 }
 .headerActions > [class*="action"] + [class*="action"] {
     margin-top: var(--space-16);
 }
 @media screen and (max-width: 576px) {
+    .headerActions > [class*="action"] {
+        margin: auto;
+    }
     .headerActions > [class*="action"]:hover {
         transform: scale(1);
     }
@@ -251,180 +235,68 @@
     margin: 0px 0px 0px var(--space-8);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Cards */
+/* Story Section */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCards {
+.storySection {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 }
-@media screen and (max-width: 768px) {
-	.joinCards {
-		flex-direction: column;
-	}
-    .joinCard {
-        margin: var(--space-16) 0px 0px 0px;
-	}
-}
-.joinCards > * {
-    margin: var(--space-16) var(--space-16) 0px 0px;
-}
-.joinCards > *:last-of-type {
-    margin: var(--space-16) 0px 0px 0px;
+.storySection > div {
+    flex: 1;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Card */
+/* Story */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCard {
+.story {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    min-width: 280px;
-    width: 280px;
-    max-width: 280px;
-    padding: var(--space-16);
+    height: fit-content;
+    padding: var(--space-32) var(--space-16);
     border-radius: var(--radius-15);
     background-color: var(--background-sub-color);
-    box-shadow: var(--box-shadow);
 }
-@media screen and (max-width: 768px) {
-	.joinCard {
-		width: 100%;
-		max-width: 100%;
-	}
-    .joinCard {
-        margin: var(--space-16) 0px 0px 0px;
-	}
+.story > p {
+    color: var(--text-placeholder-color);
+    font-style: italic;
 }
-/* [data-theme="nextinov"] .joinCard { // This is a border gradient hack with border radius support
-    border: 4px solid transparent;
-    border-radius: var(--radius-15);
-    background: linear-gradient(var(--background-sub-color), var(--background-sub-color)) padding-box, var(--gradient-ui) border-box;
-} */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Card Header */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCardHeader {
-    display: flex;
-    margin-bottom: var(--space-16);
+.story > p + p {
+    margin: var(--space-16) 0px 0px 0px;
 }
-.joinCardHeader > i {
+.story > i {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 50px;
     width: 50px;
-    max-width: 50px;
-    min-height: 50px;
     height: 50px;
-    max-height: 50px;
-    margin-right: var(--space-16);
-    font-size: 50px;
-    overflow: hidden;
-}
-.joinCard:first-of-type > .joinCardHeader > i {
-    color: var(--logo-orange-color);
-}
-.joinCard:nth-of-type(2) > .joinCardHeader > i {
+    position: absolute;
     color: var(--logo-blue-color);
+    font-size: 30px;
+    border-radius: var(--radius-25);
+    background-color: var(--pale-blue-color);
 }
-.joinCard:last-of-type > .joinCardHeader > i {
-    color: var(--logo-green-color);
+.story > i:first-of-type {
+    top: calc(-50px / 2);
 }
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Card Header Title */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCardHeaderTitle > p:first-of-type {
-    font-family: Nunito Sans;
-    font-size: 24px;
-    font-weight: bold;
-    line-break: anywhere;
-}
-.joinCard:first-of-type > .joinCardHeader > .joinCardHeaderTitle > p:first-of-type {
-    color: var(--logo-orange-color);
-}
-.joinCard:nth-of-type(2) > .joinCardHeader > .joinCardHeaderTitle > p:first-of-type {
-    color: var(--logo-blue-color);
-}
-.joinCard:last-of-type > .joinCardHeader > .joinCardHeaderTitle > p:first-of-type {
-    color: var(--logo-green-color);
-}
-.joinCardHeaderTitle > p:last-of-type {
-    color: var(--text-placeholder-color);
+.story > i:last-of-type {
+    right: 16px;
+    bottom: calc(-50px / 2);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Card Body */
+/* Story Picture */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCardBody {
+.storyPicture {
     display: flex;
-    flex-direction: column;
-    margin: 0px 0px auto 0px;
-}
-.joinCardBody > * + * {
-    margin: var(--space-16) 0px 0px 0px;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Card Footer */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCardFooter {
-    display: flex;
-    flex-direction: column;
-}
-.joinCardFooter > a {
-    width: fit-content;
-    margin: auto;
-}
-.joinCardFooter > a + a {
-    margin: var(--space-16) auto 0px auto;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Community Section */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.communitySection {
-	display: flex;
-	flex-direction: column;
-    padding: var(--space-16);
-    border-radius: var(--radius-15);
-    background-color: var(--lighter-black-color);
-    box-shadow: var(--box-shadow);
-}
-.communitySection > p {
-	color: var(--perfect-white-color);
-	font-family: Nunito Sans;
-}
-.communitySection > p:first-of-type {
-    display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin: 0px 0px var(--space-8) 0px;
-	font-size: 24px;
-    font-weight: 800;
 }
-.communitySection > p > i {
-    color: var(--warning-color);
-	font-size: 20px;
+.storyPicture > img {
+    width: 370px !important;
+    height: auto !important;
+    margin: -74px 0px;
+    position: inherit !important;
 }
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Startups Categories Section */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.startupsCategoriesSection {
-	display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: var(--space-8) var(--space-8) 0px 0px;
-}
-.startupsCategoriesSection > * {
-    margin: 0px 0px var(--space-8) var(--space-8);
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Structures Section */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.structuresSection {
-	display: flex;
-	flex-wrap: wrap;
-    align-items: center;
-    padding: var(--space-8) var(--space-8) 0px 0px;
-}
-.structuresSection > * {
-    margin: 0px 0px var(--space-8) var(--space-8);
+@media screen and (max-width: 992px) {
+    .storyPicture,
+    .storyPicture > img {
+        display: none;
+    }
 }

@@ -17,7 +17,7 @@
     z-index: 1;
 }
 .field > .placeholder {
-    color: var(--border-color);
+    color: var(--text-placeholder-color);
 }
 .field > .placeholder > span {
     display: inline-flex;

@@ -20,7 +20,7 @@ const LinkButton = (params: TButton): JSX.Element => {
     const nextClasses = classList?.split(" ").map((cssClass: string) => ButtonStyles[cssClass]).join(" "); 
     const formatedClassList = ButtonStyles.action + " " + nextClasses + isActive + isDisabled;
     const target = (href?.match(/(http)/)) ? "_blank" : undefined;
-    const tabIndexValue = (tabIndex) ? tabIndex : 1;
+    const tabIndexValue = (tabIndex) ? tabIndex : 0;
     const additionalAttributes = { tabIndex: tabIndexValue, "aria-label": ariaLabel };
     return <Link className={ formatedClassList } href={ (href) ? href : "/" } locale={ locale } target={ target } { ...additionalAttributes }>
         { (icon) ? <i className={ icon }/> : null }

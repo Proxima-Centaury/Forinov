@@ -10,5 +10,9 @@
     "remainingTimeMonthsAndDaysText": "Expires in {{ months }} month(s) and {{ days }} day(s)",
     "remainingTimeYearsText": "Expires in {{ years }} year(s)",
     "remainingTimeMonthsText": "Expires in {{ months }} month(s)",
-    "remainingTimeDaysText": "Expires in {{ days }} day(s)"
+    "remainingTimeDaysText": "Expires in {{ days }} day(s)",
+    "pageFoundText": "Page found",
+    "pagesFoundText": "Pages found",
+    "previousPageText": "Previous page",
+    "nextPageText": "Next page"
 }

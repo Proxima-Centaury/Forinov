@@ -37,6 +37,7 @@
     min-height: 40px;
     height: 40px;
     max-height: 40px;
+    padding: 0px;
 }
 .action > i {
     margin-right: var(--space-8);
@@ -374,7 +375,7 @@
     align-items: center;
     margin: auto var(--space-16) auto auto;
     pointer-events: none;
-    color: var(--border-color);
+    color: var(--text-placeholder-color);
     transition: transform 0.3s ease-in-out;
 }
 .action.toggle.active > i {
@@ -424,4 +425,13 @@ footer .action.toggle.active > i {
 .action.disabled {
     filter: grayscale(1);
     pointer-events: none;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Ignored */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+nav .action:not(.option).ignore.active {
+    border-color: var(--logo-blue-color);
+}
+nav .action:not(.option).ignore.active > span {
+    color: var(--logo-blue-color);
 }

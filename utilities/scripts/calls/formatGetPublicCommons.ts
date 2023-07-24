@@ -70,13 +70,6 @@ const formatGetPublicCommons = (response: any): object => {
                 id: parseInt(technology.ID),
                 count: parseInt(technology.COUNT),
                 name: technology.NAME
-            })),
-            countries: response[0].COUNTRIES.map((country: any) => ({
-                id: parseInt(country.ID),
-                code: country.CODE,
-                count: parseInt(country.COUNT),
-                name: country.NAME,
-                regions: country.REGIONS
             }))
         },
         counters: {
