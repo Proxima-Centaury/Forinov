@@ -1,4 +1,4 @@
 {
-    "dealsTitle": "Forinov's exclusive offers",
-    "dealsSubtitle": "Forinov has negotiated exclusive deals for its members so that you have access to the best software at unbeatable conditions and prices !"
+    "dealsTitle": "{{ company }}'s exclusive offers",
+    "dealsSubtitle": "{{ company }} has negotiated exclusive deals for its members so that you have access to the best software at unbeatable conditions and prices !"
 }

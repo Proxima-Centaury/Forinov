@@ -1,50 +1,20 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Line */
+/* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.line {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background-color: var(--border-color);
-}
-.line + .line {
-    display: none;
-}
+import Image from  "next/image";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Horizontal */
+/* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.horizontal {
-    min-width: 20px;
-    width: 100%;
-    min-height: 1px;
-    height: 1px;
-    max-height: 1px;
-    margin: var(--space-16) 0px;
-}
+import { TImage } from "@typescript/types/TImage";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Vertical */
+/* Custom Image */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.vertical {
-    min-width: 1px;
-    width: 1px;
-    max-width: 1px;
-    min-height: 20px;
-    height: 100%;
-    margin: 0px var(--space-16);
-}
+const CustomImage = (params: TImage) => {
+    const { src, alt } = params;
+    const sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw";
+    return <Image src={ src || "" } alt={ alt || "" } fill sizes={ sizes } placeholder="blur" blurDataURL={ src }/>;
+};
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Or */
+/* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.or > span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    color: var(--separator-color);
-    text-transform: uppercase;
-    border-radius: 100px;
-    background-color: var(--background-sub-color);
-}
+export default CustomImage;

@@ -14,5 +14,10 @@
     "pageFoundText": "Page found",
     "pagesFoundText": "Pages found",
     "previousPageText": "Previous page",
-    "nextPageText": "Next page"
+    "nextPageText": "Next page",
+    "whatIsAnOpportunityLink": "Discover all opportunites",
+    "opportunitiesDirectoryLink": "What is an opportunity ?",
+    "startupsDirectoryLink": "Access the startups directory",
+    "noResultsFoundText": "No results found",
+    "noResultsFoundSubtext": "We couldn't find what you were searching for.<br>Try searching again with other criterias."
 }

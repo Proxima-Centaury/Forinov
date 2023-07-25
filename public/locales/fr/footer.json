@@ -1,9 +1,9 @@
 {
-    "footerMainText": "Forinov connecte startups, entreprises et partenaires pour matcher l'offre et le besoin d'innovation.",
+    "footerMainText": "{{ company }} connecte startups, entreprises et partenaires pour matcher l'offre et le besoin d'innovation.",
     "footerLogoAlternativeText": "Logo de l'entreprise du nom de {{ company }}.",
     "footerHelpLink": "Aide et support",
     "footerSecondSectionTitle": "Nos offres",
-    "footerThirdSectionTitle": "Forinov",
+    "footerThirdSectionTitle": "{{ company }}",
     "footerFourthSectionTitle": "Communauté",
     "footerStartupsSolutionsLink": "Solutions startups",
     "footerCorporatesSolutionsLink": "Solutions entreprises",

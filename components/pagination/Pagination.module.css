@@ -6,6 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex: 1;
     margin: auto 0px 0px 0px;
 }
 .container > p {
@@ -67,5 +68,32 @@
 }
 .typePage > .custom input {
     padding: var(--space-8);
+    text-align: center;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* No Results */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.noResults {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+}
+.noResults > * + * {
+    margin: var(--space-24) 0px 0px 0px;
+}
+.noResults > i {
+    font-size: 160px;
+    color: var(--logo-blue-color);
+}
+.noResults > p:first-of-type {
+    font-size: 50px;
+    font-weight: bolder;
+    color: var(--logo-blue-color);
+}
+.noResults > p:last-of-type {
+    color: var(--text-placeholder-color);
     text-align: center;
 }

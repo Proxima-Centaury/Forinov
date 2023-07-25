@@ -2,15 +2,20 @@
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { useTranslation } from "next-i18next";
-import { memo, useRef, useState, useEffect, Fragment } from "react";
+import { memo, useRef, useState, useEffect } from "react";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* React Components */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import ClassicButton from "@buttons/classicButton";
 import StartupProfileCard from "@cards/profiles/startupCard";
 import OpportunityCard from "@cards/opportunityCard";
 import ArticleCard from "@cards/articleCard";
 import TestimonialCard from "@cards/testimonialCard";
+import LinkButton from "@buttons/linkButton";
+import ClassicButton from "@buttons/classicButton";
 import Tooltip from "@tooltips/defaultTooltip";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
@@ -38,7 +43,7 @@ const MemoTestimonialCard = memo(TestimonialCard);
 const DefaultCarousel = (params: TCarousel): JSX.Element => {
     const carouselReference = useRef(null);
 	const { t } = useTranslation("common");
-    const { classList, items, itemsType, navigation } = params;
+    const { classList, items, itemsType, navigation, gradient, links } = params;
     const [ currentIndex, setCurrentIndex ] = useState(0);
     const [ pause, setPause ] = useState(false);
     const [ actions, setActions ] = useState(true);
@@ -78,7 +83,7 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
         };
     }, [ items, currentIndex, pause ]);
     return <div className={ CarouselStyles.container }>
-        <div className={ formatedClassList }>
+        <div className={ formatedClassList } data-gradient={ (gradient) ? gradient : "main" }>
             <div className={ CarouselStyles.wrapper } ref={ carouselReference }>
                 { (Array.isArray(items)) ? items?.map((item: TStartup|TOpportunity|TArticle|TTestimonial, key: number) => {
                     switch(itemsType) {
@@ -104,17 +109,26 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
         </div>
         { (actions) ? <div className={ CarouselStyles.actions }>
             <div className={ CarouselStyles.controls }>
-                <ClassicButton classList="sinary circled" action={ moveLeft } icon="fa-solid fa-chevron-left"/>
+                <ClassicButton classList="senary circled" action={ moveLeft } icon="fa-solid fa-chevron-left"/>
                 <Tooltip tooltip={ (pause) ? t("carouselResumeTooltip") : t("carouselPauseTooltip") }>
-                    <ClassicButton classList="sinary circled" action={ handlePause } icon={ `fa-solid ${ (pause) ? "fa-play" : "fa-pause" }` }/>
+                    <ClassicButton classList="senary circled" action={ handlePause } icon={ `fa-solid ${ (pause) ? "fa-play" : "fa-pause" }` }/>
                 </Tooltip>
-                <ClassicButton classList="sinary circled" action={ moveRight } icon="fa-solid fa-chevron-right"/>
+                <ClassicButton classList="senary circled" action={ moveRight } icon="fa-solid fa-chevron-right"/>
             </div>
             <div className={ CarouselStyles.navigation }>
                 { (Array.isArray(items)) ? items?.map((item: unknown, key: number) => <div key={ key } className={ CarouselStyles[navigation || "bar"] }>
-                    <ClassicButton classList="octary" action={ () => setCurrentIndex(key) } active={ key === currentIndex }/>
+                    <ClassicButton classList="octonary" action={ () => setCurrentIndex(key) } active={ key === currentIndex }/>
                 </div>) : null }
             </div>
+            { (links)? <div className={ CarouselStyles.links }>
+                { (itemsType === "startups") ? <Fragment>
+                    <LinkButton classList="primary" href="/startups/dorectory" text={ t("startupsDirectoryLink") }/>
+                </Fragment> : null }
+                { (itemsType === "opportunities") ? <Fragment>
+                    <LinkButton classList="primary" href="/opportunities/directory" text={ t("opportunitiesDirectoryLink") }/>
+                    <LinkButton classList="denary" href="/opportunities" text={ t("whatIsAnOpportunityLink") }/>
+                </Fragment> : null }
+            </div> : null }
         </div> : null }
     </div>;
 };

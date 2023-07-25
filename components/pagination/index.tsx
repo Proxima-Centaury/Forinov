@@ -34,18 +34,24 @@ const Pagination = (params: any): JSX.Element => {
 		return buttons;
 	};
 	return <div className={ PaginationStyles.container }>
-        { children }
-		<div className={ PaginationStyles.actions }>
-			<DefaultTooltip tooltip={ t("previousPageText") }>
-				<LinkButton classList="primary" href={ `?page=${ parseInt(page) - 1 }` } icon="fa-light fa-arrow-left" disabled={ page <= 1 }/>
-			</DefaultTooltip>
-			{ showPagination() }
-			<LinkButton classList="primary circled" href={ `?page=${ pages }` } text={ pages || "0" }/>
-			<DefaultTooltip tooltip={ t("nextPageText") }>
-				<LinkButton classList="primary" href={ `?page=${ parseInt(page) + 1 }` } icon="fa-light fa-arrow-right" disabled={ page >= pages || !pages }/>
-			</DefaultTooltip>
-		</div>
-		<p>{ (pages || 0) + " " + ((!pages || pages === 1) ? t("pageFoundText").toLowerCase() : t("pagesFoundText").toLowerCase()) }</p>
+        { (pages && pages > 0) ? children : null }
+		{ (pages && pages > 0) ? <Fragment>
+			<div className={ PaginationStyles.actions }>
+				<DefaultTooltip tooltip={ t("previousPageText") }>
+					<LinkButton classList="primary" href={ `?page=${ parseInt(page) - 1 }` } icon="fa-light fa-arrow-left" disabled={ page <= 1 }/>
+				</DefaultTooltip>
+				{ showPagination() }
+				<LinkButton classList="primary circled" href={ `?page=${ pages }` } text={ pages || "0" }/>
+				<DefaultTooltip tooltip={ t("nextPageText") }>
+					<LinkButton classList="primary" href={ `?page=${ parseInt(page) + 1 }` } icon="fa-light fa-arrow-right" disabled={ page >= pages || !pages }/>
+				</DefaultTooltip>
+			</div>
+			<p>{ (pages || 0) + " " + ((!pages || pages === 1) ? t("pageFoundText").toLowerCase() : t("pagesFoundText").toLowerCase()) }</p>
+		</Fragment> : <div className={ PaginationStyles.noResults }>
+			<i className="fa-regular fa-magnifying-glass fa-fade"/>
+			<p>{ t("noResultsFoundText") }</p>
+			<p dangerouslySetInnerHTML={ { __html: t("noResultsFoundSubtext") } }/>
+		</div> }
 	</div>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

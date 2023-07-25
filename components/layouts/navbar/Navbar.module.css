@@ -41,7 +41,10 @@
     align-items: center;
 }
 .logo > a > img {
+    width: 50px !important;
+    height: 50px !important;
     margin: 0px var(--space-8) 0px 0px;
+    position: inherit !important;
     object-fit: contain;
 }
 .logo > a > span {

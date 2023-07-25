@@ -14,7 +14,7 @@ import ButtonStyles from "@buttons/Button.module.css";
 /* Link Action */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const LinkButton = (params: TButton): JSX.Element => {
-    const { classList, href, icon, text, active, disabled, tabIndex, ariaLabel, locale } = params;
+    const { children, classList, href, icon, text, active, disabled, tabIndex, ariaLabel, locale } = params;
     const isActive = (active) ? " " + ButtonStyles.active : "";
     const isDisabled = (disabled) ? " " + ButtonStyles.disabled : "";
     const nextClasses = classList?.split(" ").map((cssClass: string) => ButtonStyles[cssClass]).join(" "); 
@@ -23,8 +23,9 @@ const LinkButton = (params: TButton): JSX.Element => {
     const tabIndexValue = (tabIndex) ? tabIndex : 0;
     const additionalAttributes = { tabIndex: tabIndexValue, "aria-label": ariaLabel };
     return <Link className={ formatedClassList } href={ (href) ? href : "/" } locale={ locale } target={ target } { ...additionalAttributes }>
-        { (icon) ? <i className={ icon }/> : null }
-        { (text) ? <span>{ text }</span> : null }
+        { (!children && icon) ? <i className={ icon }/> : null }
+        { (!children && text) ? <span>{ text }</span> : null }
+        { (children && !text) ? <span>{ children }</span> : null }
     </Link>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

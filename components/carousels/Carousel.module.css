@@ -15,10 +15,10 @@
 	align-items: center;
 	width: 100%;
 	height: 100%;
-	padding: var(--space-8) 0px;
+	padding: var(--space-16) 0px;
 	border-radius: var(--radius-10);
-	background-color: var(--background-main-color);
-	overflow: hidden;
+	/* background-color: var(--background-main-color); */
+	/* overflow: hidden; */
 }
 .carousel::before,
 .carousel::after {
@@ -27,8 +27,15 @@
 	position: absolute;
 	top: 0px;
 	content: "";
-	background: var(--horizontal-gradient-mask);
 	z-index: 1;
+}
+.carousel[data-gradient="main"]::before,
+.carousel[data-gradient="main"]::after {
+	background: var(--horizontal-main-gradient-mask);
+}
+.carousel[data-gradient="sub"]::before,
+.carousel[data-gradient="sub"]::after {
+	background: var(--horizontal-sub-gradient-mask);
 }
 .carousel::before {
 	transform: scaleX(-1);
@@ -154,4 +161,15 @@
 	width: 100%;
 	height: 100%;
 	padding: 0px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Links */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.links {
+	display: flex;
+	width: 100%;
+	padding: 0px 0px var(--space-16) var(--space-16);
+}
+.links > * {
+	margin: var(--space-16) var(--space-16) 0px 0px;
 }

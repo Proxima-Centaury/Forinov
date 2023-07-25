@@ -1,15 +1,12 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import api from "@classes/api";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import Head from "next/head";
-import Image from "next/image";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* React Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -17,20 +14,13 @@ import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import DefaultCarousel from "@carousels/defaultCarousel";
-import Testimonials from "@contents/testimonials";
+import CustomImage from "@contents/customImage";
 import LinkButton from "@buttons/linkButton";
-import LineSeparator from "@separators/lineSeparator";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { GetServerSideProps } from "next";
 import type { TPage } from "@typescript/types/TPage";
-import type { TButton } from "@typescript/types/TButton";
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Scripts */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import { formatForUrl } from "@scripts/formatForUrl";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -42,36 +32,31 @@ const About = (params: TPage): JSX.Element => {
 	const { t } = useTranslation("about");
 	return <Fragment>
 		<Head>
-			<title>{ t("aboutMetaTitle") }</title>
-			<meta name="description" content={ t("aboutMetaDescription") }/>
+			<title>{ t("aboutMetaTitle", { company: "Forinov" }) }</title>
+			<meta name="description" content={ t("aboutMetaDescription", { company: "Forinov" }) }/>
 		</Head>
 		<div data-page="about">
 			<div className={ AboutStyles.mainContainer }>
 				<div className="boxedContent">
                     <div className={ AboutStyles.containerTitle }>
-						<h1>{ t("aboutHeaderTitle") }</h1>
+						<h1>{ t("aboutHeaderTitle", { company: "Forinov" }) }</h1>
 					</div>
                     <div className={ AboutStyles.header }>
 						<div className={ AboutStyles.headerLeftContainer }>
 							<div className={ AboutStyles.headerActions }>
-                                <LinkButton classList="septary bigger narrow shadow scale" href="/onboarding" icon="fa-solid fa-arrow-right" text={ t("aboutHeaderJoinLink") }/>
+                                <LinkButton classList="septenary bigger narrow shadow scale" href="/onboarding" icon="fa-solid fa-arrow-right" text={ t("aboutHeaderJoinLink", { company: "Forinov" }) }/>
 							</div>
 						</div>
 						<div className={ AboutStyles.headerRightContainer }>
-							<Image src="/assets/home.gif" alt={ t("aboutHeaderIllustrationAlt") } fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder="blur" blurDataURL="/assets/home.gif"/>
+							<CustomImage src="/assets/about/about_1.png" alt={ t("aboutHeaderIllustrationAlt") }/>
 						</div>
 					</div>
-				</div>
-			</div>
-            <div className={ AboutStyles.mainContainer }>
-				<div className="boxedContent">
-
 				</div>
 			</div>
             <div className={ AboutStyles.mainContainer }>
 				<div className="boxedContent">
 					<div className={ AboutStyles.containerTitle }>
-						<h3>{ t("aboutOurMissionTitle") }</h3>
+						<h3>{ t("aboutOurMissionTitle", { company: "Forinov" }) }</h3>
 						<p>{ t("aboutOurMissionText") }</p>
 					</div>
 				</div>
@@ -81,16 +66,16 @@ const About = (params: TPage): JSX.Element => {
 					<div className={ AboutStyles.storySection }>
 						<div className={ AboutStyles.story }>
 							<i className="fa-solid fa-quote-left"/>
-							<p>{ t("aboutStorySectionText1") }</p>
+							<p>{ t("aboutStorySectionText1", { company: "Forinov" }) }</p>
 							<p>{ t("aboutStorySectionText2") }</p>
 							<p>{ t("aboutStorySectionText3") }</p>
 							<p>{ t("aboutStorySectionText4") }</p>
 							<p>{ t("aboutStorySectionText5") }</p>
-							<p>{ t("aboutStorySectionText6") }</p>
+							<p>{ t("aboutStorySectionText6", { company: "Forinov" }) }</p>
 							<i className="fa-solid fa-quote-right"/>
 						</div>
 						<div className={ AboutStyles.storyPicture }>
-							<Image src="/assets/about/about.png" alt={ t("aboutStorySectionIllustrationAlt") } fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder="blur" blurDataURL="/assets/about/about.png"/>
+							<CustomImage src="/assets/about/about_2.png" alt={ t("aboutStorySectionIllustrationAlt") }/>
 						</div>
 					</div>
 				</div>
@@ -102,16 +87,6 @@ const About = (params: TPage): JSX.Element => {
 						<p>{ t("aboutRecruitmentText") }</p>
 						<LinkButton classList="primary" href="/contact" text={ t("aboutRecruitmentLink") }/>
 					</div>
-				</div>
-			</div>
-			<div className={ AboutStyles.mainContainer }>
-				<div className="boxedContent">
-
-				</div>
-			</div>
-			<div className={ AboutStyles.mainContainer }>
-				<div className="boxedContent">
-
 				</div>
 			</div>
 		</div>

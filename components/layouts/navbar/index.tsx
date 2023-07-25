@@ -3,14 +3,17 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { Fragment, Key, MouseEventHandler, useMemo, useEffect, useState, useRef } from "react";
+import { MouseEventHandler, useRef, useState } from "react";
 // import { NavbarInterface, NavbarMenuInterface, NavbarMenuItemInterface } from "@forinov/typescript/interfaces";
 // import { selectifyTheOptions, bindEventListeners, removeEventListeners, getTranslations } from "@forinov/scripts/utilities";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Components */
+/* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import Link from "next/link";
-import Image from "next/image";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Forinov Components */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import CustomImage from "@contents/customImage";
 import Select from "@fields/select";
 import ClassicButton from "@buttons/classicButton";
 import LinkButton from "@buttons/linkButton";
@@ -50,7 +53,7 @@ const Navbar = (): JSX.Element => {
         <div className="boxedContent">
             <div className={ NavbarStyles.logo }>
                 <Link href="/" locale={ locale }>
-                    <Image src="/assets/logo.ico" alt={ t("") } width="50" height="50"/>
+                    <CustomImage src="/assets/logo.ico" alt={ t("") }/>
                     <span>forinov</span>
                 </Link>
             </div>

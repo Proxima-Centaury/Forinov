@@ -36,7 +36,7 @@ import DealsStyles from "@pages/deals/Deals.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const Deals = (params: TPage): JSX.Element => {
     const router = useRouter();
-    const { query } = router;
+    const { asPath, query } = router;
     const { category, page } = query;
 	const { t } = useTranslation("deals");
     const { filters, deals } = params;
@@ -63,20 +63,20 @@ const Deals = (params: TPage): JSX.Element => {
                     <div className={ DealsStyles.categories }>
                         { dealsCategories?.map(({ id, name }: any, key: number) => {
                             const url = `/deals/${ formatForUrl(name) }_${ id }`;
-                            const isActive = (router.asPath.match(url)) ? true : false;
+                            const isActive = (decodeURIComponent(asPath).match(url)) ? true : false;
                             return <Fragment key={ key }>
-                                <LinkButton classList="octary sharp" href={ url } text={ name } active={ isActive }/>
+                                <LinkButton classList="octonary sharp" href={ url } text={ name } active={ isActive }/>
                             </Fragment>;
                         }) }
                     </div>
                     <div className={ DealsStyles.catch }>
-                        <h1>{ t("dealsTitle") }</h1>
-                        <p>{ t("dealsSubtitle") }</p>
+                        <h1>{ t("dealsTitle", { company: "Forinov" }) }</h1>
+                        <p>{ t("dealsSubtitle", { company: "Forinov" }) }</p>
                     </div>
                     { (dealsSubcategories.length > 0) ? <div className={ DealsStyles.actions } data-flex-justify="center">
                         { dealsSubcategories.map(({ id, name }: any, key: number) => {
                             const url = `/deals/${ category }/${ formatForUrl(name) }_${ id }`;
-                            const isActive = (router.asPath.match(url)) ? true : false;
+                            const isActive = (decodeURIComponent(asPath).match(url)) ? true : false;
                             return <Fragment key={ key }>
                                 <LinkButton classList="tertiary" href={ url } text={ name } active={ isActive }/>
                             </Fragment>;

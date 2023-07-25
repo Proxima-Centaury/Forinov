@@ -10,7 +10,9 @@ type TCarousel = {
     classList?: string,
     items?: TStartup[] | TOpportunity[],
     itemsType?: string,
-    navigation?: string
+    navigation?: string,
+    gradient?: "main" | "sub",
+    links?: boolean
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */

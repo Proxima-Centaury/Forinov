@@ -154,60 +154,60 @@
     color: var(--perfect-white-color);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Sinary */
+/* Senary */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.action.sinary {
+.action.senary {
     border: none;
     border-radius: var(--radius-100);
     background-color: var(--logo-blue-color);
 }
-.action.sinary:hover,
-.action.sinary.active {
+.action.senary:hover,
+.action.senary.active {
     background-color: var(--pale-blue-color);
 }
-.action.sinary * {
+.action.senary * {
     color: var(--perfect-white-color);
 }
-.action.sinary:hover *,
-.action.sinary.active * {
+.action.senary:hover *,
+.action.senary.active * {
     color: var(--logo-blue-color);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Septary */
+/* Septenary */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.action.septary {
+.action.septenary {
     border: none;
     border-radius: var(--radius-100);
     background-color: var(--background-sub-color);
 }
-.action.septary:hover,
-.action.septary.active {
+.action.septenary:hover,
+.action.septenary.active {
     background-color: var(--pale-blue-color);
 }
-.action.septary * {
+.action.septenary * {
     color: var(--logo-blue-color);
 }
-.action.septary:hover *,
-.action.septary.active * {
+.action.septenary:hover *,
+.action.septenary.active * {
     color: var(--logo-blue-color);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Octary */
+/* Octonary */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.action.octary {
+.action.octonary {
     border: none;
     border-radius: var(--radius-100);
     background-color: var(--pale-blue-color);
 }
-.action.octary:hover,
-.action.octary.active {
+.action.octonary:hover,
+.action.octonary.active {
     background-color: var(--logo-blue-color);
 }
-.action.octary * {
+.action.octonary * {
     color: var(--logo-blue-color);
 }
-.action.octary:hover *,
-.action.octary.active * {
+.action.octonary:hover *,
+.action.octonary.active * {
     color: var(--perfect-white-color);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -228,6 +228,26 @@
 .action.nonary:hover *,
 .action.nonary.active * {
     color: var(--logo-blue-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Denary */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.denary {
+    border: var(--border-1);
+    border-color: var(--logo-blue-color);
+    border-radius: var(--radius-100);
+    background-color: var(--background-sub-color);
+}
+.action.denary:hover,
+.action.denary.active {
+    background-color: var(--logo-blue-color);
+}
+.action.denary * {
+    color: var(--logo-blue-color);
+}
+.action.denary:hover *,
+.action.denary.active * {
+    color: var(--perfect-white-color);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Design */
@@ -427,11 +447,20 @@ footer .action.toggle.active > i {
     pointer-events: none;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Ignored */
+/* Ignore */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 nav .action:not(.option).ignore.active {
     border-color: var(--logo-blue-color);
 }
 nav .action:not(.option).ignore.active > span {
     color: var(--logo-blue-color);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* No Uppercase */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.action.noUppercase {
+    display: inline-flex;
+}
+.action.noUppercase > span {
+    text-transform: initial;
 }

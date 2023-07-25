@@ -14,5 +14,10 @@
     "pageFoundText": "Page trouvée",
     "pagesFoundText": "Pages trouvées",
     "previousPageText": "Page précédente",
-    "nextPageText": "Page suivante"
+    "nextPageText": "Page suivante",
+    "whatIsAnOpportunityLink": "Découvrir toutes les opportunités",
+    "opportunitiesDirectoryLink": "Qu'est-ce qu'une opportunité ?",
+    "startupsDirectoryLink": "Accéder à l'annuaire des startups",
+    "noResultsFoundText": "Aucun résultat trouvé",
+    "noResultsFoundSubtext": "Nous n'avons pas trouvé ce que vous cherchiez.<br>Retentez avec d'autres critères de recherche."
 }

@@ -6,7 +6,7 @@ import { formatForUrl } from "@scripts/formatForUrl";
 /* Format Get Landing Opportunities */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const formatGetLandingOpportunities = (response: any): object => {
-    return Object.values(response[0].PROJECT).map((opportunity: any) => ({
+    return Object.values(response.PROJECT).map((opportunity: any) => ({
         id: parseInt(opportunity.ID),
         banner: opportunity.BACKGROUND,
         category: {

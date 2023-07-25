@@ -10,10 +10,10 @@
 }
 .mainContainer:first-of-type {
     border-radius: 0px 0px 100px 0px;
-    background-color: var(--background-sub-color);
+    background-color: var(--light-red-color);
 }
 .mainContainer:nth-of-type(2) {
-    border-radius: 100px 0px 0px 0px;
+    border-radius: 100px 0px 0px 100px;
     background-color: var(--background-main-color);
 }
 .mainContainer:nth-of-type(2)::before {
@@ -23,12 +23,12 @@
     top: 0px;
     left: 0px;
     content: "";
-    background-color: var(--background-sub-color);
+    background-color: var(--light-red-color);
     z-index: -1;
 }
 .mainContainer:nth-of-type(3) {
-    border-radius: 0px 100px 0px 100px;
-    background-color: var(--background-private-color);
+    border-radius: 0px 100px 100px 0px;
+    background-color: var(--light-red-color);
 }
 .mainContainer:nth-of-type(4) {
     border-radius: 0px;
@@ -90,10 +90,10 @@
     flex-direction: column;
 }
 .containerTitle > h1 {
-    font-size: 56px;
     font-family: Nunito Sans;
-    font-weight: 300;
-    color: var(--logo-blue-color);
+    font-size: 65px;
+    font-weight: 600;
+    color: var(--logo-orange-color);
 }
 @media screen and (max-width: 576px) {
     .containerTitle > h1 {
@@ -112,10 +112,10 @@
     text-align: center;
 }
 .containerTitle > h3 {
-	font-size: 48px;
+	font-family: Nunito Sans;
+    font-size: 48px;
     font-weight: 700;
-    text-align: left;
-    color: var(--perfect-white-color);
+    text-align: center;
 }
 .containerTitle > h4 {
     font-family: Nunito Sans;
@@ -151,6 +151,9 @@
         flex-direction: column;
     }
 }
+.header > div {
+    flex: 1;
+}
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Header's Right Container */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -158,7 +161,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
     min-height: 350px;
     max-height: 400px;
     margin: 0px 0px 0px var(--space-24);
@@ -183,18 +185,9 @@
 .headerLeftContainer {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 400px;
-}
-@media screen and (max-width: 992px) {
-    .headerLeftContainer {
-        flex-direction: row-reverse;
-        max-width: 100%;
-    }
 }
 @media screen and (max-width: 768px) {
     .headerLeftContainer {
-        flex-direction: column;
         max-width: 100%;
     }
 }
@@ -207,7 +200,8 @@
 }
 .headerParagraphs > p {
     font-family: Nunito Sans;
-    font-size: 14px;
+    font-size: 24px;
+    color: var(--logo-orange-color);
 }
 .headerParagraphs > p + p {
     margin-top: var(--space-16);
@@ -223,208 +217,164 @@
 .headerActions {
     display: flex;
     flex-direction: column;
-    margin: var(--space-16) 0px 0px 0px;
-}
-@media screen and (max-width: 992px) {
-    .headerActions {
-        margin: 0px var(--space-16) 0px 0px;
-    }
-}
-@media screen and (max-width: 768px) {
-    .headerActions {
-        margin: var(--space-16) 0px 0px 0px;
-    }
+    margin: var(--space-24) 0px 0px 0px;
 }
 .headerActions > [class*="action"] {
-    flex-direction: row-reverse;
-    justify-content: space-between;
+    width: fit-content;
 }
 .headerActions > [class*="action"] + [class*="action"] {
     margin-top: var(--space-16);
 }
 @media screen and (max-width: 576px) {
-    .headerActions > [class*="action"]:hover {
-        transform: scale(1);
+    .headerActions > [class*="action"] {
+        margin: auto;
     }
 }
-.headerActions > [class*="action"] > i {
-    margin: 0px 0px 0px var(--space-8);
-}
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Cards */
+/* How It Works */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-@media screen and (max-width: 768px) {
-	.joinCards {
-		flex-direction: column;
-	}
-    .joinCard {
-        margin: var(--space-16) 0px 0px 0px;
-	}
-}
-.joinCards > * {
-    margin: var(--space-16) var(--space-16) 0px 0px;
-}
-.joinCards > *:last-of-type {
-    margin: var(--space-16) 0px 0px 0px;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Card */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCard {
+.howItWorks {
     display: flex;
     flex-direction: column;
+}
+.howItWorks > div + div {
+    margin: var(--space-16) 0px 0px 0px;
+}
+@media screen and (max-width: 992px) {
+    .howItWorks > div + div {
+        margin: var(--space-32) 0px 0px 0px;
+    }
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* How It Works Step */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.howItWorksStep {
+    display: flex;
+}
+@media screen and (max-width: 992px) {
+    .howItWorksStep {
+        flex-direction: column-reverse;
+    }
+}
+.howItWorksStep > div {
     flex: 1;
-    min-width: 280px;
-    width: 280px;
-    max-width: 280px;
-    padding: var(--space-16);
-    border-radius: var(--radius-15);
-    background-color: var(--background-sub-color);
-    box-shadow: var(--box-shadow);
 }
-@media screen and (max-width: 768px) {
-	.joinCard {
-		width: 100%;
-		max-width: 100%;
-	}
-    .joinCard {
-        margin: var(--space-16) 0px 0px 0px;
-	}
+.howItWorksStep > div:not(.howItWorksStepSeparator) {
+    margin: 0px 0px var(--space-56) 0px;
 }
-/* [data-theme="nextinov"] .joinCard { // This is a border gradient hack with border radius support
-    border: 4px solid transparent;
-    border-radius: var(--radius-15);
-    background: linear-gradient(var(--background-sub-color), var(--background-sub-color)) padding-box, var(--gradient-ui) border-box;
-} */
+@media screen and (max-width: 992px) {
+    .howItWorksStep > div:not(.howItWorksStepSeparator) {
+        margin: 0px;
+    }
+}
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Card Header */
+/* How It Works Step Picture */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCardHeader {
-    display: flex;
-    margin-bottom: var(--space-16);
-}
-.joinCardHeader > i {
+.howItWorksStepPicture {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 50px;
-    width: 50px;
-    max-width: 50px;
-    min-height: 50px;
-    height: 50px;
-    max-height: 50px;
-    margin-right: var(--space-16);
-    font-size: 50px;
-    overflow: hidden;
 }
-.joinCard:first-of-type > .joinCardHeader > i {
-    color: var(--logo-orange-color);
+@media screen and (max-width: 992px) {
+    .howItWorksStep:nth-of-type(2) > .howItWorksStepPicture {
+        order: 1;
+    }
 }
-.joinCard:nth-of-type(2) > .joinCardHeader > i {
-    color: var(--logo-blue-color);
-}
-.joinCard:last-of-type > .joinCardHeader > i {
-    color: var(--logo-green-color);
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Card Header Title */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCardHeaderTitle > p:first-of-type {
-    font-family: Nunito Sans;
-    font-size: 24px;
-    font-weight: bold;
-    line-break: anywhere;
-}
-.joinCard:first-of-type > .joinCardHeader > .joinCardHeaderTitle > p:first-of-type {
-    color: var(--logo-orange-color);
-}
-.joinCard:nth-of-type(2) > .joinCardHeader > .joinCardHeaderTitle > p:first-of-type {
-    color: var(--logo-blue-color);
-}
-.joinCard:last-of-type > .joinCardHeader > .joinCardHeaderTitle > p:first-of-type {
-    color: var(--logo-green-color);
-}
-.joinCardHeaderTitle > p:last-of-type {
-    color: var(--text-placeholder-color);
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Card Body */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCardBody {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 0px auto 0px;
-}
-.joinCardBody > * + * {
-    margin: var(--space-16) 0px 0px 0px;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Join Card Footer */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.joinCardFooter {
-    display: flex;
-    flex-direction: column;
-}
-.joinCardFooter > a {
-    width: fit-content;
-    margin: auto;
-}
-.joinCardFooter > a + a {
-    margin: var(--space-16) auto 0px auto;
-}
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Community Section */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.communitySection {
-	display: flex;
-	flex-direction: column;
-    padding: var(--space-16);
+.howItWorksStepPicture > img {
+    width: 100%;
+    object-fit: contain;
+    position: inherit !important;
     border-radius: var(--radius-15);
-    background-color: var(--lighter-black-color);
     box-shadow: var(--box-shadow);
 }
-.communitySection > p {
-	color: var(--perfect-white-color);
-	font-family: Nunito Sans;
-}
-.communitySection > p:first-of-type {
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* How It Works Step Separator */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.howItWorksStepSeparator {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    max-width: 40px;
+    margin: 0px var(--space-16);
+}
+@media screen and (max-width: 992px) {
+    .howItWorksStepSeparator {
+        flex-direction: row-reverse;
+        width: 100%;
+        max-width: inherit;
+        max-height: 40px;
+        margin: var(--space-16) 0px;
+    }
+    .howItWorksStep:nth-of-type(2) > .howItWorksStepSeparator {
+        order: 2;
+    }
+}
+.howItWorksStepSeparator > [class*="line"] {
+    margin: 0px auto;
+    background-color: var(--logo-orange-color);
+}
+@media screen and (max-width: 992px) {
+    .howItWorksStepSeparator > [class*="line"] {
+        min-height: 1px;
+        height: 1px;
+        max-height: 1px;
+        min-width: 20px;
+        width: 100%;
+        max-width: inherit;
+        margin: auto 0px;
+    }
+}
+.howItWorksStepSeparator > i {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin: 0px 0px var(--space-8) 0px;
-	font-size: 24px;
-    font-weight: 800;
+    min-width: 40px;
+    width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    height: 40px;
+    max-height: 40px;
+    margin: var(--space-16) 0px 0px 0px;
+    font-size: 20px;
+    color: var(--logo-orange-color);
+    border: var(--border-1);
+    border-color: var(--logo-orange-color);
+    border-radius: var(--radius-20);
+    background-color: var(--light-red-color);
 }
-.communitySection > p > i {
-    color: var(--warning-color);
-	font-size: 20px;
+.howItWorksStep:last-of-type > .howItWorksStepSeparator > i {
+    color: var(--perfect-white-color);
+    background-color: var(--logo-orange-color);
+}
+@media screen and (max-width: 992px) {
+    .howItWorksStepSeparator > i {
+        margin: 0px var(--space-16) 0px 0px;
+    }
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Startups Categories Section */
+/* How It Works Step Text */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.startupsCategoriesSection {
-	display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: var(--space-8) var(--space-8) 0px 0px;
+.howItWorksStepText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.startupsCategoriesSection > * {
-    margin: 0px 0px var(--space-8) var(--space-8);
+@media screen and (max-width: 992px) {
+    .howItWorksStep:nth-of-type(2) > .howItWorksStepText {
+        order: 3;
+    }
 }
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Structures Section */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-.structuresSection {
-	display: flex;
-	flex-wrap: wrap;
-    align-items: center;
-    padding: var(--space-8) var(--space-8) 0px 0px;
+.howItWorksStepText > p:first-of-type {
+    margin: 0px 0px var(--space-16) 0px;
+    font-family: Nunito Sans;
+    font-size: 32px;
+    font-weight: 700;
 }
-.structuresSection > * {
-    margin: 0px 0px var(--space-8) var(--space-8);
+.howItWorksStepText > p:last-of-type,
+.howItWorksStepText > p:last-of-type > [class*="action"] > span {
+    font-size: 16px;
+}
+@media screen and (max-width: 576px) {
+    .howItWorksStepText > p {
+        text-align: center;
+    }
 }

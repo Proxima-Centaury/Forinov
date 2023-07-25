@@ -70,8 +70,10 @@
     --box-shadow: 5px 5px 10px 0px var(--shadow-color);
     --darker-box-shadow: 5px 5px 10px 0px var(--darker-shadow-color);
     --filter-color: #FFFFFF80;
-    --horizontal-gradient-mask: linear-gradient(90deg, #FFFFFF00 0%, var(--background-main-color) 80%);
-    --vertical-gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, var(--background-main-color) 80%);
+    --horizontal-main-gradient-mask: linear-gradient(90deg, #FFFFFF00 0%, var(--background-main-color) 80%);
+    --horizontal-sub-gradient-mask: linear-gradient(90deg, #FFFFFF00 0%, var(--background-sub-color) 80%);
+    --vertical-main-gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, var(--background-main-color) 80%);
+    --vertical-sub-gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, var(--background-sub-color) 80%);
     --gradient-ui: linear-gradient(90deg, #EC008C, #FF8336);
     /* Spaces */
     --space-8: 8px;
@@ -184,6 +186,8 @@ body {
     overflow-x: hidden;
 }
 #__next > [data-page] {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     margin: 0px -8px 0px 0px; /* Fixes the gap caused by the scrollbar */
 }
@@ -194,6 +198,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    flex: 1;
     margin: 0px auto;
     padding: var(--space-16);
     border-radius: var(--radius-15);

@@ -14,6 +14,7 @@ import { formatGetPublicCommons } from "@scripts/calls/formatGetPublicCommons";
 import { formatGetLanding } from "@scripts/calls/formatGetLanding";
 import { formatGetLandingStartups } from "@scripts/calls/formatGetLandingStartups";
 import { formatGetLandingOpportunities } from "@scripts/calls/formatGetLandingOpportunities";
+import { formatGetLandingLogos } from "@scripts/calls/formatGetLandingLogos";
 import { formatSearchEngine } from "@scripts/calls/formatSearchEngine";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* JSON */
@@ -65,13 +66,15 @@ class API {
     };
     private _formatResponse = (call?: string, response?: any) => {
         if(call === "getPublicCommons") {
-            return formatGetPublicCommons(response);
+            return formatGetPublicCommons(response[0]);
         } else if(call === "getLanding") {
             return formatGetLanding(response);
         } else if(call === "getLandingStartups") {
             return formatGetLandingStartups(response);
         } else if(call === "getLandingOpportunities") {
-            return formatGetLandingOpportunities(response);
+            return formatGetLandingOpportunities(response[0]);
+        } else if(call === "getLandingLogos") {
+            return formatGetLandingLogos(response[0]);
         } else if(call === "searchEngine") {
             return formatSearchEngine(response);
         };

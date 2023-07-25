@@ -9,7 +9,6 @@ import api from "@classes/api";
 /* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import Head from "next/head";
-import Image from "next/image";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* React Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -19,6 +18,7 @@ import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import DefaultCarousel from "@carousels/defaultCarousel";
 import Testimonials from "@contents/testimonials";
+import CustomImage from "@contents/customImage";
 import LinkButton from "@buttons/linkButton";
 import LineSeparator from "@separators/lineSeparator";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -48,8 +48,8 @@ const Home = (params: TPage): JSX.Element => {
 	const homeStructuresLinks: TButton[] = require("@configurations/links.json").home.structures;
 	return <Fragment>
 		<Head>
-			<title>{ t("homeMetaTitle") }</title>
-			<meta name="description" content={ t("homeMetaDescription") }/>
+			<title>{ t("homeMetaTitle", { company: "Forinov" }) }</title>
+			<meta name="description" content={ t("homeMetaDescription", { company: "Forinov" }) }/>
 		</Head>
 		<div data-page="home">
 			<div className={ HomeStyles.mainContainer }>
@@ -60,8 +60,8 @@ const Home = (params: TPage): JSX.Element => {
 					<div className={ HomeStyles.header }>
 						<div className={ HomeStyles.headerLeftContainer }>
 							<div className={ HomeStyles.headerParagraphs }>
-								<p>{ t("homeHeaderParagraph1") }</p>
-								<p>{ t("homeHeaderParagraph2") }</p>
+								<p>{ t("homeHeaderParagraph1", { company: "Forinov" }) }</p>
+								<p>{ t("homeHeaderParagraph2", { company: "Forinov" }) }</p>
 							</div>
 							<div className={ HomeStyles.headerActions }>
 								{ homeHeaderLinks.map(({ classList, href, icon, text }: TButton, key: number) => {
@@ -72,7 +72,7 @@ const Home = (params: TPage): JSX.Element => {
 							</div>
 						</div>
 						<div className={ HomeStyles.headerRightContainer }>
-							<Image src="/assets/home.gif" alt={ t("homeHeaderIllustrationAlt") } fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder="blur" blurDataURL="/assets/home.gif"/>
+							<CustomImage src="/assets/home.gif" alt={ t("homeHeaderIllustrationAlt") }/>
 						</div>
 					</div>
 				</div>
@@ -80,7 +80,7 @@ const Home = (params: TPage): JSX.Element => {
 			<div className={ HomeStyles.mainContainer }>
 				<div className="boxedContent">
 					<div className={ HomeStyles.containerTitle }>
-						<h2>{ t("homeWhyJoinTitle") }</h2>
+						<h2>{ t("homeWhyJoinTitle", { company: "Forinov" }) }</h2>
 						<p>{ t("homeWhyJoinText") }</p>
 					</div>
 					<div className={ HomeStyles.joinCards }>
@@ -170,7 +170,7 @@ const Home = (params: TPage): JSX.Element => {
 					<div className={ HomeStyles.containerTitle }>
 						<h4>{ t("homeLatestStartupsTitle") }</h4>
 					</div>
-					<DefaultCarousel items={ startups } itemsType="startups" navigation="bar"/>
+					<DefaultCarousel items={ startups } itemsType="startups" navigation="bar" links/>
 					<div className={ HomeStyles.containerTitle }>
 						<h5>{ t("homeStartupsCategoriesTitle", { startups: counters.startups.total, categories: counters.startups.categories }) }</h5>
 					</div>
@@ -183,7 +183,7 @@ const Home = (params: TPage): JSX.Element => {
 					<div className={ HomeStyles.containerTitle }>
 						<h6>{ t("homeLatestOpportunitiesTitle") }</h6>
 					</div>
-					<DefaultCarousel items={ opportunities } itemsType="opportunities" navigation="bar"/>
+					<DefaultCarousel items={ opportunities } itemsType="opportunities" navigation="bar" links/>
 				</div>
 			</div>
 			<div className={ HomeStyles.mainContainer }>
@@ -194,7 +194,7 @@ const Home = (params: TPage): JSX.Element => {
 			<div className={ HomeStyles.mainContainer }>
 				<div className="boxedContent">
 					<div className={ HomeStyles.containerTitle }>
-						<h6>{ t("homeStructuresSectionTitle") }</h6>
+						<h6>{ t("homeStructuresSectionTitle", { company: "Forinov" }) }</h6>
 						<p>{ t("homeStructuresSectionText") }</p>
 					</div>
 					<div className={ HomeStyles.structuresSection }>
@@ -213,9 +213,9 @@ const Home = (params: TPage): JSX.Element => {
 					</div>
 					<Testimonials/>
 					<div className={ HomeStyles.containerTitle }>
-						<h6>{ t("homeArticlesTitle") }</h6>
+						<h6>{ t("homeArticlesTitle", { company: "Forinov" }) }</h6>
 					</div>
-					<DefaultCarousel items={ articles } itemsType="articles" navigation="bar"/>
+					<DefaultCarousel items={ articles } itemsType="articles" navigation="bar" gradient="sub"/>
 				</div>
 			</div>
 		</div>
