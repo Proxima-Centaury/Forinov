@@ -44,6 +44,8 @@ const Home = (params: TPage): JSX.Element => {
 	const { t } = useTranslation("home");
 	const { landing, startups, opportunities } = params;
 	const { articles, categories, counters } = landing;
+	const startupsTotal: number = counters?.startups.total || 0;
+	const startupsCategories: number = counters?.startups.categories || 0;
 	const homeHeaderLinks: TButton[] = require("@configurations/links.json").home.header;
 	const homeStructuresLinks: TButton[] = require("@configurations/links.json").home.structures;
 	return <Fragment>
@@ -172,10 +174,10 @@ const Home = (params: TPage): JSX.Element => {
 					</div>
 					<DefaultCarousel items={ startups } itemsType="startups" navigation="bar" links/>
 					<div className={ HomeStyles.containerTitle }>
-						<h5>{ t("homeStartupsCategoriesTitle", { startups: counters.startups.total, categories: counters.startups.categories }) }</h5>
+						<h5>{ t("homeStartupsCategoriesTitle", { startups: startupsTotal, categories: startupsCategories }) }</h5>
 					</div>
 					<div className={ HomeStyles.startupsCategoriesSection }>
-						{ categories.startups.map((category: any, key: number) => {
+						{ categories?.startups.map((category: any, key: number) => {
 							const url = `/directories/startups/${ formatForUrl(category.name) }_${ category.id }`;
 							return (category.name) ? <LinkButton key={ key } classList="tertiary" href={ url } text={ category.name }/> : null;
 						}) }
