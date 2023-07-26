@@ -7,23 +7,23 @@ import { formatForUrl } from "@scripts/formatForUrl";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const formatGetLanding = (response: any): object => {
     return {
-        articles: response.BLOG.map((article: any) => ({
-            id: parseInt(article.ID),
-            banner: article.PICTURE,
-            title: article.NAME,
-            url: article.URL
-        })),
+        articles: response?.BLOG.map((article: any) => ({
+            id: parseInt(article?.ID) || null,
+            banner: article?.PICTURE || null,
+            title: article?.NAME || null,
+            url: article?.URL || null
+        })) || [],
         categories: {
-            startups: response.CATEGORIES.map((category: any) => ({
-                id: parseInt(category.ID),
-                name: category.NAME,
-                url: `/startups/directory/${ formatForUrl(category.NAME) }_${ category.ID }`
-            }))
+            startups: response?.CATEGORIES.map((category: any) => ({
+                id: parseInt(category?.ID) || null,
+                name: category?.NAME || null,
+                url: `/startups/directory/${ formatForUrl(category?.NAME) }_${ category?.ID }`
+            })) || []
         },
         counters: {
             startups: {
-                categories: parseInt(response.COUNTERS.STARTUPSCATEGORIES),
-                total: parseInt(response.COUNTERS.STARTUPS)
+                categories: parseInt(response?.COUNTERS?.STARTUPSCATEGORIES) || 0,
+                total: parseInt(response?.COUNTERS?.STARTUPS) || 0
             }
         }
     };

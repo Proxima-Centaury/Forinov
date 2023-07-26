@@ -7,9 +7,9 @@ import { formatForUrl } from "@scripts/formatForUrl";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const formatGetLandingLogos = (response: any): object => {
     return Object.values(response.LOGOS).map((logo: any) => ({
-        id: parseInt(logo.id),
-        logo: logo.logo,
-        name: logo.name,
+        id: parseInt(logo?.id) || null,
+        logo: logo?.logo || null,
+        name: logo?.name || null,
     }));
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
