@@ -24,7 +24,9 @@ import configuration from "@configurations/api.json";
 /* API */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 class API {
+    private _enabled: boolean = true;
     private _endpoint: string = configuration.api.endpoint[(process.env.NODE_ENV === "development") ? "development" : "production"];
+    // The methods are built automatically based on api.json file's content
     constructor() {
         const queryProperties = Object.entries(configuration.api.calls);
         this.setEndpoint("production");
@@ -34,14 +36,16 @@ class API {
                 const givenParameters = parameters;
                 const url = this.getEndpoint() + "?" + this._buildParameters({ query, expectedParameters, givenParameters });
                 if(expectedParameters.length !== parameters.length) {
-                    return error.sendFeedback("api", { query, expectedParameters, givenParameters, url });
+                    return error.sendFeedback("API", { query, expectedParameters, givenParameters, url });
                 };
                 const response = await this._call({ query, expectedParameters, givenParameters, url });
                 return (response.code) ? response : this._formatResponse(query[0], response);
             }, writable: false });
         });
     };
-    searchEngine = async (type: string, filters: any, network?: string, privateFilter?: string, ssid?: string, language?: string) => {
+    // The search engine method was created manually because of its conditional and optional parameters
+    // But it can still be automated using a JSON parser or by updating the api.json file to specify which parameters are optional
+    public searchEngine = async (type: string, filters: any, network?: string, privateFilter?: string, ssid?: string, language?: string) => {
         const query: any[] = [ "getSearchEngine", configuration.api.calls.getSearchEngine ];
         const expectedParameters = Object.keys(filters).map((filter: string) => filter.toUpperCase()).concat(query[1].parameters);
         const givenParameters = Object.values(filters).concat([ type, network, privateFilter, ssid, "next", "Landing", language ]);
@@ -49,7 +53,7 @@ class API {
         const response = await this._call({ query, expectedParameters, givenParameters, url });
         return (response.code) ? response : this._formatResponse("searchEngine", response);
     };
-    private _buildParameters = ({ query, expectedParameters, givenParameters, url }: any): string => {
+    private _buildParameters = ({ query, expectedParameters, givenParameters }: any): string => {
         const array: Array<string> = [];
         array.push("q=" + query[1].query);
         expectedParameters?.map((parameter: string, key: number) => array.push(parameter + "=" + givenParameters[key as keyof object]));
@@ -57,13 +61,15 @@ class API {
     };
     private _call = async ({ query, expectedParameters, givenParameters, url }: any) => {
         try {
-            logger.callLog({ query, givenParameters, url });
+            logger.initiateLog("logCall", { query, givenParameters, url });
             const promise = await fetch(url);
             return await promise.json();
         } catch {
-            return error.sendFeedback("call", { query, expectedParameters, givenParameters, url });
+            return error.sendFeedback("Call", { query, expectedParameters, givenParameters, url });
         };
     };
+    // This bunch of functions are here to manipulate the structure of each call response to our tastes
+    // They can be found under utilities/scripts/calls
     private _formatResponse = (call?: string, response?: any) => {
         if(call === "getPublicCommons") {
             return formatGetPublicCommons(response[0]);
@@ -79,10 +85,26 @@ class API {
             return formatSearchEngine(response);
         };
     };
-    getEndpoint = (): string => {
+    /* -------------------------------------------------------------------------------------------------------------------------------------------- */
+    /* Getters */
+    /* -------------------------------------------------------------------------------------------------------------------------------------------- */
+    public getEnabled= (): boolean => {
+        return this._enabled;
+    };
+    public getEndpoint = (): string => {
         return this._endpoint;
     };
-    setEndpoint = (environment: "production" | "development"): boolean => {
+    /* -------------------------------------------------------------------------------------------------------------------------------------------- */
+    /* Setters */
+    /* -------------------------------------------------------------------------------------------------------------------------------------------- */
+    public setEnabled = (enabled: true | false): boolean => {
+        if(typeof enabled === "boolean") {
+            this._enabled = enabled;
+            return true;
+        };
+        return false;
+    };
+    public setEndpoint = (environment: "production" | "development"): boolean => {
         if(environment.match(/(production|development)/)) {
             this._endpoint = configuration.api.endpoint[environment as keyof object];
             return true;
