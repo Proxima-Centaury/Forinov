@@ -14,34 +14,34 @@ const formatSearchEngine = (response: any): object => {
     };
     return {
         items: [ response[0] ].map((item: any) => ({
-            id: parseInt(item.ID),
-            banner: item.BACKGROUND,
+            id: parseInt(item?.ID) || null,
+            banner: item?.BACKGROUND || null,
             category: {
-                id: parseInt(item.TYPE[0].ID),
-                name: item.TYPE[0].NAME
+                id: parseInt(item?.TYPE[0].ID) || null,
+                name: item?.TYPE[0].NAME || null
             },
             countries: [],
             dates: {
-                end: item.ENDINGDATE || null,
-                start: item.STARTINGDATE || null
+                end: item?.ENDINGDATE || null,
+                start: item?.STARTINGDATE || null
             },
-            description: item.DESCRIPTION,
-            language: item.LANGUAGE,
+            description: item?.DESCRIPTION || null,
+            language: item?.LANGUAGE || null,
             owner: {
-                logo: item.OWNERLOGO,
-                name: item.OWNERNAME
+                logo: item?.OWNERLOGO || null,
+                name: item?.OWNERNAME || null
             },
-            privacy: item.PRIVACY,
-            tags: item.TAGS?.split(",").filter((tag: string) => tag.trim().length > 0) || null,
-            remainingTime: item.REMAINING.split(",").map((value: string) => parseInt(value)),
-            title: item.TITLE,
-            url: `/directories/opportunities/${ formatForUrl(item.TYPE[0].NAME) }_${ item.TYPE[0].ID }/${ formatForUrl(item.TITLE) }_${ item.ID }`
+            privacy: item?.PRIVACY || null,
+            tags: item?.TAGS?.split(",").filter((tag: string) => tag.trim().length > 0) || [],
+            remainingTime: item?.REMAINING?.split(",").map((value: string) => parseInt(value)) || [ 0, 0, 0 ],
+            title: item?.TITLE || null,
+            url: `/directories/opportunities/${ formatForUrl(item?.TYPE[0]?.NAME) }_${ item?.TYPE[0]?.ID }/${ formatForUrl(item?.TITLE) }_${ item?.ID }`
         })),
         pagination: {
-            count: response[1].INFORMATIONS.COUNT,
-            limit: response[1].INFORMATIONS.LIMIT,
-            message: response[1].INFORMATIONS.RESULTSMESSAGE,
-            pages: response[1].INFORMATIONS.PAGES
+            count: response[1]?.INFORMATIONS?.COUNT || 0,
+            limit: response[1]?.INFORMATIONS?.LIMIT || 0,
+            message: response[1]?.INFORMATIONS?.RESULTSMESSAGE || null,
+            pages: response[1]?.INFORMATIONS?.PAGES || 0
         }
     };
 };

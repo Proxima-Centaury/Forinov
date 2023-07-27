@@ -57,25 +57,48 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
             const wrapper: HTMLDivElement = carouselReference.current;
             const wrapperParent = wrapper.parentElement;
             if(wrapper && wrapperParent && items) {
-                const childWidth = wrapper.querySelector("[class*='card']")?.clientWidth || 550;
-                const space = 16; // Space size in pixels between items
-                const border = 10; // Border width of the cards in pixels
-                const autoSlide = setInterval(() => { // Setting interval for carousel automation
+                const childWidth = wrapper.querySelector("[class*='card']")?.clientWidth || 500;
+                // Space size in pixels between items
+                const space = 16;
+                // Border width of the cards in pixels
+                const border = 10;
+                // Setting interval for carousel automation
+                const autoSlide = setInterval(() => {
                     if(items && !pause) {
-                        if(currentIndex < items.length - 1) { // Increments the current index while last card not matched
+                        // Increments the current index while last card not matched
+                        if(currentIndex < items.length - 1) {
                             setCurrentIndex(currentIndex + 1);
-                        } else { // Otherwise resets the carousel to the start
+                        // Otherwise resets the carousel to the start
+                        } else {
                             setCurrentIndex(0);
                         };
                     };
+                    // Enabling the actions if the wrapper width overflows inside of the carousel
                     if(wrapper.clientWidth >= wrapperParent.clientWidth) {
                         setActions(true);
+                    // Disabling the actions if the wrapper width doesn't overflow inside of the carousel
+                    // Also keeps the current index to 0 to disable the animation if there's not enough items inside the wrapper to make it overflow
                     } else {
                         setActions(false);
                         setCurrentIndex(0);
                     };
                 }, 2000);
-                wrapper.style.transform = `translateX(calc(-${ currentIndex * (childWidth + border) }px - ${ currentIndex * space }px))`;
+                const getTranslateValue = (): number => {
+                    // Handling the carousel's wrapper transition according to the current index and the carousel's responsive design
+                    // First condition avoids huge white spaces when screen > 576px and the addition of 2 children width is wider than the carousel
+                    // Takes effect when the last carousel item is reached
+                    if(currentIndex >= items.length - 1 && (2 * childWidth) > wrapperParent.clientWidth && window.innerWidth > 576) {
+                        return wrapper.clientWidth - wrapperParent.clientWidth;
+                    // Second condition avoids huge white spaces when screen > 576px and the addition of 2 children width is lower than the carousel
+                    // Takes effect when the before last carousel item is reached
+                    } else if(currentIndex >= items.length - 2 && (2 * childWidth) < wrapperParent.clientWidth && window.innerWidth > 576) {
+                        return wrapper.clientWidth - wrapperParent.clientWidth;
+                    // Last condition swipes the carousel items according to the current index whenever the upper conditions are not met
+                    } else {
+                        return (currentIndex * (childWidth + border)) + (currentIndex * space);
+                    };
+                };
+                wrapper.style.transform = `translateX(-${ getTranslateValue() }px)`;
                 return () => {
                     clearInterval(autoSlide);
                 };

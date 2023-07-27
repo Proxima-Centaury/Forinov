@@ -17,8 +17,8 @@ class Logger {
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     public initiateLog = (log: string, params: any): any | boolean => {
         const logger = this;
-        if(typeof logger[log as keyof object] === "function" && params) {
-            const method: Function = logger[log as keyof object];
+        if(typeof logger["_" + log as keyof object] === "function" && params) {
+            const method: Function = logger["_" + log as keyof object];
             return method(params);
         };
         return false;
@@ -26,14 +26,20 @@ class Logger {
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     /* Commons */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
-    private _getCommonErrorCoreMessage = ({ query, expectedParameters, givenParameters, url }: any): string => {
+    private _getCommonErrorCoreMessage = ({ query, expectedParameters, givenParameters, url }: any, hiddenParams?: boolean): string => {
         const callParameters = givenParameters.map((parameter: string) => typeof parameter).join(", ");
         const action = `[ ${ chalk.red("CALL") } ] => ${ chalk.red(query[0]) }(${ callParameters })\n`;
         const urlLog = `${ chalk.red("> " + url) }\n`;
-        const errorMessage = `${ chalk.red(">") } Error occured trying to fetch data using ${ query[0] }() call.\n\n`;
-        const expectedParametersMessage = `${ chalk.red("Expected parameters :\n") }- ${ expectedParameters.join("\n- ") }\n\n`;
-        const givenParametersMessage = `${ chalk.red("Received parameters :\n") }- ${ givenParameters.join("\n- ") }\n\n`;
-        const fullLog = [ action, urlLog, errorMessage, expectedParametersMessage, givenParametersMessage ];
+        let fullLog: string[] = [];
+        if(hiddenParams) {
+            const errorMessage = `${ chalk.red(">") } Error occured trying to fetch data using ${ query[0] }() call.\n`;
+            fullLog = [ action, urlLog, errorMessage ];
+        } else {
+            const errorMessage = `${ chalk.red(">") } Error occured trying to fetch data using ${ query[0] }() call.\n\n`;
+            const expectedParametersMessage = `${ chalk.red("Expected parameters ( names ) :\n") }- ${ expectedParameters.join("\n- ") }\n\n`;
+            const givenParametersMessage = `${ chalk.red("Received parameters ( values ) :\n") }- ${ givenParameters.join("\n- ") }\n\n`;
+            fullLog = [ action, urlLog, errorMessage, expectedParametersMessage, givenParametersMessage ];
+        };
         return fullLog.join("");
     };
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -56,7 +62,7 @@ class Logger {
         console.error(`${ fullLog.join("") }`);
     };
     private _logDisabledAPIError = ({ query, expectedParameters, givenParameters, url }: any): void => {
-        const commonCoreMessage = this._getCommonErrorCoreMessage({ query, expectedParameters, givenParameters, url });
+        const commonCoreMessage = this._getCommonErrorCoreMessage({ query, expectedParameters, givenParameters, url }, true);
         const errorEndMessage = `${ chalk.red(">") } Looks like the API class is disabled, enable it by using api.setEnabled(true).`;
         const fullLog = [ this.getSeparator(), commonCoreMessage, errorEndMessage ];
         console.error(`${ fullLog.join("") }`);

@@ -7,14 +7,14 @@ import { formatForUrl } from "@scripts/formatForUrl";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const formatGetLanding = (response: any): object => {
     return {
-        articles: response?.BLOG.map((article: any) => ({
+        articles: response?.BLOG?.map((article: any) => ({
             id: parseInt(article?.ID) || null,
             banner: article?.PICTURE || null,
             title: article?.NAME || null,
             url: article?.URL || null
         })) || [],
         categories: {
-            startups: response?.CATEGORIES.map((category: any) => ({
+            startups: response?.CATEGORIES?.map((category: any) => ({
                 id: parseInt(category?.ID) || null,
                 name: category?.NAME || null,
                 url: `/startups/directory/${ formatForUrl(category?.NAME) }_${ category?.ID }`

@@ -60,12 +60,25 @@ class API {
         return array.join("&");
     };
     private _call = async ({ query, expectedParameters, givenParameters, url }: any) => {
-        try {
-            logger.initiateLog("logCall", { query, givenParameters, url });
-            const promise = await fetch(url);
-            return await promise.json();
-        } catch {
-            return error.sendFeedback("Call", { query, expectedParameters, givenParameters, url });
+        if(!this.getEnabled()) {
+            return error.sendFeedback("DisabledAPI", { query, expectedParameters, givenParameters, url });
+        } else {
+            try {
+                logger.initiateLog("logAPICall", { query, givenParameters, url });
+                const promise = await fetch(url);
+                return await promise.json();
+            } catch(catchedError: unknown) {
+                // const errorTypes = error.getTypes();
+                // errorTypes.forEach((errorType: unknown) => {
+                //     switch(errorType) {
+                //         case TypeError :
+                //         case SyntaxError :
+                //         case ReferenceError :
+                //         default :
+                //     };
+                // });
+                return error.sendFeedback("Call", { query, expectedParameters, givenParameters, url });
+            };
         };
     };
     // This bunch of functions are here to manipulate the structure of each call response to our tastes

@@ -10,8 +10,11 @@ import logger from "@classes/logger";
 /* Error */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 class Error {
+    private _types: any[] = [];
     private _errors: any[] = [ { code: null, message: null } ];
-    constructor() {};
+    constructor() {
+        this.setTypes(TypeError, SyntaxError, ReferenceError);
+    };
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     /* Initiator */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -36,24 +39,34 @@ class Error {
         return { code: 400, errors: this.getErrors() };
     };
     private _generateDisabledAPIFeedback = ({ query, expectedParameters, givenParameters, url }: any) => {
-        logger.initiateLog("logCallError", { query, expectedParameters, givenParameters, url });
+        logger.initiateLog("logDisabledAPIError", { query, expectedParameters, givenParameters, url });
         this.setErrors([ { code: 400, message: "Error occured due to disabled API class, enable it by using api.setEnabled(true)." } ]);
         return { code: 400, errors: this.getErrors() };
     };
     private _generateCallFeedback = ({ query, expectedParameters, givenParameters, url }: any) => {
-        logger.initiateLog("logDisabledAPIError", { query, expectedParameters, givenParameters, url });
+        logger.initiateLog("logCallError", { query, expectedParameters, givenParameters, url });
         this.setErrors([ { code: 500, message: "Error occured due to JSON Syntax error on server side." } ]);
         return { code: 500, errors: this.getErrors() };
     };
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     /* Getters */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
+    public getTypes = (): any[] => {
+        return this._types;
+    };
     public getErrors = (): any[] => {
         return this._errors;
     };
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     /* Setters */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
+    public setTypes = (...types: any[]): boolean => {
+        if(types.length > 0) {
+            this._types = types;
+            return true;
+        };
+        return false;
+    };
     public setErrors = (...errors: any[]): boolean => {
         if(errors.length > 0) {
             this._errors = errors;

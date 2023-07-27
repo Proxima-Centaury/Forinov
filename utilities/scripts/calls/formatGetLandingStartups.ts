@@ -21,7 +21,7 @@ const formatGetLandingStartups = (response: any): object => {
         logo: startup?.LOGO || null,
         name: startup?.NAME || null,
         tags: startup?.TAGS?.split(",").filter((tag: string) => tag.trim().length > 0) || [],
-        url: `/directories/startups/${ formatForUrl(startup.CATEGORY[0].NAME) }_${ startup.CATEGORY[0].ID }/${ formatForUrl(startup.NAME) }_${ startup.ID }`
+        url: `/directories/startups/${ formatForUrl(startup?.CATEGORY[0]?.NAME) }_${ startup?.CATEGORY[0]?.ID }/${ formatForUrl(startup?.NAME) }_${ startup?.ID }`
     }));
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
