@@ -32,7 +32,7 @@ const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) 
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "common", "navbar", "footer", "error" ], require("@project/next-i18next.config"))),
+			...(await serverSideTranslations(locale || "fr", [ "error", "navbar", "footer", "common" ], require("@project/next-i18next.config"))),
 			locales,
 
 		}

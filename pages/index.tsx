@@ -41,7 +41,7 @@ import HomeStyles from "@pages/Home.module.css";
 const Home = (params: TPage): JSX.Element => {
 	const router = useRouter();
 	const { locale } = router;
-	const { t } = useTranslation("home");
+	const { t } = useTranslation([ "home", "common" ]);
 	const { landing, startups, opportunities } = params;
 	const { articles, categories, counters } = landing;
 	const startupsTotal: number = counters?.startups.total || 0;
@@ -177,10 +177,11 @@ const Home = (params: TPage): JSX.Element => {
 						<h5>{ t("homeStartupsCategoriesTitle", { startups: startupsTotal, categories: startupsCategories }) }</h5>
 					</div>
 					<div className={ HomeStyles.startupsCategoriesSection }>
-						{ categories?.startups.map((category: any, key: number) => {
+						{ categories?.startups.slice(0, 9).map((category: any, key: number) => {
 							const url = `/directories/startups/${ formatForUrl(category.name) }_${ category.id }`;
 							return (category.name) ? <LinkButton key={ key } classList="tertiary" href={ url } text={ category.name }/> : null;
 						}) }
+						<LinkButton classList="link" href="/startups/directory" text={ t("common:seeMoreLink") }/>
 					</div>
 					<div className={ HomeStyles.containerTitle }>
 						<h6>{ t("homeLatestOpportunitiesTitle") }</h6>
@@ -230,7 +231,7 @@ const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) 
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "common", "navbar", "footer", "home" ], require("@project/next-i18next.config"))),
+			...(await serverSideTranslations(locale || "fr", [ "home", "navbar", "footer", "common" ], require("@project/next-i18next.config"))),
 			locales,
 			landing: await api.getLanding("next", "Landing", locale),
 			opportunities: await api.getLandingOpportunities("next", "Landing", locale),

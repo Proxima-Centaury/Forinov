@@ -176,7 +176,7 @@ const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) 
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "common", "navbar", "footer", "startups" ], require("@project/next-i18next.config"))),
+			...(await serverSideTranslations(locale || "fr", [ "startups", "navbar", "footer", "common" ], require("@project/next-i18next.config"))),
 			locales,
 			landing: await api.getLanding("next", "Landing", locale),
 			opportunities: await api.getLandingOpportunities("next", "Landing", locale),

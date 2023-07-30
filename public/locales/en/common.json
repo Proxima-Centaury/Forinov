@@ -1,5 +1,6 @@
 {
     "developmentModeIndicator": "Under developement",
+    "seeMoreLink": "See more",
     "carouselResumeTooltip": "Resume the carousel",
     "carouselPauseTooltip": "Pause the carousel",
     "carouselPreviousAriaLabel": "Carousel previous item button.",

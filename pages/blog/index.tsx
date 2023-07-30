@@ -42,7 +42,7 @@ const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) 
             permanent: false
         },
         props: {
-			...(await serverSideTranslations(locale || "fr", [ "common", "navbar", "footer", "blog" ])),
+			...(await serverSideTranslations(locale || "fr", [ "blog", "navbar", "footer", "common" ])),
 			locales
 		}
     };

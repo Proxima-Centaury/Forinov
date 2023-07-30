@@ -113,7 +113,7 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
                 };
             };
         };
-    }, [ items, currentIndex, pause ]);
+    }, [ items, controls, indicators, currentIndex, pause ]);
     return <div className={ CarouselStyles.container }>
         <div className={ formatedClassList } data-gradient={ (gradient) ? gradient : "main" }>
             <div className={ CarouselStyles.wrapper } ref={ carouselReference }>
