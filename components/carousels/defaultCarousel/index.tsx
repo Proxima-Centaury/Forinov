@@ -43,10 +43,11 @@ const MemoTestimonialCard = memo(TestimonialCard);
 const DefaultCarousel = (params: TCarousel): JSX.Element => {
     const carouselReference = useRef(null);
 	const { t } = useTranslation("common");
-    const { classList, items, itemsType, navigation, gradient, links } = params;
+    const { classList, items, itemsType, navigation, gradient, controls, indicators, links } = params;
     const [ currentIndex, setCurrentIndex ] = useState(0);
     const [ pause, setPause ] = useState(false);
-    const [ actions, setActions ] = useState(true);
+    const [ carouseControls, setCarouselControls ] = useState((controls) ? controls : false);
+    const [ carouseIndicators, setCarouselIndicators ] = useState((indicators) ? indicators : false);
     const moveLeft: MouseEventHandler = () => (items) ? setCurrentIndex((currentIndex > 0) ? currentIndex - 1 : items.length - 1) : false;
     const moveRight: MouseEventHandler = () => (items) ? setCurrentIndex((currentIndex < items.length - 1) ? currentIndex + 1 : 0) : false;
     const handlePause: MouseEventHandler = () => setPause(!pause);
@@ -73,14 +74,22 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
                             setCurrentIndex(0);
                         };
                     };
-                    // Enabling the actions if the wrapper width overflows inside of the carousel
-                    if(wrapper.clientWidth >= wrapperParent.clientWidth) {
-                        setActions(true);
-                    // Disabling the actions if the wrapper width doesn't overflow inside of the carousel
-                    // Also keeps the current index to 0 to disable the animation if there's not enough items inside the wrapper to make it overflow
+                    if(controls || indicators) {
+                        // Enabling the actions if the wrapper width overflows inside of the carousel
+                        // But only if at least one of the controls is enabled ( controls or indicators or both )
+                        if(wrapper.clientWidth >= wrapperParent.clientWidth) {
+                            (controls) ? setCarouselControls(true) : setCarouselControls(false);
+                            (indicators) ? setCarouselIndicators(true) : setCarouselIndicators(false);
+                        // Disabling the actions if the wrapper width doesn't overflow inside of the carousel
+                        // Also keeps the current index to 0 to disable the animation if there's not enough items inside the wrapper to make it overflow
+                        } else {
+                            (controls) ? setCarouselControls(false) : setCarouselControls(true);
+                            (indicators) ? setCarouselIndicators(false) : setCarouselIndicators(true);
+                            setCurrentIndex(0);
+                        };
                     } else {
-                        setActions(false);
-                        setCurrentIndex(0);
+                        setCarouselControls(false);
+                        setCarouselIndicators(false);
                     };
                 }, 2000);
                 const getTranslateValue = (): number => {
@@ -108,7 +117,7 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
     return <div className={ CarouselStyles.container }>
         <div className={ formatedClassList } data-gradient={ (gradient) ? gradient : "main" }>
             <div className={ CarouselStyles.wrapper } ref={ carouselReference }>
-                { (Array.isArray(items)) ? items?.map((item: TStartup|TOpportunity|TArticle|TTestimonial, key: number) => {
+                { (Array.isArray(items)) ? items?.map((item: TStartup | TOpportunity | TArticle | TTestimonial, key: number) => {
                     switch(itemsType) {
                         case "startups" :
                             return <Fragment key={ key }>
@@ -130,20 +139,20 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
                 }) : null }
             </div>
         </div>
-        { (actions) ? <div className={ CarouselStyles.actions }>
-            <div className={ CarouselStyles.controls }>
-                <ClassicButton classList="senary circled" action={ moveLeft } icon="fa-solid fa-chevron-left"/>
+        <div className={ CarouselStyles.actions }>
+            { (carouseControls) ? <div className={ CarouselStyles.controls }>
+                <ClassicButton classList="senary circled" action={ moveLeft } icon="fa-solid fa-chevron-left" ariaLabel={ t("carouselPreviousAriaLabel") }/>
                 <Tooltip tooltip={ (pause) ? t("carouselResumeTooltip") : t("carouselPauseTooltip") }>
-                    <ClassicButton classList="senary circled" action={ handlePause } icon={ `fa-solid ${ (pause) ? "fa-play" : "fa-pause" }` }/>
+                    <ClassicButton classList="senary circled" action={ handlePause } icon={ `fa-solid ${ (pause) ? "fa-play" : "fa-pause" }` } ariaLabel={ ((pause) ? t("carouselResumeTooltip") : t("carouselPauseTooltip")) + "." }/>
                 </Tooltip>
-                <ClassicButton classList="senary circled" action={ moveRight } icon="fa-solid fa-chevron-right"/>
-            </div>
-            <div className={ CarouselStyles.navigation }>
+                <ClassicButton classList="senary circled" action={ moveRight } icon="fa-solid fa-chevron-right" ariaLabel={ t("carouselNextAriaLabel") }/>
+            </div> : null }
+            { (carouseIndicators) ? <div className={ CarouselStyles.navigation }>
                 { (Array.isArray(items)) ? items?.map((item: unknown, key: number) => <div key={ key } className={ CarouselStyles[navigation || "bar"] }>
-                    <ClassicButton classList="octonary" action={ () => setCurrentIndex(key) } active={ key === currentIndex }/>
+                    <ClassicButton classList="octonary" action={ () => setCurrentIndex(key) } active={ key === currentIndex } ariaLabel={ t("carouselIndicatorAriaLabel", { index: key + 1 }) }/>
                 </div>) : null }
-            </div>
-            { (links)? <div className={ CarouselStyles.links }>
+            </div> : null }
+            { (links) ? <div className={ CarouselStyles.links }>
                 { (itemsType === "startups") ? <Fragment>
                     <LinkButton classList="primary" href="/startups/dorectory" text={ t("startupsDirectoryLink") }/>
                 </Fragment> : null }
@@ -152,7 +161,7 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
                     <LinkButton classList="denary" href="/opportunities" text={ t("whatIsAnOpportunityLink") }/>
                 </Fragment> : null }
             </div> : null }
-        </div> : null }
+        </div>
     </div>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

@@ -88,7 +88,7 @@ const Select = (params: TSelect): JSX.Element => {
         });
     }, [ memoBetterOptions, defaultValue ]);
     return <div className={ SelectStyles.field } ref={ selectReference }>
-        <ClassicButton classList="select toggle" icon="fa-solid fa-caret-right" action={ switchSelectState } active={ selectState }/>
+        <ClassicButton classList="select toggle" icon="fa-solid fa-caret-right" action={ switchSelectState } active={ selectState } ariaLabel={ ariaLabel }/>
         <p className={ SelectStyles.placeholder }>{ memoPlaceholderText }</p>
         <div className={ SelectStyles.options } data-state={ (selectState) ? "visible" : "hidden" }>
             <div className={ SelectStyles.container }>

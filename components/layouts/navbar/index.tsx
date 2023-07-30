@@ -72,9 +72,9 @@ const Navbar = (): JSX.Element => {
                 }) }
             </ul>
             <div className={ NavbarStyles.actions }>
-                <Select options={ locales } defaultValue={ locale }/>
+                <Select options={ locales } defaultValue={ locale } ariaLabel={ t("navbarLanguageSwitchAriaLabel") }/>
                 <LinkButton classList="primary circled" href="/login" icon="fa-solid fa-user" ariaLabel={ t("navbarLoginAriaLabel") }/>
-                <LinkButton classList="primary" href="/onboarding" text={ t("navbarSignUpLink") } ariaLabel={ t("navbarSignUpAriaLabel") }/>
+                <LinkButton classList="primary" href="/onboarding" text={ t("navbarSignUpLink") }/>
             </div>
         </div>
     </nav>;

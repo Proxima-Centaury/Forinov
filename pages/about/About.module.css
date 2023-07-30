@@ -60,6 +60,10 @@
     display: flex;
     flex-direction: column;
 }
+.containerTitle > [class*="action"] {
+    width: fit-content;
+    margin: var(--space-24) auto 0px auto;
+}
 .containerTitle > h1 {
     font-size: 56px;
     font-family: Nunito Sans;
@@ -94,33 +98,6 @@
     font-size: 21px;
     text-align: center;
     color: var(--perfect-white-color);
-}
-.containerTitle > h3 + p + [class*="action"] {
-    margin: var(--space-24) auto 0px auto;
-    width: fit-content;
-}
-.containerTitle > h4 {
-    font-family: Nunito Sans;
-    font-size: 42px;
-    font-weight: 700;
-    text-align: left;
-}
-.containerTitle > h5 {
-    font-family: Nunito Sans;
-    font-size: 42px;
-    font-weight: 700;
-    text-align: left;
-}
-.containerTitle > h6 {
-    font-family: Nunito Sans;
-    font-size: 42px;
-    font-weight: 700;
-    text-align: left;
-}
-.containerTitle > h6 + p {
-    font-family: Nunito Sans;
-    font-size: 21px;
-    text-align: left;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Header */

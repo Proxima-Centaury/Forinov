@@ -56,6 +56,60 @@
 .carousel > [class*="actions"] {
 	bottom: -16px;
 }
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Carousel ( Infinite ) */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.infinite {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	max-width: calc(15 * 160px);
+	height: calc(80px + (2 * 48px));
+	padding: 48px 0px;
+}
+.infinite::before,
+.infinite::after {
+	width: 50px;
+	height: 100%;
+	position: absolute;
+	content: "";
+	z-index: 1;
+}
+.infinite::before {
+	left: 0px;
+	background: linear-gradient(-90deg, #00000000 0%, var(--background-main-color) 80%);
+}
+.infinite::after {
+	right: 0px;
+	background: linear-gradient(90deg, #00000000 0%, var(--background-main-color) 80%);
+}
+.firstCopy,
+.secondCopy {
+	display: flex;
+	grid-gap: 16px;
+	gap: 16px;
+	position: absolute;
+}
+.firstCopy {
+	animation: scroll1 10s linear infinite;
+}
+.secondCopy {
+	animation: scroll2 10s linear infinite;
+}
+@keyframes scroll1 {
+	0% {
+		transform: translateX(0);
+	} 100% {
+		transform: translateX(calc((-160px - 16px) * 14));
+	}
+}
+@keyframes scroll2 {
+	0% {
+		transform: translateX(calc((160px + 16px) * 14));
+	} 100% {
+		transform: translateX(0);
+	}
+}
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Screen */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -63,7 +117,6 @@
 	border: var(--border-1);
 	border-width: var(--space-16);
 	border-radius: var(--radius-15);
-	box-shadow: var(--box-shadow);
 	overflow: hidden;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -93,7 +146,15 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: var(--space-16) 0px;
+	margin: var(--space-16) 0px 0px 0px;
+	padding: var(--space-16) 0px 0px 0px;
+	border: var(--border-3);
+	border-color: var(--background-private-color);
+	border-radius: var(--radius-15);
+	background-color: var(--background-private-color);
+}
+.actions:empty {
+	display: none;
 }
 .actions > * + * {
 	margin: var(--space-16) 0px 0px 0px;
@@ -106,6 +167,9 @@
 	justify-content: center;
 	align-items: center;
 }
+.controls:only-child {
+	padding: 0px 0px var(--space-16) 0px;
+}
 .controls > * + * {
 	margin: 0px 0px 0px var(--space-8);
 }
@@ -117,6 +181,9 @@
 	justify-content: center;
 	align-items: center;
 }
+.navigation:last-child {
+	padding: 0px 0px var(--space-16) 0px;
+}
 .navigation > * + * {
 	margin: 0px 0px 0px var(--space-8);
 }
@@ -127,9 +194,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	min-width: 32px;
-	width: 32px;
-	max-width: 32px;
+	min-width: var(--space-32);
+	width: var(--space-32);
+	max-width: var(--space-32);
 	min-height: var(--space-8);
 	height: var(--space-8);
 	max-height: var(--space-8);
@@ -140,6 +207,21 @@
 	width: 100%;
 	height: 100%;
 	padding: 0px;
+}
+@media screen and (max-width: 576px) {
+	.bar {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-width: var(--space-16);
+		width: var(--space-16);
+		max-width: var(--space-16);
+		min-height: var(--space-16);
+		height: var(--space-16);
+		max-height: var(--space-16);
+		border-radius: var(--space-16);
+		box-shadow: var(--box-shadow);
+	}
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Dot */
@@ -170,7 +252,42 @@
 	flex-wrap: wrap;
 	width: 100%;
 	padding: 0px 0px var(--space-16) var(--space-16);
+	border-radius: 0px 0px var(--radius-10) var(--radius-10);
+	background-color: var(--background-sub-color);
+}
+@media screen and (max-width: 576px) {
+	.links {
+		flex-direction: column;
+		justify-content: center;
+		padding: 0px var(--space-16) var(--space-16) var(--space-16);
+	}
 }
 .links > * {
 	margin: var(--space-16) var(--space-16) 0px 0px;
+}
+@media screen and (max-width: 576px) {
+	.links > * {
+		margin: var(--space-16) 0px 0px 0px;
+	}
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Logo */
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    width: max-content;
+	min-width: 160px;
+	width: 160px;
+	max-width: 160px;
+	height: 80px;
+    max-height: 80px;
+	border-radius: 100px;
+	background-color: var(--background-sub-color);
+	box-shadow: var(--box-shadow);
+}
+.logo > img {
+	object-fit: scale-down;
+	border-radius: 100px;
 }

@@ -172,7 +172,7 @@ const Home = (params: TPage): JSX.Element => {
 					<div className={ HomeStyles.containerTitle }>
 						<h4>{ t("homeLatestStartupsTitle") }</h4>
 					</div>
-					<DefaultCarousel items={ startups } itemsType="startups" navigation="bar" links/>
+					<DefaultCarousel items={ startups } itemsType="startups" navigation="bar" controls indicators links/>
 					<div className={ HomeStyles.containerTitle }>
 						<h5>{ t("homeStartupsCategoriesTitle", { startups: startupsTotal, categories: startupsCategories }) }</h5>
 					</div>
@@ -185,7 +185,7 @@ const Home = (params: TPage): JSX.Element => {
 					<div className={ HomeStyles.containerTitle }>
 						<h6>{ t("homeLatestOpportunitiesTitle") }</h6>
 					</div>
-					<DefaultCarousel items={ opportunities } itemsType="opportunities" navigation="bar" links/>
+					<DefaultCarousel items={ opportunities } itemsType="opportunities" navigation="bar" controls indicators links/>
 				</div>
 			</div>
 			<div className={ HomeStyles.mainContainer }>
@@ -217,7 +217,7 @@ const Home = (params: TPage): JSX.Element => {
 					<div className={ HomeStyles.containerTitle }>
 						<h6>{ t("homeArticlesTitle", { company: "Forinov" }) }</h6>
 					</div>
-					<DefaultCarousel items={ articles } itemsType="articles" navigation="bar" gradient="sub"/>
+					<DefaultCarousel items={ articles } itemsType="articles" navigation="bar" gradient="sub" controls indicators/>
 				</div>
 			</div>
 		</div>

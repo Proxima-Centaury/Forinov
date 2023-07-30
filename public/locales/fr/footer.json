@@ -1,6 +1,8 @@
 {
     "footerMainText": "{{ company }} connecte startups, entreprises et partenaires pour matcher l'offre et le besoin d'innovation.",
     "footerLogoAlternativeText": "Logo de l'entreprise du nom de {{ company }}.",
+    "footerTwitterLinkAriaLabel": "Liens vers la page profil Twitter de {{ company }}.",
+    "footerLinkedInLinkAriaLabel": "Liens vers la page profil LinkedIn de {{ company }}.",
     "footerHelpLink": "Aide et support",
     "footerSecondSectionTitle": "Nos offres",
     "footerThirdSectionTitle": "{{ company }}",

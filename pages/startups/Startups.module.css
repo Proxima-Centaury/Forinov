@@ -34,28 +34,6 @@
     border-radius: 0px;
     background-color: var(--background-main-color);
 }
-.mainContainer:nth-of-type(5) {
-    border-radius: 0px 100px 0px 100px;
-    background-color: var(--background-private-color);
-}
-.mainContainer:nth-of-type(6) {
-    border-radius: 0px 0px 100px 0px;
-    background-color: var(--background-main-color);
-}
-.mainContainer:nth-of-type(6)::before {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    content: "";
-    background-color: var(--background-sub-color);
-    z-index: -1;
-}
-.mainContainer:nth-of-type(7) {
-    border-radius: 100px 0px 0px 0px;
-    background-color: var(--background-sub-color);
-}
 @media screen and (max-width: 576px) {
     .mainContainer {
         padding: 0px;
@@ -64,22 +42,13 @@
         border-radius: 50px 0px 50px 0px;
     }
     .mainContainer:nth-of-type(2) {
-        border-radius: 50px 0px 0px 0px;
+        border-radius: 50px 0px 0px 50px;
     }
 	.mainContainer:nth-of-type(3) {
-        border-radius: 0px 50px 0px 50px;
+        border-radius: 0px 50px 50px 0px;
     }
 	.mainContainer:nth-of-type(4) {
         border-radius: 0px;
-    }
-	.mainContainer:nth-of-type(5) {
-        border-radius: 0px 50px 0px 50px;
-    }
-	.mainContainer:nth-of-type(6) {
-        border-radius: 0px 0px 50px 0px;
-    }
-	.mainContainer:nth-of-type(7) {
-        border-radius: 50px 0px 0px 0px;
     }
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -88,6 +57,10 @@
 .containerTitle {
     display: flex;
     flex-direction: column;
+}
+.containerTitle > [class*="action"] {
+    width: fit-content;
+    margin: var(--space-24) auto 0px auto;
 }
 .containerTitle > h1 {
     font-family: Nunito Sans;
@@ -121,13 +94,18 @@
     font-family: Nunito Sans;
     font-size: 42px;
     font-weight: 700;
-    text-align: left;
+    text-align: center;
 }
 .containerTitle > h5 {
     font-family: Nunito Sans;
     font-size: 42px;
     font-weight: 700;
-    text-align: left;
+    text-align: center;
+}
+.containerTitle > h5 + p {
+    font-family: Nunito Sans;
+    font-size: 21px;
+    text-align: center;
 }
 .containerTitle > h6 {
     font-family: Nunito Sans;
@@ -377,4 +355,83 @@
     .howItWorksStepText > p {
         text-align: center;
     }
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Badges */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.badges {
+    display: flex;
+    flex: 1;
+}
+@media screen and (max-width: 768px) {
+    .badges {
+        flex-direction: column;
+    }
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Badge */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+@media screen and (max-width: 768px) {
+    .badge + .badge {
+        margin: var(--space-24) 0px 0px 0px;
+    }
+}
+.badge > i {
+    min-width: 128px;
+    width: 128px;
+    max-width: 128px;
+    min-height: 128px;
+    height: 128px;
+    max-height: 128px;
+    position: relative;
+    font-size: 60px;
+    color: var(--logo-orange-color);
+    z-index: 1;
+}
+.badge > i::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: calc(128px / 2);
+    background-color: var(--background-sub-color);
+    box-shadow: var(--box-shadow);
+}
+.badge > i::after {
+    width: calc(100% + var(--space-32));
+    height: calc(100% + var(--space-32));
+    position: absolute;
+    top: -16px;
+    left: -16px;
+    content: "";
+    background-color: var(--light-red-color);
+    z-index: -1;
+}
+.badge > p {
+    margin: var(--space-16) 0px 0px 0px;
+    text-align: center;
+}
+.badge > p:first-of-type {
+    font-family: Nunito Sans;
+    font-size: 32px;
+    font-weight: 700;
+}
+.badge > p:last-of-type {
+    padding: 0px var(--space-16);
+}
+.badge > p:last-of-type,
+.badge > p:last-of-type > [class*="action"] > span {
+    font-size: 16px;
+}
+.badge > [class*="line"] {
+    position: absolute;
+    top: calc((128px / 2) - var(--space-16));
+    background-color: var(--logo-orange-color);
 }

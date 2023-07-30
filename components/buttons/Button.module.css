@@ -459,8 +459,12 @@ nav .action:not(.option).ignore.active > span {
 /* No Uppercase */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .action.noUppercase {
-    display: inline-flex;
+    display: inline;
+    white-space: inherit;
 }
 .action.noUppercase > span {
     text-transform: initial;
+    white-space: inherit;
+    text-overflow: inherit;
+    overflow: inherit;
 }

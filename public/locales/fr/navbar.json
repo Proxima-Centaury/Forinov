@@ -1,4 +1,6 @@
 {
+    "navbarLanguageSwitchAriaLabel": "Sélectionneur de langue.",
+    "navbarLoginAriaLabel": "Lien vers la page de connexion.",
     "navbarSignUpLink": "M'inscrire",
     "navbarStartupsMenuItemTitle": "Startups",
     "navbarStartupsLink": "Comment ça marche ?",

@@ -33,8 +33,8 @@ const Footer = (params: TFooter): JSX.Element => {
                     <CustomImage src="/assets/logo.ico" alt={ t("footerLogoAlternativeText", { company: "Forinov" }) }/>
                     <p>{ t("footerMainText", { company: "Forinov" }) }</p>
                     <div className={ FooterStyles.socials }>
-                        <LinkButton classList="link" href="https://twitter.com/Forinov1" icon="fa-brands fa-twitter" locale={ locale }/>
-                        <LinkButton classList="link" href="https://www.linkedin.com/company/forinov" icon="fa-brands fa-linkedin" locale={ locale }/>
+                        <LinkButton classList="link" href="https://twitter.com/Forinov1" icon="fa-brands fa-twitter" locale={ locale } ariaLabel={ t("footerTwitterLinkAriaLabel", { company: "Forinov" }) }/>
+                        <LinkButton classList="link" href="https://www.linkedin.com/company/forinov" icon="fa-brands fa-linkedin" locale={ locale } ariaLabel={ t("footerLinkedInLinkAriaLabel", { company: "Forinov" }) }/>
                     </div>
                     <LinkButton classList="link" href="/contact" text={ t("footerHelpLink") } locale={ locale }/>
                     <p>© Forinov { new Date().getFullYear() }</p>

@@ -12,6 +12,8 @@ type TCarousel = {
     itemsType?: string,
     navigation?: string,
     gradient?: "main" | "sub",
+    controls?: boolean,
+    indicators?: boolean,
     links?: boolean
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

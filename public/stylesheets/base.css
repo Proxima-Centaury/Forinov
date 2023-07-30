@@ -75,7 +75,14 @@
     --vertical-main-gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, var(--background-main-color) 80%);
     --vertical-sub-gradient-mask: linear-gradient(180deg, #FFFFFF00 0%, var(--background-sub-color) 80%);
     --gradient-ui: linear-gradient(90deg, #EC008C, #FF8336);
+    /* Sizes */
+    --size-5: 5px;
+    --size-10: 10px;
+    --size-50: 50px;
+    --size-70: 70px;
+    --size-100: 100px;
     /* Spaces */
+    --space-0: 0px;
     --space-8: 8px;
     --space-16: 16px;
     --space-24: 24px;
@@ -88,7 +95,7 @@
     --space-80: 80px;
     --space-88: 88px;
     --space-96: 96px;
-    /* Borders */
+    /* Corners */
     --radius-5: 5px;
     --radius-10: 10px;
     --radius-15: 15px;
@@ -109,6 +116,31 @@
     --radius-90: 90px;
     --radius-95: 95px;
     --radius-100: 100px;
+    /* Fonts */
+    --font-14: 14px;
+    --font-16: 16px;
+    --font-18: 18px;
+    --font-20: 20px;
+    --font-22: 22px;
+    --font-24: 24px;
+    --font-26: 26px;
+    --font-28: 28px;
+    --font-30: 30px;
+    --font-32: 32px;
+    --font-34: 34px;
+    --font-36: 36px;
+    --font-38: 38px;
+    --font-40: 40px;
+    --font-42: 42px;
+    --font-44: 44px;
+    --font-46: 46px;
+    --font-48: 48px;
+    --font-50: 50px;
+    --font-52: 52px;
+    --font-54: 54px;
+    --font-56: 56px;
+    --font-58: 58px;
+    --font-60: 60px;
     /* Breakpoints */
     --xs: 320px;
     --sm: 576px;
@@ -122,8 +154,8 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 * {
     box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
+    margin: var(--space-0);
+    padding: var(--space-0);
     position: relative;
     font-family: "Open Sans";
     color: var(--text-main-color);
@@ -133,7 +165,7 @@
     background: none;
     scroll-behavior: smooth;
     outline: none;
-    font-size: 14px;
+    font-size: var(--font-14);
     -webkit-tap-highlight-color: transparent;
 }
 *::placeholder {
@@ -181,7 +213,7 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin: 70px 0px 0px 0px;
+    margin: var(--size-70) var(--space-0) var(--space-0) var(--space-0); /* Navbar's height */
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -189,7 +221,7 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin: 0px -8px 0px 0px; /* Fixes the gap caused by the scrollbar */
+    margin: var(--space-0) calc(var(--space-8 * -1)) var(--space-0) var(--space-0); /* Fixes the gap caused by the scrollbar */
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Boxed Content */
@@ -199,7 +231,7 @@ body {
     flex-direction: column;
     width: 100%;
     flex: 1;
-    margin: 0px auto;
+    margin: var(--space-0) auto;
     padding: var(--space-16);
     border-radius: var(--radius-15);
     z-index: 1;
@@ -220,7 +252,7 @@ body {
     grid-template-columns: repeat(1, minmax(0, 1fr));
     grid-template-rows: repeat(1, minmax(0, 1fr));
     width: 100%;
-    padding: var(--space-16) var(--space-16) 0px 0px;
+    padding: var(--space-16) var(--space-16) var(--space-0) var(--space-0);
 }
 .twoColumns {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -261,7 +293,7 @@ body {
 .grid > * {
     justify-self: center;
     width: calc(100% - var(--space-16));
-    margin: 0px 0px var(--space-16) var(--space-16);
+    margin: var(--space-0) var(--space-0) var(--space-16) var(--space-16);
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Custom Tool Tips */
@@ -291,7 +323,6 @@ body {
     bottom: 100%;
     content: attr(data-tooltip);
     font-weight: 500;
-    font-size: 14px;
     color: var(--logo-blue-color);
     white-space: break-spaces;
     background-color: var(--background-sub-color);
@@ -299,8 +330,8 @@ body {
     box-shadow: var(--box-shadow);
 }
 [data-type="tooltip"]:after {
-    width: 0px;
-    height: 0px;
+    width: var(--space-0);
+    height: var(--space-0);
     bottom: calc(100% - var(--space-8));
     content: "";
 	border-top: var(--space-8) solid var(--logo-blue-color); 
