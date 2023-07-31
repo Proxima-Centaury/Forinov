@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -97,9 +97,10 @@ const About = (params: TPage): JSX.Element => {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) => {
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+	const i18next = require("@project/next-i18next.config");
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "about", "navbar", "footer", "common" ], require("@project/next-i18next.config"))),
+			...(await serverSideTranslations(locale || "fr", [ "about", "navbar", "footer", "common" ], i18next)),
 			locales
 		}
 	};

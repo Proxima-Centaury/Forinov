@@ -28,7 +28,11 @@ const formatGetLandingOpportunities = (response: any): object => {
         tags: opportunity?.TAGS?.split(",").filter((tag: string) => tag.trim().length > 0) || [],
         remainingTime: opportunity?.REMAINING.split(",").map((value: string) => parseInt(value)) || [ 0, 0, 0 ],
         title: opportunity?.TITLE || null,
-        url: `/directories/opportunities/${ formatForUrl(opportunity?.TYPE[0]?.NAME) }_${ opportunity?.TYPE[0]?.ID }/${ formatForUrl(opportunity?.TITLE) }_${ opportunity?.ID }`
+        url: ((opportunity): string => {
+            const opportunityCategorySegment: string = `${ formatForUrl(opportunity?.TYPE[0]?.NAME) }_${ opportunity?.TYPE[0]?.ID }`;
+            const opportunityPageSegment: string = `${ formatForUrl(opportunity?.TITLE) }_${ opportunity?.ID }`;
+            return `/opportunities/directory/${ opportunityCategorySegment }/${ opportunityPageSegment }`;
+        })(opportunity)
     }));
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

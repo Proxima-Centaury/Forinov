@@ -2,8 +2,8 @@
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { useRouter } from "next/router";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import api from "@classes/api";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
@@ -16,8 +16,8 @@ import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import DefaultCarousel from "@carousels/defaultCarousel";
 import Testimonials from "@contents/testimonials";
+import DefaultCarousel from "@carousels/defaultCarousel";
 import CustomImage from "@contents/customImage";
 import LinkButton from "@buttons/linkButton";
 import LineSeparator from "@separators/lineSeparator";
@@ -69,7 +69,9 @@ const Home = (params: TPage): JSX.Element => {
 								{ homeHeaderLinks.map(({ classList, href, icon, text }: TButton, key: number) => {
 									const translatedText = (text) ? t(text) : undefined;
 									const dynamicParams = { classList, href, icon, text: translatedText };
-									return <LinkButton key={ key } { ...dynamicParams }/>;
+									return <Fragment key={ key }>
+										<LinkButton { ...dynamicParams }/>
+									</Fragment>;
 								}) }
 							</div>
 						</div>
@@ -179,7 +181,9 @@ const Home = (params: TPage): JSX.Element => {
 					<div className={ HomeStyles.startupsCategoriesSection }>
 						{ categories?.startups.slice(0, 9).map((category: any, key: number) => {
 							const url = `/directories/startups/${ formatForUrl(category.name) }_${ category.id }`;
-							return (category.name) ? <LinkButton key={ key } classList="tertiary" href={ url } text={ category.name }/> : null;
+							return (category.name) ? <Fragment key={ key }>
+								<LinkButton classList="tertiary" href={ url } text={ category.name }/>
+							</Fragment> : null;
 						}) }
 						<LinkButton classList="link" href="/startups/directory" text={ t("common:seeMoreLink") }/>
 					</div>
@@ -204,7 +208,9 @@ const Home = (params: TPage): JSX.Element => {
 						{ homeStructuresLinks.map(({ classList, href, text }: TButton, key: number) => {
 							const translatedText = (text) ? t(text) : undefined;
 							const dynamicParams = { classList, href, text: translatedText };
-							return <LinkButton key={ key } { ...dynamicParams }/>;
+							return <Fragment key={ key }>
+								<LinkButton { ...dynamicParams }/>
+							</Fragment>;
 						}) }
 					</div>
 				</div>
@@ -229,9 +235,10 @@ const Home = (params: TPage): JSX.Element => {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) => {
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+	const i18next = require("@project/next-i18next.config");
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "home", "navbar", "footer", "common" ], require("@project/next-i18next.config"))),
+			...(await serverSideTranslations(locale || "fr", [ "home", "navbar", "footer", "common" ], i18next)),
 			locales,
 			landing: await api.getLanding("next", "Landing", locale),
 			opportunities: await api.getLandingOpportunities("next", "Landing", locale),

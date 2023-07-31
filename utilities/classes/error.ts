@@ -5,20 +5,19 @@ import logger from "@classes/logger";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-
+import type { TLog } from "@typescript/types/TLog";
+import type { TError } from "@typescript/types/TError";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Error */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 class Error {
-    private _types: any[] = [];
-    private _errors: any[] = [ { code: null, message: null } ];
-    constructor() {
-        this.setTypes(TypeError, SyntaxError, ReferenceError);
-    };
+    private _error: TError = { code: 0, message: "" };
+    private _lastLog: TLog = { log: "", stack: { cause: "", error: { code: 0, message: "" } }, timestamp: 0 };
+    constructor() {};
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     /* Initiator */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
-    public sendFeedback = (type?: string, sourceParameters?: any): any | boolean => {
+    public reportError = (type?: string, sourceParameters?: any): any | boolean => {
         switch(type) {
             case "API":
                 return this._generateAPIFeedback(sourceParameters);
@@ -33,43 +32,46 @@ class Error {
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     /* Feedbacks */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
-    private _generateAPIFeedback = ({ query, expectedParameters, givenParameters, url }: any) => {
+    private _generateAPIFeedback = ({ query, expectedParameters, givenParameters, url }: any): TLog => {
         logger.initiateLog("logAPIError", { query, expectedParameters, givenParameters, url });
-        this.setErrors([ { code: 400, message: "Error occured due to missing parameters in client side." } ]);
-        return { code: 400, errors: this.getErrors() };
+        this.setError({ code: 400, message: "Error occured due to missing parameters in client side." });
+        this.setLastLog({ log: "", stack: { cause: "", error: this.getError() }, timestamp: new Date().getTime() });
+        return this.geLasttLog();
     };
-    private _generateDisabledAPIFeedback = ({ query, expectedParameters, givenParameters, url }: any) => {
+    private _generateDisabledAPIFeedback = ({ query, expectedParameters, givenParameters, url }: any): TLog => {
         logger.initiateLog("logDisabledAPIError", { query, expectedParameters, givenParameters, url });
-        this.setErrors([ { code: 400, message: "Error occured due to disabled API class, enable it by using api.setEnabled(true)." } ]);
-        return { code: 400, errors: this.getErrors() };
+        this.setError({ code: 400, message: "Error occured due to disabled API class, enable it by using api.setEnabled(true)." });
+        this.setLastLog({ log: "", stack: { cause: "", error: this.getError() }, timestamp: new Date().getTime() });
+        return this.geLasttLog();
     };
-    private _generateCallFeedback = ({ query, expectedParameters, givenParameters, url }: any) => {
+    private _generateCallFeedback = ({ query, expectedParameters, givenParameters, url }: any): TLog => {
         logger.initiateLog("logCallError", { query, expectedParameters, givenParameters, url });
-        this.setErrors([ { code: 500, message: "Error occured due to JSON Syntax error on server side." } ]);
-        return { code: 500, errors: this.getErrors() };
+        this.setError({ code: 500, message: "Error occured due to JSON Syntax error on server side." });
+        this.setLastLog({ log: "", stack: { cause: "", error: this.getError() }, timestamp: new Date().getTime() });
+        return this.geLasttLog();
     };
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     /* Getters */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
-    public getTypes = (): any[] => {
-        return this._types;
+    public getError = (): TError => {
+        return this._error;
     };
-    public getErrors = (): any[] => {
-        return this._errors;
+    public geLasttLog = (): TLog => {
+        return this._lastLog;
     };
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     /* Setters */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
-    public setTypes = (...types: any[]): boolean => {
-        if(types.length > 0) {
-            this._types = types;
+    public setError = (error: TError): boolean => {
+        if(error) {
+            this._error = error;
             return true;
         };
         return false;
     };
-    public setErrors = (...errors: any[]): boolean => {
-        if(errors.length > 0) {
-            this._errors = errors;
+    public setLastLog = (lastLog: TLog): boolean => {
+        if(lastLog) {
+            this._lastLog = lastLog;
             return true;
         };
         return false;

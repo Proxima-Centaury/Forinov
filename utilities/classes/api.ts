@@ -36,7 +36,7 @@ class API {
                 const givenParameters = parameters;
                 const url = this.getEndpoint() + "?" + this._buildParameters({ query, expectedParameters, givenParameters });
                 if(expectedParameters.length !== parameters.length) {
-                    return error.sendFeedback("API", { query, expectedParameters, givenParameters, url });
+                    return error.reportError("API", { query, expectedParameters, givenParameters, url });
                 };
                 const response = await this._call({ query, expectedParameters, givenParameters, url });
                 return (response.code) ? response : this._formatResponse(query[0], response);
@@ -61,23 +61,19 @@ class API {
     };
     private _call = async ({ query, expectedParameters, givenParameters, url }: any) => {
         if(!this.getEnabled()) {
-            return error.sendFeedback("DisabledAPI", { query, expectedParameters, givenParameters, url });
+            return error.reportError("DisabledAPI", { query, expectedParameters, givenParameters, url });
         } else {
             try {
                 logger.initiateLog("logAPICall", { query, givenParameters, url });
                 const promise = await fetch(url);
                 return await promise.json();
             } catch(catchedError: unknown) {
-                // const errorTypes = error.getTypes();
-                // errorTypes.forEach((errorType: unknown) => {
-                //     switch(errorType) {
-                //         case TypeError :
-                //         case SyntaxError :
-                //         case ReferenceError :
-                //         default :
-                //     };
-                // });
-                return error.sendFeedback("Call", { query, expectedParameters, givenParameters, url });
+                if(catchedError instanceof Error) {
+                    const { cause } = catchedError;
+                    const code = cause
+                    console.log(cause);
+                };
+                return error.reportError("Call", { query, expectedParameters, givenParameters, url });
             };
         };
     };

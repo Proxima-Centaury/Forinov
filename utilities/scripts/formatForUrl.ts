@@ -2,14 +2,10 @@
 /* Format For Url */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const formatForUrl = (name: string): string | boolean => {
-    if(name) {
-        name = name.toLowerCase().trim();
-        const characters = [ "/", "&", " - ", " ", " _ ", "_" ];
-        characters.forEach((character) => name = name.replaceAll(character, "-"));
-        return name;
-    } else {
-        return false;
-    };
+    name = (name || "").toLowerCase().trim();
+    const characters = [ "/", "&", " - ", " ", " _ ", "_" ];
+    characters.forEach((character) => name = name.replaceAll(character, "-"));
+    return name;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */

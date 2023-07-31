@@ -10,7 +10,7 @@ import type { GetServerSideProps } from "next";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import { getRouteId } from "@scripts/getRouteId";
+import { extractId } from "@scripts/extractId";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Page */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -20,15 +20,17 @@ import Deals from "@pages/deals";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const getServerSideProps: GetServerSideProps = async ({ res, query, locale, locales }) => {
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-    const { category, subcategory } = query;
+	const i18next = require("@project/next-i18next.config");
+    const { category, subcategory, page } = query;
     const searchEngineFilters = {
         categories: 5,
-        subcategories1: (category) ? getRouteId(category) : null,
-        subcategories2: (subcategory) ? getRouteId(subcategory) : null
+        subcategories1: (category) ? extractId(category) : null,
+        subcategories2: (subcategory) ? extractId(subcategory) : null,
+        page: page || 1
     };
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "common", "navbar", "footer", "deals" ])),
+			...(await serverSideTranslations(locale || "fr", [ "deals", "navbar", "footer", "common" ], i18next)),
 			locales,
             filters: await api.getPublicCommons("next", "Landing", locale),
             deals: await api.searchEngine("opportunite", searchEngineFilters, null, null, null, locale)

@@ -18,7 +18,7 @@ import type { TPage } from "@typescript/types/TPage";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Error */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Error = (params: TPage) => {
+const Error = (params: TPage): JSX.Element => {
     return <Fragment>
         <div data-page="error">
 
@@ -30,11 +30,11 @@ const Error = (params: TPage) => {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) => {
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+	const i18next = require("@project/next-i18next.config");
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "error", "navbar", "footer", "common" ], require("@project/next-i18next.config"))),
-			locales,
-
+			...(await serverSideTranslations(locale || "fr", [ "error", "navbar", "footer", "common" ], i18next)),
+			locales
 		}
 	};
 };

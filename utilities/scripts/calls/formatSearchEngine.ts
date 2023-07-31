@@ -35,7 +35,11 @@ const formatSearchEngine = (response: any): object => {
             tags: item?.TAGS?.split(",").filter((tag: string) => tag.trim().length > 0) || [],
             remainingTime: item?.REMAINING?.split(",").map((value: string) => parseInt(value)) || [ 0, 0, 0 ],
             title: item?.TITLE || null,
-            url: `/directories/opportunities/${ formatForUrl(item?.TYPE[0]?.NAME) }_${ item?.TYPE[0]?.ID }/${ formatForUrl(item?.TITLE) }_${ item?.ID }`
+            url: (() => {
+                const opportunityCategorySegment: string = `${ formatForUrl(item?.TYPE[0]?.NAME) }_${ item?.TYPE[0]?.ID }`;
+                const opportunityPageSegment: string = `${ formatForUrl(item?.TITLE) }_${ item?.ID }`;
+                return `/opportunities/directory/${ opportunityCategorySegment }/${ opportunityPageSegment }`;
+            })()
         })),
         pagination: {
             count: response[1]?.INFORMATIONS?.COUNT || 0,

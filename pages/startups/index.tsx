@@ -1,9 +1,8 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import { useRouter } from "next/router";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation, Trans } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import api from "@classes/api";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
@@ -34,7 +33,6 @@ import StartupsStyles from "@pages/startups/Startups.module.css";
 /* Startups */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const Startups = (params: TPage): JSX.Element => {
-    const router = useRouter();
 	const { t } = useTranslation("startups");
 	const { opportunities, logos } = params;
 	return <Fragment>
@@ -174,9 +172,10 @@ const Startups = (params: TPage): JSX.Element => {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) => {
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+	const i18next = require("@project/next-i18next.config");
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "startups", "navbar", "footer", "common" ], require("@project/next-i18next.config"))),
+			...(await serverSideTranslations(locale || "fr", [ "startups", "navbar", "footer", "common" ], i18next)),
 			locales,
 			landing: await api.getLanding("next", "Landing", locale),
 			opportunities: await api.getLandingOpportunities("next", "Landing", locale),

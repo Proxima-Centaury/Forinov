@@ -2,8 +2,8 @@
 /* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { useRouter } from "next/router";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Fragment, useMemo } from "react";
 import api from "@classes/api";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -26,7 +26,7 @@ import type { TPage } from "@typescript/types/TPage";
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { formatForUrl } from "@scripts/formatForUrl";
-import { getRouteId } from "@scripts/getRouteId";
+import { extractId } from "@scripts/extractId";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -47,7 +47,7 @@ const Deals = (params: TPage): JSX.Element => {
     }, [ opportunities ]);
     const dealsSubcategories = useMemo(() => {
         if(category) {
-            return dealsCategories.find((subcategory: any) => subcategory.id === getRouteId(category))?.subcategories || [];
+            return dealsCategories.find((subcategory: any) => subcategory.id === extractId(category))?.subcategories || [];
         };
         return [];
     }, [ category, dealsCategories ]);
@@ -95,16 +95,17 @@ const Deals = (params: TPage): JSX.Element => {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const getServerSideProps: GetServerSideProps = async ({ res, query, locale, locales }) => {
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+	const i18next = require("@project/next-i18next.config");
     const { category, subcategory, page } = query;
     const searchEngineFilters = {
         categories: 5,
-        subcategories1: (category) ? getRouteId(category) : null,
-        subcategories2: (subcategory) ? getRouteId(subcategory) : null,
+        subcategories1: (category) ? extractId(category) : null,
+        subcategories2: (subcategory) ? extractId(subcategory) : null,
         page: page || 1
     };
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "deals", "navbar", "footer", "common" ])),
+			...(await serverSideTranslations(locale || "fr", [ "deals", "navbar", "footer", "common" ], i18next)),
 			locales,
             filters: await api.getPublicCommons("next", "Landing", locale),
             deals: await api.searchEngine("opportunite", searchEngineFilters, null, null, null, locale)

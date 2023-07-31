@@ -17,7 +17,10 @@ const formatGetLanding = (response: any): object => {
             startups: response?.CATEGORIES?.map((category: any) => ({
                 id: parseInt(category?.ID) || null,
                 name: category?.NAME || null,
-                url: `/startups/directory/${ formatForUrl(category?.NAME) }_${ category?.ID }`
+                url: ((category): string => {
+                    const startupCategorySegment: string = `${ formatForUrl(category?.NAME) }_${ category?.ID }`;
+                    return `/startups/directory/${ startupCategorySegment }`;
+                })(category)
             })) || []
         },
         counters: {
