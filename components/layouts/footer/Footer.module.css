@@ -48,7 +48,7 @@
 .section > p:last-of-type {
     margin-top: var(--space-16);
 }
-.section > p {
+.section:not(.section:first-of-type) > p {
     font-size: 24px;
     font-weight: bold;
     font-family: "Nunito Sans";
