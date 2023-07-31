@@ -56,7 +56,7 @@ const About = (params: TPage): JSX.Element => {
             <div className={ AboutStyles.mainContainer }>
 				<div className="boxedContent">
 					<div className={ AboutStyles.containerTitle }>
-						<h3>{ t("aboutOurMissionTitle", { company: "Forinov" }) }</h3>
+						<h2>{ t("aboutOurMissionTitle", { company: "Forinov" }) }</h2>
 						<p>{ t("aboutOurMissionText") }</p>
 					</div>
 				</div>

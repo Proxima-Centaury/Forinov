@@ -75,17 +75,7 @@
         text-align: center;
     }
 }
-.containerTitle > h2 {
-	font-family: Nunito Sans;
-    font-size: 48px;
-    font-weight: 700;
-    text-align: center;
-}
-.containerTitle > h2 + p {
-	font-family: Nunito Sans;
-    font-size: 21px;
-    text-align: center;
-}
+.containerTitle > h2,
 .containerTitle > h3 {
     margin: 0px 0px var(--space-16) 0px;
 	font-size: 48px;
@@ -93,6 +83,7 @@
     text-align: center;
     color: var(--perfect-white-color);
 }
+.containerTitle > h2 + p,
 .containerTitle > h3 + p {
     font-family: Nunito Sans;
     font-size: 21px;
