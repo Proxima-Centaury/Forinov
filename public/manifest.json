@@ -1,0 +1,32 @@
+{
+    "app_name": "Forinov",
+    "background_color": "#333333",
+    "description": "Forinov PWA",
+    "display": "standalone",
+    "icons": [
+        {
+            "purpose": "any maskable",
+            "sizes": "512x512",
+            "src": "/assets/logo.png",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any maskable",
+            "sizes": "32x32",
+            "src": "/favicon.ico",
+            "type": "image/x-icon"
+        },
+        {
+            "purpose": "any maskable",
+            "sizes": "16x16",
+            "src": "/favicon.ico",
+            "type": "image/x-icon"
+        }
+    ],
+    "name": "Forinov",
+    "prefer_related_applications": "false",
+    "scope": "/",
+    "short_name": "FNV",
+    "start_url": "/",
+    "theme_color": "#F0DA7E"
+}

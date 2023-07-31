@@ -41,3 +41,5 @@ production/
 notes/
 temp/
 analyze/
+/public/sw.js*
+/public/workbox-*.js*
