@@ -40,7 +40,7 @@ const Footer = (params: TFooter): JSX.Element => {
                     <p>© Forinov { new Date().getFullYear() }</p>
                 </div>
                 { footer.map((section: TFooterSection, key: number) => <div key={ key } className={ FooterStyles.section }>
-                    <h6>{ t(section.title, { company: "Forinov" }) }</h6>
+                    <p>{ t(section.title, { company: "Forinov" }) }</p>
                     <LineSeparator/>
                     { (section.links.length > 0) ? <ul>
                         { section.links.map((link: TButton, key: number) => <li key={ key }>
