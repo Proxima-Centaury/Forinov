@@ -12,7 +12,7 @@ import ClassicButton from "@buttons/classicButton";
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { SelectType } from "@typescript/types/SelectType";
-import type { OptionType, UnkownOptionType } from "@typescript/types/OptionType";
+import type { OptionType, UnknownOptionType } from "@typescript/types/OptionType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -32,12 +32,12 @@ const Select = (params: SelectType): JSX.Element => {
     const [ selected, setSelected ] = useState<OptionType>({ id: 0, name: "", value: "" });
     const [ selectState, setSelectState ] = useState<boolean>(false);
     const memoBetterOptions = useMemo((): OptionType[] => {
-        const betterOptionsBuilder = (options: UnkownOptionType[] | string[]): OptionType[] | boolean => {
+        const betterOptionsBuilder = (options: UnknownOptionType[] | string[]): OptionType[] | boolean => {
             if(!options || options.length <= 0 || (options && !Array.isArray(options))) {
                 return false;
             };
             const betterOptions: OptionType[] = [];
-            options.map((option: UnkownOptionType | string, key: number) => {
+            options.map((option: UnknownOptionType | string, key: number) => {
                 if(typeof option === "string") {
                     (option.length > 0) ? betterOptions.push({ id: key, name: option, value: option }) : null;
                 } else {
