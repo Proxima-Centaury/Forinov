@@ -1,11 +1,17 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Types */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import type { UnknownResponseType } from "@typescript/types/ResponseType";
+import type { LogoType, UnknownLogoType } from "@typescript/types/LogoType";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Format Get Landing Logos */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const formatGetLandingLogos = (response: any): object => {
-    return Object.values(response.LOGOS).map((logo: any) => ({
-        id: parseInt(logo?.id) || null,
-        logo: logo?.logo || null,
-        name: logo?.name || null,
+const formatGetLandingLogos = (response: UnknownResponseType): LogoType[] => {
+    const logos: UnknownLogoType[] = Object.values(response?.LOGOS) || [];
+    return logos.map((logo: UnknownLogoType): LogoType => ({
+        id: parseInt(logo?.id) || 0,
+        logo: logo?.logo || "",
+        name: logo?.name || "",
     }));
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

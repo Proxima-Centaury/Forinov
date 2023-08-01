@@ -1,25 +1,31 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Types */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import type { UnknownResponseType } from "@typescript/types/ResponseType";
+import type { StartupType, UnknownStartupType } from "@typescript/types/StartupType";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { formatForUrl } from "@scripts/formatForUrl";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Format Get Landing Startups */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const formatGetLandingStartups = (response: any): object => {
-    return response.map((startup: any) => ({
-        id: parseInt(startup?.ID) || null,
-        banner: startup?.BACKGROUND || null,
+const formatGetLandingStartups = (response: UnknownResponseType[]): StartupType[] => {
+    const startups: UnknownStartupType[] = response || [];
+    return startups.map((startup: UnknownStartupType): StartupType => ({
+        id: parseInt(startup?.ID) || 0,
+        banner: startup?.BACKGROUND || "",
         category: {
-            id: parseInt(startup?.CATEGORY[0]?.ID) || null,
-            name: startup?.CATEGORY[0]?.NAME || null
+            id: parseInt(startup?.CATEGORY[0]?.ID) || 0,
+            name: startup?.CATEGORY[0]?.NAME || ""
         },
-        description: startup?.COMMENT || null,
+        description: startup?.COMMENT || "",
         location: {
-            city: startup?.TOWN || null,
-            country: startup?.COUNTRY || null
+            city: startup?.TOWN || "",
+            country: startup?.COUNTRY || ""
         },
-        logo: startup?.LOGO || null,
-        name: startup?.NAME || null,
+        logo: startup?.LOGO || "",
+        name: startup?.NAME || "",
         tags: startup?.TAGS?.split(",").filter((tag: string) => tag.trim().length > 0) || [],
         url: ((startup): string => {
             const startupCategorySegment: string = `${ formatForUrl(startup?.CATEGORY[0]?.NAME) }_${ startup?.CATEGORY[0]?.ID }`;

@@ -1,40 +1,46 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Types */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import type { ResponseType, UnknownResponseType } from "@typescript/types/ResponseType";
+import type { OpportunityType, UnknownOpportunityType } from "@typescript/types/OpportunityType";
+import type { StartupType, UnknownStartupType } from "@typescript/types/StartupType";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { formatForUrl } from "@scripts/formatForUrl";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Format Search Engine */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const formatSearchEngine = (response: any): object => {
+const formatSearchEngine = (response: UnknownResponseType): ResponseType => {
     if(response.length <= 1) {
         return {
-            items: null,
-            pagination: response[0]?.INFORMATIONS || null
+            items: [],
+            pagination: response[0]?.INFORMATIONS || {}
         };
     };
     return {
-        items: [ response[0] ].map((item: any) => ({
-            id: parseInt(item?.ID) || null,
-            banner: item?.BACKGROUND || null,
+        items: [ response[0] ].map((item: UnknownOpportunityType | UnknownStartupType): OpportunityType | StartupType => ({
+            id: parseInt(item?.ID) || 0,
+            banner: item?.BACKGROUND || "",
             category: {
-                id: parseInt(item?.TYPE[0].ID) || null,
-                name: item?.TYPE[0].NAME || null
+                id: parseInt(item?.TYPE[0].ID) || 0,
+                name: item?.TYPE[0].NAME || ""
             },
             countries: [],
             dates: {
-                end: item?.ENDINGDATE || null,
-                start: item?.STARTINGDATE || null
+                end: item?.ENDINGDATE || "0000-00-00",
+                start: item?.STARTINGDATE || "0000-00-00"
             },
-            description: item?.DESCRIPTION || null,
-            language: item?.LANGUAGE || null,
+            description: item?.DESCRIPTION || "",
+            language: item?.LANGUAGE || "",
             owner: {
-                logo: item?.OWNERLOGO || null,
-                name: item?.OWNERNAME || null
+                logo: item?.OWNERLOGO || "",
+                name: item?.OWNERNAME || ""
             },
-            privacy: item?.PRIVACY || null,
+            privacy: item?.PRIVACY || "",
             tags: item?.TAGS?.split(",").filter((tag: string) => tag.trim().length > 0) || [],
             remainingTime: item?.REMAINING?.split(",").map((value: string) => parseInt(value)) || [ 0, 0, 0 ],
-            title: item?.TITLE || null,
+            title: item?.TITLE || "",
             url: (() => {
                 const opportunityCategorySegment: string = `${ formatForUrl(item?.TYPE[0]?.NAME) }_${ item?.TYPE[0]?.ID }`;
                 const opportunityPageSegment: string = `${ formatForUrl(item?.TITLE) }_${ item?.ID }`;
@@ -44,7 +50,7 @@ const formatSearchEngine = (response: any): object => {
         pagination: {
             count: response[1]?.INFORMATIONS?.COUNT || 0,
             limit: response[1]?.INFORMATIONS?.LIMIT || 0,
-            message: response[1]?.INFORMATIONS?.RESULTSMESSAGE || null,
+            message: response[1]?.INFORMATIONS?.RESULTSMESSAGE || "",
             pages: response[1]?.INFORMATIONS?.PAGES || 0
         }
     };
