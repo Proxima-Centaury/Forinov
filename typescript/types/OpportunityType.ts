@@ -1,24 +1,37 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Startup Type */
+/* Opportunity Type */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-type TStartup = {
+type OpportunityType = {
     id?: number,
     banner?: string,
     category?: {
         id?: number,
         name?: string
     },
-    description?: string,
-    location?: {
-        city?: string,
-        country?: string
+    countries?: unknown[],
+    dates?: {
+        end?: string,
+        start?: string
     },
-    logo?: string,
-    name?: string,
+    description?: string,
+    language?: string,
+    owner?: {
+        logo?: string,
+        name?: string
+    },
+    privacy?: string,
+    remainingTime?: string | number[],
     tags?: string[],
+    title?: string,
     url?: string
+};
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Unknown Opportunity Type */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+type UnknownOpportunityType = {
+    [key: string]: any
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export type { TStartup };
+export type { OpportunityType, UnknownOpportunityType };

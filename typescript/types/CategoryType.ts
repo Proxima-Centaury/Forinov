@@ -1,31 +1,24 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Opportunity Type */
+/* Category Type */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-type TOpportunity = {
+type CategoryType = {
     id?: number,
-    banner?: string,
-    category?: {
-        id?: number,
-        name?: string
+    count?: number,
+    deals?: {
+        categories?: CategoryType[]
     },
-    countries?: [],
-    dates?: {
-        end?: string,
-        start?: string
-    },
-    description?: string,
-    language?: string,
-    owner?: {
-        logo?: string,
-        name?: string
-    },
-    privacy?: string,
-    tags?: string[],
-    remainingTime?: number[],
-    title?: string,
+    logo?: string,
+    name?: string,
+    subcategories?: CategoryType[],
     url?: string
+};
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Unknown Category Type */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+type UnknownCategoryType = {
+    [key: string]: any
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export type { TOpportunity };
+export type { CategoryType, UnknownCategoryType };

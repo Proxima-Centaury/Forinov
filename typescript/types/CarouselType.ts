@@ -1,22 +1,23 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TStartup } from "@typescript/types/TStartup";
-import type { TOpportunity } from "@typescript/types/TOpportunity";
+import type { LogoType } from "@typescript/types/LogoType";
+import type { StartupType } from "@typescript/types/StartupType";
+import type { OpportunityType } from "@typescript/types/OpportunityType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Carousel Type */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-type TCarousel = {
+type CarouselType = {
     classList?: string,
-    items?: TStartup[] | TOpportunity[],
-    itemsType?: string,
-    navigation?: string,
-    gradient?: "main" | "sub",
     controls?: boolean,
+    gradient?: "main" | "sub",
     indicators?: boolean,
-    links?: boolean
+    items?: LogoType[] | StartupType[] | OpportunityType[],
+    itemsType?: string,
+    links?: boolean,
+    navigation?: string
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export type { TCarousel };
+export type { CarouselType };

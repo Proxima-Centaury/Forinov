@@ -1,21 +1,47 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TButton } from "@typescript/types/TButton";
+import type { ArticleType } from "@typescript/types/ArticleType";
+import type { CategoryType } from "@typescript/types/CategoryType";
+import type { OpportunityType } from "@typescript/types/OpportunityType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Footer Type */
+/* Response Type */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-type TFooter = {
-    [key: string]: any
+type ResponseType = {
+    articles?: ArticleType[],
+    categories?: {
+        corporates?: CategoryType[],
+        opportunities?: CategoryType[],
+        partners?: CategoryType[],
+        startups?: CategoryType[]
+    },
+    counters?: {
+        corporates?: {
+            categories?: number,
+            total?: number
+        },
+        opportunities?: {
+            categories?: number,
+            total?: number
+        },
+        partners?: {
+            categories?: number,
+            total?: number
+        },
+        startups?: {
+            categories?: number,
+            total?: number
+        }
+    },
+    opportunities?: OpportunityType[]
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Footer Section Type */
+/* Unknown Response Type */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-type TFooterSection = {
-    title: string,
-    links: TButton[]
+type UnknownResponseType = {
+    [key: string]: any
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export type { TFooter, TFooterSection };
+export type { ResponseType, UnknownResponseType };

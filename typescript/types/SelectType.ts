@@ -2,23 +2,23 @@
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { MouseEventHandler } from "react";
-import type { TUnkownOption } from "@typescript/types/TOption";
+import type { UnknownOptionType } from "@typescript/types/OptionType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Select Type */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-type TSelect = {
-    options?: TUnkownOption[] | string[],
-    action?: MouseEventHandler<MouseEvent>,
-    placeholder?: string,
+type SelectType = {
+    action?: MouseEventHandler,
+    ariaLabel?: string,
     defaultValue?: number | string,
     defaultValues?: number[] | string[],
-    source?: string,
     dynamic?: boolean,
     limited?: boolean,
+    options?: UnknownOptionType[] | string[],
+    placeholder?: string,
     search?: object,
-    ariaLabel?: string
+    source?: string
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export type { TSelect };
+export type { SelectType };
