@@ -3,7 +3,7 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { MouseEventHandler, useRef, useState } from "react";
+import { useRef, useState } from "react";
 // import { NavbarInterface, NavbarMenuInterface, NavbarMenuItemInterface } from "@forinov/typescript/interfaces";
 // import { selectifyTheOptions, bindEventListeners, removeEventListeners, getTranslations } from "@forinov/scripts/utilities";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -20,7 +20,9 @@ import LinkButton from "@buttons/linkButton";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TButton } from "@typescript/types/TButton";
+import type { MouseEventHandler } from "react";
+import type { NavbarType } from "@typescript/types/NavbarType";
+import type { ButtonType } from "@typescript/types/ButtonType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -28,7 +30,7 @@ import NavbarStyles from "@layouts/navbar/Navbar.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Navbar */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Navbar = (): JSX.Element => {
+const Navbar = (params: NavbarType): JSX.Element => {
     const router = useRouter();
     const { asPath, locale, locales } = router;
     const { t } = useTranslation("navbar");
@@ -64,7 +66,7 @@ const Navbar = (): JSX.Element => {
                         { (menu.href) ? <LinkButton classList="ignore" href={ menu.href } text={ t(menu.title) } active={ isActive }/> : null }
                         { (!menu.href) ? <ClassicButton classList="ignore" text={ t(menu.title) }/> : null }
                         { (menu.links.length > 0) ? <ul className={ NavbarStyles.nestedLinks }>
-                            { menu.links.map((link: TButton, key: number) => <li key={ key }>
+                            { menu.links.map((link: ButtonType, key: number) => <li key={ key }>
                                 <LinkButton { ...link } text={ t(link?.text || "undefined") } locale={ locale } tabIndex={ -1 }/>
                             </li>) }
                         </ul> : null }

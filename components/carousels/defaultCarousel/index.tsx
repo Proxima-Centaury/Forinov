@@ -21,11 +21,11 @@ import Tooltip from "@tooltips/defaultTooltip";
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { MouseEventHandler } from "react";
-import type { TCarousel } from "@typescript/types/TCarousel";
-import type { TStartup } from "@typescript/types/TStartup";
-import type { TOpportunity } from "@typescript/types/TOpportunity";
-import type { TArticle } from "@typescript/types/TArticle";
-import type { TTestimonial } from "@typescript/types/TTestimonial";
+import type { CarouselType } from "@typescript/types/CarouselType";
+import type { StartupType } from "@typescript/types/StartupType";
+import type { OpportunityType } from "@typescript/types/OpportunityType";
+import type { ArticleType } from "@typescript/types/ArticleType";
+import type { TestimonialType } from "@typescript/types/TestimonialType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -40,10 +40,10 @@ const MemoTestimonialCard = memo(TestimonialCard);
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Default Carousel */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const DefaultCarousel = (params: TCarousel): JSX.Element => {
+const DefaultCarousel = (params: CarouselType): JSX.Element => {
     const carouselReference = useRef(null);
 	const { t } = useTranslation("common");
-    const { classList, items, itemsType, navigation, gradient, controls, indicators, links } = params;
+    const { classList, controls, gradient, indicators, items, itemsType, links, navigation } = params;
     const [ currentIndex, setCurrentIndex ] = useState(0);
     const [ pause, setPause ] = useState(false);
     const [ carouseControls, setCarouselControls ] = useState((controls) ? controls : false);
@@ -117,7 +117,7 @@ const DefaultCarousel = (params: TCarousel): JSX.Element => {
     return <div className={ CarouselStyles.container }>
         <div className={ formatedClassList } data-gradient={ (gradient) ? gradient : "main" }>
             <div className={ CarouselStyles.wrapper } ref={ carouselReference }>
-                { (Array.isArray(items)) ? items?.map((item: TStartup | TOpportunity | TArticle | TTestimonial, key: number) => {
+                { (Array.isArray(items)) ? items?.map((item: StartupType | OpportunityType | ArticleType | TestimonialType, key: number) => {
                     switch(itemsType) {
                         case "startups" :
                             return <Fragment key={ key }>

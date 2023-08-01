@@ -1,18 +1,15 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import Image from "next/image";
 import Link from "next/link";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import LineSeparator from "@separators/lineSeparator";
-import PrimaryTag from "@tags/primaryTag";
-import RemainingTime from "@contents/remainingTime";
+import CustomImage from "@contents/customImage";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TArticle } from "@typescript/types/TArticle";
+import type { ArticleType } from "@typescript/types/ArticleType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -21,11 +18,11 @@ import Tooltip from "@tooltips/defaultTooltip";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Article Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const ArticleCard = (params: TArticle) => {
+const ArticleCard = (params: ArticleType) => {
     const { banner, title, url } = params;
     return <Link className={ CardStyles.card } href={ url || "/404" }>
         <div className={ `${ CardStyles.header } ${ CardStyles.banner }` }>
-            <Image src={ banner || "/assets/placeholders/banner.png" } alt={ "" } width="490" height="150"/>
+            <CustomImage src={ banner || "/assets/placeholders/banner.png" } alt=""/>
         </div>
         <div className={ CardStyles.body }>
             <div className={ CardStyles.rightContainer }>

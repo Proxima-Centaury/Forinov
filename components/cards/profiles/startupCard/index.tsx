@@ -5,7 +5,6 @@ import { useTranslation } from "next-i18next";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import Image from "next/image";
 import Link from "next/link";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* React Components */
@@ -14,15 +13,16 @@ import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import LineSeparator from "@separators/lineSeparator";
-import Tooltip from "@tooltips/defaultTooltip";
+import CustomImage from "@contents/customImage";
 import Tags from "@tags";
 import PrimaryTag from "@tags/primaryTag";
 import SecondaryTag from "@tags/secondaryTag";
+import Tooltip from "@tooltips/defaultTooltip";
+import LineSeparator from "@separators/lineSeparator";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TStartup } from "@typescript/types/TStartup";
+import type { StartupType } from "@typescript/types/StartupType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -30,16 +30,16 @@ import CardStyles from "@cards/Card.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Startup Profile Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const StartupProfileCard = (params: TStartup) => {
+const StartupProfileCard = (params: StartupType) => {
     const { t } = useTranslation("common");
-    const { banner, category, logo, name, tags, url } = params;
+    const { id, banner, category, description, location, logo, name, tags, url } = params;
     return <Link className={ CardStyles.card } href={ url || "/404" }>
         <div className={ `${ CardStyles.header } ${ CardStyles.banner }` }>
-            <Image src={ banner || "/assets/placeholders/banner.png" } alt={ "" } width="490" height="150"/>
+            <CustomImage src={ banner || "/assets/placeholders/banner.png" } alt=""/>
         </div>
         <div className={ CardStyles.body }>
             <div className={ CardStyles.leftContainer }>
-                <Image src={ logo || "/assets/placeholders/logo.png" } alt={ "" } width="100" height="100"/>
+                <CustomImage src={ logo || "/assets/placeholders/logo.png" } alt=""/>
             </div>
             <LineSeparator classList="vertical"/>
             <div className={ CardStyles.rightContainer }>

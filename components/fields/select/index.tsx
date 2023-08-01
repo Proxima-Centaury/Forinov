@@ -11,12 +11,12 @@ import ClassicButton from "@buttons/classicButton";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TSelect } from "@typescript/types/TSelect";
-import type { TOption, TUnkownOption } from "@typescript/types/TOption";
+import type { SelectType } from "@typescript/types/SelectType";
+import type { OptionType, UnkownOptionType } from "@typescript/types/OptionType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import { isNode } from "@scripts/isNode";
+import { isNode, isString } from "@scripts/typeChecks";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -24,20 +24,20 @@ import SelectStyles from "@fields/select/Select.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Select */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Select = (params: TSelect): JSX.Element => {
+const Select = (params: SelectType): JSX.Element => {
     const router = useRouter();
     const { locale } = router;
     const selectReference = useRef(null);
-    const { options, placeholder, action, defaultValue, ariaLabel } = params;
-    const [ selected, setSelected ] = useState<TOption>({ id: 0, name: "", value: "" });
+    const { action, ariaLabel, defaultValue, defaultValues, dynamic, limited, options, placeholder, search, source } = params;
+    const [ selected, setSelected ] = useState<OptionType>({ id: 0, name: "", value: "" });
     const [ selectState, setSelectState ] = useState<boolean>(false);
-    const memoBetterOptions = useMemo((): TOption[] => {
-        const betterOptionsBuilder = (options: TUnkownOption[] | string[]): TOption[] | boolean => {
+    const memoBetterOptions = useMemo((): OptionType[] => {
+        const betterOptionsBuilder = (options: UnkownOptionType[] | string[]): OptionType[] | boolean => {
             if(!options || options.length <= 0 || (options && !Array.isArray(options))) {
                 return false;
             };
-            const betterOptions: TOption[] = [];
-            options.map((option: TUnkownOption | string, key: number) => {
+            const betterOptions: OptionType[] = [];
+            options.map((option: UnkownOptionType | string, key: number) => {
                 if(typeof option === "string") {
                     (option.length > 0) ? betterOptions.push({ id: key, name: option, value: option }) : null;
                 } else {
@@ -45,8 +45,8 @@ const Select = (params: TSelect): JSX.Element => {
                     if(typeof option === "object" && !Object(option).hasProperty("ID")) {
                         optionAsObject.id = key;
                     };
-                    optionAsObject.name = option.NAME;
-                    optionAsObject.value = option.VALUE;
+                    optionAsObject.name = (isString(option.NAME)) ? option.NAME : "";
+                    optionAsObject.value = (isString(option.VALUE)) ? option.VALUE : "";
                     betterOptions.push(optionAsObject);
                 };
             });
@@ -67,7 +67,7 @@ const Select = (params: TSelect): JSX.Element => {
     const switchSelectState = () => setSelectState(!selectState);
     const handleOutOfArea = (event: MouseEvent) => {
         if(isNode(event.target) && selectReference && selectReference.current) {
-            const target = isNode(event.target);
+            const target = event.target;
             const current: HTMLElement = selectReference.current;
             if(!current.contains(target)) {
                 setSelectState(false);
@@ -81,7 +81,7 @@ const Select = (params: TSelect): JSX.Element => {
         };
     }, []);
     useEffect(() => {
-        memoBetterOptions.map((option: TOption) => {
+        memoBetterOptions.map((option: OptionType) => {
             if(defaultValue && option.value === defaultValue) {
                 setSelected(option);
             };
@@ -92,9 +92,9 @@ const Select = (params: TSelect): JSX.Element => {
         <p className={ SelectStyles.placeholder }>{ memoPlaceholderText }</p>
         <div className={ SelectStyles.options } data-state={ (selectState) ? "visible" : "hidden" }>
             <div className={ SelectStyles.container }>
-                { (Array.isArray(memoBetterOptions)) ? memoBetterOptions.map((option: TUnkownOption, key: number) => {
-                    const isSelected = (option.value.match(/(fr|en)/i)) ? option.value === locale : option.value === selected.value;
-                    const params: TOption = { ...option, action: action, selected: isSelected };
+                { (Array.isArray(memoBetterOptions)) ? memoBetterOptions.map((option: OptionType, key: number) => {
+                    const isSelected = (option?.value?.match(/(fr|en)/i)) ? option.value === locale : option.value === selected.value;
+                    const params: OptionType = { ...option, action: action, selected: isSelected };
                     return <Option key={ key } { ...params }/>;
                 }) : null }
             </div>

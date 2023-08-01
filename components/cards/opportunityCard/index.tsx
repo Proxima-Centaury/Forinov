@@ -1,19 +1,19 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import Image from "next/image";
 import Link from "next/link";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import LineSeparator from "@separators/lineSeparator";
-import PrimaryTag from "@tags/primaryTag";
+import CustomImage from "@contents/customImage";
 import RemainingTime from "@contents/remainingTime";
+import PrimaryTag from "@tags/primaryTag";
 import Tooltip from "@tooltips/defaultTooltip";
+import LineSeparator from "@separators/lineSeparator";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TOpportunity } from "@typescript/types/TOpportunity";
+import type { OpportunityType } from "@typescript/types/OpportunityType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -21,15 +21,15 @@ import CardStyles from "@cards/Card.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Opportunity Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const OpportunityCard = (params: TOpportunity) => {
-    const { banner, category, owner, privacy, remainingTime, title, url } = params;
+const OpportunityCard = (params: OpportunityType) => {
+    const { id, banner, category, countries, dates, description, language, owner, privacy, remainingTime, tags, title, url } = params;
     return <Link className={ CardStyles.card } href={ url || "/404" }>
         <div className={ `${ CardStyles.header } ${ CardStyles.banner }` }>
-            <Image src={ banner || "/assets/placeholders/banner.png" } alt={ "" } width="490" height="150"/>
+            <CustomImage src={ banner || "/assets/placeholders/banner.png" } alt=""/>
         </div>
         <div className={ CardStyles.body }>
             <div className={ CardStyles.leftContainer }>
-                <Image src={ owner?.logo || "/assets/placeholders/logo.png" } alt={ "" } width="100" height="100"/>
+                <CustomImage src={ owner?.logo || "/assets/placeholders/logo.png" } alt=""/>
             </div>
             <LineSeparator classList="vertical"/>
             <div className={ CardStyles.rightContainer }>

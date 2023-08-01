@@ -1,16 +1,12 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Next Components */
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import Image from "next/image";
-/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import Tooltip from "@tooltips/defaultTooltip";
+import CustomImage from "@contents/customImage";
 import LineSeparator from "@separators/lineSeparator";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TTestimonial } from "@typescript/types/TTestimonial";
+import type { TestimonialType } from "@typescript/types/TestimonialType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -18,15 +14,15 @@ import CardStyles from "@cards/Card.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Testimonial Card */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const TestimonialCard = (params: TTestimonial) => {
-    const { company, job, logo, name, picture, testimonial } = params;
+const TestimonialCard = (params: TestimonialType) => {
+    const { id, company, job, logo, name, picture, testimonial } = params;
     return <div className={ CardStyles.card } data-size="smaller">
         <div className={ `${ CardStyles.header } ${ CardStyles.banner }` }>
-            <Image src={ picture || "/assets/placeholders/banner.png" } alt={ "" } width="340" height="200"/>
+            <CustomImage src={ picture || "/assets/placeholders/banner.png" } alt=""/>
         </div>
         <div className={ CardStyles.body }>
             <i className="fa-solid fa-quote-left"/>
-            <Image src={ logo || "/assets/placeholders/banner.png" } alt={ "" } width="100" height="100"/>
+            <CustomImage src={ logo || "/assets/placeholders/banner.png" } alt=""/>
             <div className={ CardStyles.rightContainer }>
                 <p className={ CardStyles.company }>{ company }</p>
                 <div className={ CardStyles.testimonial }>

@@ -1,12 +1,12 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TTooltip } from "@typescript/types/TTooltip";
+import type { TooltipType } from "@typescript/types/TooltipType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* TDefault ooltip */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const DefaultTooltip = (params: TTooltip): JSX.Element => {
-    const { children, tooltip, direction } = params;
+const DefaultTooltip = (params: TooltipType): JSX.Element => {
+    const { children, direction, tooltip } = params;
     return <div data-type="tooltip" data-tooltip={ tooltip } data-direction={ direction || "top" }>
         { children }
     </div>;

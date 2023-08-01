@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TSeparator } from "@typescript/types/TSeparator";
+import type { SeparatorType } from "@typescript/types/SeparatorType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -13,7 +13,7 @@ import SeparatorStyles from "@separators/Separator.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Line Separator */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const LineSeparator = (params: TSeparator): JSX.Element => {
+const LineSeparator = (params: SeparatorType): JSX.Element => {
     const { t } = useTranslation("common");
     const { classList } = params;
     const nextClasses = classList?.split(" ").map((cssClass: string) => SeparatorStyles[cssClass]).join(" ") || SeparatorStyles.horizontal; 

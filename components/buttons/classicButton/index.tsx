@@ -2,7 +2,7 @@
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { MouseEventHandler } from "react";
-import type { TButton } from "@typescript/types/TButton";
+import type { ButtonType } from "@typescript/types/ButtonType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -10,8 +10,8 @@ import ButtonStyles from "@buttons/Button.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Classic Action */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const ClassicButton = (params: TButton): JSX.Element => {
-    const { classList, icon, text, action, notifications, active, disabled, tabIndex, ariaLabel } = params;
+const ClassicButton = (params: ButtonType): JSX.Element => {
+    const { action, active, ariaLabel, children, classList, disabled, href, icon, locale, notifications, tabIndex, text } = params;
     const isActive = (active) ? " " + ButtonStyles.active : "";
     const isDisabled = (disabled) ? " " + ButtonStyles.disabled : "";
     const nextClasses = classList?.split(" ").map((cssClass: string) => ButtonStyles[cssClass]).join(" "); 

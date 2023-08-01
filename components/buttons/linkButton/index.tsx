@@ -5,7 +5,7 @@ import Link from "next/link";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TButton } from "@typescript/types/TButton";
+import type { ButtonType } from "@typescript/types/ButtonType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -13,8 +13,8 @@ import ButtonStyles from "@buttons/Button.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Link Action */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const LinkButton = (params: TButton): JSX.Element => {
-    const { children, classList, href, icon, text, active, disabled, tabIndex, ariaLabel, locale } = params;
+const LinkButton = (params: ButtonType): JSX.Element => {
+    const { action, active, ariaLabel, children, classList, disabled, href, icon, locale, notifications, tabIndex, text } = params;
     const isActive = (active) ? " " + ButtonStyles.active : "";
     const isDisabled = (disabled) ? " " + ButtonStyles.disabled : "";
     const nextClasses = classList?.split(" ").map((cssClass: string) => ButtonStyles[cssClass]).join(" "); 

@@ -12,8 +12,8 @@ import LineSeparator from "@separators/lineSeparator";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TFooter, TFooterSection } from "@typescript/types/TFooter";
-import type { TButton } from "@typescript/types/TButton";
+import type { FooterType, FooterSectionType } from "@typescript/types/FooterType";
+import type { ButtonType } from "@typescript/types/ButtonType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -21,11 +21,11 @@ import FooterStyles from "@layouts/footer/Footer.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Footer */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Footer = (params: TFooter): JSX.Element => {
+const Footer = (params: FooterType): JSX.Element => {
     const router = useRouter();
     const { locale } = router;
     const { t } = useTranslation("footer");
-    const footer: TFooterSection[] = require("@configurations/footer.json").sections;
+    const footer: FooterSectionType[] = require("@configurations/footer.json").sections;
     return <footer className={ FooterStyles.footer }>
         <div className="boxedContent">
             <div className={ `${ FooterStyles.sections } grid fourColumns` }>
@@ -39,11 +39,11 @@ const Footer = (params: TFooter): JSX.Element => {
                     <LinkButton classList="link" href="/contact" text={ t("footerHelpLink") } locale={ locale }/>
                     <p>© Forinov { new Date().getFullYear() }</p>
                 </div>
-                { footer.map((section: TFooterSection, key: number) => <div key={ key } className={ FooterStyles.section }>
+                { footer.map((section: FooterSectionType, key: number) => <div key={ key } className={ FooterStyles.section }>
                     <p>{ t(section.title, { company: "Forinov" }) }</p>
                     <LineSeparator/>
-                    { (section.links.length > 0) ? <ul>
-                        { section.links.map((link: TButton, key: number) => <li key={ key }>
+                    { (section) ? <ul>
+                        { section?.links?.map((link: ButtonType, key: number) => <li key={ key }>
                             <LinkButton { ...link } text={ t(link?.text || "undefined") } locale={ locale }/>
                         </li>) }
                     </ul> : null }

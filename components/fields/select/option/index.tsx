@@ -10,14 +10,14 @@ import ClassicButton from "@buttons/classicButton";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TOption } from "@typescript/types/TOption";
+import type { OptionType } from "@typescript/types/OptionType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Option = (params: TOption): JSX.Element => {
+const Option = (params: OptionType): JSX.Element => {
     const router = useRouter();
     const { asPath } = router;
-    const { id, value, name, action, selected } = params;
+    const { id, action, name, selected, value } = params;
     if(name?.match(/^(fr|en)$/i)) {
         return <LinkButton classList="ignore option" href={ asPath } text={ name.toUpperCase() } active={ selected } locale={ value }/>;
     } else {

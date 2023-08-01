@@ -105,8 +105,8 @@
     max-width: 50px;
     max-height: 50px;
     position: absolute;
-    top: calc((-50px / 2) - var(--space-16));
-    left: calc(50px + (2 * var(--space-16)));
+    top: calc((-50px / 2) - var(--space-16)) !important;
+    left: calc(50px + (2 * var(--space-16))) !important;
     border: var(--border-1);
     border-width: 5px;
     border-radius: var(--radius-25);
@@ -135,7 +135,10 @@
     max-width: max-content;
 }
 .leftContainer > img {
-    top: calc(((100px / 2) + var(--space-16)) * -1);
+    width: 100px !important;
+    height: 100px !important;
+    position: relative !important;
+    top: calc(((100px / 2) + var(--space-16)) * -1) !important;
     border: var(--border-1);
     border-width: 5px;
     border-color: var(--background-sub-color);
@@ -212,9 +215,18 @@
     padding: 0;
     border-radius: var(--radius-15) var(--radius-15) 0px 0px;
 }
+.banner > img {
+    width: 490px !important;
+    height: 150px !important;
+    position: relative !important;
+}
 .card[data-size="smaller"] > .banner {
     border-bottom: var(--border-1);
     border-width: var(--radius-15);
+}
+.card[data-size="smaller"] > .banner > img {
+    width: 340px !important;
+    height: 340px !important;
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Testimonial */

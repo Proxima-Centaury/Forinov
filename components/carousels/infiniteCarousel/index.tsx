@@ -19,7 +19,7 @@ import LinkButton from "@buttons/linkButton";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { TCarousel } from "@typescript/types/TCarousel";
+import type { CarouselType } from "@typescript/types/CarouselType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -27,10 +27,10 @@ import CarouselStyles from "@carousels/Carousel.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Infinite Carousel */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const InfiniteCarousel = (params: TCarousel): JSX.Element => {
+const InfiniteCarousel = (params: CarouselType): JSX.Element => {
     const carouselReference = useRef(null);
 	const { t } = useTranslation("common");
-    const { classList, items, itemsType, gradient, links } = params;
+    const { classList, controls, gradient, indicators, items, itemsType, links, navigation } = params;
     const nextClasses = classList?.split(" ").map((cssClass: string) => CarouselStyles[cssClass]).join(" ") || ""; 
     const formatedClassList = CarouselStyles.carousel + " " + nextClasses;
     useEffect(() => {
