@@ -3,24 +3,24 @@
 		"startups": {
 			"general": [
 				{
-					"question": "startupQuestion1",
-					"answer": "startupAnswer1"
+					"question": "startupsQuestion1",
+					"answer": "startupsAnswer1"
 				},
 				{
-					"question": "startupQuestion2",
-					"answer": "startupAnswer2"
+					"question": "startupsQuestion2",
+					"answer": "startupsAnswer2"
 				},
 				{
-					"question": "startupQuestion3",
-					"answer": "startupAnswer3"
+					"question": "startupsQuestion3",
+					"answer": "startupsAnswer3"
 				},
 				{
-					"question": "startupQuestion4",
-					"answer": "startupAnswer4"
+					"question": "startupsQuestion4",
+					"answer": "startupsAnswer4"
 				},
 				{
-					"question": "startupQuestion5",
-					"answer": "startupAnswer5"
+					"question": "startupsQuestion5",
+					"answer": "startupsAnswer5"
 				}
 			]
 		},
