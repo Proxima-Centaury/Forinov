@@ -15,11 +15,11 @@ import { Fragment } from "react";
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { GetServerSideProps } from "next";
-import type { TPage } from "@typescript/types/TPage";
+import type { PageType } from "@typescript/types/PageType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Blog */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Blog = (params: TPage): JSX.Element => {
+const Blog = (params: PageType): JSX.Element => {
 	const { t } = useTranslation("blog");
     return <Fragment>
 		<Head>
