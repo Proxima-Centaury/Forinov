@@ -12,8 +12,8 @@ import { formatForUrl } from "@scripts/formatForUrl";
 /* Format Get Landing */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const formatGetLanding = (response: UnknownResponseType): ResponseType => {
-    const articles: UnknownArticleType[] = response?.BLOG || [];
-    const categories: UnknownCategoryType[] = response?.CATEGORIES || [];
+    const articles: UnknownArticleType[] = (response instanceof Error) ? [] : response.BLOG;
+    const categories: UnknownCategoryType[] = (response instanceof Error) ? [] : response.CATEGORIES;
     return {
         request: {},
         response: {
@@ -23,7 +23,7 @@ const formatGetLanding = (response: UnknownResponseType): ResponseType => {
                 title: article?.NAME || "",
                 url: article?.URL || ""
             })) || [],
-            categories: {
+            filters: {
                 startups: categories.map((category: UnknownCategoryType): CategoryType => ({
                     id: parseInt(category?.ID) || 0,
                     name: category?.NAME || "",

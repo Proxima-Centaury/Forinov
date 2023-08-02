@@ -11,11 +11,11 @@ import { formatForUrl } from "@scripts/formatForUrl";
 /* Format Get Landing Opportunities */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const formatGetLandingOpportunities = (response: UnknownResponseType): ResponseType => {
-    const opportunities: UnknownOpportunityType[] = Object.values(response?.PROJECT) || [];
+    const opportunities: UnknownOpportunityType[] = (response instanceof Error) ? [] : Object.values(response.PROJECT);
     return {
         request: {},
         response: {
-            items: opportunities.map((opportunity: UnknownOpportunityType): OpportunityType => ({
+            opportunities: opportunities.map((opportunity: UnknownOpportunityType): OpportunityType => ({
                 id: parseInt(opportunity?.ID) || 0,
                 banner: opportunity?.BACKGROUND || "",
                 category: {

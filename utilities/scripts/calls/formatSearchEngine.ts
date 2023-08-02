@@ -12,11 +12,12 @@ import { formatForUrl } from "@scripts/formatForUrl";
 /* Format Search Engine */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const formatSearchEngine = (response: UnknownResponseType): ResponseType => {
+    const deals = (response instanceof Error) ? [] : [ response[0] ];
     if(response.length <= 1) {
         return {
             request: {},
             response: {
-                items: [],
+                deals: [],
                 pagination: response[0]?.INFORMATIONS || {}
             }
         };
@@ -24,7 +25,7 @@ const formatSearchEngine = (response: UnknownResponseType): ResponseType => {
     return {
         request: {},
         response: {
-            items: [ response[0] ].map((item: UnknownOpportunityType | UnknownStartupType): OpportunityType | StartupType => ({
+            deals: deals.map((item: UnknownOpportunityType | UnknownStartupType): OpportunityType | StartupType => ({
                 id: parseInt(item?.ID) || 0,
                 banner: item?.BACKGROUND || "",
                 category: {

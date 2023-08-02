@@ -7,11 +7,11 @@ import type { LogoType, UnknownLogoType } from "@typescript/types/LogoType";
 /* Format Get Landing Logos */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const formatGetLandingLogos = (response: UnknownResponseType): ResponseType => {
-    const logos: UnknownLogoType[] = Object.values(response?.LOGOS) || [];
+    const logos: UnknownLogoType[] = (response instanceof Error) ? [] : Object.values(response.LOGOS);
     return {
         request: {},
         response: {
-            items: logos.map((logo: UnknownLogoType): LogoType => ({
+            logos: logos.map((logo: UnknownLogoType): LogoType => ({
                 id: parseInt(logo?.id) || 0,
                 logo: logo?.logo || "",
                 name: logo?.name || "",

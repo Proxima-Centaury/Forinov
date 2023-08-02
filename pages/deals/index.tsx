@@ -4,12 +4,15 @@
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { Fragment, useMemo } from "react";
 import api from "@classes/api";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import Head from "next/head";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* React Components */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -21,7 +24,8 @@ import LinkButton from "@buttons/linkButton";
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { GetServerSideProps } from "next";
-import type { TPage } from "@typescript/types/TPage";
+import type { PageType } from "@typescript/types/PageType";
+import type { ResponseType } from "@typescript/types/ResponseType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -34,23 +38,12 @@ import DealsStyles from "@pages/deals/Deals.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Deals */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Deals = (params: TPage): JSX.Element => {
+const Deals = (params: PageType): JSX.Element => {
     const router = useRouter();
     const { asPath, query } = router;
     const { category, page } = query;
 	const { t } = useTranslation("deals");
-    const { filters, deals } = params;
-    const { categories } = filters;
-    const { opportunities } = categories;
-    const dealsCategories = useMemo(() => {
-        return opportunities.find((category: any) => category.id === 5)?.deals.categories || [];
-    }, [ opportunities ]);
-    const dealsSubcategories = useMemo(() => {
-        if(category) {
-            return dealsCategories.find((subcategory: any) => subcategory.id === extractId(category))?.subcategories || [];
-        };
-        return [];
-    }, [ category, dealsCategories ]);
+    const { categories, subcategories, deals, pagination } = params;
     return <Fragment>
         <Head>
 			<title>{ t("dealsMetaTitle") }</title>
@@ -61,7 +54,7 @@ const Deals = (params: TPage): JSX.Element => {
 				<div className="boxedContent">
                     <Breadcrumb/>
                     <div className={ DealsStyles.categories }>
-                        { dealsCategories?.map(({ id, name }: any, key: number) => {
+                        { categories?.map(({ id, name }: any, key: number) => {
                             const url = `/deals/${ formatForUrl(name) }_${ id }`;
                             const isActive = (decodeURIComponent(asPath).match(url)) ? true : false;
                             return <Fragment key={ key }>
@@ -73,8 +66,8 @@ const Deals = (params: TPage): JSX.Element => {
                         <h1>{ t("dealsTitle", { company: "Forinov" }) }</h1>
                         <p>{ t("dealsSubtitle", { company: "Forinov" }) }</p>
                     </div>
-                    { (dealsSubcategories.length > 0) ? <div className={ DealsStyles.actions } data-flex-justify="center">
-                        { dealsSubcategories.map(({ id, name }: any, key: number) => {
+                    { (subcategories.length > 0) ? <div className={ DealsStyles.actions } data-flex-justify="center">
+                        { subcategories.map(({ id, name }: any, key: number) => {
                             const url = `/deals/${ category }/${ formatForUrl(name) }_${ id }`;
                             const isActive = (decodeURIComponent(asPath).match(url)) ? true : false;
                             return <Fragment key={ key }>
@@ -82,8 +75,8 @@ const Deals = (params: TPage): JSX.Element => {
                             </Fragment>;
                         }) }
                     </div> : null }
-                    <Pagination pages={ deals.pagination.pages } page={ page || 1 }>
-                        <Grid columns="three" cards={ deals.items } type="deals"/>
+                    <Pagination pages={ pagination?.pages } page={ page || 1 }>
+                        <Grid columns="three" cards={ deals } type="deals"/>
                     </Pagination>
 				</div>
 			</div>
@@ -94,23 +87,45 @@ const Deals = (params: TPage): JSX.Element => {
 /* Server Side Props */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const getServerSideProps: GetServerSideProps = async ({ res, query, locale, locales }) => {
-	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
-	const i18next = require("@project/next-i18next.config");
     const { category, subcategory, page } = query;
-    const searchEngineFilters = {
+    const filters = {
         categories: 5,
         subcategories1: (category) ? extractId(category) : null,
         subcategories2: (subcategory) ? extractId(subcategory) : null,
         page: page || 1
     };
-	return {
-		props: {
-			...(await serverSideTranslations(locale || "fr", [ "deals", "navbar", "footer", "common" ], i18next)),
-			locales,
-            filters: await api.getPublicCommons("next", "Landing", locale),
-            deals: await api.searchEngine("opportunite", searchEngineFilters, null, null, null, locale)
-		}
-	};
+	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
+	const i18next = require("@project/next-i18next.config");
+    const getPublicCommons = await api.getPublicCommons("next", "Landing", locale);
+    const searchEngine = await api.searchEngine({
+        type: "opportunite",
+        filters,
+        network: null,
+        privateFilter: null,
+        ssid: null,
+        language: locale
+    });
+    const categories = getPublicCommons.response.filters.opportunities.find((opportunity: any) => opportunity.id === 5).deals.categories || [];
+    const subcategories = (category) ? categories.find((subcategory: any) => subcategory.id === extractId(category)).subcategories : [];
+    if(getPublicCommons instanceof Error || searchEngine instanceof Error) {
+		return {
+			redirect: {
+				destination: "/500",
+				permanent: false
+			}
+		};
+	} else {
+        return {
+            props: {
+                ...(await serverSideTranslations(locale || "fr", [ "deals", "navbar", "footer", "common" ], i18next)),
+                locales,
+                categories: categories,
+                subcategories: subcategories,
+                deals: (searchEngine as ResponseType).response.deals,
+                pagination: (searchEngine as ResponseType).response.pagination
+            }
+        };
+    };
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */

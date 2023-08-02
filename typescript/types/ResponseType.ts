@@ -3,7 +3,9 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { ArticleType } from "@typescript/types/ArticleType";
 import type { CategoryType } from "@typescript/types/CategoryType";
+import type { LogoType } from "./LogoType";
 import type { OpportunityType } from "@typescript/types/OpportunityType";
+import type { OptionType } from "@typescript/types/OptionType";
 import type { StartupType } from "@typescript/types/StartupType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Response Type */
@@ -23,11 +25,16 @@ type ResponseType = {
     },
     response: {
         articles?: ArticleType[],
-        categories?: {
+        deals?: OpportunityType[],
+        filters?: {
+            businessModels?: OptionType[],
             corporates?: CategoryType[],
             opportunities?: CategoryType[],
             partners?: CategoryType[],
-            startups?: CategoryType[]
+            startups?: CategoryType[],
+            targetJobs?: OptionType[],
+            targetSectors?: OptionType[],
+            technologies?: OptionType[]
         },
         counters?: {
             corporates?: {
@@ -47,14 +54,15 @@ type ResponseType = {
                 total?: number
             }
         },
+        logos?: LogoType[],
         opportunities?: OpportunityType[],
-        items?: OpportunityType[] | StartupType[],
         pagination?: {
             count?: number,
             limit?: number,
             message?: string,
             pages?: number
-        }
+        },
+        startups?: StartupType[],
     }
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */

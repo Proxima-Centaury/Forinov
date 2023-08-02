@@ -1,4 +1,8 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Imports */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+import { Error } from "@classes/error";
+/* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { ResponseType, UnknownResponseType } from "@typescript/types/ResponseType";
@@ -11,11 +15,11 @@ import { formatForUrl } from "@scripts/formatForUrl";
 /* Format Get Landing Startups */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const formatGetLandingStartups = (response: UnknownResponseType[]): ResponseType => {
-    const startups: UnknownStartupType[] = response || [];
+    const startups: UnknownStartupType[] = (response instanceof Error) ? [] : response;
     return {
         request: {},
         response: {
-            items: startups.map((startup: UnknownStartupType): StartupType => ({
+            startups: startups.map((startup: UnknownStartupType): StartupType => ({
                 id: parseInt(startup?.ID) || 0,
                 banner: startup?.BACKGROUND || "",
                 category: {

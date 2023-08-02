@@ -8,6 +8,7 @@ import { MouseEventHandler } from "react";
 type OptionType = {
     id?: number,
     action?: MouseEventHandler,
+    count?: number,
     name?: string,
     selected?: boolean,
     value?: string
@@ -16,7 +17,7 @@ type OptionType = {
 /* Unknown Option Type */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 type UnknownOptionType = {
-    [key: string]: unknown
+    [key: string]: any
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */

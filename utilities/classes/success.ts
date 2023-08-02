@@ -42,7 +42,7 @@ class Success implements SuccessInterface {
                 return this._generateAPIFeedback(sourceParameters);
             case "EnabledAPI" :
                 return this._generateEnabledAPIFeedback(sourceParameters);
-            case "Call ":
+            case "Call":
                 return this._generateCallFeedback(sourceParameters);
             case "Response" :
                 return this._generateResponseFeedback(null);

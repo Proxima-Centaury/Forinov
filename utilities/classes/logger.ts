@@ -25,6 +25,8 @@ class Logger implements LoggerInterface {
             const methodName: string = "_" + log;
             if(methodName.match(/(Error)/i)) {
                 this.setColor("redBright");
+            } else if(methodName.match(/(Success)/i)) {
+                this.setColor("greenBright");
             } else {
                 this.setColor("blueBright");
             };
@@ -42,6 +44,10 @@ class Logger implements LoggerInterface {
         const urlLog = `${ this._chalkz("> " + url) }` + ((this.getColor().match("red")) ? "\n" : "");
         return [ action, urlLog ].join("");
     };
+    private _getCommonFetchSuccessCoreMessage = ({ query, givenParameters, url }: any): string => {
+        const successMessage = `${ this._chalkz(">") } Success, fetched data from ${ query[0] }() call.\n`;
+        return [ this._getCall({ query, givenParameters, url }), successMessage ].join("\n");
+    };
     private _getCommonFetchErrorCoreMessage = ({ query, expectedParameters, givenParameters, url }: any, hiddenParams?: boolean): string => {
         if(hiddenParams) {
             const errorMessage = `${ this._chalkz(">") } Error occured trying to fetch data using ${ query[0] }() call.\n`;
@@ -54,15 +60,33 @@ class Logger implements LoggerInterface {
         };
     };
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
-    /* Logs */
+    /* Success Logs */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
-    private _logResponseMetaData = ({}): Logger => {
+    private _logAPISuccess = ({ query, givenParameters, url }: any): Logger => {
+        const commonCoreMessage = this._getCommonFetchSuccessCoreMessage({ query, givenParameters, url });
+        const errorEndMessage = `${ this._chalkz(">") } All needed parameters were given.`;
+        this.setLastMessage([ this.getSeparator(), commonCoreMessage, errorEndMessage ].join(""));
         console.log(this.getLastMessage());
         return this;
     };
-    private _logAPICall = ({ query, givenParameters, url }: any): Logger => {
-        const commonCoreMessage = this._getCommonFetchErrorCoreMessage({ query, givenParameters, url });
-        this.setLastMessage([ this.getSeparator(), commonCoreMessage ].join(""));
+    private _logEnabledAPISuccess = ({ query, givenParameters, url }: any): Logger => {
+        const commonCoreMessage = this._getCommonFetchSuccessCoreMessage({ query, givenParameters, url });
+        const errorEndMessage = `${ this._chalkz(">") } API class is enabled.`;
+        this.setLastMessage([ this.getSeparator(), commonCoreMessage, errorEndMessage ].join(""));
+        console.log(this.getLastMessage());
+        return this;
+    };
+    private _logCallSuccess = ({ query, givenParameters, url }: any): Logger => {
+        const commonCoreMessage = this._getCommonFetchSuccessCoreMessage({ query, givenParameters, url });
+        const errorEndMessage = `${ this._chalkz(">") } Server side response has sent a correct JSON response.`;
+        this.setLastMessage([ this.getSeparator(), commonCoreMessage, errorEndMessage ].join(""));
+        console.log(this.getLastMessage());
+        return this;
+    };
+    private _logNoResponseSuccess = (): Logger => {
+        const action = `[ ${ this._chalkz("SERVER") } ] => ${ this._chalkz("Connection to server is a success") }\n`;
+        const errorEndMessage = `${ this._chalkz(">") } The client was able to reach the server.`;
+        this.setLastMessage([ this.getSeparator(), action, errorEndMessage ].join(""));
         console.log(this.getLastMessage());
         return this;
     };

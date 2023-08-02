@@ -43,7 +43,7 @@ const Home = (params: PageType): JSX.Element => {
 	const router = useRouter();
 	const { locale } = router;
 	const { t } = useTranslation([ "home", "common" ]);
-	const { articles, categories, counters, opportunities, startups } = params;
+	const { articles, filters, counters, opportunities, startups } = params;
 	const startupsCategories: number = counters?.startups?.categories || 0;
 	const startupsTotal: number = counters?.startups?.total || 0;
 	const homeHeaderLinks: ButtonType[] = require("@configurations/links.json").home.header;
@@ -179,7 +179,7 @@ const Home = (params: PageType): JSX.Element => {
 						<h5>{ t("homeStartupsCategoriesTitle", { startups: startupsTotal, categories: startupsCategories }) }</h5>
 					</div>
 					<div className={ HomeStyles.startupsCategoriesSection }>
-						{ categories?.startups?.slice(0, 9).map((category: any, key: number) => {
+						{ filters?.startups?.slice(0, 9).map((category: any, key: number) => {
 							const url = `/directories/startups/${ formatForUrl(category.name) }_${ category.id }`;
 							return (category.name) ? <Fragment key={ key }>
 								<LinkButton classList="tertiary" href={ url } text={ category.name }/>
@@ -252,10 +252,10 @@ const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) 
 				...(await serverSideTranslations(locale || "fr", [ "home", "navbar", "footer", "common" ], i18next)),
 				locales,
 				articles: getLanding.response.articles,
-				categories: getLanding.response.categories,
+				filters: getLanding.response.filters,
 				counters: getLanding.response.counters,
-				opportunities: getOpportunities.response.items,
-				startups: getStartups.response.items
+				opportunities: getOpportunities.response.opportunities,
+				startups: getStartups.response.startups
 			}
 		};
 	};

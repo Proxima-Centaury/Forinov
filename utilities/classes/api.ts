@@ -4,7 +4,6 @@
 import error from "@classes/error";
 import { Error } from "@classes/error";
 import success from "@classes/success";
-import { Success } from "@classes/success";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Interfaces */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -37,7 +36,7 @@ class API implements APIInterface {
         const queryProperties = Object.entries(configuration.api.calls);
         this.setEndpoint("production");
         queryProperties.map((query: any[]) => {
-            Object.defineProperty(this, query[0], { value: async (...parameters: any[]) => {
+            Object.defineProperty(this, query[0], { value: async (...parameters: any[]): Promise<ResponseType | Error> => {
                 const expectedParameters = query[1].parameters;
                 const givenParameters = parameters;
                 const url = this.getEndpoint() + "?" + this._buildParameters({ query, expectedParameters, givenParameters });
@@ -51,7 +50,7 @@ class API implements APIInterface {
     };
     // The search engine method was created manually because of its conditional and optional parameters
     // But it can still be automated using a JSON parser or by updating the api.json file to specify which parameters are optional
-    public searchEngine = async (...params: any): Promise<ResponseType | Error> => {
+    public searchEngine = async (params: any): Promise<ResponseType | Error> => {
         const { type, filters, network, privateFilter, ssid, language } = params;
         const query: any[] = [ "getSearchEngine", configuration.api.calls.getSearchEngine ];
         const expectedParameters = Object.keys(filters).map((filter: string) => filter.toUpperCase()).concat(query[1].parameters);
@@ -71,7 +70,7 @@ class API implements APIInterface {
             return error.reportError("DisabledAPI", { query, expectedParameters, givenParameters, url });
         } else {
             try {
-                success.reportSuccess("APICall", { query, givenParameters, url });
+                success.reportSuccess("Call", { query, givenParameters, url });
                 const promise = await fetch(url);
                 return await promise.json();
             } catch(catchedError: unknown) {
@@ -82,7 +81,9 @@ class API implements APIInterface {
     // This bunch of functions are here to manipulate the structure of each call response to our tastes
     // They can be found under utilities/scripts/calls
     private _formatResponse = (call?: string, response?: any): ResponseType | Error => {
-        if(response) {
+        if(response instanceof Error) {
+            return response;
+        } else {
             if(call === "getPublicCommons") {
                 return formatGetPublicCommons(response[0]);
             } else if(call === "getLanding") {
@@ -98,8 +99,6 @@ class API implements APIInterface {
             } else {
                 return error.reportError("NoResponse");
             };
-        } else {
-            return error.reportError("NoResponse");
         };
     };
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */

@@ -3,6 +3,7 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { ResponseType, UnknownResponseType } from "@typescript/types/ResponseType";
 import type { CategoryType, UnknownCategoryType } from "@typescript/types/CategoryType";
+import type { OptionType, UnknownOptionType } from "@typescript/types/OptionType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -11,14 +12,23 @@ import { uppercaseFirst } from "@scripts/uppercaseFirst";
 /* Format Get Public Commons */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const formatGetPublicCommons = (response: UnknownResponseType): ResponseType => {
-    const corporatesCategories = response?.CORPORATES_SECTORS || [];
-    const opportunitiesCategories = response?.OPPORTUNITIES || [];
-    const partnersCategories = response?.PARTNERS_TYPES || [];
-    const startupsCategories = response?.CATEGORIES || [];
+    const corporatesCategories = (response instanceof Error) ? [] : response.CORPORATES_SECTORS;
+    const opportunitiesCategories = (response instanceof Error) ? [] : response.OPPORTUNITIES;
+    const partnersCategories = (response instanceof Error) ? [] : response.PARTNERS_TYPES;
+    const startupsCategories = (response instanceof Error) ? [] : response.CATEGORIES;
+    const businessModelsFilter = (response instanceof Error) ? [] : response.BUSINESSMODELS;
+    const targetJobsFilter = (response instanceof Error) ? [] : response.JOBS;
+    const targetSectorsFilter = (response instanceof Error) ? [] : response.SECTORS;
+    const technologiesFilter = (response instanceof Error) ? [] : response.TECHNOLOGIES;
     return {
         request: {},
-        response: {            
-            categories: {
+        response: {
+            filters: {
+                businessModels: businessModelsFilter.map((businessModel: UnknownOptionType): OptionType => ({
+                    id: parseInt(businessModel?.ID) || 0,
+                    count: parseInt(businessModel?.COUNT) || 0,
+                    name: businessModel?.NAME || ""
+                })) || [],
                 corporates: corporatesCategories.map((sector: UnknownCategoryType): CategoryType => ({
                     id: parseInt(sector?.ID) || 0,
                     count: parseInt(sector?.COUNT) || 0,
@@ -59,30 +69,23 @@ const formatGetPublicCommons = (response: UnknownResponseType): ResponseType => 
                         id: parseInt(subcategory?.ID) || 0,
                         name: subcategory?.NAME || ""
                     })) || []
+                })) || [],
+                targetJobs: targetJobsFilter.map((job: UnknownOptionType): OptionType => ({
+                    id: parseInt(job?.ID) || 0,
+                    count: parseInt(job?.COUNT) || 0,
+                    name: job?.NAME || ""
+                })) || [],
+                targetSectors: targetSectorsFilter.map((sector: UnknownOptionType): OptionType => ({
+                    id: parseInt(sector?.ID) || 0,
+                    count: parseInt(sector?.COUNT) || 0,
+                    name: sector?.NAME || ""
+                })) || [],
+                technologies: technologiesFilter.map((technology: UnknownOptionType): OptionType => ({
+                    id: parseInt(technology?.ID) || 0,
+                    count: parseInt(technology?.COUNT) || 0,
+                    name: technology?.NAME || ""
                 })) || []
             },
-            // others: {
-            //     businessmodels: response?.BUSINESSMODELS?.map((businessmodel: any) => ({
-            //         id: parseInt(businessmodel?.ID) || null,
-            //         count: parseInt(businessmodel?.COUNT) || 0,
-            //         name: businessmodel?.NAME || null
-            //     })) || [],
-            //     targetjobs: response?.JOBS?.map((job: any) => ({
-            //         id: parseInt(job?.ID) || null,
-            //         count: parseInt(job?.COUNT) || 0,
-            //         name: job?.NAME || null
-            //     })) || [],
-            //     targetsectors: response?.SECTORS?.map((sector: any) => ({
-            //         id: parseInt(sector?.ID) || null,
-            //         count: parseInt(sector?.COUNT) || 0,
-            //         name: sector?.NAME || null
-            //     })) || [],
-            //     technologies: response?.TECHNOLOGIES?.map((technology: any) => ({
-            //         id: parseInt(technology?.ID) || null,
-            //         count: parseInt(technology?.COUNT) || 0,
-            //         name: technology?.NAME || null
-            //     })) || []
-            // },
             counters: {
                 corporates: {
                     categories: parseInt(response?.CORPORATES_SECTORS?.length) || 0,
