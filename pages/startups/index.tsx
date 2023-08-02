@@ -24,7 +24,7 @@ import LineSeparator from "@separators/lineSeparator";
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { GetServerSideProps } from "next";
-import type { TPage } from "@typescript/types/PageType";
+import type { PageType } from "@typescript/types/PageType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -32,7 +32,7 @@ import StartupsStyles from "@pages/startups/Startups.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Startups */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Startups = (params: TPage): JSX.Element => {
+const Startups = (params: PageType): JSX.Element => {
 	const { t } = useTranslation("startups");
 	const { opportunities, logos } = params;
 	return <Fragment>
