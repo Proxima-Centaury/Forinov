@@ -23,5 +23,7 @@
     "opportunitiesDirectoryLink": "What is an opportunity ?",
     "startupsDirectoryLink": "Access the startups directory",
     "noResultsFoundText": "No results found",
-    "noResultsFoundSubtext": "We couldn't find what you were searching for.<br>Try searching again with other criterias."
+    "noResultsFoundSubtext": "We couldn't find what you were searching for.<br>Try searching again with other criterias.",
+    "questionsContactText": "Any questions ?",
+    "questionsContactLink": "Feel free to contact us"
 }

@@ -10,7 +10,7 @@
 }
 .mainContainer:first-of-type {
     border-radius: 0px 0px 100px 0px;
-    background-color: var(--light-red-color);
+    background-color: var(--light-blue-color);
 }
 .mainContainer:nth-of-type(2) {
     border-radius: 100px 0px 0px 100px;
@@ -23,31 +23,16 @@
     top: 0px;
     left: 0px;
     content: "";
-    background-color: var(--light-red-color);
+    background-color: var(--light-blue-color);
     z-index: -1;
 }
 .mainContainer:nth-of-type(3) {
     border-radius: 0px 100px 100px 0px;
-    background-color: var(--light-red-color);
+    background-color: var(--light-blue-color);
 }
 .mainContainer:nth-of-type(4) {
-    border-radius: 100px 0px 0px 0px;
-    background-color: var(--background-main-color);
-}
-.mainContainer:nth-of-type(4)::before {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    content: "";
-    background-color: var(--light-red-color);
-    z-index: -1;
-}
-.mainContainer:nth-of-type(5) {
-    border-top: var(--border-1);
     border-radius: 0px;
-    background-color: var(--background-sub-color);
+    background-color: var(--background-main-color);
 }
 @media screen and (max-width: 576px) {
     .mainContainer {
@@ -63,7 +48,7 @@
         border-radius: 0px 50px 50px 0px;
     }
 	.mainContainer:nth-of-type(4) {
-        border-radius: 50px 0px 0px 0px;
+        border-radius: 0px;
     }
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -81,7 +66,7 @@
     font-family: Nunito Sans;
     font-size: 65px;
     font-weight: 600;
-    color: var(--logo-orange-color);
+    color: var(--logo-blue-color);
 }
 @media screen and (max-width: 576px) {
     .containerTitle > h1 {
@@ -194,7 +179,7 @@
 .headerParagraphs > p {
     font-family: Nunito Sans;
     font-size: 24px;
-    color: var(--logo-orange-color);
+    color: var(--logo-blue-color);
 }
 .headerParagraphs > p + p {
     margin-top: var(--space-16);
@@ -303,7 +288,7 @@
 }
 .howItWorksStepSeparator > [class*="line"] {
     margin: 0px auto;
-    background-color: var(--logo-orange-color);
+    background-color: var(--logo-blue-color);
 }
 @media screen and (max-width: 992px) {
     .howItWorksStepSeparator > [class*="line"] {
@@ -328,15 +313,15 @@
     max-height: 40px;
     margin: var(--space-16) 0px 0px 0px;
     font-size: 20px;
-    color: var(--logo-orange-color);
+    color: var(--logo-blue-color);
     border: var(--border-1);
-    border-color: var(--logo-orange-color);
+    border-color: var(--logo-blue-color);
     border-radius: var(--radius-20);
-    background-color: var(--light-red-color);
+    background-color: var(--light-blue-color);
 }
 .howItWorksStep:last-of-type > .howItWorksStepSeparator > i {
     color: var(--perfect-white-color);
-    background-color: var(--logo-orange-color);
+    background-color: var(--logo-blue-color);
 }
 @media screen and (max-width: 992px) {
     .howItWorksStepSeparator > i {
@@ -406,7 +391,7 @@
     max-height: 128px;
     position: relative;
     font-size: 60px;
-    color: var(--logo-orange-color);
+    color: var(--logo-blue-color);
     z-index: 1;
 }
 .badge > i::before {
@@ -426,7 +411,7 @@
     top: -16px;
     left: -16px;
     content: "";
-    background-color: var(--light-red-color);
+    background-color: var(--light-blue-color);
     z-index: -1;
 }
 .badge > p {
@@ -448,5 +433,5 @@
 .badge > [class*="line"] {
     position: absolute;
     top: calc((128px / 2) - var(--space-16));
-    background-color: var(--logo-orange-color);
+    background-color: var(--logo-blue-color);
 }

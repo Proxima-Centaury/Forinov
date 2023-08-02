@@ -31,19 +31,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 40px;
-    width: 40px;
-    max-width: 40px;
-    min-height: 40px;
-    height: 40px;
-    max-height: 40px;
-    padding: 0px;
+    min-width: var(--size-40);
+    width: var(--size-40);
+    max-width: var(--size-40);
+    min-height: var(--size-40);
+    height: var(--size-40);
+    max-height: var(--size-40);
+    padding: var(--space-0);
 }
 .action > i {
     margin-right: var(--space-8);
 }
 .action > i:only-child {
-    margin-right: 0px;
+    margin-right: var(--space-0);
 }
 .action > span {
     white-space: nowrap;
@@ -260,8 +260,8 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: var(--space-0);
+    left: var(--space-0);
     content: "";
     opacity: 0;
     background-color: var(--background-sub-color);
@@ -304,7 +304,7 @@
 }
 .action.wide > i {
     padding: var(--space-16);
-    font-size: 20px;
+    font-size: var(--font-20);
     border-radius: var(--radius-100);
     background-color: var(--pale-blue-color);
     transition: background-color 0.3s ease-in-out;
@@ -313,7 +313,7 @@
     background-color: var(--background-sub-color);
 }
 .action.wide > span {
-    font-size: 21px;
+    font-size: var(--font-20);
     font-family: "Nunito Sans";
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -322,7 +322,7 @@
 .action.inactiveLink,
 .action.link {
     width: fit-content;
-    padding: 0px 0px 4px 0px;
+    padding: var(--space-0);
 }
 .action.inactiveLink > * {
     color: var(--text-placeholder-color);
@@ -340,7 +340,7 @@
 /* Corners */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 .action.sharp {
-    border-radius: 0px;
+    border-radius: var(--radius-0);
 }
 .action.squared,
 .action.narrow {
@@ -363,7 +363,7 @@
 }
 .action.inactiveLink.borderless,
 .action.link.borderless {
-    padding: 0px;
+    padding: var(--space-0);
 }
 .action.inactiveLink.borderless > span,
 .action.link.borderless > span {
@@ -384,7 +384,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    padding: 0px;
+    padding: var(--space-0);
     position: absolute;
     background-color: var(--background-sub-color);
     z-index: 1;
@@ -413,7 +413,7 @@ footer .action.toggle.active > i {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 40px;
+    height: var(--size-40);
     padding: var(--space-8);
     border-radius: var(--radius-10);
     transition: background-color 0.3s ease-in-out;

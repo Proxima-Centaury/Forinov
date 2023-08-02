@@ -25,5 +25,15 @@
     "startupsFreeTitle": "And yes, {{ company }} is free for startups !",
     "startupsFreeText": "From registration through to the realisation of your business opportunities.",
     "startupsOnboardingLink": "I take advantage of it now",
-    "startupsQuestionsTitle": "Answers to your questions :"
+    "startupsQuestionsTitle": "Answers to your questions :",
+    "startupQuestion1": "",
+    "startupAnswer1": "",
+    "startupQuestion2": "",
+    "startupAnswer2": "",
+    "startupQuestion3": "",
+    "startupAnswer3": "",
+    "startupQuestion4": "",
+    "startupAnswer4": "",
+    "startupQuestion5": "",
+    "startupAnswer5": ""
 }

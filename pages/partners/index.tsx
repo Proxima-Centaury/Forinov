@@ -17,7 +17,6 @@ import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import DefaultCarousel from "@carousels/defaultCarousel";
 import InfiniteCarousel from "@carousels/infiniteCarousel";
-import Accordion from "@accordions/defaultAccordion";
 import CustomImage from "@contents/customImage";
 import LinkButton from "@buttons/linkButton";
 import LineSeparator from "@separators/lineSeparator";
@@ -29,145 +28,140 @@ import type { PageType } from "@typescript/types/PageType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import StartupsStyles from "@pages/startups/Startups.module.css";
+import PartnersStyles from "@pages/partners/Partners.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Startups */
+/* Partners */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Startups = (params: PageType): JSX.Element => {
-	const { t } = useTranslation("startups");
+const Partners = (params: PageType): JSX.Element => {
+	const { t } = useTranslation("partners");
 	const { opportunities, logos } = params;
 	return <Fragment>
         <Head>
-			<title>{ t("startupsMetaTitle", { company: "Forinov" }) }</title>
-			<meta name="description" content={ t("startupsMetaDescription", { company: "Forinov" }) }/>
+			<title>{ t("partnersMetaTitle", { company: "Forinov" }) }</title>
+			<meta name="description" content={ t("partnersMetaDescription", { company: "Forinov" }) }/>
 		</Head>
-		<div data-page="startups">
-			<div className={ StartupsStyles.mainContainer }>
+		<div data-page="partners">
+			<div className={ PartnersStyles.mainContainer }>
 				<div className="boxedContent">
-                    <div className={ StartupsStyles.containerTitle }>
-						<h1>{ t("startupsHeaderTitle") }</h1>
+                    <div className={ PartnersStyles.containerTitle }>
+						<h1>{ t("partnersHeaderTitle") }</h1>
 					</div>
-                    <div className={ StartupsStyles.header }>
-						<div className={ StartupsStyles.headerLeftContainer }>
-                        <div className={ StartupsStyles.headerParagraphs }>
-								<p>{ t("startupsHeaderParagraph") }</p>
+                    <div className={ PartnersStyles.header }>
+						<div className={ PartnersStyles.headerLeftContainer }>
+                        <div className={ PartnersStyles.headerParagraphs }>
+								<p>{ t("partnersHeaderParagraph") }</p>
 							</div>
-							<div className={ StartupsStyles.headerActions }>
-                                <LinkButton classList="primary" href="/onboarding" text={ t("startupsHeaderJoinLink") }/>
+							<div className={ PartnersStyles.headerActions }>
+                                <LinkButton classList="primary" href="/onboarding" text={ t("partnersHeaderJoinLink") }/>
 							</div>
 						</div>
-						<div className={ StartupsStyles.headerRightContainer }>
+						<div className={ PartnersStyles.headerRightContainer }>
 							<CustomImage src="/assets/home.gif" alt={ t("aboutHeaderIllustrationAlt") }/>
 						</div>
 					</div>
 				</div>
 			</div>
-            <div className={ StartupsStyles.mainContainer }>
+            <div className={ PartnersStyles.mainContainer }>
 				<div className="boxedContent">
-					<div className={ StartupsStyles.containerTitle }>
-						<h2>{ t("startupsHowItWorksTitle") }</h2>
-						<p>{ t("startupsHowItWorksText", { company: "Forinov" }) }</p>
+					<div className={ PartnersStyles.containerTitle }>
+						<h2>{ t("partnersHowItWorksTitle") }</h2>
+						<p>{ t("partnersHowItWorksText", { company: "Forinov" }) }</p>
 					</div>
-					<div className={ StartupsStyles.howItWorks }>
-						<div className={ StartupsStyles.howItWorksStep }>
-							<div className={ StartupsStyles.howItWorksStepPicture }>
-								<CustomImage src="/assets/landings/startups/step_1.png" alt={ t("") }/>
+					<div className={ PartnersStyles.howItWorks }>
+						<div className={ PartnersStyles.howItWorksStep }>
+							<div className={ PartnersStyles.howItWorksStepPicture }>
+								<CustomImage src="/assets/landings/partners/step_1.png" alt={ t("") }/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepSeparator }>
+							<div className={ PartnersStyles.howItWorksStepSeparator }>
 								<LineSeparator classList="vertical"/>
 								<i className="fa-light fa-chevron-down"/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepText }>
-								<p>{ t("startupsHowItWorksStepTitle1") }</p>
-								<p><Trans i18nKey="startupsHowItWorksStepText1" t={ t } components={ {
+							<div className={ PartnersStyles.howItWorksStepText }>
+								<p>{ t("partnersHowItWorksStepTitle1") }</p>
+								<p><Trans i18nKey="partnersHowItWorksStepText1" t={ t } components={ {
 									onboarding: <LinkButton classList="link noUppercase" href="/onboarding"/>
 								} }/></p>
 							</div>
 						</div>
-						<div className={ StartupsStyles.howItWorksStep }>
-							<div className={ StartupsStyles.howItWorksStepText }>
-								<p>{ t("startupsHowItWorksStepTitle2") }</p>
-								<p><Trans i18nKey="startupsHowItWorksStepText2" t={ t } components={ {
+						<div className={ PartnersStyles.howItWorksStep }>
+							<div className={ PartnersStyles.howItWorksStepText }>
+								<p>{ t("partnersHowItWorksStepTitle2") }</p>
+								<p><Trans i18nKey="partnersHowItWorksStepText2" t={ t } components={ {
 									corporatesDirectory: <LinkButton classList="link noUppercase" href="/corporates/directory"/>,
 									opportunitiesDirectory: <LinkButton classList="link noUppercase" href="/opportunities/directory"/>
 								} }/></p>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepSeparator }>
+							<div className={ PartnersStyles.howItWorksStepSeparator }>
 								<LineSeparator classList="vertical"/>
 								<i className="fa-light fa-chevron-down"/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepPicture }>
-								<CustomImage src="/assets/landings/startups/step_2.png" alt={ t("") }/>
+							<div className={ PartnersStyles.howItWorksStepPicture }>
+								<CustomImage src="/assets/landings/partners/step_2.png" alt={ t("") }/>
 							</div>
 						</div>
-						<div className={ StartupsStyles.howItWorksStep }>
-							<div className={ StartupsStyles.howItWorksStepPicture }>
-								<CustomImage src="/assets/landings/startups/step_3.png" alt={ t("") }/>
+						<div className={ PartnersStyles.howItWorksStep }>
+							<div className={ PartnersStyles.howItWorksStepPicture }>
+								<CustomImage src="/assets/landings/partners/step_3.png" alt={ t("") }/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepSeparator }>
+							<div className={ PartnersStyles.howItWorksStepSeparator }>
 								<LineSeparator classList="vertical"/>
 								<i className="fa-light fa-check"/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepText }>
-								<p>{ t("startupsHowItWorksStepTitle3") }</p>
-								<p>{ t("startupsHowItWorksStepText3") }</p>
+							<div className={ PartnersStyles.howItWorksStepText }>
+								<p>{ t("partnersHowItWorksStepTitle3") }</p>
+								<p>{ t("partnersHowItWorksStepText3") }</p>
 							</div>
 						</div>
 					</div>
-					<div className={ StartupsStyles.containerTitle }>
-						<h3>{ t("startupsLatestOpportunitiesTitle") }</h3>
+					<div className={ PartnersStyles.containerTitle }>
+						<h3>{ t("partnersLatestOpportunitiesTitle") }</h3>
 					</div>
 					<DefaultCarousel items={ opportunities } itemsType="opportunities" navigation="bar"  controls indicators links/>
 				</div>
 			</div>
-            <div className={ StartupsStyles.mainContainer }>
+            <div className={ PartnersStyles.mainContainer }>
 				<div className="boxedContent">
-					<div className={ StartupsStyles.containerTitle }>
-						<h3>{ t("startupsBadgesTitle", { company: "Forinov" }) }</h3>
+					<div className={ PartnersStyles.containerTitle }>
+						<h3>{ t("partnersBadgesTitle", { company: "Forinov" }) }</h3>
 					</div>
-					<div className={ StartupsStyles.badges }>
-						<div className={ StartupsStyles.badge }>
+					<div className={ PartnersStyles.badges }>
+						<div className={ PartnersStyles.badge }>
 							<i className="fa-light fa-chart-network"/>
-							<p>{ t("startupsBadgeTitle1") }</p>
-							<p><Trans i18nKey="startupsBadgeText1" t={ t } components={ {
+							<p>{ t("partnersBadgeTitle1") }</p>
+							<p><Trans i18nKey="partnersBadgeText1" t={ t } components={ {
 								opportunitiesDirectory: <LinkButton classList="link noUppercase" href="/opportunities/directory"/>
 							} }/></p>
 							<LineSeparator classList="horizontal"/>
 						</div>
-						<div className={ StartupsStyles.badge }>
+						<div className={ PartnersStyles.badge }>
 							<i className="fa-light fa-badge-check"/>
-							<p>{ t("startupsBadgeTitle2") }</p>
-							<p>{ t("startupsBadgeText2") }</p>
+							<p>{ t("partnersBadgeTitle2") }</p>
+							<p>{ t("partnersBadgeText2") }</p>
 							<LineSeparator classList="horizontal"/>
 						</div>
-						<div className={ StartupsStyles.badge }>
+						<div className={ PartnersStyles.badge }>
 							<i className="fa-light fa-gauge-high"/>
-							<p>{ t("startupsBadgeTitle3") }</p>
-							<p>{ t("startupsBadgeText3") }</p>
+							<p>{ t("partnersBadgeTitle3") }</p>
+							<p>{ t("partnersBadgeText3") }</p>
 							<LineSeparator classList="horizontal"/>
 						</div>
 					</div>
 				</div>
 			</div>
-            <div className={ StartupsStyles.mainContainer }>
+            <div className={ PartnersStyles.mainContainer }>
 				<div className="boxedContent">
-					<div className={ StartupsStyles.containerTitle }>
-						<h4>{ t("startupsTheyTrustTitle") }</h4>
+					<div className={ PartnersStyles.containerTitle }>
+						<h4>{ t("partnersTheyTrustTitle") }</h4>
 					</div>
 					<InfiniteCarousel items={ logos } itemsType="logos"/>
-					<div className={ StartupsStyles.containerTitle }>
-						<h5>{ t("startupsFreeTitle", { company: "Forinov" }) }</h5>
-						<p>{ t("startupsFreeText") }</p>
-						<LinkButton classList="primary" href="/onboarding" text={ t("startupsOnboardingLink") }/>
+					<div className={ PartnersStyles.containerTitle }>
+						<h5>{ t("partnersFreeTitle", { company: "Forinov" }) }</h5>
+						<p>{ t("partnersFreeText") }</p>
+						<LinkButton classList="primary" href="/onboarding" text={ t("partnersOnboardingLink") }/>
 					</div>
-				</div>
-			</div>
-			<div className={ StartupsStyles.mainContainer }>
-				<div className="boxedContent">
-					<div className={ StartupsStyles.containerTitle }>
-						<h4>{ t("startupsQuestionsTitle") }</h4>
+					<div className={ PartnersStyles.containerTitle }>
+						<h4>{ t("partnersQuestionsTitle") }</h4>
 					</div>
-					<Accordion type="startups"/>
 				</div>
 			</div>
 		</div>
@@ -191,7 +185,7 @@ const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) 
 	} else {
         return {
             props: {
-                ...(await serverSideTranslations(locale || "fr", [ "startups", "navbar", "footer", "common" ], i18next)),
+                ...(await serverSideTranslations(locale || "fr", [ "partners", "navbar", "footer", "common" ], i18next)),
                 locales,
 				opportunities: getOpportunities.response.opportunities,
 				logos: getLogos.response.logos
@@ -202,5 +196,5 @@ const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export default Startups;
+export default Partners;
 export { getServerSideProps };

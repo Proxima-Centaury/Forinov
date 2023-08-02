@@ -17,7 +17,6 @@ import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import DefaultCarousel from "@carousels/defaultCarousel";
 import InfiniteCarousel from "@carousels/infiniteCarousel";
-import Accordion from "@accordions/defaultAccordion";
 import CustomImage from "@contents/customImage";
 import LinkButton from "@buttons/linkButton";
 import LineSeparator from "@separators/lineSeparator";
@@ -29,145 +28,140 @@ import type { PageType } from "@typescript/types/PageType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import StartupsStyles from "@pages/startups/Startups.module.css";
+import OpportunitiesStyles from "@pages/opportunities/Opportunities.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Startups */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const Startups = (params: PageType): JSX.Element => {
-	const { t } = useTranslation("startups");
+	const { t } = useTranslation("opportunities");
 	const { opportunities, logos } = params;
 	return <Fragment>
         <Head>
-			<title>{ t("startupsMetaTitle", { company: "Forinov" }) }</title>
-			<meta name="description" content={ t("startupsMetaDescription", { company: "Forinov" }) }/>
+			<title>{ t("opportunitiesMetaTitle", { company: "Forinov" }) }</title>
+			<meta name="description" content={ t("opportunitiesMetaDescription", { company: "Forinov" }) }/>
 		</Head>
-		<div data-page="startups">
-			<div className={ StartupsStyles.mainContainer }>
+		<div data-page="opportunities">
+			<div className={ OpportunitiesStyles.mainContainer }>
 				<div className="boxedContent">
-                    <div className={ StartupsStyles.containerTitle }>
-						<h1>{ t("startupsHeaderTitle") }</h1>
+                    <div className={ OpportunitiesStyles.containerTitle }>
+						<h1>{ t("opportunitiesHeaderTitle") }</h1>
 					</div>
-                    <div className={ StartupsStyles.header }>
-						<div className={ StartupsStyles.headerLeftContainer }>
-                        <div className={ StartupsStyles.headerParagraphs }>
-								<p>{ t("startupsHeaderParagraph") }</p>
+                    <div className={ OpportunitiesStyles.header }>
+						<div className={ OpportunitiesStyles.headerLeftContainer }>
+                        <div className={ OpportunitiesStyles.headerParagraphs }>
+								<p>{ t("opportunitiesHeaderParagraph") }</p>
 							</div>
-							<div className={ StartupsStyles.headerActions }>
-                                <LinkButton classList="primary" href="/onboarding" text={ t("startupsHeaderJoinLink") }/>
+							<div className={ OpportunitiesStyles.headerActions }>
+                                <LinkButton classList="primary" href="/onboarding" text={ t("opportunitiesHeaderJoinLink") }/>
 							</div>
 						</div>
-						<div className={ StartupsStyles.headerRightContainer }>
+						<div className={ OpportunitiesStyles.headerRightContainer }>
 							<CustomImage src="/assets/home.gif" alt={ t("aboutHeaderIllustrationAlt") }/>
 						</div>
 					</div>
 				</div>
 			</div>
-            <div className={ StartupsStyles.mainContainer }>
+            <div className={ OpportunitiesStyles.mainContainer }>
 				<div className="boxedContent">
-					<div className={ StartupsStyles.containerTitle }>
-						<h2>{ t("startupsHowItWorksTitle") }</h2>
-						<p>{ t("startupsHowItWorksText", { company: "Forinov" }) }</p>
+					<div className={ OpportunitiesStyles.containerTitle }>
+						<h2>{ t("opportunitiesHowItWorksTitle") }</h2>
+						<p>{ t("opportunitiesHowItWorksText", { company: "Forinov" }) }</p>
 					</div>
-					<div className={ StartupsStyles.howItWorks }>
-						<div className={ StartupsStyles.howItWorksStep }>
-							<div className={ StartupsStyles.howItWorksStepPicture }>
-								<CustomImage src="/assets/landings/startups/step_1.png" alt={ t("") }/>
+					<div className={ OpportunitiesStyles.howItWorks }>
+						<div className={ OpportunitiesStyles.howItWorksStep }>
+							<div className={ OpportunitiesStyles.howItWorksStepPicture }>
+								<CustomImage src="/assets/landings/opportunities/step_1.png" alt={ t("") }/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepSeparator }>
+							<div className={ OpportunitiesStyles.howItWorksStepSeparator }>
 								<LineSeparator classList="vertical"/>
 								<i className="fa-light fa-chevron-down"/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepText }>
-								<p>{ t("startupsHowItWorksStepTitle1") }</p>
-								<p><Trans i18nKey="startupsHowItWorksStepText1" t={ t } components={ {
+							<div className={ OpportunitiesStyles.howItWorksStepText }>
+								<p>{ t("opportunitiesHowItWorksStepTitle1") }</p>
+								<p><Trans i18nKey="opportunitiesHowItWorksStepText1" t={ t } components={ {
 									onboarding: <LinkButton classList="link noUppercase" href="/onboarding"/>
 								} }/></p>
 							</div>
 						</div>
-						<div className={ StartupsStyles.howItWorksStep }>
-							<div className={ StartupsStyles.howItWorksStepText }>
-								<p>{ t("startupsHowItWorksStepTitle2") }</p>
-								<p><Trans i18nKey="startupsHowItWorksStepText2" t={ t } components={ {
-									corporatesDirectory: <LinkButton classList="link noUppercase" href="/corporates/directory"/>,
+						<div className={ OpportunitiesStyles.howItWorksStep }>
+							<div className={ OpportunitiesStyles.howItWorksStepText }>
+								<p>{ t("opportunitiesHowItWorksStepTitle2") }</p>
+								<p><Trans i18nKey="opportunitiesHowItWorksStepText2" t={ t } components={ {
+									startupsDirectory: <LinkButton classList="link noUppercase" href="/startups/directory"/>,
 									opportunitiesDirectory: <LinkButton classList="link noUppercase" href="/opportunities/directory"/>
 								} }/></p>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepSeparator }>
+							<div className={ OpportunitiesStyles.howItWorksStepSeparator }>
 								<LineSeparator classList="vertical"/>
 								<i className="fa-light fa-chevron-down"/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepPicture }>
-								<CustomImage src="/assets/landings/startups/step_2.png" alt={ t("") }/>
+							<div className={ OpportunitiesStyles.howItWorksStepPicture }>
+								<CustomImage src="/assets/landings/opportunities/step_2.png" alt={ t("") }/>
 							</div>
 						</div>
-						<div className={ StartupsStyles.howItWorksStep }>
-							<div className={ StartupsStyles.howItWorksStepPicture }>
-								<CustomImage src="/assets/landings/startups/step_3.png" alt={ t("") }/>
+						<div className={ OpportunitiesStyles.howItWorksStep }>
+							<div className={ OpportunitiesStyles.howItWorksStepPicture }>
+								<CustomImage src="/assets/landings/opportunities/step_3.png" alt={ t("") }/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepSeparator }>
+							<div className={ OpportunitiesStyles.howItWorksStepSeparator }>
 								<LineSeparator classList="vertical"/>
 								<i className="fa-light fa-check"/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepText }>
-								<p>{ t("startupsHowItWorksStepTitle3") }</p>
-								<p>{ t("startupsHowItWorksStepText3") }</p>
+							<div className={ OpportunitiesStyles.howItWorksStepText }>
+								<p>{ t("opportunitiesHowItWorksStepTitle3") }</p>
+								<p>{ t("opportunitiesHowItWorksStepText3") }</p>
 							</div>
 						</div>
 					</div>
-					<div className={ StartupsStyles.containerTitle }>
-						<h3>{ t("startupsLatestOpportunitiesTitle") }</h3>
+					<div className={ OpportunitiesStyles.containerTitle }>
+						<h3>{ t("opportunitiesLatestOpportunitiesTitle") }</h3>
 					</div>
 					<DefaultCarousel items={ opportunities } itemsType="opportunities" navigation="bar"  controls indicators links/>
 				</div>
 			</div>
-            <div className={ StartupsStyles.mainContainer }>
+            <div className={ OpportunitiesStyles.mainContainer }>
 				<div className="boxedContent">
-					<div className={ StartupsStyles.containerTitle }>
-						<h3>{ t("startupsBadgesTitle", { company: "Forinov" }) }</h3>
+					<div className={ OpportunitiesStyles.containerTitle }>
+						<h3>{ t("opportunitiesBadgesTitle", { company: "Forinov" }) }</h3>
 					</div>
-					<div className={ StartupsStyles.badges }>
-						<div className={ StartupsStyles.badge }>
+					<div className={ OpportunitiesStyles.badges }>
+						<div className={ OpportunitiesStyles.badge }>
 							<i className="fa-light fa-chart-network"/>
-							<p>{ t("startupsBadgeTitle1") }</p>
-							<p><Trans i18nKey="startupsBadgeText1" t={ t } components={ {
+							<p>{ t("opportunitiesBadgeTitle1") }</p>
+							<p><Trans i18nKey="opportunitiesBadgeText1" t={ t } components={ {
 								opportunitiesDirectory: <LinkButton classList="link noUppercase" href="/opportunities/directory"/>
 							} }/></p>
 							<LineSeparator classList="horizontal"/>
 						</div>
-						<div className={ StartupsStyles.badge }>
+						<div className={ OpportunitiesStyles.badge }>
 							<i className="fa-light fa-badge-check"/>
-							<p>{ t("startupsBadgeTitle2") }</p>
-							<p>{ t("startupsBadgeText2") }</p>
+							<p>{ t("opportunitiesBadgeTitle2") }</p>
+							<p>{ t("opportunitiesBadgeText2") }</p>
 							<LineSeparator classList="horizontal"/>
 						</div>
-						<div className={ StartupsStyles.badge }>
+						<div className={ OpportunitiesStyles.badge }>
 							<i className="fa-light fa-gauge-high"/>
-							<p>{ t("startupsBadgeTitle3") }</p>
-							<p>{ t("startupsBadgeText3") }</p>
+							<p>{ t("opportunitiesBadgeTitle3") }</p>
+							<p>{ t("opportunitiesBadgeText3") }</p>
 							<LineSeparator classList="horizontal"/>
 						</div>
 					</div>
 				</div>
 			</div>
-            <div className={ StartupsStyles.mainContainer }>
+            <div className={ OpportunitiesStyles.mainContainer }>
 				<div className="boxedContent">
-					<div className={ StartupsStyles.containerTitle }>
-						<h4>{ t("startupsTheyTrustTitle") }</h4>
+					<div className={ OpportunitiesStyles.containerTitle }>
+						<h4>{ t("opportunitiesTheyTrustTitle") }</h4>
 					</div>
 					<InfiniteCarousel items={ logos } itemsType="logos"/>
-					<div className={ StartupsStyles.containerTitle }>
-						<h5>{ t("startupsFreeTitle", { company: "Forinov" }) }</h5>
-						<p>{ t("startupsFreeText") }</p>
-						<LinkButton classList="primary" href="/onboarding" text={ t("startupsOnboardingLink") }/>
+					<div className={ OpportunitiesStyles.containerTitle }>
+						<h5>{ t("opportunitiesFreeTitle", { company: "Forinov" }) }</h5>
+						<p>{ t("opportunitiesFreeText") }</p>
+						<LinkButton classList="primary" href="/onboarding" text={ t("opportunitiesOnboardingLink") }/>
 					</div>
-				</div>
-			</div>
-			<div className={ StartupsStyles.mainContainer }>
-				<div className="boxedContent">
-					<div className={ StartupsStyles.containerTitle }>
-						<h4>{ t("startupsQuestionsTitle") }</h4>
+					<div className={ OpportunitiesStyles.containerTitle }>
+						<h4>{ t("opportunitiesQuestionsTitle") }</h4>
 					</div>
-					<Accordion type="startups"/>
 				</div>
 			</div>
 		</div>
@@ -191,7 +185,7 @@ const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) 
 	} else {
         return {
             props: {
-                ...(await serverSideTranslations(locale || "fr", [ "startups", "navbar", "footer", "common" ], i18next)),
+                ...(await serverSideTranslations(locale || "fr", [ "opportunities", "navbar", "footer", "common" ], i18next)),
                 locales,
 				opportunities: getOpportunities.response.opportunities,
 				logos: getLogos.response.logos

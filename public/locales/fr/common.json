@@ -23,5 +23,7 @@
     "opportunitiesDirectoryLink": "Qu'est-ce qu'une opportunité ?",
     "startupsDirectoryLink": "Accéder à l'annuaire des startups",
     "noResultsFoundText": "Aucun résultat trouvé",
-    "noResultsFoundSubtext": "Nous n'avons pas trouvé ce que vous cherchiez.<br>Retentez avec d'autres critères de recherche."
+    "noResultsFoundSubtext": "Nous n'avons pas trouvé ce que vous cherchiez.<br>Retentez avec d'autres critères de recherche.",
+    "questionsContactText": "Vous avez des questions ?",
+    "questionsContactLink": "N'hésitez pas à nous contacter"
 }

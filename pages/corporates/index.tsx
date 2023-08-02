@@ -17,7 +17,6 @@ import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import DefaultCarousel from "@carousels/defaultCarousel";
 import InfiniteCarousel from "@carousels/infiniteCarousel";
-import Accordion from "@accordions/defaultAccordion";
 import CustomImage from "@contents/customImage";
 import LinkButton from "@buttons/linkButton";
 import LineSeparator from "@separators/lineSeparator";
@@ -29,145 +28,140 @@ import type { PageType } from "@typescript/types/PageType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Styles */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import StartupsStyles from "@pages/startups/Startups.module.css";
+import CorporatesStyles from "@pages/corporates/Corporates.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Startups */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const Startups = (params: PageType): JSX.Element => {
-	const { t } = useTranslation("startups");
+	const { t } = useTranslation("corporates");
 	const { opportunities, logos } = params;
 	return <Fragment>
         <Head>
-			<title>{ t("startupsMetaTitle", { company: "Forinov" }) }</title>
-			<meta name="description" content={ t("startupsMetaDescription", { company: "Forinov" }) }/>
+			<title>{ t("corporatesMetaTitle", { company: "Forinov" }) }</title>
+			<meta name="description" content={ t("corporatesMetaDescription", { company: "Forinov" }) }/>
 		</Head>
-		<div data-page="startups">
-			<div className={ StartupsStyles.mainContainer }>
+		<div data-page="corporates">
+			<div className={ CorporatesStyles.mainContainer }>
 				<div className="boxedContent">
-                    <div className={ StartupsStyles.containerTitle }>
-						<h1>{ t("startupsHeaderTitle") }</h1>
+                    <div className={ CorporatesStyles.containerTitle }>
+						<h1>{ t("corporatesHeaderTitle") }</h1>
 					</div>
-                    <div className={ StartupsStyles.header }>
-						<div className={ StartupsStyles.headerLeftContainer }>
-                        <div className={ StartupsStyles.headerParagraphs }>
-								<p>{ t("startupsHeaderParagraph") }</p>
+                    <div className={ CorporatesStyles.header }>
+						<div className={ CorporatesStyles.headerLeftContainer }>
+                        <div className={ CorporatesStyles.headerParagraphs }>
+								<p>{ t("corporatesHeaderParagraph") }</p>
 							</div>
-							<div className={ StartupsStyles.headerActions }>
-                                <LinkButton classList="primary" href="/onboarding" text={ t("startupsHeaderJoinLink") }/>
+							<div className={ CorporatesStyles.headerActions }>
+                                <LinkButton classList="primary" href="/onboarding" text={ t("corporatesHeaderJoinLink") }/>
 							</div>
 						</div>
-						<div className={ StartupsStyles.headerRightContainer }>
+						<div className={ CorporatesStyles.headerRightContainer }>
 							<CustomImage src="/assets/home.gif" alt={ t("aboutHeaderIllustrationAlt") }/>
 						</div>
 					</div>
 				</div>
 			</div>
-            <div className={ StartupsStyles.mainContainer }>
+            <div className={ CorporatesStyles.mainContainer }>
 				<div className="boxedContent">
-					<div className={ StartupsStyles.containerTitle }>
-						<h2>{ t("startupsHowItWorksTitle") }</h2>
-						<p>{ t("startupsHowItWorksText", { company: "Forinov" }) }</p>
+					<div className={ CorporatesStyles.containerTitle }>
+						<h2>{ t("corporatesHowItWorksTitle") }</h2>
+						<p>{ t("corporatesHowItWorksText", { company: "Forinov" }) }</p>
 					</div>
-					<div className={ StartupsStyles.howItWorks }>
-						<div className={ StartupsStyles.howItWorksStep }>
-							<div className={ StartupsStyles.howItWorksStepPicture }>
-								<CustomImage src="/assets/landings/startups/step_1.png" alt={ t("") }/>
+					<div className={ CorporatesStyles.howItWorks }>
+						<div className={ CorporatesStyles.howItWorksStep }>
+							<div className={ CorporatesStyles.howItWorksStepPicture }>
+								<CustomImage src="/assets/landings/corporates/step_1.png" alt={ t("") }/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepSeparator }>
+							<div className={ CorporatesStyles.howItWorksStepSeparator }>
 								<LineSeparator classList="vertical"/>
 								<i className="fa-light fa-chevron-down"/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepText }>
-								<p>{ t("startupsHowItWorksStepTitle1") }</p>
-								<p><Trans i18nKey="startupsHowItWorksStepText1" t={ t } components={ {
+							<div className={ CorporatesStyles.howItWorksStepText }>
+								<p>{ t("corporatesHowItWorksStepTitle1") }</p>
+								<p><Trans i18nKey="corporatesHowItWorksStepText1" t={ t } components={ {
 									onboarding: <LinkButton classList="link noUppercase" href="/onboarding"/>
 								} }/></p>
 							</div>
 						</div>
-						<div className={ StartupsStyles.howItWorksStep }>
-							<div className={ StartupsStyles.howItWorksStepText }>
-								<p>{ t("startupsHowItWorksStepTitle2") }</p>
-								<p><Trans i18nKey="startupsHowItWorksStepText2" t={ t } components={ {
+						<div className={ CorporatesStyles.howItWorksStep }>
+							<div className={ CorporatesStyles.howItWorksStepText }>
+								<p>{ t("corporatesHowItWorksStepTitle2") }</p>
+								<p><Trans i18nKey="corporatesHowItWorksStepText2" t={ t } components={ {
 									corporatesDirectory: <LinkButton classList="link noUppercase" href="/corporates/directory"/>,
 									opportunitiesDirectory: <LinkButton classList="link noUppercase" href="/opportunities/directory"/>
 								} }/></p>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepSeparator }>
+							<div className={ CorporatesStyles.howItWorksStepSeparator }>
 								<LineSeparator classList="vertical"/>
 								<i className="fa-light fa-chevron-down"/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepPicture }>
-								<CustomImage src="/assets/landings/startups/step_2.png" alt={ t("") }/>
+							<div className={ CorporatesStyles.howItWorksStepPicture }>
+								<CustomImage src="/assets/landings/corporates/step_2.png" alt={ t("") }/>
 							</div>
 						</div>
-						<div className={ StartupsStyles.howItWorksStep }>
-							<div className={ StartupsStyles.howItWorksStepPicture }>
-								<CustomImage src="/assets/landings/startups/step_3.png" alt={ t("") }/>
+						<div className={ CorporatesStyles.howItWorksStep }>
+							<div className={ CorporatesStyles.howItWorksStepPicture }>
+								<CustomImage src="/assets/landings/corporates/step_3.png" alt={ t("") }/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepSeparator }>
+							<div className={ CorporatesStyles.howItWorksStepSeparator }>
 								<LineSeparator classList="vertical"/>
 								<i className="fa-light fa-check"/>
 							</div>
-							<div className={ StartupsStyles.howItWorksStepText }>
-								<p>{ t("startupsHowItWorksStepTitle3") }</p>
-								<p>{ t("startupsHowItWorksStepText3") }</p>
+							<div className={ CorporatesStyles.howItWorksStepText }>
+								<p>{ t("corporatesHowItWorksStepTitle3") }</p>
+								<p>{ t("corporatesHowItWorksStepText3") }</p>
 							</div>
 						</div>
 					</div>
-					<div className={ StartupsStyles.containerTitle }>
-						<h3>{ t("startupsLatestOpportunitiesTitle") }</h3>
+					<div className={ CorporatesStyles.containerTitle }>
+						<h3>{ t("corporatesLatestOpportunitiesTitle") }</h3>
 					</div>
 					<DefaultCarousel items={ opportunities } itemsType="opportunities" navigation="bar"  controls indicators links/>
 				</div>
 			</div>
-            <div className={ StartupsStyles.mainContainer }>
+            <div className={ CorporatesStyles.mainContainer }>
 				<div className="boxedContent">
-					<div className={ StartupsStyles.containerTitle }>
-						<h3>{ t("startupsBadgesTitle", { company: "Forinov" }) }</h3>
+					<div className={ CorporatesStyles.containerTitle }>
+						<h3>{ t("corporatesBadgesTitle", { company: "Forinov" }) }</h3>
 					</div>
-					<div className={ StartupsStyles.badges }>
-						<div className={ StartupsStyles.badge }>
+					<div className={ CorporatesStyles.badges }>
+						<div className={ CorporatesStyles.badge }>
 							<i className="fa-light fa-chart-network"/>
-							<p>{ t("startupsBadgeTitle1") }</p>
-							<p><Trans i18nKey="startupsBadgeText1" t={ t } components={ {
+							<p>{ t("corporatesBadgeTitle1") }</p>
+							<p><Trans i18nKey="corporatesBadgeText1" t={ t } components={ {
 								opportunitiesDirectory: <LinkButton classList="link noUppercase" href="/opportunities/directory"/>
 							} }/></p>
 							<LineSeparator classList="horizontal"/>
 						</div>
-						<div className={ StartupsStyles.badge }>
+						<div className={ CorporatesStyles.badge }>
 							<i className="fa-light fa-badge-check"/>
-							<p>{ t("startupsBadgeTitle2") }</p>
-							<p>{ t("startupsBadgeText2") }</p>
+							<p>{ t("corporatesBadgeTitle2") }</p>
+							<p>{ t("corporatesBadgeText2") }</p>
 							<LineSeparator classList="horizontal"/>
 						</div>
-						<div className={ StartupsStyles.badge }>
+						<div className={ CorporatesStyles.badge }>
 							<i className="fa-light fa-gauge-high"/>
-							<p>{ t("startupsBadgeTitle3") }</p>
-							<p>{ t("startupsBadgeText3") }</p>
+							<p>{ t("corporatesBadgeTitle3") }</p>
+							<p>{ t("corporatesBadgeText3") }</p>
 							<LineSeparator classList="horizontal"/>
 						</div>
 					</div>
 				</div>
 			</div>
-            <div className={ StartupsStyles.mainContainer }>
+            <div className={ CorporatesStyles.mainContainer }>
 				<div className="boxedContent">
-					<div className={ StartupsStyles.containerTitle }>
-						<h4>{ t("startupsTheyTrustTitle") }</h4>
+					<div className={ CorporatesStyles.containerTitle }>
+						<h4>{ t("corporatesTheyTrustTitle") }</h4>
 					</div>
 					<InfiniteCarousel items={ logos } itemsType="logos"/>
-					<div className={ StartupsStyles.containerTitle }>
-						<h5>{ t("startupsFreeTitle", { company: "Forinov" }) }</h5>
-						<p>{ t("startupsFreeText") }</p>
-						<LinkButton classList="primary" href="/onboarding" text={ t("startupsOnboardingLink") }/>
+					<div className={ CorporatesStyles.containerTitle }>
+						<h5>{ t("corporatesFreeTitle", { company: "Forinov" }) }</h5>
+						<p>{ t("corporatesFreeText") }</p>
+						<LinkButton classList="primary" href="/onboarding" text={ t("corporatesOnboardingLink") }/>
 					</div>
-				</div>
-			</div>
-			<div className={ StartupsStyles.mainContainer }>
-				<div className="boxedContent">
-					<div className={ StartupsStyles.containerTitle }>
-						<h4>{ t("startupsQuestionsTitle") }</h4>
+					<div className={ CorporatesStyles.containerTitle }>
+						<h4>{ t("corporatesQuestionsTitle") }</h4>
 					</div>
-					<Accordion type="startups"/>
 				</div>
 			</div>
 		</div>
@@ -191,7 +185,7 @@ const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) 
 	} else {
         return {
             props: {
-                ...(await serverSideTranslations(locale || "fr", [ "startups", "navbar", "footer", "common" ], i18next)),
+                ...(await serverSideTranslations(locale || "fr", [ "corporates", "navbar", "footer", "common" ], i18next)),
                 locales,
 				opportunities: getOpportunities.response.opportunities,
 				logos: getLogos.response.logos
