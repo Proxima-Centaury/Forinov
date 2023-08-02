@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import api from "@classes/api";
+import { Error } from "@classes/error";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Next Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -16,17 +17,17 @@ import { Fragment } from "react";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Forinov Components */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import Testimonials from "@contents/testimonials";
-import DefaultCarousel from "@carousels/defaultCarousel";
 import CustomImage from "@contents/customImage";
-import LinkButton from "@buttons/linkButton";
+import DefaultCarousel from "@carousels/defaultCarousel";
 import LineSeparator from "@separators/lineSeparator";
+import LinkButton from "@buttons/linkButton";
+import Testimonials from "@contents/testimonials";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import type { GetServerSideProps } from "next";
-import type { TPage } from "@typescript/types/TPage";
-import type { TButton } from "@typescript/types/TButton";
+import type { ButtonType } from "@typescript/types/ButtonType";
+import type { PageType } from "@typescript/types/PageType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -38,16 +39,15 @@ import HomeStyles from "@pages/Home.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Home */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const Home = (params: TPage): JSX.Element => {
+const Home = (params: PageType): JSX.Element => {
 	const router = useRouter();
 	const { locale } = router;
 	const { t } = useTranslation([ "home", "common" ]);
-	const { landing, startups, opportunities } = params;
-	const { articles, categories, counters } = landing;
-	const startupsTotal: number = counters?.startups.total || 0;
-	const startupsCategories: number = counters?.startups.categories || 0;
-	const homeHeaderLinks: TButton[] = require("@configurations/links.json").home.header;
-	const homeStructuresLinks: TButton[] = require("@configurations/links.json").home.structures;
+	const { articles, categories, counters, opportunities, startups } = params;
+	const startupsCategories: number = counters?.startups?.categories || 0;
+	const startupsTotal: number = counters?.startups?.total || 0;
+	const homeHeaderLinks: ButtonType[] = require("@configurations/links.json").home.header;
+	const homeStructuresLinks: ButtonType[] = require("@configurations/links.json").home.structures;
 	return <Fragment>
 		<Head>
 			<title>{ t("homeMetaTitle", { company: "Forinov" }) }</title>
@@ -66,7 +66,7 @@ const Home = (params: TPage): JSX.Element => {
 								<p>{ t("homeHeaderParagraph2", { company: "Forinov" }) }</p>
 							</div>
 							<div className={ HomeStyles.headerActions }>
-								{ homeHeaderLinks.map(({ classList, href, icon, text }: TButton, key: number) => {
+								{ homeHeaderLinks.map(({ classList, href, icon, text }: ButtonType, key: number) => {
 									const translatedText = (text) ? t(text) : undefined;
 									const dynamicParams = { classList, href, icon, text: translatedText };
 									return <Fragment key={ key }>
@@ -179,7 +179,7 @@ const Home = (params: TPage): JSX.Element => {
 						<h5>{ t("homeStartupsCategoriesTitle", { startups: startupsTotal, categories: startupsCategories }) }</h5>
 					</div>
 					<div className={ HomeStyles.startupsCategoriesSection }>
-						{ categories?.startups.slice(0, 9).map((category: any, key: number) => {
+						{ categories?.startups?.slice(0, 9).map((category: any, key: number) => {
 							const url = `/directories/startups/${ formatForUrl(category.name) }_${ category.id }`;
 							return (category.name) ? <Fragment key={ key }>
 								<LinkButton classList="tertiary" href={ url } text={ category.name }/>
@@ -205,7 +205,7 @@ const Home = (params: TPage): JSX.Element => {
 						<p>{ t("homeStructuresSectionText") }</p>
 					</div>
 					<div className={ HomeStyles.structuresSection }>
-						{ homeStructuresLinks.map(({ classList, href, text }: TButton, key: number) => {
+						{ homeStructuresLinks.map(({ classList, href, text }: ButtonType, key: number) => {
 							const translatedText = (text) ? t(text) : undefined;
 							const dynamicParams = { classList, href, text: translatedText };
 							return <Fragment key={ key }>
@@ -236,14 +236,28 @@ const Home = (params: TPage): JSX.Element => {
 const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) => {
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
 	const i18next = require("@project/next-i18next.config");
-	return {
-		props: {
-			...(await serverSideTranslations(locale || "fr", [ "home", "navbar", "footer", "common" ], i18next)),
-			locales,
-			landing: await api.getLanding("next", "Landing", locale),
-			opportunities: await api.getLandingOpportunities("next", "Landing", locale),
-			startups: await api.getLandingStartups("next", "Landing", locale)
-		}
+	const getLanding = await api.getLanding("next", "Landing", locale);
+	const getOpportunities = await api.getLandingOpportunities("next", "Landing", locale);
+	const getStartups = await api.getLandingStartups("next", "Landing", locale);
+	if(getLanding instanceof Error || getOpportunities instanceof Error || getStartups instanceof Error) {
+		return {
+			redirect: {
+				destination: "/500",
+				permanent: false
+			}
+		};
+	} else {
+		return {
+			props: {
+				...(await serverSideTranslations(locale || "fr", [ "home", "navbar", "footer", "common" ], i18next)),
+				locales,
+				articles: getLanding.response.articles,
+				categories: getLanding.response.categories,
+				counters: getLanding.response.counters,
+				opportunities: getOpportunities.response.items,
+				startups: getStartups.response.items
+			}
+		};
 	};
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
