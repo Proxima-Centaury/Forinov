@@ -44,28 +44,18 @@ const InfiniteCarousel = (params: CarouselType): JSX.Element => {
             <div className={ CarouselStyles.wrapper } ref={ carouselReference }>
                 <div className={ CarouselStyles.infinite }>
                     <div className={ CarouselStyles.firstCopy }>
-                        { (Array.isArray(items)) ? items?.map((item: any, key: number) => {
-                            switch(itemsType) {
-                                case "logos" :
-                                    return <Fragment key={ key }>
-                                        <Link href={ item } className={ CarouselStyles.logo }>
-                                            <CustomImage src={ item.logo } alt={ item.name }/>
-                                        </Link>
-                                    </Fragment>;
-                            };
-                        }) : null }
+                        { (Array.isArray(items)) ? items?.map((item: any, key: number) => <Fragment key={ key }>
+                            <Link className={ CarouselStyles.logo } href="">
+                                <CustomImage src={ item.logo } alt={ item.name }/>
+                            </Link>
+                        </Fragment>) : null }
                     </div>
                     <div className={ CarouselStyles.secondCopy }>
-                        { (Array.isArray(items)) ? items?.map((item: any, key: number) => {
-                            switch(itemsType) {
-                                case "logos" :
-                                    return <Fragment key={ key }>
-                                        <Link href={ item } className={ CarouselStyles.logo }>
-                                            <CustomImage src={ item.logo } alt={ item.name }/>
-                                        </Link>
-                                    </Fragment>;
-                            };
-                        }) : null }
+                        { (Array.isArray(items)) ? items?.map((item: any, key: number) => <Fragment key={ key }>
+                            <Link className={ CarouselStyles.logo } href="">
+                                <CustomImage src={ item.logo } alt={ item.name }/>
+                            </Link>
+                        </Fragment>) : null }
                     </div>
                 </div>
             </div>
