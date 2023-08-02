@@ -20,7 +20,7 @@ import type { PageType } from "@typescript/types/PageType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Not Found */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-function NotFound(params: PageType): JSX.Element {
+function ServerError(params: PageType): JSX.Element {
 	const { reason } = params;
 	// console.error(error.response);
     return <Fragment>
@@ -36,7 +36,7 @@ const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
 	const i18next = require("@project/next-i18next.config");
 	return {
 		props: {
-			...(await serverSideTranslations(locale || "fr", [ "400", "navbar", "footer", "common" ], i18next)),
+			...(await serverSideTranslations(locale || "fr", [ "500", "navbar", "footer", "common" ], i18next)),
 			locales,
 			reason: error.getLastLog()
 		}
@@ -45,5 +45,5 @@ const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export default NotFound;
+export default ServerError;
 export { getStaticProps };
