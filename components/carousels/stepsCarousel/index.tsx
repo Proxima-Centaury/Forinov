@@ -20,24 +20,24 @@ import CarouselStyles from "@carousels/Carousel.module.css";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 const StepsCarousel = (params: CarouselType): JSX.Element => {
     const { classList, controls, gradient, indicators, items, itemsType, links, navigation } = params;
-    const steps: Array<any> = carouselsConfigurations[component];
-    useEffect(() => {
-        const handleStepButtonsTitle = () => {
-            const stepButtons = document.querySelectorAll("." + CarouselStyles.steps + "[data-carousel='" + component + "Steps'] button") || [];
-            if (stepButtons.length > 0) {
-                stepButtons.forEach((button, key) => {
-                    const typedButton = button as HTMLElement;
-                    const stepTitle = (window.innerWidth < 992) ? key + 1 : (key + 1) + ". " + steps[key].title;
-                    typedButton.innerText = stepTitle.toString();
-                });
-            };
-        };
-        handleStepButtonsTitle();
-        window.addEventListener("resize", handleStepButtonsTitle);
-        return () => window.removeEventListener("resize", handleStepButtonsTitle);
-    });
+    // const steps: Array<any> = carouselsConfigurations[component];
+    // useEffect(() => {
+    //     const handleStepButtonsTitle = () => {
+    //         const stepButtons = document.querySelectorAll("." + CarouselStyles.steps + "[data-carousel='" + component + "Steps'] button") || [];
+    //         if (stepButtons.length > 0) {
+    //             stepButtons.forEach((button, key) => {
+    //                 const typedButton = button as HTMLElement;
+    //                 const stepTitle = (window.innerWidth < 992) ? key + 1 : (key + 1) + ". " + steps[key].title;
+    //                 typedButton.innerText = stepTitle.toString();
+    //             });
+    //         };
+    //     };
+    //     handleStepButtonsTitle();
+    //     window.addEventListener("resize", handleStepButtonsTitle);
+    //     return () => window.removeEventListener("resize", handleStepButtonsTitle);
+    // });
     return <div className={ CarouselStyles.container }>
-        <div className={ CarouselStyles.steps }>
+        {/* <div className={ CarouselStyles.steps }>
             { steps.map((button, key) => <Fragment key={key}>
                 <div className="separator"></div>
                 <Button button={ButtonStyles.callToActionStep} action={(event: any) => transitionHandler(event, component)} text={button.title} active={key === 0} />
@@ -60,7 +60,7 @@ const StepsCarousel = (params: CarouselType): JSX.Element => {
                     </div>
                 </div>;
             })}
-        </div>
+        </div> */}
     </div>;
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
