@@ -21,7 +21,8 @@
             "@configurations/*": [ "configurations/*" ],
             "@contents/*": [ "components/contents/*" ],
             "@pagination": [ "components/pagination" ],
-            "@pagination/*": [ "components/pagination/*" ]
+            "@pagination/*": [ "components/pagination/*" ],
+            "@accordions/*": [ "components/accordions/*" ]
         },
         "target": "es5",
         "downlevelIteration": true,
