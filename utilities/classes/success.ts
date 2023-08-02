@@ -5,47 +5,47 @@ import logger from "@classes/logger";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Interfaces */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { ErrorInterface } from "typescript/interfaces/ErrorInterface";
+import type { SuccessInterface } from "typescript/interfaces/SuccessInterface";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Types */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { ErrorType } from "@typescript/types/ErrorType";
+import type { SuccessType } from "@typescript/types/SuccessType";
 import type { LogType } from "@typescript/types/LogType";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Scripts */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 import { isLogger } from "@scripts/typeChecks";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Error */
+/* Success */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-class Error implements ErrorInterface {
-    private _error: ErrorType = { code: 0, message: "Error found" };
+class Success implements SuccessInterface {
+    private _success: SuccessType = { code: 0, message: "No error found" };
     private _lastLog: LogType = {
         log: "",
         response: {
             cause: "UNKNOWN",
             status: {
                 code: 0,
-                message: "Error found"
+                message: "No error found"
             }
         },
         timestamp: 0,
-        type: "error"
+        type: "success"
     };
     constructor() {};
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     /* Initiator */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
-    public reportError = (type?: string, sourceParameters?: any): Error => {
+    public reportSuccess = (type?: string, sourceParameters?: any): Success => {
         switch(type) {
             case "API" :
                 return this._generateAPIFeedback(sourceParameters);
-            case "DisabledAPI" :
-                return this._generateDisabledAPIFeedback(sourceParameters);
+            case "EnabledAPI" :
+                return this._generateEnabledAPIFeedback(sourceParameters);
             case "Call ":
                 return this._generateCallFeedback(sourceParameters);
-            case "NoResponse" :
-                return this._generateNoResponseFeedback(null);
+            case "Response" :
+                return this._generateResponseFeedback(null);
             default :
                 return this;
         };
@@ -53,67 +53,67 @@ class Error implements ErrorInterface {
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     /* Feedbacks */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
-    private _generateAPIFeedback = (sourceParameters: any): Error => {
-        const log = logger.initiateLog("logAPIError", sourceParameters);
-        this.setError({ code: 400, message: "Error occured due to missing parameters in client side." });
+    private _generateAPIFeedback = (sourceParameters: any): Success => {
+        const log = logger.initiateLog("logAPISuccess", sourceParameters);
+        this.setSuccess({ code: 200, message: "Success, all parameters were passed to the call in client side." });
         this.setLastLog({
             log: (isLogger(log)) ? log.getLastMessage() : "",
             response: {
-                cause: "ClientError",
-                status: { ...this.getError() },
+                cause: "ClientSuccess",
+                status: { ...this.getSuccess() },
             },
             timestamp: new Date().getTime(),
-            type: "error"
+            type: "success"
         });
         return this;
     };
-    private _generateDisabledAPIFeedback = (sourceParameters: any): Error => {
-        const log = logger.initiateLog("logDisabledAPIError", sourceParameters);
-        this.setError({ code: 400, message: "Error occured due to disabled API class, enable it by using api.setEnabled(true)." });
+    private _generateEnabledAPIFeedback = (sourceParameters: any): Success => {
+        const log = logger.initiateLog("logEnabledAPISuccess", sourceParameters);
+        this.setSuccess({ code: 200, message: "Success, API class is enabled." });
         this.setLastLog({
             log: (isLogger(log)) ? log.getLastMessage() : "",
             response: {
-                cause: "ClientError",
-                status: { ...this.getError() },
+                cause: "ClientSuccess",
+                status: { ...this.getSuccess() },
             },
             timestamp: new Date().getTime(),
-            type: "error"
+            type: "success"
         });
         return this;
     };
-    private _generateCallFeedback = (sourceParameters: any): Error => {
-        const log = logger.initiateLog("logCallError", sourceParameters);
-        this.setError({ code: 500, message: "Error occured due to JSON Syntax error on server side." });
+    private _generateCallFeedback = (sourceParameters: any): Success => {
+        const log = logger.initiateLog("logCallSuccess", sourceParameters);
+        this.setSuccess({ code: 200, message: "Success, the server has sent a correct JSON response." });
         this.setLastLog({
             log: (isLogger(log)) ? log.getLastMessage() : "",
             response: {
-                cause: "ServerSyntaxError",
-                status: { ...this.getError() },
+                cause: "ServerSyntaxSuccess",
+                status: { ...this.getSuccess() },
             },
             timestamp: new Date().getTime(),
-            type: "error"
+            type: "success"
         });
         return this;
     };
-    private _generateNoResponseFeedback = (sourceParameters: any): Error => {
-        const log = logger.initiateLog("logNoResponseError", sourceParameters);
-        this.setError({ code: 500, message: "Error occured due to lack of response from the server." });
+    private _generateResponseFeedback = (sourceParameters: any): Success => {
+        const log = logger.initiateLog("logResponseSuccess", sourceParameters);
+        this.setSuccess({ code: 200, message: "Success, the client was able to reach the server." });
         this.setLastLog({
             log: (isLogger(log)) ? log.getLastMessage() : "",
             response: {
-                cause: "ServerNoResponseError",
-                status: { ...this.getError() },
+                cause: "ServerResponseSuccess",
+                status: { ...this.getSuccess() },
             },
             timestamp: new Date().getTime(),
-            type: "error"
+            type: "success"
         });
         return this;
     };
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     /* Getters */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
-    public getError = (): ErrorType => {
-        return this._error;
+    public getSuccess = (): SuccessType => {
+        return this._success;
     };
     public getLastLog = (): LogType => {
         return this._lastLog;
@@ -121,9 +121,9 @@ class Error implements ErrorInterface {
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
     /* Setters */
     /* -------------------------------------------------------------------------------------------------------------------------------------------- */
-    public setError = (error: ErrorType): boolean => {
-        if(error) {
-            this._error = error;
+    public setSuccess = (success: SuccessType): boolean => {
+        if(success) {
+            this._success = success;
             return true;
         };
         return false;
@@ -139,9 +139,9 @@ class Error implements ErrorInterface {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Instance */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-const error: ErrorInterface = new Error();
+const success: SuccessInterface = new Success();
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-export default error;
-export { Error };
+export default success;
+export { Success };
