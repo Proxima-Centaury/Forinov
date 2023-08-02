@@ -1,21 +1,21 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-/* Types */
+/* Imports */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-import type { LogType } from "@typescript/types/LogType";
+import { Logger } from "@classes/logger";
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Logger Interface */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 interface LoggerInterface {
     [key: string]: any
-    initiateLog: (...params: any[]) => LoggerInterface,
-    getColor: (...params: any[]) => string,
-    getSeparator: (...params: any[]) => string,
-    getChalkz: (...params: any[]) => Function,
-    getLastLog: (...params: any[]) => LogType,
-    setColor: (...params: any[]) => any,
-    setSeparator: (...params: any[]) => any
-    setChalkz: (...params: any[]) => any,
-    setLastLog: (...params: any[]) => any,
+    initiateLog: (log: string, params: any) => Logger,
+    getColor: () => string,
+    getSeparator: () => string,
+    getChalkz: () => Function,
+    getLastMessage: () => string,
+    setColor: (color: string) => boolean,
+    setSeparator: (separator: string) => boolean
+    setChalkz: (chalkz: Function) => boolean,
+    setLastMessage: (message: string) => boolean
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
