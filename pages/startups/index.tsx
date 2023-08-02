@@ -173,15 +173,25 @@ const Startups = (params: PageType): JSX.Element => {
 const getServerSideProps: GetServerSideProps = async ({ res, locale, locales }) => {
 	res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate=59");
 	const i18next = require("@project/next-i18next.config");
-	return {
-		props: {
-			...(await serverSideTranslations(locale || "fr", [ "startups", "navbar", "footer", "common" ], i18next)),
-			locales,
-			landing: await api.getLanding("next", "Landing", locale),
-			opportunities: await api.getLandingOpportunities("next", "Landing", locale),
-			logos: await api.getLandingLogos("next", "Landing", locale)
-		}
-	};
+	const getOpportunities = await api.getLandingOpportunities("next", "Landing", locale);
+	const getLogos = await api.getLandingLogos("next", "Landing", locale);
+	if(getOpportunities instanceof Error || getLogos instanceof Error) {
+		return {
+			redirect: {
+				destination: "/500",
+				permanent: false
+			}
+		};
+	} else {
+        return {
+            props: {
+                ...(await serverSideTranslations(locale || "fr", [ "startups", "navbar", "footer", "common" ], i18next)),
+                locales,
+				opportunities: getOpportunities.response.opportunities,
+				logos: getLogos.response.logos
+            }
+        };
+    };
 };
 /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Exports */
