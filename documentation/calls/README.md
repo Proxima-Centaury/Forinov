@@ -1,6 +1,6 @@
 # Forinov API
 
-This [README.md](/README.md) contains a list of API calls as well as their use cases methods.
+This [README.md](/README.md) contains a list of API calls as well as their use cases methods, this will need to be moved in dedicated page.
 
 <u>Company profile :</u> ( **V5_GET_PROFILE** )
 

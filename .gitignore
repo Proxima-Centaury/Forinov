@@ -54,3 +54,5 @@ tmp.*
 typescript/schemas/
 typescript/validator.ts
 translated/
+/public/sw.js*
+/public/workbox-*.js*
