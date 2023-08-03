@@ -40,6 +40,19 @@ tmp.*
 production/
 notes/
 temp/
-analyze/
+
+# Build directory
+production/
+
+# Temporary files
+tmp.*
+
+# Dev utilities
+/analyze
+
+# Next coming features
+typescript/schemas/
+typescript/validator.ts
+translated/
 /public/sw.js*
 /public/workbox-*.js*
