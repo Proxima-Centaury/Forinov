@@ -5,7 +5,7 @@ name: Forinov's interface deployment system ( Production )
 on:
     # Starts deployment on push or pull request events on production branch
     push:
-        branches: [ "production" ]
+        branches: [ "v1" ]
 # Deployment system jobs
 jobs:
     build:
